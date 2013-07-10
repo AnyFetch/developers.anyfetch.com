@@ -20,6 +20,8 @@ Lists all the users in the company.
 - `date_joined_gt` _optional_ **date** Creation of the user account **after** the specified date
 - `date_joined_lt` _optional_ **date** Creation of the user account **before** the specified date
 
+Format:
+
 	$ curl -u "username:password" -i https://api.papiel.fr/users
 	HTTP/1.1 200 OK
 	X-Poll-Interval: 60
@@ -123,6 +125,7 @@ You'll be redirected to the new user url.
 - `is_active` _optional_ **boolean**
 - `is_staff` _optional_ **boolean**
 
+Format:
 
 	{
 		"first_name": "Baz",
