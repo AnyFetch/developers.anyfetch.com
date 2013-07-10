@@ -1,5 +1,6 @@
 ---
 title: Processing documents
+layout: doc
 ---
 
 # Processing documents
