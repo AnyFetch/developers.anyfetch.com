@@ -20,27 +20,25 @@ Lists all the users in the company.
 - `date_joined_gt` _optional_ **date** Creation of the user account **after** the specified date
 - `date_joined_lt` _optional_ **date** Creation of the user account **before** the specified date
 
-```
-$ curl -u "username:password" -i https://api.papiel.fr/users
-HTTP/1.1 200 OK
-X-Poll-Interval: 60
+	$ curl -u "username:password" -i https://api.papiel.fr/users
+	HTTP/1.1 200 OK
+	X-Poll-Interval: 60
 
-[
-	{
-		"type": "User",
-		"uuid": "dqsvj667bkqvljdfv23678",
-		"self_url": "/users/1/"
-		"email": foo@bar.fr,
-		"first_name": "Foo"
-		"last_name": "Bar",
-		"is_active": true,
-		"is_staff": true;
-		"last_login": "2008-01-14T04:33:35Z",
-		"user_url": "https://api.papiel.fr/users/dqsvj667bkqvljdfv23678"
-	}
-	...
-]
-```
+	[
+		{
+			"type": "User",
+			"uuid": "dqsvj667bkqvljdfv23678",
+			"self_url": "/users/1/"
+			"email": foo@bar.fr,
+			"first_name": "Foo"
+			"last_name": "Bar",
+			"is_active": true,
+			"is_staff": true;
+			"last_login": "2008-01-14T04:33:35Z",
+			"user_url": "https://api.papiel.fr/users/dqsvj667bkqvljdfv23678"
+		}
+		...
+	]
 
 - `is_active` is a boolean flag indicating whether the user can log to Papiel or not. An inactive user is temporarily locked out of his account.
 - `is_staff` is a boolean flag indicating whether the user can update other users or not.
@@ -53,34 +51,31 @@ There are 2 ways of accessing a single user. First, with the user id, or accessi
 
 `GET /users/:user`
 
-```
-$ curl -u "username:password" -i https://api.papiel.fr/users/dqsvj667bkqvljdfv23678
-HTTP/1.1 200 OK
-X-Poll-Interval: 60
+	$ curl -u "username:password" -i https://api.papiel.fr/users/dqsvj667bkqvljdfv23678
+	HTTP/1.1 200 OK
+	X-Poll-Interval: 60
 
-{
-	"type": "User",
-	"uuid": "dqsvj667bkqvljdfv23678",
-	"self_url": "/users/1/"
-	"email": foo@bar.fr,
-	"first_name": "Foo"
-	"last_name": "Bar",
-	"is_active": true,
-	"is_staff": true;
-	"last_login": "2008-01-14T04:33:35Z"
-}
-```
+	{
+		"type": "User",
+		"uuid": "dqsvj667bkqvljdfv23678",
+		"self_url": "/users/1/"
+		"email": foo@bar.fr,
+		"first_name": "Foo"
+		"last_name": "Bar",
+		"is_active": true,
+		"is_staff": true;
+		"last_login": "2008-01-14T04:33:35Z"
+	}
+
 
 ### Get the authenticated user
 
 `GET /user`
 
-```
-$ curl -u "username:password" -i https://api.papiel.fr/user
-HTTP/1.1 302 FOUND
-X-Poll-Interval: 60
-Location: https://api.papiel.fr/users/dqsvj667bkqvljdfv23678
-```
+	$ curl -u "username:password" -i https://api.papiel.fr/user
+	HTTP/1.1 302 FOUND
+	X-Poll-Interval: 60
+	Location: https://api.papiel.fr/users/dqsvj667bkqvljdfv23678
 
 ## Manage users
 
@@ -98,23 +93,19 @@ Location: https://api.papiel.fr/users/dqsvj667bkqvljdfv23678
 - `is_active` _optional_ **boolean**, set to true by default
 - `is_staff` _optional_ **boolean**, set to false by default
 
-```
-{
-	"first_name": "Foo",
-	"last_name": "Bar",
-	"email": "foo.bar@baz.com"
-}
-```
+	{
+		"first_name": "Foo",
+		"last_name": "Bar",
+		"email": "foo.bar@baz.com"
+	}
 
 #### Response
 
 You'll be redirected to the new user url.
 
-```
-HTTP/1.1 302 FOUND
-X-Poll-Interval: 60
-Location: https://api.papiel.fr/users/dqsvj667bkqvljdfv23678
-```
+	HTTP/1.1 302 FOUND
+	X-Poll-Interval: 60
+	Location: https://api.papiel.fr/users/dqsvj667bkqvljdfv23678
 
 ### Update an user
 
@@ -132,20 +123,17 @@ Location: https://api.papiel.fr/users/dqsvj667bkqvljdfv23678
 - `is_active` _optional_ **boolean**
 - `is_staff` _optional_ **boolean**
 
-```
-{
-	"first_name": "Baz",
-	"last_name": "Foo",
-	"email": "baz.foo@bar.com"
-}
-```
+
+	{
+		"first_name": "Baz",
+		"last_name": "Foo",
+		"email": "baz.foo@bar.com"
+	}
 
 #### Response
 
 You'll be redirected to the updated user.
 
-```
-HTTP/1.1 302 FOUND
-X-Poll-Interval: 60
-Location: https://api.papiel.fr/users/dqsvj667bkqvljdfv23678
-```
+	HTTP/1.1 302 FOUND
+	X-Poll-Interval: 60
+	Location: https://api.papiel.fr/users/dqsvj667bkqvljdfv23678
