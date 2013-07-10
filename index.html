@@ -1,1 +1,243 @@
-My GitHub Page
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Papiel-core by Papiel</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Papiel-core</h1>
+          <h2>The Papiel Core API (Provider, Reader and Client).</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/Papiel/papiel-core/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/Papiel/papiel-core/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/Papiel/papiel-core" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a name="papiel-api-v10" class="anchor" href="#papiel-api-v10"><span class="octicon octicon-link"></span></a>Papiel API v1.0</h1>
+
+<p>This describes the resources that make up the Papiel API. If you have any problems or requests please contact <a href="mailto:support@papiel.fr">support</a>.</p>
+
+<h2>
+<a name="schema" class="anchor" href="#schema"><span class="octicon octicon-link"></span></a>Schema</h2>
+
+<p>All API access is over HTTPS, and accessed from the <code>api.papiel.fr</code> domain (or through <code>yourdomain.com/api</code> for Papiel Virtual Appliance). All data is sent and received as JSON.</p>
+
+<pre><code>$ curl -i https://api.papiel.fr/status
+
+HTTP/1.1 200 OK
+Server: nginx
+Date: Fri, 26 Jun 2013 13:36:17 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Status: 200 OK
+
+{
+    "status": "ok"
+}
+</code></pre>
+
+<p>All timestamps are returned in ISO 8601 format:</p>
+
+<p><code>YYYY-MM-DDTHH:MM:SSZ</code></p>
+
+<h2>
+<a name="parameters" class="anchor" href="#parameters"><span class="octicon octicon-link"></span></a>Parameters</h2>
+
+<p>Many API methods take optional parameters. For GET requests, any parameters not specified as a segment in the path can be passed as an HTTP query string parameter:</p>
+
+<pre><code>$ curl -i "https://api.papiel.fr/users?admin=true"
+</code></pre>
+
+<p>For POST, PATCH, PUT, and DELETE requests, parameters not included in the URL should be encoded as JSON with a Content-Type of ‘application/x-www-form-urlencoded’:</p>
+
+<pre><code>TODO
+</code></pre>
+
+<h2>
+<a name="client-errors" class="anchor" href="#client-errors"><span class="octicon octicon-link"></span></a>Client Errors</h2>
+
+<p>There are three possible types of client errors on API calls that receive request bodies:</p>
+
+<h5>
+<a name="sending-invalid-json-will-result-in-a-400-bad-request-response" class="anchor" href="#sending-invalid-json-will-result-in-a-400-bad-request-response"><span class="octicon octicon-link"></span></a>Sending invalid JSON will result in a <code>400 Bad Request</code> response.</h5>
+
+<pre><code>HTTP/1.1 400 Bad Request
+Content-Length: 35
+
+{"message":"Problems parsing JSON"}
+</code></pre>
+
+<h5>
+<a name="sending-the-wrong-type-of-json-values-will-result-in-a-400-bad-request-response" class="anchor" href="#sending-the-wrong-type-of-json-values-will-result-in-a-400-bad-request-response"><span class="octicon octicon-link"></span></a>Sending the wrong type of JSON values will result in a <code>400 Bad Request</code> response.</h5>
+
+<pre><code>HTTP/1.1 400 Bad Request
+Content-Length: 40
+
+{"message":"Body should be a JSON Hash"}
+</code></pre>
+
+<h5>
+<a name="sending-invalid-fields-will-result-in-a-422-unprocessable-entity-response" class="anchor" href="#sending-invalid-fields-will-result-in-a-422-unprocessable-entity-response"><span class="octicon octicon-link"></span></a>Sending invalid fields will result in a <code>422 Unprocessable Entity</code> response.</h5>
+
+<pre><code>HTTP/1.1 422 Unprocessable Entity
+Content-Length: 149
+
+{
+  "message": "Validation Failed",
+  "errors": [
+    {
+      "resource": "Company",
+      "field": "title",
+      "code": "missing_field"
+    }
+  ]
+}
+</code></pre>
+
+<p>All error objects have resource and field properties so that your client can tell what the problem is. There’s also an error code to let you know what is wrong with the field. These are the possible validation error codes:</p>
+
+<ul>
+<li>
+<strong>missing</strong> This means a resource does not exist.</li>
+<li>
+<strong>missing_field</strong> This means a required field on a resource has not been set.</li>
+<li>
+<strong>invalid</strong> This means the formatting of a field is invalid. The documentation for that resource should be able to give you more specific information.</li>
+<li>
+<strong>already_exists</strong> This means another resource has the same value as this field. This can happen in resources that must have some unique key (such as Label names).</li>
+</ul><p>If resources have custom validation errors, they will be documented with the resource.</p>
+
+<h2>
+<a name="http-redirects" class="anchor" href="#http-redirects"><span class="octicon octicon-link"></span></a>HTTP Redirects</h2>
+
+<p>Papiel API uses HTTP redirection where appropriate. Clients should assume that any request may result in a redirection. Receiving an HTTP redirection is not an error and clients should follow that redirect. Redirect responses will have a <code>Location</code> header field which contains the URI of the resource to which the client should repeat the requests.</p>
+
+<ul>
+<li>
+<strong>301</strong> Permanent redirection. The URI you used to make the request has been superseded by the one specified in the <code>Location</code> header field. This and all future requests to this resource should be directed to the new URI.</li>
+<li>
+<strong>302, 307</strong> Temporary redirection. The request should be repeated verbatim to the URI specified in the <code>Location</code> header field but clients should continue to use the original URI for future requests.</li>
+</ul><p>Other redirection status codes may be used in accordance with the HTTP 1.1 spec.</p>
+
+<h2>
+<a name="http-verbs" class="anchor" href="#http-verbs"><span class="octicon octicon-link"></span></a>HTTP Verbs</h2>
+
+<p>Where possible, Papiel API strives to use appropriate HTTP verbs for each action.</p>
+
+<ul>
+<li>
+<strong>HEAD</strong> Can be issued against any resource to get just the HTTP header info.</li>
+<li>
+<strong>GET</strong> Used for retrieving resources.</li>
+<li>
+<strong>POST</strong> Used for creating resources, or performing custom actions.</li>
+<li>
+<strong>PATCH</strong> Used for updating resources with partial JSON data. For instance, an Issue resource has <code>title</code> and <code>body</code> attributes. A PATCH request may accept one or more of the attributes to update the resource. PATCH is a relatively new and uncommon HTTP verb, so resource endpoints also accept POST requests.</li>
+<li>
+<strong>PUT</strong> Used for replacing resources or collections. For PUT requests with no <code>body</code> attribute, be sure to set the <code>Content-Length</code> header to zero.</li>
+<li>
+<strong>DELETE</strong> Used for deleting resources.</li>
+</ul><h2>
+<a name="authentication" class="anchor" href="#authentication"><span class="octicon octicon-link"></span></a>Authentication</h2>
+
+<p>There are three ways to authenticate through Papiel API.</p>
+
+<h3>
+<a name="basic-authentication" class="anchor" href="#basic-authentication"><span class="octicon octicon-link"></span></a>Basic authentication</h3>
+
+<pre><code>$ curl -u "username:password" https://api.papiel.fr
+</code></pre>
+
+<h3>
+<a name="oauth2-token-sent-in-a-header" class="anchor" href="#oauth2-token-sent-in-a-header"><span class="octicon octicon-link"></span></a>OAuth2 Token (sent in a header)</h3>
+
+<pre><code>$ curl -H "Authorization: token OAUTH-TOKEN" https://api.papiel.fr
+</code></pre>
+
+<h3>
+<a name="oauth2-token-sent-as-a-parameter" class="anchor" href="#oauth2-token-sent-as-a-parameter"><span class="octicon octicon-link"></span></a>OAuth2 Token (sent as a parameter)</h3>
+
+<pre><code>$ curl https://api.papiel.fr?access_token=OAUTH-TOKEN
+</code></pre>
+
+<p>Read more about <a href="http://oauth.net/2/">OAuth2</a>. Note that OAuth2 tokens can be acquired programmatically, for applications that are not websites.</p>
+
+<h3>
+<a name="oauth2-keysecret" class="anchor" href="#oauth2-keysecret"><span class="octicon octicon-link"></span></a>OAuth2 Key/Secret</h3>
+
+<pre><code>$ curl https://api.papiel.fr/?client_id=xxxx&amp;client_secret=yyyy
+</code></pre>
+
+<p>This should only be used in server to server scenarios. Don’t leak your OAuth application’s client secret to your users.</p>
+
+<h2>
+<a name="hypermedia" class="anchor" href="#hypermedia"><span class="octicon octicon-link"></span></a>Hypermedia</h2>
+
+<p>All resources may have one or more <code>*_url</code> properties linking to other resources. These are meant to provide explicit URLs so that proper API clients don’t need to construct URLs on their own. It is highly recommended that API clients use these. Doing so will make future upgrades of the API easier for developers. All URLs are expected to be proper <a href="http://tools.ietf.org/html/rfc6570">RFC 6570</a> URI templates.</p>
+
+<h2>
+<a name="pagination" class="anchor" href="#pagination"><span class="octicon octicon-link"></span></a>Pagination</h2>
+
+<p>Requests that return multiple items will be paginated to 30 items by default. You can specify further pages with the <code>?page</code> parameter. For some resources, you can also set a custom page size up to 100 with the <code>?per_page</code> parameter. Note that for technical reasons not all endpoints respect the ?per_page parameter.</p>
+
+<pre><code>$ curl https://api.papiel.fr/users?page=2&amp;per_page=100
+</code></pre>
+
+<h2>
+<a name="rate-limiting" class="anchor" href="#rate-limiting"><span class="octicon octicon-link"></span></a>Rate limiting</h2>
+
+<p>We limit requests to 60 per hour for unauthenticated requests. For requests using Basic Authentication or OAuth, we limit requests to 5,000 per hour. You can check the returned HTTP headers of any API request to see your current status:</p>
+
+<pre><code>$ curl -i https://api.papiel.fr/foobar/users
+
+HTTP/1.1 200 OK
+Status: 200 OK
+X-RateLimit-Limit: 60
+X-RateLimit-Remaining: 56
+</code></pre>
+
+<p>You can also check your rate limit status without incurring an API hit.</p>
+
+<pre><code>$ curl -i https://api.papiel.fr/rate_limit
+
+Status: 200 OK
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4999
+{
+  "rate": {
+    "remaining": 4999,
+    "limit": 5000
+  }
+}
+</code></pre>
+        </section>
+
+        <footer>
+          Papiel-core is maintained by <a href="https://github.com/Papiel">Papiel</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
