@@ -1,9 +1,11 @@
 ---
-title: Papiel API v1.0
+title: Papiel Client API v1.0
 layout: doc
 ---
 
-This describes the resources that make up the Papiel API. If you have any problems or requests please contact [support](mailto:support@papiel.fr).
+This describes the resources that make up the Papiel Client API. If you have any problems or requests please contact [support](mailto:support@papiel.fr).
+
+The client API is designed to let your app access documents and metadata on Papiel after processing.
 
 ## Schema
 
@@ -36,7 +38,7 @@ Many API methods take optional parameters. For GET requests, any parameters not 
 $ curl -i "https://api.papiel.fr/users?admin=true"
 ```
 
-For POST, PATCH, PUT, and DELETE requests, parameters not included in the URL should be encoded as JSON with a Content-Type of ‘application/x-www-form-urlencoded’:
+For POST, PATCH, PUT, and DELETE requests, parameters not included in the URL should be encoded as JSON with a Content-Type of `application/x-www-form-urlencoded`:
 
 ```
 TODO
@@ -87,7 +89,7 @@ All error objects have resource and field properties so that your client can tel
 - __missing__ This means a resource does not exist.
 - __missing_field__ This means a required field on a resource has not been set.
 - __invalid__ This means the formatting of a field is invalid. The documentation for that resource should be able to give you more specific information.
-- __already_exists__ This means another resource has the same value as this field. This can happen in resources that must have some unique key (such as Label names).
+- __already_exists__ This means another resource has the same value as this field. This can happen in resources that must have some unique key (such as User name).
 
 If resources have custom validation errors, they will be documented with the resource.
 
@@ -107,13 +109,13 @@ Where possible, Papiel API strives to use appropriate HTTP verbs for each action
 - __HEAD__ Can be issued against any resource to get just the HTTP header info.
 - __GET__ Used for retrieving resources.
 - __POST__ Used for creating resources, or performing custom actions.
-- __PATCH__ Used for updating resources with partial JSON data. For instance, an Issue resource has `title` and `body` attributes. A PATCH request may accept one or more of the attributes to update the resource. PATCH is a relatively new and uncommon HTTP verb, so resource endpoints also accept POST requests.
+- __PATCH__ Used for updating resources with partial JSON data. For instance, an User resource has `first_name` and `last_name` attributes. A PATCH request may accept one or more of the attributes to update the resource. PATCH is a relatively new and uncommon HTTP verb, so resource endpoints also accept POST requests.
 - __PUT__ Used for replacing resources or collections. For PUT requests with no `body` attribute, be sure to set the `Content-Length` header to zero.
 - __DELETE__ Used for deleting resources.
 
 ## Authentication
 
-There are three ways to authenticate through Papiel API.
+There are three ways to authenticate through Papiel Client API.
 
 ### Basic authentication
 ```
@@ -132,20 +134,13 @@ $ curl https://api.papiel.fr?access_token=OAUTH-TOKEN
 
 Read more about [OAuth2](http://oauth.net/2/). Note that OAuth2 tokens can be acquired programmatically, for applications that are not websites.
 
-### OAuth2 Key/Secret
-```
-$ curl https://api.papiel.fr/?client_id=xxxx&client_secret=yyyy
-```
-
-This should only be used in server to server scenarios. Don’t leak your OAuth application’s client secret to your users.
-
 ## Hypermedia
 
 All resources may have one or more `*_url` properties linking to other resources. These are meant to provide explicit URLs so that proper API clients don’t need to construct URLs on their own. It is highly recommended that API clients use these. Doing so will make future upgrades of the API easier for developers. All URLs are expected to be proper [RFC 6570](http://tools.ietf.org/html/rfc6570) URI templates.
 
 ## Pagination
 
-Requests that return multiple items will be paginated to 30 items by default. You can specify further pages with the `?page` parameter. For some resources, you can also set a custom page size up to 100 with the `?per_page` parameter. Note that for technical reasons not all endpoints respect the ?per_page parameter.
+Requests that return multiple items will be paginated to 30 items by default. You can specify further pages with the `?page` parameter. For some resources, you can also set a custom page size up to 100 with the `?per_page` parameter. Note that for technical reasons not all endpoints respect the `?per_page` parameter.
 
 ```
 $ curl https://api.papiel.fr/users?page=2&per_page=100
@@ -179,7 +174,3 @@ X-RateLimit-Remaining: 4999
   }
 }
 ```
-
-
-
-
