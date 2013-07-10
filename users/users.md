@@ -42,6 +42,9 @@ X-Poll-Interval: 60
 ]
 ```
 
+- `is_active` is a boolean flag indicating whether the user can log to Papiel or not. An inactive user is temporarily locked out of his account.
+- `is_staff` is a boolean flag indicating whether the user can update other users or not.
+
 ## Accessing single user
 
 There are 2 ways of accessing a single user. First, with the user id, or accessing the current authenticated user with a specific endpoint.
@@ -105,7 +108,7 @@ Location: https://api.papiel.fr/users/dqsvj667bkqvljdfv23678
 
 #### Response
 
-You'll be redirected to the new user.
+You'll be redirected to the new user url.
 
 ```
 HTTP/1.1 302 FOUND
