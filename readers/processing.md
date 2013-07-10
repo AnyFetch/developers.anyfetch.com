@@ -1,9 +1,7 @@
 ---
-layout: doc
 title: Processing documents
+layout: doc
 ---
-
-# Processing documents
 
 After globally registering your reader with the manifest, Users will be able to install your reader in their enterprise account.
 
