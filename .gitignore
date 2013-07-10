@@ -15,3 +15,6 @@ docs/*
 .idea/*
 *.iml
 *.sublime-*
+
+# Jekyll artifacts
+_site/*

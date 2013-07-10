@@ -11,20 +11,20 @@ The client API is designed to let your app access documents and metadata on Papi
 
 All API access is over HTTPS, and accessed from the `api.papiel.fr` domain (or through `yourdomain.com/api` for Papiel Virtual Appliance). All data is sent and received as JSON.
 
-```
-$ curl -i https://api.papiel.fr/status
 
-HTTP/1.1 200 OK
-Server: nginx
-Date: Fri, 26 Jun 2013 13:36:17 GMT
-Content-Type: application/json; charset=utf-8
-Connection: keep-alive
-Status: 200 OK
+    $ curl -i https://api.papiel.fr/status
 
-{
-	"status": "ok"
-}
-```
+    HTTP/1.1 200 OK
+    Server: nginx
+    Date: Fri, 26 Jun 2013 13:36:17 GMT
+    Content-Type: application/json; charset=utf-8
+    Connection: keep-alive
+    Status: 200 OK
+
+    {
+    	"status": "ok"
+    }
+
 
 All timestamps are returned in ISO 8601 format:
 
@@ -34,9 +34,8 @@ All timestamps are returned in ISO 8601 format:
 
 Many API methods take optional parameters. For GET requests, any parameters not specified as a segment in the path can be passed as an HTTP query string parameter:
 
-```
-$ curl -i "https://api.papiel.fr/users?admin=true"
-```
+
+    $ curl -i "https://api.papiel.fr/users?admin=true"
 
 For POST, PATCH, PUT, and DELETE requests, parameters not included in the URL should be encoded as JSON with a Content-Type of `application/x-www-form-urlencoded`:
 
@@ -50,39 +49,35 @@ There are three possible types of client errors on API calls that receive reques
 
 ##### Sending invalid JSON will result in a `400 Bad Request` response.
 
-```
-HTTP/1.1 400 Bad Request
-Content-Length: 35
+    HTTP/1.1 400 Bad Request
+    Content-Length: 35
 
-{"message":"Problems parsing JSON"}
-```
+    {"message":"Problems parsing JSON"}
+
 
 ##### Sending the wrong type of JSON values will result in a `400 Bad Request` response.
 
-```
-HTTP/1.1 400 Bad Request
-Content-Length: 40
+    HTTP/1.1 400 Bad Request
+    Content-Length: 40
 
-{"message":"Body should be a JSON Hash"}
-```
+    {"message":"Body should be a JSON Hash"}
+
 
 ##### Sending invalid fields will result in a `422 Unprocessable Entity` response.
 
-```
-HTTP/1.1 422 Unprocessable Entity
-Content-Length: 149
+    HTTP/1.1 422 Unprocessable Entity
+    Content-Length: 149
 
-{
-  "message": "Validation Failed",
-  "errors": [
     {
-      "resource": "Company",
-      "field": "title",
-      "code": "missing_field"
+      "message": "Validation Failed",
+      "errors": [
+        {
+          "resource": "Company",
+          "field": "title",
+          "code": "missing_field"
+        }
+      ]
     }
-  ]
-}
-```
 
 All error objects have resource and field properties so that your client can tell what the problem is. There’s also an error code to let you know what is wrong with the field. These are the possible validation error codes:
 
@@ -118,19 +113,15 @@ Where possible, Papiel API strives to use appropriate HTTP verbs for each action
 There are three ways to authenticate through Papiel Client API.
 
 ### Basic authentication
-```
-$ curl -u "username:password" https://api.papiel.fr
-```
+    $ curl -u "username:password" https://api.papiel.fr
+
 
 ### OAuth2 Token (sent in a header)
-```
-$ curl -H "Authorization: token OAUTH-TOKEN" https://api.papiel.fr
-```
+    $ curl -H "Authorization: token OAUTH-TOKEN" https://api.papiel.fr
+
 
 ### OAuth2 Token (sent as a parameter)
-```
-$ curl https://api.papiel.fr?access_token=OAUTH-TOKEN
-```
+    $ curl https://api.papiel.fr?access_token=OAUTH-TOKEN
 
 Read more about [OAuth2](http://oauth.net/2/). Note that OAuth2 tokens can be acquired programmatically, for applications that are not websites.
 
@@ -142,35 +133,29 @@ All resources may have one or more `*_url` properties linking to other resources
 
 Requests that return multiple items will be paginated to 30 items by default. You can specify further pages with the `?page` parameter. For some resources, you can also set a custom page size up to 100 with the `?per_page` parameter. Note that for technical reasons not all endpoints respect the `?per_page` parameter.
 
-```
-$ curl https://api.papiel.fr/users?page=2&per_page=100
-```
+    $ curl https://api.papiel.fr/users?page=2&per_page=100
 
 ## Rate limiting
 
 We limit requests to 60 per hour for unauthenticated requests. For requests using Basic Authentication or OAuth, we limit requests to 5,000 per hour. You can check the returned HTTP headers of any API request to see your current status:
 
-```
-$ curl -i https://api.papiel.fr/foobar/users
+    $ curl -i https://api.papiel.fr/foobar/users
 
-HTTP/1.1 200 OK
-Status: 200 OK
-X-RateLimit-Limit: 60
-X-RateLimit-Remaining: 56
-```
+    HTTP/1.1 200 OK
+    Status: 200 OK
+    X-RateLimit-Limit: 60
+    X-RateLimit-Remaining: 56
 
 You can also check your rate limit status without incurring an API hit.
 
-```
-$ curl -i https://api.papiel.fr/rate_limit
+    $ curl -i https://api.papiel.fr/rate_limit
 
-Status: 200 OK
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999
-{
-  "rate": {
-    "remaining": 4999,
-    "limit": 5000
-  }
-}
-```
+    Status: 200 OK
+    X-RateLimit-Limit: 5000
+    X-RateLimit-Remaining: 4999
+    {
+      "rate": {
+        "remaining": 4999,
+        "limit": 5000
+      }
+    }
