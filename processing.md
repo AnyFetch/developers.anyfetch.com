@@ -1,6 +1,6 @@
 ---
-title: Processing documents
 layout: doc
+title: Processing documents
 ---
 
 # Processing documents
