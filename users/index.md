@@ -29,10 +29,10 @@ Format:
 			"uuid": "dqsvj667bkqvljdfv23678",
 			"self_url": "/users/1/"
 			"email": foo@bar.fr,
-			"first_name": "Foo"
-			"last_name": "Bar",
-			"is_staff": true;
-			"last_login": "2008-01-14T04:33:35Z",
+			"firstName": "Foo"
+			"lastName": "Bar",
+			"isStaff": true;
+			"lastLogin": "2008-01-14T04:33:35Z",
 			"user_url": "https://api.papiel.fr/users/dqsvj667bkqvljdfv23678"
 		}
 		...
@@ -57,10 +57,10 @@ There are 2 ways of accessing a single user. First, with the user id, or accessi
 		"uuid": "dqsvj667bkqvljdfv23678",
 		"self_url": "/users/1/"
 		"email": foo@bar.fr,
-		"first_name": "Foo"
-		"last_name": "Bar",
-		"is_staff": true;
-		"last_login": "2008-01-14T04:33:35Z"
+		"firstName": "Foo"
+		"lastName": "Bar",
+		"isStaff": true;
+		"lastLogin": "2008-01-14T04:33:35Z"
 	}
 
 
@@ -83,14 +83,14 @@ There are 2 ways of accessing a single user. First, with the user id, or accessi
 
 #### Input
 
-- `first_name` **string**
-- `last_name` **string**
+- `firstName` **string**
+- `lastName` **string**
 - `email` **string**
-- `is_staff` _optional_ **boolean**, set to false by default
+- `isStaff` _optional_ **boolean**, set to false by default
 
 	{
-		"first_name": "Foo",
-		"last_name": "Bar",
+		"firstName": "Foo",
+		"lastName": "Bar",
 		"email": "foo.bar@baz.com"
 	}
 
@@ -112,17 +112,17 @@ You'll be redirected to the new user url.
 
 #### Input
 
-- `first_name` _optional_ **string**
-- `last_name` _optional_ **string**
+- `firstName` _optional_ **string**
+- `lastName` _optional_ **string**
 - `email` _optional_ **string**
-- `is_active` _optional_ **boolean**
-- `is_staff` _optional_ **boolean**
+- `isActive` _optional_ **boolean**
+- `isStaff` _optional_ **boolean**
 
 Format:
 
 	{
-		"first_name": "Baz",
-		"last_name": "Foo",
+		"firstName": "Baz",
+		"lastName": "Foo",
 		"email": "baz.foo@bar.com"
 	}
 
