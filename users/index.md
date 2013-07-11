@@ -12,10 +12,6 @@ Lists all the users in the company.
 ### Input
 
 - `is_staff` _optional_ **boolean** Display users matching the staff status
-- `last_login_gt` _optional_ **date** Last connection **after** the specified date
-- `last_login_lt` _optional_ **date** Last connection **before** the specified date
-- `date_joined_gt` _optional_ **date** Creation of the user account **after** the specified date
-- `date_joined_lt` _optional_ **date** Creation of the user account **before** the specified date
 
 Format:
 
@@ -32,7 +28,6 @@ Format:
 			"first_name": "Foo"
 			"last_name": "Bar",
 			"is_staff": true;
-			"last_login": "2008-01-14T04:33:35Z",
 			"user_url": "https://api.papiel.fr/users/dqsvj667bkqvljdfv23678"
 		}
 		...
@@ -60,7 +55,6 @@ There are 2 ways of accessing a single user. First, with the user id, or accessi
 		"first_name": "Foo"
 		"last_name": "Bar",
 		"is_taff": true;
-		"last_login": "2008-01-14T04:33:35Z"
 	}
 
 
