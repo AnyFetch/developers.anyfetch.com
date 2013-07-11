@@ -108,7 +108,7 @@ You'll be redirected to the new user url.
 
 > Note:  Authenticated user must be part of the staff to be able to update other users.
 
-> Note:  Authenticated user can't change `is_staff` for himself unless he's part of the staff.
+> Note:  Authenticated user can't change `is_staff` for himself.
 
 #### Input
 

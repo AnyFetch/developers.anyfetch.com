@@ -24,3 +24,23 @@ As an authenticated user, only your own company is exposed to the API. This comp
 		"documents_url": "https://api.papiel.fr/documents",
 		"document_types_url": "https://api.papiel.fr/doctypes"
 	}
+
+## Update current user company
+
+`PATCH /`
+
+> Note:  Authenticated user must be part of the staff to be able to update the company details.
+
+Format:
+
+	{
+		"name": "FooBar SAS",
+	}
+
+#### Response
+
+You'll be redirected to the updated company
+
+	HTTP/1.1 302 FOUND
+	X-Poll-Interval: 60
+	Location: https://api.papiel.fr/
