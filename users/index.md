@@ -25,8 +25,7 @@ Format:
 			"uuid": "dqsvj667bkqvljdfv23678",
 			"self_url": "/users/1/"
 			"email": foo@bar.fr,
-			"first_name": "Foo"
-			"last_name": "Bar",
+			"name": "Foo Bar"
 			"is_staff": true;
 			"user_url": "https://api.papiel.fr/users/dqsvj667bkqvljdfv23678"
 		}
@@ -52,9 +51,8 @@ There are 2 ways of accessing a single user. First, with the user id, or accessi
 		"uuid": "dqsvj667bkqvljdfv23678",
 		"self_url": "/users/1/"
 		"email": foo@bar.fr,
-		"first_name": "Foo"
-		"last_name": "Bar",
-		"is_taff": true;
+		"name": "Foo Bar"
+		"is_staff": true;
 	}
 
 
@@ -77,14 +75,12 @@ There are 2 ways of accessing a single user. First, with the user id, or accessi
 
 #### Input
 
-- `first_name` **string**
-- `last_name` **string**
+- `name` **string**
 - `email` **string**
-- `is_staff` _optional_ **boolean**, set to false by default
+- `is_staff` _optional_ **boolean**, set to `false` by default
 
 	{
-		"firstName": "Foo",
-		"lastName": "Bar",
+		"name": "Foo Bar",
 		"email": "foo.bar@baz.com"
 	}
 
@@ -106,17 +102,15 @@ You'll be redirected to the new user url.
 
 #### Input
 
-- `first_name` _optional_ **string**
-- `last_name` _optional_ **string**
+- `name` _optional_ **string**
 - `email` _optional_ **string**
 - `is_staff` _optional_ **boolean**
 
 Format:
 
 	{
-		"first_name": "Baz",
-		"last_name": "Foo",
-		"email": "baz.foo@bar.com"
+		"name": "Foo Baz",
+		"email": "foo.baz@bar.com"
 	}
 
 #### Response
