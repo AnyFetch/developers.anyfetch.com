@@ -11,7 +11,7 @@ Lists all the users in the company.
 
 ### Input
 
-- `is_staff` _optional_ **boolean** Display users matching the staff status
+- `is_admin` _optional_ **boolean** Display users matching the staff status
 
 Format:
 
@@ -22,17 +22,16 @@ Format:
 	[
 		{
 			"type": "User",
-			"uuid": "dqsvj667bkqvljdfv23678",
-			"self_url": "/users/1/"
+			"id": "dqsvj667bkqvljdfv23678",
 			"email": foo@bar.fr,
 			"name": "Foo Bar"
-			"is_staff": true;
+			"is_admin": true;
 			"user_url": "https://api.papiel.fr/users/dqsvj667bkqvljdfv23678"
 		}
 		...
 	]
 
-- `is_staff` is a boolean flag indicating whether the user can update other users or not.
+- `is_admin` is a boolean flag indicating whether the user can update other users or not.
 
 ## Accessing single user
 
@@ -52,7 +51,7 @@ There are 2 ways of accessing a single user. First, with the user id, or accessi
 		"self_url": "/users/1/"
 		"email": foo@bar.fr,
 		"name": "Foo Bar"
-		"is_staff": true;
+		"is_admin": true;
 	}
 
 
@@ -77,7 +76,7 @@ There are 2 ways of accessing a single user. First, with the user id, or accessi
 
 - `name` **string**
 - `email` **string**
-- `is_staff` _optional_ **boolean**, set to `false` by default
+- `is_admin` _optional_ **boolean**, set to `false` by default
 
 	{
 		"name": "Foo Bar",
@@ -98,13 +97,13 @@ You'll be redirected to the new user url.
 
 > Note:  Authenticated user must be part of the staff to be able to update other users.
 
-> Note:  Authenticated user can't change `is_staff` for himself.
+> Note:  Authenticated user can't change `is_admin` for himself.
 
 #### Input
 
 - `name` _optional_ **string**
 - `email` _optional_ **string**
-- `is_staff` _optional_ **boolean**
+- `is_admin` _optional_ **boolean**
 
 Format:
 
