@@ -47,7 +47,7 @@ There are 2 ways of accessing a single user. First, with the user id, or accessi
 
 	{
 		"type": "User",
-		"uuid": "dqsvj667bkqvljdfv23678",
+		"id": "dqsvj667bkqvljdfv23678",
 		"self_url": "/users/1/"
 		"email": foo@bar.fr,
 		"name": "Foo Bar"

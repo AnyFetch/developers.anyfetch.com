@@ -16,7 +16,7 @@ As an authenticated user, only your own company is exposed to the API. This comp
 
 	{
 		"type": "Company",
-		"uuid": "dcjkz777dscsdvdv249",
+		"id": "dcjkz777dscsdvdv249",
 		"name": "FooBar",
 		"users_url": "https://api.papiel.fr/users",
 		"user_url": "https://api.papiel.fr/user",
