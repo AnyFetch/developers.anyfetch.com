@@ -17,11 +17,11 @@ Lists all documents accessible by the currently logged-in user.
 
 - `search` _optional_ **string** Search strings, through all metas.
 - `doctype` _optional_ **string** Search in documents of the specified types. To include many types, use the type keyword more than once -- they will all be OR-ed: `?doctype=contact&doctype=event`.
-- `has_[meta]` _optional_ **string** will only return document if it has|has not the specified meta : `?has_name=true`.
+- `has_[meta]` _optional_ **boolean** will only return document if it has|has not the specified meta : `?has_name=true`.
 - `@[meta]` _optional_ **string** Full text search on `meta`:  `?@name=barry`.
-- `[meta]` Strict search on `meta`: `?name=barry white`
-- `start` start offset for results (for pagination)
-- `limit` max number of documents to return (default is 20; max value is 200)
+- `[meta]` _optional_ **string** Strict search on `meta`: `?name=barry white`
+- `start` _optional_ **string** start offset for results (for pagination)
+- `limit` _optional_ **string** max number of documents to return (default is 20; max value is 200)
 
 ### Output
 
