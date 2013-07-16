@@ -38,11 +38,6 @@ Lists all documents accessible by the currently logged-in user.
 			"creation_date": "2013-09-07T17:26:27Z",
 			"update_date": "2013-09-07T17:26:27Z",
 			"title": "Invoice #1265"
-			"sources": [
-				{"type": "origin", "url": "https://dropbox.com/jscq", requiresAuth: true},
-				{"type": "cache", "url": "https://storage.papiel.fr/kiicqD7HHB23icdqsc78jc"},
-				{"type": "thumbs", "url": "https://storage.papiel.fr/thumbs/kiicqD7HHB23icdqsc78jc"},
-			],
 			"doctypes": [
 				"pdf",
 				"invoice"
@@ -80,11 +75,6 @@ Lists all documents accessible by the currently logged-in user.
 		"creation_date": "2013-09-07T17:26:27Z",
 		"update_date": "2013-09-07T17:26:27Z",
 		"title": "Invoice #1265"
-		"sources": [
-			{"type": "origin", "url": "https://dropbox.com/jscq", requiresAuth: true},
-			{"type": "cache", "url": "https://storage.papiel.fr/kiicqD7HHB23icdqsc78jc"},
-			{"type": "thumbs", "url": "https://storage.papiel.fr/thumbs/kiicqD7HHB23icdqsc78jc"},
-		],
 		"doctypes": [
 			"pdf",
 			"invoice"
@@ -104,7 +94,16 @@ Lists all documents accessible by the currently logged-in user.
 	}
 
 
-### Create a document
+## Download a single document
+
+`GET /documents/:document/download`
+
+	$ curl -u "username:password" -i https://api.papiel.fr/download/zqserj66bsdf8jdf78wi78
+	HTTP/1.1 302 FOUND
+	X-Poll-Interval: 60
+	Location: https://storage.papiel.fr/kiicqD7HHB23icdqsc78jc
+
+## Create a document
 Papiel API does not allows document creation by a user.
 
 If you need to import documents, you'll need to read the dedicated reader API.
