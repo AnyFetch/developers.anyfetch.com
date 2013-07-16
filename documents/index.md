@@ -13,6 +13,18 @@ Lists all documents accessible by the currently logged-in user.
 
 `GET /documents`
 
+### Input
+
+- `search` _optional_ **string** Search strings, through all metas.
+- `doctype` _optional_ **string** Search in documents of the specified types. To include many types, use the type keyword more than once -- they will all be OR-ed: `?doctype=contact&doctype=event`.
+- `has_[meta]` _optional_ **string** will only return document if it has|has not the specified meta : `has_name=true`.
+- `@[meta]` _optional_ **string** Full text search on `meta`:  `?@name=barry`.
+- `[meta]` Strict search on `meta`: `?name=barry white`
+- `start` start offset for results (for pagination)
+- `limit` max number of documents to return (default is 20; max value is 200)
+
+### Output
+
 	$ curl -u "username:password" -i https://api.papiel.fr/documents
 	HTTP/1.1 200 OK
 	X-Poll-Interval: 60
@@ -20,20 +32,22 @@ Lists all documents accessible by the currently logged-in user.
 	[
 		{
 			"type": "Document",
-			"uuid": "kiicqD7HHB23icdqsc78jc",
+			"id": "kiicqD7HHB23icdqsc78jc",
+			"company": "dcjkz777dscsdvdv249",
+			"userAccess": ["dqsvj667bkqvljdfv23678"],
 			"creation_date": "2013-09-07T17:26:27Z",
 			"update_date": "2013-09-07T17:26:27Z",
-			"file": {
-				"provider_url": "https://dropbox.com/jscq",
-				"papiel_url": "https://storage.papiel.fr/jqscqsk",
-				"thumb_url": "https://storage.papiel.fr/thumbs/jqscqsk.jpg"
-			},
+			"title": "Invoice #1265"
+			"sources": [
+				{"type": "origin", "url": "https://dropbox.com/jscq", requiresAuth: true},
+				{"type": "cache", "url": "https://storage.papiel.fr/kiicqD7HHB23icdqsc78jc"},
+				{"type": "thumbs", "url": "https://storage.papiel.fr/thumbs/kiicqD7HHB23icdqsc78jc"},
+			],
 			"doctypes": [
 				"pdf",
 				"invoice"
 			],
-			"meta": {
-				"title": "Invoice",
+			"metadata": {
 				"date": "2013-09-06T00:00:00Z",
 				"VAT": {
 					"5.5": 0,
@@ -44,6 +58,7 @@ Lists all documents accessible by the currently logged-in user.
 				"total_taxes": 91.55
 			},
 			"document_url": "https://api.papiel.fr/documents/kiicqD7HHB23icdqsc78jc"
+			"download_url": "https://api.papiel.fr/documents/kiicqD7HHB23icdqsc78jc/download"
 		},
 		
 		...
@@ -59,20 +74,22 @@ Lists all documents accessible by the currently logged-in user.
 
 	{
 		"type": "Document",
-		"uuid": "kiicqD7HHB23icdqsc78jc",
+		"id": "kiicqD7HHB23icdqsc78jc",
+		"company": "dcjkz777dscsdvdv249",
+		"userAccess": ["dqsvj667bkqvljdfv23678"],
 		"creation_date": "2013-09-07T17:26:27Z",
 		"update_date": "2013-09-07T17:26:27Z",
-		"file": {
-			"provider_url": "https://dropbox.com/jscq",
-			"papiel_url": "https://storage.papiel.fr/jqscqsk",
-			"thumb_url": "https://storage.papiel.fr/thumbs/jqscqsk.jpg"
-		},
+		"title": "Invoice #1265"
+		"sources": [
+			{"type": "origin", "url": "https://dropbox.com/jscq", requiresAuth: true},
+			{"type": "cache", "url": "https://storage.papiel.fr/kiicqD7HHB23icdqsc78jc"},
+			{"type": "thumbs", "url": "https://storage.papiel.fr/thumbs/kiicqD7HHB23icdqsc78jc"},
+		],
 		"doctypes": [
 			"pdf",
 			"invoice"
 		],
-		"meta": {
-			"title": "Invoice",
+		"metadata": {
 			"date": "2013-09-06T00:00:00Z",
 			"VAT": {
 				"5.5": 0,
@@ -83,7 +100,8 @@ Lists all documents accessible by the currently logged-in user.
 			"total_taxes": 91.55
 		},
 		"document_url": "https://api.papiel.fr/documents/kiicqD7HHB23icdqsc78jc"
-	},
+		"download_url": "https://api.papiel.fr/documents/kiicqD7HHB23icdqsc78jc/download"
+	}
 
 
 ### Create a document

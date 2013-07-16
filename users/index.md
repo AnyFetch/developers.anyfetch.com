@@ -13,7 +13,7 @@ Lists all the users in the company.
 
 - `is_admin` _optional_ **boolean** Display users matching the staff status
 
-Format:
+### Output
 
 	$ curl -u "username:password" -i https://api.papiel.fr/users
 	HTTP/1.1 200 OK
