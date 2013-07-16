@@ -99,9 +99,10 @@ Lists all documents accessible by the currently logged-in user.
 `GET /documents/:document/download`
 
 	$ curl -u "username:password" -i https://api.papiel.fr/download/zqserj66bsdf8jdf78wi78
-	HTTP/1.1 302 FOUND
+	HTTP/1.1 200 FOUND
 	X-Poll-Interval: 60
-	Location: https://storage.papiel.fr/kiicqD7HHB23icdqsc78jc
+	Content-Length: 1235498354
+	
 
 ## Create a document
 Papiel API does not allows document creation by a user.
