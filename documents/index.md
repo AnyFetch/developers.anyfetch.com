@@ -37,13 +37,13 @@ Lists all documents accessible by the currently logged-in user.
 			"user_access": ["dqsvj667bkqvljdfv23678"],
 			"creation_date": "2013-09-07T17:26:27Z",
 			"update_date": "2013-09-07T17:26:27Z",
-			"title": "Invoice #1265",
 			"doctypes": [
 				"pdf",
 				"invoice"
 			],
 			"metadatas": {
 				"date": "2013-09-06T00:00:00Z",
+				"title": "Invoice #1265",
 				"VAT": {
 					"5.5": 0,
 					"7": 0,
@@ -74,12 +74,12 @@ Lists all documents accessible by the currently logged-in user.
 		"user_access": ["dqsvj667bkqvljdfv23678"],
 		"creation_date": "2013-09-07T17:26:27Z",
 		"update_date": "2013-09-07T17:26:27Z",
-		"title": "Invoice #1265",
 		"doctypes": [
 			"pdf",
 			"invoice"
 		],
 		"metadatas": {
+			"title": "Invoice #1265",
 			"date": "2013-09-06T00:00:00Z",
 			"VAT": {
 				"5.5": 0,
@@ -107,4 +107,4 @@ Lists all documents accessible by the currently logged-in user.
 ## Create a document
 Papiel API does not allows document creation by a user.
 
-If you need to import documents, you'll need to read the dedicated reader API.
+If you need to import documents, you'll need to read the dedicated provider API.

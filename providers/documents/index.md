@@ -41,7 +41,7 @@ Sample:
 			"total": 76.55
 			"total_taxes": 91.55
 		}
-	},
+	}
 
 ## Update a document
 Use PATCH access to `/providers/documents/`, providing the `identifier` key.
