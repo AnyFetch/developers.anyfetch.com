@@ -34,15 +34,15 @@ Lists all documents accessible by the currently logged-in user.
 			"type": "Document",
 			"id": "kiicqD7HHB23icdqsc78jc",
 			"company": "dcjkz777dscsdvdv249",
-			"userAccess": ["dqsvj667bkqvljdfv23678"],
+			"user_access": ["dqsvj667bkqvljdfv23678"],
 			"creation_date": "2013-09-07T17:26:27Z",
 			"update_date": "2013-09-07T17:26:27Z",
-			"title": "Invoice #1265"
+			"title": "Invoice #1265",
 			"doctypes": [
 				"pdf",
 				"invoice"
 			],
-			"metadata": {
+			"metadatas": {
 				"date": "2013-09-06T00:00:00Z",
 				"VAT": {
 					"5.5": 0,
@@ -71,15 +71,15 @@ Lists all documents accessible by the currently logged-in user.
 		"type": "Document",
 		"id": "kiicqD7HHB23icdqsc78jc",
 		"company": "dcjkz777dscsdvdv249",
-		"userAccess": ["dqsvj667bkqvljdfv23678"],
+		"user_access": ["dqsvj667bkqvljdfv23678"],
 		"creation_date": "2013-09-07T17:26:27Z",
 		"update_date": "2013-09-07T17:26:27Z",
-		"title": "Invoice #1265"
+		"title": "Invoice #1265",
 		"doctypes": [
 			"pdf",
 			"invoice"
 		],
-		"metadata": {
+		"metadatas": {
 			"date": "2013-09-06T00:00:00Z",
 			"VAT": {
 				"5.5": 0,
