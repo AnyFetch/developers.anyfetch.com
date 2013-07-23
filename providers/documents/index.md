@@ -25,21 +25,21 @@ Send JSON datas as POST :
 Sample:
 
 	{
-		"source": "http://my-cloud-provider/user/dq6z8d4z6f8"
-		"identifier": "http://my-cloud-provider/user/dq6z8d4z6f8"
-		"user_access": ["dqsvj667bkqvljdfv23678"],
-		"creation_date": "2013-09-07T17:26:27Z",
-		"update_date": "2013-09-07T17:26:27Z",
-		"metadatas": {
-			"title": "Invoice #1265",
-			"date": "2013-09-06T00:00:00Z",
-			"VAT": {
+		source: "http://my-cloud-provider/user/dq6z8d4z6f8",
+		identifier: "http://my-cloud-provider/user/dq6z8d4z6f8",
+		user_access: ["dqsvj667bkqvljdfv23678"],
+		creation_date: "2013-09-07T17:26:27Z",
+		update_date: "2013-09-07T17:26:27Z",
+		metadatas: {
+			title: "Invoice #1265",
+			date: "2013-09-06T00:00:00Z",
+			VAT: {
 				"5.5": 0,
 				"7": 0,
 				"19.6": 76.55
 			},
-			"total": 76.55
-			"total_taxes": 91.55
+			total: 76.55,
+			total_taxes: 91.55
 		}
 	}
 
