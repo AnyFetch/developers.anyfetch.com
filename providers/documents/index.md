@@ -9,18 +9,18 @@ They can only update and delete documents they created within the current contex
 
 ## Creating a document
 
-`GET /providers/documents/`
+`POST /providers/documents/`
 
 ### Input
 Send JSON datas as POST :
 
-- `source` URL where the document can be retrieved
-- `identifier` unique identifier for the document. This identifier will be used later for `PATCH` and `DELETE` creation.
+- `source` **string** URL where the document can be retrieved. Set the value to `null` if you wan Cluestr to keep the document in memory after processing (e.g. for local files)
+- `identifier` **string** unique identifier for the document. This identifier will be used later for `PATCH` and `DELETE` creation.
+- `file` _optional_ **multipart form-data** The file to process. This file will be forwarded to hydraters then removed unless `source` is null.
 - `user_access` _optional_ **array** a list of allowed users. They must be part the current user company. If not specified or null, all company users will have access.
 - `creation_date` _optional_ **date** creation date for the document. If not specified, will be the current date.
 - `update_date` _optional_ **date** last update date for the document. If not specified, will be the current date.
-- `title` title for the document.
-- `metadata` dictionary of metadatas. `null` values won't be stored.
+- `metadata` dictionary of metadatas. `null` values won't be stored. Although not mandatory, we recommend you store at least a `title`.
 
 Sample:
 
@@ -30,8 +30,8 @@ Sample:
 		"user_access": ["dqsvj667bkqvljdfv23678"],
 		"creation_date": "2013-09-07T17:26:27Z",
 		"update_date": "2013-09-07T17:26:27Z",
-		"title": "Invoice #1265",
 		"metadatas": {
+			"title": "Invoice #1265",
 			"date": "2013-09-06T00:00:00Z",
 			"VAT": {
 				"5.5": 0,
@@ -44,7 +44,9 @@ Sample:
 	}
 
 ## Update a document
-Use PATCH access to `/providers/documents/`, providing the `identifier` key.
+Use PATCH access `/providers/documents/`, providing the `identifier` key to update a document.
+
+For ease of use, you can also send a POST request: if the identifier already exists, it will be merged. This way, you can send datas without bothering to store if the file is already stored.
 
 Parameters are the same as the creation. Metadatas will be merged with the current `metadatas` object; to erase a key specify it's value to `null`.
 
