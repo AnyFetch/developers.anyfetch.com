@@ -54,4 +54,4 @@ Parameters are the same as the creation. Metadatas will be merged with the curre
 > Keep in mind metadatas manipulation should not be done at provider level. If you find yourself stuck while manipulating metadatas, you probably need to write an hydrater.
 
 ## Delete a document
-Use DELETE access to `/providers/documents/`, providing the identifier key.
+Use DELETE access to `/providers/documents/`, providing only the identifier key.
