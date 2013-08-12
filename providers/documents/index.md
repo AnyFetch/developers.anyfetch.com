@@ -20,13 +20,14 @@ Send JSON datas as POST:
 - `user_access` _optional_ **array** a list of allowed users. Those users must be part the current user company. If not specified or null, all company users will have access.
 - `creation_date` _optional_ **date** creation date for the document. If not specified, will be set to the current date.
 - `update_date` _optional_ **date** last update date for the document. If not specified, will be set to the current date.
-- `metadata` dictionary of metadatas. `null` values won't be stored. Although not mandatory, we recommend you store at least a `title`.
+- `metadatas` dictionary of metadatas. `null` values won't be stored. Although not mandatory, we recommend you store at least a `title`.
+- `actions` array of actions, in the form `{type: type, url}`.
 
 Sample datas:
 
 	{
-		source: "http://my-cloud-provider/user/dq6z8d4z6f8",
-		identifier: "http://my-cloud-provider/user/dq6z8d4z6f8",
+		source: "http://my-cloud-provider/doc/dq6z8d4z6f8",
+		identifier: "http://my-cloud-provider/doc/dq6z8d4z6f8",
 		user_access: ["dqsvj667bkqvljdfv23678"],
 		creation_date: "2013-09-07T17:26:27Z",
 		update_date: "2013-09-07T17:26:27Z",
@@ -40,7 +41,17 @@ Sample datas:
 			},
 			total: 76.55,
 			total_taxes: 91.55
-		}
+		},
+		actions: [
+			{
+				type: 'reply',
+				url: 'http://my-cloud-provider/doc/dq6z8d4z6f8/reply'
+			},
+			{
+				type: 'delete',
+				url: 'http://my-cloud-provider/doc/dq6z8d4z6f8/delete'
+			}
+		]
 	}
 
 ## Update a document
