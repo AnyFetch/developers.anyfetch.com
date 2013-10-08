@@ -4,6 +4,9 @@ subtitle: Search and retrieve.
 layout: doc
 ---
 
+General endpoints
+-----------------
+
 ### Home
 * **Path**: `/`
 * **HTTP-Verb** : `GET`
@@ -84,3 +87,78 @@ This call returns no data.
 Update will start immediately and asynchronously. You may want to periodically check on `/index` to view incoming documents.
 
 Possible error codes: N/A.
+
+----------------------------------------------
+User endpoints
+--------------
+
+### List all users
+* **Path**: `/users`
+* **HTTP-Verb** : `GET`
+
+#### Description
+This endpoint returns all the users in the current company.
+
+#### Example
+	curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/users
+
+#### Response
+```json
+[
+    {
+        "_type": "User",
+        "id": "5252cebb03a470843f000003",
+        "email": "matthieu@papiel.fr",
+        "name": "",
+        "is_admin": true,
+        "user_url": "/users/5252cebb03a470843f000003"
+    },
+    ...
+]
+```
+
+Possible error codes: N/A
+
+### Find current user
+* **Path**: `/user`
+* **HTTP-Verb** : `GET`
+
+#### Description
+This endpoint redirect to the canonical user page.
+
+#### Example
+	curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/user
+
+#### Response
+```
+HTTP/1.1 302 Moved Temporarily
+Location: /users/5252cebb03a470843f000003
+```
+
+Possible error codes: N/A
+
+### Retrieve details about a user
+* **Path**: `/user/:id`
+* **HTTP-Verb** : `GET`
+
+#### Description
+This endpoint display details about a user in the company.
+
+#### Example
+	curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/users/5252cebb03a470843f000003
+
+#### Response
+```json
+{
+    "_type": "User",
+    "id": "5252cebb03a470843f000003",
+    "email": "matthieu@papiel.fr",
+    "name": "",
+    "is_admin": true,
+    "user_url": "/users/5252cebb03a470843f000003"
+}
+```
+
+Possible error codes:
+
+* `404 ResourceNotFound`: the user does not exists or is not part of this company
