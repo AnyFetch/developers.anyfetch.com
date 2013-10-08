@@ -14,15 +14,10 @@ General endpoints
 #### Description
 This endpoint returns data about the currently logged in user's company.
 
-#### ?Query parameters
-| Name    | Type     | Description                                   |
-| ------- |:--------:| ---------------------------------------------:|
-| `start` | `int`    | Index of the first item to retrieve (for pagination)
-| `limit` | `int`    | Max number of items to retrieve (for pagination)
-
 #### Example
-	curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com
-
+```sh
+curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com
+```
 
 #### Response
 ```json
@@ -58,8 +53,9 @@ It requires no token.
 
 
 #### Example
-	curl http://api.cluestr.com/status
-
+```sh
+curl http://api.cluestr.com/status
+```
 
 #### Response
 ```json
@@ -80,8 +76,9 @@ This endpoint asks for immediate update of all providers on this account.
 
 
 #### Example
+```sh
 curl -X POST -H "Authorization: token ${TOKEN}" http://api.cluestr.com/update
-
+```
 
 #### Response
 ```
@@ -105,7 +102,9 @@ User endpoints
 This endpoint returns all the users in the current company.
 
 #### Example
-	curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/users
+```sh
+curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/users
+```
 
 #### Response
 ```json
@@ -132,7 +131,9 @@ Possible error codes: N/A
 This endpoint redirect to the canonical user page.
 
 #### Example
-	curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/user
+```sh
+curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/user
+```
 
 #### Response
 ```
@@ -150,7 +151,9 @@ Possible error codes: N/A
 This endpoint display details about a user in the company.
 
 #### Example
-	curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/users/5252cebb03a470843f000003
+```sh
+curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/users/5252cebb03a470843f000003
+```
 
 #### Response
 ```json
@@ -182,7 +185,9 @@ This endpoint display all the document-types used by this user account.
 > In a few edges cases, a new document type will be added between the time you call `/document-types` and `/documents` and you'll find a dangling reference. Your frontend needs to handle this case properly, and reload `/document-types`.
 
 #### Example
-	curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/document-types
+```sh
+curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/document-types
+```
 
 #### Response
 ```json
@@ -215,8 +220,44 @@ Documents endpoints
 #### Description
 This endpoint lets you search for documents matching some criterias.
 
+#### Query parameters
+| Name     | Type     | Description                                   |
+| -------- |:--------:| ---------------------------------------------:|
+| `start`  | `int`    | Index of the first item to retrieve (for pagination)
+| `limit`  | `int`    | Max number of items to retrieve (for pagination)
+| `search` | `string` | Search query, probably the most important parameter for this query.
+| `_meta`  | `string` | Strict search on `meta` key.
+| `@meta`  | `string` | Full text search on `meta` key.
+| `has_meta` | `string`  | Only returns document having the `meta` key.
+| `related_to` | `id`    | Find documents related to the specified document
+| `binary_document_type` | `string`, `array`    | Only retrieve documents matching this binary document types. You can use the param multiple times to allow for multiples `binary_document_type`.
+| `semantic_document_type` | `string`, `array`    | Only retrieve documents matching this semantic document types. You can use the param multiple times to allow for multiples `semantic_document_type`.
+
+
 #### Example
-	curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/documents
+```sh
+# Retrieve all documents, up to implicit limit
+curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/documents
+
+# Find the first 20 documents
+curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/documents?limit=20
+
+# Find 20 documents after the first 50
+curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/documents?limit=20&start=50
+
+# Search for "perlinpinpin"
+curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/documents?search=perlinpinpin
+
+# Search for documents with geolocation
+curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/documents?has_location
+
+# Search for documents with title matching "perlinpinpin"
+curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/documents?@title=perlinpinpin
+
+# Search for documents with title being exactly "perlinpinpin"
+curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/documents?_title=perlinpinpin
+
+```
 
 #### Response
 ```json
@@ -233,7 +274,7 @@ This endpoint lets you search for documents matching some criterias.
         {
             "_type": "Document",
             "id": "5252d19a1247678905000001",
-            "company": "5252cebb03a470843f000002",
+            "company": "5252cebb03a470843f000002 ",
             "creation_date": "2013-10-08T14:59:07.895Z",
             "semantic_document_type": null,
             "binary_document_type": "5252ce4ce4cfcd16f55cfa3b",
