@@ -110,7 +110,7 @@ Will be projected as :
 		"description": "Full projection for the semantic document-type"
 	},
 	"5252ce4ce4cfcd16f55cfa3b": {
-		description: "Full projection for the binary document-type"
+		"description": "Full projection for the binary document-type"
 	},
 }
 ```
