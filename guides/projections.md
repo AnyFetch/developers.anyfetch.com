@@ -15,7 +15,7 @@ The best way to understand projection is by examples. Let's say you have a big P
 	"document_url": "/documents/5252d19a1247678905000001",
 	"metadatas": {
 		"title": "My big PDF",
-		"path": "/home/papiel/big_pdf.pdf"s,
+		"path": "/home/papiel/big_pdf.pdf",
 		"text": "Big text extract with many many characters...",
 		"pages": [
 			"<h1>Big text extract</h1><p>with many many characters, spanning across multiple pages.",
@@ -92,6 +92,7 @@ When a document has a semantic document-type, the snippet projector will be used
 The full projection is a hash containing the full projection for each document-type on the document.
 
 For instance, a document with:
+
 ```json
 {
 	...
@@ -102,6 +103,7 @@ For instance, a document with:
 ```
 
 Will be projected as :
+
 ```json
 {
 	"5252ce4ce4cfcd16f55cfa3c": {
@@ -114,4 +116,4 @@ Will be projected as :
 ```
 
 #### Related projection
-Soon.
+Not used for now.
