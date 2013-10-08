@@ -225,19 +225,20 @@ Documents endpoints
 
 #### Description
 This endpoint lets you search for documents matching some criterias.
+All documents are projected as `snippet`.
 
 #### Query parameters
-| Name     | Type     | Description                                   |
+| Name	 | Type	 | Description								   |
 | -------- |:--------:| ---------------------------------------------:|
-| `start`  | `int`    | Index of the first item to retrieve (for pagination)
-| `limit`  | `int`    | Max number of items to retrieve (for pagination)
+| `start`  | `int`	| Index of the first item to retrieve (for pagination)
+| `limit`  | `int`	| Max number of items to retrieve (for pagination)
 | `search` | `string` | Search query, probably the most important parameter for this query.
 | `_meta`  | `string` | Strict search on `meta` key.
 | `@meta`  | `string` | Full text search on `meta` key.
 | `has_meta` | `string`  | Only returns document having the `meta` key.
-| `related_to` | `id`    | Find documents related to the specified document
-| `binary_document_type` | `string`, `array`    | Only retrieve documents matching this binary document types. You can use the param multiple times to allow for multiples `binary_document_type`.
-| `semantic_document_type` | `string`, `array`    | Only retrieve documents matching this semantic document types. You can use the param multiple times to allow for multiples `semantic_document_type`.
+| `related_to` | `id`	| Find documents related to the specified document
+| `binary_document_type` | `string`, `array`	| Only retrieve documents matching this binary document types. You can use the param multiple times to allow for multiples `binary_document_type`.
+| `semantic_document_type` | `string`, `array`	| Only retrieve documents matching this semantic document types. You can use the param multiple times to allow for multiples `semantic_document_type`.
 
 
 #### Examples
@@ -314,3 +315,53 @@ http://api.cluestr.com/documents?binary_document_type=5252ce4ce4cfcd16f55cfa3b&b
 }
 ```
 
+The first part contains datas about the current data-set (number of documents per document-types), then comes the actual datas projected along their document-types.
+
+Possible error codes:
+
+* `409 InvalidArgument`: you specified a non existing argument in your request.
+
+### Retrieve details about a document
+* **Path**: `/documents/:id`
+* **HTTP-Verb** : `GET`
+
+#### Description
+This endpoint display details about the selected document.
+
+All documents are projected as `full`.
+
+#### Example
+```sh
+$ curl -H "Authorization: token ${TOKEN}" \
+http://api.cluestr.com/documents/5252d19a1247678905000001
+```
+
+#### Response
+```json
+{
+	"_type": "Document",
+	"id": "5252d19a1247678905000001",
+	"company": "5252cebb03a470843f000002",
+	"creation_date": "2013-10-08T14:59:07.895Z",
+	"semantic_document_type": null,
+	"binary_document_type": "5252ce4ce4cfcd16f55cfa3b",
+	"actions": {
+		"show": "https://www.dropbox.com/home%2Fsomefile.pdf"
+	},
+	"related": [],
+	"document_url": "/documents/5252d19a1247678905000001",
+	"mode": "full",
+	"metadatas": {
+		"5252ce4ce4cfcd16f55cfa3b": {
+			"title": "File title",
+			"path": "/somefile.pdf",
+			"text": "File title\nAbstract\nThis documents looks for...",
+			...
+		}
+	}
+}
+```
+
+Possible error codes:
+
+* `404 ResourceNotFound`: the document does not exists or is not part of this company
