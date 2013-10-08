@@ -52,8 +52,10 @@ Lists all documents accessible by the currently logged-in user.
 				"total": 76.55
 				"total_taxes": 91.55
 			},
-			"document_url": "https://api.papiel.fr/documents/kiicqD7HHB23icdqsc78jc"
-			"download_url": "https://api.papiel.fr/documents/kiicqD7HHB23icdqsc78jc/download"
+	    "actions": {
+	      "download": "https://api.papiel.fr/documents/kiicqD7HHB23icdqsc78jc",
+	      "edit": "https://api.papiel.fr/documents/kiicqD7HHB23icdqsc78jc/edit"
+			}
 		},
 		
 		...
@@ -68,15 +70,15 @@ Lists all documents accessible by the currently logged-in user.
 	X-Poll-Interval: 60
 
 	{
-		"type": "Document",
+		"_type": "Document",
 		"id": "kiicqD7HHB23icdqsc78jc",
 		"company": "dcjkz777dscsdvdv249",
 		"user_access": ["dqsvj667bkqvljdfv23678"],
 		"creation_date": "2013-09-07T17:26:27Z",
 		"update_date": "2013-09-07T17:26:27Z",
 		"doctypes": [
-			"pdf",
-			"invoice"
+			"fsdbj667bkqvljdfv23789",
+			"gdfnj667bkqvljdfv23456"
 		],
 		"metadatas": {
 			"title": "Invoice #1265",
@@ -86,11 +88,13 @@ Lists all documents accessible by the currently logged-in user.
 				"7": 0,
 				"19.6": 76.55
 			},
-			"total": 76.55
+			"total": 76.55,
 			"total_taxes": 91.55
 		},
-		"document_url": "https://api.papiel.fr/documents/kiicqD7HHB23icdqsc78jc"
-		"download_url": "https://api.papiel.fr/documents/kiicqD7HHB23icdqsc78jc/download"
+		"actions": {
+			"download": "https://api.papiel.fr/documents/kiicqD7HHB23icdqsc78jc",
+			"edit": "https://api.papiel.fr/documents/kiicqD7HHB23icdqsc78jc/edit"
+		}
 	}
 
 

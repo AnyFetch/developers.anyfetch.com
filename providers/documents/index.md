@@ -26,7 +26,6 @@ Send JSON datas as POST:
 Sample datas:
 
 	{
-		source: "http://my-cloud-provider/doc/dq6z8d4z6f8",
 		identifier: "http://my-cloud-provider/doc/dq6z8d4z6f8",
 		user_access: ["dqsvj667bkqvljdfv23678"],
 		creation_date: "2013-09-07T17:26:27Z",
@@ -42,16 +41,11 @@ Sample datas:
 			total: 76.55,
 			total_taxes: 91.55
 		},
-		actions: [
-			{
-				type: 'reply',
-				url: 'http://my-cloud-provider/doc/dq6z8d4z6f8/reply'
-			},
-			{
-				type: 'delete',
-				url: 'http://my-cloud-provider/doc/dq6z8d4z6f8/delete'
-			}
-		]
+		actions: {
+			show: "http://my-cloud-provider/doc/dq6z8d4z6f8",
+			reply: "http://my-cloud-provider/doc/dq6z8d4z6f8/reply",
+			delete: http://my-cloud-provider/doc/dq6z8d4z6f8/delete"
+		}
 	}
 
 ## Update a document
