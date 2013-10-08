@@ -59,8 +59,8 @@ It requires no token.
 #### Response
 ```json
 {
-    "status": "ok",
-    "message": ""
+	"status": "ok",
+	"message": ""
 }
 ```
 
@@ -105,15 +105,15 @@ This endpoint returns all the users in the current company.
 #### Response
 ```json
 [
-    {
-        "_type": "User",
-        "id": "5252cebb03a470843f000003",
-        "email": "matthieu@papiel.fr",
-        "name": "",
-        "is_admin": true,
-        "user_url": "/users/5252cebb03a470843f000003"
-    },
-    ...
+	{
+		"_type": "User",
+		"id": "5252cebb03a470843f000003",
+		"email": "matthieu@papiel.fr",
+		"name": "",
+		"is_admin": true,
+		"user_url": "/users/5252cebb03a470843f000003"
+	},
+	...
 ]
 ```
 
@@ -150,13 +150,49 @@ This endpoint display details about a user in the company.
 #### Response
 ```json
 {
-    "_type": "User",
-    "id": "5252cebb03a470843f000003",
-    "email": "matthieu@papiel.fr",
-    "name": "",
-    "is_admin": true,
-    "user_url": "/users/5252cebb03a470843f000003"
+	"_type": "User",
+	"id": "5252cebb03a470843f000003",
+	"email": "matthieu@papiel.fr",
+	"name": "",
+	"is_admin": true,
+	"user_url": "/users/5252cebb03a470843f000003"
 }
+```
+
+Possible error codes:
+
+* `404 ResourceNotFound`: the user does not exists or is not part of this company
+
+----------------------------------------------
+Document-types endpoints
+--------------
+
+### Retrieve available document-types
+* **Path**: `/document-types`
+* **HTTP-Verb** : `GET`
+
+#### Description
+This endpoint display all the document-types used by this user account.
+
+> In a few edges cases, a new document type will be added between the time you call `/document-types` and `/documents` and you'll find a dangling reference. Your frontend needs to handle this case properly, and reload `/document-types`.
+
+#### Example
+	curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/document-types
+
+#### Response
+```json
+[
+	{
+		"_type": "DocumentType",
+		"id": "5252ce4ce4cfcd16f55cfa3b",
+		"name": "file",
+		"type": "binary",
+		"template_snippet": "<h1>{{title}}</h1><tt>{{path}}</tt>",
+		"template_full": "<h1>{{title}}</h1><tt>{{path}}</tt>",
+		"template_related": "<h1>{{title}}</h1><tt>{{path}}</tt>"
+	},
+	...
+]
 ```
 
 Possible error codes:
