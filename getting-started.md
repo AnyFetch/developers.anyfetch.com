@@ -12,6 +12,7 @@ The API is standard REST. This page will guide you through all the basics, if yo
 
 All API access is over HTTPS, and accessed from the `api.cluestr.com` domain. All data is sent and received as JSON.
 
+
 	$ curl -v -X GET \
 	https://api.cluestr.com/status
 
