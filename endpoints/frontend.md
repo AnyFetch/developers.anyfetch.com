@@ -1,5 +1,5 @@
 ---
-title: Cluestr frontend endpoint
+title: Cluestr frontend endpoints
 subtitle: Search and retrieve.
 layout: doc
 ---
@@ -14,9 +14,14 @@ General endpoints
 #### Description
 This endpoint returns data about the currently logged in user's company.
 
+#### ?Query parameters
+| Name    | Type     | Description                                   |
+| ------- |:--------:| ---------------------------------------------:|
+| `start` | `int`    | Index of the first item to retrieve (for pagination)
+| `limit` | `int`    | Max number of items to retrieve (for pagination)
 
 #### Example
-curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com
+	curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com
 
 
 #### Response
@@ -193,6 +198,59 @@ This endpoint display all the document-types used by this user account.
 	},
 	...
 ]
+```
+
+Possible error codes:
+
+* `404 ResourceNotFound`: the user does not exists or is not part of this company
+
+----------------------------------------------
+Documents endpoints
+--------------
+
+### Search for documents
+* **Path**: `/document`
+* **HTTP-Verb** : `GET`
+
+#### Description
+This endpoint lets you search for documents matching some criterias.
+
+#### Example
+	curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/documents
+
+#### Response
+```json
+{
+    "binary_document_types": {
+        "5252ce4ce4cfcd16f55cfa3b": 48,
+        ...
+    },
+    "semantic_document_types": {
+        "null": 35,
+        ...
+    },
+    "datas": [
+        {
+            "_type": "Document",
+            "id": "5252d19a1247678905000001",
+            "company": "5252cebb03a470843f000002",
+            "creation_date": "2013-10-08T14:59:07.895Z",
+            "semantic_document_type": null,
+            "binary_document_type": "5252ce4ce4cfcd16f55cfa3b",
+            "actions": {
+                "show": "https://www.dropbox.com/home%2Fsomefile.pdf"
+            },
+            "related": [],
+            "document_url": "/documents/5252d19a1247678905000001",
+            "mode": "snippet",
+            "metadatas": {
+                "title": "File title",
+                "path": "/somefile.pdf"
+            }
+        },
+        ...
+    ]
+}
 ```
 
 Possible error codes:
