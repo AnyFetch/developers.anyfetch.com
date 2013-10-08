@@ -225,7 +225,7 @@ Documents endpoints
 
 #### Description
 This endpoint lets you search for documents matching some criterias.
-All documents are projected as `snippet`.
+All documents [are projected as `snippet`](projections.html).
 
 #### Query parameters
 | Name	 | Type	 | Description								   |
@@ -328,7 +328,7 @@ Possible error codes:
 #### Description
 This endpoint display details about the selected document.
 
-All documents are projected as `full`.
+All documents [are projected as `full`](projections.html).
 
 #### Example
 ```sh
