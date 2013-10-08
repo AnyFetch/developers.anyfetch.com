@@ -62,6 +62,7 @@ If resources have custom validation errors, they will be documented with the res
 Standard errors include :
 
 * `401 UnauthorizedError`: you did not specify a token, or your token is invalid / has been revoked.
+* `405 MethodNotAllowedError`: you used a POST instead of a GET, or vice versa.
 * `409 InvalidArgumentError`: you used a non existing argument.
 
 ## HTTP Redirects
