@@ -20,6 +20,8 @@ The term document is abstract, and can represent a file, a contact or a huge pil
 
 To display this variety of sources, the document is affected up to 2 document-types : a *binary document type* (pdf, doc, ppt, html, png, jpg...) and a *semantic document type* (invoice, plane ticket, contact, point of interest...)
 
+*Projectors* define how to translate raw metadatas to document-types.
+
 APIs Endpoints
 --------------
 * [Frontend endpoints](/endpoints/frontend) : search documents, find users, access company informations
