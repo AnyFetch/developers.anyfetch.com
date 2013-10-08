@@ -16,7 +16,8 @@ This endpoint returns data about the currently logged in user's company.
 
 #### Example
 ```sh
-curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com
+$ curl -H "Authorization: token ${TOKEN}" \
+http://api.cluestr.com
 ```
 
 #### Response
@@ -54,7 +55,7 @@ It requires no token.
 
 #### Example
 ```sh
-curl http://api.cluestr.com/status
+$ curl http://api.cluestr.com/status
 ```
 
 #### Response
@@ -77,7 +78,8 @@ This endpoint asks for immediate update of all providers on this account.
 
 #### Example
 ```sh
-curl -X POST -H "Authorization: token ${TOKEN}" http://api.cluestr.com/update
+$ curl -X POST -H "Authorization: token ${TOKEN}" \
+http://api.cluestr.com/update
 ```
 
 #### Response
@@ -103,7 +105,8 @@ This endpoint returns all the users in the current company.
 
 #### Example
 ```sh
-curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/users
+$ curl -H "Authorization: token ${TOKEN}" \
+http://api.cluestr.com/users
 ```
 
 #### Response
@@ -132,7 +135,8 @@ This endpoint redirect to the canonical user page.
 
 #### Example
 ```sh
-curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/user
+$ curl -H "Authorization: token ${TOKEN}" \
+http://api.cluestr.com/user
 ```
 
 #### Response
@@ -152,7 +156,8 @@ This endpoint display details about a user in the company.
 
 #### Example
 ```sh
-curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/users/5252cebb03a470843f000003
+$ curl -H "Authorization: token ${TOKEN}" \
+http://api.cluestr.com/users/5252cebb03a470843f000003
 ```
 
 #### Response
@@ -186,7 +191,8 @@ This endpoint display all the document-types used by this user account.
 
 #### Example
 ```sh
-curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/document-types
+$ curl -H "Authorization: token ${TOKEN}" \
+http://api.cluestr.com/document-types
 ```
 
 #### Response
@@ -234,66 +240,77 @@ This endpoint lets you search for documents matching some criterias.
 | `semantic_document_type` | `string`, `array`    | Only retrieve documents matching this semantic document types. You can use the param multiple times to allow for multiples `semantic_document_type`.
 
 
-#### Example
+#### Examples
 ```sh
 # Retrieve all documents, up to implicit limit
-curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/documents
+$ curl -H "Authorization: token ${TOKEN}" \
+http://api.cluestr.com/documents
 
 # Find the first 20 documents
-curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/documents?limit=20
+$ curl -H "Authorization: token ${TOKEN}" \
+http://api.cluestr.com/documents?limit=20
 
 # Find 20 documents after the first 50
-curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/documents?limit=20&start=50
+$ curl -H "Authorization: token ${TOKEN}" \
+http://api.cluestr.com/documents?limit=20&start=50
 
 # Search for "perlinpinpin"
-curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/documents?search=perlinpinpin
+$ curl -H "Authorization: token ${TOKEN}" \
+http://api.cluestr.com/documents?search=perlinpinpin
 
 # Search for documents with geolocation
-curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/documents?has_location
+$ curl -H "Authorization: token ${TOKEN}" \
+http://api.cluestr.com/documents?has_location
 
 # Search for documents with title matching "perlinpinpin"
-curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/documents?@title=perlinpinpin
+$ curl -H "Authorization: token ${TOKEN}" \
+http://api.cluestr.com/documents?@title=perlinpinpin
 
 # Search for documents with title being exactly "perlinpinpin"
-curl -H "Authorization: token ${TOKEN}" http://api.cluestr.com/documents?_title=perlinpinpin
+$ curl -H "Authorization: token ${TOKEN}" \
+http://api.cluestr.com/documents?_title=perlinpinpin
 
+# Search for documents with title being exactly "perlinpinpin"
+$ curl -H "Authorization: token ${TOKEN}" \
+http://api.cluestr.com/documents?_title=perlinpinpin
+
+# Filter by binary document type
+$ curl -H "Authorization: token ${TOKEN}" \
+http://api.cluestr.com/documents?binary_document_type=5252ce4ce4cfcd16f55cfa3b&binary_document_type=5252ce4ce4cfcd16f55cfa3c
 ```
 
 #### Response
 ```json
 {
-    "binary_document_types": {
-        "5252ce4ce4cfcd16f55cfa3b": 48,
-        ...
-    },
-    "semantic_document_types": {
-        "null": 35,
-        ...
-    },
-    "datas": [
-        {
-            "_type": "Document",
-            "id": "5252d19a1247678905000001",
-            "company": "5252cebb03a470843f000002 ",
-            "creation_date": "2013-10-08T14:59:07.895Z",
-            "semantic_document_type": null,
-            "binary_document_type": "5252ce4ce4cfcd16f55cfa3b",
-            "actions": {
-                "show": "https://www.dropbox.com/home%2Fsomefile.pdf"
-            },
-            "related": [],
-            "document_url": "/documents/5252d19a1247678905000001",
-            "mode": "snippet",
-            "metadatas": {
-                "title": "File title",
-                "path": "/somefile.pdf"
-            }
-        },
-        ...
-    ]
+	"binary_document_types": {
+		"5252ce4ce4cfcd16f55cfa3b": 48,
+		...
+	},
+	"semantic_document_types": {
+		"null": 35,
+		...
+	},
+	"datas": [
+		{
+			"_type": "Document",
+			"id": "5252d19a1247678905000001",
+			"company": "5252cebb03a470843f000002 ",
+			"creation_date": "2013-10-08T14:59:07.895Z",
+			"semantic_document_type": null,
+			"binary_document_type": "5252ce4ce4cfcd16f55cfa3b",
+			"actions": {
+				"show": "https://www.dropbox.com/home%2Fsomefile.pdf"
+			},
+			"related": [],
+			"document_url": "/documents/5252d19a1247678905000001",
+			"mode": "snippet",
+			"metadatas": {
+				"title": "File title",
+				"path": "/somefile.pdf"
+			}
+		},
+		...
+	]
 }
 ```
 
-Possible error codes:
-
-* `404 ResourceNotFound`: the user does not exists or is not part of this company

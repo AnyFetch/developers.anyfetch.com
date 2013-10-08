@@ -12,25 +12,26 @@ The API is standard REST. This page will guide you through all the basics, if yo
 
 All API access is over HTTPS, and accessed from the `api.cluestr.com` domain. All data is sent and received as JSON.
 
+```sh
+$ curl -v -X GET \
+https://api.cluestr.com/status
 
-	$ curl -v -X GET \
-	https://api.cluestr.com/status
+HTTP/1.1 200 OK
+Server: nginx/1.4.2
+Date: Tue, 08 Oct 2013 08:59:48 GMT
+Content-Type: application/json
+Content-Length: 28
+Connection: keep-alive
+Access-Control-Allow-Headers: Accept, Accept-Version, Authorization, Content-Type, Api-Version, X-Requested-With
+Access-Control-Allow-Credentials: true
+Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS
+Access-Control-Allow-Origin: *
 
-	HTTP/1.1 200 OK
-	Server: nginx/1.4.2
-	Date: Tue, 08 Oct 2013 08:59:48 GMT
-	Content-Type: application/json
-	Content-Length: 28
-	Connection: keep-alive
-	Access-Control-Allow-Headers: Accept, Accept-Version, Authorization, Content-Type, Api-Version, X-Requested-With
-	Access-Control-Allow-Credentials: true
-	Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS
-	Access-Control-Allow-Origin: *
-
-	{
-		"status": "ok",
-		"message": ""
-	}
+{
+	"status": "ok",
+	"message": ""
+}
+```
 
 > Note: throughout this guide, we'll left out the `-v` flag. Add it when you want to see the headers.
 
@@ -43,10 +44,11 @@ All timestamps are returned in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
 
 Many API methods take optional parameters. For GET requests, any parameters not specified as a segment in the path can be passed as an HTTP query string parameter:
 
-	$ curl -X GET \
-	 -H "Authorization: token ${TOKEN}" \
-	"https://api.cluestr.com/documents?search=${query}"
-
+```sh
+$ curl -X GET \
+ -H "Authorization: token ${TOKEN}" \
+"https://api.cluestr.com/documents?search=${query}"
+```
 
 For POST, PATCH, PUT, and DELETE requests, parameters not included in the URL can be encoded as JSON with a Content-Type of `application/x-www-form-urlencoded`, or sent as a standard HTTP form.
 
@@ -92,17 +94,24 @@ Where possible, Cluestr API strives to use appropriate HTTP verbs for each actio
 There are three ways to authenticate through Cluestr Client API.
 
 ### Basic authentication
-	$ curl -H "Authorization: Basic ${BASE64}" https://api.cluestr.com
+```sh
+$ curl -H "Authorization: Basic ${BASE64}" \
+https://api.cluestr.com
+```
 
 Where `${BASE64}` is the base64 encoding for `user:password`
 
 ### OAuth2 Token (sent in a header)
-	$ curl -H "Authorization: token OAUTH-TOKEN" https://api.cluestr.com
+```sh
+$ curl -H "Authorization: token OAUTH-TOKEN" \
+https://api.cluestr.com
+```
 This is the best way to use your token.
 
 ### OAuth2 Token (sent as a parameter)
-	$ curl https://api.cluestr.com?access_token=OAUTH-TOKEN
-
+```sh
+$ curl https://api.cluestr.com?access_token=OAUTH-TOKEN
+```
 
 ## Hypermedia
 All resources may have one or more `*_url` properties linking to other resources. These are meant to provide explicit URLs so that proper API clients don’t need to construct URLs on their own. It is highly recommended that API clients use these. Doing so will make future upgrades of the API easier for developers. All URLs are expected to be proper [RFC 6570](http://tools.ietf.org/html/rfc6570) URI templates.
