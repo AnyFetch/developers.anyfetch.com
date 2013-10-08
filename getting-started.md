@@ -1,9 +1,8 @@
 ---
 title: Getting started with Cluestr
+subtitle: The client API is designed to let your app access documents and metadata on Cluestr after processing.
 layout: doc
 ---
-
-The client API is designed to let your app access documents and metadata on Cluestr after processing.
 
 The API is standard REST. This page will guide you through all the basics, if you're already familiar with APIs you can skip it and head to the [quick start](/quick-start) ;)
 

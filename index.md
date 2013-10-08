@@ -1,14 +1,14 @@
 ---
 title: Cluestr API documentation
+subtitle: This describes the resources that make up the Papiel Client API.
 layout: doc
 ---
 
-This describes the resources that make up the Papiel Client API.
 If you have any problems or requests please contact [support](mailto:support@papiel.fr).
 
-> First time using a REST API? Visit our [getting started](getting-started) page.
+> First time using a REST API? Visit our [getting started](getting-started.html) page.
 
-> In a hurry? Just read [this quick tour](quick-tour) for a fast introduction to Cluestr API.
+> In a hurry? Just read [this quick tour](quick-tour.html) for a fast introduction to Cluestr API.
 
 Cluestr concepts
 ----------------
@@ -24,9 +24,9 @@ To display this variety of sources, the document is affected up to 2 document-ty
 
 APIs Endpoints
 --------------
-* [Frontend endpoints](/endpoints/frontend) : search documents, find users, access company informations
-* [Providers endpoints](/endpoints/providers) : create a new document or update a document previously provided
-* [Hydraters endpoints](/endpoints/hydraters) : asynchronously add datas to an existing documents
+* [Frontend endpoints](/endpoints/frontend.html) : search documents, find users, access company informations
+* [Providers endpoints](/endpoints/providers.html) : create a new document or update a document previously provided
+* [Hydraters endpoints](/endpoints/hydraters.html) : asynchronously add datas to an existing documents
 
 Guides
 -----
