@@ -6,7 +6,7 @@ layout: doc
 
 Documents in Cluestr revolves around the notion of projection, to display datas depending on the context.
 
-The best way to understand projection is by examples. Let's say you have a big PDF file, hydrated with the following metadatas:
+The best way to understand projection is by example. Let's say you have a big PDF file, hydrated with the following metadatas:
 
 ```json
 {
@@ -30,7 +30,7 @@ The best way to understand projection is by examples. Let's say you have a big P
 }
 ```
 
-When the user makes a search, he'll only want a small snippet of this data. Loading everything would clutter the network, slow down your app. People will hate it, they'll leave your app, eat and get fat. We don't want that, and we sincerely hope that, as a dev, you don't want that too.
+When the user enter a search query, he'll only want a small snippet of this data. Loading everything would clutter the network and slow down your app. People will hate it, they'll leave your app, eat and get fat. We don't want that, and we sincerely hope that, as a dev, you don't want that too.
 
 So we need to reduce the datas being transferred. For this, we define projections, taking the original `metadatas` object hash and generating a new, simplified hash.
 
@@ -45,7 +45,7 @@ var projector = {
 }
 ```
 
-When the user search for "many many", we'll then generate a new, smaller object:
+When the user searches for the term "many many", we'll then generate a new, smaller object:
 
 ```json
 {
@@ -66,13 +66,13 @@ That's the basis for document-types: every document has a document-type, and thi
 
 Every document-types defines three projectors:
 
-* A projector for snippet, after a query, rendering small results
-* A projector for related documents, used when we want to display the document alongside another one
-* A projector to display the document in details. Note this is not all metadatas, since most of them won't be displayed to the end user.
+* A projector for snippet, used after a query to render small results;
+* A projector for related documents, used when we want to display the document alongside another one;
+* A projector to display the document in details. Note this is not all metadatas, since most of them won't be displayed to the end user;
 
 Last touch. We said earlier every document has a document-type. Well... we lied. In fact, a document can have 2 document-types: a semantic, and a binary.
 
-The `binary document-type` will be used to display the file in a standard way, like you would see it when viewing the file in your PC. For a PDF, it will be a lot of pages, for an image it will be a viewer... this is the most intuitive way to view your content, but it may not be the most useful.
+The `binary document-type` will be used to display the file in a standard way, as you would see it when viewing the file in your PC. For a PDF, it will be a lot of pages, for an image it will be a viewer... this is the most intuitive way to view your content, but it may not be the most useful.
 
 The `semantic document-type` will be used to display the core datas for your documents, in a semantic way: a contact, for instance, will be a semantic document-type... but so will be any structured data, such as a flight ticket.
 
@@ -81,15 +81,15 @@ Binary and semantic document-types are loosely coupled. For instance, a document
 To sum up. A document can have up to two document-types, each document-type defining three projectors to display the data in various situations.
 
 ### Projection lookup
-This section will give insight about projections and how they are use internally.
+This section will give insight about projections and how they are used internally.
 
-> In some case, the document will have neither a binary or a semantic document-type. In this case, the original metadatas will be returned.
+> In some case, the document will have neither a binary or a semantic document-type. In this case, the original metadatas will be returned, without any projection.
 
 #### Snippet projection
-When a document has a semantic document-type, the snippet projector will be used. Else, the binary document-type snippet projector will be used.
+When a document has a semantic document-type, its snippet projector will be used. Else, the binary document-type snippet projector will be used.
 
 #### Full projection
-The full projection is a hash containing the full projection for each document-type on the document.
+A document full projection is a hash containing the full projection for each document-type on the document.
 
 For instance, a document with:
 

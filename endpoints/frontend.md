@@ -38,7 +38,7 @@ http://api.cluestr.com
 
 You will find here URLs to most services (all the `_url` keys).
 
-`provider_status` contains information about all the providers connected on this account and the date they sent datas for the last time.
+`provider_status` contains informations about all the providers connected on this account and the date they sent datas for the last time.
 
 > We recommend sending a `/update` right after retrieving this URL, to ensure all datas are up to date.
 
@@ -87,8 +87,8 @@ http://api.cluestr.com/update
 HTTP/1.1 204 No Content
 ```
 
-This call returns no data.
-Update will start immediately and asynchronously. You may want to periodically check on `/index` to view incoming documents.
+This endpoint returns no data.
+Update will start immediately and asynchronously in the background. You may want to periodically check on `/index` to view incoming documents.
 
 Possible error codes: N/A.
 
@@ -185,9 +185,9 @@ Document-types endpoints
 * **HTTP-Verb** : `GET`
 
 #### Description
-This endpoint display all the document-types used by this user account.
+This endpoint displays all the document-types used by this user account.
 
-> In a few edges cases, a new document type will be added between the time you call `/document-types` and `/documents` and you'll find a dangling reference. Your frontend needs to handle this case properly, and reload `/document-types`.
+> In a few edges cases, a new document-type will be added between the time you call `/document-types` and `/documents` and you'll find a dangling reference. Your frontend needs to handle this case properly, and reload `/document-types`.
 
 #### Example
 ```sh
@@ -225,7 +225,7 @@ Documents endpoints
 
 #### Description
 This endpoint lets you search for documents matching some criterias.
-All documents [are projected as `snippet`](projections.html).
+All documents [are projected as `snippet`](/cluestr-doc/guide/projections.html).
 
 #### Query parameters
 | Name	 | Type	 | Description								   |
@@ -237,8 +237,8 @@ All documents [are projected as `snippet`](projections.html).
 | `@meta`  | `string` | Full text search on `meta` key.
 | `has_meta` | `string`  | Only returns document having the `meta` key.
 | `related_to` | `id`	| Find documents related to the specified document
-| `binary_document_type` | `string`, `array`	| Only retrieve documents matching this binary document types. You can use the param multiple times to allow for multiples `binary_document_type`.
-| `semantic_document_type` | `string`, `array`	| Only retrieve documents matching this semantic document types. You can use the param multiple times to allow for multiples `semantic_document_type`.
+| `binary_document_type` | `string`, `array`	| Only retrieve documents matching this binary document-type. You can use the param multiple times to allow for multiple `binary_document_type`.
+| `semantic_document_type` | `string`, `array`	| Only retrieve documents matching this semantic document-type. You can use the param multiple times to allow for multiple `semantic_document_type`.
 
 
 #### Examples
@@ -328,7 +328,7 @@ Possible error codes:
 #### Description
 This endpoint display details about the selected document.
 
-All documents [are projected as `full`](projections.html).
+All documents [are projected as `full`](/cluestr-doc/guide/projections.html).
 
 #### Example
 ```sh
