@@ -6,9 +6,9 @@ layout: doc
 
 If you have any problems or requests please contact [support](mailto:support@papiel.fr).
 
-> First time using a REST API? Visit our [getting started](getting-started.html) page.
+> First time using a REST API? Visit our [getting started](/cluestr-doc/getting-started.html) page.
 
-> In a hurry? Just read [this quick tour](quick-tour.html) for a fast introduction to Cluestr API.
+> In a hurry? Just read [this quick tour](/cluestr-doc/quick-tour.html) for a fast introduction to Cluestr API.
 
 Cluestr concepts
 ----------------
@@ -24,13 +24,13 @@ To display this variety of sources, the document is affected up to 2 document-ty
 
 APIs Endpoints
 --------------
-* [Frontend endpoints](/endpoints/frontend.html) : search documents, find users, access company informations
-* [Providers endpoints](/endpoints/providers.html) : create a new document or update a document previously provided
-* [Hydraters endpoints](/endpoints/hydraters.html) : asynchronously add datas to an existing documents
+* [Frontend endpoints](/cluestr-doc/endpoints/frontend.html) : search documents, find users, access company informations
+* [Providers endpoints](/cluestr-doc/endpoints/providers.html) : create a new document or update a document previously provided
+* [Hydraters endpoints](/cluestr-doc/endpoints/hydraters.html) : asynchronously add datas to an existing documents
 
 Guides
 -----
-* [About projections](guides/projections.html)
+* [About projections](/cluestr-doc/guides/projections.html)
 * How to create my own frontend? (soon)
 * How to create my own provider? (soon)
 * How to create my own hydrater? (soon)
