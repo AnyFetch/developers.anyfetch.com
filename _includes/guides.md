@@ -1,0 +1,5 @@
+* [About projections](/cluestr-doc/guides/projections.html)
+* How to create my own frontend? (soon)
+* How to create my own provider? (soon)
+* How to create my own hydrater? (soon)
+* How to create my own document-type? (soon)

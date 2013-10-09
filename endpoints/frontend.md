@@ -225,7 +225,7 @@ Documents endpoints
 
 #### Description
 This endpoint lets you search for documents matching some criterias.
-All documents [are projected as `snippet`](/cluestr-doc/guide/projections.html).
+All documents [are projected as `snippet`](/cluestr-doc/guides/projections.html).
 
 #### Query parameters
 | Name	 | Type	 | Description								   |
@@ -328,7 +328,7 @@ Possible error codes:
 #### Description
 This endpoint display details about the selected document.
 
-All documents [are projected as `full`](/cluestr-doc/guide/projections.html).
+All documents [are projected as `full`](/cluestr-doc/guides/projections.html).
 
 #### Example
 ```sh
