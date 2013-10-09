@@ -66,6 +66,7 @@ Standard errors include :
 * `401 UnauthorizedError`: you did not specify a token, or your token is invalid / has been revoked.
 * `405 MethodNotAllowedError`: you used a POST instead of a GET, or vice versa.
 * `409 InvalidArgumentError`: you used a non existing argument.
+* `413 Request Entity Too Large`: you are trying to send a document exceeding our capacity (multi giga-byte file anyone?)
 * `500 InternalServerError`: we are currently upgrading or expericening troubles; please try again in a few minutes. 
 
 ## HTTP Redirects
