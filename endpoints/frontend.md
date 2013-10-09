@@ -230,8 +230,8 @@ All documents [are projected as `snippet`](/cluestr-doc/guides/projections.html)
 #### Query parameters
 | Name	 | Type	 | Description								   |
 | -------- |:--------:| ---------------------------------------------:|
-| `start`  | `int`	| Index of the first item to retrieve (for pagination)
-| `limit`  | `int`	| Max number of items to retrieve (for pagination)
+| `start`  | `int`	| Index of the first item to retrieve (for pagination). Default value is 0.
+| `limit`  | `int`	| Max number of items to retrieve (for pagination). Default value is 20.
 | `search` | `string` | Search query, probably the most important parameter for this query.
 | `_meta`  | `string` | Strict search on `meta` key.
 | `@meta`  | `string` | Full text search on `meta` key.
@@ -243,7 +243,7 @@ All documents [are projected as `snippet`](/cluestr-doc/guides/projections.html)
 
 #### Examples
 ```sh
-# Retrieve all documents, up to implicit limit
+# Retrieve all documents, up to implicit limit of 20
 $ curl -H "Authorization: token ${TOKEN}" \
 http://api.cluestr.com/documents
 
