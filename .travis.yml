@@ -1,0 +1,4 @@
+language: ruby
+
+before_script: "gem install jekyll"
+script: "jekyll build --safe"
