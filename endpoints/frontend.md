@@ -31,7 +31,7 @@ http://api.cluestr.com
 	"documents_url": "/documents",
 	"document_types_url": "/document-types",
 	"provider_status": {
-		"9d6e862308f3377c8b5fac707c9dfff75ec3f640c4cd0e9c7688709ce69f3505": "2013-10-07T17:14:40.002Z"
+		"525ffe9d6d679e2a180000ad": "2013-10-07T17:14:40.002Z"
 	}
 }
 ```
