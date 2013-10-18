@@ -40,7 +40,7 @@ You will find here URLs to most services (all the `_url` keys).
 
 `provider_status` contains informations about all the providers connected on this account and the date they sent datas for the last time.
 
-> We recommend sending a `/update` right after retrieving this URL, to ensure all datas are up to date.
+> We recommend sending a `/update` right after retrieving this URL, to ensure all datas are up to date. 
 
 Possible error codes: N/A.
 
