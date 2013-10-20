@@ -1,11 +1,11 @@
 language: ruby
 
 install:
-	- bundle install
-	- sudo gem install link-checker
+  - bundle install
+  - sudo gem install link-checker
 script: 
-	- bundle exec jekyll build
-	- check-links _site/
+  - bundle exec jekyll build
+  - check-links _site/
 
 branches:
   only:
