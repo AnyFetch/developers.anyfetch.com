@@ -202,7 +202,6 @@ http://api.cluestr.com/document-types
 		"_type": "DocumentType",
 		"id": "5252ce4ce4cfcd16f55cfa3b",
 		"name": "file",
-		"type": "binary",
 		"template_snippet": "<h1>{{title}}</h1><tt>{{path}}</tt>",
 		"template_full": "<h1>{{title}}</h1><tt>{{path}}</tt>",
 		"template_related": "<h1>{{title}}</h1><tt>{{path}}</tt>"
@@ -237,8 +236,7 @@ All documents [are projected as `snippet`](/cluestr-doc/guides/projections.html)
 | `@meta`  | `string` | Full text search on `meta` key.
 | `has_meta` | `string`  | Only returns document having the `meta` key.
 | `related_to` | `id`	| Find documents related to the specified document
-| `binary_document_type` | `string`, `array`	| Only retrieve documents matching this binary document-type. You can use the param multiple times to allow for multiple `binary_document_type`.
-| `semantic_document_type` | `string`, `array`	| Only retrieve documents matching this semantic document-type. You can use the param multiple times to allow for multiple `semantic_document_type`.
+| `document_type` | `string`, `array`	| Only retrieve documents matching this document-type. You can use the param multiple times to allow for multiple `document_type`.
 
 
 #### Examples
@@ -275,20 +273,16 @@ http://api.cluestr.com/documents?_title=perlinpinpin
 $ curl -H "Authorization: token ${TOKEN}" \
 http://api.cluestr.com/documents?_title=perlinpinpin
 
-# Filter by binary document type
+# Filter by document type
 $ curl -H "Authorization: token ${TOKEN}" \
-http://api.cluestr.com/documents?binary_document_type=5252ce4ce4cfcd16f55cfa3b&binary_document_type=5252ce4ce4cfcd16f55cfa3c
+http://api.cluestr.com/documents?document_type=5252ce4ce4cfcd16f55cfa3b&document_type=5252ce4ce4cfcd16f55cfa3c
 ```
 
 #### Response
 ```json
 {
-	"binary_document_types": {
+	"document_types": {
 		"5252ce4ce4cfcd16f55cfa3b": 48,
-		...
-	},
-	"semantic_document_types": {
-		"null": 35,
 		...
 	},
 	"datas": [
@@ -297,8 +291,7 @@ http://api.cluestr.com/documents?binary_document_type=5252ce4ce4cfcd16f55cfa3b&b
 			"id": "5252d19a1247678905000001",
 			"company": "5252cebb03a470843f000002 ",
 			"creation_date": "2013-10-08T14:59:07.895Z",
-			"semantic_document_type": null,
-			"binary_document_type": "5252ce4ce4cfcd16f55cfa3b",
+			"document_type": "5252ce4ce4cfcd16f55cfa3b",
 			"actions": {
 				"show": "https://www.dropbox.com/home%2Fsomefile.pdf"
 			},
@@ -343,8 +336,7 @@ http://api.cluestr.com/documents/5252d19a1247678905000001
 	"id": "5252d19a1247678905000001",
 	"company": "5252cebb03a470843f000002",
 	"creation_date": "2013-10-08T14:59:07.895Z",
-	"semantic_document_type": null,
-	"binary_document_type": "5252ce4ce4cfcd16f55cfa3b",
+	"document_type": "5252ce4ce4cfcd16f55cfa3b",
 	"actions": {
 		"show": "https://www.dropbox.com/home%2Fsomefile.pdf"
 	},
