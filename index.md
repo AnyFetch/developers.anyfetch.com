@@ -18,9 +18,9 @@ For instance, the default Cluestr setup will retrieve datas from Dropbox (the pr
 
 The term document is abstract, and can represent a file, a contact or a huge pile of data from some analytics.
 
-To display this variety of sources, the document is affected up to 2 document-types : a *binary document type* (pdf, doc, ppt, html, png, jpg...) and a *semantic document type* (invoice, plane ticket, contact, point of interest...)
+To display this variety of sources, the document is affected a *document type* (text_document, image, mail, contact, invoice...).
 
-*Projectors* define how to translate raw metadatas to document-types.
+*Projectors* defines how to translate raw metadatas to document-type. For instance, when we search for an image we don't need all the metadatas : projection is then used to restrict and transform datas to be sent.
 
 APIs Endpoints
 --------------
