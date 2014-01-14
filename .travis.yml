@@ -1,5 +1,6 @@
 language: ruby
-
+before-script:
+  - go get -u github.com/peterhellberg/hiro
 script: 
   - bundle exec jekyll build
 

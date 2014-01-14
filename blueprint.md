@@ -1,8 +1,8 @@
 FORMAT: 1A
 HOST: http://www.api.anyfetch.com
 
-# Cluestr
-Cluestr is designed to help you search in  massive amounts of documents coming from various sources, in various formats.
+# Anyfetch
+Anyfetch is designed to help you search in  massive amounts of documents coming from various sources, in various formats.
 
 # Index page [/]
 Retrieve datas about the current account
@@ -37,7 +37,7 @@ User related resources of the *Cluestr API*
 
 ## Users Collection [/notes]
 ### List all Users [GET]
-Coin *tsoin*
+Retrieve a list of all users in the current company.
 
 + Response 200 (application/json)
 

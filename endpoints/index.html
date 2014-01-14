@@ -1,0 +1,359 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Anyfetch</title>
+		<meta name="description" content="Anyfetch is designed to help you search in  massive amounts of documents coming from various sources, in various formats.
+
+">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+		<link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<style>
+			body {
+				font-family: 'Open Sans', sans-serif;
+			}
+
+			tt, pre, code {
+				font-family: Consolas, "Liberation Mono", Courier, monospace;
+				background-color: transparent !important;
+			}
+
+			pre.prettyprint {
+				border: 0px !important;
+				background-color: #fff;
+			}
+
+			.bg-default {
+				background-color: #F8F8F8;
+			}
+
+			.snippet {
+				list-style: none;
+				display: none;
+			}
+
+			.nav-rg {
+				width: 262.5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="page-header">
+						<h1>Anyfetch</h1>
+						<h2 class="lead"><small><p>Anyfetch is designed to help you search in  massive amounts of documents coming from various sources, in various formats.</p>
+</small></h2>
+					</div>
+				</div>
+
+				<div class="col-md-3">
+					
+<ul class="nav nav-pills nav-stacked nav-rg affix" id="group-tab">
+	
+		<li><a href="#" data-toggle="tab"><strong></strong></a></li>
+	
+		<li><a href="#users" data-toggle="tab"><strong>Users</strong></a></li>
+	
+</ul>
+
+				</div>
+
+				<div class="col-md-9">
+					<div class="tab-content">
+						
+
+	<div class="tab-pane" id="">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h2 id=""></h2>
+			</div>
+			<div class="panel-body">
+				<p class="lead"><small></small></p>
+				
+
+	
+	
+
+	
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<span class="btn btn-primary">GET</span>
+			<code>/</code>
+		</div>
+
+		<div class="panel-body">
+			
+		</div>
+
+		<ul class="list-group">
+			
+			
+	
+		
+	
+
+		
+	
+		<li class="list-group-item bg-default response">
+			<strong>Response <code>200</code></strong>
+			<a href="javascript:;" class="pull-right btn btn-link btn-sm snippet-toggle">SHOW</a>
+		</li>
+		<li class="list-group-item snippet">
+			
+				<code>&lt; Access-Control-Allow-Credentials: true</code><br><code>&lt; Access-Control-Allow-Headers: Accept, Accept-Version, Authorization, Content-Type, Api-Version, X-Requested-With</code><br><code>&lt; Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS</code><br><code>&lt; Access-Control-Allow-Origin: *</code><br><code>&lt; Content-Type: application/json</code><br>
+			
+			
+				<pre class="prettyprint">{
+    &#34;users_url&#34;: &#34;/users&#34;,
+    &#34;user_url&#34;: &#34;/user&#34;,
+    &#34;documents_url&#34;: &#34;/documents&#34;,
+    &#34;server_time&#34;: &#34;2014-01-10T10:47:22.413Z&#34;,
+    &#34;_type&#34;: &#34;Company&#34;,
+    &#34;id&#34;: &#34;52cbdaddc8318c4dc8000001&#34;,
+    &#34;name&#34;: &#34;test@papiel.fr&#34;,
+    &#34;provider_status&#34;: {},
+    &#34;document_types&#34;: {}
+}
+</pre>
+			
+		</li>
+	
+
+	
+
+		</ul>
+	</div>
+	
+
+
+			</div>
+		</div>
+	</div>
+
+	<div class="tab-pane" id="users">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h2 id="users">Users</h2>
+			</div>
+			<div class="panel-body">
+				<p class="lead"><small>User related resources of the *Cluestr API*
+
+</small></p>
+				
+
+	
+	
+
+	
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<span class="btn btn-primary">GET</span>
+			<code>/notes</code>
+		</div>
+
+		<div class="panel-body">
+			<p>Retrieve a list of all users in the current company.</p>
+
+		</div>
+
+		<ul class="list-group">
+			
+			
+	
+		
+	
+
+		
+	
+		<li class="list-group-item bg-default response">
+			<strong>Response <code>200</code></strong>
+			<a href="javascript:;" class="pull-right btn btn-link btn-sm snippet-toggle">SHOW</a>
+		</li>
+		<li class="list-group-item snippet">
+			
+				<code>&lt; Content-Type: application/json</code><br>
+			
+			
+				<pre class="prettyprint">    [
+        {
+            &#34;_type&#34;: &#34;User&#34;,
+            &#34;id&#34;: &#34;5252cebb03a470843f000003&#34;,
+            &#34;email&#34;: &#34;matthieu@papiel.fr&#34;,
+            &#34;name&#34;: &#34;&#34;,
+            &#34;is_admin&#34;: true,
+            &#34;user_url&#34;: &#34;/users/5252cebb03a470843f000003&#34;
+        },
+        ...
+    ]
+</pre>
+			
+		</li>
+	
+
+	
+
+		</ul>
+	</div>
+	
+
+	
+	
+
+	
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<span class="btn btn-primary">GET</span>
+			<code>/user/{id}</code>
+		</div>
+
+		<div class="panel-body">
+			
+		</div>
+
+		<ul class="list-group">
+			
+				<li class="list-group-item bg-default"><strong>Parameters</strong></li>
+				<li class="list-group-item">
+<dl class="dl-horizontal">
+	
+		<dt>id</dt>
+		<dd>
+		
+		
+		<code>number</code> Numeric `id` of the User to perform action with.
+		</dd>
+	
+</dl>
+</li>
+			
+			
+	
+		
+	
+
+		
+	
+		<li class="list-group-item bg-default response">
+			<strong>Response <code>200</code></strong>
+			<a href="javascript:;" class="pull-right btn btn-link btn-sm snippet-toggle">SHOW</a>
+		</li>
+		<li class="list-group-item snippet">
+			
+				<code>&lt; Content-Type: application/json</code><br>
+			
+			
+				<pre class="prettyprint">    {
+        &#34;_type&#34;: &#34;User&#34;,
+        &#34;id&#34;: &#34;5252cebb03a470843f000003&#34;,
+        &#34;email&#34;: &#34;matthieu@papiel.fr&#34;,
+        &#34;name&#34;: &#34;&#34;,
+        &#34;is_admin&#34;: true,
+        &#34;user_url&#34;: &#34;/users/5252cebb03a470843f000003&#34;
+    }
+</pre>
+			
+		</li>
+	
+
+	
+
+		</ul>
+	</div>
+	
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<span class="btn btn-danger">DELETE</span>
+			<code>/user/{id}</code>
+		</div>
+
+		<div class="panel-body">
+			
+		</div>
+
+		<ul class="list-group">
+			
+				<li class="list-group-item bg-default"><strong>Parameters</strong></li>
+				<li class="list-group-item">
+<dl class="dl-horizontal">
+	
+		<dt>id</dt>
+		<dd>
+		
+		
+		<code>number</code> Numeric `id` of the User to perform action with.
+		</dd>
+	
+</dl>
+</li>
+			
+			
+	
+		
+	
+
+		
+	
+		<li class="list-group-item bg-default response">
+			<strong>Response <code>204</code></strong>
+			<a href="javascript:;" class="pull-right btn btn-link btn-sm snippet-toggle">SHOW</a>
+		</li>
+		<li class="list-group-item snippet">
+			
+			
+		</li>
+	
+
+	
+
+		</ul>
+	</div>
+	
+
+
+			</div>
+		</div>
+	</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+		<script src="//google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+		<script>
+			jQuery(function($) {
+				$('#group-tab a:first').tab('show');
+				$('.snippet-toggle').on("click", function(e) {
+					e.preventDefault();
+
+					var target = $(this).data('target');
+					$(this).parent().next().toggle();
+					if ($(this).text() == "SHOW") {
+						$(this).text("HIDE");
+					} else {
+						$(this).text("SHOW");
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
