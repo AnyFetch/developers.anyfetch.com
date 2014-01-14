@@ -4,9 +4,10 @@ HOST: http://www.api.anyfetch.com
 # Anyfetch
 Anyfetch is designed to help you search in  massive amounts of documents coming from various sources, in various formats.
 
-# Index page [/]
+# Group Index
+## Index [/]
+### Retrieve Entry Point [GET]
 Retrieve datas about the current account
-## Retrieve Entry Point [GET]
 
 + Response 200 (application/json)
     + Headers
@@ -31,10 +32,11 @@ Retrieve datas about the current account
                 "document_types": {}
             }
 
-            
-# Group Users
-User related resources of the *Cluestr API*
+## Status [/status]
+### Status Entry Point [GET]
+Hello.
 
+# Group Users
 ## Users Collection [/notes]
 ### List all Users [GET]
 Retrieve a list of all users in the current company.
