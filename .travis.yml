@@ -1,5 +1,6 @@
 language: ruby
 before_script:
   - go get -u github.com/peterhellberg/hiro
+  - echo $GOPATH
 script: 
   - bundle exec jekyll build
