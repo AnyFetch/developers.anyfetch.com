@@ -1,9 +1,5 @@
 language: ruby
-before-script:
+before_script:
   - go get -u github.com/peterhellberg/hiro
 script: 
   - bundle exec jekyll build
-
-branches:
-  only:
-    - "gh-pages"
