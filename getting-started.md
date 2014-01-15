@@ -91,28 +91,7 @@ Where possible, Cluestr API strives to use appropriate HTTP verbs for each actio
 - __OPTIONS__ Used to request informations.
 
 ## Authentication
-
-There are three ways to authenticate through Cluestr Client API.
-
-### Basic authentication
-```sh
-$ curl -H "Authorization: Basic ${BASE64}" \
-https://api.cluestr.com
-```
-
-Where `${BASE64}` is the base64 encoding for `user:password`
-
-### OAuth2 Token (sent in a header)
-```sh
-$ curl -H "Authorization: token OAUTH-TOKEN" \
-https://api.cluestr.com
-```
-This is the best way to use your token.
-
-### OAuth2 Token (sent as a parameter)
-```sh
-$ curl https://api.cluestr.com?access_token=OAUTH-TOKEN
-```
+See [authentication](/cluestr-doc/authentication.html) for information about authenticating your requests.
 
 ## Hypermedia
 All resources may have one or more `*_url` properties linking to other resources. These are meant to provide explicit URLs so that proper API clients don’t need to construct URLs on their own. It is highly recommended that API clients use these. Doing so will make future upgrades of the API easier for developers. All URLs are expected to be proper [RFC 6570](http://tools.ietf.org/html/rfc6570) URI templates.
