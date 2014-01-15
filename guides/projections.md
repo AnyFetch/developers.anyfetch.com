@@ -36,4 +36,4 @@ Now we can send the file, using a standard multipart POST request including the 
 If everything went well, we'll get `204 No Content` -- our document was stored, and hydration has begun.
 
 ## Lib
-Here at anyFetch, we use Node.JS for our providers to improve latency and send multiple files at once. You can use the [Anyfetch](https://npmjs.org/package/anyfetch) library from npm, or [Anyfetch Provider](https://npmjs.org/package/anyfetch-provider).
+Here at anyFetch, we use Node.JS for our providers to improve latency and send multiple files at once. You can use the [Anyfetch](https://npmjs.org/package/anyfetch) library from npm, or [Anyfetch Provider](https://npmjs.org/package/anyfetch-provider). You'll find additional documentation there.
