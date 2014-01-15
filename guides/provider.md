@@ -4,7 +4,7 @@ subtitle: Data, datas, moar datas!
 layout: doc
 ---
 
-Creating a provider is quite simple. Even better, most of the anyFetch default providers are opensource: you can take a quick peek at them if you have any trouble.
+Creating a provider is quite simple. Even better, most of the anyFetch default providers are open-source: you can take a [quick peek at them](https://github.com/search?q=%40Papiel+provider) if you have any trouble.
 
 Basically, a provider is a simple gateway between some data-source (Dropbox, a folder on your computer, your mail on Gmail) and the Fetch API. You just need to take the data and send them using the `/providers/documents` and `/providers/documents/file` endpoints.
 
@@ -36,4 +36,4 @@ Now we can send the file, using a standard multipart POST request including the 
 If everything went well, we'll get `204 No Content` -- our document was stored, and hydration has begun.
 
 ## Lib
-Here at anyFetch, we use Node.JS for our providers to improve latency and send multiple files at once. You can use the [Anyfetch](https://npmjs.org/package/anyfetch) library from npm, or [Anyfetch Provider](https://npmjs.org/package/anyfetch-provider). You'll find additional documentation there.
+Here at anyFetch, we use Node.JS for our providers to improve latency and send multiple files at once. You can use the [Anyfetch](https://npmjs.org/package/anyfetch) library from npm, or [Anyfetch Provider](https://npmjs.org/package/anyfetch-provider). You'll find additional documentation directly on those repos.
