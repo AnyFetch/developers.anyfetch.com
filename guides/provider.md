@@ -1,73 +1,39 @@
 ---
-title: Anyfetch projection
-subtitle: Projection, you said?
+title: Anyfetch provider
+subtitle: Data, datas, moar datas!
 layout: doc
 ---
 
-Documents in Anyfetch revolves around the notion of projection, to display datas depending on the context.
+Creating a provider is quite simple. Even better, most of the anyFetch default providers are opensource: you can take a quick peek at them if you have any trouble.
 
-The best way to understand projection is by example. Let's say you have a big PDF file, hydrated with the following metadatas:
+Basically, a provider is a simple gateway between some data-source (Dropbox, a folder on your computer, your mail on Gmail) and the Fetch API. You just need to take the data and send them using the `/providers/documents` and `/providers/documents/file` endpoints.
 
-```json
-{
-	"_type": "Document",
-	"id": "5252d19a1247678905000001",
-	"document_url": "/documents/5252d19a1247678905000001",
-	"metadatas": {
-		"title": "My big PDF",
-		"path": "/home/papiel/big_pdf.pdf",
-		"text": "Big text extract with many many characters...",
-		"pages": [
-			"<h1>Big text extract</h1><p>with many many characters, spanning across multiple pages.",
-			"second page...",
-			...
-		],
-		"creation": "2013-10-08T14:59:07.895Z",
-		"updated": "2013-10-09T13:01:22.783Z",
-		"author": "PDF Author",
-		"print_informations": "300dpi"
-	}
-}
-```
+## Sending document
+Let's say we have a file on our local drive we want to provide.
+We also have a token to communicate with the Fetch API.
 
-When the user enter a search query, he'll only want a small snippet of this data. Loading everything would clutter the network and slow down your app. People will hate it, they'll leave your app, eat and get fat. We don't want that, and we sincerely hope that, as a dev, you don't want that too.
-
-So we need to reduce the datas being transferred. For this, we define projections, taking the original `metadatas` object hash and generating a new, simplified hash.
-
-For instance, take the following projector :
-
-```javascript
-// In this code snippet, `md` is the original metadatas hash.
-// searchQuery contains the user query.
-var projector = {
-	title: md.title
-	text: generateSnippet(md.text, searchQuery)
-}
-```
-
-When the user searches for the term "many many", we'll then generate a new, smaller object:
+The first step will then be to create a new document. To do this, we'll send the following JSON to `/providers/documents`:
 
 ```json
 {
-	"_type": "Document",
-	"id": "5252d19a1247678905000001",
-	"document_url": "/documents/5252d19a1247678905000001",
+	"identifier": "some-unique-identifier",
+	"document_type": "file",
 	"metadatas": {
-		"title": "My big PDF",
-		"text": "...extract with <em>many many</em> characters...",
-	}
+		"path": "/home/laptop/document.txt"
+	},
+	"no_hydration": true
 }
 ```
 
-This is the basis for projectors.
+`identifier` is a unique identifier you can choose, which can later be used to retrieve or update the document.
+`document_type` is set to the default for a document with a file (some providers may use semantic information, for instance "customer". Here, we choose not to dealt with the complexity: hydration stack will retrieve relevant datas).
+`no_hydration` is important. For now, we've not sent any datas, so we want to skip hydration until sending the real file.
+Although not mandatory, we also choose to send `metadatas.path` to improve search relevance and help the hydration to get started the right way.
 
-Obviously, we can't use the same projection for each documents : we don't want to project a PDF, a contact or a mail in the same way.
-That's the basis for document-types: every document has a document-type, and this document-type defines how it will be projected.
+Alright. Anyfetch should reply with 200 and informations about our document.
+Now we can send the file, using a standard multipart POST request including the file (in `file` key) and our previous `identifier`.
 
-Every document-type defines three projectors:
+If everything went well, we'll get `204 No Content` -- our document was stored, and hydration has begun.
 
-* A projector for snippet, used after a query to render small results;
-* A projector for related documents, used when we want to display the document alongside another one;
-* A projector to display the document in details. Note this is not all metadatas, since most of them won't be displayed to the end user;
-
-> In some case, the document will have no document-type. In this case, the original metadatas will be returned, without any projection.
+## Lib
+Here at anyFetch, we use Node.JS for our providers to improve latency and send multiple files at once. You can use the [Anyfetch](https://npmjs.org/package/anyfetch) library from npm, or [Anyfetch Provider](https://npmjs.org/package/anyfetch-provider). You'll find additional documentation there.

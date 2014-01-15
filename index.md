@@ -51,4 +51,4 @@ Now that we've covered the main principles from Anyfetch, let's get technical an
 
 Guides
 ------
-{% include endpoints.md %}
+{% include guides.md %}
