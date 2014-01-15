@@ -11,6 +11,6 @@ This repo should not be used for browsing, but for updating the doc.
 * How to write an hydrater?         MAT
 * About the Core API
     - Contributing guidelines       MAT
-    - Endpoints                     MAT / PMD
+    - Endpoints                     KIM / PMD
     - Authentication                ROB
 * Create a new project              ROB
