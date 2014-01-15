@@ -49,3 +49,6 @@ Fetch API
 
 Now that we've covered the main principles from Anyfetch, let's get technical and [list the endpoints](/anyfetch-doc/endpoints).
 
+Guides
+------
+{% include endpoints.md %}
