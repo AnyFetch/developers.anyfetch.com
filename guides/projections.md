@@ -1,10 +1,10 @@
 ---
-title: Cluestr projection
+title: Anyfetch projection
 subtitle: Projection, you said?
 layout: doc
 ---
 
-Documents in Cluestr revolves around the notion of projection, to display datas depending on the context.
+Documents in Anyfetch revolves around the notion of projection, to display datas depending on the context.
 
 The best way to understand projection is by example. Let's say you have a big PDF file, hydrated with the following metadatas:
 

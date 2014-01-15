@@ -1,5 +1,5 @@
 ---
-title: Cluestr APIs Endpoints
+title: Anyfetch APIs Endpoints
 subtitle: Search and retrieve.
 layout: doc
 ---

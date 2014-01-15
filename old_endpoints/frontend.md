@@ -1,5 +1,5 @@
 ---
-title: Cluestr frontend endpoints
+title: Anyfetch frontend endpoints
 subtitle: Search and retrieve.
 layout: doc
 ---
@@ -17,7 +17,7 @@ This endpoint returns data about the currently logged in user's company.
 #### Example
 ```sh
 $ curl -H "Authorization: token ${TOKEN}" \
-http://api.cluestr.com
+http://api.anyfetch.com
 ```
 
 #### Response
@@ -55,7 +55,7 @@ It requires no token.
 
 #### Example
 ```sh
-$ curl http://api.cluestr.com/status
+$ curl http://api.anyfetch.com/status
 ```
 
 #### Response
@@ -79,7 +79,7 @@ This endpoint asks for immediate update of all providers on this account.
 #### Example
 ```sh
 $ curl -X POST -H "Authorization: token ${TOKEN}" \
-http://api.cluestr.com/update
+http://api.anyfetch.com/update
 ```
 
 #### Response
@@ -106,7 +106,7 @@ This endpoint returns all the users in the current company.
 #### Example
 ```sh
 $ curl -H "Authorization: token ${TOKEN}" \
-http://api.cluestr.com/users
+http://api.anyfetch.com/users
 ```
 
 #### Response
@@ -136,7 +136,7 @@ This endpoint redirect to the canonical user page.
 #### Example
 ```sh
 $ curl -H "Authorization: token ${TOKEN}" \
-http://api.cluestr.com/user
+http://api.anyfetch.com/user
 ```
 
 #### Response
@@ -157,7 +157,7 @@ This endpoint display details about a user in the company.
 #### Example
 ```sh
 $ curl -H "Authorization: token ${TOKEN}" \
-http://api.cluestr.com/users/5252cebb03a470843f000003
+http://api.anyfetch.com/users/5252cebb03a470843f000003
 ```
 
 #### Response
@@ -192,7 +192,7 @@ This endpoint displays all the document-types used by this user account.
 #### Example
 ```sh
 $ curl -H "Authorization: token ${TOKEN}" \
-http://api.cluestr.com/document-types
+http://api.anyfetch.com/document-types
 ```
 
 #### Response
@@ -224,7 +224,7 @@ Documents endpoints
 
 #### Description
 This endpoint lets you search for documents matching some criterias.
-All documents [are projected as `snippet`](/cluestr-doc/guides/projections.html).
+All documents [are projected as `snippet`](/anyfetch-doc/guides/projections.html).
 
 #### Query parameters
 | Name	 | Type	 | Description								   |
@@ -243,39 +243,39 @@ All documents [are projected as `snippet`](/cluestr-doc/guides/projections.html)
 ```sh
 # Retrieve all documents, up to implicit limit of 20
 $ curl -H "Authorization: token ${TOKEN}" \
-http://api.cluestr.com/documents
+http://api.anyfetch.com/documents
 
 # Find the first 20 documents
 $ curl -H "Authorization: token ${TOKEN}" \
-http://api.cluestr.com/documents?limit=20
+http://api.anyfetch.com/documents?limit=20
 
 # Find 20 documents after the first 50
 $ curl -H "Authorization: token ${TOKEN}" \
-http://api.cluestr.com/documents?limit=20&start=50
+http://api.anyfetch.com/documents?limit=20&start=50
 
 # Search for "perlinpinpin"
 $ curl -H "Authorization: token ${TOKEN}" \
-http://api.cluestr.com/documents?search=perlinpinpin
+http://api.anyfetch.com/documents?search=perlinpinpin
 
 # Search for documents with geolocation
 $ curl -H "Authorization: token ${TOKEN}" \
-http://api.cluestr.com/documents?has_location
+http://api.anyfetch.com/documents?has_location
 
 # Search for documents with title matching "perlinpinpin"
 $ curl -H "Authorization: token ${TOKEN}" \
-http://api.cluestr.com/documents?@title=perlinpinpin
+http://api.anyfetch.com/documents?@title=perlinpinpin
 
 # Search for documents with title being exactly "perlinpinpin"
 $ curl -H "Authorization: token ${TOKEN}" \
-http://api.cluestr.com/documents?_title=perlinpinpin
+http://api.anyfetch.com/documents?_title=perlinpinpin
 
 # Search for documents with title being exactly "perlinpinpin"
 $ curl -H "Authorization: token ${TOKEN}" \
-http://api.cluestr.com/documents?_title=perlinpinpin
+http://api.anyfetch.com/documents?_title=perlinpinpin
 
 # Filter by document type
 $ curl -H "Authorization: token ${TOKEN}" \
-http://api.cluestr.com/documents?document_type=5252ce4ce4cfcd16f55cfa3b&document_type=5252ce4ce4cfcd16f55cfa3c
+http://api.anyfetch.com/documents?document_type=5252ce4ce4cfcd16f55cfa3b&document_type=5252ce4ce4cfcd16f55cfa3c
 ```
 
 #### Response
@@ -321,12 +321,12 @@ Possible error codes:
 #### Description
 This endpoint display details about the selected document.
 
-All documents [are projected as `full`](/cluestr-doc/guides/projections.html).
+All documents [are projected as `full`](/anyfetch-doc/guides/projections.html).
 
 #### Example
 ```sh
 $ curl -H "Authorization: token ${TOKEN}" \
-http://api.cluestr.com/documents/5252d19a1247678905000001
+http://api.anyfetch.com/documents/5252d19a1247678905000001
 ```
 
 #### Response

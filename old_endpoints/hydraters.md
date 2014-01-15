@@ -1,5 +1,5 @@
 ---
-title: Cluestr hydraters endpoints
+title: Anyfetch hydraters endpoints
 subtitle: Update and improve
 layout: doc
 ---

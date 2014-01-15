@@ -1,6 +1,6 @@
 ---
-title: Cluestr guides
-subtitle: Manual for Cluestr.
+title: Anyfetch guides
+subtitle: Manual for Anyfetch.
 layout: doc
 ---
 

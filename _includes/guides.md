@@ -1,4 +1,4 @@
-* [About projections](/cluestr-doc/guides/projections.html)
+* [About projections](/anyfetch-doc/guides/projections.html)
 * How to create my own frontend? (soon)
 * How to create my own provider? (soon)
 * How to create my own hydrater? (soon)

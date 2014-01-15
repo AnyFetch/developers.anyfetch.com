@@ -1,5 +1,5 @@
 ---
-title: Cluestr providers endpoints
+title: Anyfetch providers endpoints
 subtitle: Create and update
 layout: doc
 ---
