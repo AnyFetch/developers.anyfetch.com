@@ -1,32 +1,32 @@
 ---
-title: Cluestr projection
+title: Anyfetch projection
 subtitle: Projection, you said?
 layout: doc
 ---
 
-Documents in Cluestr revolves around the notion of projection, to display datas depending on the context.
+Documents in Anyfetch revolves around the notion of projection, to display datas depending on the context.
 
 The best way to understand projection is by example. Let's say you have a big PDF file, hydrated with the following metadatas:
 
 ```json
 {
-	"_type": "Document",
-	"id": "5252d19a1247678905000001",
-	"document_url": "/documents/5252d19a1247678905000001",
-	"metadatas": {
-		"title": "My big PDF",
-		"path": "/home/papiel/big_pdf.pdf",
-		"text": "Big text extract with many many characters...",
-		"pages": [
-			"<h1>Big text extract</h1><p>with many many characters, spanning across multiple pages.",
-			"second page...",
-			...
-		],
-		"creation": "2013-10-08T14:59:07.895Z",
-		"updated": "2013-10-09T13:01:22.783Z",
-		"author": "PDF Author",
-		"print_informations": "300dpi"
-	}
+    "_type": "Document",
+    "id": "5252d19a1247678905000001",
+    "document_url": "/documents/5252d19a1247678905000001",
+    "metadatas": {
+        "title": "My big PDF",
+        "path": "/home/papiel/big_pdf.pdf",
+        "text": "Big text extract with many many characters...",
+        "pages": [
+            "<h1>Big text extract</h1><p>with many many characters, spanning across multiple pages.",
+            "second page...",
+            ...
+        ],
+        "creation": "2013-10-08T14:59:07.895Z",
+        "updated": "2013-10-09T13:01:22.783Z",
+        "author": "PDF Author",
+        "print_informations": "300dpi"
+    }
 }
 ```
 
@@ -40,8 +40,8 @@ For instance, take the following projector :
 // In this code snippet, `md` is the original metadatas hash.
 // searchQuery contains the user query.
 var projector = {
-	title: md.title
-	text: generateSnippet(md.text, searchQuery)
+    title: md.title
+    text: generateSnippet(md.text, searchQuery)
 }
 ```
 
@@ -49,13 +49,13 @@ When the user searches for the term "many many", we'll then generate a new, smal
 
 ```json
 {
-	"_type": "Document",
-	"id": "5252d19a1247678905000001",
-	"document_url": "/documents/5252d19a1247678905000001",
-	"metadatas": {
-		"title": "My big PDF",
-		"text": "...extract with <em>many many</em> characters...",
-	}
+    "_type": "Document",
+    "id": "5252d19a1247678905000001",
+    "document_url": "/documents/5252d19a1247678905000001",
+    "metadatas": {
+        "title": "My big PDF",
+        "text": "...extract with <em>many many</em> characters...",
+    }
 }
 ```
 

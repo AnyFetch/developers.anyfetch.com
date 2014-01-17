@@ -1,8 +1,7 @@
 language: ruby
-
+before_script:
+  - go get -u github.com/peterhellberg/hiro
 script: 
   - bundle exec jekyll build
-
-branches:
-  only:
-    - "gh-pages"
+  - cd "$GOPATH/bin"
+  - ./hiro -input "$HOME/blueprint.md" -output "/tmp/output.html"
