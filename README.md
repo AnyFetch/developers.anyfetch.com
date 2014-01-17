@@ -19,7 +19,7 @@ Git it from `https://github.com/peterhellberg/hiro`.
 Then update the file after modifying `blueprint.md`:
 
 ```sh
-./hiro -input blueprint.md -output endpoints/tmp.html && sed 's/\/\//http:\/\//g' endpoints/tmp.html > endpoints/index.html && rm endpoints/tmp.html
+hiro -input blueprint.md -output endpoints/tmp.html && sed 's/\/\//http:\/\//g' endpoints/tmp.html > endpoints/index.html && rm endpoints/tmp.html
 ```
 
 ## TODO
