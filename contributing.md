@@ -1,5 +1,8 @@
-Guidestyle
-==========
+---
+title: Guidestyle
+subtitle: Coding convention
+layout: doc
+---
 
 All projects follow the same convention.
 > Before trying to apply this, make sure the linter `npm run-script lint` passes ok.
