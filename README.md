@@ -10,7 +10,7 @@ This repo should not be used for browsing, but for updating the doc.
 Jekyll is used to serve the HTML
 
 Install with `sudo gem install jekyll`, then use `jekyll serve --watch`.
-You can access the pplication on `http://localhost:4000/anyfetch-doc`
+You can access the pplication on `http://localhost:4000/`
 
 ### Hiro
 Hiro is used for the endpoint HTML generation from the blueprint file.

@@ -10,7 +10,7 @@ Anyfetch concepts
 ----------------
 Anyfetch aggregates documents from multiples sources (so-called *providers*). Datas are then enhanced using *hydraters*, and searchable with the *frontend* API.
 
-![Anyfetch workflow](/anyfetch-doc/images/workflow.png)
+![Anyfetch workflow](/images/workflow.png)
 
 ### Providers and hydraters
 Providers and hydraters are the "back-part" from the Fetch API. This is where we'll take raw datas and transform them to something we can use later.
@@ -45,9 +45,9 @@ Using the `document-type`, they can also format the document the right way to be
 
 Fetch API
 --------------
-> First time using a REST API? Visit our [getting started](/anyfetch-doc/getting-started.html) page.
+> First time using a REST API? Visit our [getting started](/getting-started.html) page.
 
-Now that we've covered the main principles from Anyfetch, let's get technical and [list the endpoints](/anyfetch-doc/endpoints).
+Now that we've covered the main principles from Anyfetch, let's get technical and [list the endpoints](/endpoints).
 
 Guides
 ------

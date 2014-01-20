@@ -1,9 +1,9 @@
 ## Concepts
-* [About projections](/anyfetch-doc/guides/projections.html)
+* [About projections](/guides/projections.html)
 * How to create my own document-type? (soon)
 
 ## Projects
-* [Guidestyle for new projects](/anyfetch-doc/contributing.html)
-* [How to create my own frontend?](/anyfetch-doc/guides/frontend.html)
-* [How to create my own provider?](/anyfetch-doc/guides/provider.html)
-* [How to create my own hydrater?](/anyfetch-doc/guides/hydrater.html)
+* [Guidestyle for new projects](/contributing.html)
+* [How to create my own frontend?](/guides/frontend.html)
+* [How to create my own provider?](/guides/provider.html)
+* [How to create my own hydrater?](/guides/hydrater.html)
