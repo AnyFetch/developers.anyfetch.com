@@ -4,6 +4,8 @@ subtitle: Transforming...
 layout: doc
 ---
 
+> Before reading about creating a new hydrater, you may be interested in [how to use an hydrater](/guides/using/hydrater.html)
+
 Just like providers, creating an hydrater is quite simple. Most of the anyFetch default hydraters are open-source: you can take a quick [peek at them](https://github.com/search?q=%40Papiel+hydrater) if you have any trouble.
 
 An hydrater needs to be registered on anyFetch, with an endpoint and some constraints for the documents it wants to handle.

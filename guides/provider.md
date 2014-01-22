@@ -4,6 +4,8 @@ subtitle: Data, datas, moar datas!
 layout: doc
 ---
 
+> Before reading about creating a new provider, you may be interested in [how to use an provider](/guides/using/provider.html)
+
 Creating a provider is quite simple. Even better, most of the anyFetch default providers are open-source: you can take a [quick peek at them](https://github.com/search?q=%40Papiel+provider) if you have any trouble.
 
 Basically, a provider is a simple gateway between some data-source (Dropbox, a folder on your computer, your mail on Gmail) and the Fetch API. You just need to take the data and send them using the `/providers/documents` and `/providers/documents/file` endpoints.
