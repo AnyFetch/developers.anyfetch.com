@@ -2,6 +2,10 @@
 * [About projections](/guides/projections.html)
 * How to create my own document-type? (soon)
 
+## Using existing projects
+* [Using a provider](/guides/using/provider.html)
+* [Using an hydrater](/guides/using/hydrater.html)
+
 ## Creating new projects
 * [Guidestyle for projects](/contributing.html)
 * [How to create my own frontend?](/guides/frontend.html)
@@ -11,6 +15,3 @@
 ## Participating in existing projects
 * [Guidestyle for contributing](/contributing.html)
 
-## Using existing projects
-* [Using a provider](/using/provider.html)
-* [Using an hydrater](/using/hydrater.html)
