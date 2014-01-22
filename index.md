@@ -22,7 +22,7 @@ The Fetch API will then redispatch documents to hydration servers.
 A dependency graph indicates which hydraters is available for this document.
 Every time an hydrater finish its task, a new hydration round is started with new hydraters.
 
-For instance, in the default setup, we use [plaintext.hydrater](https://github.com/Papiel/plaintext.hydrater.anyfetch.com) to read basic information about the document (is it a text document ? an image ?) and extract metadatas. Then, depending on the returned metadatas, Fetch API will send the document with the new metadatas to other hydraters (if it is an image, we'll then apply [ocr.hydrater](https://github.com/Papiel/ocr.hydrater.anyfetch.com), if it is a document we will apply [office hydrater](https://github.com/Papiel/office.hydrater.anyfetch.com), and so on).
+For instance, in the default setup, we use [plaintext.hydrater](https://github.com/Papiel/plaintext.hydrater.anyfetch.com) to read basic information about the document (is it a text document ? an image ?) and extract metadatas. Then, depending on the returned metadatas, Fetch API will send the document with the new metadatas to other hydraters (if it is an image, we'll then apply [ocr.hydrater](https://github.com/Papiel/ocr.hydrater.anyfetch.com), if it is a document we will apply [office.hydrater](https://github.com/Papiel/office.hydrater.anyfetch.com), and so on).
 Once all available hydraters have yielded their results, the document is indexed and made available for search.
 
 ### Document-type
