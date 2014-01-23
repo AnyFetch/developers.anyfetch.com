@@ -155,15 +155,15 @@ Document has several attributes:
                 "company": "52bff074c8318c29e9000001",
                 "document_type": "5252ce4ce4cfcd16f55cfa3b",
                 "actions": {
-                    "download": "http://dowload/file/url"
+                    "download": "http://example.org/download/file/url"
                 },
                 "document_url": "/documents/52d96492a7f0a3ac4226f2f7",
                 "related": ["52d96492a7f0a3ac424e91"],
                 "datas": {
-                    "bar": "foo"
+                    "bar": "this will not be indexed for search"
                 },
                 "metadatas": {
-                    "foo": "bar"
+                    "foo": "this will be indexed for search"
                 },
                 "user_access": ["52d96492a7f0a3ac4226f2f7"]
             }
@@ -177,13 +177,16 @@ Add a document in the FetchAPI et returns the created document.
 + Request (application/json)
 
         {
-            "identifier": "http://unique-documenet-identifier",
+            "identifier": "http://unique-document-identifier",
             "document_type": "file",
+            "actions": {
+                "download": "http://example.org/download/file/url"
+            },
             "datas": {
-                "bar": "foo"
+                "bar": "this will not be indexed for search"
             },
             "metadatas": {
-                "foo": "bar"
+                "foo": "this will be indexed for search"
             },
             "related": ["52dff5c53923844f15885428"],
             "user_access": ["52d96492a7f0a3ac4226f2f7"]
