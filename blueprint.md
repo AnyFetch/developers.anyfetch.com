@@ -23,15 +23,26 @@ Requests that require authentication will return `404 Not Found`, instead of `40
     $ curl https://api.anyfetch.com/?access_token=OAUTH-TOKEN
 ```
 
+##Client Error
+If request is not wellformed, this will result `400 Bad Request` responce.
+
+```http
+HTTP/1.1 400 Bad Request
+Content-Length: 35
+
+{"message":"Problems parsing JSON"}
+```
+
 ## Rate Limiting
 Fetch API doesn't currently provide a rate limit system.
+
+
 
 
 # GET /
 Retrieve datas about the current account. This endpoint return the following attributes:
 
-- `user_url` user endpoint url
-- `documents_url` documents endpoint url
+- `server_time`: UNIX timesptamp of the server
 - `ìd` connected user indentification
 - `name` name or email of the connected user
 - `provider_status` status of each connected providers
@@ -61,6 +72,9 @@ Get the current status of the Fetch API
                 "status": "ok",
                 "message": ""
             }
+
+
+
 
 # Group Users
 User ressources.
@@ -114,40 +128,44 @@ Retrieve a list of all users in the current company.
                 ...
             ]
 
+
+
+
 # Group Providers
 Endpoint usable for providing new document in Fetch API, and udapte them.
 
 ## Document [/providers/documents]
+Document is the center of the Fetch API, it the ressource that handles all the data. It the normalize way to store all informations and files.
 Document has several attributes:
 
-- `ìd` identification key given at the creation of the document by the API
+- `ìd` is an hexadecimal hash used to uniquely identify the document across all fetch API documents.
+- `identifier` is a unique identifier for the provider (it can be used multiple times by multiples providers / multiples tokens), used to ease the life of the provider coder and allo the provider to reuse an existing identifier from another application into fetch API.
 - `creation_date` the creation date fo the document. If not specified at the creation the API give the current type
-- `token`identification key of the provider how sent it. It allows to safely update the document
-- `comapny`identification key of the company belonging the document
-- `document_type`identification key of the document_type. If not specified at the creation the API automaticly give the document_type `Document`
+- `comapny` id of the company belonging the document
+- `document_type` id of the document_type. If not specified at the creation the API automaticly give the document_type `Document`
 - `actions` object containing the available action for this document
 - `document_url` url of the document
-- `related` array of `ìd` or `identifier` of document related to this document
+- `related` array of ìd or identifier of document related to this document
 - `data` object containing all the informations available to find the document via full-text or matching
 - `metadatas` object containing addtional informations
 - `user_access` array of users` id that can access this document
 
-+ Model
+**Note:** Attributes `id`is automaticely set by the Fetch API at the creation of the document. You can't chose it.
 
-    HAL+JSON representation of the platform
-
++ Model (application/json)
     + Body
 
             {
                 "_type": "Document",
                 "id": "52d96492a7f0a3ac4226f2f7",
                 "creation_date": "2014-01-17T17:12:50.664Z",
-                "token": "52bffb81c8318c29e900000a",
                 "company": "52bff074c8318c29e9000001",
                 "document_type": "5252ce4ce4cfcd16f55cfa3b",
-                "actions": {},
+                "actions": {
+                    "download": "http://dowload/file/url"
+                },
                 "document_url": "/documents/52d96492a7f0a3ac4226f2f7",
-                "related": [],
+                "related": ["52d96492a7f0a3ac424e91"],
                 "datas": {
                     "bar": "foo"
                 },
@@ -161,6 +179,21 @@ Document has several attributes:
 ### Create a document [POST]
 Add a document in the FetchAPI et returns the created document. `no_hydration` Is an optional boolean tells the API to wait a file to begin hydration (`/providers/documents/file`).
 
++ Request (application/json)
+
+        {
+            "identifier": "http://unique-documenet-identifier",
+            "document_type": "file",
+            "datas": {
+                "bar": "foo"
+            },
+            "metadatas": {
+                "foo": "bar"
+            },
+            "related": ["52dff5c53923844f15885428"],
+            "user_access": ["52d96492a7f0a3ac4226f2f7"]
+        }
+
 + Response 200 (application/json)
     [Document][]
 
@@ -172,17 +205,23 @@ Update a document already present on the Fetch API. The id of the document shoul
     [Document][]
 
 ### Delete a document[DELETE]
-Delete the specified document. To specify the selected document, a id or an identifier should be specified
-
 + Response 204
+
 
 
 ## File [/providers/documents/file]
+File is attached to an existing document to be processed during the hydration processing.
+Before sending a file to the API, you have to create first a specific document for him. It allows sending informations extract from the source before sending the file.
+
+**Note:** To secure that the created document is not hydreated without his file, you have to specify `no_hydration: true` at the creation.
+
 ### Add a file to a document [POST]
 Add a file in purpose to hydrate it. The request should specify the `identifier` of the attached created document.
-To secure that the created document is not hydreated without his file, you have to specify `no_hydration: true` at the creation.
+
 
 + Response 204
+
+
 
 
 # Group Hydraters
