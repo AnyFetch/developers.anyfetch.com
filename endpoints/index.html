@@ -22,25 +22,9 @@
 
 ## Authentication
 There are three ways to authenticate through Fetch API.
-Requests that require authentication will return `404 Not Found`, instead of `403 Forbidden`, in some places.
+See [authentication](/authentication.html) for details and error codes.
 
-### Basic authentication
-```bash
-    $ curl -H &#34;Authorization: Basic HASH&#34; http:http://api.anyfetch.com
-```
-
-### Oauth authentication
-```bash
-    $ curl -H &#34;Authorization: token OAUTH-TOKEN&#34; http:http://api.anyfetch.com
-```
-
-
-### Request parameter
-```bash
-    $ curl https:http://api.anyfetch.com/?access_token=OAUTH-TOKEN
-```
-
-##Client Error
+## Client Error
 If request is not wellformed, this will result `400 Bad Request` responce.
 
 ```http
@@ -52,8 +36,6 @@ Content-Length: 35
 
 ## Rate Limiting
 Fetch API doesn&#39;t currently provide a rate limit system.
-
-
 
 
 ">
@@ -99,25 +81,11 @@ Fetch API doesn&#39;t currently provide a rate limit system.
 <h2>Authentication</h2>
 
 <p>There are three ways to authenticate through Fetch API.
-Requests that require authentication will return <code>404 Not Found</code>, instead of <code>403 Forbidden</code>, in some places.</p>
+See <a href="/authentication.html">authentication</a> for details and error codes.</p>
 
-<h3>Basic authentication</h3>
+<h2>Client Error</h2>
 
-<pre><code class="bash">    $ curl -H &quot;Authorization: Basic HASH&quot; http:http://api.anyfetch.com
-</code></pre>
-
-<h3>Oauth authentication</h3>
-
-<pre><code class="bash">    $ curl -H &quot;Authorization: token OAUTH-TOKEN&quot; http:http://api.anyfetch.com
-</code></pre>
-
-<h3>Request parameter</h3>
-
-<pre><code class="bash">    $ curl https:http://api.anyfetch.com/?access_token=OAUTH-TOKEN
-</code></pre>
-
-<p>##Client Error
-If request is not wellformed, this will result <code>400 Bad Request</code> responce.</p>
+<p>If request is not wellformed, this will result <code>400 Bad Request</code> responce.</p>
 
 <pre><code class="http">HTTP/1.1 400 Bad Request
 Content-Length: 35
@@ -313,7 +281,7 @@ Content-Length: 35
 		<dd>
 		
 		
-		<code>number</code> Numeric `id` of the User to perform action with.
+		<code>hexadecimal hash</code> Hexadecimal `id` of the User to perform action with.
 		</dd>
 	
 </dl>
@@ -373,7 +341,7 @@ Content-Length: 35
 		<dd>
 		
 		
-		<code>number</code> Numeric `id` of the User to perform action with.
+		<code>hexadecimal hash</code> Hexadecimal `id` of the User to perform action with.
 		</dd>
 	
 </dl>
@@ -550,13 +518,16 @@ Content-Length: 35
 			
 			
 				<pre class="prettyprint">{
-    &#34;identifier&#34;: &#34;http:http://unique-documenet-identifier&#34;,
+    &#34;identifier&#34;: &#34;http:http://unique-document-identifier&#34;,
     &#34;document_type&#34;: &#34;file&#34;,
+    &#34;actions&#34;: {
+        &#34;download&#34;: &#34;http:http://example.org/download/file/url&#34;
+    },
     &#34;datas&#34;: {
-        &#34;bar&#34;: &#34;foo&#34;
+        &#34;bar&#34;: &#34;this will not be indexed for search&#34;
     },
     &#34;metadatas&#34;: {
-        &#34;foo&#34;: &#34;bar&#34;
+        &#34;foo&#34;: &#34;this will be indexed for search&#34;
     },
     &#34;related&#34;: [&#34;52dff5c53923844f15885428&#34;],
     &#34;user_access&#34;: [&#34;52d96492a7f0a3ac4226f2f7&#34;]
@@ -584,15 +555,15 @@ Content-Length: 35
     &#34;company&#34;: &#34;52bff074c8318c29e9000001&#34;,
     &#34;document_type&#34;: &#34;5252ce4ce4cfcd16f55cfa3b&#34;,
     &#34;actions&#34;: {
-        &#34;download&#34;: &#34;http:http://dowload/file/url&#34;
+        &#34;download&#34;: &#34;http:http://example.org/download/file/url&#34;
     },
     &#34;document_url&#34;: &#34;/documents/52d96492a7f0a3ac4226f2f7&#34;,
     &#34;related&#34;: [&#34;52d96492a7f0a3ac424e91&#34;],
     &#34;datas&#34;: {
-        &#34;bar&#34;: &#34;foo&#34;
+        &#34;bar&#34;: &#34;this will not be indexed for search&#34;
     },
     &#34;metadatas&#34;: {
-        &#34;foo&#34;: &#34;bar&#34;
+        &#34;foo&#34;: &#34;this will be indexed for search&#34;
     },
     &#34;user_access&#34;: [&#34;52d96492a7f0a3ac4226f2f7&#34;]
 }
@@ -646,15 +617,15 @@ Content-Length: 35
     &#34;company&#34;: &#34;52bff074c8318c29e9000001&#34;,
     &#34;document_type&#34;: &#34;5252ce4ce4cfcd16f55cfa3b&#34;,
     &#34;actions&#34;: {
-        &#34;download&#34;: &#34;http:http://dowload/file/url&#34;
+        &#34;download&#34;: &#34;http:http://example.org/download/file/url&#34;
     },
     &#34;document_url&#34;: &#34;/documents/52d96492a7f0a3ac4226f2f7&#34;,
     &#34;related&#34;: [&#34;52d96492a7f0a3ac424e91&#34;],
     &#34;datas&#34;: {
-        &#34;bar&#34;: &#34;foo&#34;
+        &#34;bar&#34;: &#34;this will not be indexed for search&#34;
     },
     &#34;metadatas&#34;: {
-        &#34;foo&#34;: &#34;bar&#34;
+        &#34;foo&#34;: &#34;this will be indexed for search&#34;
     },
     &#34;user_access&#34;: [&#34;52d96492a7f0a3ac4226f2f7&#34;]
 }
