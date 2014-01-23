@@ -18,7 +18,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Anyfetch</title>
-		<meta name="description" content="Anyfetch is designed to help you search in  massive amounts of documents coming from various sources, in various formats.
+		<meta name="description" content="Anyfetch is designed to help you search in massive amounts of documents coming from various sources, in various formats.
 
 ">
 		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
@@ -58,7 +58,7 @@
 				<div class="col-md-12">
 					<div class="page-header">
 						<h1>Anyfetch</h1>
-						<h2 class="lead"><small><p>Anyfetch is designed to help you search in  massive amounts of documents coming from various sources, in various formats.</p>
+						<h2 class="lead"><small><p>Anyfetch is designed to help you search in massive amounts of documents coming from various sources, in various formats.</p>
 </small></h2>
 					</div>
 				</div>
@@ -70,6 +70,10 @@
 		<li><a href="#index" data-toggle="tab"><strong>Index</strong></a></li>
 	
 		<li><a href="#users" data-toggle="tab"><strong>Users</strong></a></li>
+	
+		<li><a href="#providers" data-toggle="tab"><strong>Providers</strong></a></li>
+	
+		<li><a href="#hydraters" data-toggle="tab"><strong>Hydraters</strong></a></li>
 	
 </ul>
 
@@ -99,7 +103,16 @@
 		</div>
 
 		<div class="panel-body">
-			<p>Retrieve datas about the current account</p>
+			<p>Retrieve datas about the current account. This endpoint return the following attributes:</p>
+
+<ul>
+<li><code>user_url</code> user endpoint url</li>
+<li><code>documents_url</code> documents endpoint url</li>
+<li><code>ìd</code> connected user indentification</li>
+<li><code>name</code> name or email of the connected user</li>
+<li><code>provider_status</code> status of each connected providers</li>
+<li><code>documents_types</code>available document_types for the connected account</li>
+</ul>
 
 		</div>
 
@@ -118,11 +131,10 @@
 		</li>
 		<li class="list-group-item snippet">
 			
-				<code>&lt; Access-Control-Allow-Credentials: true</code><br><code>&lt; Access-Control-Allow-Headers: Accept, Accept-Version, Authorization, Content-Type, Api-Version, X-Requested-With</code><br><code>&lt; Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS</code><br><code>&lt; Access-Control-Allow-Origin: *</code><br><code>&lt; Content-Type: application/json</code><br>
+				<code>&lt; Content-Type: application/json</code><br>
 			
 			
 				<pre class="prettyprint">{
-    &#34;users_url&#34;: &#34;/users&#34;,
     &#34;user_url&#34;: &#34;/user&#34;,
     &#34;documents_url&#34;: &#34;/documents&#34;,
     &#34;server_time&#34;: &#34;2014-01-10T10:47:22.413Z&#34;,
@@ -154,13 +166,39 @@
 		</div>
 
 		<div class="panel-body">
-			<p>Hello.</p>
+			<p>Get the current status of the Fetch API</p>
 
 		</div>
 
 		<ul class="list-group">
 			
 			
+	
+		
+	
+
+		
+	
+		<li class="list-group-item bg-default response">
+			<strong>Response <code>200</code></strong>
+			<a href="javascript:;" class="pull-right btn btn-link btn-sm snippet-toggle">SHOW</a>
+		</li>
+		<li class="list-group-item snippet">
+			
+				<code>&lt; Content-Type: application/json</code><br>
+			
+			
+				<pre class="prettyprint">{
+    &#34;status&#34;: &#34;ok&#34;,
+    &#34;message&#34;: &#34;&#34;
+}
+</pre>
+			
+		</li>
+	
+
+	
+
 		</ul>
 	</div>
 	
@@ -186,11 +224,18 @@
 	<div class="panel panel-info">
 		<div class="panel-heading">
 			<span class="btn btn-primary">GET</span>
-			<code>/notes</code>
+			<code>/users</code>
 		</div>
 
 		<div class="panel-body">
-			<p>Retrieve a list of all users in the current company.</p>
+			<p>Retrieve a list of all users in the current company. This resource has the following attributes :</p>
+
+<ul>
+<li><code>id</code> The id of the user</li>
+<li><code>name</code> The name of the user</li>
+<li><code>email</code> The email address of the user</li>
+<li><code>is_admin</code> Is true if the user is admin of his organisations</li>
+</ul>
 
 		</div>
 
@@ -216,8 +261,8 @@
         {
             &#34;_type&#34;: &#34;User&#34;,
             &#34;id&#34;: &#34;5252cebb03a470843f000003&#34;,
-            &#34;email&#34;: &#34;matthieu@papiel.fr&#34;,
-            &#34;name&#34;: &#34;&#34;,
+            &#34;email&#34;: &#34;test@papiel.fr&#34;,
+            &#34;name&#34;: &#34;Test&#34;,
             &#34;is_admin&#34;: true,
             &#34;user_url&#34;: &#34;/users/5252cebb03a470843f000003&#34;
         },
@@ -280,14 +325,14 @@
 				<code>&lt; Content-Type: application/json</code><br>
 			
 			
-				<pre class="prettyprint">    {
-        &#34;_type&#34;: &#34;User&#34;,
-        &#34;id&#34;: &#34;5252cebb03a470843f000003&#34;,
-        &#34;email&#34;: &#34;matthieu@papiel.fr&#34;,
-        &#34;name&#34;: &#34;&#34;,
-        &#34;is_admin&#34;: true,
-        &#34;user_url&#34;: &#34;/users/5252cebb03a470843f000003&#34;
-    }
+				<pre class="prettyprint">{
+    &#34;_type&#34;: &#34;User&#34;,
+    &#34;id&#34;: &#34;5252cebb03a470843f000003&#34;,
+    &#34;email&#34;: &#34;matthieu@papiel.fr&#34;,
+    &#34;name&#34;: &#34;&#34;,
+    &#34;is_admin&#34;: true,
+    &#34;user_url&#34;: &#34;/users/5252cebb03a470843f000003&#34;
+}
 </pre>
 			
 		</li>
@@ -333,6 +378,314 @@
 	
 		<li class="list-group-item bg-default response">
 			<strong>Response <code>204</code></strong>
+			<a href="javascript:;" class="pull-right btn btn-link btn-sm snippet-toggle">SHOW</a>
+		</li>
+		<li class="list-group-item snippet">
+			
+			
+		</li>
+	
+
+	
+
+		</ul>
+	</div>
+	
+
+
+			</div>
+		</div>
+	</div>
+
+	<div class="tab-pane" id="providers">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h2 id="providers">Providers</h2>
+			</div>
+			<div class="panel-body">
+				<p class="lead"><small>Endpoint usable for providing new document in Fetch API, and udapte them.
+
+</small></p>
+				
+
+	
+	
+
+	
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<span class="btn btn-success">POST</span>
+			<code>/providers/documents</code>
+		</div>
+
+		<div class="panel-body">
+			<p>Add a document in the FetchAPI et returns the created document. <code>no_hydration</code> Is an optional boolean tells the API to wait a file to begin hydration (<code>/providers/documents/file</code>).</p>
+
+		</div>
+
+		<ul class="list-group">
+			
+			
+	
+		
+	
+
+		
+	
+		<li class="list-group-item bg-default response">
+			<strong>Response <code>200</code></strong>
+			<a href="javascript:;" class="pull-right btn btn-link btn-sm snippet-toggle">SHOW</a>
+		</li>
+		<li class="list-group-item snippet">
+			
+				<code>&lt; Content-Type: application/json</code><br>
+			
+			
+				<pre class="prettyprint">{
+    &#34;_type&#34;: &#34;Document&#34;,
+    &#34;id&#34;: &#34;52d96492a7f0a3ac4226f2f7&#34;,
+    &#34;creation_date&#34;: &#34;2014-01-17T17:12:50.664Z&#34;,
+    &#34;token&#34;: &#34;52bffb81c8318c29e900000a&#34;,
+    &#34;company&#34;: &#34;52bff074c8318c29e9000001&#34;,
+    &#34;document_type&#34;: &#34;5252ce4ce4cfcd16f55cfa3b&#34;,
+    &#34;actions&#34;: {},
+    &#34;document_url&#34;: &#34;/documents/52d96492a7f0a3ac4226f2f7&#34;,
+    &#34;related&#34;: [],
+    &#34;datas&#34;: {
+        &#34;bar&#34;: &#34;foo&#34;
+    },
+    &#34;metadatas&#34;: {
+        &#34;foo&#34;: &#34;bar&#34;
+    },
+    &#34;user_access&#34;: [&#34;52d96492a7f0a3ac4226f2f7&#34;]
+}
+</pre>
+			
+		</li>
+	
+
+	
+
+		</ul>
+	</div>
+	
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<span class="btn btn-warning">PATCH</span>
+			<code>/providers/documents</code>
+		</div>
+
+		<div class="panel-body">
+			<p>Update a document already present on the Fetch API. The id of the document should be specified to update a specific document.</p>
+
+		</div>
+
+		<ul class="list-group">
+			
+			
+	
+		
+	
+
+		
+	
+		<li class="list-group-item bg-default response">
+			<strong>Response <code>200</code></strong>
+			<a href="javascript:;" class="pull-right btn btn-link btn-sm snippet-toggle">SHOW</a>
+		</li>
+		<li class="list-group-item snippet">
+			
+				<code>&lt; Content-Type: application/json</code><br>
+			
+			
+				<pre class="prettyprint">{
+    &#34;_type&#34;: &#34;Document&#34;,
+    &#34;id&#34;: &#34;52d96492a7f0a3ac4226f2f7&#34;,
+    &#34;creation_date&#34;: &#34;2014-01-17T17:12:50.664Z&#34;,
+    &#34;token&#34;: &#34;52bffb81c8318c29e900000a&#34;,
+    &#34;company&#34;: &#34;52bff074c8318c29e9000001&#34;,
+    &#34;document_type&#34;: &#34;5252ce4ce4cfcd16f55cfa3b&#34;,
+    &#34;actions&#34;: {},
+    &#34;document_url&#34;: &#34;/documents/52d96492a7f0a3ac4226f2f7&#34;,
+    &#34;related&#34;: [],
+    &#34;datas&#34;: {
+        &#34;bar&#34;: &#34;foo&#34;
+    },
+    &#34;metadatas&#34;: {
+        &#34;foo&#34;: &#34;bar&#34;
+    },
+    &#34;user_access&#34;: [&#34;52d96492a7f0a3ac4226f2f7&#34;]
+}
+</pre>
+			
+		</li>
+	
+
+	
+
+		</ul>
+	</div>
+	
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<span class="btn btn-danger">DELETE</span>
+			<code>/providers/documents</code>
+		</div>
+
+		<div class="panel-body">
+			<p>Delete the specified document. To specify the selected document, a id or an identifier should be specified</p>
+
+		</div>
+
+		<ul class="list-group">
+			
+			
+	
+		
+	
+
+		
+	
+		<li class="list-group-item bg-default response">
+			<strong>Response <code>204</code></strong>
+			<a href="javascript:;" class="pull-right btn btn-link btn-sm snippet-toggle">SHOW</a>
+		</li>
+		<li class="list-group-item snippet">
+			
+			
+		</li>
+	
+
+	
+
+		</ul>
+	</div>
+	
+
+	
+	
+
+	
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<span class="btn btn-success">POST</span>
+			<code>/providers/documents/file</code>
+		</div>
+
+		<div class="panel-body">
+			<p>Add a file in purpose to hydrate it. The request should specify the <code>identifier</code> of the attached created document.
+To secure that the created document is not hydreated without his file, you have to specify <code>no_hydration: true</code> at the creation.</p>
+
+		</div>
+
+		<ul class="list-group">
+			
+			
+	
+		
+	
+
+		
+	
+		<li class="list-group-item bg-default response">
+			<strong>Response <code>204</code></strong>
+			<a href="javascript:;" class="pull-right btn btn-link btn-sm snippet-toggle">SHOW</a>
+		</li>
+		<li class="list-group-item snippet">
+			
+			
+		</li>
+	
+
+	
+
+		</ul>
+	</div>
+	
+
+
+			</div>
+		</div>
+	</div>
+
+	<div class="tab-pane" id="hydraters">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h2 id="hydraters">Hydraters</h2>
+			</div>
+			<div class="panel-body">
+				<p class="lead"><small>Endpoints usable for hydration, adding and improving original content of documents.  This endpoint is only applicable, if the hydrator sending the request has been previouly called.
+
+
+</small></p>
+				
+
+	
+	
+
+	
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<span class="btn btn-success">POST</span>
+			<code>/hydraters/documents/{id}</code>
+		</div>
+
+		<div class="panel-body">
+			<p>Update the document metadatas.</p>
+
+		</div>
+
+		<ul class="list-group">
+			
+			
+	
+		
+	
+
+		
+	
+		<li class="list-group-item bg-default response">
+			<strong>Response <code>204</code></strong>
+			<a href="javascript:;" class="pull-right btn btn-link btn-sm snippet-toggle">SHOW</a>
+		</li>
+		<li class="list-group-item snippet">
+			
+			
+		</li>
+	
+
+	
+
+		</ul>
+	</div>
+	
+
+	
+	
+
+	
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<span class="btn btn-primary">GET</span>
+			<code>/hydraters/documents/{id}/file</code>
+		</div>
+
+		<div class="panel-body">
+			<p>Get the associuated document to help the hydration.</p>
+
+		</div>
+
+		<ul class="list-group">
+			
+			
+	
+		
+	
+
+		
+	
+		<li class="list-group-item bg-default response">
+			<strong>Response <code>200</code></strong>
 			<a href="javascript:;" class="pull-right btn btn-link btn-sm snippet-toggle">SHOW</a>
 		</li>
 		<li class="list-group-item snippet">

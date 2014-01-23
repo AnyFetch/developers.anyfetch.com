@@ -2,7 +2,7 @@ FORMAT: 1A
 HOST: http://www.api.anyfetch.com
 
 # Anyfetch
-Anyfetch is designed to help you search in  massive amounts of documents coming from various sources, in various formats.
+Anyfetch is designed to help you search in massive amounts of documents coming from various sources, in various formats.
 
 # Group Index
 ## Index [/]
