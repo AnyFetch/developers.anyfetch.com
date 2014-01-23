@@ -1,14 +1,49 @@
 FORMAT: 1A
 HOST: http://www.api.anyfetch.com
 
-# Anyfetch
-Anyfetch is designed to help you search in massive amounts of documents coming from various sources, in various formats.
+# Fetch API
+**Fetch API** is designed to help you search in  massive amounts of documents coming from various sources, in various formats.
 
-# Group Index
-## Index [/]
-### Retrieve Entry Point [GET]
+## Authentication
+There are three ways to authenticate through Fetch API.
+Requests that require authentication will return `404 Not Found`, instead of `403 Forbidden`, in some places.
+
+### Basic authentication
+```bash
+    $ curl -H "Authorization: Basic HASH" http://api.anyfetch.com
+```
+
+### Oauth authentication
+```bash
+    $ curl -H "Authorization: token OAUTH-TOKEN" http://api.anyfetch.com
+```
+
+
+### Request parameter
+```bash
+    $ curl https://api.anyfetch.com/?access_token=OAUTH-TOKEN
+```
+
+##Client Error
+If request is not wellformed, this will result `400 Bad Request` responce.
+
+```http
+HTTP/1.1 400 Bad Request
+Content-Length: 35
+
+{"message":"Problems parsing JSON"}
+```
+
+## Rate Limiting
+Fetch API doesn't currently provide a rate limit system.
+
+
+
+
+# GET /
 Retrieve datas about the current account. This endpoint return the following attributes:
 
+- `server_time`: UNIX timesptamp of the server
 - `user_url` currently connected user endpoint url: use to retrieve informations about the user
 - `documents_url` documents endpoint url: use to search for documents
 - `ìd` currently connected user's company id
@@ -30,8 +65,7 @@ Retrieve datas about the current account. This endpoint return the following att
                 "document_types": {}
             }
 
-## Status [/status]
-### Status Entry Point [GET]
+#GET /status
 Get the current status of the Fetch API.
 
 + Response 200 (application/json)
@@ -42,29 +76,11 @@ Get the current status of the Fetch API.
                 "message": ""
             }
 
+
+
+
 # Group Users
-## Users Collection [/users]
-### List all Users [GET]
-Retrieve a list of all users in the current company. This resource has the following attributes :
-
-- `id` The id of the user
-- `name` The name of the user
-- `email` The email address of the user
-- `is_admin` Is true if the user is admin of this company
-
-+ Response 200 (application/json)
-
-            [
-                {
-                    "_type": "User",
-                    "id": "5252cebb03a470843f000003",
-                    "email": "test@papiel.fr",
-                    "name": "Test",
-                    "is_admin": true,
-                    "user_url": "/users/5252cebb03a470843f000003"
-                },
-                ...
-            ]
+User ressources.
 
 ## User [/user/{id}]
 A single User object with all its details. This resource has the following attributes :
@@ -72,14 +88,12 @@ A single User object with all its details. This resource has the following attri
 - `id` The id of the user
 - `name` The name of the user
 - `email` The email address of the user
-- `is_admin` Is true if the user is admin of this company
+- `is_admin` Is true if the user is admin of this organisations
 
 + Parameters
     + id (required, number, `1`) ... Numeric `id` of the User to perform action with.
 
-+ Model
-
-    HAL+JSON representation of the platform
++ Model (application/json)
 
     + Body
 
@@ -103,18 +117,39 @@ A single User object with all its details. This resource has the following attri
 ### Redirect to current user [GET]
 Redirect the user to its own user endpoint.
 
-+ Response 301 (application/json)
++ Response 301
     + Header
-        Location: /users/5252cebb03a470843f000003
+
+            Location: /users/5252cebb03a470843f000003
+
+## Users Collection [/users]
+### List all Users [GET]
+Retrieve a list of all users in the current company.
+
++ Response 200 (application/json)
+
+            [
+                {
+                    "_type": "User",
+                    "id": "5252cebb03a470843f000003",
+                    "email": "test@papiel.fr",
+                    "name": "Test",
+                    "is_admin": true,
+                    "user_url": "/users/5252cebb03a470843f000003"
+                },
+                ...
+            ]
+
+
+
 
 # Group Providers
 Endpoints for providing new documents in Fetch API, and update them.
 
 ## Document [/providers/documents]
+Document is the center of the Fetch API, it the ressource that handles all the data. It the normalize way to store all informations and files.
 Document has several attributes:
 
-- `ìd` identification key given at the creation of the document by the API
-- `creation_date` the creation date for the document. If not specified, will be set to the current date
 - `document_type` identification key of the document_type. If not specified, will be set to `Document`
 - `actions` object containing the available actions for this document, with the key as action and the value an URL
 - `related` array of `ìd` or `identifier` of documents related to this document
@@ -122,22 +157,22 @@ Document has several attributes:
 - `datas` object containing addtional informations
 - `user_access` array of users_id that can access this document. Set to null to give access to all users in the company.
 
-+ Model
+> **Note:** Attributes `id`is automaticely set by the Fetch API at the creation of the document. You can't chose it.
 
-    HAL+JSON representation of the platform
-
++ Model (application/json)
     + Body
 
             {
                 "_type": "Document",
                 "id": "52d96492a7f0a3ac4226f2f7",
                 "creation_date": "2014-01-17T17:12:50.664Z",
-                "token": "52bffb81c8318c29e900000a",
                 "company": "52bff074c8318c29e9000001",
                 "document_type": "5252ce4ce4cfcd16f55cfa3b",
-                "actions": {},
+                "actions": {
+                    "download": "http://dowload/file/url"
+                },
                 "document_url": "/documents/52d96492a7f0a3ac4226f2f7",
-                "related": [],
+                "related": ["52d96492a7f0a3ac424e91"],
                 "datas": {
                     "bar": "foo"
                 },
@@ -149,9 +184,24 @@ Document has several attributes:
 
 
 ### Create a document [POST]
-Add a document to the FetchAPI and returns the created document.
+Add a document in the FetchAPI et returns the created document.
 
-- `no_hydration` optional boolean. When true, asks the API to wait before starting hydration (useful when you want to send a file immediately after)
+> **Note:** `no_hydration` optional boolean. When true, asks the API to wait before starting hydration (useful when you want to send a file immediately after)
+
++ Request (application/json)
+
+        {
+            "identifier": "http://unique-documenet-identifier",
+            "document_type": "file",
+            "datas": {
+                "bar": "foo"
+            },
+            "metadatas": {
+                "foo": "bar"
+            },
+            "related": ["52dff5c53923844f15885428"],
+            "user_access": ["52d96492a7f0a3ac4226f2f7"]
+        }
 
 + Response 200 (application/json)
     [Document][]
@@ -160,7 +210,7 @@ Add a document to the FetchAPI and returns the created document.
 ### Update a document [PATCH]
 Update a document already present on the Fetch API. The `id` of the document (or it's `identifier`) should be specified.
 
-> Note: for ease of use, you can use POST and PATCH on this endpoint. This allows provider to abstract whether the document already exists or not.
+> **Note:** for ease of use, you can use POST and PATCH on this endpoint. This allows provider to abstract whether the document already exists or not.
 
 + Response 200 (application/json)
     [Document][]
@@ -171,19 +221,24 @@ Delete the specified document. To specify the selected document, an `id` or an `
 + Response 204
 
 
+
 ## File [/providers/documents/file]
-### Add a file to a document [POST]
 Attach a file to a document. The request should specify the `identifier` of the document.
 
-> When you want to use this endpoint, don't forget to use `no_hydration: true` on `/providers/documents/`!
+> **Note:** When you want to use this endpoint, don't forget to use `no_hydration: true` on `/providers/documents/`!
+
+### Add a file to a document [POST]
+Add a file in purpose to hydrate it. The request should specify the `identifier` of the attached created document.
+
 
 + Response 204
+
+
 
 
 # Group Hydraters
 Hydrations endpoints, adding and improving original content of documents.
 Those endpoints are only available when the hydrater sending the request has been previously called on the document.
-
 You can't access them with an OAuth token, or using Basic Auth.
 
 ## Document [/hydraters/documents/{id}]
@@ -198,7 +253,7 @@ Update document metadatas, datas and actions.
 ### Get associated document [GET]
 Get the file associated with the document for hydration purposes.
 
-> Note: the file will be removed from Fetch API servers after hydration has completed.
+> **Note:** the file will be removed from Fetch API servers after hydration has completed.
 
 + Parameters
     + id (required, number, `1`) ... Numeric `id` of the Document to perform action with.
