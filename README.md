@@ -1,6 +1,6 @@
-# Documentation for Anyfetch API (*aka Cluestr*)
+# Documentation for anyFetch API
 
-Please visit http://papiel.github.io/cluestr-doc/ to view the documentation.
+Please visit http://papiel.github.io/developers.anyfetch.com to view the documentation.
 
 This repo should not be used for browsing, but for updating the doc.
 
