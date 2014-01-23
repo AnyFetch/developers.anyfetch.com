@@ -106,9 +106,9 @@
 			<p>Retrieve datas about the current account. This endpoint return the following attributes:</p>
 
 <ul>
-<li><code>user_url</code> user endpoint url</li>
-<li><code>documents_url</code> documents endpoint url</li>
-<li><code>ìd</code> connected user indentification</li>
+<li><code>user_url</code> currently connected user endpoint url: use to retrieve informations about the user</li>
+<li><code>documents_url</code> documents endpoint url: use to search for documents</li>
+<li><code>ìd</code> currently connected user&rsquo;s company id</li>
 <li><code>name</code> name or email of the connected user</li>
 <li><code>provider_status</code> status of each connected providers</li>
 <li><code>documents_types</code>available document_types for the connected account</li>
@@ -166,7 +166,7 @@
 		</div>
 
 		<div class="panel-body">
-			<p>Get the current status of the Fetch API</p>
+			<p>Get the current status of the Fetch API.</p>
 
 		</div>
 
@@ -234,7 +234,7 @@
 <li><code>id</code> The id of the user</li>
 <li><code>name</code> The name of the user</li>
 <li><code>email</code> The email address of the user</li>
-<li><code>is_admin</code> Is true if the user is admin of his organisations</li>
+<li><code>is_admin</code> Is true if the user is admin of this company</li>
 </ul>
 
 		</div>
@@ -392,6 +392,48 @@
 	</div>
 	
 
+	
+	
+
+	
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<span class="btn btn-primary">GET</span>
+			<code>/user</code>
+		</div>
+
+		<div class="panel-body">
+			<p>Redirect the user to its own user endpoint.</p>
+
+		</div>
+
+		<ul class="list-group">
+			
+			
+	
+		
+	
+
+		
+	
+		<li class="list-group-item bg-default response">
+			<strong>Response <code>301</code></strong>
+			<a href="javascript:;" class="pull-right btn btn-link btn-sm snippet-toggle">SHOW</a>
+		</li>
+		<li class="list-group-item snippet">
+			
+				<code>&lt; Content-Type: application/json</code><br><code>&lt; Location: /users/5252cebb03a470843f000003</code><br>
+			
+			
+		</li>
+	
+
+	
+
+		</ul>
+	</div>
+	
+
 
 			</div>
 		</div>
@@ -403,7 +445,7 @@
 				<h2 id="providers">Providers</h2>
 			</div>
 			<div class="panel-body">
-				<p class="lead"><small>Endpoint usable for providing new document in Fetch API, and udapte them.
+				<p class="lead"><small>Endpoints for providing new documents in Fetch API, and update them.
 
 </small></p>
 				
@@ -419,7 +461,11 @@
 		</div>
 
 		<div class="panel-body">
-			<p>Add a document in the FetchAPI et returns the created document. <code>no_hydration</code> Is an optional boolean tells the API to wait a file to begin hydration (<code>/providers/documents/file</code>).</p>
+			<p>Add a document to the FetchAPI and returns the created document.</p>
+
+<ul>
+<li><code>no_hydration</code> optional boolean. When true, asks the API to wait before starting hydration (useful when you want to send a file immediately after)</li>
+</ul>
 
 		</div>
 
@@ -476,7 +522,11 @@
 		</div>
 
 		<div class="panel-body">
-			<p>Update a document already present on the Fetch API. The id of the document should be specified to update a specific document.</p>
+			<p>Update a document already present on the Fetch API. The <code>id</code> of the document (or it&rsquo;s <code>identifier</code>) should be specified.</p>
+
+<blockquote>
+<p>Note: for ease of use, you can use POST and PATCH on this endpoint. This allows provider to abstract whether the document already exists or not.</p>
+</blockquote>
 
 		</div>
 
@@ -533,7 +583,7 @@
 		</div>
 
 		<div class="panel-body">
-			<p>Delete the specified document. To specify the selected document, a id or an identifier should be specified</p>
+			<p>Delete the specified document. To specify the selected document, an <code>id</code> or an <code>identifier</code> should be specified</p>
 
 		</div>
 
@@ -573,8 +623,11 @@
 		</div>
 
 		<div class="panel-body">
-			<p>Add a file in purpose to hydrate it. The request should specify the <code>identifier</code> of the attached created document.
-To secure that the created document is not hydreated without his file, you have to specify <code>no_hydration: true</code> at the creation.</p>
+			<p>Attach a file to a document. The request should specify the <code>identifier</code> of the document.</p>
+
+<blockquote>
+<p>When you want to use this endpoint, don&rsquo;t forget to use <code>no_hydration: true</code> on <code>/providers/documents/</code>!</p>
+</blockquote>
 
 		</div>
 
@@ -614,8 +667,10 @@ To secure that the created document is not hydreated without his file, you have 
 				<h2 id="hydraters">Hydraters</h2>
 			</div>
 			<div class="panel-body">
-				<p class="lead"><small>Endpoints usable for hydration, adding and improving original content of documents.  This endpoint is only applicable, if the hydrator sending the request has been previouly called.
+				<p class="lead"><small>Hydrations endpoints, adding and improving original content of documents.
+Those endpoints are only available when the hydrater sending the request has been previously called on the document.
 
+You can&#39;t access them with an OAuth token, or using Basic Auth.
 
 </small></p>
 				
@@ -631,7 +686,7 @@ To secure that the created document is not hydreated without his file, you have 
 		</div>
 
 		<div class="panel-body">
-			<p>Update the document metadatas.</p>
+			<p>Update document metadatas, datas and actions.</p>
 
 		</div>
 
@@ -671,7 +726,11 @@ To secure that the created document is not hydreated without his file, you have 
 		</div>
 
 		<div class="panel-body">
-			<p>Get the associuated document to help the hydration.</p>
+			<p>Get the file associated with the document for hydration purposes.</p>
+
+<blockquote>
+<p>Note: the file will be removed from Fetch API servers after hydration has completed.</p>
+</blockquote>
 
 		</div>
 
