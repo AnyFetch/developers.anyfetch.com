@@ -6,25 +6,13 @@ HOST: http://www.api.anyfetch.com
 
 ## Authentication
 There are three ways to authenticate through Fetch API.
-Requests that require authentication will return `404 Not Found`, instead of `403 Forbidden`, in some places.
+See [authentication](/authentication.html) for details.
 
-### Basic authentication
-```bash
-    $ curl -H "Authorization: Basic HASH" http://api.anyfetch.com
-```
+* Using no authentication in a request will result in `401 Authorization Required`
+* Using invalid authentication will result in `403 Forbidden`
+* When trying to access a resource that is not part of your current scope, you may get a `404 Not Found` for security reasons
 
-### Oauth authentication
-```bash
-    $ curl -H "Authorization: token OAUTH-TOKEN" http://api.anyfetch.com
-```
-
-
-### Request parameter
-```bash
-    $ curl https://api.anyfetch.com/?access_token=OAUTH-TOKEN
-```
-
-##Client Error
+## Client Error
 If request is not wellformed, this will result `400 Bad Request` responce.
 
 ```http
@@ -36,8 +24,6 @@ Content-Length: 35
 
 ## Rate Limiting
 Fetch API doesn't currently provide a rate limit system.
-
-
 
 
 # GET /
