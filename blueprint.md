@@ -6,11 +6,7 @@ HOST: http://www.api.anyfetch.com
 
 ## Authentication
 There are three ways to authenticate through Fetch API.
-See [authentication](/authentication.html) for details.
-
-* Using no authentication in a request will result in `401 Authorization Required`
-* Using invalid authentication will result in `403 Forbidden`
-* When trying to access a resource that is not part of your current scope, you may get a `404 Not Found` for security reasons
+See [authentication](/authentication.html) for details and error codes.
 
 ## Client Error
 If request is not wellformed, this will result `400 Bad Request` responce.
