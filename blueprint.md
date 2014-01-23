@@ -1,12 +1,33 @@
 FORMAT: 1A
 HOST: http://www.api.anyfetch.com
 
-# Anyfetch
-Anyfetch is designed to help you search in  massive amounts of documents coming from various sources, in various formats.
+# Fetch API
+**Fetch API** is designed to help you search in  massive amounts of documents coming from various sources, in various formats.
 
-# Group Index
-## Index [/]
-### Retrieve Entry Point [GET]
+## Authentication
+There are three ways to authenticate through Fetch API.
+Requests that require authentication will return `404 Not Found`, instead of `403 Forbidden`, in some places.
+
+### Basic authentication
+```bash
+    $ curl -H "Authorization: Basic HASH" http://api.anyfetch.com
+```
+
+### Oauth authentication
+```bash
+    $ curl -H "Authorization: token OAUTH-TOKEN" http://api.anyfetch.com
+```
+
+### Request parameter
+```bash
+    $ curl https://api.anyfetch.com/?access_token=OAUTH-TOKEN
+```
+
+## Rate Limiting
+Fetch API doesn't currently provide a rate limit system.
+
+
+# GET /
 Retrieve datas about the current account. This endpoint return the following attributes:
 
 - `user_url` user endpoint url
@@ -30,8 +51,7 @@ Retrieve datas about the current account. This endpoint return the following att
                 "document_types": {}
             }
 
-## Status [/status]
-### Status Entry Point [GET]
+#GET /status
 Get the current status of the Fetch API
 
 + Response 200 (application/json)
@@ -43,28 +63,7 @@ Get the current status of the Fetch API
             }
 
 # Group Users
-## Users Collection [/users]
-### List all Users [GET]
-Retrieve a list of all users in the current company. This resource has the following attributes :
-
-- `id` The id of the user
-- `name` The name of the user
-- `email` The email address of the user
-- `is_admin` Is true if the user is admin of his organisations
-
-+ Response 200 (application/json)
-
-            [
-                {
-                    "_type": "User",
-                    "id": "5252cebb03a470843f000003",
-                    "email": "test@papiel.fr",
-                    "name": "Test",
-                    "is_admin": true,
-                    "user_url": "/users/5252cebb03a470843f000003"
-                },
-                ...
-            ]
+User ressources.
 
 ## User [/user/{id}]
 A single User object with all its details. This resource has the following attributes :
@@ -77,9 +76,7 @@ A single User object with all its details. This resource has the following attri
 + Parameters
     + id (required, number, `1`) ... Numeric `id` of the User to perform action with.
 
-+ Model
-
-    HAL+JSON representation of the platform
++ Model (application/json)
 
     + Body
 
@@ -98,6 +95,24 @@ A single User object with all its details. This resource has the following attri
 
 ### Remove a User [DELETE]
 + Response 204
+
+## Users Collection [/users]
+### List all Users [GET]
+Retrieve a list of all users in the current company.
+
++ Response 200 (application/json)
+
+            [
+                {
+                    "_type": "User",
+                    "id": "5252cebb03a470843f000003",
+                    "email": "test@papiel.fr",
+                    "name": "Test",
+                    "is_admin": true,
+                    "user_url": "/users/5252cebb03a470843f000003"
+                },
+                ...
+            ]
 
 # Group Providers
 Endpoint usable for providing new document in Fetch API, and udapte them.
