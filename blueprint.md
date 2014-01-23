@@ -77,7 +77,7 @@ A single User object with all its details. This resource has the following attri
 - `is_admin` Is true if the user is admin of this organisations
 
 + Parameters
-    + id (required, number, `1`) ... Numeric `id` of the User to perform action with.
+    + id (required, hexadecimal hash, `1`) ... Hexadecimal `id` of the User to perform action with.
 
 + Model (application/json)
 
@@ -234,7 +234,7 @@ You can't access them with an OAuth token, or using Basic Auth.
 ### Update document metadatas [POST]
 Update document metadatas, datas and actions.
 + Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Document to perform action with.
+    + id (required, hexadecimal hash, `1`) ... Hexadecimal `id` of the Document to perform action with.
 
 + Response 204
 
@@ -245,6 +245,6 @@ Get the file associated with the document for hydration purposes.
 > **Note:** the file will be removed from Fetch API servers after hydration has completed.
 
 + Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Document to perform action with.
+    + id (required, hexadecimal hash, `1`) ... Hexadecimal `id` of the Document to perform action with.
 
 + Response 200
