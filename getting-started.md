@@ -91,7 +91,7 @@ Where possible, anyfetch API strives to use appropriate HTTP verbs for each acti
 - __OPTIONS__ Used to request informations.
 
 ## Authentication
-See [authentication](/anyfetch-doc/authentication.html) for information about authenticating your requests.
+See [authentication](/authentication.html) for information about authenticating your requests.
 
 ## Hypermedia
 All resources may have one or more `*_url` properties linking to other resources. These are meant to provide explicit URLs so that proper API clients don’t need to construct URLs on their own. It is highly recommended that API clients use these. Doing so will make future upgrades of the API easier for developers. All URLs are expected to be proper [RFC 6570](http://tools.ietf.org/html/rfc6570) URI templates.
