@@ -58,7 +58,17 @@ Get the current status of the Fetch API.
                 "message": ""
             }
 
+#POST /update
+Ping all providers of the current user to check if new available documents
 
++ Response 204
+
+
+#DELETE /reset
+Reset all documents and providers from the account.
+> **Note:** Use with caution
+
++ Response 204
 
 
 # Group Users
