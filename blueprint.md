@@ -85,7 +85,7 @@ A single document with his details
                 },
             }
 
-## Documents List [/documents/{?start, ?limit, ?search, ?_meta, ?@meta, ?has_meta, ?related_to, ?binary_document_type, ?semantic_document_type}]
+## Documents List [/documents/{?start, ?limit, ?search, ?_meta, ?@meta, ?has_meta, ?related_to, ?document_type}]
 Retrieve a list of documents
 
 + Parameters
@@ -96,17 +96,16 @@ Retrieve a list of documents
     + @meta (optional, string) ... Full text search on `meta` key
     + has_meta (optional, string) ... Only returns document having the `meta` key
     + related_to (optional, string) ... Find documents related to the specified document
-    + binary_document_type (optional, array) ... Only retrieve documents matching this binary document types. You can use the param multiple times to allow for multiples `binary_document_type`
-    + semantic_document_type (optional, array) ... Only retrieve documents matching this semantic document types. You can use the param multiple times to allow for multiples `semantic_document_type`
+    + document_type (optional, array) ... Only retrieve documents matching this document type. You can use the param multiple times to allow for multiples `semantic_document_type`
 
 
-### Retrive a list of documents[GET]
+### Retrieve a list of documents[GET]
 + Response 204
 
 
 
 # Group Users
-User ressources.
+User resources.
 
 ## User [/user/{id}]
 A single User object with all its details. This resource has the following attributes :
@@ -171,8 +170,8 @@ Retrieve a list of all users in the current company.
 Endpoints for providing new documents in Fetch API, and update them.
 
 ## Document [/providers/documents]
-Document is the center of the Fetch API, it the ressource that handles all the data. It the normalize way to store all informations and files.
-Document has several attributes:
+Documents are the core of the Fetch API, they're the resource handling all data. It is the way to store all informations and files.
+Documents have several attributes:
 
 - `document_type` identification key of the document_type. If not specified, will be set to `Document`
 - `actions` object containing the available actions for this document, with the key as action and the value an URL
@@ -181,7 +180,7 @@ Document has several attributes:
 - `datas` object containing addtional informations
 - `user_access` array of users_id that can access this document. Set to null to give access to all users in the company.
 
-> **Note:** Attributes `id`is automaticely set by the Fetch API at the creation of the document. You can't chose it.
+> **Note:** Attributes `id` is automaticely set by the Fetch API at the creation of the document. You can't pick it manually.
 
 + Model (application/json)
     + Body
@@ -208,7 +207,7 @@ Document has several attributes:
 
 
 ### Create a document [POST]
-Add a document in the FetchAPI et returns the created document.
+Add a document in the Fetch API et returns the created document.
 
 > **Note:** `no_hydration` optional boolean. When true, asks the API to wait before starting hydration (useful when you want to send a file immediately after)
 
@@ -235,7 +234,7 @@ Add a document in the FetchAPI et returns the created document.
 
 
 ### Update a document [PATCH]
-Update a document already present on the Fetch API. The `id` of the document (or it's `identifier`) should be specified.
+Update a document already present on the Fetch API. The `id` of the document (or its `identifier`) should be specified.
 
 > **Note:** for ease of use, you can use POST and PATCH on this endpoint. This allows provider to abstract whether the document already exists or not.
 
