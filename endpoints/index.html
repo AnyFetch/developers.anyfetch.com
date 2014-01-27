@@ -20,24 +20,6 @@
 		<title>Fetch API</title>
 		<meta name="description" content="**Fetch API** is designed to help you search in  massive amounts of documents coming from various sources, in various formats.
 
-## Authentication
-There are three ways to authenticate through Fetch API.
-See [authentication](/authentication.html) for details and error codes.
-
-## Client Error
-If request is not wellformed, this will result `400 Bad Request` responce.
-
-```http
-HTTP/1.1 400 Bad Request
-Content-Length: 35
-
-{&#34;message&#34;:&#34;Problems parsing JSON&#34;}
-```
-
-## Rate Limiting
-Fetch API doesn&#39;t currently provide a rate limit system.
-
-
 ">
 		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
@@ -77,25 +59,6 @@ Fetch API doesn&#39;t currently provide a rate limit system.
 					<div class="page-header">
 						<h1>Fetch API</h1>
 						<h2 class="lead"><small><p><strong>Fetch API</strong> is designed to help you search in  massive amounts of documents coming from various sources, in various formats.</p>
-
-<h2>Authentication</h2>
-
-<p>There are three ways to authenticate through Fetch API.
-See <a href="/authentication.html">authentication</a> for details and error codes.</p>
-
-<h2>Client Error</h2>
-
-<p>If request is not wellformed, this will result <code>400 Bad Request</code> responce.</p>
-
-<pre><code class="http">HTTP/1.1 400 Bad Request
-Content-Length: 35
-
-{&quot;message&quot;:&quot;Problems parsing JSON&quot;}
-</code></pre>
-
-<h2>Rate Limiting</h2>
-
-<p>Fetch API doesn&rsquo;t currently provide a rate limit system.</p>
 </small></h2>
 					</div>
 				</div>
@@ -104,7 +67,9 @@ Content-Length: 35
 					
 <ul class="nav nav-pills nav-stacked nav-rg affix" id="group-tab">
 	
-		<li><a href="#" data-toggle="tab"><strong></strong></a></li>
+		<li><a href="#index" data-toggle="tab"><strong>Index</strong></a></li>
+	
+		<li><a href="#documents" data-toggle="tab"><strong>Documents</strong></a></li>
 	
 		<li><a href="#users" data-toggle="tab"><strong>Users</strong></a></li>
 	
@@ -120,10 +85,10 @@ Content-Length: 35
 					<div class="tab-content">
 						
 
-	<div class="tab-pane" id="">
+	<div class="tab-pane" id="index">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h2 id=""></h2>
+				<h2 id="index">Index</h2>
 			</div>
 			<div class="panel-body">
 				<p class="lead"><small></small></p>
@@ -231,6 +196,294 @@ Content-Length: 35
     &#34;message&#34;: &#34;&#34;
 }
 </pre>
+			
+		</li>
+	
+
+	
+
+		</ul>
+	</div>
+	
+
+	
+	
+
+	
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<span class="btn btn-success">POST</span>
+			<code>/update</code>
+		</div>
+
+		<div class="panel-body">
+			<p>Ping all providers of the current user to check if new available documents</p>
+
+		</div>
+
+		<ul class="list-group">
+			
+			
+	
+		
+	
+
+		
+	
+		<li class="list-group-item bg-default response">
+			<strong>Response <code>204</code></strong>
+			<a href="javascript:;" class="pull-right btn btn-link btn-sm snippet-toggle">SHOW</a>
+		</li>
+		<li class="list-group-item snippet">
+			
+			
+		</li>
+	
+
+	
+
+		</ul>
+	</div>
+	
+
+	
+	
+
+	
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<span class="btn btn-danger">DELETE</span>
+			<code>/reset</code>
+		</div>
+
+		<div class="panel-body">
+			<p>Reset all documents and providers from the account.
+&gt; <strong>Note:</strong> Use with caution</p>
+
+		</div>
+
+		<ul class="list-group">
+			
+			
+	
+		
+	
+
+		
+	
+		<li class="list-group-item bg-default response">
+			<strong>Response <code>204</code></strong>
+			<a href="javascript:;" class="pull-right btn btn-link btn-sm snippet-toggle">SHOW</a>
+		</li>
+		<li class="list-group-item snippet">
+			
+			
+		</li>
+	
+
+	
+
+		</ul>
+	</div>
+	
+
+
+			</div>
+		</div>
+	</div>
+
+	<div class="tab-pane" id="documents">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h2 id="documents">Documents</h2>
+			</div>
+			<div class="panel-body">
+				<p class="lead"><small>Endpoints for retrieving documents
+
+</small></p>
+				
+
+	
+	
+
+	
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<span class="btn btn-primary">GET</span>
+			<code>/documents/{id}{?search}</code>
+		</div>
+
+		<div class="panel-body">
+			
+		</div>
+
+		<ul class="list-group">
+			
+				<li class="list-group-item bg-default"><strong>Parameters</strong></li>
+				<li class="list-group-item">
+<dl class="dl-horizontal">
+	
+		<dt>id</dt>
+		<dd>
+		
+		
+		<code>hexadecimal hash</code> Hexadecimal `id` of the User to perform action with.
+		</dd>
+	
+		<dt>search</dt>
+		<dd>
+		
+			<strong>(required)</strong>
+		
+		<code>string</code> String to highlight in the rendered document
+		</dd>
+	
+</dl>
+</li>
+			
+			
+	
+		
+	
+
+		
+	
+		<li class="list-group-item bg-default response">
+			<strong>Response <code>200</code></strong>
+			<a href="javascript:;" class="pull-right btn btn-link btn-sm snippet-toggle">SHOW</a>
+		</li>
+		<li class="list-group-item snippet">
+			
+				<code>&lt; Content-Type: application/json</code><br>
+			
+			
+				<pre class="prettyprint">{
+    &#34;_type&#34;: &#34;Document&#34;
+    &#34;actions&#34;: {
+        &#34;download&#34;: &#34;http:http://example.org/download/file/url&#34;
+    },
+    &#34;company&#34;: &#34;52bff074c8318c29e9000001&#34;
+    &#34;creation_date&#34;: &#34;2013-12-29T10:40:14.246Z&#34;
+    &#34;document_url&#34;: &#34;/documents/52d96492a7f0a3ac4226f2f7&#34;,
+    &#34;related&#34;: [&#34;52d96492a7f0a3ac424e91&#34;],
+    &#34;datas&#34;: {
+        &#34;bar&#34;: &#34;this will not be indexed for search&#34;
+    },
+    &#34;metadatas&#34;: {
+        &#34;foo&#34;: &#34;this will be indexed for search&#34;
+    },
+}
+</pre>
+			
+		</li>
+	
+
+	
+
+		</ul>
+	</div>
+	
+
+	
+	
+
+	
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<span class="btn btn-primary">GET</span>
+			<code>/documents/{?start, ?limit, ?search, ?_meta, ?@meta, ?has_meta, ?related_to, ?binary_document_type, ?semantic_document_type}</code>
+		</div>
+
+		<div class="panel-body">
+			
+		</div>
+
+		<ul class="list-group">
+			
+				<li class="list-group-item bg-default"><strong>Parameters</strong></li>
+				<li class="list-group-item">
+<dl class="dl-horizontal">
+	
+		<dt>_meta</dt>
+		<dd>
+		
+			<strong>(required)</strong>
+		
+		<code>string</code> Strict search on `meta` key
+		</dd>
+	
+		<dt>binary_document_type</dt>
+		<dd>
+		
+			<strong>(required)</strong>
+		
+		<code>array</code> Only retrieve documents matching this binary document types. You can use the param multiple times to allow for multiples `binary_document_type`
+		</dd>
+	
+		<dt>has_meta</dt>
+		<dd>
+		
+			<strong>(required)</strong>
+		
+		<code>string</code> Only returns document having the `meta` key
+		</dd>
+	
+		<dt>limit</dt>
+		<dd>
+		
+			<strong>(required)</strong>
+		
+		<code>integer</code> Max number of items to retrieve (for pagination)
+		</dd>
+	
+		<dt>related_to</dt>
+		<dd>
+		
+			<strong>(required)</strong>
+		
+		<code>string</code> Find documents related to the specified document
+		</dd>
+	
+		<dt>search</dt>
+		<dd>
+		
+			<strong>(required)</strong>
+		
+		<code>string</code> Search query, probably the most important parameter for this query
+		</dd>
+	
+		<dt>semantic_document_type</dt>
+		<dd>
+		
+			<strong>(required)</strong>
+		
+		<code>array</code> Only retrieve documents matching this semantic document types. You can use the param multiple times to allow for multiples `semantic_document_type`
+		</dd>
+	
+		<dt>start</dt>
+		<dd>
+		
+			<strong>(required)</strong>
+		
+		<code>integer</code> Index of the first item to retrieve (for pagination)
+		</dd>
+	
+</dl>
+</li>
+			
+			
+	
+		
+	
+
+		
+	
+		<li class="list-group-item bg-default response">
+			<strong>Response <code>204</code></strong>
+			<a href="javascript:;" class="pull-right btn btn-link btn-sm snippet-toggle">SHOW</a>
+		</li>
+		<li class="list-group-item snippet">
+			
 			
 		</li>
 	
