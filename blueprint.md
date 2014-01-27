@@ -47,7 +47,7 @@ Retrieve datas about the current account. This endpoint return the following att
                 "document_types": {}
             }
 
-#GET /status
+# GET /status
 Get the current status of the Fetch API.
 
 + Response 200 (application/json)
@@ -58,17 +58,68 @@ Get the current status of the Fetch API.
                 "message": ""
             }
 
-#POST /update
+# POST /update
 Ping all providers of the current user to check if new available documents
 
 + Response 204
 
 
-#DELETE /reset
+# DELETE /reset
 Reset all documents and providers from the account.
 > **Note:** Use with caution
 
 + Response 204
+
+
+# Group Documents
+Endpoints for retrieving documents
+
+## Documents [/documents/{id}{?search}]
+A single document with his details
+
++ Parameters
+    + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the User to perform action with.
+    + search (optional, string, `cascade`) ... String to highlight in the rendered document
+
+### Retrieve a single document [GET]
++ Response 200 (application/json)
+    + Body
+
+            {
+                "_type": "Document"
+                "actions": {
+                    "download": "http://example.org/download/file/url"
+                },
+                "company": "52bff074c8318c29e9000001"
+                "creation_date": "2013-12-29T10:40:14.246Z"
+                "document_url": "/documents/52d96492a7f0a3ac4226f2f7",
+                "related": ["52d96492a7f0a3ac424e91"],
+                "datas": {
+                    "bar": "this will not be indexed for search"
+                },
+                "metadatas": {
+                    "foo": "this will be indexed for search"
+                },
+            }
+
+## Documents List [/documents/{?start, ?limit, ?search, ?_meta, ?@meta, ?has_meta, ?related_to, ?binary_document_type, ?semantic_document_type}]
+Retrieve a list of documents
+
++ Parameters
+    + start (optional, integer) ... Index of the first item to retrieve (for pagination)
+    + limit (optional, integer) ... Max number of items to retrieve (for pagination)
+    + search (optional, string) ... Search query, probably the most important parameter for this query
+    + _meta (optional, string) ... Strict search on `meta` key
+    + @meta (optional, string) ... Full text search on `meta` key
+    + has_meta (optional, string) ... Only returns document having the `meta` key
+    + related_to (optional, string) ... Find documents related to the specified document
+    + binary_document_type (optional, array) ... Only retrieve documents matching this binary document types. You can use the param multiple times to allow for multiples `binary_document_type`
+    + semantic_document_type (optional, array) ... Only retrieve documents matching this semantic document types. You can use the param multiple times to allow for multiples `semantic_document_type`
+
+
+### Retrive a list of documents[GET]
++ Response 204
+
 
 
 # Group Users
@@ -131,8 +182,6 @@ Retrieve a list of all users in the current company.
                 },
                 ...
             ]
-
-
 
 
 # Group Providers
