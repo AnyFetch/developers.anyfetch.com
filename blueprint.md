@@ -85,7 +85,7 @@ A single document with his details
                 },
             }
 
-## Documents List [/documents/{?start, ?limit, ?search, ?_meta, ?@meta, ?has_meta, ?related_to, ?document_type}]
+## Documents List [/documents/{?start, ?limit, ?search, ?_meta, ?@meta, ?has_meta, ?related_to, ?document_type, ?snippet_size}]
 Retrieve a list of documents
 
 + Parameters
@@ -97,6 +97,7 @@ Retrieve a list of documents
     + has_meta (optional, string) ... Only returns document having the `meta` key
     + related_to (optional, string) ... Find documents related to the specified document
     + document_type (optional, array) ... Only retrieve documents matching this document type. You can use the param multiple times to allow for multiples `semantic_document_type`
+    + snippet_size (optionnal, integer) ... Number of words in the snippet
 
 
 ### Retrieve a list of documents[GET]
