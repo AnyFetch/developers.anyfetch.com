@@ -219,8 +219,6 @@ Add a file in purpose to hydrate it. The request should specify the `identifier`
 + Response 204
 
 
-
-
 # Group Hydraters
 Hydrations endpoints, adding and improving original content of documents.
 Those endpoints are only available when the hydrater sending the request has been previously called on the document.

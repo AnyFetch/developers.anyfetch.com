@@ -744,7 +744,8 @@ You can&#39;t access them with an OAuth token, or using Basic Auth.
 		</div>
 
 		<div class="panel-body">
-			<p>Update document metadatas, datas and actions.</p>
+			<p>Update document metadatas, datas and actions.
+For datas and metadatas, merging occurs on first level only. If the existing datas is <code>{a:1, b:{c:2}, d:3}</code> and you submit <code>{a:2, b:{e:4}}</code>, the resulting document will be <code>{a:2, b:{e:4}, d:3}</code>. To remove a key, simply set its value to <code>null</code>.</p>
 
 		</div>
 
