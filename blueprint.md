@@ -2,27 +2,10 @@ FORMAT: 1A
 HOST: http://www.api.anyfetch.com
 
 # Fetch API
-**Fetch API** is designed to help you search in  massive amounts of documents coming from various sources, in various formats.
+**Fetch API** is designed to help you search in  massive amounts of documents coming from various sources, in various formats. See [authentication](/authentication.html) for authentication details.
 
-## Authentication
-There are three ways to authenticate through Fetch API.
-See [authentication](/authentication.html) for details and error codes.
-
-## Client Error
-If request is not wellformed, this will result `400 Bad Request` responce.
-
-```http
-HTTP/1.1 400 Bad Request
-Content-Length: 35
-
-{"message":"Problems parsing JSON"}
-```
-
-## Rate Limiting
-Fetch API doesn't currently provide a rate limit system.
-
-
-# GET /
+# Group Index
+## GET /
 Retrieve datas about the current account. This endpoint return the following attributes:
 
 - `server_time`: UNIX timesptamp of the server
@@ -47,7 +30,7 @@ Retrieve datas about the current account. This endpoint return the following att
                 "document_types": {}
             }
 
-#GET /status
+## GET /status
 Get the current status of the Fetch API.
 
 + Response 200 (application/json)
