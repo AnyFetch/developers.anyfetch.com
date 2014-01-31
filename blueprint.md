@@ -112,17 +112,17 @@ Retrieve a list of all users in the current company.
 Endpoints for providing new documents in Fetch API, and update them.
 
 ## Document [/providers/documents]
-Document is the center of the Fetch API, it the ressource that handles all the data. It the normalize way to store all informations and files.
+Document is Fetch API main resource, it handles all the data. It is the normalized way to store informations and files.
 Document has several attributes:
 
 - `document_type` identification key of the document_type. If not specified, will be set to `Document`
-- `actions` object containing the available actions for this document, with the key as action and the value an URL
+- `actions` object containing the available actions for the Document document, with key as action value as URL
 - `related` array of `ìd` or `identifier` of documents related to this document
-- `metadatas` object containing all the informations available to find the document via full-text or matching
-- `datas` object containing addtional informations
-- `user_access` array of users_id that can access this document. Set to null to give access to all users in the company.
+- `metadatas` object containing all searchable information (full-text or metadatas)
+- `datas` object containing addtional informations, not available for search
+- `user_access` array of users_id with access to the document. Set to null to give access to all users in the company.
 
-> **Note:** Attributes `id`is automaticely set by the Fetch API at the creation of the document. You can't chose it.
+> **Note:** Fetch API automatically sets the `id` Attribute during document creation.
 
 + Model (application/json)
     + Body
@@ -149,9 +149,9 @@ Document has several attributes:
 
 
 ### Create a document [POST]
-Add a document in the FetchAPI et returns the created document.
+Add a document to the FetchAPI and return the created document.
 
-> **Note:** `no_hydration` optional boolean. When true, asks the API to wait before starting hydration (useful when you want to send a file immediately after)
+> **Note:** `no_hydration` optional boolean. When true, asks the API to wait before starting hydration (useful when you want to send a file immediately after).
 
 + Request (application/json)
 
@@ -176,7 +176,7 @@ Add a document in the FetchAPI et returns the created document.
 
 
 ### Update a document [PATCH]
-Update a document already present on the Fetch API. The `id` of the document (or it's `identifier`) should be specified.
+Update a document already existing on the Fetch API. The `id` of the document (or it's `identifier`) should be specified.
 
 > **Note:** for ease of use, you can use POST and PATCH on this endpoint. This allows provider to abstract whether the document already exists or not.
 
@@ -184,16 +184,17 @@ Update a document already present on the Fetch API. The `id` of the document (or
     [Document][]
 
 ### Delete a document[DELETE]
-Delete the specified document. To specify the selected document, an `id` or an `identifier` should be specified
+Delete the specified document. To specify the selected document, an `id` or an `identifier` should be specified.
 
 + Response 204
 
 
 
 ## File [/providers/documents/file]
-Attach a file to a document. The request should specify the `identifier` of the document.
+Attach a file to a document. The request should specify the document `identifier`.
+You can't use this endpoint without pinging `/providers/documents/` first.
+> **Note:** When you want to use this endpoint, don't forget to use `no_hydration: true` on !
 
-> **Note:** When you want to use this endpoint, don't forget to use `no_hydration: true` on `/providers/documents/`!
 
 ### Add a file to a document [POST]
 Add a file in purpose to hydrate it. The request should specify the `identifier` of the attached created document.
