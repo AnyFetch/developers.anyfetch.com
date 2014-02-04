@@ -58,7 +58,7 @@ Reset all documents and providers from the account.
 Endpoints for retrieving documents
 
 ## Documents [/documents/{id}{?search}]
-A single document with his details
+A single document with its details
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the User to perform action with.
@@ -85,6 +85,49 @@ A single document with his details
                 },
             }
 
+## Documents [/documents/{id}/similar]
+Documents similar to `id`.
++ Parameters
+    + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the User to perform action with.
+
+### Retrieve similar documents [GET]
++ Response 200 (application/json)
+    + Body
+
+        {
+            "keywords": [
+                "anyFetch",
+                "papiel"
+            ],
+            "document_types": {
+                "5252ce4ce4cfcd16f55cfa3c": 4,
+                "5252ce4ce4cfcd16f55cfa3d": 3
+            },
+            "tokens": {
+                "52bffb81c8318c29e900000a": 7
+            },
+            "datas": [
+                {
+                    "_type": "Document",
+                    "id": "52bffb8b99b3a70340000008",
+                    "creation_date": "2013-12-29T10:38:03.101Z",
+                    "token": "52bffb81c8318c29e900000a",
+                    "company": "52bff074c8318c29e9000001",
+                    "document_type": "5252ce4ce4cfcd16f55cfa3c",
+                    "actions": {
+                        "show": "https://www.dropbox.com/home%2FGUIDESTYLE.md"
+                    },
+                    "document_url": "/documents/52bffb8b99b3a70340000008",
+                    "related": [],
+                    "datas": {
+                        "title": "GUIDESTYLE",
+                        "path": "/GUIDESTYLE.md",
+                        "snippet": "Do something complicated. Comments starts with a space."
+                    }
+                }
+            ]
+        }
+
 ## Documents List [/documents/{?start, ?limit, ?search, ?_meta, ?@meta, ?has_meta, ?related_to, ?document_type, ?snippet_size}]
 Retrieve a list of documents
 
@@ -96,7 +139,7 @@ Retrieve a list of documents
     + @meta (optional, string) ... Full text search on `meta` key
     + has_meta (optional, string) ... Only returns document having the `meta` key
     + related_to (optional, string) ... Find documents related to the specified document
-    + document_type (optional, array) ... Only retrieve documents matching this document type. You can use the param multiple times to allow for multiples `semantic_document_type`
+    + document_type (optional, array) ... Only retrieve documents matching this document type. You can use the param multiple times to allow for multiples `document_type`
     + snippet_size (optionnal, integer) ... Number of words in the snippet
 
 

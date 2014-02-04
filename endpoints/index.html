@@ -391,7 +391,97 @@
 	<div class="panel panel-info">
 		<div class="panel-heading">
 			<span class="btn btn-primary">GET</span>
-			<code>/documents/{?start, ?limit, ?search, ?_meta, ?@meta, ?has_meta, ?related_to, ?binary_document_type, ?semantic_document_type}</code>
+			<code>/documents/{id}/similar</code>
+		</div>
+
+		<div class="panel-body">
+			
+		</div>
+
+		<ul class="list-group">
+			
+				<li class="list-group-item bg-default"><strong>Parameters</strong></li>
+				<li class="list-group-item">
+<dl class="dl-horizontal">
+	
+		<dt>id</dt>
+		<dd>
+		
+		
+		<code>hexadecimal hash</code> Hexadecimal `id` of the User to perform action with.
+		</dd>
+	
+</dl>
+</li>
+			
+			
+	
+		
+	
+
+		
+	
+		<li class="list-group-item bg-default response">
+			<strong>Response <code>200</code></strong>
+			<a href="javascript:;" class="pull-right btn btn-link btn-sm snippet-toggle">SHOW</a>
+		</li>
+		<li class="list-group-item snippet">
+			
+				<code>&lt; Content-Type: application/json</code><br>
+			
+			
+				<pre class="prettyprint">{
+    &#34;keywords&#34;: [
+        &#34;anyFetch&#34;,
+        &#34;papiel&#34;
+    ],
+    &#34;document_types&#34;: {
+        &#34;5252ce4ce4cfcd16f55cfa3c&#34;: 4,
+        &#34;5252ce4ce4cfcd16f55cfa3d&#34;: 3
+    },
+    &#34;tokens&#34;: {
+        &#34;52bffb81c8318c29e900000a&#34;: 7
+    },
+    &#34;datas&#34;: [
+        {
+            &#34;_type&#34;: &#34;Document&#34;,
+            &#34;id&#34;: &#34;52bffb8b99b3a70340000008&#34;,
+            &#34;creation_date&#34;: &#34;2013-12-29T10:38:03.101Z&#34;,
+            &#34;token&#34;: &#34;52bffb81c8318c29e900000a&#34;,
+            &#34;company&#34;: &#34;52bff074c8318c29e9000001&#34;,
+            &#34;document_type&#34;: &#34;5252ce4ce4cfcd16f55cfa3c&#34;,
+            &#34;actions&#34;: {
+                &#34;show&#34;: &#34;https:http://www.dropbox.com/home%2FGUIDESTYLE.md&#34;
+            },
+            &#34;document_url&#34;: &#34;/documents/52bffb8b99b3a70340000008&#34;,
+            &#34;related&#34;: [],
+            &#34;datas&#34;: {
+                &#34;title&#34;: &#34;GUIDESTYLE&#34;,
+                &#34;path&#34;: &#34;/GUIDESTYLE.md&#34;,
+                &#34;snippet&#34;: &#34;Do something complicated. Comments starts with a space.&#34;
+            }
+        }
+    ]
+}
+</pre>
+			
+		</li>
+	
+
+	
+
+		</ul>
+	</div>
+	
+
+	
+	
+
+	
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<span class="btn btn-primary">GET</span>
+			<code>/documents/{?start, ?limit, ?search, ?_meta, ?@meta, ?has_meta, ?related_to, ?document_type, ?snippet_size}</code>
 		</div>
 
 		<div class="panel-body">
@@ -412,12 +502,12 @@
 		<code>string</code> Strict search on `meta` key
 		</dd>
 	
-		<dt>binary_document_type</dt>
+		<dt>document_type</dt>
 		<dd>
 		
 			<strong>(required)</strong>
 		
-		<code>array</code> Only retrieve documents matching this binary document types. You can use the param multiple times to allow for multiples `binary_document_type`
+		<code>array</code> Only retrieve documents matching this document type. You can use the param multiple times to allow for multiples `document_type`
 		</dd>
 	
 		<dt>has_meta</dt>
@@ -452,12 +542,11 @@
 		<code>string</code> Search query, probably the most important parameter for this query
 		</dd>
 	
-		<dt>semantic_document_type</dt>
+		<dt>snippet_size</dt>
 		<dd>
 		
-			<strong>(required)</strong>
 		
-		<code>array</code> Only retrieve documents matching this semantic document types. You can use the param multiple times to allow for multiples `semantic_document_type`
+		<code></code> Number of words in the snippet
 		</dd>
 	
 		<dt>start</dt>
@@ -505,7 +594,7 @@
 				<h2 id="users">Users</h2>
 			</div>
 			<div class="panel-body">
-				<p class="lead"><small>User ressources.
+				<p class="lead"><small>User resources.
 
 </small></p>
 				
@@ -747,7 +836,7 @@
 		</div>
 
 		<div class="panel-body">
-			<p>Add a document in the FetchAPI et returns the created document.</p>
+			<p>Add a document in the Fetch API et returns the created document.</p>
 
 <blockquote>
 <p><strong>Note:</strong> <code>no_hydration</code> optional boolean. When true, asks the API to wait before starting hydration (useful when you want to send a file immediately after)</p>
@@ -837,7 +926,7 @@
 		</div>
 
 		<div class="panel-body">
-			<p>Update a document already present on the Fetch API. The <code>id</code> of the document (or it&rsquo;s <code>identifier</code>) should be specified.</p>
+			<p>Update a document already present on the Fetch API. The <code>id</code> of the document (or its <code>identifier</code>) should be specified.</p>
 
 <blockquote>
 <p><strong>Note:</strong> for ease of use, you can use POST and PATCH on this endpoint. This allows provider to abstract whether the document already exists or not.</p>
