@@ -69,6 +69,8 @@
 	
 		<li><a href="#index" data-toggle="tab"><strong>Index</strong></a></li>
 	
+		<li><a href="#documents" data-toggle="tab"><strong>Documents</strong></a></li>
+	
 		<li><a href="#users" data-toggle="tab"><strong>Users</strong></a></li>
 	
 		<li><a href="#providers" data-toggle="tab"><strong>Providers</strong></a></li>
@@ -204,6 +206,557 @@
 	</div>
 	
 
+	
+	
+
+	
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<span class="btn btn-success">POST</span>
+			<code>/update</code>
+		</div>
+
+		<div class="panel-body">
+			<p>Ping all providers of the current user to check if new available documents</p>
+
+		</div>
+
+		<ul class="list-group">
+			
+			
+	
+		
+	
+
+		
+	
+		<li class="list-group-item bg-default response">
+			<strong>Response <code>204</code></strong>
+			<a href="javascript:;" class="pull-right btn btn-link btn-sm snippet-toggle">SHOW</a>
+		</li>
+		<li class="list-group-item snippet">
+			
+			
+		</li>
+	
+
+	
+
+		</ul>
+	</div>
+	
+
+	
+	
+
+	
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<span class="btn btn-danger">DELETE</span>
+			<code>/reset</code>
+		</div>
+
+		<div class="panel-body">
+			<p>Reset all documents and providers from the account.
+&gt; <strong>Note:</strong> Use with caution</p>
+
+		</div>
+
+		<ul class="list-group">
+			
+			
+	
+		
+	
+
+		
+	
+		<li class="list-group-item bg-default response">
+			<strong>Response <code>204</code></strong>
+			<a href="javascript:;" class="pull-right btn btn-link btn-sm snippet-toggle">SHOW</a>
+		</li>
+		<li class="list-group-item snippet">
+			
+			
+		</li>
+	
+
+	
+
+		</ul>
+	</div>
+	
+
+
+			</div>
+		</div>
+	</div>
+
+	<div class="tab-pane" id="documents">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h2 id="documents">Documents</h2>
+			</div>
+			<div class="panel-body">
+				<p class="lead"><small>Endpoints for retrieving documents
+
+</small></p>
+				
+
+	
+	
+
+	
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<span class="btn btn-primary">GET</span>
+			<code>/documents/{id}{?search}</code>
+		</div>
+
+		<div class="panel-body">
+			
+		</div>
+
+		<ul class="list-group">
+			
+				<li class="list-group-item bg-default"><strong>Parameters</strong></li>
+				<li class="list-group-item">
+<dl class="dl-horizontal">
+	
+		<dt>id</dt>
+		<dd>
+		
+		
+		<code>hexadecimal hash</code> Hexadecimal `id` of the Document to perform action with.
+		</dd>
+	
+		<dt>search</dt>
+		<dd>
+		
+			<strong>(required)</strong>
+		
+		<code>string</code> String to highlight in the rendered document
+		</dd>
+	
+</dl>
+</li>
+			
+			
+	
+		
+	
+
+		
+	
+		<li class="list-group-item bg-default response">
+			<strong>Response <code>200</code></strong>
+			<a href="javascript:;" class="pull-right btn btn-link btn-sm snippet-toggle">SHOW</a>
+		</li>
+		<li class="list-group-item snippet">
+			
+				<code>&lt; Content-Type: application/json</code><br>
+			
+			
+				<pre class="prettyprint">{
+    &#34;_type&#34;: &#34;Document&#34;
+    &#34;actions&#34;: {
+        &#34;download&#34;: &#34;http:http://example.org/download/file/url&#34;
+    },
+    &#34;company&#34;: &#34;52bff074c8318c29e9000001&#34;
+    &#34;creation_date&#34;: &#34;2013-12-29T10:40:14.246Z&#34;
+    &#34;document_url&#34;: &#34;/documents/52d96492a7f0a3ac4226f2f7&#34;,
+    &#34;related&#34;: [&#34;52d96492a7f0a3ac424e91&#34;],
+    &#34;datas&#34;: {
+        &#34;bar&#34;: &#34;this will not be indexed for search&#34;
+    },
+    &#34;metadatas&#34;: {
+        &#34;foo&#34;: &#34;this will be indexed for search&#34;
+    },
+}
+</pre>
+			
+		</li>
+	
+
+	
+
+		</ul>
+	</div>
+	
+
+	
+	
+
+	
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<span class="btn btn-primary">GET</span>
+			<code>/documents/{id}/similar</code>
+		</div>
+
+		<div class="panel-body">
+			<p>Documents similar to <code>id</code>.</p>
+
+		</div>
+
+		<ul class="list-group">
+			
+				<li class="list-group-item bg-default"><strong>Parameters</strong></li>
+				<li class="list-group-item">
+<dl class="dl-horizontal">
+	
+		<dt>id</dt>
+		<dd>
+		
+		
+		<code>hexadecimal hash</code> Hexadecimal `id` of the Document to perform action with.
+		</dd>
+	
+</dl>
+</li>
+			
+			
+	
+		
+	
+
+		
+	
+		<li class="list-group-item bg-default response">
+			<strong>Response <code>200</code></strong>
+			<a href="javascript:;" class="pull-right btn btn-link btn-sm snippet-toggle">SHOW</a>
+		</li>
+		<li class="list-group-item snippet">
+			
+				<code>&lt; Content-Type: application/json</code><br>
+			
+			
+				<pre class="prettyprint">{
+    &#34;keywords&#34;: [
+        &#34;anyFetch&#34;,
+        &#34;papiel&#34;
+    ],
+    &#34;document_types&#34;: {
+        &#34;5252ce4ce4cfcd16f55cfa3c&#34;: 4,
+        &#34;5252ce4ce4cfcd16f55cfa3d&#34;: 3
+    },
+    &#34;tokens&#34;: {
+        &#34;52bffb81c8318c29e900000a&#34;: 7
+    },
+    &#34;datas&#34;: [
+        {
+            &#34;_type&#34;: &#34;Document&#34;,
+            &#34;id&#34;: &#34;52bffb8b99b3a70340000008&#34;,
+            &#34;creation_date&#34;: &#34;2013-12-29T10:38:03.101Z&#34;,
+            &#34;token&#34;: &#34;52bffb81c8318c29e900000a&#34;,
+            &#34;company&#34;: &#34;52bff074c8318c29e9000001&#34;,
+            &#34;document_type&#34;: &#34;5252ce4ce4cfcd16f55cfa3c&#34;,
+            &#34;actions&#34;: {
+                &#34;show&#34;: &#34;https:http://www.dropbox.com/home%2FGUIDESTYLE.md&#34;
+            },
+            &#34;document_url&#34;: &#34;/documents/52bffb8b99b3a70340000008&#34;,
+            &#34;related&#34;: [],
+            &#34;datas&#34;: {
+                &#34;title&#34;: &#34;GUIDESTYLE&#34;,
+                &#34;path&#34;: &#34;/GUIDESTYLE.md&#34;,
+                &#34;snippet&#34;: &#34;Do something complicated. Comments starts with a space.&#34;
+            }
+        }
+    ]
+}
+</pre>
+			
+		</li>
+	
+
+	
+
+		</ul>
+	</div>
+	
+
+	
+	
+
+	
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<span class="btn btn-primary">GET</span>
+			<code>/documents/{id}/raw</code>
+		</div>
+
+		<div class="panel-body">
+			<p>Retrieve all raw datas for the <code>id</code>.
+Also include information about hydraters.</p>
+
+		</div>
+
+		<ul class="list-group">
+			
+				<li class="list-group-item bg-default"><strong>Parameters</strong></li>
+				<li class="list-group-item">
+<dl class="dl-horizontal">
+	
+		<dt>id</dt>
+		<dd>
+		
+		
+		<code>hexadecimal hash</code> Hexadecimal `id` of the Document to perform action with.
+		</dd>
+	
+</dl>
+</li>
+			
+			
+	
+		
+	
+
+		
+	
+		<li class="list-group-item bg-default response">
+			<strong>Response <code>200</code></strong>
+			<a href="javascript:;" class="pull-right btn btn-link btn-sm snippet-toggle">SHOW</a>
+		</li>
+		<li class="list-group-item snippet">
+			
+				<code>&lt; Content-Type: application/json</code><br>
+			
+			
+				<pre class="prettyprint">{
+    &#34;_type&#34;: &#34;Document&#34;,
+    &#34;id&#34;: &#34;52bffb8799b3a70340000003&#34;,
+    &#34;creation_date&#34;: &#34;2013-12-29T10:37:59.197Z&#34;,
+    &#34;token&#34;: &#34;52bffb81c8318c29e900000a&#34;,
+    &#34;company&#34;: &#34;52bff074c8318c29e9000001&#34;,
+    &#34;document_type&#34;: &#34;5252ce4ce4cfcd16f55cfa3d&#34;,
+    &#34;actions&#34;: {
+        &#34;show&#34;: &#34;https:http://www.dropbox.com/home%2FPost_it_techcrunch.jpg&#34;
+    },
+    &#34;document_url&#34;: &#34;/documents/52bffb8799b3a70340000003&#34;,
+    &#34;related&#34;: [],
+    &#34;identifier&#34;: &#34;https:http://dropbox.com/228115297/post_it_techcrunch.jpg&#34;,
+    &#34;datas&#34;: {
+        &#34;display&#34;: &#34;data:image/jpeg;base64,/9j/4AAQSkZJRrhttp://2Q==&#34;,
+        &#34;thumb&#34;: &#34;data:image/png;base64,iVBORw0KSuQmCC&#34;
+    },
+    &#34;metadatas&#34;: {
+        &#34;path&#34;: &#34;/Post_it_techcrunch.jpg&#34;,
+        &#34;title&#34;: &#34;Post it techcrunch&#34;,
+        &#34;software&#34;: &#34;JLS36G&#34;,
+        &#34;model&#34;: &#34;GT-I9100&#34;,
+        &#34;creation-date&#34;: &#34;2013-10-09T10:45:57&#34;,
+        &#34;last-save-date&#34;: &#34;2013-10-09T10:45:56&#34;,
+        &#34;f-number&#34;: &#34;F2.6&#34;,
+        &#34;last-modified&#34;: &#34;2013-10-09T10:45:56&#34;,
+        &#34;modified&#34;: &#34;2013-10-09T10:45:56&#34;,
+        &#34;content-type&#34;: &#34;image/jpeg&#34;,
+        &#34;make&#34;: &#34;Samsung&#34;,
+        &#34;content-length&#34;: &#34;2163026&#34;,
+        &#34;date&#34;: &#34;2013-10-09T10:45:56&#34;,
+        &#34;flash&#34;: &#34;Flash did not fire, auto&#34;,
+        &#34;orientation&#34;: &#34;Top, left side (Horizontal / normal)&#34;,
+        &#34;gps-altitude-ref&#34;: &#34;Below sea level&#34;,
+        &#34;metering-mode&#34;: &#34;Center weighted average&#34;,
+        &#34;meta-save-date&#34;: &#34;2013-10-09T10:45:56&#34;,
+        &#34;exif-version&#34;: &#34;2.20&#34;,
+        &#34;exposure-mode&#34;: &#34;Auto exposure&#34;,
+        &#34;tiff-imagelength&#34;: &#34;240&#34;,
+        &#34;exif-flash&#34;: &#34;false&#34;,
+        &#34;iso-speed-ratings&#34;: &#34;80&#34;,
+        &#34;x-resolution&#34;: &#34;72 dots per inch&#34;,
+        &#34;user-comment&#34;: &#34;User comments&#34;,
+        &#34;shutter-speed-value&#34;: &#34;1/16 sec&#34;,
+        &#34;tiff-imagewidth&#34;: &#34;320&#34;,
+        &#34;image-width&#34;: &#34;2448 pixels&#34;,
+        &#34;gps-longitude&#34;: &#34;4.0° 52.0&#39; 34.750000000003354&amp;quot;&#34;,
+        &#34;gps-longitude-ref&#34;: &#34;E&#34;,
+        &#34;exif-fnumber&#34;: &#34;2.65&#34;,
+        &#34;gps-altitude&#34;: &#34;0 metres&#34;,
+        &#34;color-space&#34;: &#34;sRGB&#34;,
+        &#34;meta-creation-date&#34;: &#34;2013-10-09T10:45:57&#34;,
+        &#34;resolution-units&#34;: &#34;none&#34;,
+        &#34;data-precision&#34;: &#34;8 bits&#34;,
+        &#34;tiff-bitspersample&#34;: &#34;8&#34;,
+        &#34;gps-img-direction&#34;: &#34;359 degrees&#34;,
+        &#34;ycbcr-positioning&#34;: &#34;Center of pixel array&#34;,
+        &#34;compression-type&#34;: &#34;Baseline&#34;,
+        &#34;exif-isospeedratings&#34;: &#34;80&#34;,
+        &#34;gps-img-direction-ref&#34;: &#34;Magnetic direction&#34;,
+        &#34;thumbnail-image-width&#34;: &#34;320 pixels&#34;,
+        &#34;max-aperture-value&#34;: &#34;F2.6&#34;,
+        &#34;brightness-value&#34;: &#34;2.32&#34;,
+        &#34;thumbnail-offset&#34;: &#34;960 bytes&#34;,
+        &#34;exif-image-height&#34;: &#34;3264 pixels&#34;,
+        &#34;focal-length&#34;: &#34;4.03 mm&#34;,
+        &#34;thumbnail-length&#34;: &#34;26870 bytes&#34;,
+        &#34;thumbnail-compression&#34;: &#34;JPEG (old-style)&#34;,
+        &#34;exposure-bias-value&#34;: &#34;0 EV&#34;,
+        &#34;white-balance-mode&#34;: &#34;Auto white balance&#34;,
+        &#34;tiff-orientation&#34;: &#34;1&#34;,
+        &#34;tiff-make&#34;: &#34;Samsung&#34;,
+        &#34;date-time-original&#34;: &#34;2013:10:09 10:45:57&#34;,
+        &#34;thumbnail-image-height&#34;: &#34;240 pixels&#34;,
+        &#34;exif-image-width&#34;: &#34;2448 pixels&#34;,
+        &#34;scene-capture-type&#34;: &#34;Standard&#34;,
+        &#34;dcterms-created&#34;: &#34;2013-10-09T10:45:57&#34;,
+        &#34;exif-exposuretime&#34;: &#34;0.058823529411764705&#34;,
+        &#34;component-1&#34;: &#34;Y component: Quantization table 0, Sampling factors 2 horiz/1 vert&#34;,
+        &#34;gps-latitude&#34;: &#34;45.0° 47.0&#39; 24.419999999985293&amp;quot;&#34;,
+        &#34;component-2&#34;: &#34;Cb component: Quantization table 1, Sampling factors 1 horiz/1 vert&#34;,
+        &#34;component-3&#34;: &#34;Cr component: Quantization table 1, Sampling factors 1 horiz/1 vert&#34;,
+        &#34;gps-latitude-ref&#34;: &#34;N&#34;,
+        &#34;date-time-digitized&#34;: &#34;2013:10:09 10:45:57&#34;,
+        &#34;resolution-unit&#34;: &#34;Inch&#34;,
+        &#34;unknown-tag--0x0101-&#34;: &#34;2448&#34;,
+        &#34;tiff-software&#34;: &#34;JLS36G&#34;,
+        &#34;aperture-value&#34;: &#34;F2.6&#34;,
+        &#34;number-of-components&#34;: &#34;3&#34;,
+        &#34;tiff-model&#34;: &#34;GT-I9100&#34;,
+        &#34;dcterms-modified&#34;: &#34;2013-10-09T10:45:56&#34;,
+        &#34;image-height&#34;: &#34;3264 pixels&#34;,
+        &#34;gps-date-stamp&#34;: &#34;2013:10:09&#34;,
+        &#34;geo-lat&#34;: &#34;45.790117&#34;,
+        &#34;exposure-time&#34;: &#34;1/17 sec&#34;,
+        &#34;gps-time-stamp&#34;: &#34;8:45:56 UTC&#34;,
+        &#34;exif-datetimeoriginal&#34;: &#34;2013-10-09T10:45:57&#34;,
+        &#34;exif-focallength&#34;: &#34;4.03&#34;,
+        &#34;date-time&#34;: &#34;2013:10:09 10:45:56&#34;,
+        &#34;geo-long&#34;: &#34;4.876319&#34;,
+        &#34;gps-processing-method&#34;: &#34;110 101 116 119 111 114 107&#34;,
+        &#34;exposure-program&#34;: &#34;Aperture priority&#34;,
+        &#34;gps-version-id&#34;: &#34;2.200&#34;,
+        &#34;unknown-tag--0x0100-&#34;: &#34;3264&#34;,
+        &#34;y-resolution&#34;: &#34;72 dots per inch&#34;
+    },
+    &#34;hydrating&#34;: {
+        &#34;http---tesseracthydrater-anyfetch-com-hydrate&#34;: &#34;2013-12-29T10:38:40.358Z&#34;
+    },
+    &#34;hydrated_by&#34;: [
+        &#34;http:http://tikahydrater.anyfetch.com/hydrate&#34;,
+        &#34;http:http://imagehydrater.anyfetch.com/hydrate&#34;
+    ]
+}
+</pre>
+			
+		</li>
+	
+
+	
+
+		</ul>
+	</div>
+	
+
+	
+	
+
+	
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<span class="btn btn-primary">GET</span>
+			<code>/documents/{?start, ?limit, ?search, ?_meta, ?@meta, ?has_meta, ?related_to, ?document_type, ?snippet_size}</code>
+		</div>
+
+		<div class="panel-body">
+			
+		</div>
+
+		<ul class="list-group">
+			
+				<li class="list-group-item bg-default"><strong>Parameters</strong></li>
+				<li class="list-group-item">
+<dl class="dl-horizontal">
+	
+		<dt>_meta</dt>
+		<dd>
+		
+			<strong>(required)</strong>
+		
+		<code>string</code> Strict search on `meta` key
+		</dd>
+	
+		<dt>document_type</dt>
+		<dd>
+		
+			<strong>(required)</strong>
+		
+		<code>array</code> Only retrieve documents matching this document type. You can use the param multiple times to allow for multiples `document_type`
+		</dd>
+	
+		<dt>has_meta</dt>
+		<dd>
+		
+			<strong>(required)</strong>
+		
+		<code>string</code> Only returns document having the `meta` key
+		</dd>
+	
+		<dt>limit</dt>
+		<dd>
+		
+			<strong>(required)</strong>
+		
+		<code>integer</code> Max number of items to retrieve (for pagination)
+		</dd>
+	
+		<dt>related_to</dt>
+		<dd>
+		
+			<strong>(required)</strong>
+		
+		<code>string</code> Find documents related to the specified document
+		</dd>
+	
+		<dt>search</dt>
+		<dd>
+		
+			<strong>(required)</strong>
+		
+		<code>string</code> Search query, probably the most important parameter for this query
+		</dd>
+	
+		<dt>snippet_size</dt>
+		<dd>
+		
+		
+		<code></code> Number of words in the snippet
+		</dd>
+	
+		<dt>start</dt>
+		<dd>
+		
+			<strong>(required)</strong>
+		
+		<code>integer</code> Index of the first item to retrieve (for pagination)
+		</dd>
+	
+</dl>
+</li>
+			
+			
+	
+		
+	
+
+		
+	
+		<li class="list-group-item bg-default response">
+			<strong>Response <code>204</code></strong>
+			<a href="javascript:;" class="pull-right btn btn-link btn-sm snippet-toggle">SHOW</a>
+		</li>
+		<li class="list-group-item snippet">
+			
+			
+		</li>
+	
+
+	
+
+		</ul>
+	</div>
+	
+
 
 			</div>
 		</div>
@@ -215,7 +768,7 @@
 				<h2 id="users">Users</h2>
 			</div>
 			<div class="panel-body">
-				<p class="lead"><small>User ressources.
+				<p class="lead"><small>User resources.
 
 </small></p>
 				
@@ -457,7 +1010,7 @@
 		</div>
 
 		<div class="panel-body">
-			<p>Add a document in the FetchAPI et returns the created document.</p>
+			<p>Add a document in the Fetch API et returns the created document.</p>
 
 <blockquote>
 <p><strong>Note:</strong> <code>no_hydration</code> optional boolean. When true, asks the API to wait before starting hydration (useful when you want to send a file immediately after)</p>
@@ -547,7 +1100,7 @@
 		</div>
 
 		<div class="panel-body">
-			<p>Update a document already present on the Fetch API. The <code>id</code> of the document (or it&rsquo;s <code>identifier</code>) should be specified.</p>
+			<p>Update a document already present on the Fetch API. The <code>id</code> of the document (or its <code>identifier</code>) should be specified.</p>
 
 <blockquote>
 <p><strong>Note:</strong> for ease of use, you can use POST and PATCH on this endpoint. This allows provider to abstract whether the document already exists or not.</p>
