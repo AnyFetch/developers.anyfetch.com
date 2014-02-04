@@ -86,11 +86,13 @@ A single document with its details
             }
 
 ## Documents [/documents/{id}/similar]
-Documents similar to `id`.
+
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
 
 ### Retrieve similar documents [GET]
+Documents similar to `id`.
+
 + Response 200 (application/json)
     + Body
 
@@ -129,11 +131,13 @@ Documents similar to `id`.
         }
 
 ## Documents [/documents/{id}/raw]
-Retrieve all raw datas for the `id`.
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
 
 ### Retrieve raw document data [GET]
+Retrieve all raw datas for the `id`.
+Also include information about hydraters.
+
 + Response 200 (application/json)
     + Body
 
