@@ -28,7 +28,7 @@ Sometime, you want to test the results and you don't want to ping another adress
 You can then use the `long_poll` option. This is not for production use, and only for testing purposes (anyway, in production, if the hydrater is busy, your request will be dropped). The `long_poll` option returns the result with the request (instead of returning instantly 202).
 
 ```sh
-$ curl --header "Content-Type:application/json" --data '{"file_path":"https://raw2.github.com/Papiel/ocr.hydrater.anyfetch.com/763ca1c77b33451de3fff733ad850287b48d2f96/test/samples/sample.png", "callback":"http://example.com","long_poll":true}' http://ocr.hydrater.anyfetch.com/hydrate
+$ curl --header "Content-Type:application/json" --data '{"file_path":"https://raw2.github.com/Papiel/ocr.hydrater.anyfetch.com/763ca1c77b33451de3fff733ad850287b48d2f96/test/samples/sample.png", "long_poll":true}' http://ocr.hydrater.anyfetch.com/hydrate
 ```
 
 ```json

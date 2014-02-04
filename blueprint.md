@@ -2,7 +2,7 @@ FORMAT: 1A
 HOST: http://www.api.anyfetch.com
 
 # Fetch API
-**Fetch API** is designed to help you search in  massive amounts of documents coming from various sources, in various formats.
+**Fetch API** is designed to help you search in  massive amounts of documents coming from various sources, in various formats. See [authentication](/authentication.html) for authentication details.
 
 # Group Index
 ## GET /
@@ -439,6 +439,8 @@ You can't access them with an OAuth token, or using Basic Auth.
 ## Document [/hydraters/documents/{id}]
 ### Update document metadatas [POST]
 Update document metadatas, datas and actions.
+For datas and metadatas, merging occurs on first level only. If the existing datas is `{a:1, b:{c:2}, d:3}` and you submit `{a:2, b:{e:4}}`, the resulting document will be `{a:2, b:{e:4}, d:3}`. To remove a key, simply set its value to `null`.
+
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
 
