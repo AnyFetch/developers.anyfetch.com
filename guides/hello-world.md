@@ -14,27 +14,38 @@ To follow this guide, you need:
 * A sample file for hydration, for instance THIS ONE.
 
 ## Setting up
+You need to base64 encode your login and password separated with a colon.
+For instance, the login `test@anyfetch.com` and password `password` will be encoded as `test@anyfetch.com:password`, which is `dGVzdEBhbnlmZXRjaC5jb206cGFzc3dvcmQ=`.
+Use [this tool](http://www.base64encode.org/) if needed. For the remainder of this document, replace `${BASE64}` with your value.
+
+You can now send requests using [basic authentication](/authentication.html): an `Authorization` header with a value of `Basic ${BASE64}`
+
 ### Clean up your account
 > Warning: this will remove **all datas** from this account! Only use on testing accounts.
 
 The first step will be to clean everything that may be available on your account. To do that, we'll send a simple `DELETE` request to `/reset`:
 
 ```sh
-$ curl -XDELETE http://api.anyfetch.com/reset
+$ curl -XDELETE \
+-H "Authorization: Basic ${BASE64}" \
+http://api.anyfetch.com/reset
 ```
 
 ### Retrieve a token
-Although you can do most things using the Basic Authentication, tokens are faster to use, generally more secure since you can revoke them at any time
+Although you can do most things using the Basic Authentication, tokens are faster to use, and generally more secure since you can revoke them at any time
 For our test, we'll use a token:
 
 ```sh
-$ curl http://api.anyfetch.com/token
+$ curl -H "Authorization: Basic ${BASE64}" \
+http://api.anyfetch.com/token
+
+{"token":"${TOKEN}"}
 ```
 
-Keep it somewhere safe.
+Keep this token somewhere safe.
 
 ## Providing datas
-now that we're set up, we can send our document. This requires two steps: first, sending meta-datas about our files, and then sending the actual file.
+Now that we're set up, we can send our document. This requires two steps: first, sending meta-datas about our files, and then sending the actual file.
 
 ### Send a document
 Before sending the file, we need to give Fetch API basic informations about our documents. We'll send the following params:
