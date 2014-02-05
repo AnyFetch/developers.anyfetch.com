@@ -1,3 +1,6 @@
+## Tutorials
+* ["Hello world" tutorial](/guides/hello-world.html)
+
 ## Concepts
 * [About projections](/guides/projections.html)
 * How to create my own document-type? (soon)
