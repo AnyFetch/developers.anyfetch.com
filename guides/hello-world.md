@@ -39,7 +39,9 @@ For our test, we'll use a token:
 $ curl -H "Authorization: Basic ${BASE64}" \
 http://api.anyfetch.com/token
 
-{"token":"${TOKEN}"}
+{
+    "token":"${TOKEN}"
+}
 ```
 
 Keep this token somewhere safe.
@@ -55,10 +57,37 @@ Before sending the file, we need to give Fetch API basic informations about our 
 * `metadatas`: a JSON object containing basic information about our document. For now, we'll simply send a `path` and a `title`.
 
 ```sh
-$ curl
+$ curl -XPOST \
+-H "Authorization: token ${TOKEN}" \
+-H "Content-Type:application/json" \
+http://api.anyfetch.com/providers/documents \
+-d '{"identifier": "hello-world", "no_hydration": true, "metadatas": {"path": "/home/anyfetch/sample.txt", "title": "anyFetch sample file"}}'
+
+{
+    "_type":"Document",
+    "id":"52f214e874a24df25331490e",
+    "creation_date":"2014-02-05T10:39:36.623Z",
+    "token":"52f212ca74a24df25331490c",
+    "company":"52f0bb24c8318c2d65000035",
+    "document_type":null,
+    "actions":{},
+    "document_url":"/documents/52f214e874a24df25331490e",
+    "related":[],
+    "identifier":"hello-world",
+    "datas":{},
+    "metadatas": {
+        "path":"/home/anyfetch/sample.txt",
+        "title":"anyFetch sample file"
+    },
+    "user_access":[]
+}
 ```
 
-Fetch API will reply with the new document. Keep the `id` somewhere, we'll need it later.
+Fetch API replied with the new document. Keep the `id` somewhere, we'll need it later.
+Things to note...
+
+* `creation_date` was automatically set for you. You can override it when need be.
+* `token`, for security reason, is not the token you used to provide, but an identifier of your token. This lets users access the documents you created without compromising your token.
 
 ### Send the file
 Now that we've created the document on Fetch API, we can associate it with a file. This is a simple file upload:
