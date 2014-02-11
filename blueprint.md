@@ -41,11 +41,242 @@ Get the current status of the Fetch API.
                 "message": ""
             }
 
+## POST /update
+Ping all providers of the current user to check if new available documents
 
++ Response 204
+
+
+## DELETE /reset
+Reset all documents and providers from the account.
+> **Note:** Use with caution
+
++ Response 204
+
+
+# Group Documents
+Endpoints for retrieving documents
+
+## Documents [/documents/{id}{?search}]
+A single document with its details
+
++ Parameters
+    + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
+    + search (optional, string, `cascade`) ... String to highlight in the rendered document
+
+### Retrieve a single document [GET]
++ Response 200 (application/json)
+    + Body
+
+            {
+                "_type": "Document"
+                "actions": {
+                    "download": "http://example.org/download/file/url"
+                },
+                "company": "52bff074c8318c29e9000001"
+                "creation_date": "2013-12-29T10:40:14.246Z"
+                "document_url": "/documents/52d96492a7f0a3ac4226f2f7",
+                "related": ["52d96492a7f0a3ac424e91"],
+                "datas": {
+                    "bar": "this will not be indexed for search"
+                },
+                "metadatas": {
+                    "foo": "this will be indexed for search"
+                },
+            }
+
+## Documents [/documents/{id}/similar]
+
++ Parameters
+    + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
+
+### Retrieve similar documents [GET]
+Documents similar to `id`.
+
++ Response 200 (application/json)
+    + Body
+
+        {
+            "keywords": [
+                "anyFetch",
+                "papiel"
+            ],
+            "document_types": {
+                "5252ce4ce4cfcd16f55cfa3c": 4,
+                "5252ce4ce4cfcd16f55cfa3d": 3
+            },
+            "tokens": {
+                "52bffb81c8318c29e900000a": 7
+            },
+            "datas": [
+                {
+                    "_type": "Document",
+                    "id": "52bffb8b99b3a70340000008",
+                    "creation_date": "2013-12-29T10:38:03.101Z",
+                    "token": "52bffb81c8318c29e900000a",
+                    "company": "52bff074c8318c29e9000001",
+                    "document_type": "5252ce4ce4cfcd16f55cfa3c",
+                    "actions": {
+                        "show": "https://www.dropbox.com/home%2FGUIDESTYLE.md"
+                    },
+                    "document_url": "/documents/52bffb8b99b3a70340000008",
+                    "related": [],
+                    "datas": {
+                        "title": "GUIDESTYLE",
+                        "path": "/GUIDESTYLE.md",
+                        "snippet": "Do something complicated. Comments starts with a space."
+                    }
+                }
+            ]
+        }
+
+## Documents [/documents/{id}/raw]
++ Parameters
+    + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
+
+### Retrieve raw document data [GET]
+Retrieve all raw datas for the `id`.
+Also include information about hydraters.
+
++ Response 200 (application/json)
+    + Body
+
+        {
+            "_type": "Document",
+            "id": "52bffb8799b3a70340000003",
+            "creation_date": "2013-12-29T10:37:59.197Z",
+            "token": "52bffb81c8318c29e900000a",
+            "company": "52bff074c8318c29e9000001",
+            "document_type": "5252ce4ce4cfcd16f55cfa3d",
+            "actions": {
+                "show": "https://www.dropbox.com/home%2FPost_it_techcrunch.jpg"
+            },
+            "document_url": "/documents/52bffb8799b3a70340000003",
+            "related": [],
+            "identifier": "https://dropbox.com/228115297/post_it_techcrunch.jpg",
+            "datas": {
+                "display": "data:image/jpeg;base64,/9j/4AAQSkZJRr//2Q==",
+                "thumb": "data:image/png;base64,iVBORw0KSuQmCC"
+            },
+            "metadatas": {
+                "path": "/Post_it_techcrunch.jpg",
+                "title": "Post it techcrunch",
+                "software": "JLS36G",
+                "model": "GT-I9100",
+                "creation-date": "2013-10-09T10:45:57",
+                "last-save-date": "2013-10-09T10:45:56",
+                "f-number": "F2.6",
+                "last-modified": "2013-10-09T10:45:56",
+                "modified": "2013-10-09T10:45:56",
+                "content-type": "image/jpeg",
+                "make": "Samsung",
+                "content-length": "2163026",
+                "date": "2013-10-09T10:45:56",
+                "flash": "Flash did not fire, auto",
+                "orientation": "Top, left side (Horizontal / normal)",
+                "gps-altitude-ref": "Below sea level",
+                "metering-mode": "Center weighted average",
+                "meta-save-date": "2013-10-09T10:45:56",
+                "exif-version": "2.20",
+                "exposure-mode": "Auto exposure",
+                "tiff-imagelength": "240",
+                "exif-flash": "false",
+                "iso-speed-ratings": "80",
+                "x-resolution": "72 dots per inch",
+                "user-comment": "User comments",
+                "shutter-speed-value": "1/16 sec",
+                "tiff-imagewidth": "320",
+                "image-width": "2448 pixels",
+                "gps-longitude": "4.0° 52.0' 34.750000000003354&quot;",
+                "gps-longitude-ref": "E",
+                "exif-fnumber": "2.65",
+                "gps-altitude": "0 metres",
+                "color-space": "sRGB",
+                "meta-creation-date": "2013-10-09T10:45:57",
+                "resolution-units": "none",
+                "data-precision": "8 bits",
+                "tiff-bitspersample": "8",
+                "gps-img-direction": "359 degrees",
+                "ycbcr-positioning": "Center of pixel array",
+                "compression-type": "Baseline",
+                "exif-isospeedratings": "80",
+                "gps-img-direction-ref": "Magnetic direction",
+                "thumbnail-image-width": "320 pixels",
+                "max-aperture-value": "F2.6",
+                "brightness-value": "2.32",
+                "thumbnail-offset": "960 bytes",
+                "exif-image-height": "3264 pixels",
+                "focal-length": "4.03 mm",
+                "thumbnail-length": "26870 bytes",
+                "thumbnail-compression": "JPEG (old-style)",
+                "exposure-bias-value": "0 EV",
+                "white-balance-mode": "Auto white balance",
+                "tiff-orientation": "1",
+                "tiff-make": "Samsung",
+                "date-time-original": "2013:10:09 10:45:57",
+                "thumbnail-image-height": "240 pixels",
+                "exif-image-width": "2448 pixels",
+                "scene-capture-type": "Standard",
+                "dcterms-created": "2013-10-09T10:45:57",
+                "exif-exposuretime": "0.058823529411764705",
+                "component-1": "Y component: Quantization table 0, Sampling factors 2 horiz/1 vert",
+                "gps-latitude": "45.0° 47.0' 24.419999999985293&quot;",
+                "component-2": "Cb component: Quantization table 1, Sampling factors 1 horiz/1 vert",
+                "component-3": "Cr component: Quantization table 1, Sampling factors 1 horiz/1 vert",
+                "gps-latitude-ref": "N",
+                "date-time-digitized": "2013:10:09 10:45:57",
+                "resolution-unit": "Inch",
+                "unknown-tag--0x0101-": "2448",
+                "tiff-software": "JLS36G",
+                "aperture-value": "F2.6",
+                "number-of-components": "3",
+                "tiff-model": "GT-I9100",
+                "dcterms-modified": "2013-10-09T10:45:56",
+                "image-height": "3264 pixels",
+                "gps-date-stamp": "2013:10:09",
+                "geo-lat": "45.790117",
+                "exposure-time": "1/17 sec",
+                "gps-time-stamp": "8:45:56 UTC",
+                "exif-datetimeoriginal": "2013-10-09T10:45:57",
+                "exif-focallength": "4.03",
+                "date-time": "2013:10:09 10:45:56",
+                "geo-long": "4.876319",
+                "gps-processing-method": "110 101 116 119 111 114 107",
+                "exposure-program": "Aperture priority",
+                "gps-version-id": "2.200",
+                "unknown-tag--0x0100-": "3264",
+                "y-resolution": "72 dots per inch"
+            },
+            "hydrating": {
+                "http---tesseracthydrater-anyfetch-com-hydrate": "2013-12-29T10:38:40.358Z"
+            },
+            "hydrated_by": [
+                "http://tikahydrater.anyfetch.com/hydrate",
+                "http://imagehydrater.anyfetch.com/hydrate"
+            ]
+        }
+
+## Documents List [/documents/{?start, ?limit, ?search, ?_meta, ?@meta, ?has_meta, ?related_to, ?document_type, ?snippet_size}]
+Retrieve a list of documents
+
++ Parameters
+    + start (optional, integer) ... Index of the first item to retrieve (for pagination)
+    + limit (optional, integer) ... Max number of items to retrieve (for pagination)
+    + search (optional, string) ... Search query, probably the most important parameter for this query
+    + _meta (optional, string) ... Strict search on `meta` key
+    + @meta (optional, string) ... Full text search on `meta` key
+    + has_meta (optional, string) ... Only returns document having the `meta` key
+    + related_to (optional, string) ... Find documents related to the specified document
+    + document_type (optional, array) ... Only retrieve documents matching this document type. You can use the param multiple times to allow for multiples `document_type`
+    + snippet_size (optionnal, integer) ... Number of words in the snippet
+
+
+### Retrieve a list of documents[GET]
++ Response 204
 
 
 # Group Users
-User ressources.
+User resources.
 
 ## User [/user/{id}]
 A single User object with all its details. This resource has the following attributes :
@@ -104,8 +335,6 @@ Retrieve a list of all users in the current company.
                 },
                 ...
             ]
-
-
 
 
 # Group Providers

@@ -25,7 +25,7 @@ This is the best way to use your token.
 
 #### OAuth2 Token (sent as a parameter)
 ```sh
-$ curl https://api.anyfetch.com?access_token=OAUTH-TOKEN
+$ curl https://api.anyfetch.com?oauth_access_token=OAUTH-TOKEN
 ```
 
 ### Error codes
