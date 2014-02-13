@@ -95,20 +95,60 @@ Documents similar to `id`.
 
 + Response 200 (application/json)
     + Body
-
         {
-            "keywords": [
-                "anyFetch",
-                "papiel"
+            title: [
+                "subject": "Hello"
             ],
-            "document_types": {
-                "5252ce4ce4cfcd16f55cfa3c": 4,
-                "5252ce4ce4cfcd16f55cfa3d": 3
-            },
-            "tokens": {
-                "52bffb81c8318c29e900000a": 7
-            },
-            "datas": [
+            document_type: "5252ce4ce4cfcd16f55cfa3c",
+            datas: [
+                {
+                    "keywords": [
+                        "anyFetch",
+                        "papiel"
+                    ],
+                    "document_types": {
+                        "5252ce4ce4cfcd16f55cfa3c": 4,
+                        "5252ce4ce4cfcd16f55cfa3d": 3
+                    },
+                    "tokens": {
+                        "52bffb81c8318c29e900000a": 7
+                    },
+                    "datas": [
+                        {
+                            "_type": "Document",
+                            "id": "52bffb8b99b3a70340000008",
+                            "creation_date": "2013-12-29T10:38:03.101Z",
+                            "token": "52bffb81c8318c29e900000a",
+                            "company": "52bff074c8318c29e9000001",
+                            "document_type": "5252ce4ce4cfcd16f55cfa3c",
+                            "actions": {
+                                "show": "https://www.dropbox.com/home%2FGUIDESTYLE.md"
+                            },
+                            "document_url": "/documents/52bffb8b99b3a70340000008",
+                            "related": [],
+                            "datas": {
+                                "title": "GUIDESTYLE",
+                                "path": "/GUIDESTYLE.md",
+                                "snippet": "Do something complicated. Comments starts with a space."
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+
+## Documents [/documents/{id}/related]
+
++ Parameters
+    + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
+
+### Retrieve similar documents [GET]
+Documents related to `id`.
+
++ Response 200 (application/json)
+    + Body
+        {
+            datas: [
                 {
                     "_type": "Document",
                     "id": "52bffb8b99b3a70340000008",
@@ -262,13 +302,16 @@ Retrieve a list of documents
 + Parameters
     + start (optional, integer) ... Index of the first item to retrieve (for pagination)
     + limit (optional, integer) ... Max number of items to retrieve (for pagination)
+    + before (optional, date) ... Only display documents created before this date. Use document creation date, and not anyFetch importation date. Format as valid JS date, for instance `2011-10-25`.
+    + after (optional, date) ... Only display documents created after this date. Use document creation date, and not anyFetch importation date. Format as valid JS date, for instance `2011-10-25`.
+    + limit (optional, integer) ... Max number of items to retrieve (for pagination)
     + search (optional, string) ... Search query, probably the most important parameter for this query
     + _meta (optional, string) ... Strict search on `meta` key
     + @meta (optional, string) ... Full text search on `meta` key
     + has_meta (optional, string) ... Only returns document having the `meta` key
     + related_to (optional, string) ... Find documents related to the specified document
     + document_type (optional, array) ... Only retrieve documents matching this document type. You can use the param multiple times to allow for multiples `document_type`
-    + snippet_size (optionnal, integer) ... Number of words in the snippet
+    + snippet_size (optional, integer) ... Number of words in the snippet
 
 
 ### Retrieve a list of documents[GET]
