@@ -6,9 +6,10 @@ HOST: http://www.api.anyfetch.com
 **Fetch API** is designed to help you search in  massive amounts of documents coming from various sources, in various formats. See [authentication](/authentication.html) for authentication details.
 
 # Group Index
-## GET /
+## Index [/]
 Retrieve datas about the current account. This endpoint return the following attributes:
 
+### [GET]
 - `server_time`: UNIX timesptamp of the server
 - `user_url` currently connected user endpoint url: use to retrieve informations about the user
 - `documents_url` documents endpoint url: use to search for documents
@@ -31,8 +32,10 @@ Retrieve datas about the current account. This endpoint return the following att
                 "document_types": {}
             }
 
-## GET /status
+## API status [/status]
 Get the current status of the Fetch API.
+
+### [GET]
 
 + Response 200 (application/json)
     + Body
@@ -42,15 +45,18 @@ Get the current status of the Fetch API.
                 "message": ""
             }
 
-## POST /update
-Ping all providers of the current user to check if new available documents
+## Update providers [/update]
+Ping all providers of the current user to check for new available documents.
+
+## [POST]
 
 + Response 204
 
-
-## DELETE /reset
+## Reset account [/reset]
 Reset all documents and providers from the account.
-> **Note:** Use with caution
+
+### [DELETE]
+> **Note:** Use with caution! Reset everything.
 
 + Response 204
 
@@ -528,7 +534,7 @@ Delete the specified document. To specify the selected document, an `id` or an `
 ## File [/providers/documents/file]
 Attach a file to a document. The request should specify the document `identifier`.
 You can't use this endpoint without pinging `/providers/documents/` first.
-> **Note:** When you want to use this endpoint, don't forget to use `no_hydration: true` on !
+> **Note:** When you want to use this endpoint, don't forget to use `no_hydration: true` !
 
 
 ### Add a file to a document [POST]
