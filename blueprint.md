@@ -75,7 +75,7 @@ Reset all documents and providers from the account.
 # Group Documents
 Endpoints for retrieving documents
 
-## Search for document [/documents/{?start, ?limit, ?search, ?_meta, ?@meta, ?has_meta, ?related_to, ?document_type, ?snippet_size}]
+## Search for document [/documents/{?start, ?limit, ?search, ?_meta, ?@meta, ?has_meta, ?related_to, ?document_type, ?snippet_size, ?after, ?before}]
 Retrieve a list of documents
 
 + Parameters
@@ -83,7 +83,6 @@ Retrieve a list of documents
     + limit (optional, integer) ... Max number of items to retrieve (for pagination)
     + before (optional, date) ... Only display documents created before this date. Use document creation date, and not anyFetch importation date. Format as valid JS date, for instance `2011-10-25`.
     + after (optional, date) ... Only display documents created after this date. Use document creation date, and not anyFetch importation date. Format as valid JS date, for instance `2011-10-25`.
-    + limit (optional, integer) ... Max number of items to retrieve (for pagination)
     + search (optional, string) ... Search query, probably the most important parameter for this query
     + _meta (optional, string) ... Strict search on `meta` key
     + @meta (optional, string) ... Full text search on `meta` key
@@ -134,47 +133,48 @@ Documents similar to `id`.
 
 + Response 200 (application/json)
     + Body
-        {
-            title: [
-                "subject": "Hello"
-            ],
-            document_type: "5252ce4ce4cfcd16f55cfa3c",
-            datas: [
-                {
-                    "keywords": [
-                        "anyFetch",
-                        "papiel"
-                    ],
-                    "document_types": {
-                        "5252ce4ce4cfcd16f55cfa3c": 4,
-                        "5252ce4ce4cfcd16f55cfa3d": 3
-                    },
-                    "tokens": {
-                        "52bffb81c8318c29e900000a": 7
-                    },
-                    "datas": [
-                        {
-                            "_type": "Document",
-                            "id": "52bffb8b99b3a70340000008",
-                            "creation_date": "2013-12-29T10:38:03.101Z",
-                            "token": "52bffb81c8318c29e900000a",
-                            "company": "52bff074c8318c29e9000001",
-                            "document_type": "5252ce4ce4cfcd16f55cfa3c",
-                            "actions": {
-                                "show": "https://www.dropbox.com/home%2FGUIDESTYLE.md"
-                            },
-                            "document_url": "/documents/52bffb8b99b3a70340000008",
-                            "related": [],
-                            "datas": {
-                                "title": "GUIDESTYLE",
-                                "path": "/GUIDESTYLE.md",
-                                "snippet": "Do something complicated. Comments starts with a space."
+
+            {
+                title: [
+                    "subject": "Hello"
+                ],
+                document_type: "5252ce4ce4cfcd16f55cfa3c",
+                datas: [
+                    {
+                        "keywords": [
+                            "anyFetch",
+                            "papiel"
+                        ],
+                        "document_types": {
+                            "5252ce4ce4cfcd16f55cfa3c": 4,
+                            "5252ce4ce4cfcd16f55cfa3d": 3
+                        },
+                        "tokens": {
+                            "52bffb81c8318c29e900000a": 7
+                        },
+                        "datas": [
+                            {
+                                "_type": "Document",
+                                "id": "52bffb8b99b3a70340000008",
+                                "creation_date": "2013-12-29T10:38:03.101Z",
+                                "token": "52bffb81c8318c29e900000a",
+                                "company": "52bff074c8318c29e9000001",
+                                "document_type": "5252ce4ce4cfcd16f55cfa3c",
+                                "actions": {
+                                    "show": "https://www.dropbox.com/home%2FGUIDESTYLE.md"
+                                },
+                                "document_url": "/documents/52bffb8b99b3a70340000008",
+                                "related": [],
+                                "datas": {
+                                    "title": "GUIDESTYLE",
+                                    "path": "/GUIDESTYLE.md",
+                                    "snippet": "Do something complicated. Comments starts with a space."
+                                }
                             }
-                        }
-                    ]
-                }
-            ]
-        }
+                        ]
+                    }
+                ]
+            }
 
 ## Retrieve related documents [/documents/{id}/related]
 
@@ -186,28 +186,29 @@ Documents related to `id`.
 
 + Response 200 (application/json)
     + Body
-        {
-            datas: [
-                {
-                    "_type": "Document",
-                    "id": "52bffb8b99b3a70340000008",
-                    "creation_date": "2013-12-29T10:38:03.101Z",
-                    "token": "52bffb81c8318c29e900000a",
-                    "company": "52bff074c8318c29e9000001",
-                    "document_type": "5252ce4ce4cfcd16f55cfa3c",
-                    "actions": {
-                        "show": "https://www.dropbox.com/home%2FGUIDESTYLE.md"
-                    },
-                    "document_url": "/documents/52bffb8b99b3a70340000008",
-                    "related": [],
-                    "datas": {
-                        "title": "GUIDESTYLE",
-                        "path": "/GUIDESTYLE.md",
-                        "snippet": "Do something complicated. Comments starts with a space."
+
+            {
+                datas: [
+                    {
+                        "_type": "Document",
+                        "id": "52bffb8b99b3a70340000008",
+                        "creation_date": "2013-12-29T10:38:03.101Z",
+                        "token": "52bffb81c8318c29e900000a",
+                        "company": "52bff074c8318c29e9000001",
+                        "document_type": "5252ce4ce4cfcd16f55cfa3c",
+                        "actions": {
+                            "show": "https://www.dropbox.com/home%2FGUIDESTYLE.md"
+                        },
+                        "document_url": "/documents/52bffb8b99b3a70340000008",
+                        "related": [],
+                        "datas": {
+                            "title": "GUIDESTYLE",
+                            "path": "/GUIDESTYLE.md",
+                            "snippet": "Do something complicated. Comments starts with a space."
+                        }
                     }
-                }
-            ]
-        }
+                ]
+            }
 
 ## Retrieve raw document data [/documents/{id}/raw]
 + Parameters
@@ -220,120 +221,120 @@ Also include information about hydraters.
 + Response 200 (application/json)
     + Body
 
-        {
-            "_type": "Document",
-            "id": "52bffb8799b3a70340000003",
-            "creation_date": "2013-12-29T10:37:59.197Z",
-            "token": "52bffb81c8318c29e900000a",
-            "company": "52bff074c8318c29e9000001",
-            "document_type": "5252ce4ce4cfcd16f55cfa3d",
-            "actions": {
-                "show": "https://www.dropbox.com/home%2FPost_it_techcrunch.jpg"
-            },
-            "document_url": "/documents/52bffb8799b3a70340000003",
-            "related": [],
-            "identifier": "https://dropbox.com/228115297/post_it_techcrunch.jpg",
-            "datas": {
-                "display": "data:image/jpeg;base64,/9j/4AAQSkZJRr//2Q==",
-                "thumb": "data:image/png;base64,iVBORw0KSuQmCC"
-            },
-            "metadatas": {
-                "path": "/Post_it_techcrunch.jpg",
-                "title": "Post it techcrunch",
-                "software": "JLS36G",
-                "model": "GT-I9100",
-                "creation-date": "2013-10-09T10:45:57",
-                "last-save-date": "2013-10-09T10:45:56",
-                "f-number": "F2.6",
-                "last-modified": "2013-10-09T10:45:56",
-                "modified": "2013-10-09T10:45:56",
-                "content-type": "image/jpeg",
-                "make": "Samsung",
-                "content-length": "2163026",
-                "date": "2013-10-09T10:45:56",
-                "flash": "Flash did not fire, auto",
-                "orientation": "Top, left side (Horizontal / normal)",
-                "gps-altitude-ref": "Below sea level",
-                "metering-mode": "Center weighted average",
-                "meta-save-date": "2013-10-09T10:45:56",
-                "exif-version": "2.20",
-                "exposure-mode": "Auto exposure",
-                "tiff-imagelength": "240",
-                "exif-flash": "false",
-                "iso-speed-ratings": "80",
-                "x-resolution": "72 dots per inch",
-                "user-comment": "User comments",
-                "shutter-speed-value": "1/16 sec",
-                "tiff-imagewidth": "320",
-                "image-width": "2448 pixels",
-                "gps-longitude": "4.0° 52.0' 34.750000000003354&quot;",
-                "gps-longitude-ref": "E",
-                "exif-fnumber": "2.65",
-                "gps-altitude": "0 metres",
-                "color-space": "sRGB",
-                "meta-creation-date": "2013-10-09T10:45:57",
-                "resolution-units": "none",
-                "data-precision": "8 bits",
-                "tiff-bitspersample": "8",
-                "gps-img-direction": "359 degrees",
-                "ycbcr-positioning": "Center of pixel array",
-                "compression-type": "Baseline",
-                "exif-isospeedratings": "80",
-                "gps-img-direction-ref": "Magnetic direction",
-                "thumbnail-image-width": "320 pixels",
-                "max-aperture-value": "F2.6",
-                "brightness-value": "2.32",
-                "thumbnail-offset": "960 bytes",
-                "exif-image-height": "3264 pixels",
-                "focal-length": "4.03 mm",
-                "thumbnail-length": "26870 bytes",
-                "thumbnail-compression": "JPEG (old-style)",
-                "exposure-bias-value": "0 EV",
-                "white-balance-mode": "Auto white balance",
-                "tiff-orientation": "1",
-                "tiff-make": "Samsung",
-                "date-time-original": "2013:10:09 10:45:57",
-                "thumbnail-image-height": "240 pixels",
-                "exif-image-width": "2448 pixels",
-                "scene-capture-type": "Standard",
-                "dcterms-created": "2013-10-09T10:45:57",
-                "exif-exposuretime": "0.058823529411764705",
-                "component-1": "Y component: Quantization table 0, Sampling factors 2 horiz/1 vert",
-                "gps-latitude": "45.0° 47.0' 24.419999999985293&quot;",
-                "component-2": "Cb component: Quantization table 1, Sampling factors 1 horiz/1 vert",
-                "component-3": "Cr component: Quantization table 1, Sampling factors 1 horiz/1 vert",
-                "gps-latitude-ref": "N",
-                "date-time-digitized": "2013:10:09 10:45:57",
-                "resolution-unit": "Inch",
-                "unknown-tag--0x0101-": "2448",
-                "tiff-software": "JLS36G",
-                "aperture-value": "F2.6",
-                "number-of-components": "3",
-                "tiff-model": "GT-I9100",
-                "dcterms-modified": "2013-10-09T10:45:56",
-                "image-height": "3264 pixels",
-                "gps-date-stamp": "2013:10:09",
-                "geo-lat": "45.790117",
-                "exposure-time": "1/17 sec",
-                "gps-time-stamp": "8:45:56 UTC",
-                "exif-datetimeoriginal": "2013-10-09T10:45:57",
-                "exif-focallength": "4.03",
-                "date-time": "2013:10:09 10:45:56",
-                "geo-long": "4.876319",
-                "gps-processing-method": "110 101 116 119 111 114 107",
-                "exposure-program": "Aperture priority",
-                "gps-version-id": "2.200",
-                "unknown-tag--0x0100-": "3264",
-                "y-resolution": "72 dots per inch"
-            },
-            "hydrating": {
-                "http---tesseracthydrater-anyfetch-com-hydrate": "2013-12-29T10:38:40.358Z"
-            },
-            "hydrated_by": [
-                "http://tikahydrater.anyfetch.com/hydrate",
-                "http://imagehydrater.anyfetch.com/hydrate"
-            ]
-        }
+            {
+                "_type": "Document",
+                "id": "52bffb8799b3a70340000003",
+                "creation_date": "2013-12-29T10:37:59.197Z",
+                "token": "52bffb81c8318c29e900000a",
+                "company": "52bff074c8318c29e9000001",
+                "document_type": "5252ce4ce4cfcd16f55cfa3d",
+                "actions": {
+                    "show": "https://www.dropbox.com/home%2FPost_it_techcrunch.jpg"
+                },
+                "document_url": "/documents/52bffb8799b3a70340000003",
+                "related": [],
+                "identifier": "https://dropbox.com/228115297/post_it_techcrunch.jpg",
+                "datas": {
+                    "display": "data:image/jpeg;base64,/9j/4AAQSkZJRr//2Q==",
+                    "thumb": "data:image/png;base64,iVBORw0KSuQmCC"
+                },
+                "metadatas": {
+                    "path": "/Post_it_techcrunch.jpg",
+                    "title": "Post it techcrunch",
+                    "software": "JLS36G",
+                    "model": "GT-I9100",
+                    "creation-date": "2013-10-09T10:45:57",
+                    "last-save-date": "2013-10-09T10:45:56",
+                    "f-number": "F2.6",
+                    "last-modified": "2013-10-09T10:45:56",
+                    "modified": "2013-10-09T10:45:56",
+                    "content-type": "image/jpeg",
+                    "make": "Samsung",
+                    "content-length": "2163026",
+                    "date": "2013-10-09T10:45:56",
+                    "flash": "Flash did not fire, auto",
+                    "orientation": "Top, left side (Horizontal / normal)",
+                    "gps-altitude-ref": "Below sea level",
+                    "metering-mode": "Center weighted average",
+                    "meta-save-date": "2013-10-09T10:45:56",
+                    "exif-version": "2.20",
+                    "exposure-mode": "Auto exposure",
+                    "tiff-imagelength": "240",
+                    "exif-flash": "false",
+                    "iso-speed-ratings": "80",
+                    "x-resolution": "72 dots per inch",
+                    "user-comment": "User comments",
+                    "shutter-speed-value": "1/16 sec",
+                    "tiff-imagewidth": "320",
+                    "image-width": "2448 pixels",
+                    "gps-longitude": "4.0° 52.0' 34.750000000003354&quot;",
+                    "gps-longitude-ref": "E",
+                    "exif-fnumber": "2.65",
+                    "gps-altitude": "0 metres",
+                    "color-space": "sRGB",
+                    "meta-creation-date": "2013-10-09T10:45:57",
+                    "resolution-units": "none",
+                    "data-precision": "8 bits",
+                    "tiff-bitspersample": "8",
+                    "gps-img-direction": "359 degrees",
+                    "ycbcr-positioning": "Center of pixel array",
+                    "compression-type": "Baseline",
+                    "exif-isospeedratings": "80",
+                    "gps-img-direction-ref": "Magnetic direction",
+                    "thumbnail-image-width": "320 pixels",
+                    "max-aperture-value": "F2.6",
+                    "brightness-value": "2.32",
+                    "thumbnail-offset": "960 bytes",
+                    "exif-image-height": "3264 pixels",
+                    "focal-length": "4.03 mm",
+                    "thumbnail-length": "26870 bytes",
+                    "thumbnail-compression": "JPEG (old-style)",
+                    "exposure-bias-value": "0 EV",
+                    "white-balance-mode": "Auto white balance",
+                    "tiff-orientation": "1",
+                    "tiff-make": "Samsung",
+                    "date-time-original": "2013:10:09 10:45:57",
+                    "thumbnail-image-height": "240 pixels",
+                    "exif-image-width": "2448 pixels",
+                    "scene-capture-type": "Standard",
+                    "dcterms-created": "2013-10-09T10:45:57",
+                    "exif-exposuretime": "0.058823529411764705",
+                    "component-1": "Y component: Quantization table 0, Sampling factors 2 horiz/1 vert",
+                    "gps-latitude": "45.0° 47.0' 24.419999999985293&quot;",
+                    "component-2": "Cb component: Quantization table 1, Sampling factors 1 horiz/1 vert",
+                    "component-3": "Cr component: Quantization table 1, Sampling factors 1 horiz/1 vert",
+                    "gps-latitude-ref": "N",
+                    "date-time-digitized": "2013:10:09 10:45:57",
+                    "resolution-unit": "Inch",
+                    "unknown-tag--0x0101-": "2448",
+                    "tiff-software": "JLS36G",
+                    "aperture-value": "F2.6",
+                    "number-of-components": "3",
+                    "tiff-model": "GT-I9100",
+                    "dcterms-modified": "2013-10-09T10:45:56",
+                    "image-height": "3264 pixels",
+                    "gps-date-stamp": "2013:10:09",
+                    "geo-lat": "45.790117",
+                    "exposure-time": "1/17 sec",
+                    "gps-time-stamp": "8:45:56 UTC",
+                    "exif-datetimeoriginal": "2013-10-09T10:45:57",
+                    "exif-focallength": "4.03",
+                    "date-time": "2013:10:09 10:45:56",
+                    "geo-long": "4.876319",
+                    "gps-processing-method": "110 101 116 119 111 114 107",
+                    "exposure-program": "Aperture priority",
+                    "gps-version-id": "2.200",
+                    "unknown-tag--0x0100-": "3264",
+                    "y-resolution": "72 dots per inch"
+                },
+                "hydrating": {
+                    "http---tesseracthydrater-anyfetch-com-hydrate": "2013-12-29T10:38:40.358Z"
+                },
+                "hydrated_by": [
+                    "http://tikahydrater.anyfetch.com/hydrate",
+                    "http://imagehydrater.anyfetch.com/hydrate"
+                ]
+            }
 
 
 
