@@ -14,7 +14,7 @@ Anyfetch aggregates documents from multiples sources (so-called *providers*). Da
 
 ### Providers and hydraters
 
-Providers and hydraters constitute Fetch API "back-part". 
+Providers and hydraters constitute Fetch API "back-part".
 Providers retrieve raw data and send them to the Fetch API.
 Hydraters transform and improve this raw data.
 
@@ -22,16 +22,11 @@ Hydraters transform and improve this raw data.
 An example workflow would be to connect datas from Dropbox.
 This provider will send datas from Dropbox to Fetch API.
 
-<<<<<<< HEAD
 #### Hydraters
-The Fetch API will then redispatch documents to hydration servers.
-A dependency graph indicates which hydraters is available for this document.
-=======
 Fetch API will then redispatch documents to hydration servers.
 
 Hydraters extract metadatas from documents.
 A dependency graph indicates which hydraters are available for a document.
->>>>>>> 44a09a2c34f98b90fe69f95b9282210cfa4da400
 Every time an hydrater finish its task, a new hydration round is started with new hydraters.
 
 #### Example
@@ -53,13 +48,8 @@ The default document-type is `file`, but a document-type can also be something m
 For instance, when we search for an image we don't need all the metadatas : projection is then used to restrict, transform, and display the datas to be sent.
 
 ### Frontend
-<<<<<<< HEAD
 Frontends get access to a search interface across all documents.
 Using the `document-type`, they format the document in order to be usefully displayed to the user.
-=======
-Frontends gets access to a search interface across all documents.
-Using the `document-type`, they can also format the document in order to be usefully displayed to the user.
->>>>>>> 44a09a2c34f98b90fe69f95b9282210cfa4da400
 
 Fetch API
 --------------
