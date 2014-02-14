@@ -1,7 +1,8 @@
 FORMAT: 1A
 HOST: http://www.api.anyfetch.com
 
-# Fetch API
+# Fetch API Documentation
+
 **Fetch API** is designed to help you search in  massive amounts of documents coming from various sources, in various formats. See [authentication](/authentication.html) for authentication details.
 
 # Group Index
@@ -54,17 +55,55 @@ Reset all documents and providers from the account.
 + Response 204
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Group Documents
 Endpoints for retrieving documents
 
-## Documents [/documents/{id}{?search}]
+## Search for document [/documents/{?start, ?limit, ?search, ?_meta, ?@meta, ?has_meta, ?related_to, ?document_type, ?snippet_size}]
+Retrieve a list of documents
+
++ Parameters
+    + start (optional, integer) ... Index of the first item to retrieve (for pagination)
+    + limit (optional, integer) ... Max number of items to retrieve (for pagination)
+    + before (optional, date) ... Only display documents created before this date. Use document creation date, and not anyFetch importation date. Format as valid JS date, for instance `2011-10-25`.
+    + after (optional, date) ... Only display documents created after this date. Use document creation date, and not anyFetch importation date. Format as valid JS date, for instance `2011-10-25`.
+    + limit (optional, integer) ... Max number of items to retrieve (for pagination)
+    + search (optional, string) ... Search query, probably the most important parameter for this query
+    + _meta (optional, string) ... Strict search on `meta` key
+    + @meta (optional, string) ... Full text search on `meta` key
+    + has_meta (optional, string) ... Only returns document having the `meta` key
+    + related_to (optional, string) ... Find documents related to the specified document
+    + document_type (optional, array) ... Only retrieve documents matching this document type. You can use the param multiple times to allow for multiples `document_type`
+    + snippet_size (optional, integer) ... Number of words in the snippet
+
+
+### [GET]
++ Response 200
+
+## Retrieve a document [/documents/{id}{?search}]
 A single document with its details
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
     + search (optional, string, `cascade`) ... String to highlight in the rendered document
 
-### Retrieve a single document [GET]
+### [GET]
 + Response 200 (application/json)
     + Body
 
@@ -85,12 +124,12 @@ A single document with its details
                 },
             }
 
-## Documents [/documents/{id}/similar]
+## Retrieve similar documents [/documents/{id}/similar]
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
 
-### Retrieve similar documents [GET]
+### [GET]
 Documents similar to `id`.
 
 + Response 200 (application/json)
@@ -137,12 +176,12 @@ Documents similar to `id`.
             ]
         }
 
-## Documents [/documents/{id}/related]
+## Retrieve related documents [/documents/{id}/related]
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
 
-### Retrieve similar documents [GET]
+### [GET]
 Documents related to `id`.
 
 + Response 200 (application/json)
@@ -170,11 +209,11 @@ Documents related to `id`.
             ]
         }
 
-## Documents [/documents/{id}/raw]
+## Retrieve raw document data [/documents/{id}/raw]
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
 
-### Retrieve raw document data [GET]
+### [GET]
 Retrieve all raw datas for the `id`.
 Also include information about hydraters.
 
@@ -296,26 +335,25 @@ Also include information about hydraters.
             ]
         }
 
-## Documents List [/documents/{?start, ?limit, ?search, ?_meta, ?@meta, ?has_meta, ?related_to, ?document_type, ?snippet_size}]
-Retrieve a list of documents
-
-+ Parameters
-    + start (optional, integer) ... Index of the first item to retrieve (for pagination)
-    + limit (optional, integer) ... Max number of items to retrieve (for pagination)
-    + before (optional, date) ... Only display documents created before this date. Use document creation date, and not anyFetch importation date. Format as valid JS date, for instance `2011-10-25`.
-    + after (optional, date) ... Only display documents created after this date. Use document creation date, and not anyFetch importation date. Format as valid JS date, for instance `2011-10-25`.
-    + limit (optional, integer) ... Max number of items to retrieve (for pagination)
-    + search (optional, string) ... Search query, probably the most important parameter for this query
-    + _meta (optional, string) ... Strict search on `meta` key
-    + @meta (optional, string) ... Full text search on `meta` key
-    + has_meta (optional, string) ... Only returns document having the `meta` key
-    + related_to (optional, string) ... Find documents related to the specified document
-    + document_type (optional, array) ... Only retrieve documents matching this document type. You can use the param multiple times to allow for multiples `document_type`
-    + snippet_size (optional, integer) ... Number of words in the snippet
 
 
-### Retrieve a list of documents[GET]
-+ Response 204
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Group Users
@@ -378,6 +416,30 @@ Retrieve a list of all users in the current company.
                 },
                 ...
             ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Group Providers
@@ -473,6 +535,25 @@ Add a file in purpose to hydrate it. The request should specify the `identifier`
 
 
 + Response 204
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Group Hydraters
