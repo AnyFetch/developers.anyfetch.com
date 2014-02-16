@@ -27,7 +27,7 @@ Retrieve datas about the current account. This endpoint return the following att
                 "server_time": "2014-01-10T10:47:22.413Z",
                 "_type": "Company",
                 "id": "52cbdaddc8318c4dc8000001",
-                "name": "test@papiel.fr",
+                "name": "test@anyfetch.com",
                 "provider_status": {},
                 "document_types": {}
             }
@@ -384,7 +384,7 @@ A single User object with all its details. This resource has the following attri
             {
                 "_type": "User",
                 "id": "5252cebb03a470843f000003",
-                "email": "matthieu@papiel.fr",
+                "email": "matthieu@anyfetch.com",
                 "name": "",
                 "is_admin": true,
                 "user_url": "/users/5252cebb03a470843f000003"
@@ -416,7 +416,7 @@ Retrieve a list of all users in the current company.
                 {
                     "_type": "User",
                     "id": "5252cebb03a470843f000003",
-                    "email": "test@papiel.fr",
+                    "email": "test@anyfetch.com",
                     "name": "Test",
                     "is_admin": true,
                     "user_url": "/users/5252cebb03a470843f000003"

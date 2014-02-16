@@ -4,7 +4,7 @@ subtitle: Introducing Anyfetch.
 layout: doc
 ---
 
-> If you have any problems or requests please contact [support](mailto:support@papiel.fr).
+> If you have any problems or requests please contact [support](mailto:support@anyfetch.com).
 
 Anyfetch concepts
 ----------------

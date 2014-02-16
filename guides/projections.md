@@ -15,7 +15,7 @@ The best way to understand projection is by example. Let's say you have a big PD
     "document_url": "/documents/5252d19a1247678905000001",
     "metadatas": {
         "title": "My big PDF",
-        "path": "/home/papiel/big_pdf.pdf",
+        "path": "/home/anyfetch/big_pdf.pdf",
         "text": "Big text extract with many many characters...",
         "pages": [
             "<h1>Big text extract</h1><p>with many many characters, spanning across multiple pages.",
