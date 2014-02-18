@@ -16,7 +16,7 @@ Retrieve datas about the current account. This endpoint return the following att
 - `ìd` currently connected user's company id
 - `name` name or email of the connected user
 - `provider_status` status of each connected providers
-- `documents_types`available document_types for the connected account
+- `documents_types` available document_types for the connected account
 
 + Response 200 (application/json)
     + Body
