@@ -31,7 +31,7 @@ A dependency graph indicates which hydraters are available for a given document.
 Every time a hydrater finishes its task, a new hydration round is started with new hydraters.
 
 #### Example
-For instance, in the default setup, we use [plaintext.hydrater](https://github.com/Papiel/plaintext.hydrater.anyfetch.com) to read basic information about the document (is it a text document? an image?) and extract metadata. Then, depending on the returned metadata, the Fetch API will send the document along with this new metadata to other hydraters. If it is image, we would then apply [ocr.hydrater](https://github.com/Papiel/ocr.hydrater.anyfetch.com), if it is an Office document we would apply [office.hydrater](https://github.com/Papiel/office.hydrater.anyfetch.com), and so on.
+For instance, in the default setup, we use [plaintext.hydrater](https://github.com/Papiel/plaintext.hydrater.anyfetch.com) to read basic information about the document (is it a text document? an image?) and extract metadata. Then, depending on the returned metadata, the Fetch API will send the document along with this new metadata to other hydraters. If it is an image, we would then apply [ocr.hydrater](https://github.com/Papiel/ocr.hydrater.anyfetch.com), if it is an Office document we would apply [office.hydrater](https://github.com/Papiel/office.hydrater.anyfetch.com), and so on.
 Once all available hydraters have yielded their results, the document is indexed and made available for search.
 
 ### Document-type
@@ -55,7 +55,7 @@ Fetch API
 --------------
 > First time using a REST API? Visit our [getting started](/getting-started.html) page.
 
-Now that we have covered the main principles from Anyfetch, let's get technical and [discover the endpoints](/endpoints) exposed by the Fetch API.
+We hope you now grasp the basic ideas surrounding Anyfetch. Let's get technical and [discover the endpoints](/endpoints) exposed by the Fetch API.
 
 Guides
 ------
