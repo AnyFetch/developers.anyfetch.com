@@ -1,9 +1,8 @@
 language: ruby
 before_script:
-  - go get -u github.com/peterhellberg/hiro
+  - npm install -g aglio
 script:
   - bundle exec jekyll build
-  - cd "$GOPATH/bin"
-  - ./hiro -input "$HOME/blueprint.md" -output "/tmp/output.html"
+  - aglio -input blueprint.md -output /tmp/output.html
 branches:
   only: gh-pages
