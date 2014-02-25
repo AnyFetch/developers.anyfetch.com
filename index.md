@@ -5,6 +5,8 @@ layout: doc
 ---
 
 > If you have any problems or requests please contact [support](mailto:support@anyfetch.com).
+> 
+> Note this documentation is still a work in progress. Don't hesitate to contact us with feedbacks or question, we're delighted to help.
 
 Anyfetch concepts
 ----------------
