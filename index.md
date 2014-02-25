@@ -10,44 +10,42 @@ layout: doc
 
 Anyfetch concepts
 ----------------
-Anyfetch aggregates documents from multiples sources (so-called *providers*). Datas are then enhanced using *hydraters*, and searchable with the *frontend* API.
+Anyfetch aggregates documents from multiples sources (so-called *providers*). Data is then enhanced using *hydraters*, and made searchable through the *frontend* API.
 
 ![Anyfetch workflow](/images/workflow.png)
 
 ### Providers and hydraters
 
-Providers and hydraters constitute Fetch API "back-part".
-Providers retrieve raw data and send them to the Fetch API.
+Providers and hydraters constitute the Fetch API "back-part".
+Providers retrieve raw data and send it to the Fetch API.
 Hydraters transform and improve this raw data.
 
 #### Providers
-An example workflow would be to connect datas from Dropbox.
-This provider will send datas from Dropbox to Fetch API.
+An example workflow could start with a provider extracting data from Dropbox, and sending it to the Fetch API.
 
 #### Hydraters
-Fetch API will then redispatch documents to hydration servers.
+Fetch API would then redispatch documents to the hydration servers.
+Hydraters extract metadata from documents.
 
-Hydraters extract metadatas from documents.
-A dependency graph indicates which hydraters are available for a document.
-Every time an hydrater finish its task, a new hydration round is started with new hydraters.
+A dependency graph indicates which hydraters are available for a given document.
+Every time a hydrater finishes its task, a new hydration round is started with new hydraters.
 
 #### Example
-For instance, in the default setup, we use [plaintext.hydrater](https://github.com/Papiel/plaintext.hydrater.anyfetch.com) to read basic information about the document (is it a text document ? an image ?) and extract metadatas. Then, depending on the returned metadatas, Fetch API will send the document with the new metadatas to other hydraters (if it is an image, we'll then apply [ocr.hydrater](https://github.com/Papiel/ocr.hydrater.anyfetch.com), if it is a document we will apply [office.hydrater](https://github.com/Papiel/office.hydrater.anyfetch.com), and so on).
+For instance, in the default setup, we use [plaintext.hydrater](https://github.com/Papiel/plaintext.hydrater.anyfetch.com) to read basic information about the document (is it a text document? an image?) and extract metadata. Then, depending on the returned metadata, the Fetch API will send the document along with this new metadata to other hydraters. If it is image, we would then apply [ocr.hydrater](https://github.com/Papiel/ocr.hydrater.anyfetch.com), if it is an Office document we would apply [office.hydrater](https://github.com/Papiel/office.hydrater.anyfetch.com), and so on.
 Once all available hydraters have yielded their results, the document is indexed and made available for search.
 
 ### Document-type
-The term document is abstract, and can represent a file, a contact or a huge pile of analytics data.
+The word *document* is used here as an abstract term, and can represent a file, a contact, as well as a huge pile of analytics data.
 
-To display this variety of sources, the document is affected a *document type* (text_document, image, mail, contact, invoice...).
-This `document-type` can be modified by hydraters.
+To reflect this variety of possible sources, the document is affected a *document type* (`text_document`, `image`, `mail`, `contact`, `invoice`...).
+This `document-type` can be modified by any of the hydraters along the hydration chain.
 
 The default document-type is `file`, but a document-type can also be something more abstract, for instance `mail`, `contact` or `invoice`.
 
 #### Projectors
+*Projectors* define how to transform raw metadata into something useful for the user.
 
-*Projectors* define how to transform the raw metadatas to something useful for the user.
-
-For instance, when we search for an image we don't need all the metadatas : projection is then used to restrict, transform, and display the datas to be sent.
+For instance, when we search for an image, we don't need *all* the metadata: projection is then used to restrict, transform, and display the data to be sent.
 
 ### Frontend
 Frontends get access to a search interface across all documents.
@@ -57,7 +55,7 @@ Fetch API
 --------------
 > First time using a REST API? Visit our [getting started](/getting-started.html) page.
 
-Now that we have covered AnyFetch main principles, let's get technical and [list the endpoints](/endpoints).
+Now that we have covered the main principles from Anyfetch, let's get technical and [discover the endpoints](/endpoints) exposed by the Fetch API.
 
 Guides
 ------
