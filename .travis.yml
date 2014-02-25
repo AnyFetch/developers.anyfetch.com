@@ -3,6 +3,6 @@ before_script:
   - npm install -g aglio
 script:
   - bundle exec jekyll build
-  - aglio -input blueprint.md -output /tmp/output.html
+  - aglio -i blueprint.md -o /tmp/output.html
 branches:
   only: gh-pages

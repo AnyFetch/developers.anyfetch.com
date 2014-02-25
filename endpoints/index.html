@@ -1,5 +1,5 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>Fetch API Documentation</title><link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"><link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.2/css/font-awesome.min.css"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200"><style>/* Highlight.js Theme */
-.tomorrow-comment,pre .comment,pre .title{color:#8e908c}.tomorrow-red,pre .attribute,pre .css .class,pre .css .id,pre .css .pseudo,pre .html .doctype,pre .regexp,pre .ruby .constant,pre .tag,pre .variable,pre .xml .doctype,pre .xml .pi,pre .xml .tag .title{color:#c82829}.tomorrow-orange,pre .built_in,pre .constant,pre .literal,pre .number,pre .params,pre .preprocessor{color:#f5871f}.tomorrow-yellow,pre .class,pre .css .rules .attribute,pre .ruby .class .title{color:#eab700}.tomorrow-green,pre .header,pre .inheritance,pre .ruby .symbol,pre .string,pre .value,pre .xml .cdata{color:#718c00}.tomorrow-aqua,pre .css .hexcolor{color:#3e999f}.tomorrow-blue,pre .coffeescript .title,pre .function,pre .javascript .title,pre .perl .sub,pre .python .decorator,pre .python .title,pre .ruby .function .title,pre .ruby .title .keyword{color:#4271ae}.tomorrow-purple,pre .javascript .function,pre .keyword{color:#8959a8}pre code{display:block;background:#fff;color:#4d4d4c;font-family:Menlo,Monaco,Consolas,monospace;line-height:1.5;border:1px solid #ccc;padding:10px}</style><style>body,
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Fetch API Documentation</title><link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"><link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.2/css/font-awesome.min.css"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200"><style>/* Highlight.js Theme Tomorrow */
+.hljs-comment,.hljs-title{color:#8e908c}.hljs-variable,.hljs-attribute,.hljs-tag,.hljs-regexp,.ruby .hljs-constant,.xml .hljs-tag .hljs-title,.xml .hljs-pi,.xml .hljs-doctype,.html .hljs-doctype,.css .hljs-id,.css .hljs-class,.css .hljs-pseudo{color:#c82829}.hljs-number,.hljs-preprocessor,.hljs-pragma,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-constant{color:#f5871f}.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute{color:#eab700}.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata{color:#718c00}.css .hljs-hexcolor{color:#3e999f}.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title{color:#4271ae}.hljs-keyword,.javascript .hljs-function{color:#8959a8}.hljs{display:block;background:white;color:#4d4d4c;padding:.5em}.coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:.5}</style><style>body,
 h4,
 h5 {
   font-family: 'Roboto' sans-serif !important;
@@ -82,18 +82,18 @@ a.list-group-item.heading {
   padding-bottom: 12px;
   overflow-y: auto;
 }
-</style></head><body><a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><div class="col-md-3"><nav id="nav" class="collapse hidden-sm hidden-xs affix nav"><div class="list-group"><a href="#index" class="list-group-item heading">Index</a><a href="#index-index" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Index</a><a href="#index-api-status" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;API status</a><a href="#index-update-providers" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Update providers</a><a href="#index-reset-account" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Reset account</a></div><div class="list-group"><a href="#documents" class="list-group-item heading">Documents</a><a href="#documents-search-for-document" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Search for document</a><a href="#documents-retrieve-a-document" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Retrieve a document</a><a href="#documents-retrieve-similar-documents" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Retrieve similar documents</a><a href="#documents-retrieve-related-documents" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Retrieve related documents</a><a href="#documents-retrieve-raw-document-data" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Retrieve raw document data</a></div><div class="list-group"><a href="#users" class="list-group-item heading">Users</a><a href="#users-user" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;User</a><a href="#users-user-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Retrieve a User</a><a href="#users-user-delete" style="padding-left: 32px" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Remove a User</a><a href="#users-user-redirection-endpoint" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;User redirection endpoint</a><a href="#users-users-collection" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Users Collection</a></div><div class="list-group"><a href="#providers" class="list-group-item heading">Providers</a><a href="#providers-document" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Document</a><a href="#providers-document-post" style="padding-left: 32px" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Create a document</a><a href="#providers-document-patch" style="padding-left: 32px" class="list-group-item"><i class="fa fa-pencil"></i>&nbsp;Update a document</a><a href="#providers-document-delete" style="padding-left: 32px" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Delete a document</a><a href="#providers-file" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;File</a></div><div class="list-group"><a href="#hydraters" class="list-group-item heading">Hydraters</a><a href="#hydraters-document" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Document</a><a href="#hydraters-file" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;File</a></div><p style="text-align: center"><a href="http://www.api.anyfetch.com">http://www.api.anyfetch.com</a></p></nav></div><div class="col-md-9"><div><header><div class="page-header"><h1 id="top">Fetch API Documentation</h1></div></header><div class="description"><p><strong>Fetch API</strong> is designed to help you search in  massive amounts of documents coming from various sources, in various formats. See <a href="/authentication.html">authentication</a> for authentication details.</p>
-</div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="index">Index&nbsp;<a href="#index"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="index-index">Index&nbsp;<a href="#index-index"><i class="fa fa-link"></i></a></h4><p>Retrieve datas about the current account. This endpoint return the following attributes:</p>
-<section id="index-index-get" class="panel panel-info"><div class="panel-heading"><a href="#index-index-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/</code></div><div class="panel-body"><ul>
+</style></head><body><a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><div class="col-md-3"><nav id="nav" class="collapse hidden-sm hidden-xs affix nav"><div class="list-group"><a href="#api" class="list-group-item heading">API</a><a href="#api-" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;GET /</a><a href="#api-" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;GET /status</a></div><div class="list-group"><a href="#account" class="list-group-item heading">Account</a><a href="#account-" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;POST /update</a><a href="#account-" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;DELETE /reset</a></div><div class="list-group"><a href="#documents" class="list-group-item heading">Documents</a><a href="#documents-documents-list" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Documents list</a><a href="#documents-document" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Document</a><a href="#documents-get-similar" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Get similar</a><a href="#documents-get-raw" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Get raw</a></div><div class="list-group"><a href="#users" class="list-group-item heading">Users</a><a href="#users-user" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;User</a><a href="#users-user-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Retrieve a User</a><a href="#users-user-delete" style="padding-left: 32px" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Remove a User</a><a href="#users-user-redirection-endpoint" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;User redirection endpoint</a><a href="#users-users-collection" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Users Collection</a></div><div class="list-group"><a href="#providers" class="list-group-item heading">Providers</a><a href="#providers-document" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Document</a><a href="#providers-document-post" style="padding-left: 32px" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Create a document</a><a href="#providers-document-patch" style="padding-left: 32px" class="list-group-item"><i class="fa fa-pencil"></i>&nbsp;Update a document</a><a href="#providers-document-delete" style="padding-left: 32px" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Delete a document</a><a href="#providers-file" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;File</a></div><div class="list-group"><a href="#hydraters" class="list-group-item heading">Hydraters</a><a href="#hydraters-document" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Document</a><a href="#hydraters-file" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;File</a></div><p style="text-align: center"><a href="http://www.api.anyfetch.com">http://www.api.anyfetch.com</a></p></nav></div><div class="col-md-9"><div><header><div class="page-header"><h1 id="top">Fetch API Documentation</h1></div></header><div class="description"><p><strong>Fetch API</strong> is designed to help you search in  massive amounts of documents coming from various sources, in various formats. See <a href="/authentication.html">authentication</a> for authentication details.</p>
+</div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="api">API&nbsp;<a href="#api"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="api-">Resources&nbsp;<a href="#api-"><i class="fa fa-link"></i></a></h4><section id="api--get" class="panel panel-info"><div class="panel-heading"><a href="#api--get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/</code></div><div class="panel-body"><p>Retrieve datas about the current account. This endpoint return the following attributes:</p>
+<ul>
 <li><code>server_time</code>: UNIX timesptamp of the server</li>
 <li><code>user_url</code> currently connected user endpoint url: use to retrieve informations about the user</li>
 <li><code>documents_url</code> documents endpoint url: use to search for documents</li>
 <li><code>ìd</code> currently connected user’s company id</li>
 <li><code>name</code> name or email of the connected user</li>
 <li><code>provider_status</code> status of each connected providers</li>
-<li><code>documents_types</code>available document_types for the connected account</li>
+<li><code>documents_types</code> available document_types for the connected account</li>
 </ul>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#255119" class="pull-right">Toggle</a></li><li id="255119" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#870236" class="pull-right">Toggle</a></li><li id="870236" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">user_url</span>": <span class="hljs-value"><span class="hljs-string">"/user"</span></span>,
     "<span class="hljs-attribute">documents_url</span>": <span class="hljs-value"><span class="hljs-string">"/documents"</span></span>,
     "<span class="hljs-attribute">server_time</span>": <span class="hljs-value"><span class="hljs-string">"2014-01-10T10:47:22.413Z"</span></span>,
@@ -103,19 +103,19 @@ a.list-group-item.heading {
     "<span class="hljs-attribute">provider_status</span>": <span class="hljs-value">{}</span>,
     "<span class="hljs-attribute">document_types</span>": <span class="hljs-value">{}
 </span>}
-</code></pre></li></ul></section><h4 id="index-api-status">API status&nbsp;<a href="#index-api-status"><i class="fa fa-link"></i></a></h4><p>Get the current status of the Fetch API.</p>
-<section id="index-api-status-get" class="panel panel-info"><div class="panel-heading"><a href="#index-api-status-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/status</code></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#153020" class="pull-right">Toggle</a></li><li id="153020" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</code></pre></li></ul></section><h4 id="api-">Resources&nbsp;<a href="#api-"><i class="fa fa-link"></i></a></h4><section id="api--get" class="panel panel-info"><div class="panel-heading"><a href="#api--get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/status</code></div><div class="panel-body"><p>Get the current status of the Fetch API.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#578424" class="pull-right">Toggle</a></li><li id="578424" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"ok"</span></span>,
     "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">""</span>
 </span>}
-</code></pre></li></ul></section><h4 id="index-update-providers">Update providers&nbsp;<a href="#index-update-providers"><i class="fa fa-link"></i></a></h4><p>Ping all providers of the current user to check for new available documents.</p>
-<section id="index-update-providers-post" class="panel panel-success"><div class="panel-heading"><a href="#index-update-providers-post" class="btn btn-xs btn-success">POST</a>&nbsp;<code>/update</code></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="index-reset-account">Reset account&nbsp;<a href="#index-reset-account"><i class="fa fa-link"></i></a></h4><p>Reset all documents and providers from the account.</p>
-<section id="index-reset-account-delete" class="panel panel-danger"><div class="panel-heading"><a href="#index-reset-account-delete" class="btn btn-xs btn-danger">DELETE</a>&nbsp;<code>/reset</code></div><div class="panel-body"><blockquote>
+</code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="account">Account&nbsp;<a href="#account"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="account-">Resources&nbsp;<a href="#account-"><i class="fa fa-link"></i></a></h4><section id="account--post" class="panel panel-success"><div class="panel-heading"><a href="#account--post" class="btn btn-xs btn-success">POST</a>&nbsp;<code>/update</code></div><div class="panel-body"><p>Ping all providers of the current user to check for new available documents.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="account-">Resources&nbsp;<a href="#account-"><i class="fa fa-link"></i></a></h4><section id="account--delete" class="panel panel-danger"><div class="panel-heading"><a href="#account--delete" class="btn btn-xs btn-danger">DELETE</a>&nbsp;<code>/reset</code></div><div class="panel-body"><p>Reset all documents and providers from the account.</p>
+<blockquote>
 <p><strong>Note:</strong> Use with caution! Reset everything.</p>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="documents">Documents&nbsp;<a href="#documents"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>Endpoints for retrieving documents</p>
-<h4 id="documents-search-for-document">Search for document&nbsp;<a href="#documents-search-for-document"><i class="fa fa-link"></i></a></h4><p>Retrieve a list of documents</p>
-<section id="documents-search-for-document-get" class="panel panel-info"><div class="panel-heading"><a href="#documents-search-for-document-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/documents/{?start, ?limit, ?search, ?_meta, ?@meta, ?has_meta, ?related_to, ?document_type, ?snippet_size, ?after, ?before}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>start</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<p>Index of the first item to retrieve (for pagination)</p>
+<h4 id="documents-documents-list">Documents list&nbsp;<a href="#documents-documents-list"><i class="fa fa-link"></i></a></h4><p>Retrieve a list of documents</p>
+<section id="documents-documents-list-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Search documents</span><a href="#documents-documents-list-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/documents/{?start, ?limit, ?search, ?_meta, ?@meta, ?has_meta, ?related_to, ?document_type, ?snippet_size, ?after, ?before}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>start</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<p>Index of the first item to retrieve (for pagination)</p>
 </dd><dt>limit</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<p>Max number of items to retrieve (for pagination)</p>
 </dd><dt>before</dt><dd><code>date</code>&nbsp;<span>(optional)</span>&nbsp;<p>Only display documents created before this date. Use document creation date, and not anyFetch importation date. Format as valid JS date, for instance <code>2011-10-25</code>.</p>
 </dd><dt>after</dt><dd><code>date</code>&nbsp;<span>(optional)</span>&nbsp;<p>Only display documents created after this date. Use document creation date, and not anyFetch importation date. Format as valid JS date, for instance <code>2011-10-25</code>.</p>
@@ -125,10 +125,11 @@ a.list-group-item.heading {
 </dd><dt>related_to</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>Find documents related to the specified document</p>
 </dd><dt>document_type</dt><dd><code>array</code>&nbsp;<span>(optional)</span>&nbsp;<p>Only retrieve documents matching this document type. You can use the param multiple times to allow for multiples <code>document_type</code></p>
 </dd><dt>snippet_size</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<p>Number of words in the snippet</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong></li></ul></section><h4 id="documents-retrieve-a-document">Retrieve a document&nbsp;<a href="#documents-retrieve-a-document"><i class="fa fa-link"></i></a></h4><p>A single document with its details</p>
-<section id="documents-retrieve-a-document-get" class="panel panel-info"><div class="panel-heading"><a href="#documents-retrieve-a-document-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/documents/{id}{?search}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the Document to perform action with.</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong></li></ul></section><h4 id="documents-document">Document&nbsp;<a href="#documents-document"><i class="fa fa-link"></i></a></h4><p>Datas regarding a document.</p>
+<section id="documents-document-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Get Document</span><a href="#documents-document-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/documents/{id}{?search}</code></div><div class="panel-body"><p>A single document with its details</p>
+</div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the Document to perform action with.</p>
 </dd><dt>search</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>cascade</span></span><p>String to highlight in the rendered document</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#145649" class="pull-right">Toggle</a></li><li id="145649" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#613276" class="pull-right">Toggle</a></li><li id="613276" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Document"</span>
     <span class="hljs-string">"actions"</span>: {
         "<span class="hljs-attribute">download</span>": <span class="hljs-value"><span class="hljs-string">"http://example.org/download/file/url"</span>
@@ -143,192 +144,12 @@ a.list-group-item.heading {
     "<span class="hljs-attribute">metadatas</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">foo</span>": <span class="hljs-value"><span class="hljs-string">"this will be indexed for search"</span>
     </span>}</span>,
-}
-</code></pre></li></ul></section><h4 id="documents-retrieve-similar-documents">Retrieve similar documents&nbsp;<a href="#documents-retrieve-similar-documents"><i class="fa fa-link"></i></a></h4><section id="documents-retrieve-similar-documents-get" class="panel panel-info"><div class="panel-heading"><a href="#documents-retrieve-similar-documents-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/documents/{id}/similar</code></div><div class="panel-body"><p>Documents similar to <code>id</code>.</p>
-</div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the Document to perform action with.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#278964" class="pull-right">Toggle</a></li><li id="278964" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
-    title: [
-        <span class="hljs-string">"subject"</span>: <span class="hljs-string">"Hello"</span>
-    ],
-    document_<span class="hljs-built_in">type</span>: <span class="hljs-string">"5252ce4ce4cfcd16f55cfa3c"</span>,
-    datas: [
-        {
-            <span class="hljs-string">"keywords"</span>: [
-                <span class="hljs-string">"anyFetch"</span>,
-                <span class="hljs-string">"papiel"</span>
-            ],
-            <span class="hljs-string">"document_types"</span>: {
-                <span class="hljs-string">"5252ce4ce4cfcd16f55cfa3c"</span>: <span class="hljs-number">4</span>,
-                <span class="hljs-string">"5252ce4ce4cfcd16f55cfa3d"</span>: <span class="hljs-number">3</span>
-            },
-            <span class="hljs-string">"tokens"</span>: {
-                <span class="hljs-string">"52bffb81c8318c29e900000a"</span>: <span class="hljs-number">7</span>
-            },
-            <span class="hljs-string">"datas"</span>: [
-                {
-                    <span class="hljs-string">"_type"</span>: <span class="hljs-string">"Document"</span>,
-                    <span class="hljs-string">"id"</span>: <span class="hljs-string">"52bffb8b99b3a70340000008"</span>,
-                    <span class="hljs-string">"creation_date"</span>: <span class="hljs-string">"2013-12-29T10:38:03.101Z"</span>,
-                    <span class="hljs-string">"token"</span>: <span class="hljs-string">"52bffb81c8318c29e900000a"</span>,
-                    <span class="hljs-string">"company"</span>: <span class="hljs-string">"52bff074c8318c29e9000001"</span>,
-                    <span class="hljs-string">"document_type"</span>: <span class="hljs-string">"5252ce4ce4cfcd16f55cfa3c"</span>,
-                    <span class="hljs-string">"actions"</span>: {
-                        <span class="hljs-string">"show"</span>: <span class="hljs-string">"https://www.dropbox.com/home%2FGUIDESTYLE.md"</span>
-                    },
-                    <span class="hljs-string">"document_url"</span>: <span class="hljs-string">"/documents/52bffb8b99b3a70340000008"</span>,
-                    <span class="hljs-string">"related"</span>: [],
-                    <span class="hljs-string">"datas"</span>: {
-                        <span class="hljs-string">"title"</span>: <span class="hljs-string">"GUIDESTYLE"</span>,
-                        <span class="hljs-string">"path"</span>: <span class="hljs-string">"/GUIDESTYLE.md"</span>,
-                        <span class="hljs-string">"snippet"</span>: <span class="hljs-string">"Do something complicated. Comments starts with a space."</span>
-                    }
-                }
-            ]
-        }
-    ]
-}
-</code></pre></li></ul></section><h4 id="documents-retrieve-related-documents">Retrieve related documents&nbsp;<a href="#documents-retrieve-related-documents"><i class="fa fa-link"></i></a></h4><section id="documents-retrieve-related-documents-get" class="panel panel-info"><div class="panel-heading"><a href="#documents-retrieve-related-documents-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/documents/{id}/related</code></div><div class="panel-body"><p>Documents related to <code>id</code>.</p>
-</div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the Document to perform action with.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#551240" class="pull-right">Toggle</a></li><li id="551240" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
-    datas: [
-        {
-            <span class="hljs-string">"_type"</span>: <span class="hljs-string">"Document"</span>,
-            <span class="hljs-string">"id"</span>: <span class="hljs-string">"52bffb8b99b3a70340000008"</span>,
-            <span class="hljs-string">"creation_date"</span>: <span class="hljs-string">"2013-12-29T10:38:03.101Z"</span>,
-            <span class="hljs-string">"token"</span>: <span class="hljs-string">"52bffb81c8318c29e900000a"</span>,
-            <span class="hljs-string">"company"</span>: <span class="hljs-string">"52bff074c8318c29e9000001"</span>,
-            <span class="hljs-string">"document_type"</span>: <span class="hljs-string">"5252ce4ce4cfcd16f55cfa3c"</span>,
-            <span class="hljs-string">"actions"</span>: {
-                <span class="hljs-string">"show"</span>: <span class="hljs-string">"https://www.dropbox.com/home<span class="hljs-variable">%2FGUIDESTYLE</span>.md"</span>
-            },
-            <span class="hljs-string">"document_url"</span>: <span class="hljs-string">"/documents/52bffb8b99b3a70340000008"</span>,
-            <span class="hljs-string">"related"</span>: [],
-            <span class="hljs-string">"datas"</span>: {
-                <span class="hljs-string">"title"</span>: <span class="hljs-string">"GUIDESTYLE"</span>,
-                <span class="hljs-string">"path"</span>: <span class="hljs-string">"/GUIDESTYLE.md"</span>,
-                <span class="hljs-string">"snippet"</span>: <span class="hljs-string">"Do something complicated. Comments starts with a space."</span>
-            }
-        }
-    ]
-}
-</code></pre></li></ul></section><h4 id="documents-retrieve-raw-document-data">Retrieve raw document data&nbsp;<a href="#documents-retrieve-raw-document-data"><i class="fa fa-link"></i></a></h4><section id="documents-retrieve-raw-document-data-get" class="panel panel-info"><div class="panel-heading"><a href="#documents-retrieve-raw-document-data-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/documents/{id}/raw</code></div><div class="panel-body"><p>Retrieve all raw datas for the <code>id</code>.
-Also include information about hydraters.</p>
-</div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the Document to perform action with.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#950060" class="pull-right">Toggle</a></li><li id="950060" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
-    "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Document"</span></span>,
-    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"52bffb8799b3a70340000003"</span></span>,
-    "<span class="hljs-attribute">creation_date</span>": <span class="hljs-value"><span class="hljs-string">"2013-12-29T10:37:59.197Z"</span></span>,
-    "<span class="hljs-attribute">token</span>": <span class="hljs-value"><span class="hljs-string">"52bffb81c8318c29e900000a"</span></span>,
-    "<span class="hljs-attribute">company</span>": <span class="hljs-value"><span class="hljs-string">"52bff074c8318c29e9000001"</span></span>,
-    "<span class="hljs-attribute">document_type</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3d"</span></span>,
-    "<span class="hljs-attribute">actions</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">show</span>": <span class="hljs-value"><span class="hljs-string">"https://www.dropbox.com/home%2FPost_it_techcrunch.jpg"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"/documents/52bffb8799b3a70340000003"</span></span>,
-    "<span class="hljs-attribute">related</span>": <span class="hljs-value">[]</span>,
-    "<span class="hljs-attribute">identifier</span>": <span class="hljs-value"><span class="hljs-string">"https://dropbox.com/228115297/post_it_techcrunch.jpg"</span></span>,
-    "<span class="hljs-attribute">datas</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">display</span>": <span class="hljs-value"><span class="hljs-string">"data:image/jpeg;base64,/9j/4AAQSkZJRr//2Q=="</span></span>,
-        "<span class="hljs-attribute">thumb</span>": <span class="hljs-value"><span class="hljs-string">"data:image/png;base64,iVBORw0KSuQmCC"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">metadatas</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"/Post_it_techcrunch.jpg"</span></span>,
-        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Post it techcrunch"</span></span>,
-        "<span class="hljs-attribute">software</span>": <span class="hljs-value"><span class="hljs-string">"JLS36G"</span></span>,
-        "<span class="hljs-attribute">model</span>": <span class="hljs-value"><span class="hljs-string">"GT-I9100"</span></span>,
-        "<span class="hljs-attribute">creation-date</span>": <span class="hljs-value"><span class="hljs-string">"2013-10-09T10:45:57"</span></span>,
-        "<span class="hljs-attribute">last-save-date</span>": <span class="hljs-value"><span class="hljs-string">"2013-10-09T10:45:56"</span></span>,
-        "<span class="hljs-attribute">f-number</span>": <span class="hljs-value"><span class="hljs-string">"F2.6"</span></span>,
-        "<span class="hljs-attribute">last-modified</span>": <span class="hljs-value"><span class="hljs-string">"2013-10-09T10:45:56"</span></span>,
-        "<span class="hljs-attribute">modified</span>": <span class="hljs-value"><span class="hljs-string">"2013-10-09T10:45:56"</span></span>,
-        "<span class="hljs-attribute">content-type</span>": <span class="hljs-value"><span class="hljs-string">"image/jpeg"</span></span>,
-        "<span class="hljs-attribute">make</span>": <span class="hljs-value"><span class="hljs-string">"Samsung"</span></span>,
-        "<span class="hljs-attribute">content-length</span>": <span class="hljs-value"><span class="hljs-string">"2163026"</span></span>,
-        "<span class="hljs-attribute">date</span>": <span class="hljs-value"><span class="hljs-string">"2013-10-09T10:45:56"</span></span>,
-        "<span class="hljs-attribute">flash</span>": <span class="hljs-value"><span class="hljs-string">"Flash did not fire, auto"</span></span>,
-        "<span class="hljs-attribute">orientation</span>": <span class="hljs-value"><span class="hljs-string">"Top, left side (Horizontal / normal)"</span></span>,
-        "<span class="hljs-attribute">gps-altitude-ref</span>": <span class="hljs-value"><span class="hljs-string">"Below sea level"</span></span>,
-        "<span class="hljs-attribute">metering-mode</span>": <span class="hljs-value"><span class="hljs-string">"Center weighted average"</span></span>,
-        "<span class="hljs-attribute">meta-save-date</span>": <span class="hljs-value"><span class="hljs-string">"2013-10-09T10:45:56"</span></span>,
-        "<span class="hljs-attribute">exif-version</span>": <span class="hljs-value"><span class="hljs-string">"2.20"</span></span>,
-        "<span class="hljs-attribute">exposure-mode</span>": <span class="hljs-value"><span class="hljs-string">"Auto exposure"</span></span>,
-        "<span class="hljs-attribute">tiff-imagelength</span>": <span class="hljs-value"><span class="hljs-string">"240"</span></span>,
-        "<span class="hljs-attribute">exif-flash</span>": <span class="hljs-value"><span class="hljs-string">"false"</span></span>,
-        "<span class="hljs-attribute">iso-speed-ratings</span>": <span class="hljs-value"><span class="hljs-string">"80"</span></span>,
-        "<span class="hljs-attribute">x-resolution</span>": <span class="hljs-value"><span class="hljs-string">"72 dots per inch"</span></span>,
-        "<span class="hljs-attribute">user-comment</span>": <span class="hljs-value"><span class="hljs-string">"User comments"</span></span>,
-        "<span class="hljs-attribute">shutter-speed-value</span>": <span class="hljs-value"><span class="hljs-string">"1/16 sec"</span></span>,
-        "<span class="hljs-attribute">tiff-imagewidth</span>": <span class="hljs-value"><span class="hljs-string">"320"</span></span>,
-        "<span class="hljs-attribute">image-width</span>": <span class="hljs-value"><span class="hljs-string">"2448 pixels"</span></span>,
-        "<span class="hljs-attribute">gps-longitude</span>": <span class="hljs-value"><span class="hljs-string">"4.0° 52.0' 34.750000000003354&amp;quot;"</span></span>,
-        "<span class="hljs-attribute">gps-longitude-ref</span>": <span class="hljs-value"><span class="hljs-string">"E"</span></span>,
-        "<span class="hljs-attribute">exif-fnumber</span>": <span class="hljs-value"><span class="hljs-string">"2.65"</span></span>,
-        "<span class="hljs-attribute">gps-altitude</span>": <span class="hljs-value"><span class="hljs-string">"0 metres"</span></span>,
-        "<span class="hljs-attribute">color-space</span>": <span class="hljs-value"><span class="hljs-string">"sRGB"</span></span>,
-        "<span class="hljs-attribute">meta-creation-date</span>": <span class="hljs-value"><span class="hljs-string">"2013-10-09T10:45:57"</span></span>,
-        "<span class="hljs-attribute">resolution-units</span>": <span class="hljs-value"><span class="hljs-string">"none"</span></span>,
-        "<span class="hljs-attribute">data-precision</span>": <span class="hljs-value"><span class="hljs-string">"8 bits"</span></span>,
-        "<span class="hljs-attribute">tiff-bitspersample</span>": <span class="hljs-value"><span class="hljs-string">"8"</span></span>,
-        "<span class="hljs-attribute">gps-img-direction</span>": <span class="hljs-value"><span class="hljs-string">"359 degrees"</span></span>,
-        "<span class="hljs-attribute">ycbcr-positioning</span>": <span class="hljs-value"><span class="hljs-string">"Center of pixel array"</span></span>,
-        "<span class="hljs-attribute">compression-type</span>": <span class="hljs-value"><span class="hljs-string">"Baseline"</span></span>,
-        "<span class="hljs-attribute">exif-isospeedratings</span>": <span class="hljs-value"><span class="hljs-string">"80"</span></span>,
-        "<span class="hljs-attribute">gps-img-direction-ref</span>": <span class="hljs-value"><span class="hljs-string">"Magnetic direction"</span></span>,
-        "<span class="hljs-attribute">thumbnail-image-width</span>": <span class="hljs-value"><span class="hljs-string">"320 pixels"</span></span>,
-        "<span class="hljs-attribute">max-aperture-value</span>": <span class="hljs-value"><span class="hljs-string">"F2.6"</span></span>,
-        "<span class="hljs-attribute">brightness-value</span>": <span class="hljs-value"><span class="hljs-string">"2.32"</span></span>,
-        "<span class="hljs-attribute">thumbnail-offset</span>": <span class="hljs-value"><span class="hljs-string">"960 bytes"</span></span>,
-        "<span class="hljs-attribute">exif-image-height</span>": <span class="hljs-value"><span class="hljs-string">"3264 pixels"</span></span>,
-        "<span class="hljs-attribute">focal-length</span>": <span class="hljs-value"><span class="hljs-string">"4.03 mm"</span></span>,
-        "<span class="hljs-attribute">thumbnail-length</span>": <span class="hljs-value"><span class="hljs-string">"26870 bytes"</span></span>,
-        "<span class="hljs-attribute">thumbnail-compression</span>": <span class="hljs-value"><span class="hljs-string">"JPEG (old-style)"</span></span>,
-        "<span class="hljs-attribute">exposure-bias-value</span>": <span class="hljs-value"><span class="hljs-string">"0 EV"</span></span>,
-        "<span class="hljs-attribute">white-balance-mode</span>": <span class="hljs-value"><span class="hljs-string">"Auto white balance"</span></span>,
-        "<span class="hljs-attribute">tiff-orientation</span>": <span class="hljs-value"><span class="hljs-string">"1"</span></span>,
-        "<span class="hljs-attribute">tiff-make</span>": <span class="hljs-value"><span class="hljs-string">"Samsung"</span></span>,
-        "<span class="hljs-attribute">date-time-original</span>": <span class="hljs-value"><span class="hljs-string">"2013:10:09 10:45:57"</span></span>,
-        "<span class="hljs-attribute">thumbnail-image-height</span>": <span class="hljs-value"><span class="hljs-string">"240 pixels"</span></span>,
-        "<span class="hljs-attribute">exif-image-width</span>": <span class="hljs-value"><span class="hljs-string">"2448 pixels"</span></span>,
-        "<span class="hljs-attribute">scene-capture-type</span>": <span class="hljs-value"><span class="hljs-string">"Standard"</span></span>,
-        "<span class="hljs-attribute">dcterms-created</span>": <span class="hljs-value"><span class="hljs-string">"2013-10-09T10:45:57"</span></span>,
-        "<span class="hljs-attribute">exif-exposuretime</span>": <span class="hljs-value"><span class="hljs-string">"0.058823529411764705"</span></span>,
-        "<span class="hljs-attribute">component-1</span>": <span class="hljs-value"><span class="hljs-string">"Y component: Quantization table 0, Sampling factors 2 horiz/1 vert"</span></span>,
-        "<span class="hljs-attribute">gps-latitude</span>": <span class="hljs-value"><span class="hljs-string">"45.0° 47.0' 24.419999999985293&amp;quot;"</span></span>,
-        "<span class="hljs-attribute">component-2</span>": <span class="hljs-value"><span class="hljs-string">"Cb component: Quantization table 1, Sampling factors 1 horiz/1 vert"</span></span>,
-        "<span class="hljs-attribute">component-3</span>": <span class="hljs-value"><span class="hljs-string">"Cr component: Quantization table 1, Sampling factors 1 horiz/1 vert"</span></span>,
-        "<span class="hljs-attribute">gps-latitude-ref</span>": <span class="hljs-value"><span class="hljs-string">"N"</span></span>,
-        "<span class="hljs-attribute">date-time-digitized</span>": <span class="hljs-value"><span class="hljs-string">"2013:10:09 10:45:57"</span></span>,
-        "<span class="hljs-attribute">resolution-unit</span>": <span class="hljs-value"><span class="hljs-string">"Inch"</span></span>,
-        "<span class="hljs-attribute">unknown-tag--0x0101-</span>": <span class="hljs-value"><span class="hljs-string">"2448"</span></span>,
-        "<span class="hljs-attribute">tiff-software</span>": <span class="hljs-value"><span class="hljs-string">"JLS36G"</span></span>,
-        "<span class="hljs-attribute">aperture-value</span>": <span class="hljs-value"><span class="hljs-string">"F2.6"</span></span>,
-        "<span class="hljs-attribute">number-of-components</span>": <span class="hljs-value"><span class="hljs-string">"3"</span></span>,
-        "<span class="hljs-attribute">tiff-model</span>": <span class="hljs-value"><span class="hljs-string">"GT-I9100"</span></span>,
-        "<span class="hljs-attribute">dcterms-modified</span>": <span class="hljs-value"><span class="hljs-string">"2013-10-09T10:45:56"</span></span>,
-        "<span class="hljs-attribute">image-height</span>": <span class="hljs-value"><span class="hljs-string">"3264 pixels"</span></span>,
-        "<span class="hljs-attribute">gps-date-stamp</span>": <span class="hljs-value"><span class="hljs-string">"2013:10:09"</span></span>,
-        "<span class="hljs-attribute">geo-lat</span>": <span class="hljs-value"><span class="hljs-string">"45.790117"</span></span>,
-        "<span class="hljs-attribute">exposure-time</span>": <span class="hljs-value"><span class="hljs-string">"1/17 sec"</span></span>,
-        "<span class="hljs-attribute">gps-time-stamp</span>": <span class="hljs-value"><span class="hljs-string">"8:45:56 UTC"</span></span>,
-        "<span class="hljs-attribute">exif-datetimeoriginal</span>": <span class="hljs-value"><span class="hljs-string">"2013-10-09T10:45:57"</span></span>,
-        "<span class="hljs-attribute">exif-focallength</span>": <span class="hljs-value"><span class="hljs-string">"4.03"</span></span>,
-        "<span class="hljs-attribute">date-time</span>": <span class="hljs-value"><span class="hljs-string">"2013:10:09 10:45:56"</span></span>,
-        "<span class="hljs-attribute">geo-long</span>": <span class="hljs-value"><span class="hljs-string">"4.876319"</span></span>,
-        "<span class="hljs-attribute">gps-processing-method</span>": <span class="hljs-value"><span class="hljs-string">"110 101 116 119 111 114 107"</span></span>,
-        "<span class="hljs-attribute">exposure-program</span>": <span class="hljs-value"><span class="hljs-string">"Aperture priority"</span></span>,
-        "<span class="hljs-attribute">gps-version-id</span>": <span class="hljs-value"><span class="hljs-string">"2.200"</span></span>,
-        "<span class="hljs-attribute">unknown-tag--0x0100-</span>": <span class="hljs-value"><span class="hljs-string">"3264"</span></span>,
-        "<span class="hljs-attribute">y-resolution</span>": <span class="hljs-value"><span class="hljs-string">"72 dots per inch"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">hydrating</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">http---tesseracthydrater-anyfetch-com-hydrate</span>": <span class="hljs-value"><span class="hljs-string">"2013-12-29T10:38:40.358Z"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">hydrated_by</span>": <span class="hljs-value">[
-        <span class="hljs-string">"http://tikahydrater.anyfetch.com/hydrate"</span>,
-        <span class="hljs-string">"http://imagehydrater.anyfetch.com/hydrate"</span>
-    ]
+    "<span class="hljs-attribute">related</span>": <span class="hljs-value">[]
 </span>}
-</code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="users">Users&nbsp;<a href="#users"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>User resources.</p>
+</code></pre></li></ul></section><h4 id="documents-get-similar">Get similar&nbsp;<a href="#documents-get-similar"><i class="fa fa-link"></i></a></h4><p>Documents similar to <code>id</code>.</p>
+<h4 id="documents-get-raw">Get raw&nbsp;<a href="#documents-get-raw"><i class="fa fa-link"></i></a></h4><p>Retrieve all raw datas for the <code>id</code>.
+Also include information about hydraters (<code>hydratedBy</code>, <code>hydrating</code> and <code>lastHydration</code>).</p>
+</div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="users">Users&nbsp;<a href="#users"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>User resources.</p>
 <h4 id="users-user">User&nbsp;<a href="#users-user"><i class="fa fa-link"></i></a></h4><p>A single User object with all its details. This resource has the following attributes :</p>
 <ul>
 <li><code>id</code> The id of the user</li>
@@ -337,7 +158,7 @@ Also include information about hydraters.</p>
 <li><code>is_admin</code> Is true if the user is admin of this organisations</li>
 </ul>
 <section id="users-user-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Retrieve a User</span><a href="#users-user-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/user/{id}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the User to perform action with.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#185927" class="pull-right">Toggle</a></li><li id="185927" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#628116" class="pull-right">Toggle</a></li><li id="628116" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"User"</span></span>,
     "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252cebb03a470843f000003"</span></span>,
     "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"matthieu@anyfetch.com"</span></span>,
@@ -347,8 +168,8 @@ Also include information about hydraters.</p>
 </span>}
 </code></pre></li></ul></section><section id="users-user-delete" class="panel panel-danger"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Remove a User</span><a href="#users-user-delete" class="btn btn-xs btn-danger">DELETE</a>&nbsp;<code>/user/{id}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the User to perform action with.</p>
 </dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="users-user-redirection-endpoint">User redirection endpoint&nbsp;<a href="#users-user-redirection-endpoint"><i class="fa fa-link"></i></a></h4><section id="users-user-redirection-endpoint-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Redirect to current user</span><a href="#users-user-redirection-endpoint-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/user</code></div><div class="panel-body"><p>Redirect the user to its own user endpoint.</p>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>301</code></strong><a data-toggle="collapse" data-target="#627003" class="pull-right">Toggle</a></li><li id="627003" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Location</span>: <span class="hljs-string">/users/5252cebb03a470843f000003</span><br></code></pre></li></ul></section><h4 id="users-users-collection">Users Collection&nbsp;<a href="#users-users-collection"><i class="fa fa-link"></i></a></h4><section id="users-users-collection-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List all Users</span><a href="#users-users-collection-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/users</code></div><div class="panel-body"><p>Retrieve a list of all users in the current company.</p>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#928529" class="pull-right">Toggle</a></li><li id="928529" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>    [
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>301</code></strong><a data-toggle="collapse" data-target="#932990" class="pull-right">Toggle</a></li><li id="932990" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Location</span>: <span class="hljs-string">/users/5252cebb03a470843f000003</span><br></code></pre></li></ul></section><h4 id="users-users-collection">Users Collection&nbsp;<a href="#users-users-collection"><i class="fa fa-link"></i></a></h4><section id="users-users-collection-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List all Users</span><a href="#users-users-collection-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/users</code></div><div class="panel-body"><p>Retrieve a list of all users in the current company.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#891077" class="pull-right">Toggle</a></li><li id="891077" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>    [
         {
             "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"User"</span></span>,
             "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252cebb03a470843f000003"</span></span>,
@@ -377,7 +198,7 @@ Document has several attributes:</p>
 <blockquote>
 <p><strong>Note:</strong> <code>no_hydration</code> optional boolean. When true, asks the API to wait before starting hydration (useful when you want to send a file immediately after).</p>
 </blockquote>
-</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#204817" class="pull-right">Toggle</a></li><li id="204817" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#498757" class="pull-right">Toggle</a></li><li id="498757" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">identifier</span>": <span class="hljs-value"><span class="hljs-string">"http://unique-document-identifier"</span></span>,
     "<span class="hljs-attribute">document_type</span>": <span class="hljs-value"><span class="hljs-string">"file"</span></span>,
     "<span class="hljs-attribute">actions</span>": <span class="hljs-value">{
@@ -392,7 +213,7 @@ Document has several attributes:</p>
     "<span class="hljs-attribute">related</span>": <span class="hljs-value">[<span class="hljs-string">"52dff5c53923844f15885428"</span>]</span>,
     "<span class="hljs-attribute">user_access</span>": <span class="hljs-value">[<span class="hljs-string">"52d96492a7f0a3ac4226f2f7"</span>]
 </span>}
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#726491" class="pull-right">Toggle</a></li><li id="726491" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#519618" class="pull-right">Toggle</a></li><li id="519618" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Document"</span></span>,
     "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"52d96492a7f0a3ac4226f2f7"</span></span>,
     "<span class="hljs-attribute">creation_date</span>": <span class="hljs-value"><span class="hljs-string">"2014-01-17T17:12:50.664Z"</span></span>,
@@ -415,7 +236,7 @@ Document has several attributes:</p>
 <blockquote>
 <p><strong>Note:</strong> for ease of use, you can use POST and PATCH on this endpoint. This allows provider to abstract whether the document already exists or not.</p>
 </blockquote>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#221307" class="pull-right">Toggle</a></li><li id="221307" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#79202" class="pull-right">Toggle</a></li><li id="79202" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Document"</span></span>,
     "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"52d96492a7f0a3ac4226f2f7"</span></span>,
     "<span class="hljs-attribute">creation_date</span>": <span class="hljs-value"><span class="hljs-string">"2014-01-17T17:12:50.664Z"</span></span>,
@@ -438,7 +259,7 @@ Document has several attributes:</p>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="providers-file">File&nbsp;<a href="#providers-file"><i class="fa fa-link"></i></a></h4><p>Attach a file to a document. The request should specify the document <code>identifier</code>.
 You can’t use this endpoint without pinging <code>/providers/documents/</code> first.</p>
 <blockquote>
-<p><strong>Note:</strong> When you want to use this endpoint, don’t forget to use <code>no_hydration: true</code> on !</p>
+<p><strong>Note:</strong> When you want to use this endpoint, don’t forget to use <code>no_hydration: true</code> !</p>
 </blockquote>
 <section id="providers-file-post" class="panel panel-success"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Add a file to a document</span><a href="#providers-file-post" class="btn btn-xs btn-success">POST</a>&nbsp;<code>/providers/documents/file</code></div><div class="panel-body"><p>Add a file in purpose to hydrate it. The request should specify the <code>identifier</code> of the attached created document.</p>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="hydraters">Hydraters&nbsp;<a href="#hydraters"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>Hydrations endpoints, adding and improving original content of documents.
@@ -452,7 +273,7 @@ For datas and metadatas, merging occurs on first level only. If the existing dat
 <p><strong>Note:</strong> the file will be removed from Fetch API servers after hydration has completed.</p>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the Document to perform action with.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong></li></ul></section></div></div></div></div></div></div><p style="text-align: center;" class="text-muted">Generated by <a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a> on 14 Feb 2014</p><div id="localFile" style="display: none; position: absolute; top: 0; left: 0; width: 100%; color: white; background: red; font-size: 150%; text-align: center; padding: 1em;">This page may not display correctly when opened as a local file. Instead, view it from a web server.
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong></li></ul></section></div></div></div></div></div></div><p style="text-align: center;" class="text-muted">Generated by <a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a> on 25 Feb 2014</p><div id="localFile" style="display: none; position: absolute; top: 0; left: 0; width: 100%; color: white; background: red; font-size: 150%; text-align: center; padding: 1em;">This page may not display correctly when opened as a local file. Instead, view it from a web server.
 
 </div></body><script src="//code.jquery.com/jquery-1.10.1.min.js"></script><script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script><script>(function() {
   if (location.protocol === 'file:') {

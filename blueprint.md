@@ -5,11 +5,10 @@ HOST: http://www.api.anyfetch.com
 
 **Fetch API** is designed to help you search in  massive amounts of documents coming from various sources, in various formats. See [authentication](/authentication.html) for authentication details.
 
-# Group Index
-## Index [/]
+# Group API
+## GET /
 Retrieve datas about the current account. This endpoint return the following attributes:
 
-### [GET]
 - `server_time`: UNIX timesptamp of the server
 - `user_url` currently connected user endpoint url: use to retrieve informations about the user
 - `documents_url` documents endpoint url: use to search for documents
@@ -32,10 +31,8 @@ Retrieve datas about the current account. This endpoint return the following att
                 "document_types": {}
             }
 
-## API status [/status]
+## GET /status
 Get the current status of the Fetch API.
-
-### [GET]
 
 + Response 200 (application/json)
     + Body
@@ -45,17 +42,15 @@ Get the current status of the Fetch API.
                 "message": ""
             }
 
-## Update providers [/update]
+# Group Account
+##  POST /update
 Ping all providers of the current user to check for new available documents.
-
-## [POST]
 
 + Response 204
 
-## Reset account [/reset]
+## DELETE /reset
 Reset all documents and providers from the account.
 
-### [DELETE]
 > **Note:** Use with caution! Reset everything.
 
 + Response 204
@@ -81,7 +76,7 @@ Reset all documents and providers from the account.
 # Group Documents
 Endpoints for retrieving documents
 
-## Search for document [/documents/{?start, ?limit, ?search, ?_meta, ?@meta, ?has_meta, ?related_to, ?document_type, ?snippet_size, ?after, ?before}]
+## Documents list [/documents/{?start, ?limit, ?search, ?_meta, ?@meta, ?has_meta, ?related_to, ?document_type, ?snippet_size, ?after, ?before}]
 Retrieve a list of documents
 
 + Parameters
@@ -98,17 +93,18 @@ Retrieve a list of documents
     + snippet_size (optional, integer) ... Number of words in the snippet
 
 
-### [GET]
+### Search documents [GET]
 + Response 200
 
-## Retrieve a document [/documents/{id}{?search}]
+## Document [/documents/{id}{?search}]
+Datas regarding a document.
+
+### Get Document [GET]
 A single document with its details
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
     + search (optional, string, `cascade`) ... String to highlight in the rendered document
-
-### [GET]
 + Response 200 (application/json)
     + Body
 
@@ -127,16 +123,14 @@ A single document with its details
                 "metadatas": {
                     "foo": "this will be indexed for search"
                 },
+                "related": []
             }
 
-## Retrieve similar documents [/documents/{id}/similar]
+### Get similar [/documents/{id}/similar]
+Documents similar to `id`.
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
-
-### [GET]
-Documents similar to `id`.
-
 + Response 200 (application/json)
     + Body
 
@@ -182,48 +176,12 @@ Documents similar to `id`.
                 ]
             }
 
-## Retrieve related documents [/documents/{id}/related]
-
-+ Parameters
-    + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
-
-### [GET]
-Documents related to `id`.
-
-+ Response 200 (application/json)
-    + Body
-
-            {
-                datas: [
-                    {
-                        "_type": "Document",
-                        "id": "52bffb8b99b3a70340000008",
-                        "creation_date": "2013-12-29T10:38:03.101Z",
-                        "token": "52bffb81c8318c29e900000a",
-                        "company": "52bff074c8318c29e9000001",
-                        "document_type": "5252ce4ce4cfcd16f55cfa3c",
-                        "actions": {
-                            "show": "https://www.dropbox.com/home%2FGUIDESTYLE.md"
-                        },
-                        "document_url": "/documents/52bffb8b99b3a70340000008",
-                        "related": [],
-                        "datas": {
-                            "title": "GUIDESTYLE",
-                            "path": "/GUIDESTYLE.md",
-                            "snippet": "Do something complicated. Comments starts with a space."
-                        }
-                    }
-                ]
-            }
-
-## Retrieve raw document data [/documents/{id}/raw]
-+ Parameters
-    + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
-
-### [GET]
+### Get raw [/documents/{id}/raw]
 Retrieve all raw datas for the `id`.
-Also include information about hydraters.
+Also include information about hydraters (`hydratedBy`, `hydrating` and `lastHydration`).
 
++ Parameters
+    + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
 + Response 200 (application/json)
     + Body
 
@@ -333,13 +291,15 @@ Also include information about hydraters.
                     "unknown-tag--0x0100-": "3264",
                     "y-resolution": "72 dots per inch"
                 },
-                "hydrating": {
-                    "http---tesseracthydrater-anyfetch-com-hydrate": "2013-12-29T10:38:40.358Z"
+                "hydrating": [
+                    "http://ocr.hydrater.anyfetch.com/hydrate"
+                ]
                 },
                 "hydrated_by": [
-                    "http://tikahydrater.anyfetch.com/hydrate",
-                    "http://imagehydrater.anyfetch.com/hydrate"
-                ]
+                    "http://plaintext.hydrater.anyfetch.com/hydrate",
+                    "http://image.hydrater.anyfetch.com/hydrate"
+                ],
+                "last_hydration": "2013:10:09 10:45:56"
             }
 
 
