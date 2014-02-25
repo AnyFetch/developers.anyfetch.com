@@ -6,4 +6,4 @@ script:
   - cd "$GOPATH/bin"
   - ./hiro -input "$HOME/blueprint.md" -output "/tmp/output.html"
 branches:
-	only: gh-pages
+  only: gh-pages
