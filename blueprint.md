@@ -6,6 +6,18 @@ HOST: http://www.api.anyfetch.com
 **Fetch API** is designed to help you search in  massive amounts of documents coming from various sources, in various formats. See [authentication](/authentication.html) for authentication details.
 
 # Group API
+## GET /status
+Get the current status of the Fetch API.
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "status": "ok",
+                "message": ""
+            }
+
+# Group Account
 ## GET /
 Retrieve datas about the current account. This endpoint return the following attributes:
 
@@ -31,18 +43,6 @@ Retrieve datas about the current account. This endpoint return the following att
                 "document_types": {}
             }
 
-## GET /status
-Get the current status of the Fetch API.
-
-+ Response 200 (application/json)
-    + Body
-
-            {
-                "status": "ok",
-                "message": ""
-            }
-
-# Group Account
 ##  POST /update
 Ping all providers of the current user to check for new available documents.
 
@@ -79,6 +79,8 @@ Endpoints for retrieving documents
 ## Documents list [/documents/{?start, ?limit, ?search, ?_meta, ?@meta, ?has_meta, ?related_to, ?document_type, ?snippet_size, ?after, ?before}]
 Retrieve a list of documents
 
+### Search documents [GET]
++ Response 200
 + Parameters
     + start (optional, integer) ... Index of the first item to retrieve (for pagination)
     + limit (optional, integer) ... Max number of items to retrieve (for pagination)
@@ -93,8 +95,6 @@ Retrieve a list of documents
     + snippet_size (optional, integer) ... Number of words in the snippet
 
 
-### Search documents [GET]
-+ Response 200
 
 ## Document [/documents/{id}{?search}]
 Datas regarding a document.
@@ -129,6 +129,7 @@ A single document with its details
 ### Get similar [/documents/{id}/similar]
 Documents similar to `id`.
 
+### Get similar documents [GET]
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
 + Response 200 (application/json)
@@ -177,9 +178,10 @@ Documents similar to `id`.
             }
 
 ### Get raw [/documents/{id}/raw]
-Retrieve all raw datas for the `id`.
+Retrieve all raw datas for `id` documents.
 Also include information about hydraters (`hydratedBy`, `hydrating` and `lastHydration`).
 
+### Get raw document [GET]
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
 + Response 200 (application/json)
@@ -357,7 +359,7 @@ A single User object with all its details. This resource has the following attri
 ### Remove a User [DELETE]
 + Response 204
 
-## User redirection endpoint [/user]
+## User redirection [/user]
 ### Redirect to current user [GET]
 Redirect the user to its own user endpoint.
 
