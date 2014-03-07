@@ -76,7 +76,7 @@ Reset all documents and providers from the account.
 # Group Documents
 Endpoints for retrieving documents
 
-## Documents list [/documents/{?start, ?limit, ?search, ?_meta, ?@meta, ?has_meta, ?related_to, ?document_type, ?snippet_size, ?after, ?before}]
+## Documents list [/documents/{?start, ?limit, ?search, ?_meta, ?@meta, ?has_meta, ?related_to, ?document_type, ?token, ?snippet_size, ?after, ?before}]
 Retrieve a list of documents
 
 ### Search documents [GET]
@@ -92,6 +92,7 @@ Retrieve a list of documents
     + has_meta (optional, string) ... Only returns document having the `meta` key
     + related_to (optional, string) ... Find documents related to the specified document
     + document_type (optional, array) ... Only retrieve documents matching this document type. You can use the param multiple times to allow for multiples `document_type`
+    + token (optional, array) ... Only retrieve documents matching this token. You can use the param multiple times to allow for multiples `token`
     + snippet_size (optional, integer) ... Number of words in the snippet
 
 
