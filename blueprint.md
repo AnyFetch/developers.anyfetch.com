@@ -29,17 +29,17 @@ Retrieve datas about the current account. This endpoint return:
 + Response 200 (application/json)
     + Body
 
-        {
-            "documents_url": "/documents/",
-            "document_types_url": "/document_types/",
-            "providers_url": "/providers/",
-            "users_url": "/users/",
-            "current_user_url": "/users/52fb7b90c8318c4dc800006c",
-            "update_url": "/company/update",
-            "reset_url": "/company/reset",
-            "token_url": "/token",
-            "server_time": "2014-03-21T16:15:04.813Z"
-        }
+            {
+                "documents_url": "/documents/",
+                "document_types_url": "/document_types/",
+                "providers_url": "/providers/",
+                "users_url": "/users/",
+                "current_user_url": "/users/52fb7b90c8318c4dc800006c",
+                "update_url": "/company/update",
+                "reset_url": "/company/reset",
+                "token_url": "/token",
+                "server_time": "2014-03-21T16:15:04.813Z"
+            }
 
 ## Token [/token]
 ### Retrieve frontend token [GET]
@@ -52,18 +52,43 @@ Create or retrieve a token. The token will always be the same until you call `/c
 + Response 200 (application/json)
     + Body
 
-        {
-            "token": "ebe7ec3ca678ad1d8b09f135155ab9b7f1eea10cee67d0629031301c82d2d688"
-        }
+            {
+                "token": "ebe7ec3ca678ad1d8b09f135155ab9b7f1eea10cee67d0629031301c82d2d688"
+            }
 
 # Group Company
-##  POST /company/update
-Ping all providers of the current user to check for new available documents.
+## Company [/company]
+### Retrieve current company [GET]
+Retrieve the current company details.
+
+Contains your company name, and the list of hydraters used on the account.
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "_type": "Company",
+                "id": "531dd2f3c8318cc5d100003c",
+                "name": "test3@papiel.fr",
+                "hydraters": [
+                    "http://plaintext.hydrater.anyfetch.com/hydrate",
+                    "http://pdf.hydrater.anyfetch.com/hydrate",
+                    "http://office.hydrater.anyfetch.com/hydrate",
+                    "http://image.hydrater.anyfetch.com/hydrate",
+                    "http://ocr.hydrater.anyfetch.com/hydrate",
+                    "http://eml.hydrater.anyfetch.com/hydrate"
+                ]
+            }
+
+## Update company's documents [/company/update]
+### Update documents [POST]
+Ping all providers for the current company, checking for new available documents.
 
 + Response 204
 
-## DELETE /company/reset
-Reset all documents and providers from the account.
+## Reset company [/company/reset]
+## Reset company [DELETE]
+Reset all documents, tokens and providers from the account.
 
 > **Note:** Use with caution! Reset everything.
 
