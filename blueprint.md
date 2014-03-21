@@ -115,26 +115,134 @@ Reset all documents, tokens and providers from the account.
 # Group Documents
 Endpoints for retrieving documents
 
-## Documents list [/documents/{?start, ?limit, ?search, ?_meta, ?@meta, ?has_meta, ?related_to, ?document_type, ?token, ?snippet_size, ?after, ?before}]
-Retrieve a list of documents
+## Documents [/documents{?search, ?before, ?after,?document_type, ?token, ?_meta, ?has_meta, ?related_to, ?snippet_size, ?start, ?limit, ?no_hydration}]
+Access documents resources.
 
 ### Search documents [GET]
-+ Response 200
+Search within all availables datas for documents matching specified filter.
+
+Return aggregated informations computed over the result set.
+
+
 + Parameters
-    + start (optional, integer) ... Index of the first item to retrieve (for pagination)
-    + limit (optional, integer) ... Max number of items to retrieve (for pagination)
-    + before (optional, date) ... Only display documents created before this date. Use document creation date, and not anyFetch importation date. Format as valid JS date, for instance `2011-10-25`.
-    + after (optional, date) ... Only display documents created after this date. Use document creation date, and not anyFetch importation date. Format as valid JS date, for instance `2011-10-25`.
-    + search (optional, string) ... Search query, probably the most important parameter for this query
-    + _meta (optional, string) ... Strict search on `meta` key
-    + @meta (optional, string) ... Full text search on `meta` key
-    + has_meta (optional, string) ... Only returns document having the `meta` key
-    + related_to (optional, string) ... Find documents related to the specified document
-    + document_type (optional, array) ... Only retrieve documents matching this document type. You can use the param multiple times to allow for multiples `document_type`
-    + token (optional, array) ... Only retrieve documents matching this token. You can use the param multiple times to allow for multiples `token`
-    + snippet_size (optional, integer) ... Number of words in the snippet
+    + search (optional, string, `john smith`) ... Search query, probably the most important parameter for this query
+    + before (optional, date, `2014-03-21`) ... Only display documents created before this date.
+    + after (optional, date, `2014-01-25`) ... Only display documents created after this date.
+    + document_type (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this document type. <small>You can use the param multiple times to allow for multiples `document_type`</small>.
+    + token (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this token. <small>You can use the param multiple times to allow for multiples `token`</small>
+    + _meta (optional, string, `John Smith`) ... Strict search on `meta` key. Replace `meta` with the name of the meta you wish to search on.
+    + @meta (optional, string, `John`) ... Full text search on `meta` key.  Replace `meta` with the name of the meta you wish to search on.
+    + has_meta (optional, boolean, `1`) ... Only returns document having the `meta` key. Replace `meta` with the name of the meta you wish to search on.
+    + related_to (optional, string, `53273bd31eab8a0e22c2e663`) ... Find documents related to the specified document
+    + snippet_size (optional, integer, `250`) ... Number of chars to include in the snippet
+    + start (optional, integer, `5`) ... 0-based index of the first item to retrieve (for pagination).
+    + limit (optional, integer, `20`) ... Max number of items to retrieve (for pagination)
++ Response 200 (application/json)
+    + Body
 
+            {
+                "document_types": {
+                    "5252ce4ce4cfcd16f55cfa41": 1,
+                    "5252ce4ce4cfcd16f55cfa3c": 1
+                },
+                "tokens": {
+                    "53234698c8318cc5d100004f": 1,
+                    "5320a682c8318cba94000040": 1
+                },
+                "creation_date": {
+                    "1393632000000": 2
+                },
+                "next_page_url": "coming",
+                "previous_page_url": "coming",
+                "datas": [
+                    {
+                        "_type": "Document",
+                        "id": "5320a7735ee6eed51339a1b3",
+                        "creation_date": "2014-03-12T18:29:07.441Z",
+                        "token": "5320a682c8318cba94000040",
+                        "company": "52fb7b90c8318c4dc800006b",
+                        "document_type": "5252ce4ce4cfcd16f55cfa3c",
+                        "actions": {
+                            "show": "https://www.dropbox.com/home%2Fall%2FanyFetch%20pitch%20deck%20SF%20-%20CHarly%20Kevers.pdf"
+                        },
+                        "document_url": "/documents/5320a7735ee6eed51339a1b3",
+                        "datas": {
+                            "title": "anyFetch pitch deck SF   CHarly Kevers",
+                            "path": "/all/anyFetch pitch deck SF - CHarly Kevers.pdf",
+                            "snippet": "\nanyFetch\nENTERPRISE SEARCH in the CLOUD\nMehdi Bouheddi - CEO\n10-03-2014\nThe amount of data in the enterprise is more than 10 000 × Google\nBut it is a mess...\nChallenge : find the relevant information\n"
+                        },
+                        "related": 0
+                    },
+                    {
+                        "_type": "Document",
+                        "id": "532347451eab8a0e22c2e65f",
+                        "creation_date": "2014-03-14T17:26:15.000Z",
+                        "token": "53234698c8318cc5d100004f",
+                        "company": "52fb7b90c8318c4dc800006b",
+                        "document_type": "5252ce4ce4cfcd16f55cfa41",
+                        "actions": {
+                            "show": "http://anyfetch-provider-evernote.herokuapp.com/shard/s1/sh/6dbd89d6-1d80-4292-97fb-a0511cee5973/c5a8ad2ccc6b21ef43bb80fccc2d3544"
+                        },
+                        "document_url": "/documents/532347451eab8a0e22c2e65f",
+                        "datas": {
+                            "subject": "Follow up Charly <span class=\"hlt\">Kevers</span>",
+                            "description": "Ask him to send an Email to Nick and schedule a meeting with Alex.",
+                            "status": "TODO"
+                        },
+                        "related": 0
+                    }
+                ]
+            }
 
+### Create new document [POST]
+> This endpoint can only be used with token authentication.
+
+Send a new document on anyFetch.
+
+> You can't send a file and a document at the same time, you need to send the document first and then send the file on `/documents/:id/file`.
+
++ Parameters
+    + no_hydration (optional, boolean, `1`) ... Delay hydration until file is sent. Default to false.
++ Request
+
+            {
+                "identifier": "http://unique-document-identifier",
+                "document_type": "file",
+                "actions": {
+                    "download": "http://example.org/download/file/url"
+                },
+                "datas": {
+                    "bar": "this will not be indexed for search"
+                },
+                "metadatas": {
+                    "foo": "this will be indexed for search"
+                },
+                "related": ["52dff5c53923844f15885428"],
+                "user_access": ["52d96492a7f0a3ac4226f2f7"]
+            }
++ Response 200 (application/json)
+    + Body
+
+            {
+                "_type":"Document",
+                "id":"52f2367374a24df253314b3c",
+                "creation_date":"2014-02-05T10:39:36.623Z",
+                "token":"52f212ca74a24df25331490c",
+                "company":"52f0bb24c8318c2d65000035",
+                "document_type":"5252ce4ce4cfcd16f55cfa3b",
+                "document_url":"/documents/52f2367374a24df253314b3c",
+                "actions": {
+                    "download": "http://example.org/download/file/url"
+                },
+                "datas": {
+                    "bar": "this will not be indexed for search"
+                },
+                "metadatas": {
+                    "foo": "this will be indexed for search"
+                },
+                "related": ["52dff5c53923844f15885428"],
+                "user_access": ["52d96492a7f0a3ac4226f2f7"]
+            }
 
 ## Document [/documents/{id}{?search}]
 Datas regarding a document.
