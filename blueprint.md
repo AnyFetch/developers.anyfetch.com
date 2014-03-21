@@ -8,31 +8,61 @@ HOST: http://www.api.anyfetch.com
 # Group API
 ## GET /status
 Get the current status of the Fetch API.
+Should have a property status of "OK".
 
 + Response 200 (application/json)
+    + Body
 
+            {
+                "status": "ok",
+                "message": ""
+            }
 
 # Group Account
-## GET /
-Retrieve datas about the current account. This endpoint return the following attributes:
+## Index [/]
+### Retrieve API links [GET]
+Retrieve datas about the current account. This endpoint return:
 
-- `server_time`: UNIX timesptamp of the server
-- `user_url` currently connected user endpoint url: use to retrieve informations about the user
-- `documents_url` documents endpoint url: use to search for documents
-- `ìd` currently connected user's company id
-- `name` name or email of the connected user
-- `provider_status` status of each connected providers
-- `documents_types` available document_types for the connected account
+- url to different part of the API (HATEOAS design). Notice the `current_user_url` key.
+- `server_time`: current server date, if you need to compute deltas with local client.
 
 + Response 200 (application/json)
+    + Body
 
+        {
+            "documents_url": "/documents/",
+            "document_types_url": "/document_types/",
+            "providers_url": "/providers/",
+            "users_url": "/users/",
+            "current_user_url": "/users/52fb7b90c8318c4dc800006c",
+            "update_url": "/company/update",
+            "reset_url": "/company/reset",
+            "token_url": "/token",
+            "server_time": "2014-03-21T16:15:04.813Z"
+        }
 
-##  POST /update
+## Token [/token]
+### Retrieve frontend token [GET]
+> This endpoint can only be used with basic authentication.
+
+Create or retrieve a token. The token will always be the same until you call `/company/reset`.
+
+**The token should not be used to provide documents. Use it for frontend access.**
+
++ Response 200 (application/json)
+    + Body
+
+        {
+            "token": "ebe7ec3ca678ad1d8b09f135155ab9b7f1eea10cee67d0629031301c82d2d688"
+        }
+
+# Group Company
+##  POST /company/update
 Ping all providers of the current user to check for new available documents.
 
 + Response 204
 
-## DELETE /reset
+## DELETE /company/reset
 Reset all documents and providers from the account.
 
 > **Note:** Use with caution! Reset everything.
