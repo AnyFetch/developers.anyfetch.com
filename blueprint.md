@@ -249,10 +249,11 @@ Datas regarding a document.
 
 ### Get Document [GET]
 A single document with its details.
-Results contains, amongst other :
+
+Result contains, amongst other :
 
 * full projection, in `datas`,
-* `title` projection, in `title`,
+* `title` projection, in `title`.
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
@@ -282,13 +283,68 @@ Results contains, amongst other :
                 }
             }
 
-### Get similar [/documents/{id}/similar]
+## Similar documents [/documents/{id}/similar]
+### Find similar documents [GET]
 Documents similar to `id`.
 
-### Get similar documents [GET]
+
+Result contains, amongst other :
+
+* `title` projection for the `id` document, in `title`.
+* `snippet` projection for similar documents
+
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
 + Response 200 (application/json)
+    + Body
+
+            {
+                "title": {
+                    "subject": "Follow up Charly Kevers"
+                },
+                "document_type": "5252ce4ce4cfcd16f55cfa41",
+                "keywords": [
+                    "todo",
+                    "nick",
+                    "alex",
+                    "charly",
+                    "kevers"
+                ],
+                "document_types": {
+                    "5252ce4ce4cfcd16f55cfa3f": 5,
+                    "5252ce4ce4cfcd16f55cfa3c": 4,
+                    "5252ce4ce4cfcd16f55cfa41": 1
+                },
+                "tokens": {
+                    "5320a6abc8318cc5d1000049": 5,
+                    "5320a682c8318cba94000040": 4,
+                    "53234698c8318cc5d100004f": 1
+                },
+                "next_page_url": "coming",
+                "previous_page_url": "coming",
+                "datas": [
+                    {
+                        "_type": "Document",
+                        "id": "5320a76fbc2e51d7135f0c8c",
+                        "creation_date": "2014-02-14T08:46:11.000Z",
+                        "token": "5320a6abc8318cc5d1000049",
+                        "company": "52fb7b90c8318c4dc800006b",
+                        "document_type": "5252ce4ce4cfcd16f55cfa3f",
+                        "actions": {
+                            "show": "https://mail.google.com/mail/b/anyfetch@gmail.com/?cm#all/1442f93143ab3bb6"
+                        },
+                        "document_url": "/documents/5320a76fbc2e51d7135f0c8c",
+                        "datas": {
+                            "from": "Udacity <support@udacity.com>",
+                            "to": "anyfetch@gmail.com",
+                            "subject": "Verify Your <span class=\"hlt\">Email</span> on Udacity",
+                            "snippet": "Hi Any,\r\n\r\nTo complete your sign <span class=\"hlt\">up</span>, please verify your <span class=\"hlt\">email</span> using the following link:\r\n\r\nhttps://www.udacity.com/account/verify_email?user_key=788038764&code=YbD5SsnEMa\r\n\r\nCheers,\r\n\r\nThe Udacity Team\r\n",
+                            "date": "Friday, February 14, 2014"
+                        },
+                        "related": 0
+                    }
+                ]
+            }
 
 
 ### Get raw [/documents/{id}/raw]
