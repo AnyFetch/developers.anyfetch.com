@@ -248,13 +248,39 @@ Send a new document on anyFetch.
 Datas regarding a document.
 
 ### Get Document [GET]
-A single document with its details
+A single document with its details.
+Results contains, amongst other :
+
+* full projection, in `datas`,
+* `title` projection, in `title`,
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
-    + search (optional, string, `cascade`) ... String to highlight in the rendered document
+    + search (optional, string, `john smith`) ... String to highlight in the rendered document
 + Response 200 (application/json)
+    + Body
 
+            {
+                "_type": "Document",
+                "id": "532347451eab8a0e22c2e65f",
+                "creation_date": "2014-03-14T17:26:15.000Z",
+                "token": "53234698c8318cc5d100004f",
+                "company": "52fb7b90c8318c4dc800006b",
+                "document_type": "5252ce4ce4cfcd16f55cfa41",
+                "actions": {
+                    "show": "http://anyfetch-provider-evernote.herokuapp.com/shard/s1/sh/6dbd89d6-1d80-4292-97fb-a0511cee5973/c5a8ad2ccc6b21ef43bb80fccc2d3544"
+                },
+                "document_url": "/documents/532347451eab8a0e22c2e65f",
+                "datas": {
+                    "subject": "Follow up Charly Kevers",
+                    "status": "TODO",
+                    "description": "Ask him to send an Email to Nick and schedule a meeting with Alex."
+                },
+                "related": [],
+                "title": {
+                    "subject": "Follow up Charly Kevers"
+                }
+            }
 
 ### Get similar [/documents/{id}/similar]
 Documents similar to `id`.
