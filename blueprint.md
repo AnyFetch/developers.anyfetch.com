@@ -247,6 +247,8 @@ Send a new document on anyFetch.
 ## Document [/documents/{id}{?search}]
 Datas regarding a document.
 
+> Please note: for every endpoint in the form `/documents/{id}`, you can also use an alternative URL: `/documents/identifier/{identifier}` where `identifier` is the url-encoded provider identifier.
+
 ### Get Document [GET]
 A single document with its details.
 
@@ -355,7 +357,7 @@ Result contains, amongst other :
             }
 
 
-### Get raw [/documents/{id}/raw]
+## Raw access [/documents/{id}/raw]
 Retrieve all raw datas for `id` documents.
 Also include information about hydraters (`hydratedBy`, `hydrating` and `lastHydration`).
 
@@ -390,11 +392,34 @@ Also include information about hydraters (`hydratedBy`, `hydrating` and `lastHyd
             }
 
 
+## Associated file [/documents/{id}/file]
+Work with the document's file.
+
+### Get document file [GET]
+Retrieve the file associated with a document.
+
+> Unlike all other endpoints, this one can't be accessed using `/document/identifier/{identifier}/file`.
+
++ Parameters
+    + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
++ Response 200 (*/*)
+    + Body
+
+            {binary file content}
 
 
+### Add a file to a document [POST]
+This endpoint should be used when providing, to add a file to a document.
+All hydrations will be restarted.
 
+> If you plan to use this endpoint, you should call `/documents` before with the `no_hydration` parameter.
 
++ Parameters
+    + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
++ Request
 
+            file={binary file content as multipart form upload}
++ Response 204
 
 
 
