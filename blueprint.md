@@ -22,6 +22,51 @@ Should have a `status` of "OK".
                 "message": ""
             }
 
+## Batch calls [/batch{?pages}]
+### Batch querying [GET]
+Queue multiple `GET` queries in a single request. For instance, you can call `/batch?pages=/&pages=/document_types&pages=/providers` to get one JSON object with all datas, indexed by url.
+
+Status code will be 200 if all queries passed. If an error occured, the `errored` key will tell you which page failed to load.
+
++ Parameters
+    +  pages (required, string, `/document_types`) ... url to retrieve (url-encoded). <small>Multiple pages parameters can be used to queue queries.</small>
++ Response 200 (application/json)
+    + Body
+
+            {
+                "/": {
+                    "user_email": "anyfetch@gmail.com",
+                    "documents_url": "/documents/",
+                    "document_types_url": "/document_types/",
+                    "providers_url": "/providers/",
+                    "users_url": "/users/",
+                    "current_user_url": "/users/52fb7b90c8318c4dc800006c",
+                    "update_url": "/company/update",
+                    "reset_url": "/company/reset",
+                    "token_url": "/token",
+                    "server_time": "2014-03-24T16:33:41.074Z"
+                },
+                "/providers": {
+                    "53234698c8318cc5d100004f": {
+                        "application": "53232d1dc8318cba94000042",
+                        "name": "Evernote",
+                        "updated": "2014-03-14T18:15:37.603Z",
+                        "document_count": 2
+                    },
+                    "5320a682c8318cba94000040": {
+                        "application": "52bff114c8318c29e9000005",
+                        "name": "Dropbox",
+                        "updated": "2014-03-21T16:48:16.486Z",
+                        "document_count": 14
+                    },
+                    "5320a6abc8318cc5d1000049": {
+                        "application": "53047faac8318c2d65000096",
+                        "name": "GMail",
+                        "updated": "2014-03-20T19:15:11.048Z",
+                        "document_count": 26
+                    }
+                }
+            }
 
 
 
