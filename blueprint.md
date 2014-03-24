@@ -536,3 +536,44 @@ Retrieve all document types available for the current user, with document count 
                     "documents": 7
                 }
             }
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Group Providers
+## Providers [/providers]
+### List providers [GET]
+Retrieve all providers available for the current user, with document count and the date the last document created by this provider was updated.
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "53234698c8318cc5d100004f": {
+                    "application": "53232d1dc8318cba94000042",
+                    "name": "Evernote",
+                    "updated": "2014-03-14T18:15:37.603Z",
+                    "document_count": 2
+                },
+                "5320a682c8318cba94000040": {
+                    "application": "52bff114c8318c29e9000005",
+                    "name": "Dropbox",
+                    "updated": "2014-03-21T16:48:16.486Z",
+                    "document_count": 14
+                },
+                "5320a6abc8318cc5d1000049": {
+                    "application": "53047faac8318c2d65000096",
+                    "name": "GMail",
+                    "updated": "2014-03-20T19:15:11.048Z",
+                    "document_count": 26
+                }
+            }
