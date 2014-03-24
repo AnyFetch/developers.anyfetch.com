@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://www.api.anyfetch.com
+HOST: http://api.anyfetch.com
 
 # Fetch API Documentation
 
@@ -511,6 +511,8 @@ Not implemented yet.
 ### List document-types [GET]
 Retrieve all document types available for the current user, with document count and the date the last document with this document type was updated.
 
+The key will be reused on the `document_type` property for every `/documents/` endpoint.
+
 + Response 200 (application/json)
     + Body
 
@@ -553,6 +555,8 @@ Retrieve all document types available for the current user, with document count 
 ## Providers [/providers]
 ### List providers [GET]
 Retrieve all providers available for the current user, with document count and the date the last document created by this provider was updated.
+
+The key will be reused on the `token` property for every `/documents/` endpoint.
 
 + Response 200 (application/json)
     + Body
