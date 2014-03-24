@@ -458,8 +458,7 @@ Retrieve a list of all users in the current company.
                     "name": "",
                     "is_admin": false,
                     "user_url": "/users/52fb7b90c8318c4dc800006c"
-                },
-                ...
+                }
             ]
 
 ## User [/user/{id}]
@@ -493,3 +492,47 @@ Retrieve information about specified user.
 Not implemented yet.
 
 + Response 204
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Group Document Types
+## Document types [/document_types]
+### List document-types [GET]
+Retrieve all document types available for the current user, with document count and the date the last document with this document type was updated.
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "5252ce4ce4cfcd16f55cfa3c": {
+                    "_type": "DocumentType",
+                    "id": "5252ce4ce4cfcd16f55cfa3c",
+                    "name": "document",
+                    "template_snippet": "<article>\n  <h1>{{{ title }}}</h1>\n  <blockquote>\n  \t{{{ snippet }}}\n  </blockquote>\n</article>\n",
+                    "template_full": "<article>\n  <section>\n    <h1>{{{ title }}}</h1>\n    <code>{{ path }}</code>\n  </section>\n\n  <section>\n    {{{ content }}}\n  </section>\n</article>\n",
+                    "template_title": "{{ title }}",
+                    "updated": null,
+                    "documents": 6
+                },
+                "5252ce4ce4cfcd16f55cfa3d": {
+                    "_type": "DocumentType",
+                    "id": "5252ce4ce4cfcd16f55cfa3d",
+                    "name": "image",
+                    "template_snippet": "<article>\n  <h1>{{{ title }}}</h1>\n\n  <img src=\"{{ thumb }}\" />\n</article>\n",
+                    "template_full": "<article>\n  <h1>{{{ title }}}</h1>\n\n  <img src=\"{{ display }}\" />\n</article>\n",
+                    "template_title": "{{ title }}",
+                    "updated": null,
+                    "documents": 7
+                }
+            }
