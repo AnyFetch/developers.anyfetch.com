@@ -150,7 +150,7 @@ Return aggregated informations computed over the result set. The `score` key tel
                         "53234698c8318cc5d100004f": 1,
                         "5320a682c8318cba94000040": 1
                     },
-                    "creation_date": {
+                    "creation_dates": {
                         "1393632000000": 2
                     },
                 },
@@ -443,6 +443,25 @@ All hydrations will be restarted.
 # Group Users
 User resources.
 
+## Users Collection [/users]
+### List all Users [GET]
+Retrieve a list of all users in the current company.
+
++ Response 200 (application/json)
+    + Body
+
+            [
+                {
+                    "_type": "User",
+                    "id": "52fb7b90c8318c4dc800006c",
+                    "email": "anyfetch@gmail.com",
+                    "name": "",
+                    "is_admin": false,
+                    "user_url": "/users/52fb7b90c8318c4dc800006c"
+                },
+                ...
+            ]
+
 ## User [/user/{id}]
 A single User object with all its details. This resource has the following attributes :
 
@@ -454,29 +473,26 @@ A single User object with all its details. This resource has the following attri
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the User to perform action with.
 
-
 ### Retrieve a User [GET]
-+ Response 200 (application/json)
+Retrieve information about specified user.
 
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "_type": "User",
+                "id": "52fb7b90c8318c4dc800006c",
+                "email": "anyfetch@gmail.com",
+                "name": "",
+                "is_admin": false,
+                "user_url": "/users/52fb7b90c8318c4dc800006c"
+            }
 
 ### Remove a User [DELETE]
+Not implemented yet.
+
 + Response 204
-
-
-## User redirection [/user]
-### Redirect to current user [GET]
-Redirect the user to its own user endpoint.
-
-+ Response 301
-    + Header
-
-            Location: /users/5252cebb03a470843f000003
-
-## Users Collection [/users]
-### List all Users [GET]
-Retrieve a list of all users in the current company.
-
-+ Response 200 (application/json)
 
 
 
