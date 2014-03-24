@@ -141,16 +141,18 @@ Return aggregated informations computed over the result set. The `score` key tel
     + Body
 
             {
-                "document_types": {
-                    "5252ce4ce4cfcd16f55cfa41": 1,
-                    "5252ce4ce4cfcd16f55cfa3c": 1
-                },
-                "tokens": {
-                    "53234698c8318cc5d100004f": 1,
-                    "5320a682c8318cba94000040": 1
-                },
-                "creation_date": {
-                    "1393632000000": 2
+                facets: {
+                    "document_types": {
+                        "5252ce4ce4cfcd16f55cfa41": 1,
+                        "5252ce4ce4cfcd16f55cfa3c": 1
+                    },
+                    "tokens": {
+                        "53234698c8318cc5d100004f": 1,
+                        "5320a682c8318cba94000040": 1
+                    },
+                    "creation_date": {
+                        "1393632000000": 2
+                    },
                 },
                 "max_score": 0.4612878,
                 "next_page_url": "coming",
