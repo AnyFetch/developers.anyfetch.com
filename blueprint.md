@@ -30,6 +30,7 @@ Retrieve datas about the current account. This endpoint return:
     + Body
 
             {
+                "user_email": "test@anyfetch.com",
                 "documents_url": "/documents/",
                 "document_types_url": "/document_types/",
                 "providers_url": "/providers/",
@@ -121,8 +122,7 @@ Access documents resources.
 ### Search documents [GET]
 Search within all availables datas for documents matching specified filter.
 
-Return aggregated informations computed over the result set.
-
+Return aggregated informations computed over the result set. The `score` key tells document's relevance regarding query.
 
 + Parameters
     + search (optional, string, `john smith`) ... Search query, probably the most important parameter for this query
@@ -152,6 +152,7 @@ Return aggregated informations computed over the result set.
                 "creation_date": {
                     "1393632000000": 2
                 },
+                "max_score": 0.4612878,
                 "next_page_url": "coming",
                 "previous_page_url": "coming",
                 "datas": [
@@ -171,7 +172,8 @@ Return aggregated informations computed over the result set.
                             "path": "/all/anyFetch pitch deck SF - CHarly Kevers.pdf",
                             "snippet": "\nanyFetch\nENTERPRISE SEARCH in the CLOUD\nMehdi Bouheddi - CEO\n10-03-2014\nThe amount of data in the enterprise is more than 10 000 × Google\nBut it is a mess...\nChallenge : find the relevant information\n"
                         },
-                        "related": 0
+                        "related": 0,
+                        "score": 0.4612878
                     },
                     {
                         "_type": "Document",
@@ -189,7 +191,8 @@ Return aggregated informations computed over the result set.
                             "description": "Ask him to send an Email to Nick and schedule a meeting with Alex.",
                             "status": "TODO"
                         },
-                        "related": 0
+                        "related": 0,
+                        "score": 0.16041306
                     }
                 ]
             }
