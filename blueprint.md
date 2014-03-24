@@ -3,12 +3,16 @@ HOST: http://api.anyfetch.com
 
 # Fetch API Documentation
 
+> This page is anyFetch reference. See [http://developers.anyfetch.com](this page) for informations regarding general usage.
+
 **Fetch API** is designed to help you search in  massive amounts of documents coming from various sources, in various formats. See [authentication](/authentication.html) for authentication details.
 
-# Group API
-## GET /status
+
+# Group Index
+## API status [/status]
+### anyFetch status [GET]
 Get the current status of the Fetch API.
-Should have a property status of "OK".
+Should have a `status` of "OK".
 
 + Response 200 (application/json)
     + Body
@@ -18,12 +22,22 @@ Should have a property status of "OK".
                 "message": ""
             }
 
+
+
+
+
+
+
+
+
+
 # Group Account
 ## Index [/]
 ### Retrieve API links [GET]
 Retrieve datas about the current account. This endpoint return:
 
-- url to different part of the API (HATEOAS design). Notice the `current_user_url` key.
+- `user_email`: informations regarding currently connected user
+- `_url` to different part of the API (HATEOAS design). Notice the `current_user_url` key.
 - `server_time`: current server date, if you need to compute deltas with local client.
 
 + Response 200 (application/json)
@@ -48,7 +62,7 @@ Retrieve datas about the current account. This endpoint return:
 
 Create or retrieve a token. The token will always be the same until you call `/company/reset`.
 
-**The token should not be used to provide documents. Use it for frontend access.**
+**The token should not be used to provide documents. Use it only for frontend access.**
 
 + Response 200 (application/json)
     + Body
@@ -89,9 +103,7 @@ Ping all providers for the current company, checking for new available documents
 
 ## Reset company [/company/reset]
 ## Reset company [DELETE]
-Reset all documents, tokens and providers from the account.
-
-> **Note:** Use with caution! Reset everything.
+Reset **all** documents, tokens and providers from the account.
 
 + Response 204
 
@@ -122,7 +134,7 @@ Access documents resources.
 ### Search documents [GET]
 Search within all availables datas for documents matching specified filter.
 
-Return aggregated informations computed over the result set. The `score` key tells document's relevance regarding query.
+Return aggregated informations computed over the result set. The `score` key indicated document's relevance regarding query.
 
 + Parameters
     + search (optional, string, `john smith`) ... Search query, probably the most important parameter for this query
@@ -252,14 +264,14 @@ Send a new document on anyFetch.
 ## Document [/documents/{id}{?search}]
 Datas regarding a document.
 
-> Please note: for every endpoint in the form `/documents/{id}`, you can also use an alternative URL: `/documents/identifier/{identifier}` where `identifier` is the url-encoded provider identifier.
+> Please note: for every endpoint in the form `/documents/{id}`, you can also use an alternative URL `/documents/identifier/{identifier}` where `identifier` is the url-encoded provider identifier.
 
 ### Get Document [GET]
 A single document with its details.
 
 Result contains, amongst other :
 
-* full projection, in `datas`,
+* `full` projection, in `datas`,
 * `title` projection, in `title`.
 
 + Parameters
@@ -300,13 +312,14 @@ Remove specified document.
 
 ## Similar documents [/documents/{id}/similar]
 ### Find similar documents [GET]
-Documents similar to `id`.
+Documents similar to `id`. Still a work in progress.
 
 
 Result contains, amongst other :
 
 * `title` projection for the `id` document, in `title`.
-* `snippet` projection for similar documents
+* `snippet` projection for similar documents, in `datas`
+* `keywords` used to find similar documents
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
@@ -363,7 +376,7 @@ Result contains, amongst other :
 
 
 ## Raw access [/documents/{id}/raw]
-Retrieve all raw datas for `id` documents.
+Retrieve all raw datas for `id` document.
 Also include information about hydraters (`hydratedBy`, `hydrating` and `lastHydration`).
 
 ### Get raw document [GET]
@@ -403,7 +416,7 @@ Work with the document's file.
 ### Get document file [GET]
 Retrieve the file associated with a document.
 
-> Unlike all other endpoints, this one can't be accessed using `/document/identifier/{identifier}/file`.
+> You can't access this endpoint using `/document/identifier/{identifier}/file` syntax.
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
@@ -417,7 +430,7 @@ Retrieve the file associated with a document.
 This endpoint should be used when providing, to add a file to a document.
 All hydrations will be restarted.
 
-> If you plan to use this endpoint, you should call `/documents` before with the `no_hydration` parameter.
+> If you plan to use this endpoint, you should post to `/documents` before with the `no_hydration` parameter.
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
@@ -464,10 +477,10 @@ Retrieve a list of all users in the current company.
 ## User [/user/{id}]
 A single User object with all its details. This resource has the following attributes :
 
-- `id` The id of the user
-- `name` The name of the user
-- `email` The email address of the user
-- `is_admin` Is true if the user is admin of this organisations
+- `id` id of the user
+- `name` name of the user
+- `email` email address of the user
+- `is_admin` true if the user is admin of this company
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the User to perform action with.
