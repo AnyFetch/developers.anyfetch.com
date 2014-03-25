@@ -422,13 +422,13 @@ Result contains, amongst other :
 
 ## Related documents [/documents/{id}/related]
 ### Find related documents [GET]
-Documents related to `id`. Still a work in progress.
+Documents related to `id`.
 
 
 Result contains, amongst other :
 
 * `title` projection for the `id` document, in `title`.
-* `snippet` projection for similar documents, in `datas`
+* `snippet` projection for related documents, in `datas`
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
@@ -437,7 +437,7 @@ Result contains, amongst other :
 
             {
                 "title": {
-                    "subject": "0000000113955673 - very important"
+                    "subject": "very important stuff"
                 },
                 "document_type": "5252ce4ce4cfcd16f55cfa3f",
                 "facets": {
