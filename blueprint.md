@@ -173,7 +173,7 @@ Reset **all** documents, tokens and providers from the account.
 # Group Documents
 Endpoints for retrieving documents
 
-## Documents [/documents{?search, ?before, ?after,?document_type, ?token, ?_meta, ?has_meta, ?related_to, ?snippet_size, ?start, ?limit, ?no_hydration}]
+## Documents [/documents{?search, ?before, ?after,?document_type, ?token, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit, ?no_hydration}]
 Access documents resources.
 
 ### Search documents [GET]
@@ -190,7 +190,6 @@ Return aggregated informations computed over the result set. The `score` key ind
     + _meta (optional, string, `John Smith`) ... Strict search on `meta` key. Replace `meta` with the name of the meta you wish to search on.
     + @meta (optional, string, `John`) ... Full text search on `meta` key.  Replace `meta` with the name of the meta you wish to search on.
     + has_meta (optional, boolean, `1`) ... Only returns document having the `meta` key. Replace `meta` with the name of the meta you wish to search on.
-    + related_to (optional, string, `53273bd31eab8a0e22c2e663`) ... Find documents related to the specified document
     + snippet_size (optional, integer, `250`) ... Number of chars to include in the snippet
     + start (optional, integer, `5`) ... 0-based index of the first item to retrieve (for pagination).
     + limit (optional, integer, `20`) ... Max number of items to retrieve (for pagination)
