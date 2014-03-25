@@ -516,8 +516,6 @@ Work with the document's file.
 ### Get document file [GET]
 Retrieve the file associated with a document.
 
-> You can't access this endpoint using `/document/identifier/{identifier}/file` syntax.
-
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
 + Response 200 (*/*)
