@@ -420,6 +420,62 @@ Result contains, amongst other :
             }
 
 
+## Related documents [/documents/{id}/related]
+### Find related documents [GET]
+Documents related to `id`. Still a work in progress.
+
+
+Result contains, amongst other :
+
+* `title` projection for the `id` document, in `title`.
+* `snippet` projection for similar documents, in `datas`
+
++ Parameters
+    + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
++ Response 200 (application/json)
+    + Body
+
+            {
+                "title": {
+                    "subject": "0000000113955673 - very important"
+                },
+                "document_type": "5252ce4ce4cfcd16f55cfa3f",
+                "facets": {
+                    "document_types": {
+                        "5252ce4ce4cfcd16f55cfa3c": 1
+                    },
+                    "tokens": {
+                        "531dccedc8318cc5d1000037": 1
+                    },
+                    "creation_dates": {
+                        "1380585600000": 1
+                    }
+                },
+                "datas": [
+                    {
+                        "_type": "Document",
+                        "id": "531dcd94731d5a284f707ac1",
+                        "creation_date": "2013-10-01T14:48:41.000Z",
+                        "token": "531dccedc8318cc5d1000037",
+                        "company": "52f0e4f9c8318c4dc8000039",
+                        "document_type": "5252ce4ce4cfcd16f55cfa3c",
+                        "actions": {},
+                        "document_url": "/documents/531dcd94731d5a284f707ac1",
+                        "datas": {
+                            "title": "4400000451947",
+                            "path": "/4400000451947.pdf",
+                            "snippet": "\nDT061 ind 13 Prestations réalisées sous assurance qualité ISO 9001"
+                        },
+                        "related": 1,
+                        "score": 1
+                    }
+                ],
+                "max_score": 1,
+                "next_page_url": "coming",
+                "previous_page_url": "coming"
+            }
+
+
 ## Raw access [/documents/{id}/raw]
 Retrieve all raw datas for `id` document.
 Also include information about hydraters (`hydratedBy`, `hydrating` and `lastHydration`).
