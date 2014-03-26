@@ -11,7 +11,7 @@ To follow this guide, you need:
 
 * An account on anyFetch, with login and password.
 * `curl` binary to send requests from the command line
-* A sample file for hydration, for instance [this one](/guides/samples/sample.txt)
+* A sample file for hydration, for instance [this one](/guides/samples/sample.txt).
 
 
 ## Setting up
