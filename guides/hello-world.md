@@ -11,7 +11,8 @@ To follow this guide, you need:
 
 * An account on anyFetch, with login and password.
 * `curl` binary to send requests from the command line
-* A sample file for hydration, for instance THIS ONE.
+* A sample file for hydration, for instance [this one](/guides/samples/sample.txt)
+
 
 ## Setting up
 You need to base64 encode your login and password separated with a colon.
@@ -28,11 +29,11 @@ The first step will be to clean everything that may be available on your account
 ```sh
 $ curl -XDELETE \
 -H "Authorization: Basic ${BASE64}" \
-http://api.anyfetch.com/reset
+http://api.anyfetch.com/company/reset
 ```
 
 ### Retrieve a token
-Although you can do most things using the Basic Authentication, tokens are faster to use, and generally more secure since you can revoke them at any time
+Although you can do most things using the Basic Authentication, tokens are faster to use, and generally more secure since you can revoke them at any time.
 For our test, we'll use a token:
 
 ```sh
@@ -61,7 +62,7 @@ Before sending the file, we need to give Fetch API basic informations about our 
 $ curl -XPOST \
 -H "Authorization: token ${TOKEN}" \
 -H "Content-Type:application/json" \
-http://api.anyfetch.com/providers/documents \
+http://api.anyfetch.com/documents \
 -d '{"identifier": "hello-world", "no_hydration": true, "document_type": "file", "metadatas": {"path": "/home/anyfetch/sample.txt", "title": "anyFetch sample file"}}'
 
 {
@@ -97,13 +98,14 @@ Now that we've created the document on Fetch API, we can associate it with a fil
 ```sh
 $ curl -XPOST \
 -H "Authorization: token ${TOKEN}" \
--F "identifier=hello-world" \
 -F "file=@sample.txt" \
-http://api.anyfetch.com/providers/documents/file
+http://api.anyfetch.com/documents/${ID}/file
 ```
 
+> Note: if your identifier contains special characters, you'll need to url-encode them.
+
 ### Checking everything is all right
-Once sent, your document will be hydrated. Depending on the current load, this can take a few seconds or long minutes. If you're curious about the status of your document, you can ping  `/documents/<document_id>/raw`: the `hydrating` and `hydrated_by` keys will help you understand which hydraters are taking too much time.
+Once sent, your document will be hydrated. Depending on the current load, this can take a few seconds or long minutes. If you're curious about the status of your document, you can ping  `/documents/${ID}/raw`: the `hydrating` and `hydrated_by` keys will help you understand which hydraters are taking too much time.
 
 ## Searching
 Alright, we're done. We can now reap the fruit of our hard work, and start searching...
@@ -113,30 +115,39 @@ $ curl -H "Authorization: token ${TOKEN}" \
 http://api.anyfetch.com/documents?search=anyfetch
 
 {
-    "document_types":{
-        "5252ce4ce4cfcd16f55cfa3c":1
-    },
-    "tokens":{
-        "52f2289374a24df253314a95":1
+    "facets":{
+        "document_types":{
+            "5252ce4ce4cfcd16f55cfa3c":1
+        },
+        "tokens":{
+            "53330deb745e83fe25f6c3dc":1
+        },
+        "creation_dates":{
+            "1393632000000":1
+        }
     },
     "datas":[
         {
             "_type":"Document",
             "id":"52f2367374a24df253314b3c",
-            "creation_date":"2014-02-05T13:02:43.084Z",
-            "token":"52f2289374a24df253314a95",
+            "creation_date":"2014-03-26T17:28:47.688Z",
+            "token":"53330deb745e83fe25f6c3dc",
             "company":"52f0bb24c8318c2d65000035",
             "document_type":"5252ce4ce4cfcd16f55cfa3c",
             "actions":{},
             "document_url":"/documents/52f2367374a24df253314b3c",
-            "related":[],
             "datas":{
                 "title":"anyFetch sample file",
                 "path":"/home/<span class=\"hlt\">anyfetch</span>/sample.txt",
                 "snippet":"This is a sample document, for hello world purposes.\n"
-            }
+            },
+            "related":0,
+            "score":0.19178301
         }
-    ]
+    ],
+    "max_score":0.19178301,
+    "next_page_url":"coming",
+    "previous_page_url":"coming"
 }
 ```
 
