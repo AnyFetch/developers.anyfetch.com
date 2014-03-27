@@ -1,6 +1,6 @@
 # Documentation for anyFetch API
 
-Please visit http://papiel.github.io/developers.anyfetch.com to read the documentation.
+Please visit [developers.anyfetch.com](http://developers.anyfetch.com) to read the documentation.
 
 This repository should not be used for browsing, but to update the doc.
 
