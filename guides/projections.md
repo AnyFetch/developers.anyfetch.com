@@ -16,10 +16,10 @@ The best way to understand projection is by example. Let's say you have a big PD
     "metadatas": {
         "title": "My big PDF",
         "path": "/home/anyfetch/big_pdf.pdf",
-        "text": "Big text extract with many many characters...",
+        "text": "Big text extract with many many characters [trunc ...]",
         "pages": [
-            "<h1>Big text extract</h1><p>with many many characters, spanning across multiple pages.",
-            "second page...",
+            "<h1>Big text extract</h1><p>with many many characters, spanning across multiple pages. [trunc ...]",
+            "second page [trunc ...]",
             ...
         ],
         "creation": "2013-10-08T14:59:07.895Z",
@@ -61,13 +61,13 @@ When the user searches for the term "many many", we'll then generate a new, smal
 
 This is the basis for projectors.
 
-Obviously, we can't use the same projection for each documents : we don't want to project a PDF, a contact or a mail in the same way.
+Obviously, we can't use the same projection for each documents: we don't want to project a PDF, a contact or a mail in the same way.
 That's the basis for document-types: every document has a document-type, and this document-type defines how it will be projected.
 
 Every document-type defines three projectors:
 
-* A projector for snippet, used after a query to render small results;
-* A projector for related documents, used when we want to display the document alongside another one;
-* A projector to display the document in details. Note this is not all metadatas, since most of them won't be displayed to the end user;
+* A projector for `title`, used to display the document in one line;
+* A projector for `snippet`, used after a query to render small results;
+* A projector to display the document in `full`. Note this is not all metadatas, since most of them won't be displayed to the end user.
 
 > In some case, the document will have no document-type. In this case, the original metadatas will be returned, without any projection.

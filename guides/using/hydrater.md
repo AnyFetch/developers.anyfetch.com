@@ -11,15 +11,13 @@ You'll then need [the OCR hydrater](https://github.com/Papiel/ocr.hydrater.anyfe
 ### Basic hydration workflow
 First thing first, an hydration server is not a frontend web server. It can only be called using APIs, and has no pages of itself -- viewing [this on a browser](http://ocr.hydrater.anyfetch.com/) will result in an error.
 
-All calls on this page are done using `curl`.
-
 #### Starting a new hydration
 To hydrate a document, you need to specify two parameters : the `file_path`, and the `callback` (both URLs).
 When you send the request to `hydrate`, it will be queued on the hydrater's pending tasks queue.
 The hydrater will reply with `202 Accepted` and nothing else; the hydration results will later be sent to `callback`.
 
 #### Hydration
-When it is your turn, the hydrater will download the file (so it needs to be available from Internet; sending the file as `multipart` is not allowed, as it would totally explode the hydrater queue).
+When it is your turn, the hydrater will download the file (so it needs to be available from Internet; sending the file as `multipart` on the first call is not allowed, as it would totally explode the hydrater queue).
 
 Hydration will then occur. Once completed, the endpoint you specified as `callback` will be pinged with an `application/json` payload and your hydrated document.
 
@@ -41,7 +39,7 @@ $ curl --header "Content-Type:application/json" --data '{"file_path":"https://ra
 ```
 
 ### Real hydration workflow
-Although this workflow works fine for most hydraters, you'll often need more advanced metadatas. Anyfetch often distinguish between a file and a document (a file is a file on a hard drive, somewhere, a document is a JSON object with datas). Hydraters use the same scheme, and allows you to send a document "to start with". Returned datas will be merged with the current datas.
+Although this workflow works fine for most hydraters, you'll often need more advanced metadatas. Anyfetch often distinguish between a file and a document (a file is a file on a hard drive somewhere, a document is a JSON object with datas). Hydraters use the same scheme, and allows you to send a document "to start with". Returned datas will be merged with the current datas.
 To keep going with our previous example, here is a more complex call to the OCR with an initial document:
 
 ```sh
@@ -61,7 +59,7 @@ $ curl --header "Content-Type:application/json" --data '{"file_path":"https://ra
 Any parameter differing from `file_path`, `callback` and `long_poll` will be part of the result document. This behavior allows to "chain" hydraters, which is very useful for some file types.
 
 #### Hydrater status
-Hydrater queue can get quite long sometimes. You may want to check the status of any hydrater using `/status` endpoint:
+Hydrater queue can get quite long sometimes. You may want to check the status of an hydrater using `/status` endpoint:
 
 ```sh
 $ curl http://ocr.hydrater.anyfetch.com/status
