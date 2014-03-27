@@ -11,7 +11,6 @@ To follow this guide, you need:
 
 * An account on anyFetch, with login and password.
 * `curl` binary to send requests from the command line
-* A sample file for hydration, for instance [this one](/guides/samples/sample.txt).
 
 
 ## Setting up
@@ -27,13 +26,15 @@ You can now send requests using [basic authentication](/authentication.html): an
 The first step will be to clean everything that may be available on your account. To do that, we'll send a simple `DELETE` request to `/reset`:
 
 ```sh
-$ curl -XDELETE \
+$ curl -I -XDELETE \
 -H "Authorization: Basic ${BASE64}" \
 http://api.anyfetch.com/company/reset
 ```
 
+You should see "204 No Content". Great! You've cleaned up your account.
+
 ### Retrieve a token
-Although you can do most things using the Basic Authentication, tokens are faster to use, and generally more secure since you can revoke them at any time.
+Although you can do most things using Basic Authentication, tokens are faster to use, and generally more secure since you can revoke them at any time.
 For our test, we'll use a token:
 
 ```sh
@@ -94,6 +95,8 @@ Things to note...
 
 ### Send the file
 Now that we've created the document on Fetch API, we can associate it with a file. This is a simple file upload, under the `file` key.
+
+Don't forget to use a sample file, like [this one](/guides/samples/sample.txt).
 
 ```sh
 $ curl -XPOST \
