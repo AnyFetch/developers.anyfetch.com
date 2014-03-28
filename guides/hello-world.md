@@ -41,6 +41,7 @@ For our test, we'll use a token:
 $ curl -H "Authorization: Basic ${BASE64}" \
 http://api.anyfetch.com/token
 
+
 {
     "token":"${TOKEN}"
 }
@@ -65,6 +66,7 @@ $ curl -XPOST \
 -H "Content-Type:application/json" \
 http://api.anyfetch.com/documents \
 -d '{"identifier": "hello-world", "no_hydration": true, "document_type": "file", "metadatas": {"path": "/home/anyfetch/sample.txt", "title": "anyFetch sample file"}}'
+
 
 {
     "_type":"Document",
@@ -105,10 +107,40 @@ $ curl -XPOST \
 http://api.anyfetch.com/documents/${ID}/file
 ```
 
-> Note: if your identifier contains special characters, you'll need to url-encode them.
-
 ### Checking everything is all right
 Once sent, your document will be hydrated. Depending on the current load, this can take a few seconds or long minutes. If you're curious about the status of your document, you can ping  `/documents/${ID}/raw`: the `hydrating` and `hydrated_by` keys will help you understand which hydraters are taking too much time.
+
+```sh
+$ curl -H "Authorization: token ${TOKEN}" \
+http://api.anyfetch.com/documents/${ID}/raw
+
+
+{
+    "_type":"Document",
+    "id":"533570229ad9a4665a8d6499",
+    "creation_date":"2014-03-28T12:50:42.496Z",
+    "token":"53357005394e45c459176b4f",
+    "company":"530f392ec8318cba94000020",
+    "document_type":"5252ce4ce4cfcd16f55cfa3c",
+    "actions":{},
+    "document_url":"/documents/533570229ad9a4665a8d6499",
+    "identifier":"hello-world",
+    "datas":{
+        "html":"<p>This is a sample document, for hello world purposes.\n</p>\n"
+    },
+    "metadatas":{
+        "content-type":"text/plain; charset=ISO-8859-1",
+        "content-encoding":"ISO-8859-1",
+        "text":"This is a sample document, for hello world purposes.\n",
+        "path":"/home/anyfetch/sample.txt",
+        "title":"anyFetch sample file"
+    },
+    "last_hydration":"2014-03-28T12:51:17.755Z",
+    "hydrating":[],
+    "hydrated_by":["http://plaintext.hydrater.anyfetch.com/hydrate"],
+    "related":[]
+}
+```
 
 ## Searching
 Alright, we're done. We can now reap the fruit of our hard work, and start searching...
@@ -116,6 +148,7 @@ Alright, we're done. We can now reap the fruit of our hard work, and start searc
 ```sh
 $ curl -H "Authorization: token ${TOKEN}" \
 http://api.anyfetch.com/documents?search=anyfetch
+
 
 {
     "facets":{
