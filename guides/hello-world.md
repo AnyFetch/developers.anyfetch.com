@@ -25,7 +25,7 @@ You can now send requests using [basic authentication](/authentication.html): an
 
 The first step will be to clean everything that may be available on your account. To do that, we'll send a simple `DELETE` request to `/reset`:
 
-```shell
+```sh
 $ curl -I -XDELETE \
 -H "Authorization: Basic ${BASE64}" \
 http://api.anyfetch.com/company/reset
@@ -37,7 +37,7 @@ You should see "204 No Content". Great! You've cleaned up your account.
 Although you can do most things using Basic Authentication, tokens are faster to use, and generally more secure since you can revoke them at any time.
 For our test, we'll use a token:
 
-```shell
+```sh
 $ curl -H "Authorization: Basic ${BASE64}" \
 http://api.anyfetch.com/token
 
@@ -60,7 +60,7 @@ Before sending the file, we need to give Fetch API basic informations about our 
 * `document_type`: this value lets us specify what we know about our document. This can be `email`, `contact`... in our case, we'll keep this basic and set it to `file` which is the default for every document containing a file.
 * `metadatas`: a JSON object containing basic information about our document. For now, we'll simply send a `path` and a `title`.
 
-```shell
+```sh
 $ curl -XPOST \
 -H "Authorization: token ${TOKEN}" \
 -H "Content-Type:application/json" \
@@ -100,7 +100,7 @@ Now that we've created the document on Fetch API, we can associate it with a fil
 
 Don't forget to use a sample file, like [this one](/guides/samples/sample.txt).
 
-```shell
+```sh
 $ curl -XPOST \
 -H "Authorization: token ${TOKEN}" \
 -F "file=@sample.txt" \
@@ -110,7 +110,7 @@ http://api.anyfetch.com/documents/${ID}/file
 ### Checking everything is all right
 Once sent, your document will be hydrated. Depending on the current load, this can take a few seconds or long minutes. If you're curious about the status of your document, you can ping  `/documents/${ID}/raw`: the `hydrating` and `hydrated_by` keys will help you understand which hydraters are taking too much time.
 
-```shell
+```sh
 $ curl -H "Authorization: token ${TOKEN}" \
 http://api.anyfetch.com/documents/${ID}/raw
 
@@ -145,7 +145,7 @@ http://api.anyfetch.com/documents/${ID}/raw
 ## Searching
 Alright, we're done. We can now reap the fruit of our hard work, and start searching...
 
-```shell
+```sh
 $ curl -H "Authorization: token ${TOKEN}" \
 http://api.anyfetch.com/documents?search=anyfetch
 
