@@ -190,7 +190,7 @@ Return aggregated informations computed over the result set. The `score` key ind
     + _meta (optional, string, `John Smith`) ... Strict search on `meta` key. Replace `meta` with the name of the meta you wish to search on.
     + @meta (optional, string, `John`) ... Full text search on `meta` key.  Replace `meta` with the name of the meta you wish to search on.
     + has_meta (optional, boolean, `1`) ... Only returns document having the `meta` key. Replace `meta` with the name of the meta you wish to search on.
-    + snippet_size (optional, integer, `250`) ... Number of chars to include in the snippet
+    + snippet_size (optional, integer, `200`) ... Number of chars to include in the snippet
     + start (optional, integer, `5`) ... 0-based index of the first item to retrieve (for pagination).
     + limit (optional, integer, `20`) ... Max number of items to retrieve (for pagination)
 + Response 200 (application/json)
