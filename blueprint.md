@@ -170,6 +170,51 @@ Reset **all** documents, tokens and providers from the account.
 
 
 
+# Group Subcompanies
+## Subcompanies [/subcompanies]
+Subcompanies are companies you own and have created.
+They allow you to compartment datas: no datas stored in a company can be accessed from any other place.
+
+### Retrieve all subcompanies [GET]
+Retrieve all subcompanies from the current company.
+
+
++ Response 200 (application/json)
+    + Body
+
+            [
+                {
+                    "_type": "Company",
+                    "id": "533d87ea162215a5375d34d1",
+                    "name": "new-user-subcompany",
+                    "hydraters": [
+                        "http://plaintext.hydrater.anyfetch.com/hydrate",
+                        "http://pdf.hydrater.anyfetch.com/hydrate",
+                        "http://office.hydrater.anyfetch.com/hydrate",
+                        "http://image.hydrater.anyfetch.com/hydrate",
+                        "http://ocr.hydrater.anyfetch.com/hydrate",
+                        "http://eml.hydrater.anyfetch.com/hydrate"
+                    ]
+                }
+            ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Group Documents
 Endpoints for retrieving documents
 
