@@ -198,28 +198,41 @@ Retrieve all subcompanies from the current company.
                 }
             ]
 
+### Create a new subcompany [POST]
+Create a new subcompany.
+
+You may customize hydraters list, or use default list.
+
+> Be careful: the user will be migrated to the new company. To create a new subcompany, the best practice is to create a new admin (`POST /user`) before, then create the new company while connected with the new user.
+
+
++ Request
+
+            {
+                "name": "new-subcompany-name",
+            }
+
++ Response 200
+
+            {
+                "_type": "Company",
+                "id": "533d9161162215a5375d34d2",
+                "name": "new-subcompany-name",
+                "hydraters": [
+                    "http://plaintext.hydrater.anyfetch.com/hydrate",
+                    "http://pdf.hydrater.anyfetch.com/hydrate",
+                    "http://office.hydrater.anyfetch.com/hydrate",
+                    "http://image.hydrater.anyfetch.com/hydrate",
+                    "http://ocr.hydrater.anyfetch.com/hydrate",
+                    "http://eml.hydrater.anyfetch.com/hydrate"
+                ]
+            }
+
 ## Subcompany [/subcompanies/{id}]
 ### Delete a subcompany [DELETE]
 Delete the subcompany, **all** its documents and **all** its users.
 
-+ Response 200 (application/json)
-    + Body
-
-            [
-                {
-                    "_type": "Company",
-                    "id": "533d87ea162215a5375d34d1",
-                    "name": "new-user-subcompany",
-                    "hydraters": [
-                        "http://plaintext.hydrater.anyfetch.com/hydrate",
-                        "http://pdf.hydrater.anyfetch.com/hydrate",
-                        "http://office.hydrater.anyfetch.com/hydrate",
-                        "http://image.hydrater.anyfetch.com/hydrate",
-                        "http://ocr.hydrater.anyfetch.com/hydrate",
-                        "http://eml.hydrater.anyfetch.com/hydrate"
-                    ]
-                }
-            ]
++ Response 204
 
 
 
