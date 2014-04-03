@@ -600,7 +600,11 @@ Retrieve information about specified user.
             }
 
 ### Remove a User [DELETE]
-Not implemented yet.
+Remove specified user.
+
+> You need to be an administrator to delete another user.
+
+> You can't delete yourself.
 
 + Response 204
 
