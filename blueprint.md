@@ -198,6 +198,28 @@ Retrieve all subcompanies from the current company.
                 }
             ]
 
+## Subcompany [/subcompanies/{id}]
+### Delete a subcompany [DELETE]
+Delete the subcompany, **all** its documents and **all** its users.
+
++ Response 200 (application/json)
+    + Body
+
+            [
+                {
+                    "_type": "Company",
+                    "id": "533d87ea162215a5375d34d1",
+                    "name": "new-user-subcompany",
+                    "hydraters": [
+                        "http://plaintext.hydrater.anyfetch.com/hydrate",
+                        "http://pdf.hydrater.anyfetch.com/hydrate",
+                        "http://office.hydrater.anyfetch.com/hydrate",
+                        "http://image.hydrater.anyfetch.com/hydrate",
+                        "http://ocr.hydrater.anyfetch.com/hydrate",
+                        "http://eml.hydrater.anyfetch.com/hydrate"
+                    ]
+                }
+            ]
 
 
 
