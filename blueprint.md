@@ -572,6 +572,31 @@ Retrieve a list of all users in the current company.
                 }
             ]
 
+### Create a User [POST]
+Create a new user on this company.
+
+> You need to be an administrator to create another user.
+
+
++ Request
+
+            {
+                "email": "newuser@company.com",
+                "name": "New User",
+                "password": "password"
+            }
++ Response 200 (application/json)
+    + Body
+
+            {
+                "_type": "User",
+                "id": "533d6b2a6355285e5563d005",
+                "email": "newuser@company.com",
+                "name": "New User",
+                "is_admin": false,
+                "user_url": "/users/533d6b2a6355285e5563d005"
+            }
+
 ## User [/user/{id}]
 A single User object with all its details. This resource has the following attributes :
 
