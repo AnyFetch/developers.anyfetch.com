@@ -28,3 +28,15 @@ An http status code of `202 Accepted` will be immediately returned, while the pr
 If an update of the `access_token` is already pending, the status will be `204 No Content`.
 
 The provider will then asynchronously send documents to Fetch API.
+
+## Sample providers
+Anyfetch ships with some default providers you may want to check:
+
+* `dropbox.provider.anyfetch.com`: connect a Dropbox account. [Source](https://github.com/Papiel/dropbox.provider.anyfetch.com)
+* `gmail.provider.anyfetch.com`: connect a GMail account. [Source](https://github.com/Papiel/gmail.provider.anyfetch.com)
+* `gdrive.provider.anyfetch.com`: connect a Google Drive account. [Source](https://github.com/Papiel/gdrive.provider.anyfetch.com)
+* `dropbox.provider.anyfetch.com`: connect a Dropbox account. [Source](https://github.com/Papiel/dropbox.provider.anyfetch.com)
+* `local.provider.anyfetch.com`: sync a local directory with anyFetch. [Source](https://github.com/Papiel/local.provider.anyfetch.com)
+* `salesforce.provider.anyfetch.com`: connect a Salesfetch account. [Source](https://github.com/Papiel/salesforce.provider.anyfetch.com)
+* `evernote.provider.anyfetch.com`: connect an Evernote account. [Source](https://github.com/Papiel/evernote.provider.anyfetch.com)
+* `box.provider.anyfetch.com`: connect a Box account. [Source](https://github.com/Papiel/box.provider.anyfetch.com)
