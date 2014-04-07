@@ -31,7 +31,11 @@ $ curl -I -XDELETE \
 http://api.anyfetch.com/company/reset
 ```
 
-You should see "204 No Content". Great! You've cleaned up your account.
+```sh
+HTTP/1.1 204 No Content
+```
+
+Great! You've cleaned up your account.
 
 ### Retrieve a token
 Although you can do most things using Basic Authentication, tokens are faster to use, and generally more secure since you can revoke them at any time.
@@ -40,8 +44,9 @@ For our test, we'll use a token:
 ```sh
 $ curl -H "Authorization: Basic ${BASE64}" \
 http://api.anyfetch.com/token
+```
 
-
+```json
 {
     "token":"${TOKEN}"
 }
@@ -66,8 +71,9 @@ $ curl -XPOST \
 -H "Content-Type:application/json" \
 http://api.anyfetch.com/documents \
 -d '{"identifier": "hello-world", "no_hydration": true, "document_type": "file", "metadatas": {"path": "/home/anyfetch/sample.txt", "title": "anyFetch sample file"}}'
+```
 
-
+```json
 {
     "_type":"Document",
     "id":"52f2367374a24df253314b3c",
@@ -113,8 +119,9 @@ Once sent, your document will be hydrated. Depending on the current load, this c
 ```sh
 $ curl -H "Authorization: token ${TOKEN}" \
 http://api.anyfetch.com/documents/${ID}/raw
+```
 
-
+```json
 {
     "_type":"Document",
     "id":"533570229ad9a4665a8d6499",
@@ -148,8 +155,9 @@ Alright, we're done. We can now reap the fruit of our hard work, and start searc
 ```sh
 $ curl -H "Authorization: token ${TOKEN}" \
 http://api.anyfetch.com/documents?search=anyfetch
+```
 
-
+```json
 {
     "facets":{
         "document_types":{
