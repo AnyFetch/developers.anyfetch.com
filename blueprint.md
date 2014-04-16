@@ -107,8 +107,6 @@ Retrieve datas about the current account. This endpoint return:
 
 Create or retrieve a token. The token will always be the same until you call `/company/reset`.
 
-**The token should not be used to provide documents. Use it only for frontend access.**
-
 + Response 200 (application/json)
     + Body
 
