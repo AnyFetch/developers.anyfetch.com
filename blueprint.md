@@ -176,6 +176,8 @@ They allow you to compartment datas: no datas stored in a company can be accesse
 ### Retrieve all subcompanies [GET]
 Retrieve all subcompanies from the current company.
 
+Only available for admin users.
+
 
 + Response 200 (application/json)
     + Body
@@ -200,6 +202,8 @@ Retrieve all subcompanies from the current company.
 Create a new subcompany.
 
 You may customize hydraters list, or use default list.
+
+Only available for admin users.
 
 > Be careful: the user will be migrated to the new company. To create a new subcompany, the best practice is to create a new admin (`POST /user`) before, then create the new company while connected with the new user.
 

@@ -6,7 +6,7 @@ layout: doc
 
 In this guide, we'll create multiple compartments for our datas (*subcompanies*) using one master token.
 
-The example use case will be a Dropbox like: each one of your customers requires a separate index to store documents, and you want to provide search in those documents.
+The example use case will be a Dropbox-like: each one of your customer requires a separate index to store documents, and you want to provide search in those documents.
 
 ## What do I need?
 To follow this guide, you need:
@@ -19,7 +19,7 @@ We use `curl` for simplicity purpose. Of course, in a real use case, you'll need
 ## Setting up
 Retrieve your token as described on the ["Hello world" tutorial](/guides/hello-world.html): `GET /token`.
 
-Keep it somewhere safe, as it will be your master token (you'll be able to delete content with it).
+Keep it somewhere safe, as it will be your master token (you'll be able to delete subcompanies with it).
 
 ## Use case
 ### View existing subcompanies
@@ -31,7 +31,7 @@ curl -XGET \
 http://api.anyfetch.com/subcompanies
 ```
 
-As expected, we've none for now:
+As expected, we don't have any for now:
 ```json
 []
 ```
@@ -45,8 +45,8 @@ Using our master token, we'll create a subcompany. This subcompany will only be 
 
 There is two tricks however:
 
-* creating a subcompany migrate the currently connected user to the new subcompany
-* only admins can create subcompanies
+* creating a subcompany migrate the currently connected user to the new subcompany;
+* only admins can create subcompanies.
 
 Therefore, before we create our subcompany, we'll need to create a new admin:
 
@@ -69,7 +69,7 @@ http://api.anyfetch.com/users \
 }
 ```
 
-We can now connect as our new user (for instance by base64-encoding "newuser@subcompany.fr:password" into `bmV3dXNlckBzdWJjb21wYW55LmZyOnBhc3N3b3Jk`) and send the query to create the subcompany:
+We can now connect as our new user (for instance by base64-encoding `newuser@subcompany.fr:password` into `bmV3dXNlckBzdWJjb21wYW55LmZyOnBhc3N3b3Jk`) and send the query to create the subcompany:
 
 ```sh
 curl -XPOST \
@@ -95,11 +95,11 @@ http://api.anyfetch.com/subcompanies \
 }
 ```
 
-> Note subcompany name must be unique across all companies.
+> Note: subcompany name must be unique across all companies.
 
 You may customize the hydraters list according to your needs.
 
-A renewed request for `/subcompanies` with our master token will now yield this subcompany. Note however the same request with `newuser@subcompany.fr` will still be `[]`, since he was migrated to the subcompany which has no subcompanies by itself.
+A renewed request for `GET /subcompanies` with our master token will now yield this subcompany. Note however the same request made with `newuser@subcompany.fr` will still be `[]`, since this user was migrated to the new subcompany which has no subcompanies by itself.
 
 You can now send documents as usual with the second user.
 
