@@ -32,6 +32,7 @@ http://api.anyfetch.com/subcompanies
 ```
 
 As expected, we don't have any for now:
+
 ```json
 []
 ```
