@@ -1,5 +1,5 @@
 ---
-title: Fetch API example use
+title: Fetch API: example use for documents
 subtitle: Say "Hello world"!
 layout: doc
 ---

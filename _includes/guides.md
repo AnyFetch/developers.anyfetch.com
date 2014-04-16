@@ -1,5 +1,6 @@
 ### Tutorials
-* ["Hello world" tutorial](/guides/hello-world.html)
+* ["Hello world" tutorial](/guides/hello-world.html): send and search for documents using `curl`.
+* ["Hello universe" tutorial](/guides/hello-world.html): more advanced tutorial using subcompanies to compartment data.
 
 ### Concepts
 * [About projections](/guides/projections.html)
