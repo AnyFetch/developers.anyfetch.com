@@ -21,7 +21,7 @@ From there, the `code` will be traded for an actual Fetch API OAuth token.
 
 The provider is now ready for use.
 
-## Update
+## Update (pull new documents)
 When a call to `/update` is made (with a POST parameter specifying the `access_token` to update), the provider will retrieve a list of documents to send.
 
 An http status code of `202 Accepted` will be immediately returned, while the provider gathers a list of resource to send.
