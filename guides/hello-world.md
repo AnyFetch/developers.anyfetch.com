@@ -63,7 +63,7 @@ Before sending the file, we need to give Fetch API basic informations about our 
 * `identifier`: this identifier must be unique across our account, and will be used again if we need to update our document in the future. For now, we'll pick something simple, like `hello-world`.
 * `no_hydration`: this flag tells the fetch API we intend to send a file with the document, and it should wait before starting to hydrate the document. We'll set it to `true`.
 * `document_type`: this value lets us specify what we know about our document. This can be `email`, `contact`... in our case, we'll keep this basic and set it to `file` which is the default for every document containing a file.
-* `metadatas`: a JSON object containing basic information about our document. For now, we'll simply send a `path` and a `title`.
+* `metadatas`: a JSON object containing basic information about our document. For now, we'll simply send a `path` (path of the file on our local document tree, this can be useful to provide a search in folder name) and a `title` (formatted document name).
 
 ```sh
 $ curl -XPOST \
