@@ -4,9 +4,9 @@ subtitle: Projection, you said?
 layout: doc
 ---
 
-Documents in Anyfetch revolves around the notion of projection, to display datas depending on the context.
+Documents in Anyfetch revolve around the notion of projection, that is to display only data relevant to the context.
 
-The best way to understand projection is by example. Let's say you have a big PDF file, hydrated with the following metadatas:
+The best way to understand projection is by example. Let's say you have a big PDF file, hydrated with the following metadata:
 
 ```json
 {
@@ -30,9 +30,9 @@ The best way to understand projection is by example. Let's say you have a big PD
 }
 ```
 
-When the user enter a search query, he'll only want a small snippet of this data. Loading everything would clutter the network and slow down your app. People will hate it, they'll leave your app, eat and get fat. We don't want that, and we sincerely hope that, as a dev, you don't want that too.
+When the user enter a search query, he'll only want a small snippet of this data. Loading everything would clutter the network and slow down your app. People would hate it, they'll leave your app, eat and get fat. We don't want that, and we sincerely hope that, as a dev, you don't want that either.
 
-So we need to reduce the datas being transferred. For this, we define projections, taking the original `metadatas` object hash and generating a new, simplified hash.
+So we need to reduce the amount of data being transferred. For this, we define projections, taking the original `metadatas` object hash and generating a new, simplified hash.
 
 For instance, take the following projector :
 
@@ -61,13 +61,13 @@ When the user searches for the term "many many", we'll then generate a new, smal
 
 This is the basis for projectors.
 
-Obviously, we can't use the same projection for each documents: we don't want to project a PDF, a contact or a mail in the same way.
-That's the basis for document-types: every document has a document-type, and this document-type defines how it will be projected.
+Obviously, we can't use the same projection for all document types: we don't want to project a PDF, a contact or an e- mail in the same way.
+That's the basis for document types: every document has a document-type, and this document-type defines how it will be projected.
 
 Every document-type defines three projectors:
 
 * A projector for `title`, used to display the document in one line;
 * A projector for `snippet`, used after a query to render small results;
-* A projector to display the document in `full`. Note this is not all metadatas, since most of them won't be displayed to the end user.
+* A projector to display the document in `full`. Note that this *does not* contain all metadatas, since most of them are not relevant to the end user.
 
-> In some case, the document will have no document-type. In this case, the original metadatas will be returned, without any projection.
+> In some cases, the document will have no document-type. In this case, the original metadatas will be returned in full, without any projection.

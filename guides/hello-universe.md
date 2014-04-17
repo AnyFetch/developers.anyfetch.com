@@ -4,9 +4,9 @@ subtitle: Compartmentalize documents.
 layout: doc
 ---
 
-In this guide, we'll create multiple compartments for our datas (*subcompanies*) using one master token.
+In this guide, we'll create multiple compartments (*subcompanies*) for our data,  using one master token.
 
-The example use case will be a Dropbox-like: each one of your customer requires a separate index to store documents, and you want to provide search in those documents.
+The example use case will be Dropbox-like storage: each customer requires a separate index to store documents, and you want to provide search in those documents.
 
 ## What do I need?
 To follow this guide, you need:
@@ -44,7 +44,7 @@ This list is common to all admins in your company.
  
 Using our master token, we'll create a subcompany. This subcompany will only be able to view its own documents list, and to share documents with people in the same subcompany.
 
-There is two tricks however:
+There are two tricks however:
 
 * creating a subcompany migrate the currently connected user to the new subcompany;
 * only admins can create subcompanies.

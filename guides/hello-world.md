@@ -21,7 +21,7 @@ Use [this tool](http://www.base64encode.org/) if needed. For the remainder of th
 You can now send requests using [basic authentication](/authentication.html): an `Authorization` header with a value of `Basic ${BASE64}`
 
 ### Clean up your account
-> Warning: this will remove **all datas** from this account! Only use on testing accounts.
+> Warning: this will remove **all data** from this account! Only use on testing accounts.
 
 The first step will be to clean everything that may be available on your account. To do that, we'll send a simple `DELETE` request to `/reset`:
 
@@ -62,7 +62,7 @@ Before sending the file, we need to give Fetch API basic informations about our 
 
 * `identifier`: this identifier must be unique across our account, and will be used again if we need to update our document in the future. For now, we'll pick something simple, like `hello-world`.
 * `no_hydration`: this flag tells the fetch API we intend to send a file with the document, and it should wait before starting to hydrate the document. We'll set it to `true`.
-* `document_type`: this value lets us specify what we know about our document. This can be `email`, `contact`... in our case, we'll keep this basic and set it to `file` which is the default for every document containing a file.
+* `document_type`: this value lets us specify what we know about our document. This can be `email`, `contact`... in our case, we'll keep this basic and set it to `file` which is the default for every document containing a file. The document type will determine which hydraters it will go through once uploaded.
 * `metadatas`: a JSON object containing basic information about our document. For now, we'll simply send a `path` and a `title`.
 
 ```sh
@@ -113,8 +113,8 @@ $ curl -XPOST \
 http://api.anyfetch.com/documents/${ID}/file
 ```
 
-### Checking everything is all right
-Once sent, your document will be hydrated. Depending on the current load, this can take a few seconds or long minutes. If you're curious about the status of your document, you can ping  `/documents/${ID}/raw`: the `hydrating` and `hydrated_by` keys will help you understand which hydraters are taking too much time.
+### Checking everything is alright
+Once sent, your document will be hydrated. Depending on the current load, this can take from a couple of seconds up to a few minutes. If you're curious about the status of your document, you can ping  `/documents/${ID}/raw`: the `hydrating` and `hydrated_by` keys will help you understand which hydraters are taking more time.
 
 ```sh
 $ curl -H "Authorization: token ${TOKEN}" \
