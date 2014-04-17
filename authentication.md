@@ -23,6 +23,8 @@ https://api.anyfetch.com
 ```
 This is the best way to use your token.
 
+For simple use, you can find a token on [`GET /token`](/endpoints/#account-token).
+
 #### OAuth2 Token (sent as a parameter)
 ```sh
 $ curl https://api.anyfetch.com?oauth_access_token=OAUTH-TOKEN
