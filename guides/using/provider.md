@@ -5,7 +5,7 @@ layout: doc
 
 Unlike [hydraters](/guides/using/hydrater.html), you'll probably never need to use a provider on its own -- you'll always let the Fetch API handle all communication.
 
-Here is however a quick overview of the basic workflow for a provider.
+Still, here's quick overview of the basic workflow for a provider.
 
 # Provider workflow
 ## Init
@@ -13,7 +13,7 @@ The first endpoint will be `/init/connect`. This call should include a `?code` p
 This endpoint will (often) display some setup page or redirect to another provider page to get a grant.
 
 The Dropbox provider, for instance, will create a token and redirect the user to the Dropbox consentment page.
-The local provider will display a HTML form asking you for informations about the datas you wish to provide.
+The local provider will display a HTML form asking you for informations about the data you wish to provide.
 
 Once setup is completed (authorization has been granted, ...), the provider will then redirect the user to `/init/callback`. Most often, the `?code` parameter will still be there (sometimes the provider will store this in a cookie, although this is not a good REST practice).
 
