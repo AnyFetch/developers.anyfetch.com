@@ -1,6 +1,6 @@
 ---
 title: Anyfetch provider
-subtitle: Data, datas, moar datas!
+subtitle: Data, data, moar data!
 layout: doc
 ---
 
@@ -29,7 +29,7 @@ The first step will then be to create a new document. To do this, we'll send the
 
 * `identifier` is a unique identifier you can choose, which can later be used to retrieve or update the document.
 * `document_type` is set to `file` (some providers may use semantic information, for instance "customer". Here, we chose not to deal with the complexity: hydration stack will retrieve relevant datas).
-* `no_hydration` is important. For now, we've not sent any datas, so we want to skip hydration until sending the real file.
+* `no_hydration` is important. For now, we've not sent any data, so we want to skip hydration until sending the real file.
 
 Although not mandatory, we also chose to send `metadatas.path` to improve search relevance and help the hydration getting started the right way.
 
@@ -41,8 +41,8 @@ If everything went well, we'll get `204 No Content` -- our document was stored, 
 ## OAuth 2.0
 > You should read [how to use a provider](/guides/using/provider.md) for more details about authentication.
 
-Before being able to send datas, you need to get a provider token.
-The user need to click on the name of your provider in the frontend. He'll then be redirected to the page you registered for initial setup, with a `?code` parameter. Setup everything you need to access your datas (maybe there will be OAuth on the other side too, maybe you need to ask for some configuration).
+Before being able to send data, you need to get a provider token.
+The user need to click on the name of your provider in the frontend. He'll then be redirected to the page you registered for initial setup, with a `?code` parameter. Setup everything you need to access your data (maybe there will be OAuth on the other side too, maybe you need to ask for some configuration).
 
 You can then initiate the OAuth flow by trading the code for an `access_token`.
 To do so, send to `http://settings.anyfetch.com/oauth/token` the following values:

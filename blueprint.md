@@ -24,7 +24,7 @@ Should have a `status` of "OK".
 
 ## Batch calls [/batch{?pages}]
 ### Batch querying [GET]
-Queue multiple `GET` queries in a single request. For instance, you can call `/batch?pages=/&pages=/document_types&pages=/providers` to get one JSON object with all datas, indexed by url.
+Queue multiple `GET` queries in a single request. For instance, you can call `/batch?pages=/&pages=/document_types&pages=/providers` to get one JSON object with all data, indexed by url.
 
 Status code will be 200 if all queries passed. If an error occured, the `errored` key will tell you which page failed to load.
 
@@ -79,7 +79,7 @@ Status code will be 200 if all queries passed. If an error occured, the `errored
 # Group Account
 ## Index [/]
 ### Retrieve API links [GET]
-Retrieve datas about the current account. This endpoint return:
+Retrieve data about the current account. This endpoint return:
 
 - `user_email`: informations regarding currently connected user
 - `_url` to different part of the API (HATEOAS design). Notice the `current_user_url` key.
@@ -259,7 +259,7 @@ Endpoints for retrieving documents
 Access documents resources.
 
 ### Search documents [GET]
-Search within all availables datas for documents matching specified filter.
+Search within all availables data for documents matching specified filter.
 
 Return aggregated informations computed over the result set. The `score` key indicated document's relevance regarding query.
 
@@ -388,7 +388,7 @@ Send a new document on anyFetch.
             }
 
 ## Document [/documents/{id}{?search}]
-Datas regarding a document.
+Data regarding a document.
 
 > Please note: for every endpoint in the form `/documents/{id}`, you can also use an alternative URL `/documents/identifier/{identifier}` where `identifier` is the url-encoded provider identifier.
 
@@ -558,7 +558,7 @@ Result contains, amongst other :
 
 
 ## Raw access [/documents/{id}/raw]
-Retrieve all raw datas for `id` document.
+Retrieve all raw data for `id` document.
 Also include information about hydraters (`hydratedBy`, `hydrating` and `lastHydration`).
 
 ### Get raw document [GET]

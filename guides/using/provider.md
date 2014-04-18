@@ -5,7 +5,7 @@ layout: doc
 
 Unlike [hydraters](/guides/using/hydrater.html), you'll probably never need to use a provider on its own -- you'll always let the Fetch API handle all communication.
 
-Still, here's quick overview of the basic workflow for a provider.
+Still, here's a quick overview of the basic workflow for a provider.
 
 # Provider workflow
 ## Init

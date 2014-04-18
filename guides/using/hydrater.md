@@ -39,7 +39,7 @@ $ curl --header "Content-Type:application/json" --data '{"file_path":"https://ra
 ```
 
 ### Real hydration workflow
-Although this workflow works fine for most hydraters, you'll often need more advanced metadatas. Anyfetch often distinguish between a file and a document (a file is a file on a hard drive somewhere, a document is a JSON object with datas). Hydraters use the same scheme, and allows you to send a document "to start with". Returned datas will be merged with the current datas.
+Although this workflow works fine for most hydraters, you'll often need more advanced metadata. Anyfetch often distinguish between a file and a document (a file is a file on a hard drive somewhere, a document is a JSON object with data). Hydraters use the same scheme, and allows you to send a document "to start with". Returned datas will be merged with the current data.
 To keep going with our previous example, here is a more complex call to the OCR with an initial document:
 
 ```sh
@@ -79,5 +79,5 @@ Anyfetch ships with some default hydraters you may want to check:
 * `ocr.hydrater.anyfetch.com`: retrieve textual information from an image. [Source](https://github.com/Papiel/ocr.hydrater.anyfetch.com)
 * `pdf.hydrater.anyfetch.com`: transform a PDF file to HTML. [Source](https://github.com/Papiel/pdf.hydrater.anyfetch.com)
 * `office.hydrater.anyfetch.com`: transform an office file to PDF, inject it back onto the Fetch API. [Source](https://github.com/Papiel/office.hydrater.anyfetch.com)
-* `eml.hydrater.anyfetch.com`: retrieve datas from eml files, hydrate mail datas and save back the attachments as files on the Fetch API. [Source](https://github.com/Papiel/eml.hydrater.anyfetch.com)
+* `eml.hydrater.anyfetch.com`: retrieve data from eml files, hydrate mail data and save back the attachments as files on the Fetch API. [Source](https://github.com/Papiel/eml.hydrater.anyfetch.com)
 * `image.hydrater.anyfetch.com`: generate thumbnails from an image. [Source](https://github.com/Papiel/image.hydrater.anyfetch.com)

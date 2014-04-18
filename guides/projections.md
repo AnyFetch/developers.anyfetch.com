@@ -30,14 +30,14 @@ The best way to understand projection is by example. Let's say you have a big PD
 }
 ```
 
-When the user enter a search query, he'll only want a small snippet of this data. Loading everything would clutter the network and slow down your app. People would hate it, they'll leave your app, eat and get fat. We don't want that, and we sincerely hope that, as a dev, you don't want that either.
+When the user enter a search query, he'll only want a small snippet of this data. Loading everything would clutter the network and slow down your app. People would hate it, they'd leave your app, eat and get fat. We don't want that, and we sincerely hope that, as a dev, you don't want that either.
 
 So we need to reduce the amount of data being transferred. For this, we define projections, taking the original `metadatas` object hash and generating a new, simplified hash.
 
 For instance, take the following projector :
 
 ```javascript
-// In this code snippet, `md` is the original metadatas hash.
+// In this code snippet, `md` is the original metadata hash.
 // searchQuery contains the user query.
 var projector = {
     title: md.title
@@ -68,6 +68,6 @@ Every document-type defines three projectors:
 
 * A projector for `title`, used to display the document in one line;
 * A projector for `snippet`, used after a query to render small results;
-* A projector to display the document in `full`. Note that this *does not* contain all metadatas, since most of them are not relevant to the end user.
+* A projector to display the document in `full`. Note that this *does not* contain all metadata, since most of them are not relevant to the end user.
 
-> In some cases, the document will have no document-type. In this case, the original metadatas will be returned in full, without any projection.
+> In some cases, the document will have no document-type. In this case, the original metadata will be returned in full, without any projection.

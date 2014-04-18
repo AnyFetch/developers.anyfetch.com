@@ -85,7 +85,7 @@ Where possible, anyfetch API strives to use appropriate HTTP verbs for each acti
 - __HEAD__ Can be issued against any resource to get just the HTTP header info.
 - __GET__ Used for retrieving resources.
 - __POST__ Used for creating resources, or performing custom actions.
-- __PATCH__ Used for updating resources with partial JSON data. For instance, to add a metadata to a document without removing other datas, use PATCH on `/providers/documents/`. A PATCH request may accept one or more of the attributes to update the resource. PATCH is a relatively new and uncommon HTTP verb, so resource endpoints also accept POST requests.
+- __PATCH__ Used for updating resources with partial JSON data. For instance, to add a metadata to a document without removing other data, use PATCH on `/providers/documents/`. A PATCH request may accept one or more of the attributes to update the resource. PATCH is a relatively new and uncommon HTTP verb, so resource endpoints also accept POST requests.
 - __PUT__ Used for replacing resources or collections. For PUT requests with no `body` attribute, be sure to set the `Content-Length` header to zero.
 - __DELETE__ Used for deleting resources.
 - __OPTIONS__ Used to request informations.
