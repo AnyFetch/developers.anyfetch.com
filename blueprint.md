@@ -606,8 +606,8 @@ Retrieve the file associated with a document.
             {binary file content}
 
 
-### Add a file to a document [POST]
-This endpoint should be used when providing, to add a file to a document.
+### Set document's file [POST]
+This endpoint should be used when providing, to associate a file with a document.
 All hydrations will be restarted.
 
 > If you plan to use this endpoint, you should post to `/documents` before with the `no_hydration` parameter.
@@ -707,7 +707,7 @@ Retrieve information about specified user.
             }
 
 ### Remove a User [DELETE]
-Remove specified user.
+Remove specified user. The user should be in your company, you can't delete a user in a subcompany.
 
 > You need to be an administrator to delete another user.
 
