@@ -13,7 +13,7 @@ The best way to understand projection is by example. Let's say you have a big PD
     "_type": "Document",
     "id": "5252d19a1247678905000001",
     "document_url": "/documents/5252d19a1247678905000001",
-    "metadatas": {
+    "metadata": {
         "title": "My big PDF",
         "path": "/home/anyfetch/big_pdf.pdf",
         "text": "Big text extract with many many characters [trunc ...]",
@@ -32,7 +32,7 @@ The best way to understand projection is by example. Let's say you have a big PD
 
 When the user enter a search query, he'll only want a small snippet of this data. Loading everything would clutter the network and slow down your app. People would hate it, they'd leave your app, eat and get fat. We don't want that, and we sincerely hope that, as a dev, you don't want that either.
 
-So we need to reduce the amount of data being transferred. For this, we define projections, taking the original `metadatas` object hash and generating a new, simplified hash.
+So we need to reduce the amount of data being transferred. For this, we define projections, taking the original `metadata` object hash and generating a new, simplified hash.
 
 For instance, take the following projector :
 
@@ -52,7 +52,7 @@ When the user searches for the term "many many", we'll then generate a new, smal
     "_type": "Document",
     "id": "5252d19a1247678905000001",
     "document_url": "/documents/5252d19a1247678905000001",
-    "metadatas": {
+    "metadata": {
         "title": "My big PDF",
         "text": "...extract with <em>many many</em> characters...",
     }

@@ -55,7 +55,7 @@ http://api.anyfetch.com/token
 Keep this token somewhere safe.
 
 ## Providing data
-Now that we're set up, we can send our document. This requires two steps: first, sending meta-datas about our files, and then sending the actual file.
+Now that we're set up, we can send our document. This requires two steps: first, sending meta-data about our files, and then sending the actual file.
 
 ### Send a document
 Before sending the file, we need to give Fetch API basic informations about our documents. We'll send the following params:
@@ -63,14 +63,14 @@ Before sending the file, we need to give Fetch API basic informations about our 
 * `identifier`: this identifier must be unique across our account, and will be used again if we need to update our document in the future. For now, we'll pick something simple, like `hello-world`.
 * `no_hydration`: this flag tells the fetch API we intend to send a file with the document, and it should wait before starting to hydrate the document. We'll set it to `true`.
 * `document_type`: this value lets us specify what we know about our document. This can be `email`, `contact`... in our case, we'll keep this basic and set it to `file` which is the default for every document containing a file.  The document type will determine which hydraters it will go through once uploaded.
-* `metadatas`: a JSON object containing basic information about our document. For now, we'll simply send a `path` (path of the file on our local document tree, this can be useful to provide a search in folder name) and a `title` (formatted document name).
+* `metadata`: a JSON object containing basic information about our document. For now, we'll simply send a `path` (path of the file on our local document tree, this can be useful to provide a search in folder name) and a `title` (formatted document name).
 
 ```sh
 $ curl -XPOST \
 -H "Authorization: token ${TOKEN}" \
 -H "Content-Type:application/json" \
 http://api.anyfetch.com/documents \
--d '{"identifier": "hello-world", "no_hydration": true, "document_type": "file", "metadatas": {"path": "/home/anyfetch/sample.txt", "title": "anyFetch sample file"}}'
+-d '{"identifier": "hello-world", "no_hydration": true, "document_type": "file", "metadata": {"path": "/home/anyfetch/sample.txt", "title": "anyFetch sample file"}}'
 ```
 
 ```json
@@ -85,8 +85,8 @@ http://api.anyfetch.com/documents \
     "document_url":"/documents/52f2367374a24df253314b3c",
     "related":[],
     "identifier":"hello-world",
-    "datas":{},
-    "metadatas": {
+    "data":{},
+    "metadata": {
         "path":"/home/anyfetch/sample.txt",
         "title":"anyFetch sample file"
     },
@@ -132,10 +132,10 @@ http://api.anyfetch.com/documents/${ID}/raw
     "actions":{},
     "document_url":"/documents/533570229ad9a4665a8d6499",
     "identifier":"hello-world",
-    "datas":{
+    "data":{
         "html":"<p>This is a sample document, for hello world purposes.\n</p>\n"
     },
-    "metadatas":{
+    "metadata":{
         "content-type":"text/plain; charset=ISO-8859-1",
         "content-encoding":"ISO-8859-1",
         "text":"This is a sample document, for hello world purposes.\n",
@@ -170,7 +170,7 @@ http://api.anyfetch.com/documents?search=anyfetch
             "1393632000000":1
         }
     },
-    "datas":[
+    "data":[
         {
             "_type":"Document",
             "id":"52f2367374a24df253314b3c",
@@ -180,7 +180,7 @@ http://api.anyfetch.com/documents?search=anyfetch
             "document_type":"5252ce4ce4cfcd16f55cfa3c",
             "actions":{},
             "document_url":"/documents/52f2367374a24df253314b3c",
-            "datas":{
+            "data":{
                 "title":"anyFetch sample file",
                 "path":"/home/<span class=\"hlt\">anyfetch</span>/sample.txt",
                 "snippet":"This is a sample document, for hello world purposes.\n"
