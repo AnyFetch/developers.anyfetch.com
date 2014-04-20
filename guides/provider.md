@@ -20,7 +20,7 @@ The first step will then be to create a new document. To do this, we'll send the
 {
 	"identifier": "some-unique-identifier",
 	"document_type": "file",
-	"metadatas": {
+	"metadata": {
 		"path": "/home/laptop/document.txt"
 	},
 	"no_hydration": true
@@ -28,10 +28,10 @@ The first step will then be to create a new document. To do this, we'll send the
 ```
 
 * `identifier` is a unique identifier you can choose, which can later be used to retrieve or update the document.
-* `document_type` is set to `file` (some providers may use semantic information, for instance "customer". Here, we chose not to deal with the complexity: hydration stack will retrieve relevant datas).
+* `document_type` is set to `file` (some providers may use semantic information, for instance "customer". Here, we chose not to deal with the complexity: hydration stack will retrieve relevant data).
 * `no_hydration` is important. For now, we've not sent any data, so we want to skip hydration until sending the real file.
 
-Although not mandatory, we also chose to send `metadatas.path` to improve search relevance and help the hydration getting started the right way.
+Although not mandatory, we also chose to send `metadata.path` to improve search relevance and help the hydration getting started the right way.
 
 Alright. Anyfetch should reply with 200 and informations about our document.
 Now we can send the file, using a standard multipart POST request including the file (in `file` key) and our previous `identifier`. This will be a multipart POST call on `/documents/identifier/some-unique-identifier/file` (note you can also ping `/documents/:id/file` if you want shorter url).
