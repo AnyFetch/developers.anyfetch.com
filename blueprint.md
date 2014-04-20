@@ -171,7 +171,7 @@ Reset **all** documents, tokens and providers from the account.
 # Group Subcompanies
 ## Subcompanies [/subcompanies]
 Subcompanies are companies you own and have created.
-They allow you to compartment datas: no datas stored in a company can be accessed from any other place.
+They allow you to isolate data: no data stored in a subcompany can be accessed from any other place.
 
 ### Retrieve all subcompanies [GET]
 Retrieve all subcompanies from the current company.
