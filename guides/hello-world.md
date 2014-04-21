@@ -55,7 +55,7 @@ http://api.anyfetch.com/token
 Keep this token somewhere safe.
 
 ## Providing data
-Now that we're set up, we can send our document. This requires two steps: first, sending meta-datas about our files, and then sending the actual file.
+Now that we're set up, we can send our document. This requires two steps: first, sending metadata about our files, and then sending the actual file.
 
 ### Send a document
 Before sending the file, we need to give Fetch API basic informations about our documents. We'll send the following params:

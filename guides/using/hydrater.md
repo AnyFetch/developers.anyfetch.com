@@ -39,7 +39,7 @@ $ curl --header "Content-Type:application/json" --data '{"file_path":"https://ra
 ```
 
 ### Real hydration workflow
-Although this workflow works fine for most hydraters, you'll often need more advanced metadata. Anyfetch often distinguish between a file and a document (a file is a file on a hard drive somewhere, a document is a JSON object with data). Hydraters use the same scheme, and allows you to send a document "to start with". Returned datas will be merged with the current data.
+Although this workflow works fine for most hydraters, you'll often need more advanced metadata. Anyfetch often distinguish between a file and a document (a file is a file on a hard drive somewhere, a document is a JSON object with data). Hydraters use the same scheme, and allows you to send a document "to start with". Returned data will be merged with the current data.
 To keep going with our previous example, here is a more complex call to the OCR with an initial document:
 
 ```sh
