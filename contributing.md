@@ -9,7 +9,7 @@ All projects follow the same convention.
 
 ## File structure
 * First line of any file must be `"use strict";` to enable strict mode.
-* Then comes the requires. All requires must be here, except for circular-dependencies edge cases.
+* Then comes the `require`s. All requires must be here, except for circular-dependencies edge cases.
     * First requires are for npm libraries (in `node_modules`)
     * Then a new line
     * Then internal files.

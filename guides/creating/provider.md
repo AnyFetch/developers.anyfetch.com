@@ -4,7 +4,7 @@ subtitle: Data, data, moar data!
 layout: doc
 ---
 
-> Before reading about creating a new provider, you may be interested in [the hello world tutorial](/guides/hello-world.html)
+> Before reading about creating a new provider, you may be interested in [the hello world tutorial](/guides/hello-world.html).
 
 Creating a provider is quite simple. Even better, most of the anyFetch default providers are open-source: you can take a [quick peek at them](https://github.com/search?q=%40Papiel+provider) if you have any trouble.
 

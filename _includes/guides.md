@@ -3,7 +3,7 @@
 * [`Subcompanies` tutorial](/guides/tutorials/subcompanies.html): more advanced tutorial using subcompanies to compartment data.
 
 ### Concepts
-* [About projections](/guides/concepts/projections.html)
+* [About projections](/guides/concepts/projection.html)
 * How to create my own document-type? (soon)
 
 ### Using existing projects

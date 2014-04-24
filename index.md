@@ -15,7 +15,6 @@ Anyfetch aggregates documents from multiples sources (so-called *providers*). Da
 ![Anyfetch workflow](/images/workflow.png)
 
 ### Providers and hydraters
-
 Providers and hydraters constitute the Fetch API "back-part".
 Providers retrieve raw data and send it to the Fetch API.
 Hydraters transform and improve this raw data.
@@ -50,7 +49,7 @@ The default document-type is `file`, but a document-type can also be something m
 #### Projectors
 *Projectors* define how to transform raw metadata into something useful for the user.
 
-For instance, when we search for an image, we don't need *all* the metadata: projection is then used to restrict, transform, and display the data to be sent.
+For instance, when we search for an image, we don't need *all* the metadata: projection is then used to restrict, transform, and display the data to be sent. For more information about projection, [read this guide](/guides/concepts/projection.html).
 
 ### Frontend
 Frontends get access to a search interface across all documents.
