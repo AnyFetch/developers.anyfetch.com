@@ -750,21 +750,25 @@ The key will be reused on the `document_type` property for every `/documents/` e
                     "_type": "DocumentType",
                     "id": "5252ce4ce4cfcd16f55cfa3c",
                     "name": "document",
-                    "template_snippet": "<article>\n  <h1>{{{ title }}}</h1>\n  <blockquote>\n  \t{{{ snippet }}}\n  </blockquote>\n</article>\n",
-                    "template_full": "<article>\n  <section>\n    <h1>{{{ title }}}</h1>\n    <code>{{ path }}</code>\n  </section>\n\n  <section>\n    {{{ content }}}\n  </section>\n</article>\n",
-                    "template_title": "{{ title }}",
-                    "updated": null,
-                    "documents": 6
+                    "templates": {
+                        "snippet": "<article>\n  <h1>{{{ title }}}</h1>\n  <blockquote>\n  \t{{{ snippet }}}\n  </blockquote>\n</article>\n",
+                        "full": "<article>\n  <section>\n    <h1>{{{ title }}}</h1>\n    <code>{{ path }}</code>\n  </section>\n\n  <section>\n    {{{ content }}}\n  </section>\n</article>\n",
+                        "title": "{{ title }}"
+                    },
+                    "updated": "2014-04-24T17:23:01.722Z",
+                    "documents": 1
                 },
-                "5252ce4ce4cfcd16f55cfa3d": {
+                "5252ce4ce4cfcd16f55cfa3f": {
                     "_type": "DocumentType",
-                    "id": "5252ce4ce4cfcd16f55cfa3d",
-                    "name": "image",
-                    "template_snippet": "<article>\n  <h1>{{{ title }}}</h1>\n\n  <img src=\"{{ thumb }}\" />\n</article>\n",
-                    "template_full": "<article>\n  <h1>{{{ title }}}</h1>\n\n  <img src=\"{{ display }}\" />\n</article>\n",
-                    "template_title": "{{ title }}",
-                    "updated": null,
-                    "documents": 7
+                    "id": "5252ce4ce4cfcd16f55cfa3f",
+                    "name": "email",
+                    "templates": {
+                        "snippet": "<article>\n  <h1>{{{subject}}}</h1>\n  <div class=\"two-columns\">\n    <span>{{ date }}</span>\n    <span><small>{{from}} &rarr; {{to}}</small></span>\n  </div>\n  <blockquote>{{{snippet}}}</blockquote>\n</article>\n",
+                        "full": "<article class=\"email-projection\">\n <header>\n     <h1>{{{subject}}}</h1>\n     <small>{{ date }}</small>\n     <small>From: <strong><a href=\"anyfetch://search/{{from}}\">{{from}}</a></strong></small>\n     <small>To: <strong><a href=\"anyfetch://search/{{to}}\">{{to}}</a></strong></small>\n </header>\n\n <main>\n       {{{html}}}\n </main>\n</article>\n",
+                        "title": "{{ subject }}"
+                    },
+                    "updated": "2014-04-24T17:22:54.522Z",
+                    "documents": 12
                 }
             }
 
