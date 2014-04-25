@@ -40,10 +40,10 @@ For instance, let's say `/documents` returned the following document:
         "from": "L'équipe Gmail<mail-noreply@google.com>",
         "to": "Cluestr Test <test.cluestr@gmail.com>",
         "subject": "Retrouvez Gmail sur votre mobile",
-        "snippet": "  Retrouvez Gmail sur votre appareil mobile\r\n * Bonjour\r\nCluestr *   Retrouvez Gmail sur votre appareil mobile\r\n\r\nOù que vous soyez, Gmail est disponible sur l'appareil de votre choix :\r\nordinateur de",
+        "snippet": "Retrouvez Gmail sur votre appareil mobile\r\n * Bonjour\r\nCluestr *   Retrouvez Gmail sur votre appareil mobile\r\n\r\nOù que vous soyez, Gmail est disponible sur l'appareil de votre choix :\r\nordinateur de",
         "date": "3/10/2013"
     },
-    "projection_type": "snippet"
+    "projection_type": "snippet",
     "related_count": 0,
     "score": 1
 }
@@ -86,7 +86,7 @@ Using [any mustache rendering engine](http://mustache.github.io/), we can now ge
     <h1>Retrouvez Gmail sur votre mobile</h1>
     <div class="two-columns\">
         <span>3/10/2013</span>
-        <span><small>L'équipe Gmail<mail-noreply@google.com> &rarr; Cluestr Test <test.cluestr@gmail.com></small></span>
+        <span><small>L'équipe Gmail&lt;mail-noreply@google.com&gt; &rarr; Cluestr Test &lt;test.cluestr@gmail.com&gt;</small></span>
     </div>
     <blockquote>
         Retrouvez Gmail sur votre appareil mobile\r\n * Bonjour\r\nCluestr *   Retrouvez Gmail sur votre appareil mobile\r\n\r\nOù que vous soyez, Gmail est disponible sur l'appareil de votre choix :\r\nordinateur de
