@@ -86,4 +86,4 @@ Using [any mustache rendering engine](http://mustache.github.io/), we can now ge
 </article>
 ```
 
-The system is the same for every call. `/document_types` cna be cached for faster access to templating information.
+The system is the same for every call. `/document_types` can be cached for faster access to templating information.
