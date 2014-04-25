@@ -3,8 +3,8 @@
 * [`Subcompanies` tutorial](/guides/tutorials/subcompanies.html): more advanced tutorial using subcompanies to compartment data.
 
 ### Concepts
-* [About projections](/guides/concepts/projection.html)
-* How to create my own document-type? (soon)
+* [Projections](/guides/concepts/projection.html): minimizing data transfer
+* [Templating](/guides/concepts/templating.html): displaying data to the end user
 
 ### Using existing projects
 * [Using a provider](/guides/using/provider.html)
