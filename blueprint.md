@@ -313,7 +313,8 @@ Return aggregated informations computed over the result set. The `score` key ind
                             "path": "/all/anyFetch pitch deck SF - CHarly Kevers.pdf",
                             "snippet": "\nanyFetch\nENTERPRISE SEARCH in the CLOUD\nMehdi Bouheddi - CEO\n10-03-2014\nThe amount of data in the enterprise is more than 10 000 × Google\nBut it is a mess...\nChallenge : find the relevant information\n"
                         },
-                        "related": 0,
+                        "projection_type": "snippet",
+                        "related_count": 0,
                         "score": 0.4612878
                     },
                     {
@@ -332,7 +333,8 @@ Return aggregated informations computed over the result set. The `score` key ind
                             "description": "Ask him to send an Email to Nick and schedule a meeting with Alex.",
                             "status": "TODO"
                         },
-                        "related": 0,
+                        "projection_type": "snippet",
+                        "related_count": 0,
                         "score": 0.16041306
                     }
                 ]
@@ -423,6 +425,7 @@ Result contains, amongst other :
                     "status": "TODO",
                     "description": "Ask him to send an Email to Nick and schedule a meeting with Alex."
                 },
+                "projection_type": "full",
                 "related": [],
                 "title": {
                     "subject": "Follow up Charly Kevers"
@@ -496,7 +499,8 @@ Result contains, amongst other :
                             "snippet": "Hi Any,\r\n\r\nTo complete your sign <span class=\"hlt\">up</span>, please verify your <span class=\"hlt\">email</span> using the following link:\r\n\r\nhttps://www.udacity.com/account/verify_email?user_key=788038764&code=YbD5SsnEMa\r\n\r\nCheers,\r\n\r\nThe Udacity Team\r\n",
                             "date": "Friday, February 14, 2014"
                         },
-                        "related": 0
+                        "projection_type": "snippet",
+                        "related_count": 0
                     }
                 ]
             }
@@ -548,7 +552,8 @@ Result contains, amongst other :
                             "path": "/4400000451947.pdf",
                             "snippet": "\nDT061 ind 13 Prestations réalisées sous assurance qualité ISO 9001"
                         },
-                        "related": 1,
+                        "projection_type": "snippet",
+                        "related_count": 1,
                         "score": 1
                     }
                 ],
@@ -589,6 +594,7 @@ Also include information about hydraters (`hydratedBy`, `hydrating` and `lastHyd
                 "last_hydration": "2014-03-14T18:15:37.600Z",
                 "hydrating": [],
                 "hydrated_by": [],
+                "projection_type": "raw",
                 "related": []
             }
 

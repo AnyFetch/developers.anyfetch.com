@@ -142,6 +142,7 @@ http://api.anyfetch.com/documents/${ID}/raw
         "path":"/home/anyfetch/sample.txt",
         "title":"anyFetch sample file"
     },
+    "projection_type": "raw",
     "last_hydration":"2014-03-28T12:51:17.755Z",
     "hydrating":[],
     "hydrated_by":["http://plaintext.hydrater.anyfetch.com/hydrate"],
@@ -185,7 +186,8 @@ http://api.anyfetch.com/documents?search=anyfetch
                 "path":"/home/<span class=\"hlt\">anyfetch</span>/sample.txt",
                 "snippet":"This is a sample document, for hello world purposes.\n"
             },
-            "related":0,
+            "projection_type": "snippet",
+            "related_count":0,
             "score":0.19178301
         }
     ],
