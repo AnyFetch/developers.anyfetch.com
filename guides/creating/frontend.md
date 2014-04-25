@@ -17,3 +17,17 @@ The API sends CORS header, so you can use a single page application -- no need f
 
 ## Mobile frontend
 When using Fetch API, be wary as some endpoints may return megabytes of data. Free memory when you can, and avoid doing network operations on main thread.
+
+## Principles
+### Endpoints
+Three endpoints are really useful for frontend-related queries:
+
+* [`GET /documents`](/endpoints/#documents-documents-get) : to search in all documents, filter by document-type, provider, date...
+* [`GET /document_types`](/endpoints/#document-types-document-types) : to retrieve templates associated with document-types
+* [`GET /providers`](/endpoints/#providers-providers) : to retrieve the name of a provider, and its type
+
+Since these 3 endpoints are available with `GET`, you may want to try [batch calls](/endpoints/#index-batch-calls).
+
+### Templating
+[Templating](/guides/concepts/templating.html) will be very useful to display data.
+However, if you want you can reimplement a templating system to display data the way you want.

@@ -1,5 +1,4 @@
 FORMAT: 1A
-FORMAT: 1A
 HOST: http://api.anyfetch.com
 
 # Fetch API Documentation
@@ -313,7 +312,8 @@ Return aggregated informations computed over the result set. The `score` key ind
                             "path": "/all/anyFetch pitch deck SF - CHarly Kevers.pdf",
                             "snippet": "\nanyFetch\nENTERPRISE SEARCH in the CLOUD\nMehdi Bouheddi - CEO\n10-03-2014\nThe amount of data in the enterprise is more than 10 000 × Google\nBut it is a mess...\nChallenge : find the relevant information\n"
                         },
-                        "related": 0,
+                        "projection_type": "snippet",
+                        "related_count": 0,
                         "score": 0.4612878
                     },
                     {
@@ -332,7 +332,8 @@ Return aggregated informations computed over the result set. The `score` key ind
                             "description": "Ask him to send an Email to Nick and schedule a meeting with Alex.",
                             "status": "TODO"
                         },
-                        "related": 0,
+                        "projection_type": "snippet",
+                        "related_count": 0,
                         "score": 0.16041306
                     }
                 ]
@@ -423,6 +424,7 @@ Result contains, amongst other :
                     "status": "TODO",
                     "description": "Ask him to send an Email to Nick and schedule a meeting with Alex."
                 },
+                "projection_type": "full",
                 "related": [],
                 "title": {
                     "subject": "Follow up Charly Kevers"
@@ -496,7 +498,8 @@ Result contains, amongst other :
                             "snippet": "Hi Any,\r\n\r\nTo complete your sign <span class=\"hlt\">up</span>, please verify your <span class=\"hlt\">email</span> using the following link:\r\n\r\nhttps://www.udacity.com/account/verify_email?user_key=788038764&code=YbD5SsnEMa\r\n\r\nCheers,\r\n\r\nThe Udacity Team\r\n",
                             "date": "Friday, February 14, 2014"
                         },
-                        "related": 0
+                        "projection_type": "snippet",
+                        "related_count": 0
                     }
                 ]
             }
@@ -548,7 +551,8 @@ Result contains, amongst other :
                             "path": "/4400000451947.pdf",
                             "snippet": "\nDT061 ind 13 Prestations réalisées sous assurance qualité ISO 9001"
                         },
-                        "related": 1,
+                        "projection_type": "snippet",
+                        "related_count": 1,
                         "score": 1
                     }
                 ],
@@ -589,6 +593,7 @@ Also include information about hydraters (`hydratedBy`, `hydrating` and `lastHyd
                 "last_hydration": "2014-03-14T18:15:37.600Z",
                 "hydrating": [],
                 "hydrated_by": [],
+                "projection_type": "raw",
                 "related": []
             }
 
@@ -744,21 +749,25 @@ The key will be reused on the `document_type` property for every `/documents/` e
                     "_type": "DocumentType",
                     "id": "5252ce4ce4cfcd16f55cfa3c",
                     "name": "document",
-                    "template_snippet": "<article>\n  <h1>{{{ title }}}</h1>\n  <blockquote>\n  \t{{{ snippet }}}\n  </blockquote>\n</article>\n",
-                    "template_full": "<article>\n  <section>\n    <h1>{{{ title }}}</h1>\n    <code>{{ path }}</code>\n  </section>\n\n  <section>\n    {{{ content }}}\n  </section>\n</article>\n",
-                    "template_title": "{{ title }}",
-                    "updated": null,
-                    "documents": 6
+                    "templates": {
+                        "snippet": "<article>\n  <h1>{{{ title }}}</h1>\n  <blockquote>\n  \t{{{ snippet }}}\n  </blockquote>\n</article>\n",
+                        "full": "<article>\n  <section>\n    <h1>{{{ title }}}</h1>\n    <code>{{ path }}</code>\n  </section>\n\n  <section>\n    {{{ content }}}\n  </section>\n</article>\n",
+                        "title": "{{ title }}"
+                    },
+                    "updated": "2014-04-24T17:23:01.722Z",
+                    "documents": 1
                 },
-                "5252ce4ce4cfcd16f55cfa3d": {
+                "5252ce4ce4cfcd16f55cfa3f": {
                     "_type": "DocumentType",
-                    "id": "5252ce4ce4cfcd16f55cfa3d",
-                    "name": "image",
-                    "template_snippet": "<article>\n  <h1>{{{ title }}}</h1>\n\n  <img src=\"{{ thumb }}\" />\n</article>\n",
-                    "template_full": "<article>\n  <h1>{{{ title }}}</h1>\n\n  <img src=\"{{ display }}\" />\n</article>\n",
-                    "template_title": "{{ title }}",
-                    "updated": null,
-                    "documents": 7
+                    "id": "5252ce4ce4cfcd16f55cfa3f",
+                    "name": "email",
+                    "templates": {
+                        "snippet": "<article>\n  <h1>{{{subject}}}</h1>\n  <div class=\"two-columns\">\n    <span>{{ date }}</span>\n    <span><small>{{from}} &rarr; {{to}}</small></span>\n  </div>\n  <blockquote>{{{snippet}}}</blockquote>\n</article>\n",
+                        "full": "<article class=\"email-projection\">\n <header>\n     <h1>{{{subject}}}</h1>\n     <small>{{ date }}</small>\n     <small>From: <strong><a href=\"anyfetch://search/{{from}}\">{{from}}</a></strong></small>\n     <small>To: <strong><a href=\"anyfetch://search/{{to}}\">{{to}}</a></strong></small>\n </header>\n\n <main>\n       {{{html}}}\n </main>\n</article>\n",
+                        "title": "{{ subject }}"
+                    },
+                    "updated": "2014-04-24T17:22:54.522Z",
+                    "documents": 12
                 }
             }
 
