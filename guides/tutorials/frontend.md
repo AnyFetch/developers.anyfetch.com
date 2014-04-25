@@ -43,7 +43,8 @@ For instance, let's say `/documents` returned the following document:
         "snippet": "  Retrouvez Gmail sur votre appareil mobile\r\n * Bonjour\r\nCluestr *   Retrouvez Gmail sur votre appareil mobile\r\n\r\nOù que vous soyez, Gmail est disponible sur l'appareil de votre choix :\r\nordinateur de",
         "date": "3/10/2013"
     },
-    "related": 0,
+    "projection_type": "snippet"
+    "related_count": 0,
     "score": 1
 }
 ```
@@ -55,12 +56,40 @@ When looking in the result of `/document_types`, we'll see the following value a
     "_type": "DocumentType",
     "id": "5252ce4ce4cfcd16f55cfa3f",
     "name": "email",
-    "template_snippet": "<article>\n  <h1>{{{subject}}}</h1>\n  <div class=\"two-columns\">\n    <span>{{ date }}</span>\n    <span><small>{{from}} &rarr; {{to}}</small></span>\n  </div>\n  <blockquote>{{{snippet}}}</blockquote>\n</article>\n",
-    "template_full": "<article class=\"email-projection\">\n <header>\n     <h1>{{{subject}}}</h1>\n     <small>{{ date }}</small>\n     <small>From: <strong><a href=\"anyfetch://search/{{from}}\">{{from}}</a></strong></small>\n     <small>To: <strong><a href=\"anyfetch://search/{{to}}\">{{to}}</a></strong></small>\n </header>\n\n <main>\n       {{{html}}}\n </main>\n</article>\n",
-    "template_title": "{{ subject }}",
+    "templates": {
+        "snippet": "<article>\n  <h1>{{{subject}}}</h1>\n  <div class=\"two-columns\">\n    <span>{{ date }}</span>\n    <span><small>{{from}} &rarr; {{to}}</small></span>\n  </div>\n  <blockquote>{{{snippet}}}</blockquote>\n</article>\n",
+        "full": "<article class=\"email-projection\">\n <header>\n     <h1>{{{subject}}}</h1>\n     <small>{{ date }}</small>\n     <small>From: <strong><a href=\"anyfetch://search/{{from}}\">{{from}}</a></strong></small>\n     <small>To: <strong><a href=\"anyfetch://search/{{to}}\">{{to}}</a></strong></small>\n </header>\n\n <main>\n       {{{html}}}\n </main>\n</article>\n",
+        "title": "{{ subject }}"
+    },
     "updated": "2014-04-24T17:22:54.522Z",
     "documents": 12
 }
 ```
 
+Using `projection_type` value (snippet) from the above document, we can find the relevant mustache template in `templates.snippet`:
 
+```html
+<article>
+    <h1>{{{subject}}}</h1>
+    <div class="two-columns\">
+        <span>{{ date }}</span>
+        <span><small>{{from}} &rarr; {{to}}</small></span>
+    </div>
+    <blockquote>{{{snippet}}}</blockquote>
+</article>
+```
+
+Using [any mustache rendering engine](http://mustache.github.io/), we can now generate the final layout:
+
+```html
+<article>
+    <h1>Retrouvez Gmail sur votre mobile</h1>
+    <div class="two-columns\">
+        <span>3/10/2013</span>
+        <span><small>L'équipe Gmail<mail-noreply@google.com> &rarr; Cluestr Test <test.cluestr@gmail.com></small></span>
+    </div>
+    <blockquote>
+        Retrouvez Gmail sur votre appareil mobile\r\n * Bonjour\r\nCluestr *   Retrouvez Gmail sur votre appareil mobile\r\n\r\nOù que vous soyez, Gmail est disponible sur l'appareil de votre choix :\r\nordinateur de
+    </blockquote>
+</article>
+```
