@@ -234,6 +234,8 @@ Only available for admin users.
 ### Delete a subcompany [DELETE]
 Delete the subcompany, **all** its documents and **all** its users.
 
+By default, you won't be able to remove a subcompany with subsubcompanies. If it is really what you want to do, add `?force=1`.
+
 + Response 204
 
 
