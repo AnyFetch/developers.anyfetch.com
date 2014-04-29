@@ -205,7 +205,7 @@ You may customize hydraters list, or use default list.
 
 Only available for admin users.
 
-> Be careful: the user will be migrated to the new company. To create a new subcompany, the best practice is to create a new admin (`POST /user`) before, then create the new company while connected with the new user.
+> Be careful: the user will be migrated to the new company. To create a new subcompany, the best practice is to create a new admin (`POST /users`) before, then create the new company while connected with the new user.
 
 
 + Request
@@ -661,7 +661,7 @@ Retrieve a list of all users in the current company.
             ]
 
 ### Create a User [POST]
-Create a new user on this company.
+Create a new user on this company. If `is_admin` is not specified, a standard user will be created.
 
 > You need to be an administrator to create another user.
 
@@ -671,7 +671,8 @@ Create a new user on this company.
             {
                 "email": "newuser@company.com",
                 "name": "New User",
-                "password": "password"
+                "password": "password",
+                "is_admin": false
             }
 + Response 200 (application/json)
     + Body
@@ -685,7 +686,7 @@ Create a new user on this company.
                 "user_url": "/users/533d6b2a6355285e5563d005"
             }
 
-## User [/user/{id}]
+## User [/users/{id}]
 A single User object with all its details. This resource has the following attributes :
 
 - `id` id of the user

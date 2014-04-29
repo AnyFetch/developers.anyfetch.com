@@ -207,7 +207,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <p>You may customize hydraters list, or use default list.</p>
 <p>Only available for admin users.</p>
 <blockquote>
-<p>Be careful: the user will be migrated to the new company. To create a new subcompany, the best practice is to create a new admin (<code>POST /user</code>) before, then create the new company while connected with the new user.</p>
+<p>Be careful: the user will be migrated to the new company. To create a new subcompany, the best practice is to create a new admin (<code>POST /users</code>) before, then create the new company while connected with the new user.</p>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#da411322b30cedce49a94faf8c072bfc" class="pull-right">Toggle</a></li><li id="da411322b30cedce49a94faf8c072bfc" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>    {
         "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"new-subcompany-name"</span></span>,
@@ -532,14 +532,15 @@ All hydrations will be restarted.</p>
         "<span class="hljs-attribute">user_url</span>": <span class="hljs-value"><span class="hljs-string">"/users/52fb7b90c8318c4dc800006c"</span>
     </span>}
 ]
-</code></pre></li></ul></section><section id="users-users-collection-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create a User</span></div><div style="float:left"><a href="#users-users-collection-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/users</code></div></div><div class="panel-body"><p>Create a new user on this company.</p>
+</code></pre></li></ul></section><section id="users-users-collection-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create a User</span></div><div style="float:left"><a href="#users-users-collection-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/users</code></div></div><div class="panel-body"><p>Create a new user on this company. If <code>is_admin</code> is not specified, a standard user will be created.</p>
 <blockquote>
 <p>You need to be an administrator to create another user.</p>
 </blockquote>
-</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#15307fe821fd49a0be9918eba2fe6ea1" class="pull-right">Toggle</a></li><li id="15307fe821fd49a0be9918eba2fe6ea1" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>    {
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#6414e578c5f4a54e1b7e2fc7ba251d84" class="pull-right">Toggle</a></li><li id="6414e578c5f4a54e1b7e2fc7ba251d84" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>    {
         "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"newuser@company.com"</span></span>,
         "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"New User"</span></span>,
-        "<span class="hljs-attribute">password</span>": <span class="hljs-value"><span class="hljs-string">"password"</span>
+        "<span class="hljs-attribute">password</span>": <span class="hljs-value"><span class="hljs-string">"password"</span></span>,
+        "<span class="hljs-attribute">is_admin</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
     </span>}
 </code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#6a184fd3f4f5cd60062bd04c2e0527c9" class="pull-right">Toggle</a></li><li id="6a184fd3f4f5cd60062bd04c2e0527c9" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"User"</span></span>,
@@ -556,7 +557,7 @@ All hydrations will be restarted.</p>
 <li><code>email</code> email address of the user</li>
 <li><code>is_admin</code> true if the user is admin of this company</li>
 </ul>
-<section id="users-user-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve a User</span></div><div style="float:left"><a href="#users-user-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/user/{id}</code></div></div><div class="panel-body"><p>Retrieve information about specified user.</p>
+<section id="users-user-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve a User</span></div><div style="float:left"><a href="#users-user-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/users/{id}</code></div></div><div class="panel-body"><p>Retrieve information about specified user.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the User to perform action with.</p>
 </dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#c9f88c0c16cb9399e1df65d5eda68c1e" class="pull-right">Toggle</a></li><li id="c9f88c0c16cb9399e1df65d5eda68c1e" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"User"</span></span>,
@@ -566,7 +567,7 @@ All hydrations will be restarted.</p>
     "<span class="hljs-attribute">is_admin</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
     "<span class="hljs-attribute">user_url</span>": <span class="hljs-value"><span class="hljs-string">"/users/52fb7b90c8318c4dc800006c"</span>
 </span>}
-</code></pre></li></ul></section><section id="users-user-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Remove a User</span></div><div style="float:left"><a href="#users-user-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/user/{id}</code></div></div><div class="panel-body"><p>Remove specified user. The user should be in your company, you can’t delete a user in a subcompany.</p>
+</code></pre></li></ul></section><section id="users-user-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Remove a User</span></div><div style="float:left"><a href="#users-user-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/users/{id}</code></div></div><div class="panel-body"><p>Remove specified user. The user should be in your company, you can’t delete a user in a subcompany.</p>
 <blockquote>
 <p>You need to be an administrator to delete another user.</p>
 <p>You can’t delete yourself.</p>
@@ -622,7 +623,7 @@ All hydrations will be restarted.</p>
         "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">26</span>
     </span>}
 </span>}
-</code></pre></li></ul></section></div></div></div></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 25 Apr 2014</p><div id="localFile" style="display: none; position: absolute; top: 0; left: 0; width: 100%; color: white; background: red; font-size: 150%; text-align: center; padding: 1em;">This page may not display correctly when opened as a local file. Instead, view it from a web server.
+</code></pre></li></ul></section></div></div></div></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 29 Apr 2014</p><div id="localFile" style="display: none; position: absolute; top: 0; left: 0; width: 100%; color: white; background: red; font-size: 150%; text-align: center; padding: 1em;">This page may not display correctly when opened as a local file. Instead, view it from a web server.
 
 </div></body><script src="//code.jquery.com/jquery-1.11.0.min.js"></script><script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script>(function() {
   if (location.protocol === 'file:') {
