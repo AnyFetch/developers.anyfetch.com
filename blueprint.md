@@ -295,6 +295,7 @@ Return aggregated informations computed over the result set. The `score` key ind
                     },
                 },
                 "max_score": 0.4612878,
+                "count": 2,
                 "next_page_url": "coming",
                 "previous_page_url": "coming",
                 "datas": [
