@@ -35,7 +35,6 @@ Anyfetch ships with some default providers you may want to check:
 * `dropbox.provider.anyfetch.com`: connect a Dropbox account. [Source](https://github.com/Papiel/dropbox.provider.anyfetch.com)
 * `gmail.provider.anyfetch.com`: connect a GMail account. [Source](https://github.com/Papiel/gmail.provider.anyfetch.com)
 * `gdrive.provider.anyfetch.com`: connect a Google Drive account. [Source](https://github.com/Papiel/gdrive.provider.anyfetch.com)
-* `dropbox.provider.anyfetch.com`: connect a Dropbox account. [Source](https://github.com/Papiel/dropbox.provider.anyfetch.com)
 * `local.provider.anyfetch.com`: sync a local directory with anyFetch. [Source](https://github.com/Papiel/local.provider.anyfetch.com)
 * `salesforce.provider.anyfetch.com`: connect a Salesfetch account. [Source](https://github.com/Papiel/salesforce.provider.anyfetch.com)
 * `evernote.provider.anyfetch.com`: connect an Evernote account. [Source](https://github.com/Papiel/evernote.provider.anyfetch.com)
