@@ -257,7 +257,7 @@ By default, you won't be able to remove a subcompany with subsubcompanies. If it
 # Group Documents
 Endpoints for retrieving documents
 
-## Documents [/documents{?search, ?before, ?after,?document_type, ?token, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit, ?no_hydration}]
+## Documents [/documents{?search, ?before, ?after,?document_type, ?token, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit}]
 Access documents resources.
 
 ### Search documents [GET]
@@ -349,8 +349,6 @@ Send a new document on anyFetch.
 
 > You can't send a file and a document at the same time, you need to send the document first and then send the file on `/documents/:id/file`.
 
-+ Parameters
-    + no_hydration (optional, boolean, `1`) ... Delay hydration until file is sent. Default to false.
 + Request
 
             {
@@ -617,9 +615,6 @@ Retrieve the file associated with a document.
 
 ### Set document's file [POST]
 This endpoint should be used when providing, to associate a file with a document.
-All hydrations will be restarted.
-
-> If you plan to use this endpoint, you should post to `/documents` before with the `no_hydration` parameter.
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
