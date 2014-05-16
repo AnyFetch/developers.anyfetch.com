@@ -26,7 +26,7 @@ You can now send requests using [basic authentication](/authentication.html): an
 The first step will be to clean everything that may be available on your account. To do that, we'll send a simple `DELETE` request to `/reset`:
 
 ```sh
-$ curl -I -XDELETE \
+$ curl -i -XDELETE \
 -H "Authorization: Basic ${BASE64}" \
 http://api.anyfetch.com/company/reset
 ```
@@ -105,12 +105,17 @@ Things to note...
 Now that we've created the document on Fetch API, we can associate it with a file. This is a simple file upload, under the `file` key.
 
 Don't forget to use a sample file, like [this one](/guides/samples/sample.txt).
+Replace `sample.txt` with the path to your file.
 
 ```sh
-$ curl -XPOST \
+$ curl -i -XPOST \
 -H "Authorization: token ${TOKEN}" \
 -F "file=@sample.txt" \
 http://api.anyfetch.com/documents/${ID}/file
+```
+
+```sh
+HTTP/1.1 204 No Content
 ```
 
 ### Checking everything is alright
