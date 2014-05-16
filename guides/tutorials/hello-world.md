@@ -66,7 +66,7 @@ Before sending the file, we need to give Fetch API basic informations about our 
 
 ```sh
 $ curl -XPOST \
--H "Authorization: token ${TOKEN}" \
+-H "Authorization: Bearer ${TOKEN}" \
 -H "Content-Type:application/json" \
 http://api.anyfetch.com/documents \
 -d '{"identifier": "hello-world", "document_type": "file", "metadatas": {"path": "/home/anyfetch/sample.txt", "title": "anyFetch sample file"}}'
@@ -108,7 +108,7 @@ Replace `sample.txt` with the path to your file.
 
 ```sh
 $ curl -i -XPOST \
--H "Authorization: token ${TOKEN}" \
+-H "Authorization: Bearer ${TOKEN}" \
 -F "file=@sample.txt" \
 http://api.anyfetch.com/documents/${ID}/file
 ```
@@ -121,7 +121,7 @@ HTTP/1.1 204 No Content
 Once sent, your document will be hydrated. Depending on the current load, this can take from a couple of seconds up to a few minutes. If you're curious about the status of your document, you can ping  `/documents/${ID}/raw`: the `hydrating` and `hydrated_by` keys will help you understand which hydraters are taking more time.
 
 ```sh
-$ curl -H "Authorization: token ${TOKEN}" \
+$ curl -H "Authorization: Bearer ${TOKEN}" \
 http://api.anyfetch.com/documents/${ID}/raw
 ```
 
@@ -160,7 +160,7 @@ http://api.anyfetch.com/documents/${ID}/raw
 Alright, we're done. We can now reap the fruit of our hard work, and start searching...
 
 ```sh
-$ curl -H "Authorization: token ${TOKEN}" \
+$ curl -H "Authorization: Bearer ${TOKEN}" \
 http://api.anyfetch.com/documents?search=anyfetch
 ```
 
