@@ -5,7 +5,7 @@ HOST: https://api.anyfetch.com
 
 > This page is anyFetch reference. See [http://developers.anyfetch.com](this page) for informations regarding general usage.
 
-**Fetch API** is designed to help you search in  massive amounts of documents coming from various sources, in various formats. See [authentication](/authentication.html) for authentication details.
+**Fetch API** is designed to help you search massive amounts of documents coming from various sources, in various formats. See [authentication](/authentication.html) for authentication details.
 
 
 # Group Index

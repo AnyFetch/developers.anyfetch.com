@@ -32,7 +32,7 @@ Every time a hydrater finishes its task, a new hydration round is started with n
 #### Companies and subcompanies
 A company holds documents, which can be shared amongst users of the same company. Two companies can never share documents between themselves.
 
-An admin user from a company can create a subcompany, which will hold other documents juste like any other company ; however the parent company can delete the subcompany anytime it want to.
+An admin user from a company can create a subcompany, which will hold other documents just like any other company ; however the parent company can delete the subcompany anytime it want to.
 
 #### Example
 For instance, in the default setup, we use [plaintext.hydrater](https://github.com/Papiel/plaintext.hydrater.anyfetch.com) to read basic information about the document (is it a text document? an image?) and extract metadata. Then, depending on the returned metadata, the Fetch API will send the document along with this new metadata to other hydraters. If it is an image, we would then apply [ocr.hydrater](https://github.com/Papiel/ocr.hydrater.anyfetch.com), if it is an Office document we would apply [office.hydrater](https://github.com/Papiel/office.hydrater.anyfetch.com), and so on.
