@@ -12,7 +12,7 @@ body {
 	text-align: justify;
 }
 
-img {
+.content > img {
 	max-width: 80%;
 	margin: 0% 10% 0% 10%;
 }
