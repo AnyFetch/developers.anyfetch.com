@@ -22,5 +22,5 @@ npm install -g aglio
 Then update the HTML after modifying `blueprint.md`:
 
 ```sh
-aglio -i blueprint.md -o endpoints/index.html
+aglio -i blueprint.md -o endpoints/index.html -t _layouts/aglio.jade
 ```
