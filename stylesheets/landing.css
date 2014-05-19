@@ -12,9 +12,13 @@ body {
 	text-align: justify;
 }
 
-.content > img {
+p > img {
 	max-width: 80%;
 	margin: 0% 10% 0% 10%;
+}
+
+blockquote {
+	font-size: 14px;
 }
 
 .content {
