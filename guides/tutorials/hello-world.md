@@ -28,7 +28,7 @@ The first step will be to clean everything that may be available on your account
 ```sh
 $ curl -i -XDELETE \
 -H "Authorization: Basic ${BASE64}" \
-http://api.anyfetch.com/company/reset
+https://api.anyfetch.com/company/reset
 ```
 
 ```sh
@@ -43,7 +43,7 @@ For our test, we'll use a token:
 
 ```sh
 $ curl -H "Authorization: Basic ${BASE64}" \
-http://api.anyfetch.com/token
+https://api.anyfetch.com/token
 ```
 
 ```json
@@ -68,7 +68,7 @@ Before sending the file, we need to give Fetch API basic informations about our 
 $ curl -XPOST \
 -H "Authorization: Bearer ${TOKEN}" \
 -H "Content-Type:application/json" \
-http://api.anyfetch.com/documents \
+https://api.anyfetch.com/documents \
 -d '{"identifier": "hello-world", "document_type": "file", "metadatas": {"path": "/home/anyfetch/sample.txt", "title": "anyFetch sample file"}}'
 ```
 
@@ -110,7 +110,7 @@ Replace `sample.txt` with the path to your file.
 $ curl -i -XPOST \
 -H "Authorization: Bearer ${TOKEN}" \
 -F "file=@sample.txt" \
-http://api.anyfetch.com/documents/${ID}/file
+https://api.anyfetch.com/documents/${ID}/file
 ```
 
 ```sh
@@ -122,7 +122,7 @@ Once sent, your document will be hydrated. Depending on the current load, this c
 
 ```sh
 $ curl -H "Authorization: Bearer ${TOKEN}" \
-http://api.anyfetch.com/documents/${ID}/raw
+https://api.anyfetch.com/documents/${ID}/raw
 ```
 
 ```json
@@ -161,7 +161,7 @@ Alright, we're done. We can now reap the fruit of our hard work, and start searc
 
 ```sh
 $ curl -H "Authorization: Bearer ${TOKEN}" \
-http://api.anyfetch.com/documents?search=anyfetch
+https://api.anyfetch.com/documents?search=anyfetch
 ```
 
 ```json

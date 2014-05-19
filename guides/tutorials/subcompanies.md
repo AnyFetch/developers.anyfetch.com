@@ -28,7 +28,7 @@ Before we get started, let's view all our subcompanies:
 ```
 curl -XGET \
 -H "Authorization: token ${MASTER_TOKEN}" \
-http://api.anyfetch.com/subcompanies
+https://api.anyfetch.com/subcompanies
 ```
 
 As expected, we don't have any for now:
@@ -55,7 +55,7 @@ Therefore, before we create our subcompany, we'll need to create a new admin:
 $ curl -XPOST \
 -H "Authorization: token ${MASTER_TOKEN}" \
 -H "Content-Type:application/json" \
-http://api.anyfetch.com/users \
+https://api.anyfetch.com/users \
 -d '{"email": "newuser@subcompany.fr", "name": "New User", "password": "password", "is_admin": true}'
 ```
 
@@ -76,7 +76,7 @@ We can now connect as our new user (for instance by base64-encoding `newuser@sub
 curl -XPOST \
 -H "Authorization: Basic ${BASE64}" \
 -H "Content-Type:application/json" \
-http://api.anyfetch.com/subcompanies \
+https://api.anyfetch.com/subcompanies \
 -d '{"name": "Subcompany"}'
 ```
 
@@ -112,7 +112,7 @@ You just need to send with your master token a query to delete the subcompany:
 ```sh
 curl -XDELETE \
 -H "Authorization: token ${MASTER_TOKEN}" \
-http://api.anyfetch.com/subcompanies/534ea2bd1d6202ba087383ed
+https://api.anyfetch.com/subcompanies/534ea2bd1d6202ba087383ed
 ```
 
 And *voilà*, everything has been removed.

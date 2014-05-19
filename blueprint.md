@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://api.anyfetch.com
+HOST: https://api.anyfetch.com
 
 # Fetch API Documentation
 
