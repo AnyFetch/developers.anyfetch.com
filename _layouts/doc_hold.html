@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>{{ page.title }}</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>{{ page.title }}</h1>
+          <h2>{{ page.subtitle }}</h2>
+        </header>
+
+        <section class="clearfix" id="downloads">
+          <a class="button" href="/"><span>Home</span></a>
+          <a class="button" href="/endpoints"><span>Endpoints</span></a>
+          <a class="button" id="view-on-github" href="/guides"><span>Guides</span></a>
+        </section>
+        <hr>
+
+        <section id="main_content">
+          {{ content }}
+        </section>
+
+        <footer>
+          anyFetch is maintained by <a href="https://github.com/Papiel">Papiel</a>.<br>
+          Contact? Wanna chat with a human being? <a href="mailto:support@anyfetch.com">Mail us</a>!<br>
+        </footer>
+      </div>
+
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-35597266-4', 'anyfetch.com');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+  </body>
+</html>
