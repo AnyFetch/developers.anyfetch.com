@@ -1,4 +1,101 @@
-<!DOCTYPE html><html lang="en"></html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content=""><meta name="author" content=""><title>AnyFetch</title><link rel="stylesheet" type="text/css" href="/stylesheets/pygment_trac.css" media="screen"><link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print"><link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"><link rel="stylesheet" href="/stylesheets/bootstrap.min.css"><link rel="stylesheet" href="/stylesheets/landing.css"></head><body><nav role="navigation" class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><button type="button" data-toggle="collapse" data-target=".navbar-ex1-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="http://anyfetch.com/" class="navbar-brand"><img src="/images/anyfetch_icon.svg">Any<strong>Fetch<strong></strong></strong></a></div><!--Collect the nav links, forms, and other content for toggling--><div class="collapse navbar-collapse navbar-right navbar-ex1-collapse"><ul class="nav navbar-nav"><li><a href="/" class="navbar-title">Home</a></li><li class="active"><a href="/endpoints" class="navbar-title">Endpoints</a></li><li><a href="/guides" class="navbar-title">Guides</a></li></ul></div><!--/.navbar-collapse--></div><!--/.container--></nav><div class="container content"><div class="row"><div class="col-lg-9"><div><header><div class="page-header"><h1 id="top">Fetch API Documentation</h1></div></header><div class="description"><blockquote>
+<!DOCTYPE html><html lang="en"></html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content=""><meta name="author" content=""><title>AnyFetch</title><link rel="stylesheet" type="text/css" href="/stylesheets/pygment_trac.css" media="screen"><link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print"><link rel="stylesheet" href="/stylesheets/bootstrap.min.css"><link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200"><style>/* Highlight.js Theme Tomorrow */
+.hljs-comment,.hljs-title{color:#8e908c}.hljs-variable,.hljs-attribute,.hljs-tag,.hljs-regexp,.ruby .hljs-constant,.xml .hljs-tag .hljs-title,.xml .hljs-pi,.xml .hljs-doctype,.html .hljs-doctype,.css .hljs-id,.css .hljs-class,.css .hljs-pseudo{color:#c82829}.hljs-number,.hljs-preprocessor,.hljs-pragma,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-constant{color:#f5871f}.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute{color:#eab700}.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata{color:#718c00}.css .hljs-hexcolor{color:#3e999f}.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title{color:#4271ae}.hljs-keyword,.javascript .hljs-function{color:#8959a8}.hljs{display:block;background:white;color:#4d4d4c;padding:.5em}.coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:.5}</style><style>body,
+h4,
+h5 {
+  font-family: 'Roboto' sans-serif !important;
+}
+h1,
+h2,
+h3,
+.aglio {
+  font-family: 'Raleway' sans-serif !important;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a {
+  display: none;
+}
+h1:hover a,
+h2:hover a,
+h3:hover a,
+h4:hover a,
+h5:hover a {
+  display: inline;
+}
+code {
+  color: #444;
+  background-color: #ddd;
+  font-family: 'Inconsolata' monospace !important;
+}
+a[data-target] {
+  cursor: pointer;
+}
+h4 {
+  font-size: 100%;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.back-to-top {
+  position: fixed;
+  z-index: 1;
+  bottom: 0px;
+  right: 24px;
+  padding: 4px 8px;
+  background-color: #eee;
+  text-decoration: none !important;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-left: 1px solid rgba(0,0,0,0.1);
+  border-right: 1px solid rgba(0,0,0,0.1);
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.panel {
+  overflow: hidden;
+}
+.panel-heading code {
+  color: #c7254e;
+  background-color: transparent;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.panel-heading h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+a.list-group-item {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+a.list-group-item.heading {
+  background-color: #f5f5f5;
+}
+.list-group-item.collapse {
+  display: none;
+}
+.list-group-item.collapse.in {
+  display: block;
+}
+#nav {
+  max-width: 255px;
+  top: 80px;
+  bottom: 0px;
+  margin-top: 30px;
+  padding-right: 12px;
+  padding-bottom: 12px;
+  overflow-y: auto;
+}
+@media (max-width: 1199px) {
+  #nav {
+    min-width: 212px;
+  }
+}
+</style><link rel="stylesheet" href="/stylesheets/landing.css"></head><body><nav role="navigation" class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><button type="button" data-toggle="collapse" data-target=".navbar-ex1-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="http://anyfetch.com/" class="navbar-brand"><img src="/images/anyfetch_icon.svg">Any<strong>Fetch<strong></strong></strong></a></div><!--Collect the nav links, forms, and other content for toggling--><div class="collapse navbar-collapse navbar-right navbar-ex1-collapse"><ul class="nav navbar-nav"><li><a href="/" class="navbar-title">Home</a></li><li class="active"><a href="/endpoints" class="navbar-title">Endpoints</a></li><li><a href="/guides" class="navbar-title">Guides</a></li></ul></div><!--/.navbar-collapse--></div><!--/.container--></nav><div class="container content"><div class="row"><div class="col-lg-9"><div><header><div class="page-header"><h1 id="top">Fetch API Documentation</h1></div></header><div class="description"><blockquote>
 <p>This page is anyFetch reference. See <a href="this page">http://developers.anyfetch.com</a> for informations regarding general usage.</p>
 </blockquote>
 <p><strong>Fetch API</strong> is designed to help you search massive amounts of documents coming from various sources, in various formats. See <a href="/authentication.html">authentication</a> for authentication details.</p>
@@ -523,4 +620,4 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
         "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">26</span>
     </span>}
 </span>}
-</code></pre></li></ul></section></div></div></div></div><div class="col-lg-3"><div class="col-md-3"><nav id="nav" class="hidden-sm hidden-xs affix nav"><div class="list-group"><a href="#index" class="list-group-item heading">Index</a><a href="#index-api-status" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;API status</a><a href="#index-batch-calls" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Batch calls</a></div><div class="list-group"><a href="#account" class="list-group-item heading">Account</a><a href="#account-index" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Index</a><a href="#account-token" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Token</a></div><div class="list-group"><a href="#company" class="list-group-item heading">Company</a><a href="#company-company" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Company</a><a href="#company-update-company's-documents" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Update company's documents</a><a href="#company-reset-company" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Reset company</a></div><div class="list-group"><a href="#subcompanies" class="list-group-item heading">Subcompanies</a><a href="#subcompanies-subcompanies" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Subcompanies</a><a href="#subcompanies-subcompanies-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Retrieve all subcompanies</a><a href="#subcompanies-subcompanies-post" style="padding-left: 32px" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Create a new subcompany</a><a href="#subcompanies-subcompany" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Subcompany</a></div><div class="list-group"><a href="#documents" class="list-group-item heading">Documents</a><a href="#documents-documents" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Documents</a><a href="#documents-documents-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Search documents</a><a href="#documents-documents-post" style="padding-left: 32px" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Create new document</a><a href="#documents-document" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Document</a><a href="#documents-document-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Get Document</a><a href="#documents-document-delete" style="padding-left: 32px" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Delete Document</a><a href="#documents-similar-documents" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Similar documents</a><a href="#documents-related-documents" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Related documents</a><a href="#documents-raw-access" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Raw access</a><a href="#documents-associated-file" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Associated file</a><a href="#documents-associated-file-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Get document file</a><a href="#documents-associated-file-post" style="padding-left: 32px" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Set document's file</a></div><div class="list-group"><a href="#users" class="list-group-item heading">Users</a><a href="#users-users-collection" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Users Collection</a><a href="#users-users-collection-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;List all Users</a><a href="#users-users-collection-post" style="padding-left: 32px" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Create a User</a><a href="#users-user" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;User</a><a href="#users-user-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Retrieve a User</a><a href="#users-user-delete" style="padding-left: 32px" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Remove a User</a></div><div class="list-group"><a href="#document-types" class="list-group-item heading">Document Types</a><a href="#document-types-document-types" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Document types</a></div><div class="list-group"><a href="#providers" class="list-group-item heading">Providers</a><a href="#providers-providers" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Providers</a></div><p style="text-align: center"><a href="https://api.anyfetch.com">https://api.anyfetch.com</a></p></nav></div></div></div></div><footer class="footer"><div class="container"><div class="row"><div class="col-xs-4 col-sm-2 col-sm-offset-3"><h5>Developers</h5><ul class="list-unstyled"><li><a href="/">Home</a></li><li><a href="/endpoints">Endpoints</a></li><li><a href="/guides">Guides</a></li></ul></div><div class="col-xs-4 col-sm-2"><h5>Solution</h5><ul class="list-unstyled"><li><a href="http://anyfetch.com/" target="_blank">AnyFetch</a></li><li><a href="http://anyfetch.com/use-cases.html" target="_blank">Use Cases</a></li><li><a href="http://anyfetch.com/how-it-works.html" target="_blank">How it works</a></li></ul></div><div class="col-xs-4col-sm-2"><h5>Company</h5><ul class="list-unstyled"><li><a href="http://anyfetch.com/about-us.html" target="_blank">About Us</a></li><li><a href="http://anyfetch.com/about-us.html#contact" target="_blank">Contact</a></li></ul></div></div><div class="row"><div class="col-sm-12 text-center"><p class="copyright text-muted small">© AnyFetch 2014. All Rights Reserved</p></div></div></div></footer><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script><script src="/javascripts/bootstrap.min.js"></script><script src="/javascripts/tools.js"></script></body>
+</code></pre></li></ul></section></div></div></div></div><div class="col-lg-3"><div class="col-md-3"><nav id="nav" class="hidden-sm hidden-xs affix nav"><div class="list-group"><a href="#index" class="list-group-item heading">Index</a><a href="#index-api-status" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;API status</a><a href="#index-batch-calls" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Batch calls</a></div><div class="list-group"><a href="#account" class="list-group-item heading">Account</a><a href="#account-index" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Index</a><a href="#account-token" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Token</a></div><div class="list-group"><a href="#company" class="list-group-item heading">Company</a><a href="#company-company" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Company</a><a href="#company-update-company's-documents" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Update company's documents</a><a href="#company-reset-company" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Reset company</a></div><div class="list-group"><a href="#subcompanies" class="list-group-item heading">Subcompanies</a><a href="#subcompanies-subcompanies" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Subcompanies</a><a href="#subcompanies-subcompanies-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Retrieve all subcompanies</a><a href="#subcompanies-subcompanies-post" style="padding-left: 32px" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Create a new subcompany</a><a href="#subcompanies-subcompany" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Subcompany</a></div><div class="list-group"><a href="#documents" class="list-group-item heading">Documents</a><a href="#documents-documents" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Documents</a><a href="#documents-documents-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Search documents</a><a href="#documents-documents-post" style="padding-left: 32px" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Create new document</a><a href="#documents-document" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Document</a><a href="#documents-document-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Get Document</a><a href="#documents-document-delete" style="padding-left: 32px" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Delete Document</a><a href="#documents-similar-documents" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Similar documents</a><a href="#documents-related-documents" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Related documents</a><a href="#documents-raw-access" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Raw access</a><a href="#documents-associated-file" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Associated file</a><a href="#documents-associated-file-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Get document file</a><a href="#documents-associated-file-post" style="padding-left: 32px" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Set document's file</a></div><div class="list-group"><a href="#users" class="list-group-item heading">Users</a><a href="#users-users-collection" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Users Collection</a><a href="#users-users-collection-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;List all Users</a><a href="#users-users-collection-post" style="padding-left: 32px" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Create a User</a><a href="#users-user" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;User</a><a href="#users-user-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Retrieve a User</a><a href="#users-user-delete" style="padding-left: 32px" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Remove a User</a></div><div class="list-group"><a href="#document-types" class="list-group-item heading">Document Types</a><a href="#document-types-document-types" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Document types</a></div><div class="list-group"><a href="#providers" class="list-group-item heading">Providers</a><a href="#providers-providers" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Providers</a></div><p style="text-align: center"><a href="https://api.anyfetch.com">https://api.anyfetch.com</a></p></nav></div></div></div></div><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script><script src="/javascripts/bootstrap.min.js"></script><script src="/javascripts/tools.js"></script></body>

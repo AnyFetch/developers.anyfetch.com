@@ -340,10 +340,6 @@ p {
 	font-weight: 200;
 }
 
-.list-group {
-	position: fixed;
-	min-width: 300px;
-}
 
 .project {
 	min-height: 300px;
@@ -374,12 +370,6 @@ p {
 .invisible-anchor {
 	position: relative;
 	top: -100px;
-}
-
-a.list-group-item {
-	color: #fff;
-	font-weight: 300;
-	background-color: #16A9E2;
 }
 
 a.list-group-item:hover {
