@@ -372,6 +372,10 @@ p {
 	top: -100px;
 }
 
+a.list-group-item {
+	font-weight: 300;
+}
+
 a.list-group-item:hover {
 	color: #fff;
 	background-color: #62C3EB;
