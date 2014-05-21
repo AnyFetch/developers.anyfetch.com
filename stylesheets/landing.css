@@ -8,10 +8,6 @@ body, h1, h2, h3, h4, h5, h6 {
 	font-weight: 700;
 }
 
-body {
-	text-align: justify;
-}
-
 p > img {
 	max-width: 80%;
 	margin: 0% 10% 0% 10%;
@@ -331,7 +327,6 @@ p.copyright {
 }
 
 h2 {
-	text-align: center;
 	color: #16A9E2;
 	margin-bottom: 20px;
 }
@@ -382,7 +377,7 @@ a.list-group-item {
 }
 
 a.list-group-item:hover {
-	color: #fff;
+	color: #000;
 	background-color: #62C3EB;
 }
 
