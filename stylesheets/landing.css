@@ -391,8 +391,8 @@ a.list-group-item:hover {
 	border-radius: 0px;
 }
 
-.list-group:first-child {
-	background-color: #777;
+.heading {
+	background-color: #eee;
 }
 
 .content-column {
