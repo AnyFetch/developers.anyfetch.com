@@ -15,3 +15,5 @@ $(function() {
     }
   });
 });
+
+$('body').scrollspy({ target: '#nav' })

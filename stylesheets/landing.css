@@ -376,9 +376,23 @@ a.list-group-item {
 	font-weight: 300;
 }
 
+.active>a {
+	color: #fff;
+	background-color: #62C3EB;
+}
+
 a.list-group-item:hover {
 	color: #fff;
 	background-color: #62C3EB;
+}
+
+.list-group-item:last-child {
+	margin-bottom: -1px;
+	border-radius: 0px;
+}
+
+.list-group:first-child {
+	background-color: #777;
 }
 
 .content-column {
