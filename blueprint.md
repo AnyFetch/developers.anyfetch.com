@@ -142,7 +142,7 @@ Contains your company name, and the list of hydraters used on the account.
 ### Update documents [POST]
 Ping all providers for the current company, checking for new available documents.
 
-+ Response 204
++ Response 202
 
 ## Reset company [/company/reset]
 ## Reset company [DELETE]
