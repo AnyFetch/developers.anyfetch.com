@@ -376,9 +376,9 @@ a.list-group-item {
 	background-color: #62C3EB;
 }
 
-a.list-group-item:hover {
-	color: #000;
-	background-color: #62C3EB;
+.nav>li>a.list-group-item:hover, .nav>li>a.list-group-item:focus {
+	color: #31708F;
+	background-color: #D9EDF7;
 }
 
 .list-group-item:last-child {
