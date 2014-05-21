@@ -138,7 +138,7 @@ Contains your company name, and the list of hydraters used on the account.
                 ]
             }
 
-## Update company's documents [/company/update]
+## Update company documents [/company/update]
 ### Update documents [POST]
 Ping all providers for the current company, checking for new available documents.
 

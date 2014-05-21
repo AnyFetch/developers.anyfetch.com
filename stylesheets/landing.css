@@ -8,10 +8,6 @@ body, h1, h2, h3, h4, h5, h6 {
 	font-weight: 700;
 }
 
-body {
-	text-align: justify;
-}
-
 p > img {
 	max-width: 80%;
 	margin: 0% 10% 0% 10%;
@@ -331,7 +327,6 @@ p.copyright {
 }
 
 h2 {
-	text-align: center;
 	color: #16A9E2;
 	margin-bottom: 20px;
 }
@@ -340,10 +335,6 @@ p {
 	font-weight: 200;
 }
 
-.list-group {
-	position: fixed;
-	min-width: 300px;
-}
 
 .project {
 	min-height: 300px;
@@ -377,14 +368,26 @@ p {
 }
 
 a.list-group-item {
-	color: #fff;
 	font-weight: 300;
-	background-color: #16A9E2;
 }
 
-a.list-group-item:hover {
+.active>a {
 	color: #fff;
 	background-color: #62C3EB;
+}
+
+.nav>li>a.list-group-item:hover, .nav>li>a.list-group-item:focus {
+	color: #31708F;
+	background-color: #D9EDF7;
+}
+
+.list-group-item:last-child {
+	margin-bottom: -1px;
+	border-radius: 0px;
+}
+
+.heading {
+	background-color: #eee;
 }
 
 .content-column {
