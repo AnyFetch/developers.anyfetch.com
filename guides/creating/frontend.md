@@ -1,14 +1,22 @@
 ---
 title: Anyfetch frontend
-subtitle: Information is beautiful
+subtitle: Integrate AnyFetch within your apps
 layout: doc
 ---
 
-Creating a frontend range from very easy to incredibly hard, depending on what you want to achieve.
+AnyFetch can be integrated in all your apps thanks to its complete API. You can even build a complete solution on top of it.
 
-You'll need to read the documentation for [all endpoints](/endpoints), especially the `/documents/` one.
+In this tutorial, you will see how to create a very simple Web frontend based on AnyFetch power. It will help you understand how to master AnyFetch API and take the most out of each endpoint. During this tutorial, you may refer to the [endpoints documentation](/endpoints) to have an exhaustive list.
 
-The [default frontend for anyFetch](https://github.com/Papiel/app.anyfetch.com) is open-sourced, and can be used for inspiration. You're welcome to fork.
+Creating a frontend range from very easy to incredibly hard, depending on what you want to achieve. We already open-sourced a [ready-to-use front end](https://github.com/Papiel/app.anyfetch.com) using MVC concepts provided by AngularJS. You're welcome to fork it or take a look at it for inspiration.
+
+The purpose of this tutorial being to ... That is why we will keep it simple here and focus on how javascript API calls.
+
+
+
+You'll need to read the documentation for , especially the `/documents/` one.
+
+The is open-sourced, and can be used for inspiration. You're welcome to fork.
 
 ## Web frontend
 The API sends CORS header, so you can use a single page application -- no need for a server to communicate with the API.
