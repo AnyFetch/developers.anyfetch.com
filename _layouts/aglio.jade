@@ -25,6 +25,9 @@ head
                 body, h4, h5
                     font-family 'Roboto' sans-serif !important
 
+                .navbar>.container .navbar-brand
+                    font-family "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif
+
                 h1, h2, h3, .aglio
                     font-family 'Raleway' sans-serif !important
 
@@ -113,12 +116,11 @@ head
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand(href='http://anyfetch.com/')
-            img(src='/images/anyfetch_icon.svg')
-            | Any
+          a.navbar-brand(href="http://anyfetch.com/")
+            img(src="/images/anyfetch_icon.svg")
+            |  Any
             strong
-              | Fetch
-              strong
+                | Fetch
         //
            Collect the nav links, forms, and other content for toggling
         .collapse.navbar-collapse.navbar-right.navbar-ex1-collapse
