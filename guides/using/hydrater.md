@@ -3,17 +3,15 @@ title: How to use an Anyfetch hydrater?
 layout: doc
 ---
 
-Sometimes, you may want to use an hydrater for itself. For instance, let's say you have an image and you want to extract text from it.
+Let's say you have an image and you want to extract text from it.
 You'll then need [the OCR hydrater](https://github.com/Papiel/ocr.hydrater.anyfetch.com).
 
+Here is the detailed overview of how this will work.
 
 ## Hydration workflow
-### Basic hydration workflow
-First thing first, an hydration server is not a frontend web server. It can only be called using APIs, and has no pages of itself -- viewing [this on a browser](http://ocr.hydrater.anyfetch.com/) will result in an error.
-
 #### Starting a new hydration
 To hydrate a document, you need to specify two parameters : the `file_path`, and the `callback` (both URLs).
-When you send the request to `hydrate`, it will be queued on the hydrater's pending tasks queue.
+When you send the request to `/hydrate`, it will be queued on the hydrater's pending tasks queue.
 The hydrater will reply with `202 Accepted` and nothing else; the hydration results will later be sent to `callback`.
 
 #### Hydration

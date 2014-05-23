@@ -3,10 +3,11 @@ title: Anyfetch hydrater
 subtitle: Transforming...
 layout: doc
 ---
+Data are enhanced with meta-data on the fly: an image with OCR, a document with full-text. This process is achieved using **hydraters**.
 
 > Before reading about creating a new hydrater, you may be interested in [how to use an hydrater](/guides/using/hydrater.html).
 
-Just like providers, creating an hydrater is quite simple. Most of the anyFetch default hydraters are open-source: you can take a [quick peek at them](https://github.com/search?q=%40Papiel+hydrater) if you have any trouble.
+Creating an hydrater is very simple. Most anyFetch hydraters are open-source, [check them](https://github.com/search?q=%40Papiel+hydrater).
 
 An hydrater needs to be registered on anyFetch, with an endpoint and some constraints for the documents it wants to handle.
 Every time a provider send data matching those constraints, the endpoint will be pinged with the JSON document, a `file_path` parameter with the url to the file and a `callback` url to ping with the new document.
