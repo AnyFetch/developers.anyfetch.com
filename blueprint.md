@@ -7,6 +7,8 @@ HOST: https://api.anyfetch.com
 
 **anyFetch API** is designed to help you search massive amounts of documents coming from various sources, in various formats. See [authentication](/authentication.html) for authentication details.
 
+Error codes are documented on [this page](/getting-started.html).
+
 
 # Group Index
 ## API status [/status]

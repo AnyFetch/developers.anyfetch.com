@@ -33,7 +33,7 @@ $ curl https://api.anyfetch.com?oauth_access_token=OAUTH-TOKEN
 ### Error codes
 
 * Using no authentication in a request will result in `401 Authorization Required`
-* Using invalid authentication will result in `403 Forbidden`
+* Using invalid authentication will result in `401 InvalidCredentialsError`
 * When trying to access a resource that is not part of your current scope, you may get a `404 Not Found` for security reasons
 
 ## Request Error

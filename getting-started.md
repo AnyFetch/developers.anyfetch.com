@@ -56,16 +56,17 @@ For POST, PATCH, PUT, and DELETE requests, parameters not included in the URL ca
 
 Expect to receive errors when you send invalid requests. The return code will include a `code` key, and a `message` to help you debug your application.
 
-> Bad requests.
-> In some case, you'll only get a `4XX` HTTP status. This will happen, for instance, when your `Content-Length` header is invalid, when you try to send a request too large, or when your JSON is invalid.
-
-If resources have custom validation errors, they will be documented with the resource.
+> In some case, you'll only get a `4XX` HTTP status. This will happen, for instance, when your `Content-Length` header is invalid, when you try to send a request too large, or when your JSON can't be parsed.
 
 Standard errors include :
 
-* `401 UnauthorizedError`: you did not specify a token, or your token is invalid / has been revoked.
+* `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+* `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
+* `403 ForbiddenError`: you are not allowed access to the resource
+* `404 ResourceNotFoundError`: you are trying to acces a non existing or out-of-scope object.
 * `405 MethodNotAllowedError`: you used a POST instead of a GET, or vice versa.
 * `409 InvalidArgumentError`: you used a non existing argument.
+* `409 MissingParameterError`: you forgot a mandatory parameter.
 * `413 Request Entity Too Large`: you are trying to send a document exceeding our capacity (multi giga-byte file anyone?)
 * `500 InternalServerError`: we are currently upgrading or experiencing trouble; please try again in a few minutes. 
 
@@ -80,7 +81,7 @@ Other redirection status codes may be used in accordance with the HTTP 1.1 spec.
 
 ## HTTP Verbs
 
-Where possible, anyfFtch API strives to use appropriate HTTP verbs for each action.
+Where possible, anyfFetch API strives to use appropriate HTTP verbs for each action.
 
 - __HEAD__ Can be issued against any resource to get just the HTTP header info.
 - __GET__ Used for retrieving resources.
