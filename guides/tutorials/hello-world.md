@@ -1,10 +1,10 @@
 ---
-title: Fetch API example use for documents
+title: anyFetch example use for documents
 subtitle: Say "Hello world"!
 layout: doc
 ---
 
-In this guide, we'll send a document to Fetch API and retrieve it using the API endpoint.
+In this guide, we'll send a document to anyFetch and retrieve it using the API endpoint.
 
 ## What do I need?
 To follow this guide, you need:
@@ -58,7 +58,7 @@ Keep this token somewhere safe.
 Now that we're set up, we can send our document. This requires two steps: first, sending metadata about our files, and then sending the actual file.
 
 ### Send a document
-Before sending the file, we need to give Fetch API basic informations about our documents. We'll send the following params:
+Before sending the file, we need to give anyFetch basic informations about our documents. We'll send the following params:
 
 * `identifier`: this identifier must be unique across our account, and will be used again if we need to update our document in the future. For now, we'll pick something simple, like `hello-world`.
 * `document_type`: this value lets us specify what we know about our document. This can be `email`, `contact`... in our case, we'll keep this basic and set it to `file` which is the default for every document containing a file.  The document type will determine which hydraters it will go through once uploaded.
@@ -93,7 +93,7 @@ https://api.anyfetch.com/documents \
 }
 ```
 
-Fetch API replied with the new document. Keep the `id` somewhere, we'll need it later.
+anyFetch replied with the new document. Keep the `id` somewhere, we'll need it later.
 Things to note...
 
 * `creation_date` was automatically set for you. You can override it when need be.
@@ -101,7 +101,7 @@ Things to note...
 * `user_access` is `null`. This means every user in the company can access it.
 
 ### Send the file
-Now that we've created the document on Fetch API, we can associate it with a file. This is a simple file upload, under the `file` key.
+Now that we've created the document on anyFetch, we can associate it with a file. This is a simple file upload, under the `file` key.
 
 Don't forget to use a sample file, like [this one](/guides/samples/sample.txt).
 Replace `sample.txt` with the path to your file.

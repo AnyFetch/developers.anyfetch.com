@@ -1,12 +1,12 @@
 ---
-title: Fetch API authentication
+title: anyFetch authentication
 subtitle: How to authenticate with the API
 layout: doc
 ---
 
 ## Authentication
 ### Authentication types
-There are three ways to authenticate through the Fetch API.
+There are three ways to authenticate with anyFetch.
 
 #### Basic authentication
 ```sh

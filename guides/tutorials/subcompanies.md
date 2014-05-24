@@ -1,5 +1,5 @@
 ---
-title: Fetch API example use for subcompanies
+title: anyFetch example use for subcompanies
 subtitle: Compartmentalize documents.
 layout: doc
 ---

@@ -71,7 +71,7 @@ Standard errors include :
 
 ## HTTP Redirects
 
-anyfetch API uses HTTP redirection where appropriate. Clients should assume that any request may result in a redirection. Receiving an HTTP redirection is not an error and clients should follow that redirect. Redirect responses will have a `Location` header field which contains the URI of the resource to which the client should repeat the requests.
+anyFetch API uses HTTP redirection where appropriate. Clients should assume that any request may result in a redirection. Receiving an HTTP redirection is not an error and clients should follow that redirect. Redirect responses will have a `Location` header field which contains the URI of the resource to which the client should repeat the requests.
 
 - __301__ Permanent redirection. The URI you used to make the request has been superseded by the one specified in the `Location` header field. This and all future requests to this resource should be directed to the new URI.
 - __302, 307__ Temporary redirection. The request should be repeated verbatim to the URI specified in the `Location` header field but clients should continue to use the original URI for future requests.
@@ -80,7 +80,7 @@ Other redirection status codes may be used in accordance with the HTTP 1.1 spec.
 
 ## HTTP Verbs
 
-Where possible, anyfetch API strives to use appropriate HTTP verbs for each action.
+Where possible, anyfFtch API strives to use appropriate HTTP verbs for each action.
 
 - __HEAD__ Can be issued against any resource to get just the HTTP header info.
 - __GET__ Used for retrieving resources.

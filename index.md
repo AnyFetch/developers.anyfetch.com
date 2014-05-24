@@ -1,6 +1,6 @@
 ---
-title: Anyfetch API documentation
-subtitle: Introducing Anyfetch.
+title: anyFetch API documentation
+subtitle: Introducing anyFetch.
 layout: doc
 ---
 
@@ -8,22 +8,21 @@ layout: doc
 > 
 > Note this documentation is still a work in progress. Don't hesitate to contact us with feedbacks or question, we're delighted to help.
 
-Anyfetch concepts
+anyFetch concepts
 ----------------
-Anyfetch aggregates documents from multiples sources (so-called *providers*). Data is then enhanced using *hydraters*, and made searchable through the *frontend* API.
+anyFetch aggregates documents from multiples sources (so-called *providers*). Data is then enhanced using *hydraters*, and made searchable through the *frontend* API.
 
-![Anyfetch workflow](/images/workflow.png)
+![anyFetch workflow](/images/workflow.png)
 
 ### Providers and hydraters
-Providers and hydraters constitute the Fetch API "back-part".
-Providers retrieve raw data and send it to the Fetch API.
+Providers retrieve raw data and send it to anyFetch.
 Hydraters transform and improve this raw data.
 
 #### Providers
-An example workflow could start with a provider extracting data from Dropbox, and sending it to the Fetch API.
+An example workflow could start with a provider extracting data from Dropbox, and sending it to anyFetch.
 
 #### Hydraters
-Fetch API would then redispatch documents to the hydration servers.
+anyFetch would then redispatch documents to the hydration servers.
 Hydraters extract metadata from documents.
 
 A dependency graph indicates which hydraters are available for a given document.
@@ -35,7 +34,7 @@ A company holds documents, which can be shared amongst users of the same company
 An admin user from a company can create a subcompany, which will hold other documents just like any other company ; however the parent company can delete the subcompany anytime it want to.
 
 #### Example
-For instance, in the default setup, we use [plaintext.hydrater](https://github.com/Papiel/plaintext.hydrater.anyfetch.com) to read basic information about the document (is it a text document? an image?) and extract metadata. Then, depending on the returned metadata, the Fetch API will send the document along with this new metadata to other hydraters. If it is an image, we would then apply [ocr.hydrater](https://github.com/Papiel/ocr.hydrater.anyfetch.com), if it is an Office document we would apply [office.hydrater](https://github.com/Papiel/office.hydrater.anyfetch.com), and so on.
+For instance, in the default setup, we use [plaintext.hydrater](https://github.com/Papiel/plaintext.hydrater.anyfetch.com) to read basic information about the document (is it a text document? an image?) and extract metadata. Then, depending on the returned metadata, anyFetch will send the document along with this new metadata to other hydraters. If it is an image, we would then apply [ocr.hydrater](https://github.com/Papiel/ocr.hydrater.anyfetch.com), if it is an Office document we would apply [office.hydrater](https://github.com/Papiel/office.hydrater.anyfetch.com), and so on.
 Once all available hydraters have yielded their results, the document is indexed and made available for search.
 
 ### Document-type
@@ -55,11 +54,11 @@ For instance, when we search for an image, we don't need *all* the metadata: pro
 Frontends get access to a search interface across all documents.
 Using the `document-type`, they format the document in order to be usefully displayed to the user.
 
-Fetch API
+anyFetch API
 --------------
 > First time using a REST API? Visit our [getting started](/getting-started.html) page.
 
-We hope you now grasp the basic ideas surrounding Anyfetch. Let's get technical and [discover the endpoints](/endpoints) exposed by the Fetch API.
+We hope you now grasp the basic ideas surrounding anyFetch. Let's get technical and [discover the endpoints](/endpoints).
 
 Guides
 ------

@@ -1,5 +1,5 @@
 ---
-title: Anyfetch frontend
+title: anyFetch frontend
 subtitle: Information is beautiful
 layout: doc
 ---
@@ -15,7 +15,7 @@ The API sends CORS header, so you can use a single page application -- no need f
 
 
 ## Mobile frontend
-When using Fetch API, be wary as some endpoints may return megabytes of data. Free memory when you can, and avoid doing network operations on main thread.
+When using anyFetch, be wary as some endpoints may return megabytes of data. Free memory when you can, and avoid doing network operations on main thread.
 
 ## Principles
 ### Endpoints
