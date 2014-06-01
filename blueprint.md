@@ -1,17 +1,19 @@
 FORMAT: 1A
 HOST: https://api.anyfetch.com
 
-# Fetch API Documentation
+# anyFetch API Documentation
 
 > This page is anyFetch reference. See [http://developers.anyfetch.com](this page) for informations regarding general usage.
 
-**Fetch API** is designed to help you search massive amounts of documents coming from various sources, in various formats. See [authentication](/authentication.html) for authentication details.
+**anyFetch API** is designed to help you search massive amounts of documents coming from various sources, in various formats. See [authentication](/authentication.html) for authentication details.
+
+Error codes are documented on [this page](/getting-started.html).
 
 
 # Group Index
 ## API status [/status]
 ### anyFetch status [GET]
-Get the current status of the Fetch API.
+Get the current global status for the API.
 Should have a `status` of "OK".
 
 + Response 200 (application/json)

@@ -1,5 +1,5 @@
 ---
-title: Creating a frontend for the Fetch API
+title: Creating a frontend for anyFetch
 subtitle: Display documents
 layout: doc
 ---

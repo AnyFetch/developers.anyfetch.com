@@ -1,5 +1,5 @@
 ---
-title: Anyfetch hydrater
+title: anyFetch hydrater
 subtitle: Transforming...
 layout: doc
 ---
@@ -20,7 +20,7 @@ You can then take nearly as long as you want to hydrate the document and send yo
 You can add two type of constraints : formatting constraints, and dependencies.
 
 ### Dependencies
-Dependencies indicates your hydrater require another hydrater to complete before being able to work. The Fetch API will call the hydrater you depend upon, and after completion call your hydrater. For instance, to indicate you want to run after the plaintext hydrater (which takes as input any kind of file, and extracts a textual representation from it), you can say:
+Dependencies indicates your hydrater require another hydrater to complete before being able to work. anyFetch will call the hydrater you depend upon, and after completion call your hydrater. For instance, to indicate you want to run after the plaintext hydrater (which takes as input any kind of file, and extracts a textual representation from it), you can say:
 
 ```javascript
 {

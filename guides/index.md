@@ -1,6 +1,6 @@
 ---
-title: Anyfetch guides
-subtitle: Manual for Anyfetch.
+title: anyFetch guides
+subtitle: Manual for anyFetch.
 layout: doc
 ---
 
