@@ -4,7 +4,7 @@ layout: doc
 ---
 
 Let's say you have an image and you want to extract text from it.
-You'll then need [the OCR hydrater](https://github.com/Papiel/ocr.hydrater.anyfetch.com).
+You'll then need [the OCR hydrater](https://github.com/AnyFetch/ocr.hydrater.anyfetch.com).
 
 Here is the detailed overview of how this will work.
 
@@ -24,7 +24,7 @@ Sometime, you want to test the results and you don't want to ping another adress
 You can then use the `long_poll` option. This is not for production use, and only for testing purposes (anyway, in production, if the hydrater is busy, your request will be dropped). The `long_poll` option returns the result with the request (instead of returning instantly 202).
 
 ```sh
-$ curl --header "Content-Type:application/json" --data '{"file_path":"https://raw2.github.com/Papiel/ocr.hydrater.anyfetch.com/763ca1c77b33451de3fff733ad850287b48d2f96/test/samples/sample.png", "long_poll":true}' http://ocr.hydrater.anyfetch.com/hydrate
+$ curl --header "Content-Type:application/json" --data '{"file_path":"https://raw2.github.com/AnyFetch/ocr.hydrater.anyfetch.com/763ca1c77b33451de3fff733ad850287b48d2f96/test/samples/sample.png", "long_poll":true}' http://ocr.hydrater.anyfetch.com/hydrate
 ```
 
 ```json
@@ -41,7 +41,7 @@ Although this workflow works fine for most hydraters, you'll often need more adv
 To keep going with our previous example, here is a more complex call to the OCR with an initial document:
 
 ```sh
-$ curl --header "Content-Type:application/json" --data '{"file_path":"https://raw2.github.com/Papiel/ocr.hydrater.anyfetch.com/763ca1c77b33451de3fff733ad850287b48d2f96/test/samples/sample.png", "callback":"http://example.com","long_poll":true, "metadatas": {"previous-datas":"something"}}' http://ocr.hydrater.anyfetch.com/hydrate
+$ curl --header "Content-Type:application/json" --data '{"file_path":"https://raw2.github.com/AnyFetch/ocr.hydrater.anyfetch.com/763ca1c77b33451de3fff733ad850287b48d2f96/test/samples/sample.png", "callback":"http://example.com","long_poll":true, "metadatas": {"previous-datas":"something"}}' http://ocr.hydrater.anyfetch.com/hydrate
 ```
 
 ```json
@@ -73,9 +73,9 @@ $ curl http://ocr.hydrater.anyfetch.com/status
 ## Sample hydraters
 Anyfetch ships with some default hydraters you may want to check:
 
-* `plaintext.hydrater.anyfetch.com`: retrieve basic information about a file (word, pdf, ppt, txt, rtf, png...). Will extract text if available. [Source](https://github.com/Papiel/plaintext.hydrater.anyfetch.com)
-* `ocr.hydrater.anyfetch.com`: retrieve textual information from an image. [Source](https://github.com/Papiel/ocr.hydrater.anyfetch.com)
-* `pdf.hydrater.anyfetch.com`: transform a PDF file to HTML. [Source](https://github.com/Papiel/pdf.hydrater.anyfetch.com)
-* `office.hydrater.anyfetch.com`: transform an office file to PDF, inject it back onto anyFetch. [Source](https://github.com/Papiel/office.hydrater.anyfetch.com)
-* `eml.hydrater.anyfetch.com`: retrieve data from eml files, hydrate mail data and save back the attachments as files on anyFetch. [Source](https://github.com/Papiel/eml.hydrater.anyfetch.com)
-* `image.hydrater.anyfetch.com`: generate thumbnails from an image. [Source](https://github.com/Papiel/image.hydrater.anyfetch.com)
+* `plaintext.hydrater.anyfetch.com`: retrieve basic information about a file (word, pdf, ppt, txt, rtf, png...). Will extract text if available. [Source](https://github.com/AnyFetch/plaintext.hydrater.anyfetch.com)
+* `ocr.hydrater.anyfetch.com`: retrieve textual information from an image. [Source](https://github.com/AnyFetch/ocr.hydrater.anyfetch.com)
+* `pdf.hydrater.anyfetch.com`: transform a PDF file to HTML. [Source](https://github.com/AnyFetch/pdf.hydrater.anyfetch.com)
+* `office.hydrater.anyfetch.com`: transform an office file to PDF, inject it back onto anyFetch. [Source](https://github.com/AnyFetch/office.hydrater.anyfetch.com)
+* `eml.hydrater.anyfetch.com`: retrieve data from eml files, hydrate mail data and save back the attachments as files on anyFetch. [Source](https://github.com/AnyFetch/eml.hydrater.anyfetch.com)
+* `image.hydrater.anyfetch.com`: generate thumbnails from an image. [Source](https://github.com/AnyFetch/image.hydrater.anyfetch.com)

@@ -129,7 +129,7 @@ Contains your company name, and the list of hydraters used on the account.
             {
                 "_type": "Company",
                 "id": "531dd2f3c8318cc5d100003c",
-                "name": "test3@papiel.fr",
+                "name": "test@anyfetch.com",
                 "hydraters": [
                     "http://plaintext.hydrater.anyfetch.com/hydrate",
                     "http://pdf.hydrater.anyfetch.com/hydrate",
