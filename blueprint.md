@@ -300,7 +300,7 @@ Return aggregated informations computed over the result set. The `score` key ind
                 "count": 2,
                 "next_page_url": "coming",
                 "previous_page_url": "coming",
-                "datas": [
+                "data": [
                     {
                         "_type": "Document",
                         "id": "5320a7735ee6eed51339a1b3",
@@ -312,7 +312,7 @@ Return aggregated informations computed over the result set. The `score` key ind
                             "show": "https://www.dropbox.com/home%2Fall%2FanyFetch%20pitch%20deck%20SF%20-%20CHarly%20Kevers.pdf"
                         },
                         "document_url": "/documents/5320a7735ee6eed51339a1b3",
-                        "datas": {
+                        "data": {
                             "title": "anyFetch pitch deck SF   CHarly Kevers",
                             "path": "/all/anyFetch pitch deck SF - CHarly Kevers.pdf",
                             "snippet": "\nanyFetch\nENTERPRISE SEARCH in the CLOUD\nMehdi Bouheddi - CEO\n10-03-2014\nThe amount of data in the enterprise is more than 10 000 × Google\nBut it is a mess...\nChallenge : find the relevant information\n"
@@ -332,7 +332,7 @@ Return aggregated informations computed over the result set. The `score` key ind
                             "show": "http://anyfetch-provider-evernote.herokuapp.com/shard/s1/sh/6dbd89d6-1d80-4292-97fb-a0511cee5973/c5a8ad2ccc6b21ef43bb80fccc2d3544"
                         },
                         "document_url": "/documents/532347451eab8a0e22c2e65f",
-                        "datas": {
+                        "data": {
                             "subject": "Follow up Charly <span class=\"hlt\">Kevers</span>",
                             "description": "Ask him to send an Email to Nick and schedule a meeting with Alex.",
                             "status": "TODO"
@@ -359,10 +359,10 @@ Send a new document on anyFetch.
                 "actions": {
                     "download": "http://example.org/download/file/url"
                 },
-                "datas": {
+                "data": {
                     "bar": "this will not be indexed for search"
                 },
-                "metadatas": {
+                "metadata": {
                     "foo": "this will be indexed for search"
                 },
                 "related": ["52dff5c53923844f15885428"],
@@ -382,10 +382,10 @@ Send a new document on anyFetch.
                 "actions": {
                     "download": "http://example.org/download/file/url"
                 },
-                "datas": {
+                "data": {
                     "bar": "this will not be indexed for search"
                 },
-                "metadatas": {
+                "metadata": {
                     "foo": "this will be indexed for search"
                 },
                 "related": ["52dff5c53923844f15885428"],
@@ -402,7 +402,7 @@ A single document with its details.
 
 Result contains, amongst other :
 
-* `full` projection, in `datas`,
+* `full` projection, in `data`,
 * `title` projection, in `title`.
 
 + Parameters
@@ -422,7 +422,7 @@ Result contains, amongst other :
                     "show": "http://anyfetch-provider-evernote.herokuapp.com/shard/s1/sh/6dbd89d6-1d80-4292-97fb-a0511cee5973/c5a8ad2ccc6b21ef43bb80fccc2d3544"
                 },
                 "document_url": "/documents/532347451eab8a0e22c2e65f",
-                "datas": {
+                "data": {
                     "subject": "Follow up Charly Kevers",
                     "status": "TODO",
                     "description": "Ask him to send an Email to Nick and schedule a meeting with Alex."
@@ -450,7 +450,7 @@ Documents similar to `id`. Still a work in progress.
 Result contains, amongst other :
 
 * `title` projection for the `id` document, in `title`.
-* `snippet` projection for similar documents, in `datas`
+* `snippet` projection for similar documents, in `data`
 * `keywords` used to find similar documents
 
 + Parameters
@@ -482,7 +482,7 @@ Result contains, amongst other :
                 },
                 "next_page_url": "coming",
                 "previous_page_url": "coming",
-                "datas": [
+                "data": [
                     {
                         "_type": "Document",
                         "id": "5320a76fbc2e51d7135f0c8c",
@@ -494,7 +494,7 @@ Result contains, amongst other :
                             "show": "https://mail.google.com/mail/b/anyfetch@gmail.com/?cm#all/1442f93143ab3bb6"
                         },
                         "document_url": "/documents/5320a76fbc2e51d7135f0c8c",
-                        "datas": {
+                        "data": {
                             "from": "Udacity <support@udacity.com>",
                             "to": "anyfetch@gmail.com",
                             "subject": "Verify Your <span class=\"hlt\">Email</span> on Udacity",
@@ -516,7 +516,7 @@ Documents related to `id`.
 Result contains, amongst other :
 
 * `title` projection for the `id` document, in `title`.
-* `snippet` projection for related documents, in `datas`
+* `snippet` projection for related documents, in `data`
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
@@ -539,7 +539,7 @@ Result contains, amongst other :
                         "1380585600000": 1
                     }
                 },
-                "datas": [
+                "data": [
                     {
                         "_type": "Document",
                         "id": "531dcd94731d5a284f707ac1",
@@ -549,7 +549,7 @@ Result contains, amongst other :
                         "document_type": "5252ce4ce4cfcd16f55cfa3c",
                         "actions": {},
                         "document_url": "/documents/531dcd94731d5a284f707ac1",
-                        "datas": {
+                        "data": {
                             "title": "4400000451947",
                             "path": "/4400000451947.pdf",
                             "snippet": "\nDT061 ind 13 Prestations réalisées sous assurance qualité ISO 9001"
@@ -587,8 +587,8 @@ Also include information about hydraters (`hydratedBy`, `hydrating` and `lastHyd
                 },
                 "document_url": "/documents/532347451eab8a0e22c2e65f",
                 "identifier": "http://anyfetch-provider-evernote.herokuapp.com/shard/s1/sh/6dbd89d6-1d80-4292-97fb-a0511cee5973/c5a8ad2ccc6b21ef43bb80fccc2d3544",
-                "datas": {},
-                "metadatas": {
+                "data": {},
+                "metadata": {
                     "status": "TODO",
                     "description": "Ask him to send an Email to Nick and schedule a meeting with Alex.",
                     "subject": "Follow up Charly Kevers"
