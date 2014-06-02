@@ -72,4 +72,4 @@ Every document-type defines three projectors:
 
 > In some cases, the document will have no document-type. In this case, the original metadata will be returned in full, without any projection.
 
-You can now read about [templating](/guides/concepts/templating.md) to learn how to display this data to the end user.
+You can now read about [templating](/guides/concepts/templating.html) to learn how to display this data to the end user.
