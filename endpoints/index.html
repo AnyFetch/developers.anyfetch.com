@@ -247,7 +247,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
     <span class="hljs-string">"count"</span>: <span class="hljs-number">2</span>,
     <span class="hljs-string">"next_page_url"</span>: <span class="hljs-string">"coming"</span>,
     <span class="hljs-string">"previous_page_url"</span>: <span class="hljs-string">"coming"</span>,
-    <span class="hljs-string">"datas"</span>: [
+    <span class="hljs-string">"data"</span>: [
         {
             <span class="hljs-string">"_type"</span>: <span class="hljs-string">"Document"</span>,
             <span class="hljs-string">"id"</span>: <span class="hljs-string">"5320a7735ee6eed51339a1b3"</span>,
@@ -259,7 +259,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
                 <span class="hljs-string">"show"</span>: <span class="hljs-string">"https://www.dropbox.com/home<span class="hljs-variable">%2Fall</span><span class="hljs-variable">%2FanyFetch</span><span class="hljs-variable">%20pitch</span><span class="hljs-variable">%20deck</span><span class="hljs-variable">%20SF</span><span class="hljs-variable">%20</span>-<span class="hljs-variable">%20CHarly</span><span class="hljs-variable">%20Kevers</span>.pdf"</span>
             },
             <span class="hljs-string">"document_url"</span>: <span class="hljs-string">"/documents/5320a7735ee6eed51339a1b3"</span>,
-            <span class="hljs-string">"datas"</span>: {
+            <span class="hljs-string">"data"</span>: {
                 <span class="hljs-string">"title"</span>: <span class="hljs-string">"anyFetch pitch deck SF   CHarly Kevers"</span>,
                 <span class="hljs-string">"path"</span>: <span class="hljs-string">"/all/anyFetch pitch deck SF - CHarly Kevers.pdf"</span>,
                 <span class="hljs-string">"snippet"</span>: <span class="hljs-string">"\nanyFetch\nENTERPRISE SEARCH in the CLOUD\nMehdi Bouheddi - CEO\n10-03-2014\nThe amount of data in the enterprise is more than 10 000 × Google\nBut it is a mess...\nChallenge : find the relevant information\n"</span>
@@ -279,7 +279,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
                 <span class="hljs-string">"show"</span>: <span class="hljs-string">"http://anyfetch-provider-evernote.herokuapp.com/shard/s1/sh/6dbd89d6-1d80-4292-97fb-a0511cee5973/c5a8ad2ccc6b21ef43bb80fccc2d3544"</span>
             },
             <span class="hljs-string">"document_url"</span>: <span class="hljs-string">"/documents/532347451eab8a0e22c2e65f"</span>,
-            <span class="hljs-string">"datas"</span>: {
+            <span class="hljs-string">"data"</span>: {
                 <span class="hljs-string">"subject"</span>: <span class="hljs-string">"Follow up Charly &lt;span class=\"hlt\"&gt;Kevers&lt;/span&gt;"</span>,
                 <span class="hljs-string">"description"</span>: <span class="hljs-string">"Ask him to send an Email to Nick and schedule a meeting with Alex."</span>,
                 <span class="hljs-string">"status"</span>: <span class="hljs-string">"TODO"</span>
@@ -303,10 +303,10 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
         "<span class="hljs-attribute">actions</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">download</span>": <span class="hljs-value"><span class="hljs-string">"http://example.org/download/file/url"</span>
         </span>}</span>,
-        "<span class="hljs-attribute">datas</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">bar</span>": <span class="hljs-value"><span class="hljs-string">"this will not be indexed for search"</span>
         </span>}</span>,
-        "<span class="hljs-attribute">metadatas</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">metadata</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">foo</span>": <span class="hljs-value"><span class="hljs-string">"this will be indexed for search"</span>
         </span>}</span>,
         "<span class="hljs-attribute">related</span>": <span class="hljs-value">[<span class="hljs-string">"52dff5c53923844f15885428"</span>]</span>,
@@ -323,10 +323,10 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
     "<span class="hljs-attribute">actions</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">download</span>": <span class="hljs-value"><span class="hljs-string">"http://example.org/download/file/url"</span>
     </span>}</span>,
-    "<span class="hljs-attribute">datas</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">bar</span>": <span class="hljs-value"><span class="hljs-string">"this will not be indexed for search"</span>
     </span>}</span>,
-    "<span class="hljs-attribute">metadatas</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">metadata</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">foo</span>": <span class="hljs-value"><span class="hljs-string">"this will be indexed for search"</span>
     </span>}</span>,
     "<span class="hljs-attribute">related</span>": <span class="hljs-value">[<span class="hljs-string">"52dff5c53923844f15885428"</span>]</span>,
@@ -339,7 +339,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <section id="documents-document-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get Document</span></div><div style="float:left"><a href="#documents-document-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents/{id}{?search}</code></div></div><div class="panel-body"><p>A single document with its details.</p>
 <p>Result contains, amongst other :</p>
 <ul>
-<li><code>full</code> projection, in <code>datas</code>,</li>
+<li><code>full</code> projection, in <code>data</code>,</li>
 <li><code>title</code> projection, in <code>title</code>.</li>
 </ul>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#3d325d9debadf835951b18ade50e8c5d" class="pull-right">Toggle</a></li><li id="3d325d9debadf835951b18ade50e8c5d" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
@@ -353,7 +353,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
         "<span class="hljs-attribute">show</span>": <span class="hljs-value"><span class="hljs-string">"http://anyfetch-provider-evernote.herokuapp.com/shard/s1/sh/6dbd89d6-1d80-4292-97fb-a0511cee5973/c5a8ad2ccc6b21ef43bb80fccc2d3544"</span>
     </span>}</span>,
     "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"/documents/532347451eab8a0e22c2e65f"</span></span>,
-    "<span class="hljs-attribute">datas</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">subject</span>": <span class="hljs-value"><span class="hljs-string">"Follow up Charly Kevers"</span></span>,
         "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"TODO"</span></span>,
         "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Ask him to send an Email to Nick and schedule a meeting with Alex."</span>
@@ -369,7 +369,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <p>Result contains, amongst other :</p>
 <ul>
 <li><code>title</code> projection for the <code>id</code> document, in <code>title</code>.</li>
-<li><code>snippet</code> projection for similar documents, in <code>datas</code></li>
+<li><code>snippet</code> projection for similar documents, in <code>data</code></li>
 <li><code>keywords</code> used to find similar documents</li>
 </ul>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#1403cbc8720f4f6ea4bd7e34030ab67a" class="pull-right">Toggle</a></li><li id="1403cbc8720f4f6ea4bd7e34030ab67a" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
@@ -396,7 +396,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
     </span>}</span>,
     "<span class="hljs-attribute">next_page_url</span>": <span class="hljs-value"><span class="hljs-string">"coming"</span></span>,
     "<span class="hljs-attribute">previous_page_url</span>": <span class="hljs-value"><span class="hljs-string">"coming"</span></span>,
-    "<span class="hljs-attribute">datas</span>": <span class="hljs-value">[
+    "<span class="hljs-attribute">data</span>": <span class="hljs-value">[
         {
             "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Document"</span></span>,
             "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5320a76fbc2e51d7135f0c8c"</span></span>,
@@ -408,7 +408,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
                 "<span class="hljs-attribute">show</span>": <span class="hljs-value"><span class="hljs-string">"https://mail.google.com/mail/b/anyfetch@gmail.com/?cm#all/1442f93143ab3bb6"</span>
             </span>}</span>,
             "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"/documents/5320a76fbc2e51d7135f0c8c"</span></span>,
-            "<span class="hljs-attribute">datas</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
                 "<span class="hljs-attribute">from</span>": <span class="hljs-value"><span class="hljs-string">"Udacity &lt;support@udacity.com&gt;"</span></span>,
                 "<span class="hljs-attribute">to</span>": <span class="hljs-value"><span class="hljs-string">"anyfetch@gmail.com"</span></span>,
                 "<span class="hljs-attribute">subject</span>": <span class="hljs-value"><span class="hljs-string">"Verify Your &lt;span class=\"hlt\"&gt;Email&lt;/span&gt; on Udacity"</span></span>,
@@ -424,7 +424,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <p>Result contains, amongst other :</p>
 <ul>
 <li><code>title</code> projection for the <code>id</code> document, in <code>title</code>.</li>
-<li><code>snippet</code> projection for related documents, in <code>datas</code></li>
+<li><code>snippet</code> projection for related documents, in <code>data</code></li>
 </ul>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#901f5995337e6423644559a4be48301e" class="pull-right">Toggle</a></li><li id="901f5995337e6423644559a4be48301e" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">title</span>": <span class="hljs-value">{
@@ -442,7 +442,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
             "<span class="hljs-attribute">1380585600000</span>": <span class="hljs-value"><span class="hljs-number">1</span>
         </span>}
     </span>}</span>,
-    "<span class="hljs-attribute">datas</span>": <span class="hljs-value">[
+    "<span class="hljs-attribute">data</span>": <span class="hljs-value">[
         {
             "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Document"</span></span>,
             "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"531dcd94731d5a284f707ac1"</span></span>,
@@ -452,7 +452,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
             "<span class="hljs-attribute">document_type</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3c"</span></span>,
             "<span class="hljs-attribute">actions</span>": <span class="hljs-value">{}</span>,
             "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"/documents/531dcd94731d5a284f707ac1"</span></span>,
-            "<span class="hljs-attribute">datas</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
                 "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"4400000451947"</span></span>,
                 "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"/4400000451947.pdf"</span></span>,
                 "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"\nDT061 ind 13 Prestations réalisées sous assurance qualité ISO 9001"</span>
@@ -480,8 +480,8 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
     </span>}</span>,
     "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"/documents/532347451eab8a0e22c2e65f"</span></span>,
     "<span class="hljs-attribute">identifier</span>": <span class="hljs-value"><span class="hljs-string">"http://anyfetch-provider-evernote.herokuapp.com/shard/s1/sh/6dbd89d6-1d80-4292-97fb-a0511cee5973/c5a8ad2ccc6b21ef43bb80fccc2d3544"</span></span>,
-    "<span class="hljs-attribute">datas</span>": <span class="hljs-value">{}</span>,
-    "<span class="hljs-attribute">metadatas</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">data</span>": <span class="hljs-value">{}</span>,
+    "<span class="hljs-attribute">metadata</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"TODO"</span></span>,
         "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Ask him to send an Email to Nick and schedule a meeting with Alex."</span></span>,
         "<span class="hljs-attribute">subject</span>": <span class="hljs-value"><span class="hljs-string">"Follow up Charly Kevers"</span>

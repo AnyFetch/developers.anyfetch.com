@@ -29,7 +29,7 @@ $ curl --header "Content-Type:application/json" --data '{"file_path":"https://ra
 
 ```json
 {
-    "metadatas": {
+    "metadata": {
         "text":"Tesseract sample image. The quick brown fox jumps over the lazy dog.\n\n"
     },
     "document_type":"image"
@@ -41,13 +41,13 @@ Although this workflow works fine for most hydraters, you'll often need more adv
 To keep going with our previous example, here is a more complex call to the OCR with an initial document:
 
 ```sh
-$ curl --header "Content-Type:application/json" --data '{"file_path":"https://raw2.github.com/AnyFetch/ocr.hydrater.anyfetch.com/763ca1c77b33451de3fff733ad850287b48d2f96/test/samples/sample.png", "callback":"http://example.com","long_poll":true, "metadatas": {"previous-datas":"something"}}' http://ocr.hydrater.anyfetch.com/hydrate
+$ curl --header "Content-Type:application/json" --data '{"file_path":"https://raw2.github.com/AnyFetch/ocr.hydrater.anyfetch.com/763ca1c77b33451de3fff733ad850287b48d2f96/test/samples/sample.png", "callback":"http://example.com","long_poll":true, "metadata": {"previous-data":"something"}}' http://ocr.hydrater.anyfetch.com/hydrate
 ```
 
 ```json
 {
-    "metadatas": {
-        "previous-datas":"something",
+    "metadata": {
+        "previous-data":"something",
         "text":"Tesseract sample image. The quick brown fox jumps over the lazy dog.\n\n"
     },
     "document_type":"image"

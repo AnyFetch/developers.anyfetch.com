@@ -24,7 +24,7 @@ Let's take an example. Here is an excerpt from a call to `GET /documents`:
         "show": "https://mail.google.com/mail/b/test.cluestr@gmail.com/?cm#all/141c18456ad0b4e8"
     },
     "document_url": "/documents/53594851aa42e58934a3c0a0",
-    "datas": {
+    "data": {
         "from": "L'équipe Gmail<mail-noreply@google.com>",
         "to": "Cluestr Test <test.cluestr@gmail.com>",
         "subject": "Retrouvez Gmail sur votre mobile",
@@ -39,7 +39,7 @@ Let's take an example. Here is an excerpt from a call to `GET /documents`:
 
 * `projection_type` has a value of `snippet` ([the projection used](/guides/concepts/projection.html))
 * `document_type` has a value of `5252ce4ce4cfcd16f55cfa3f`, we'll need that to select our template
-* `datas` contains the object to use for templating
+* `data` contains the object to use for templating
 
 Let's now call `GET /document_types`. We'll see the following value associated with the key `5252ce4ce4cfcd16f55cfa3f` (`document_type` value from above):
 

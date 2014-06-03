@@ -36,7 +36,7 @@ In most of the cases, you only want to run your hydrater on specific kind of fil
   dependencies: ['http://tikahydrater.anyfetch.com/hydrate'],
   filters: [
     {
-      metadatas: {
+      metadata: {
         path: /\\.csv$/
       },
       document_type: 'document',
