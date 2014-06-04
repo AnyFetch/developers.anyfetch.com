@@ -106,6 +106,14 @@ Should have a <code>status</code> of “OK”.</p>
 </span>}
 </code></pre></li></ul></section><h4 id="index-batch-calls">Batch calls&nbsp;<a href="#index-batch-calls"><i class="fa fa-link"></i></a></h4><section id="index-batch-calls-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Batch querying</span></div><div style="float:left"><a href="#index-batch-calls-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/batch{?pages}</code></div></div><div class="panel-body"><p>Queue multiple <code>GET</code> queries in a single request. For instance, you can call <code>/batch?pages=/&amp;pages=/document_types&amp;pages=/providers</code> to get one JSON object with all data, indexed by url.</p>
 <p>Status code will be 200 if all queries passed. If an error occured, the <code>errored</code> key will tell you which page failed to load.</p>
+<blockquote>
+<ul>
+<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>405 MethodNotAllowedError</code>: unable to access some <code>page</code> with GET.</li>
+<li><code>409 MissingParameter</code>: no <code>page</code> specified, or invalid <code>page</code> value.</li>
+</ul>
+</blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#6fcf92a712115cc143b7792b51a4e13b" class="pull-right">Toggle</a></li><li id="6fcf92a712115cc143b7792b51a4e13b" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">/</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">user_email</span>": <span class="hljs-value"><span class="hljs-string">"anyfetch@gmail.com"</span></span>,
@@ -146,6 +154,12 @@ Should have a <code>status</code> of “OK”.</p>
 <li><code>_url</code> to different part of the API (HATEOAS design). Notice the <code>current_user_url</code> key.</li>
 <li><code>server_time</code>: current server date, if you need to compute deltas with local client.</li>
 </ul>
+<blockquote>
+<ul>
+<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+</ul>
+</blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#d582738c53f5b6658fd08513bd462e01" class="pull-right">Toggle</a></li><li id="d582738c53f5b6658fd08513bd462e01" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">user_email</span>": <span class="hljs-value"><span class="hljs-string">"test@anyfetch.com"</span></span>,
     "<span class="hljs-attribute">documents_url</span>": <span class="hljs-value"><span class="hljs-string">"/documents/"</span></span>,

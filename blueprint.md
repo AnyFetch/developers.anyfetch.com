@@ -24,14 +24,20 @@ Should have a `status` of "OK".
                 "message": ""
             }
 
+
 ## Batch calls [/batch{?pages}]
 ### Batch querying [GET]
 Queue multiple `GET` queries in a single request. For instance, you can call `/batch?pages=/&pages=/document_types&pages=/providers` to get one JSON object with all data, indexed by url.
 
 Status code will be 200 if all queries passed. If an error occured, the `errored` key will tell you which page failed to load.
 
+> * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+> * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
+> * `405 MethodNotAllowedError`: unable to access some `page` with GET.
+> * `409 MissingParameter`: no `page` specified, or invalid `page` value.
+
 + Parameters
-    +  pages (required, string, `/document_types`) ... url to retrieve (url-encoded). <small>Multiple pages parameters can be used to queue queries.</small>
+    + pages (required, string, `/document_types`) ... url to retrieve (url-encoded). <small>Multiple pages parameters can be used to queue queries.</small>
 + Response 200 (application/json)
     + Body
 
