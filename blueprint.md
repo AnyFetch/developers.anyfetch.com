@@ -442,7 +442,7 @@ Send a new document on anyFetch.
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: document was not provided with this access token, and can't be updated.
-> * `409 InvalidArgument`: specify either `id` or `identifier`, not both.
+> * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
 > * `409 InvalidArgument`: `id` is not a valid id.
 > * `409 MissingParameter`: neither `id` nor `identifier` was specified
 > * `409 InvalidArgument`: no documents matched by `id`. Use `identifier` to create a new document
@@ -504,7 +504,7 @@ Result contains, amongst other :
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
-> * `409 InvalidArgument`: specify either `id` or `identifier`, not both.
+> * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
 > * `409 InvalidArgument`: `id` is not a valid id.
 
 + Parameters
@@ -541,8 +541,9 @@ Remove specified document.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+> * `401 ForbiddenScheme`: `Basic` auth is not supported for this endpoint.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
-> * `409 InvalidArgument`: specify either `id` or `identifier`, not both.
+> * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
 > * `409 InvalidArgument`: `id` is not a valid id.
 
 + Parameters
@@ -563,7 +564,7 @@ Result contains, amongst other :
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
-> * `409 InvalidArgument`: specify either `id` or `identifier`, not both.
+> * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
 > * `409 InvalidArgument`: `id` is not a valid id.
 
 + Parameters
@@ -633,7 +634,7 @@ Result contains, amongst other :
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
-> * `409 InvalidArgument`: specify either `id` or `identifier`, not both.
+> * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
 > * `409 InvalidArgument`: `id` is not a valid id.
 
 + Parameters
@@ -693,7 +694,7 @@ View all data for the document.
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
-> * `409 InvalidArgument`: specify either `id` or `identifier`, not both.
+> * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
 > * `409 InvalidArgument`: `id` is not a valid id.
 
 + Parameters
@@ -736,7 +737,7 @@ Retrieve the file associated with a document.
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
-> * `409 InvalidArgument`: specify either `id` or `identifier`, not both.
+> * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
 > * `409 InvalidArgument`: `id` is not a valid id.
 > * `409 MissingParameter`: missing `file` content in request
 
@@ -755,7 +756,7 @@ This endpoint should be used when providing, to associate a file with a document
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `404 ResourceNotFound`: no file associated with this document
-> * `409 InvalidArgument`: specify either `id` or `identifier`, not both.
+> * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
 > * `409 InvalidArgument`: `id` is not a valid id.
 > * `413 RequestEntityTooLarge`: file is too large (multi-gigabyte file)
 

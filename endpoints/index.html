@@ -411,7 +411,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>403 Forbidden</code>: document was not provided with this access token, and can’t be updated.</li>
-<li><code>409 InvalidArgument</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
+<li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 <li><code>409 MissingParameter</code>: neither <code>id</code> nor <code>identifier</code> was specified</li>
 <li><code>409 InvalidArgument</code>: no documents matched by <code>id</code>. Use <code>identifier</code> to create a new document</li>
@@ -467,7 +467,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
-<li><code>409 InvalidArgument</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
+<li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
@@ -498,8 +498,9 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>401 ForbiddenScheme</code>: <code>Basic</code> auth is not supported for this endpoint.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
-<li><code>409 InvalidArgument</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
+<li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
@@ -515,7 +516,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
-<li><code>409 InvalidArgument</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
+<li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
@@ -578,7 +579,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
-<li><code>409 InvalidArgument</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
+<li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
@@ -630,7 +631,7 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
-<li><code>409 InvalidArgument</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
+<li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
@@ -665,7 +666,7 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
-<li><code>409 InvalidArgument</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
+<li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 <li><code>409 MissingParameter</code>: missing <code>file</code> content in request</li>
 </ul>
@@ -678,7 +679,7 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
 <li><code>404 ResourceNotFound</code>: no file associated with this document</li>
-<li><code>409 InvalidArgument</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
+<li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 <li><code>413 RequestEntityTooLarge</code>: file is too large (multi-gigabyte file)</li>
 </ul>
