@@ -119,7 +119,7 @@ Retrieve data about the current account. This endpoint return:
 Create or retrieve a token. The token will always be the same until you call `/company/reset`.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
-> * `401 Unauthorized`: you tried to use `Bearer` authentication, but this endpoint can only be used with `Basic` authentication.
+> * `401 Unauthorized`: `Bearer` authentication used, but this endpoint can only be used with `Basic` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 
 + Response 200 (application/json)
@@ -239,7 +239,7 @@ Only available for admin users.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator on this account.
 > * `403 NotAuthorized`: you are trying to migrate the last admin from your company.
-> * `409 MissingParameter`: you forgot to specify `name`
+> * `409 MissingParameter`: `name` is not specified
 > * `409 MissingParameter`: `hydraters` is not a JSON array.
 
 
@@ -274,7 +274,7 @@ Only available for admin users.
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator on this account.
-> * `409 InvalidArgument`: the `id` is not a valid id.
+> * `409 InvalidArgument`: `id` is not a valid id.
 
 + Response 200 (application/json)
     + Body
@@ -303,7 +303,7 @@ By default, you are not allowed to remove a subcompany with subsubcompanies. To 
 > * `403 Forbidden`: you are not an administrator on this account.
 > * `403 Forbidden`: the subcompanies has subsubcompanies and can't be removed, use `?force=1`.
 > * `404 ResourceNotFound`: the subcompany does not exist, or is not available for this user.
-> * `409 InvalidArgument`: the `id` is not a valid id.
+> * `409 InvalidArgument`: `id` is not a valid id.
 
 + Response 204
 
@@ -332,7 +332,7 @@ Access documents resources.
 ### Search documents [GET]
 Search within all available data for documents matching specified filter.
 
-Return aggregated informations computed over the result set. The `score` key indicated document's relevance regarding query.
+Return informations aggregated over the result set. The `score` key indicated document's relevance regarding query.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -426,10 +426,10 @@ Send a new document on anyFetch.
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: document was not provided with this access token, and can't be updated.
-> * `409 InvalidArgument`: you should either specify `id` or `identifier` in your payload, not both.
-> * `409 InvalidArgument`: the `id` is not a valid id.
+> * `409 InvalidArgument`: specify either `id` or `identifier`, not both.
+> * `409 InvalidArgument`: `id` is not a valid id.
 > * `409 MissingParameter`: neither `id` nor `identifier` was specified
-> * `409 InvalidArgument`: no documents matched by your `id`. Use `identifier` to create a new document
+> * `409 InvalidArgument`: no documents matched by `id`. Use `identifier` to create a new document
 
 + Request (application/json)
 
@@ -488,8 +488,8 @@ Result contains, amongst other :
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
-> * `409 InvalidArgument`: you should either specify `id` or `identifier` in your payload, not both.
-> * `409 InvalidArgument`: the `id` is not a valid id.
+> * `409 InvalidArgument`: specify either `id` or `identifier`, not both.
+> * `409 InvalidArgument`: `id` is not a valid id.
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
@@ -526,8 +526,8 @@ Remove specified document.
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
-> * `409 InvalidArgument`: you should either specify `id` or `identifier` in your payload, not both.
-> * `409 InvalidArgument`: the `id` is not a valid id.
+> * `409 InvalidArgument`: specify either `id` or `identifier`, not both.
+> * `409 InvalidArgument`: `id` is not a valid id.
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
@@ -540,15 +540,15 @@ Documents similar to `id`. Still a work in progress.
 
 Result contains, amongst other :
 
-* `title` projection for the `id` document, in `title`.
+* `title` projection for `id` document, in `title`.
 * `snippet` projection for similar documents, in `data`
 * `keywords` used to find similar documents
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
-> * `409 InvalidArgument`: you should either specify `id` or `identifier` in your payload, not both.
-> * `409 InvalidArgument`: the `id` is not a valid id.
+> * `409 InvalidArgument`: specify either `id` or `identifier`, not both.
+> * `409 InvalidArgument`: `id` is not a valid id.
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
@@ -611,14 +611,14 @@ Documents related to `id`.
 
 Result contains, amongst other :
 
-* `title` projection for the `id` document, in `title`.
+* `title` projection for `id` document, in `title`.
 * `snippet` projection for related documents, in `data`
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
-> * `409 InvalidArgument`: you should either specify `id` or `identifier` in your payload, not both.
-> * `409 InvalidArgument`: the `id` is not a valid id.
+> * `409 InvalidArgument`: specify either `id` or `identifier`, not both.
+> * `409 InvalidArgument`: `id` is not a valid id.
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
@@ -677,8 +677,8 @@ View all data for the document.
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
-> * `409 InvalidArgument`: you should either specify `id` or `identifier` in your payload, not both.
-> * `409 InvalidArgument`: the `id` is not a valid id.
+> * `409 InvalidArgument`: specify either `id` or `identifier`, not both.
+> * `409 InvalidArgument`: `id` is not a valid id.
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
@@ -720,8 +720,8 @@ Retrieve the file associated with a document.
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
-> * `409 InvalidArgument`: you should either specify `id` or `identifier` in your payload, not both.
-> * `409 InvalidArgument`: the `id` is not a valid id.
+> * `409 InvalidArgument`: specify either `id` or `identifier`, not both.
+> * `409 InvalidArgument`: `id` is not a valid id.
 > * `409 MissingParameter`: missing `file` content in request
 
 + Parameters
@@ -739,8 +739,8 @@ This endpoint should be used when providing, to associate a file with a document
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `404 ResourceNotFound`: no file associated with this document
-> * `409 InvalidArgument`: you should either specify `id` or `identifier` in your payload, not both.
-> * `409 InvalidArgument`: the `id` is not a valid id.
+> * `409 InvalidArgument`: specify either `id` or `identifier`, not both.
+> * `409 InvalidArgument`: `id` is not a valid id.
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
@@ -837,7 +837,7 @@ Retrieve information about specified user.
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: the user does not exist, or is not part of this company.
-> * `409 InvalidArgument`: the `id` is not a valid id.
+> * `409 InvalidArgument`: `id` is not a valid id.
 
 + Response 200 (application/json)
     + Body
@@ -863,7 +863,7 @@ Remove specified user. The user should be in your company, you can't delete a us
 > * `403 Forbidden`: you are not an administrator on this account.
 > * `403 NotAuthorized`: you can't delete yourself
 > * `404 ResourceNotFound`: the user does not exist, or is not part of this company.
-> * `409 InvalidArgument`: the `id` is not a valid id.
+> * `409 InvalidArgument`: `id` is not a valid id.
 
 + Response 204
 

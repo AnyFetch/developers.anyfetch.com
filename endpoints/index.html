@@ -179,7 +179,7 @@ Should have a <code>status</code> of “OK”.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 Unauthorized</code>: you tried to use <code>Bearer</code> authentication, but this endpoint can only be used with <code>Basic</code> authentication.</li>
+<li><code>401 Unauthorized</code>: <code>Bearer</code> authentication used, but this endpoint can only be used with <code>Basic</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 </ul>
 </blockquote>
@@ -258,7 +258,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>403 Forbidden</code>: you are not an administrator on this account.</li>
 <li><code>403 NotAuthorized</code>: you are trying to migrate the last admin from your company.</li>
-<li><code>409 MissingParameter</code>: you forgot to specify <code>name</code></li>
+<li><code>409 MissingParameter</code>: <code>name</code> is not specified</li>
 <li><code>409 MissingParameter</code>: <code>hydraters</code> is not a JSON array.</li>
 </ul>
 </blockquote>
@@ -285,7 +285,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>403 Forbidden</code>: you are not an administrator on this account.</li>
-<li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
+<li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#5ab9ceb7f5b5510e8d9971d63f62ef7b" class="pull-right">Toggle</a></li><li id="5ab9ceb7f5b5510e8d9971d63f62ef7b" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
@@ -310,13 +310,13 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <li><code>403 Forbidden</code>: you are not an administrator on this account.</li>
 <li><code>403 Forbidden</code>: the subcompanies has subsubcompanies and can’t be removed, use <code>?force=1</code>.</li>
 <li><code>404 ResourceNotFound</code>: the subcompany does not exist, or is not available for this user.</li>
-<li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
+<li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="documents">Documents&nbsp;<a href="#documents"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>Endpoints for retrieving documents</p>
 <h4 id="documents-documents">Documents&nbsp;<a href="#documents-documents"><i class="fa fa-link"></i></a></h4><p>Access documents resources.</p>
 <section id="documents-documents-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Search documents</span></div><div style="float:left"><a href="#documents-documents-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents{?search, ?before, ?after,?document_type, ?token, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit}</code></div></div><div class="panel-body"><p>Search within all available data for documents matching specified filter.</p>
-<p>Return aggregated informations computed over the result set. The <code>score</code> key indicated document’s relevance regarding query.</p>
+<p>Return informations aggregated over the result set. The <code>score</code> key indicated document’s relevance regarding query.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
@@ -395,10 +395,10 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>403 Forbidden</code>: document was not provided with this access token, and can’t be updated.</li>
-<li><code>409 InvalidArgument</code>: you should either specify <code>id</code> or <code>identifier</code> in your payload, not both.</li>
-<li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
+<li><code>409 InvalidArgument</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
+<li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 <li><code>409 MissingParameter</code>: neither <code>id</code> nor <code>identifier</code> was specified</li>
-<li><code>409 InvalidArgument</code>: no documents matched by your <code>id</code>. Use <code>identifier</code> to create a new document</li>
+<li><code>409 InvalidArgument</code>: no documents matched by <code>id</code>. Use <code>identifier</code> to create a new document</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#2534af76e30215e76a4148ca906721d6" class="pull-right">Toggle</a></li><li id="2534af76e30215e76a4148ca906721d6" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>    {
@@ -451,8 +451,8 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
-<li><code>409 InvalidArgument</code>: you should either specify <code>id</code> or <code>identifier</code> in your payload, not both.</li>
-<li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
+<li><code>409 InvalidArgument</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
+<li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#7c9ff82a6c107be7242afc04f35f2999" class="pull-right">Toggle</a></li><li id="7c9ff82a6c107be7242afc04f35f2999" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
@@ -483,14 +483,14 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
-<li><code>409 InvalidArgument</code>: you should either specify <code>id</code> or <code>identifier</code> in your payload, not both.</li>
-<li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
+<li><code>409 InvalidArgument</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
+<li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="documents-similar-documents">Similar documents&nbsp;<a href="#documents-similar-documents"><i class="fa fa-link"></i></a></h4><section id="documents-similar-documents-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Find similar documents</span></div><div style="float:left"><a href="#documents-similar-documents-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents/{id}/similar</code></div></div><div class="panel-body"><p>Documents similar to <code>id</code>. Still a work in progress.</p>
 <p>Result contains, amongst other :</p>
 <ul>
-<li><code>title</code> projection for the <code>id</code> document, in <code>title</code>.</li>
+<li><code>title</code> projection for <code>id</code> document, in <code>title</code>.</li>
 <li><code>snippet</code> projection for similar documents, in <code>data</code></li>
 <li><code>keywords</code> used to find similar documents</li>
 </ul>
@@ -499,8 +499,8 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
-<li><code>409 InvalidArgument</code>: you should either specify <code>id</code> or <code>identifier</code> in your payload, not both.</li>
-<li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
+<li><code>409 InvalidArgument</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
+<li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#932b60b3e095212adba302a7a8caafbb" class="pull-right">Toggle</a></li><li id="932b60b3e095212adba302a7a8caafbb" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
@@ -554,7 +554,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 </code></pre></li></ul></section><h4 id="documents-related-documents">Related documents&nbsp;<a href="#documents-related-documents"><i class="fa fa-link"></i></a></h4><section id="documents-related-documents-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Find related documents</span></div><div style="float:left"><a href="#documents-related-documents-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents/{id}/related</code></div></div><div class="panel-body"><p>Documents related to <code>id</code>.</p>
 <p>Result contains, amongst other :</p>
 <ul>
-<li><code>title</code> projection for the <code>id</code> document, in <code>title</code>.</li>
+<li><code>title</code> projection for <code>id</code> document, in <code>title</code>.</li>
 <li><code>snippet</code> projection for related documents, in <code>data</code></li>
 </ul>
 <blockquote>
@@ -562,8 +562,8 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
-<li><code>409 InvalidArgument</code>: you should either specify <code>id</code> or <code>identifier</code> in your payload, not both.</li>
-<li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
+<li><code>409 InvalidArgument</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
+<li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#06cbac16149173e7c1708417b8da7834" class="pull-right">Toggle</a></li><li id="06cbac16149173e7c1708417b8da7834" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
@@ -614,8 +614,8 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
-<li><code>409 InvalidArgument</code>: you should either specify <code>id</code> or <code>identifier</code> in your payload, not both.</li>
-<li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
+<li><code>409 InvalidArgument</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
+<li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#0d8dfedb691bc6eaf81ce25ef9c5c204" class="pull-right">Toggle</a></li><li id="0d8dfedb691bc6eaf81ce25ef9c5c204" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
@@ -649,8 +649,8 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
-<li><code>409 InvalidArgument</code>: you should either specify <code>id</code> or <code>identifier</code> in your payload, not both.</li>
-<li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
+<li><code>409 InvalidArgument</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
+<li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 <li><code>409 MissingParameter</code>: missing <code>file</code> content in request</li>
 </ul>
 </blockquote>
@@ -662,8 +662,8 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
 <li><code>404 ResourceNotFound</code>: no file associated with this document</li>
-<li><code>409 InvalidArgument</code>: you should either specify <code>id</code> or <code>identifier</code> in your payload, not both.</li>
-<li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
+<li><code>409 InvalidArgument</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
+<li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#98dd486153c5f2c248030cf7c858a6d6" class="pull-right">Toggle</a></li><li id="98dd486153c5f2c248030cf7c858a6d6" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>    <span class="hljs-built_in">file</span>={binary <span class="hljs-built_in">file</span> content <span class="hljs-keyword">as</span> multipart form upload}
@@ -723,7 +723,7 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>404 ResourceNotFound</code>: the user does not exist, or is not part of this company.</li>
-<li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
+<li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#c9f88c0c16cb9399e1df65d5eda68c1e" class="pull-right">Toggle</a></li><li id="c9f88c0c16cb9399e1df65d5eda68c1e" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
@@ -744,7 +744,7 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 <li><code>403 Forbidden</code>: you are not an administrator on this account.</li>
 <li><code>403 NotAuthorized</code>: you can’t delete yourself</li>
 <li><code>404 ResourceNotFound</code>: the user does not exist, or is not part of this company.</li>
-<li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
+<li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="document-types">Document Types&nbsp;<a href="#document-types"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="document-types-document-types">Document types&nbsp;<a href="#document-types-document-types"><i class="fa fa-link"></i></a></h4><section id="document-types-document-types-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">List document-types</span></div><div style="float:left"><a href="#document-types-document-types-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/document_types</code></div></div><div class="panel-body"><p>Retrieve all document types available for the current user, with document count and the date the last document with this document type was updated.</p>
