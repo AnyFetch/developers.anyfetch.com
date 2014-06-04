@@ -210,13 +210,13 @@ Only available for admin users.
 > Be careful: the user will be migrated to the new company. To create a new subcompany, the best practice is to create a new admin (`POST /users`) before, then create the new company while connected with the new user.
 
 
-+ Request
++ Request (application/json)
 
             {
                 "name": "new-subcompany-name",
             }
 
-+ Response 200
++ Response 200 (application/json)
 
             {
                 "_type": "Company",
@@ -279,6 +279,7 @@ Return aggregated informations computed over the result set. The `score` key ind
     + snippet_size (optional, integer, `200`) ... Number of chars to include in the snippet
     + start (optional, integer, `5`) ... 0-based index of the first item to retrieve (for pagination).
     + limit (optional, integer, `20`) ... Max number of items to retrieve (for pagination)
+
 + Response 200 (application/json)
     + Body
 
@@ -351,7 +352,7 @@ Send a new document on anyFetch.
 
 > You can't send a file and a document at the same time, you need to send the document first and then send the file on `/documents/:id/file`.
 
-+ Request
++ Request (application/json)
 
             {
                 "identifier": "http://unique-document-identifier",
@@ -609,7 +610,7 @@ Retrieve the file associated with a document.
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
-+ Response 200 (*/*)
++ Response 200
     + Body
 
             {binary file content}
@@ -666,7 +667,7 @@ Create a new user on this company. If `is_admin` is not specified, a standard us
 > You need to be an administrator to create another user.
 
 
-+ Request
++ Request (application/json)
 
             {
                 "email": "newuser@company.com",
