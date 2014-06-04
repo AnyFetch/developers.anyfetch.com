@@ -487,3 +487,7 @@ a.list-group-item {
 .profile-link {
 	color: #000;
 }
+
+.error-codes li code:first-child {
+	color: red;
+}

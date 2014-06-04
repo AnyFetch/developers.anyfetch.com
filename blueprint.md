@@ -93,6 +93,9 @@ Retrieve data about the current account. This endpoint return:
 - `_url` to different part of the API (HATEOAS design). Notice the `current_user_url` key.
 - `server_time`: current server date, if you need to compute deltas with local client.
 
+> * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+> * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
+
 + Response 200 (application/json)
     + Body
 
@@ -111,9 +114,13 @@ Retrieve data about the current account. This endpoint return:
 
 ## Token [/token]
 ### Retrieve frontend token [GET]
-> This endpoint can only be used with basic authentication.
+> This endpoint can only be used with `Basic` authentication.
 
 Create or retrieve a token. The token will always be the same until you call `/company/reset`.
+
+> * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+> * `401 UnauthorizedError`: you tried to used `Bearer` authentication, but this endpoint can only be used with `Basic` authentication.
+> * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
 
 + Response 200 (application/json)
     + Body
@@ -128,6 +135,9 @@ Create or retrieve a token. The token will always be the same until you call `/c
 Retrieve the current company details.
 
 Contains your company name, and the list of hydraters used on the account.
+
+> * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+> * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
 
 + Response 200 (application/json)
     + Body
@@ -150,11 +160,18 @@ Contains your company name, and the list of hydraters used on the account.
 ### Update documents [POST]
 Ping all providers for the current company, checking for new available documents.
 
+> * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+> * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
+> * `429 Too Many Requests`: this endpoint is throttled.
+
 + Response 202
 
 ## Reset company [/company/reset]
 ## Reset company [DELETE]
 Reset **all** documents, tokens and providers from the account.
+
+> * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+> * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
 
 + Response 204
 
@@ -186,6 +203,9 @@ Retrieve all subcompanies from the current company.
 
 Only available for admin users.
 
+> * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+> * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
+> * `403 ForbiddenError`: you are not an administrator for this account.
 
 + Response 200 (application/json)
     + Body
@@ -215,6 +235,13 @@ Only available for admin users.
 
 > Be careful: the user will be migrated to the new company. To create a new subcompany, the best practice is to create a new admin (`POST /users`) before, then create the new company while connected with the new user.
 
+> * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+> * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
+> * `403 ForbiddenError`: you are not an administrator for this account.
+> * `403 NotAuthorizedError`: you are trying to migrate the last admin from your company.
+> * `409 MissingParameterError`: you forgot to specify `name`
+> * `409 MissingParameterError`: `hydraters` is not a JSON array.
+
 
 + Request (application/json)
 
@@ -239,10 +266,43 @@ Only available for admin users.
             }
 
 ## Subcompany [/subcompanies/{id}]
+### Retrieve a subcompany [GET]
+Retrieve a specific subcompany from the current company.
+
+Only available for admin users.
+
+> * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+> * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
+> * `403 ForbiddenError`: you are not an administrator for this account.
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "_type": "Company",
+                "id": "533d87ea162215a5375d34d1",
+                "name": "new-user-subcompany",
+                "hydraters": [
+                    "http://plaintext.hydrater.anyfetch.com/hydrate",
+                    "http://pdf.hydrater.anyfetch.com/hydrate",
+                    "http://office.hydrater.anyfetch.com/hydrate",
+                    "http://image.hydrater.anyfetch.com/hydrate",
+                    "http://ocr.hydrater.anyfetch.com/hydrate",
+                    "http://eml.hydrater.anyfetch.com/hydrate"
+                ]
+            }
+
 ### Delete a subcompany [DELETE]
 Delete the subcompany, **all** its documents and **all** its users.
 
 By default, you won't be able to remove a subcompany with subsubcompanies. If it is really what you want to do, add `?force=1`.
+
+> * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+> * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
+> * `403 ForbiddenError`: you are not an administrator for this account.
+> * `403 ForbiddenError`: the subcompanies has subsubcompanies and can't be removed, use `?force=1`.
+> * `404 ResourceNotFoundError`: the subcompany does not exists, or is not available for this user.
+> * `409 InvalidArgumentError`: the `id` is not a valid id.
 
 + Response 204
 

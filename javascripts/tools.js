@@ -30,6 +30,8 @@ $(function() {
     requestUl.append('<li class="list-group-item"><strong>Error codes</strong><a data-toggle="collapse" data-target="#' + anchorId + '" class="pull-right">Toggle</a></li>');
 
     // Append the errors at the end of the UL, hidden (collapsed) by default.
-    $('<li id="' + anchorId + '" class="list-group-item panel-collapse collapse"></li>').appendTo(requestUl).append(item);
+    $('<li id="' + anchorId + '" class="list-group-item panel-collapse collapse error-codes"></li>').appendTo(requestUl).append(item.children('ul'));
+    // Remove <blockquote> item
+    item.remove();
   });
 });
