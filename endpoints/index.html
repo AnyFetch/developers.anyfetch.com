@@ -151,7 +151,7 @@ Should have a <code>status</code> of “OK”.</p>
 </code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="account">Account&nbsp;<a href="#account"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="account-index">Index&nbsp;<a href="#account-index"><i class="fa fa-link"></i></a></h4><section id="account-index-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve API links</span></div><div style="float:left"><a href="#account-index-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/</code></div></div><div class="panel-body"><p>Retrieve data about the current account. This endpoint return:</p>
 <ul>
 <li><code>user_email</code>: informations regarding currently connected user</li>
-<li><code>_url</code> to different part of the API (HATEOAS design). Notice the <code>current_user_url</code> key.</li>
+<li><code>_url</code> to another endpoint of the API (HATEOAS design). Notice the <code>current_user_url</code> key.</li>
 <li><code>server_time</code>: current server date, if you need to compute deltas with local client.</li>
 </ul>
 <blockquote>
@@ -302,7 +302,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
     ]
 </span>}
 </code></pre></li></ul></section><section id="subcompanies-subcompany-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Delete a subcompany</span></div><div style="float:left"><a href="#subcompanies-subcompany-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/subcompanies/{id}</code></div></div><div class="panel-body"><p>Delete the subcompany, <strong>all</strong> its documents and <strong>all</strong> its users.</p>
-<p>By default, you won’t be able to remove a subcompany with subsubcompanies. If it is really what you want to do, add <code>?force=1</code>.</p>
+<p>By default, you are not allowed to remove a subcompany with subsubcompanies. To force the subcompany removal, add <code>?force=1</code>.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
@@ -315,7 +315,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="documents">Documents&nbsp;<a href="#documents"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>Endpoints for retrieving documents</p>
 <h4 id="documents-documents">Documents&nbsp;<a href="#documents-documents"><i class="fa fa-link"></i></a></h4><p>Access documents resources.</p>
-<section id="documents-documents-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Search documents</span></div><div style="float:left"><a href="#documents-documents-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents{?search, ?before, ?after,?document_type, ?token, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit}</code></div></div><div class="panel-body"><p>Search within all availables data for documents matching specified filter.</p>
+<section id="documents-documents-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Search documents</span></div><div style="float:left"><a href="#documents-documents-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents{?search, ?before, ?after,?document_type, ?token, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit}</code></div></div><div class="panel-body"><p>Search within all available data for documents matching specified filter.</p>
 <p>Return aggregated informations computed over the result set. The <code>score</code> key indicated document’s relevance regarding query.</p>
 <blockquote>
 <ul>

@@ -90,7 +90,7 @@ Status code will be 200 if all queries passed. If an error occured, the `errored
 Retrieve data about the current account. This endpoint return:
 
 - `user_email`: informations regarding currently connected user
-- `_url` to different part of the API (HATEOAS design). Notice the `current_user_url` key.
+- `_url` to another endpoint of the API (HATEOAS design). Notice the `current_user_url` key.
 - `server_time`: current server date, if you need to compute deltas with local client.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
@@ -296,7 +296,7 @@ Only available for admin users.
 ### Delete a subcompany [DELETE]
 Delete the subcompany, **all** its documents and **all** its users.
 
-By default, you won't be able to remove a subcompany with subsubcompanies. If it is really what you want to do, add `?force=1`.
+By default, you are not allowed to remove a subcompany with subsubcompanies. To force the subcompany removal, add `?force=1`.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -330,7 +330,7 @@ Endpoints for retrieving documents
 Access documents resources.
 
 ### Search documents [GET]
-Search within all availables data for documents matching specified filter.
+Search within all available data for documents matching specified filter.
 
 Return aggregated informations computed over the result set. The `score` key indicated document's relevance regarding query.
 
