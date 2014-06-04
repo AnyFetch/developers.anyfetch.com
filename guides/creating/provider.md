@@ -7,7 +7,7 @@ A **provider** is the connector that retrieves data. You can use the providers w
 
 > Before reading about creating a new provider, you may be interested in [the hello world tutorial](/guides/tutorials/hello-world.html).
 
-Creating a provider is very simple. Most anyFetch providers are open-source, [check them](https://github.com/search?q=%40Papiel+provider).
+Creating a provider is very simple. Most anyFetch providers are open-source, [check them](https://github.com/search?q=%40AnyFetch+provider).
 
 Basically, a provider is a simple gateway between some data-source (Dropbox, a folder on your computer, Gmail) and anyFetch. You just need to take the data and send them using the `/documents` and `/documents/:id/file` endpoints.
 

@@ -26,7 +26,7 @@ Hydraters extract metadata from documents.
 A dependency graph indicates which hydraters are available for a given document.
 Every time some hydrater finishes its task, a new hydration round is started with new hydraters.
 
-As an example, in the default setup, we use [plaintext.hydrater](https://github.com/Papiel/plaintext.hydrater.anyfetch.com) to read basic information about the document (is it a text document? an image?) and extract metadata. Then, depending on the returned metadata, anyFetch will send the document along with this new metadata to other hydraters. If it is an image, we would then apply [ocr.hydrater](https://github.com/Papiel/ocr.hydrater.anyfetch.com), if it is an Office document we would apply [office.hydrater](https://github.com/Papiel/office.hydrater.anyfetch.com), and so on.
+As an example, in the default setup, we use [plaintext.hydrater](https://github.com/AnyFetch/plaintext.hydrater.anyfetch.com) to read basic information about the document (is it a text document? an image?) and extract metadata. Then, depending on the returned metadata, anyFetch will send the document along with this new metadata to other hydraters. If it is an image, we would then apply [ocr.hydrater](https://github.com/AnyFetch/ocr.hydrater.anyfetch.com), if it is an Office document we would apply [office.hydrater](https://github.com/AnyFetch/office.hydrater.anyfetch.com), and so on.
 Once all available hydraters have yielded their results, the document is indexed and made available for search.
 
 > Get more details regarding the use of a [provider](/guides/using/provider.html) or an [hydrater](/guideS/using/hydrater.html).
