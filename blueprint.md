@@ -34,7 +34,7 @@ Status code will be 200 if all queries passed. If an error occured, the `errored
 > * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
 > * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
 > * `405 MethodNotAllowedError`: unable to access some `page` with GET.
-> * `409 MissingParameter`: no `page` specified, or invalid `page` value.
+> * `409 MissingParameterError`: no `page` specified, or invalid `page` value.
 
 + Parameters
     + pages (required, string, `/document_types`) ... url to retrieve (url-encoded). <small>Multiple pages parameters can be used to queue queries.</small>
@@ -274,6 +274,7 @@ Only available for admin users.
 > * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
 > * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 ForbiddenError`: you are not an administrator for this account.
+> * `409 InvalidArgumentError`: the `id` is not a valid id.
 
 + Response 200 (application/json)
     + Body
@@ -332,6 +333,10 @@ Access documents resources.
 Search within all availables data for documents matching specified filter.
 
 Return aggregated informations computed over the result set. The `score` key indicated document's relevance regarding query.
+
+> * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+> * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
+> * `409 InvalidArgumentError`: malformed search query, with misused characters
 
 + Parameters
     + search (optional, string, `john smith`) ... Search query, probably the most important parameter for this query
@@ -418,6 +423,14 @@ Send a new document on anyFetch.
 
 > You can't send a file and a document at the same time, you need to send the document first and then send the file on `/documents/:id/file`.
 
+> * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+> * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
+> * `403 ForbiddenError`: document was not provided with this access token, and can't be updated.
+> * `409 InvalidArgumentError`: you should either specify `id` or `identifier` in your payload, not both.
+> * `409 InvalidArgumentError`: the `id` is not a valid id.
+> * `409 MissingParameterError`: neither `id` nor `identifier` was specified
+> * `409 InvalidArgumentError`: you sent an `id`, but no document match. Use `identifier` to create a new document
+
 + Request (application/json)
 
             {
@@ -472,6 +485,12 @@ Result contains, amongst other :
 * `full` projection, in `data`,
 * `title` projection, in `title`.
 
+> * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+> * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
+> * `404 ResourceNotFoundError`: document does not exists, or can't be accessed.
+> * `409 InvalidArgumentError`: you should either specify `id` or `identifier` in your payload, not both.
+> * `409 InvalidArgumentError`: the `id` is not a valid id.
+
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
     + search (optional, string, `john smith`) ... String to highlight in the rendered document
@@ -504,6 +523,12 @@ Result contains, amongst other :
 ### Delete Document [DELETE]
 Remove specified document.
 
+> * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+> * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
+> * `404 ResourceNotFoundError`: document does not exists, or can't be accessed.
+> * `409 InvalidArgumentError`: you should either specify `id` or `identifier` in your payload, not both.
+> * `409 InvalidArgumentError`: the `id` is not a valid id.
+
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
 + Response 204
@@ -513,12 +538,17 @@ Remove specified document.
 ### Find similar documents [GET]
 Documents similar to `id`. Still a work in progress.
 
-
 Result contains, amongst other :
 
 * `title` projection for the `id` document, in `title`.
 * `snippet` projection for similar documents, in `data`
 * `keywords` used to find similar documents
+
+> * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+> * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
+> * `404 ResourceNotFoundError`: document does not exists, or can't be accessed.
+> * `409 InvalidArgumentError`: you should either specify `id` or `identifier` in your payload, not both.
+> * `409 InvalidArgumentError`: the `id` is not a valid id.
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
@@ -529,7 +559,7 @@ Result contains, amongst other :
                 "title": {
                     "subject": "Follow up Charly Kevers"
                 },
-                "document_type": "5252ce4ce4cfcd16f55cfa41",
+                "document_t&ype": "5252ce4ce4cfcd16f55cfa41",
                 "keywords": [
                     "todo",
                     "nick",
@@ -579,11 +609,16 @@ Result contains, amongst other :
 ### Find related documents [GET]
 Documents related to `id`.
 
-
 Result contains, amongst other :
 
 * `title` projection for the `id` document, in `title`.
 * `snippet` projection for related documents, in `data`
+
+> * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+> * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
+> * `404 ResourceNotFoundError`: document does not exists, or can't be accessed.
+> * `409 InvalidArgumentError`: you should either specify `id` or `identifier` in your payload, not both.
+> * `409 InvalidArgumentError`: the `id` is not a valid id.
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
@@ -637,6 +672,14 @@ Retrieve all raw data for `id` document.
 Also include information about hydraters (`hydratedBy`, `hydrating` and `lastHydration`).
 
 ### Get raw document [GET]
+View all data for the document.
+
+> * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+> * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
+> * `404 ResourceNotFoundError`: document does not exists, or can't be accessed.
+> * `409 InvalidArgumentError`: you should either specify `id` or `identifier` in your payload, not both.
+> * `409 InvalidArgumentError`: the `id` is not a valid id.
+
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
 + Response 200 (application/json)
@@ -674,6 +717,13 @@ Work with the document's file.
 ### Get document file [GET]
 Retrieve the file associated with a document.
 
+> * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+> * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
+> * `404 ResourceNotFoundError`: document does not exists, or can't be accessed.
+> * `409 InvalidArgumentError`: you should either specify `id` or `identifier` in your payload, not both.
+> * `409 InvalidArgumentError`: the `id` is not a valid id.
+> * `409 MissingParameterError`: missing `file` content in request
+
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
 + Response 200
@@ -684,6 +734,13 @@ Retrieve the file associated with a document.
 
 ### Set document's file [POST]
 This endpoint should be used when providing, to associate a file with a document.
+
+> * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+> * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
+> * `404 ResourceNotFoundError`: document does not exists, or can't be accessed.
+> * `404 ResourceNotFoundError`: no file associated with this document
+> * `409 InvalidArgumentError`: you should either specify `id` or `identifier` in your payload, not both.
+> * `409 InvalidArgumentError`: the `id` is not a valid id.
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
@@ -713,6 +770,9 @@ User resources.
 ### List all Users [GET]
 Retrieve a list of all users in the current company.
 
+> * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+> * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
+
 + Response 200 (application/json)
     + Body
 
@@ -731,6 +791,13 @@ Retrieve a list of all users in the current company.
 Create a new user on this company. If `is_admin` is not specified, a standard user will be created.
 
 > You need to be an administrator to create another user.
+
+
+> * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+> * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
+> * `403 ForbiddenError`: you are not an administrator for this account.
+> * `409 MissingParameterError`: missing a parameter (either `email`, `name` or `password`)
+> * `409 InvalidArgumentError`: a user with this email already exists.
 
 
 + Request (application/json)
@@ -767,6 +834,10 @@ A single User object with all its details. This resource has the following attri
 ### Retrieve a User [GET]
 Retrieve information about specified user.
 
+> * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+> * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
+> * `404 ResourceNotFoundError`: the user does not exists, or is not part of this company.
+> * `409 InvalidArgumentError`: the `id` is not a valid id.
 
 + Response 200 (application/json)
     + Body
@@ -786,6 +857,13 @@ Remove specified user. The user should be in your company, you can't delete a us
 > You need to be an administrator to delete another user.
 
 > You can't delete yourself.
+
+> * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+> * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
+> * `403 ForbiddenError`: you are not an administrator for this account.
+> * `403 NotAuthorizedError`: you can't delete yourself
+> * `404 ResourceNotFoundError`: the user does not exists, or is not part of this company.
+> * `409 InvalidArgumentError`: the `id` is not a valid id.
 
 + Response 204
 
@@ -808,6 +886,9 @@ Remove specified user. The user should be in your company, you can't delete a us
 Retrieve all document types available for the current user, with document count and the date the last document with this document type was updated.
 
 The key will be reused on the `document_type` property for every `/documents/` endpoint.
+
+> * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+> * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
 
 + Response 200 (application/json)
     + Body
@@ -857,6 +938,9 @@ The key will be reused on the `document_type` property for every `/documents/` e
 Retrieve all providers available for the current user, with document count and the date the last document created by this provider was updated.
 
 The key will be reused on the `token` property for every `/documents/` endpoint.
+
+> * `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+> * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
 
 + Response 200 (application/json)
     + Body
