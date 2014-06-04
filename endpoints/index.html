@@ -108,10 +108,10 @@ Should have a <code>status</code> of “OK”.</p>
 <p>Status code will be 200 if all queries passed. If an error occured, the <code>errored</code> key will tell you which page failed to load.</p>
 <blockquote>
 <ul>
-<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>405 MethodNotAllowedError</code>: unable to access some <code>page</code> with GET.</li>
-<li><code>409 MissingParameterError</code>: no <code>page</code> specified, or invalid <code>page</code> value.</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>405 MethodNotAllowed</code>: unable to access some <code>page</code> with GET.</li>
+<li><code>409 MissingParameter</code>: no <code>page</code> specified, or invalid <code>page</code> value.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#6fcf92a712115cc143b7792b51a4e13b" class="pull-right">Toggle</a></li><li id="6fcf92a712115cc143b7792b51a4e13b" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
@@ -156,8 +156,8 @@ Should have a <code>status</code> of “OK”.</p>
 </ul>
 <blockquote>
 <ul>
-<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#d582738c53f5b6658fd08513bd462e01" class="pull-right">Toggle</a></li><li id="d582738c53f5b6658fd08513bd462e01" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
@@ -178,9 +178,9 @@ Should have a <code>status</code> of “OK”.</p>
 <p>Create or retrieve a token. The token will always be the same until you call <code>/company/reset</code>.</p>
 <blockquote>
 <ul>
-<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 UnauthorizedError</code>: you tried to used <code>Bearer</code> authentication, but this endpoint can only be used with <code>Basic</code> authentication.</li>
-<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 Unauthorized</code>: you tried to used <code>Bearer</code> authentication, but this endpoint can only be used with <code>Basic</code> authentication.</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#3160971493d33cb26e8a018677fe9599" class="pull-right">Toggle</a></li><li id="3160971493d33cb26e8a018677fe9599" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
@@ -190,8 +190,8 @@ Should have a <code>status</code> of “OK”.</p>
 <p>Contains your company name, and the list of hydraters used on the account.</p>
 <blockquote>
 <ul>
-<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#a3109339510cd6c440e2bccbc39b1636" class="pull-right">Toggle</a></li><li id="a3109339510cd6c440e2bccbc39b1636" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
@@ -210,16 +210,16 @@ Should have a <code>status</code> of “OK”.</p>
 </code></pre></li></ul></section><h4 id="company-update-company-documents">Update company documents&nbsp;<a href="#company-update-company-documents"><i class="fa fa-link"></i></a></h4><section id="company-update-company-documents-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Update documents</span></div><div style="float:left"><a href="#company-update-company-documents-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/company/update</code></div></div><div class="panel-body"><p>Ping all providers for the current company, checking for new available documents.</p>
 <blockquote>
 <ul>
-<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>429 Too Many Requests</code>: this endpoint is throttled.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>202</code></strong></li></ul></section><h4 id="company-reset-company">Reset company&nbsp;<a href="#company-reset-company"><i class="fa fa-link"></i></a></h4><section id="company-reset-company-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Reset company</span></div><div style="float:left"><a href="#company-reset-company-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/company/reset</code></div></div><div class="panel-body"><p>Reset <strong>all</strong> documents, tokens and providers from the account.</p>
 <blockquote>
 <ul>
-<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="subcompanies">Subcompanies&nbsp;<a href="#subcompanies"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="subcompanies-subcompanies">Subcompanies&nbsp;<a href="#subcompanies-subcompanies"><i class="fa fa-link"></i></a></h4><p>Subcompanies are companies you own and have created.
@@ -228,9 +228,9 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <p>Only available for admin users.</p>
 <blockquote>
 <ul>
-<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>403 ForbiddenError</code>: you are not an administrator for this account.</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 Forbidden</code>: you are not an administrator for this account.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#435fcbcdd277aed52668af4e30b610ab" class="pull-right">Toggle</a></li><li id="435fcbcdd277aed52668af4e30b610ab" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
@@ -254,12 +254,12 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <blockquote>
 <p>Be careful: the user will be migrated to the new company. To create a new subcompany, the best practice is to create a new admin (<code>POST /users</code>) before, then create the new company while connected with the new user.</p>
 <ul>
-<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>403 ForbiddenError</code>: you are not an administrator for this account.</li>
-<li><code>403 NotAuthorizedError</code>: you are trying to migrate the last admin from your company.</li>
-<li><code>409 MissingParameterError</code>: you forgot to specify <code>name</code></li>
-<li><code>409 MissingParameterError</code>: <code>hydraters</code> is not a JSON array.</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 Forbidden</code>: you are not an administrator for this account.</li>
+<li><code>403 NotAuthorized</code>: you are trying to migrate the last admin from your company.</li>
+<li><code>409 MissingParameter</code>: you forgot to specify <code>name</code></li>
+<li><code>409 MissingParameter</code>: <code>hydraters</code> is not a JSON array.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#da411322b30cedce49a94faf8c072bfc" class="pull-right">Toggle</a></li><li id="da411322b30cedce49a94faf8c072bfc" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>    {
@@ -282,10 +282,10 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <p>Only available for admin users.</p>
 <blockquote>
 <ul>
-<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>403 ForbiddenError</code>: you are not an administrator for this account.</li>
-<li><code>409 InvalidArgumentError</code>: the <code>id</code> is not a valid id.</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 Forbidden</code>: you are not an administrator for this account.</li>
+<li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#5ab9ceb7f5b5510e8d9971d63f62ef7b" class="pull-right">Toggle</a></li><li id="5ab9ceb7f5b5510e8d9971d63f62ef7b" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
@@ -305,12 +305,12 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <p>By default, you won’t be able to remove a subcompany with subsubcompanies. If it is really what you want to do, add <code>?force=1</code>.</p>
 <blockquote>
 <ul>
-<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>403 ForbiddenError</code>: you are not an administrator for this account.</li>
-<li><code>403 ForbiddenError</code>: the subcompanies has subsubcompanies and can’t be removed, use <code>?force=1</code>.</li>
-<li><code>404 ResourceNotFoundError</code>: the subcompany does not exists, or is not available for this user.</li>
-<li><code>409 InvalidArgumentError</code>: the <code>id</code> is not a valid id.</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 Forbidden</code>: you are not an administrator for this account.</li>
+<li><code>403 Forbidden</code>: the subcompanies has subsubcompanies and can’t be removed, use <code>?force=1</code>.</li>
+<li><code>404 ResourceNotFound</code>: the subcompany does not exists, or is not available for this user.</li>
+<li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="documents">Documents&nbsp;<a href="#documents"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>Endpoints for retrieving documents</p>
@@ -319,9 +319,9 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <p>Return aggregated informations computed over the result set. The <code>score</code> key indicated document’s relevance regarding query.</p>
 <blockquote>
 <ul>
-<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>409 InvalidArgumentError</code>: malformed search query, with misused characters</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>409 InvalidArgument</code>: malformed search query, with misused characters</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#752ee89f1343c19b58ae330826cdf923" class="pull-right">Toggle</a></li><li id="752ee89f1343c19b58ae330826cdf923" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
@@ -392,13 +392,13 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <blockquote>
 <p>You can’t send a file and a document at the same time, you need to send the document first and then send the file on <code>/documents/:id/file</code>.</p>
 <ul>
-<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>403 ForbiddenError</code>: document was not provided with this access token, and can’t be updated.</li>
-<li><code>409 InvalidArgumentError</code>: you should either specify <code>id</code> or <code>identifier</code> in your payload, not both.</li>
-<li><code>409 InvalidArgumentError</code>: the <code>id</code> is not a valid id.</li>
-<li><code>409 MissingParameterError</code>: neither <code>id</code> nor <code>identifier</code> was specified</li>
-<li><code>409 InvalidArgumentError</code>: you sent an <code>id</code>, but no document match. Use <code>identifier</code> to create a new document</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 Forbidden</code>: document was not provided with this access token, and can’t be updated.</li>
+<li><code>409 InvalidArgument</code>: you should either specify <code>id</code> or <code>identifier</code> in your payload, not both.</li>
+<li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
+<li><code>409 MissingParameter</code>: neither <code>id</code> nor <code>identifier</code> was specified</li>
+<li><code>409 InvalidArgument</code>: you sent an <code>id</code>, but no document match. Use <code>identifier</code> to create a new document</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#2534af76e30215e76a4148ca906721d6" class="pull-right">Toggle</a></li><li id="2534af76e30215e76a4148ca906721d6" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>    {
@@ -448,11 +448,11 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 </ul>
 <blockquote>
 <ul>
-<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>404 ResourceNotFoundError</code>: document does not exists, or can’t be accessed.</li>
-<li><code>409 InvalidArgumentError</code>: you should either specify <code>id</code> or <code>identifier</code> in your payload, not both.</li>
-<li><code>409 InvalidArgumentError</code>: the <code>id</code> is not a valid id.</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>404 ResourceNotFound</code>: document does not exists, or can’t be accessed.</li>
+<li><code>409 InvalidArgument</code>: you should either specify <code>id</code> or <code>identifier</code> in your payload, not both.</li>
+<li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#7c9ff82a6c107be7242afc04f35f2999" class="pull-right">Toggle</a></li><li id="7c9ff82a6c107be7242afc04f35f2999" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
@@ -480,11 +480,11 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 </code></pre></li></ul></section><section id="documents-document-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Delete Document</span></div><div style="float:left"><a href="#documents-document-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/documents/{id}{?search}</code></div></div><div class="panel-body"><p>Remove specified document.</p>
 <blockquote>
 <ul>
-<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>404 ResourceNotFoundError</code>: document does not exists, or can’t be accessed.</li>
-<li><code>409 InvalidArgumentError</code>: you should either specify <code>id</code> or <code>identifier</code> in your payload, not both.</li>
-<li><code>409 InvalidArgumentError</code>: the <code>id</code> is not a valid id.</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>404 ResourceNotFound</code>: document does not exists, or can’t be accessed.</li>
+<li><code>409 InvalidArgument</code>: you should either specify <code>id</code> or <code>identifier</code> in your payload, not both.</li>
+<li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="documents-similar-documents">Similar documents&nbsp;<a href="#documents-similar-documents"><i class="fa fa-link"></i></a></h4><section id="documents-similar-documents-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Find similar documents</span></div><div style="float:left"><a href="#documents-similar-documents-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents/{id}/similar</code></div></div><div class="panel-body"><p>Documents similar to <code>id</code>. Still a work in progress.</p>
@@ -496,11 +496,11 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 </ul>
 <blockquote>
 <ul>
-<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>404 ResourceNotFoundError</code>: document does not exists, or can’t be accessed.</li>
-<li><code>409 InvalidArgumentError</code>: you should either specify <code>id</code> or <code>identifier</code> in your payload, not both.</li>
-<li><code>409 InvalidArgumentError</code>: the <code>id</code> is not a valid id.</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>404 ResourceNotFound</code>: document does not exists, or can’t be accessed.</li>
+<li><code>409 InvalidArgument</code>: you should either specify <code>id</code> or <code>identifier</code> in your payload, not both.</li>
+<li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#c6e1c9651c648e767626829c3bf77004" class="pull-right">Toggle</a></li><li id="c6e1c9651c648e767626829c3bf77004" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
@@ -559,11 +559,11 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 </ul>
 <blockquote>
 <ul>
-<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>404 ResourceNotFoundError</code>: document does not exists, or can’t be accessed.</li>
-<li><code>409 InvalidArgumentError</code>: you should either specify <code>id</code> or <code>identifier</code> in your payload, not both.</li>
-<li><code>409 InvalidArgumentError</code>: the <code>id</code> is not a valid id.</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>404 ResourceNotFound</code>: document does not exists, or can’t be accessed.</li>
+<li><code>409 InvalidArgument</code>: you should either specify <code>id</code> or <code>identifier</code> in your payload, not both.</li>
+<li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#06cbac16149173e7c1708417b8da7834" class="pull-right">Toggle</a></li><li id="06cbac16149173e7c1708417b8da7834" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
@@ -611,11 +611,11 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 <section id="documents-raw-access-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get raw document</span></div><div style="float:left"><a href="#documents-raw-access-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents/{id}/raw</code></div></div><div class="panel-body"><p>View all data for the document.</p>
 <blockquote>
 <ul>
-<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>404 ResourceNotFoundError</code>: document does not exists, or can’t be accessed.</li>
-<li><code>409 InvalidArgumentError</code>: you should either specify <code>id</code> or <code>identifier</code> in your payload, not both.</li>
-<li><code>409 InvalidArgumentError</code>: the <code>id</code> is not a valid id.</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>404 ResourceNotFound</code>: document does not exists, or can’t be accessed.</li>
+<li><code>409 InvalidArgument</code>: you should either specify <code>id</code> or <code>identifier</code> in your payload, not both.</li>
+<li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#0d8dfedb691bc6eaf81ce25ef9c5c204" class="pull-right">Toggle</a></li><li id="0d8dfedb691bc6eaf81ce25ef9c5c204" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
@@ -646,24 +646,24 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 <section id="documents-associated-file-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get document file</span></div><div style="float:left"><a href="#documents-associated-file-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents/{id}/file</code></div></div><div class="panel-body"><p>Retrieve the file associated with a document.</p>
 <blockquote>
 <ul>
-<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>404 ResourceNotFoundError</code>: document does not exists, or can’t be accessed.</li>
-<li><code>409 InvalidArgumentError</code>: you should either specify <code>id</code> or <code>identifier</code> in your payload, not both.</li>
-<li><code>409 InvalidArgumentError</code>: the <code>id</code> is not a valid id.</li>
-<li><code>409 MissingParameterError</code>: missing <code>file</code> content in request</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>404 ResourceNotFound</code>: document does not exists, or can’t be accessed.</li>
+<li><code>409 InvalidArgument</code>: you should either specify <code>id</code> or <code>identifier</code> in your payload, not both.</li>
+<li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
+<li><code>409 MissingParameter</code>: missing <code>file</code> content in request</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#cbc4e83075a30c348888b4d8b0f771e2" class="pull-right">Toggle</a></li><li id="cbc4e83075a30c348888b4d8b0f771e2" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code><span class="hljs-list">{binary file content}</span>
 </code></pre></li></ul></section><section id="documents-associated-file-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Set document's file</span></div><div style="float:left"><a href="#documents-associated-file-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/documents/{id}/file</code></div></div><div class="panel-body"><p>This endpoint should be used when providing, to associate a file with a document.</p>
 <blockquote>
 <ul>
-<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>404 ResourceNotFoundError</code>: document does not exists, or can’t be accessed.</li>
-<li><code>404 ResourceNotFoundError</code>: no file associated with this document</li>
-<li><code>409 InvalidArgumentError</code>: you should either specify <code>id</code> or <code>identifier</code> in your payload, not both.</li>
-<li><code>409 InvalidArgumentError</code>: the <code>id</code> is not a valid id.</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>404 ResourceNotFound</code>: document does not exists, or can’t be accessed.</li>
+<li><code>404 ResourceNotFound</code>: no file associated with this document</li>
+<li><code>409 InvalidArgument</code>: you should either specify <code>id</code> or <code>identifier</code> in your payload, not both.</li>
+<li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#98dd486153c5f2c248030cf7c858a6d6" class="pull-right">Toggle</a></li><li id="98dd486153c5f2c248030cf7c858a6d6" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>    <span class="hljs-built_in">file</span>={binary <span class="hljs-built_in">file</span> content <span class="hljs-keyword">as</span> multipart form upload}
@@ -671,8 +671,8 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 <h4 id="users-users-collection">Users Collection&nbsp;<a href="#users-users-collection"><i class="fa fa-link"></i></a></h4><section id="users-users-collection-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">List all Users</span></div><div style="float:left"><a href="#users-users-collection-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/users</code></div></div><div class="panel-body"><p>Retrieve a list of all users in the current company.</p>
 <blockquote>
 <ul>
-<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#69c2641d265a7bca3c0c5320da645575" class="pull-right">Toggle</a></li><li id="69c2641d265a7bca3c0c5320da645575" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
@@ -689,11 +689,11 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 <blockquote>
 <p>You need to be an administrator to create another user.</p>
 <ul>
-<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>403 ForbiddenError</code>: you are not an administrator for this account.</li>
-<li><code>409 MissingParameterError</code>: missing a parameter (either <code>email</code>, <code>name</code> or <code>password</code>)</li>
-<li><code>409 InvalidArgumentError</code>: a user with this email already exists.</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 Forbidden</code>: you are not an administrator for this account.</li>
+<li><code>409 MissingParameter</code>: missing a parameter (either <code>email</code>, <code>name</code> or <code>password</code>)</li>
+<li><code>409 InvalidArgument</code>: a user with this email already exists.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#6414e578c5f4a54e1b7e2fc7ba251d84" class="pull-right">Toggle</a></li><li id="6414e578c5f4a54e1b7e2fc7ba251d84" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>    {
@@ -720,10 +720,10 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 <section id="users-user-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve a User</span></div><div style="float:left"><a href="#users-user-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/users/{id}</code></div></div><div class="panel-body"><p>Retrieve information about specified user.</p>
 <blockquote>
 <ul>
-<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>404 ResourceNotFoundError</code>: the user does not exists, or is not part of this company.</li>
-<li><code>409 InvalidArgumentError</code>: the <code>id</code> is not a valid id.</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>404 ResourceNotFound</code>: the user does not exists, or is not part of this company.</li>
+<li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#c9f88c0c16cb9399e1df65d5eda68c1e" class="pull-right">Toggle</a></li><li id="c9f88c0c16cb9399e1df65d5eda68c1e" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
@@ -739,20 +739,20 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 <p>You need to be an administrator to delete another user.</p>
 <p>You can’t delete yourself.</p>
 <ul>
-<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>403 ForbiddenError</code>: you are not an administrator for this account.</li>
-<li><code>403 NotAuthorizedError</code>: you can’t delete yourself</li>
-<li><code>404 ResourceNotFoundError</code>: the user does not exists, or is not part of this company.</li>
-<li><code>409 InvalidArgumentError</code>: the <code>id</code> is not a valid id.</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 Forbidden</code>: you are not an administrator for this account.</li>
+<li><code>403 NotAuthorized</code>: you can’t delete yourself</li>
+<li><code>404 ResourceNotFound</code>: the user does not exists, or is not part of this company.</li>
+<li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="document-types">Document Types&nbsp;<a href="#document-types"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="document-types-document-types">Document types&nbsp;<a href="#document-types-document-types"><i class="fa fa-link"></i></a></h4><section id="document-types-document-types-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">List document-types</span></div><div style="float:left"><a href="#document-types-document-types-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/document_types</code></div></div><div class="panel-body"><p>Retrieve all document types available for the current user, with document count and the date the last document with this document type was updated.</p>
 <p>The key will be reused on the <code>document_type</code> property for every <code>/documents/</code> endpoint.</p>
 <blockquote>
 <ul>
-<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#4d50fbd61185a3db44c97af721b66c9a" class="pull-right">Toggle</a></li><li id="4d50fbd61185a3db44c97af721b66c9a" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code><span class="xml">{
@@ -785,8 +785,8 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 <p>The key will be reused on the <code>token</code> property for every <code>/documents/</code> endpoint.</p>
 <blockquote>
 <ul>
-<li><code>401 UnauthorizedError</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
-<li><code>401 InvalidCredentialsError</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you’re using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#36ce0ed7d3eef2de66a8ba66bd375dcc" class="pull-right">Toggle</a></li><li id="36ce0ed7d3eef2de66a8ba66bd375dcc" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
