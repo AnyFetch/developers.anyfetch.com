@@ -230,7 +230,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>403 Forbidden</code>: you are not an administrator for this account.</li>
+<li><code>403 Forbidden</code>: you are not an administrator on this account.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#435fcbcdd277aed52668af4e30b610ab" class="pull-right">Toggle</a></li><li id="435fcbcdd277aed52668af4e30b610ab" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">undefined</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
@@ -256,7 +256,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>403 Forbidden</code>: you are not an administrator for this account.</li>
+<li><code>403 Forbidden</code>: you are not an administrator on this account.</li>
 <li><code>403 NotAuthorized</code>: you are trying to migrate the last admin from your company.</li>
 <li><code>409 MissingParameter</code>: you forgot to specify <code>name</code></li>
 <li><code>409 MissingParameter</code>: <code>hydraters</code> is not a JSON array.</li>
@@ -284,7 +284,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>403 Forbidden</code>: you are not an administrator for this account.</li>
+<li><code>403 Forbidden</code>: you are not an administrator on this account.</li>
 <li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
@@ -307,7 +307,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>403 Forbidden</code>: you are not an administrator for this account.</li>
+<li><code>403 Forbidden</code>: you are not an administrator on this account.</li>
 <li><code>403 Forbidden</code>: the subcompanies has subsubcompanies and can’t be removed, use <code>?force=1</code>.</li>
 <li><code>404 ResourceNotFound</code>: the subcompany does not exist, or is not available for this user.</li>
 <li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>
@@ -691,7 +691,7 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>403 Forbidden</code>: you are not an administrator for this account.</li>
+<li><code>403 Forbidden</code>: you are not an administrator on this account.</li>
 <li><code>409 MissingParameter</code>: missing a parameter (either <code>email</code>, <code>name</code> or <code>password</code>)</li>
 <li><code>409 InvalidArgument</code>: a user with this email already exists.</li>
 </ul>
@@ -741,7 +741,7 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>403 Forbidden</code>: you are not an administrator for this account.</li>
+<li><code>403 Forbidden</code>: you are not an administrator on this account.</li>
 <li><code>403 NotAuthorized</code>: you can’t delete yourself</li>
 <li><code>404 ResourceNotFound</code>: the user does not exist, or is not part of this company.</li>
 <li><code>409 InvalidArgument</code>: the <code>id</code> is not a valid id.</li>

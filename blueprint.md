@@ -205,7 +205,7 @@ Only available for admin users.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
-> * `403 Forbidden`: you are not an administrator for this account.
+> * `403 Forbidden`: you are not an administrator on this account.
 
 + Response 200 (application/json)
     + Body
@@ -237,7 +237,7 @@ Only available for admin users.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
-> * `403 Forbidden`: you are not an administrator for this account.
+> * `403 Forbidden`: you are not an administrator on this account.
 > * `403 NotAuthorized`: you are trying to migrate the last admin from your company.
 > * `409 MissingParameter`: you forgot to specify `name`
 > * `409 MissingParameter`: `hydraters` is not a JSON array.
@@ -273,7 +273,7 @@ Only available for admin users.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
-> * `403 Forbidden`: you are not an administrator for this account.
+> * `403 Forbidden`: you are not an administrator on this account.
 > * `409 InvalidArgument`: the `id` is not a valid id.
 
 + Response 200 (application/json)
@@ -300,7 +300,7 @@ By default, you won't be able to remove a subcompany with subsubcompanies. If it
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
-> * `403 Forbidden`: you are not an administrator for this account.
+> * `403 Forbidden`: you are not an administrator on this account.
 > * `403 Forbidden`: the subcompanies has subsubcompanies and can't be removed, use `?force=1`.
 > * `404 ResourceNotFound`: the subcompany does not exist, or is not available for this user.
 > * `409 InvalidArgument`: the `id` is not a valid id.
@@ -795,7 +795,7 @@ Create a new user on this company. If `is_admin` is not specified, a standard us
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
-> * `403 Forbidden`: you are not an administrator for this account.
+> * `403 Forbidden`: you are not an administrator on this account.
 > * `409 MissingParameter`: missing a parameter (either `email`, `name` or `password`)
 > * `409 InvalidArgument`: a user with this email already exists.
 
@@ -860,7 +860,7 @@ Remove specified user. The user should be in your company, you can't delete a us
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
-> * `403 Forbidden`: you are not an administrator for this account.
+> * `403 Forbidden`: you are not an administrator on this account.
 > * `403 NotAuthorized`: you can't delete yourself
 > * `404 ResourceNotFound`: the user does not exist, or is not part of this company.
 > * `409 InvalidArgument`: the `id` is not a valid id.
