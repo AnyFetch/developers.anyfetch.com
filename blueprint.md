@@ -302,7 +302,7 @@ By default, you won't be able to remove a subcompany with subsubcompanies. If it
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator for this account.
 > * `403 Forbidden`: the subcompanies has subsubcompanies and can't be removed, use `?force=1`.
-> * `404 ResourceNotFound`: the subcompany does not exists, or is not available for this user.
+> * `404 ResourceNotFound`: the subcompany does not exist, or is not available for this user.
 > * `409 InvalidArgument`: the `id` is not a valid id.
 
 + Response 204
@@ -487,7 +487,7 @@ Result contains, amongst other :
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
-> * `404 ResourceNotFound`: document does not exists, or can't be accessed.
+> * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `409 InvalidArgument`: you should either specify `id` or `identifier` in your payload, not both.
 > * `409 InvalidArgument`: the `id` is not a valid id.
 
@@ -525,7 +525,7 @@ Remove specified document.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
-> * `404 ResourceNotFound`: document does not exists, or can't be accessed.
+> * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `409 InvalidArgument`: you should either specify `id` or `identifier` in your payload, not both.
 > * `409 InvalidArgument`: the `id` is not a valid id.
 
@@ -546,7 +546,7 @@ Result contains, amongst other :
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
-> * `404 ResourceNotFound`: document does not exists, or can't be accessed.
+> * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `409 InvalidArgument`: you should either specify `id` or `identifier` in your payload, not both.
 > * `409 InvalidArgument`: the `id` is not a valid id.
 
@@ -559,7 +559,7 @@ Result contains, amongst other :
                 "title": {
                     "subject": "Follow up Charly Kevers"
                 },
-                "document_t&ype": "5252ce4ce4cfcd16f55cfa41",
+                "document_type": "5252ce4ce4cfcd16f55cfa41",
                 "keywords": [
                     "todo",
                     "nick",
@@ -616,7 +616,7 @@ Result contains, amongst other :
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
-> * `404 ResourceNotFound`: document does not exists, or can't be accessed.
+> * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `409 InvalidArgument`: you should either specify `id` or `identifier` in your payload, not both.
 > * `409 InvalidArgument`: the `id` is not a valid id.
 
@@ -676,7 +676,7 @@ View all data for the document.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
-> * `404 ResourceNotFound`: document does not exists, or can't be accessed.
+> * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `409 InvalidArgument`: you should either specify `id` or `identifier` in your payload, not both.
 > * `409 InvalidArgument`: the `id` is not a valid id.
 
@@ -719,7 +719,7 @@ Retrieve the file associated with a document.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
-> * `404 ResourceNotFound`: document does not exists, or can't be accessed.
+> * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `409 InvalidArgument`: you should either specify `id` or `identifier` in your payload, not both.
 > * `409 InvalidArgument`: the `id` is not a valid id.
 > * `409 MissingParameter`: missing `file` content in request
@@ -737,7 +737,7 @@ This endpoint should be used when providing, to associate a file with a document
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
-> * `404 ResourceNotFound`: document does not exists, or can't be accessed.
+> * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `404 ResourceNotFound`: no file associated with this document
 > * `409 InvalidArgument`: you should either specify `id` or `identifier` in your payload, not both.
 > * `409 InvalidArgument`: the `id` is not a valid id.
@@ -836,7 +836,7 @@ Retrieve information about specified user.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
-> * `404 ResourceNotFound`: the user does not exists, or is not part of this company.
+> * `404 ResourceNotFound`: the user does not exist, or is not part of this company.
 > * `409 InvalidArgument`: the `id` is not a valid id.
 
 + Response 200 (application/json)
@@ -862,7 +862,7 @@ Remove specified user. The user should be in your company, you can't delete a us
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator for this account.
 > * `403 NotAuthorized`: you can't delete yourself
-> * `404 ResourceNotFound`: the user does not exists, or is not part of this company.
+> * `404 ResourceNotFound`: the user does not exist, or is not part of this company.
 > * `409 InvalidArgument`: the `id` is not a valid id.
 
 + Response 204
