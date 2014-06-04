@@ -741,6 +741,7 @@ This endpoint should be used when providing, to associate a file with a document
 > * `404 ResourceNotFound`: no file associated with this document
 > * `409 InvalidArgument`: specify either `id` or `identifier`, not both.
 > * `409 InvalidArgument`: `id` is not a valid id.
+> * `413 RequestEntityTooLarge`: file is too large (multi-gigabyte file)
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.

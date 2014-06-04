@@ -664,6 +664,7 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 <li><code>404 ResourceNotFound</code>: no file associated with this document</li>
 <li><code>409 InvalidArgument</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
+<li><code>413 RequestEntityTooLarge</code>: file is too large (multi-gigabyte file)</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#98dd486153c5f2c248030cf7c858a6d6" class="pull-right">Toggle</a></li><li id="98dd486153c5f2c248030cf7c858a6d6" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>    <span class="hljs-built_in">file</span>={binary <span class="hljs-built_in">file</span> content <span class="hljs-keyword">as</span> multipart form upload}
