@@ -116,11 +116,27 @@ Retrieve data about the current account. This endpoint return:
 ### Retrieve frontend token [GET]
 > This endpoint can only be used with `Basic` authentication.
 
-Create or retrieve a token. The token will always be the same until you call `/company/reset`.
+Create or retrieve a token. The token will always be the same until you call `DELETE /company/reset` or `DELETE /token`.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
-> * `401 Unauthorized`: `Bearer` authentication used, but this endpoint can only be used with `Basic` scheme.
-> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+> * `401 ForbiddenScheme`: `Bearer` authentication used, but this endpoint can only be used with `Basic` scheme.
+> * `401 InvalidCredentials`: non matching user
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "token": "ebe7ec3ca678ad1d8b09f135155ab9b7f1eea10cee67d0629031301c82d2d688"
+            }
+
+### Remove token [DELETE]
+> This endpoint can only be used with `Basic` authentication.
+
+Remove the token returned by `GET /token`.
+
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 ForbiddenScheme`: `Bearer` authentication used, but this endpoint can only be used with `Basic` scheme.
+> * `401 InvalidCredentials`: non matching user
 
 + Response 200 (application/json)
     + Body
