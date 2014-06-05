@@ -154,7 +154,7 @@ https://api.anyfetch.com/documents/${ID}/raw
 }
 ```
 
-> Alternatively, you can also ping on `GET /documents/identifier/${identifier}/raw`. This trick works for all endpoint using an `id`, just replace `/${id}/` with `/identifier/${identifier}/`
+> Alternatively, you can also ping on `GET /documents/identifier/${identifier}/raw`. This trick works for all endpoint using an `id`, just replace `/${id}/` with `/identifier/${identifier}/`. See (this page)[/guides/concepts/identifier.html] for more details regarding `identifier`.
 
 ## Searching
 Alright, we're done. We can now reap the fruit of our hard work, and start searching...
