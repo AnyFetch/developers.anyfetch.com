@@ -151,6 +151,42 @@ apiCall('/status', function(data, err) {
 });
 ```
 
+### Call on /company
+
+The `/company` endpoint will provide you with the company ID, name and a list of hydraters your company is using. Let's create a sidebar in our homepage to put various interesting information:
+
+```html
+<div class="container">
+	<div class="col-sm-8">
+		<!-- This will contain main content -->
+	</div>
+	<div class="col-sm-4 sidebar">
+		<h4>Logged as <span id="companyName">loading...</span></h4>
+		<p>The API is: <span id="apiStatus">loading...</span></p>
+	</div>
+</div>
+```
+
+With a couple lines of CSS:
+
+```css
+.sidebar {
+	border-left: #ddd 1px solid;
+}
+```
+
+We are just missing the JS script to load the company information:
+
+```javascript
+apiCall('/company', function(data, err) {
+	if (err) {
+		return err;
+	}
+
+	$('#companyName').html(data.name);
+});
+```
+
 # RAW
 
 *from previous version. For inspiration, to be deleted when tutorial is over*
