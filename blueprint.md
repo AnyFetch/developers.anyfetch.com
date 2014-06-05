@@ -392,6 +392,7 @@ Return informations aggregated over the result set. The `score` key indicated do
                     {
                         "_type": "Document",
                         "id": "5320a7735ee6eed51339a1b3",
+                        "identifier": "https://dropbox.com/228115297/all/anyfetchpitchdeckSF.pdf",
                         "creation_date": "2014-03-12T18:29:07.441Z",
                         "token": "5320a682c8318cba94000040",
                         "company": "52fb7b90c8318c4dc800006b",
@@ -412,6 +413,7 @@ Return informations aggregated over the result set. The `score` key indicated do
                     {
                         "_type": "Document",
                         "id": "532347451eab8a0e22c2e65f",
+                        "identifier": "https://evernote.com/s1/sh/6dbd89d6",
                         "creation_date": "2014-03-14T17:26:15.000Z",
                         "token": "53234698c8318cc5d100004f",
                         "company": "52fb7b90c8318c4dc800006b",

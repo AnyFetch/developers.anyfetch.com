@@ -60,7 +60,7 @@ Now that we're set up, we can send our document. This requires two steps: first,
 ### Send a document
 Before sending the file, we need to give anyFetch basic informations about our documents. We'll send the following params:
 
-* `identifier`: this identifier must be unique across our account, and will be used again if we need to update our document in the future. For now, we'll pick something simple, like `hello-world`.
+* `identifier`: this identifier must be unique by document and across our account, and will be used again if we need to update our document in the future. For now, we'll pick something simple, like `sample-txt`.
 * `document_type`: this value lets us specify what we know about our document. This can be `email`, `contact`... in our case, we'll keep this basic and set it to `file` which is the default for every document containing a file.  The document type will determine which hydraters it will go through once uploaded.
 * `metadata`: a JSON object containing basic information about our document. For now, we'll simply send a `path` (path of the file on our local document tree, this can be useful to provide a search in folder name) and a `title` (formatted document name).
 
@@ -69,7 +69,7 @@ $ curl -XPOST \
 -H "Authorization: Bearer ${TOKEN}" \
 -H "Content-Type:application/json" \
 https://api.anyfetch.com/documents \
--d '{"identifier": "hello-world", "document_type": "file", "metadata": {"path": "/home/anyfetch/sample.txt", "title": "anyFetch sample file"}}'
+-d '{"identifier": "sample-txt", "document_type": "file", "metadata": {"path": "/home/anyfetch/sample.txt", "title": "anyFetch sample file"}}'
 ```
 
 ```json
@@ -83,7 +83,7 @@ https://api.anyfetch.com/documents \
     "actions":{},
     "document_url":"/documents/52f2367374a24df253314b3c",
     "related":[],
-    "identifier":"hello-world",
+    "identifier":"sample-txt",
     "data":{},
     "metadata": {
         "path":"/home/anyfetch/sample.txt",
@@ -135,7 +135,7 @@ https://api.anyfetch.com/documents/${ID}/raw
     "document_type":"5252ce4ce4cfcd16f55cfa3c",
     "actions":{},
     "document_url":"/documents/533570229ad9a4665a8d6499",
-    "identifier":"hello-world",
+    "identifier":"sample-txt",
     "data":{
         "html":"<p>This is a sample document, for hello world purposes.\n</p>\n"
     },
@@ -181,6 +181,7 @@ https://api.anyfetch.com/documents?search=anyfetch
         {
             "_type":"Document",
             "id":"52f2367374a24df253314b3c",
+            "identifier":"sample-txt",
             "creation_date":"2014-03-26T17:28:47.688Z",
             "token":"53330deb745e83fe25f6c3dc",
             "company":"52f0bb24c8318c2d65000035",
