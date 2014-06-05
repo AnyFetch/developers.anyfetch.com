@@ -5,6 +5,7 @@
 ### Concepts
 * [Projections](/guides/concepts/projection.html): minimizing data transfer
 * [Templating](/guides/concepts/templating.html): displaying data to the end user
+* [Identifiers](/guides/concepts/identifier.html): using your own identifier, instead of meaningless `id`.
 
 ### Using existing projects
 * [Using a provider](/guides/using/provider.html)
