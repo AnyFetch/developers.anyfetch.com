@@ -35,11 +35,13 @@ Ready to go? :)
 Let's start by bootstraping a very simple environement, with 3 main files:
 
 ```
-index.html
-¦ scripts/
-¦ ¦ anyfetch.js
-¦ styles/
-¦ ¦ main.css
+.
+├── index.html
+├── README.md
+├── scripts
+│   └── anyfetch.js
+└── styles
+    └── main.css
 ```
 
 The `index.html` file is linked to the [Bootstrap](http://getbootstrap.com/) and [jQuery](http://jquery.com/) source code from a CDN ; to our empty (for now ;) stylesheet and our JS script file:
