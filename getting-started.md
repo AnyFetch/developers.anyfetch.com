@@ -68,7 +68,8 @@ Standard errors include :
 * `409 InvalidArgumentError`: you used a non existing argument.
 * `409 MissingParameterError`: you forgot a mandatory parameter.
 * `413 Request Entity Too Large`: you are trying to send a document exceeding our capacity (multi giga-byte file anyone?)
-* `500 InternalServerError`: we are currently upgrading or experiencing trouble; please try again in a few minutes. 
+* `500 InternalServerError`: we are currently upgrading or experiencing trouble; please try again in a few minutes or read the message for more information.
+
 
 ## HTTP Redirects
 
