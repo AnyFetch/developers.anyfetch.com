@@ -20,9 +20,11 @@ We are going to split the work in **4 steps**. Each one of them will help you ma
 
 1. **Your first API call**: using basic authentification, you will learn what you can get from basic endpoints such as ```/company```. We will also take a look on how to do batch calls.
 2. **Search for the truth**: based on a simple form and some JS code, you will be able to search for documents using the ```/document?search=(...)``` endpoint. We will cover the multiples filtering possibilities it can offer.
-3. **Get secure**: because security is not optional, we will take it to the next step. We will learn how to use the API with tokens to implement a safer communication with the server.
-4. **You imagination is the only limit**: you are now ready to enjoy the power of anyFetch and intergrate it everywhere. Mobile, web, native... This step has to be defined by you.
+3. **Display documents**: we will take a look on how to display documents directly in the web app thanks to the API.
+4. **Get secure**: because security is not optional, we will take it to the next step. We will learn how to use the API with tokens to implement a safer communication with the server.
+5. **Your imagination is the only limit**: you are now ready to enjoy the power of anyFetch and intergrate it everywhere. Mobile, web, native... This step has to be defined by you.
 
+All the code generated is available on [this repo](https://github.com/kimchouard/anyfetch-frontend-tuto)
 
 
 # RAW
