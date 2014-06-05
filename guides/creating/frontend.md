@@ -258,6 +258,12 @@ And the related HTML which will give the list of document types and providers:
 <ul id="provs"><li>Loading...</li></ul>
 ```
 
+### Conclusion
+
+You now have a small script allowing you to make authentificated API calls and even aggregate them thanks to `/batch`. You know how to get basic information about your account and are ready to search for documents!
+
+**N.B.:** The source code you should have at the end of this part is available on [the '1-your-first-api-call' branch](https://github.com/AnyFetch/anyfetch-frontend-tuto/tree/1-your-first-api-call).
+
 
 # RAW
 
