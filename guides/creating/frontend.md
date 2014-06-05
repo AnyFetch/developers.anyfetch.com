@@ -30,7 +30,7 @@ Ready to go? :)
 
 ## 1. Your first API calls
 
-### First bootstrap
+### Initial bootstrap
 
 Let's start by bootstraping a very simple environement, with 3 main files:
 
@@ -60,7 +60,7 @@ The `index.html` file is linked to the [Bootstrap](http://getbootstrap.com/) and
 </html>
 ```
 
-### First API call on /status
+### First API call on `/status`
 
 Our first API calls will be a GET on `/status`. It will return the global status for the API and will be a way to make sure it is up and running. There is no need to be authentificated to call this endpoint, we will just need a simple ajax call:
 
@@ -151,9 +151,9 @@ apiCall('/status', function(data, err) {
 });
 ```
 
-### Call on /company
+### Call on `/company`
 
-The `/company` endpoint will provide you with the company ID, name and a list of hydraters your company is using. Let's create a sidebar in our homepage to put various interesting information:
+The `/company` endpoint will provide you with the company ID (explaination about Company and Subcompany system is available [here](http://developers.anyfetch.com/guides/tutorials/subcompanies.html), name and a list of hydraters your company is using. Let's create a sidebar in our homepage to put various interesting information:
 
 ```html
 <div class="container">
@@ -186,6 +186,78 @@ apiCall('/company', function(data, err) {
 	$('#companyName').html(data.name);
 });
 ```
+
+### Batch calls, `/document_types` & `/providers` endpoints
+
+Providers allows you to link your Cloud data sources to anyFetch. A list of all the providers linked to the account might an interesting information to put in the new sidebar. It is available with the `/providers` endpoint.
+Also, each document indexed by anyFetch is categorized in a document type. A list of all the document types indexed in your account could be valuable as well. Here comes the `/document_types` endpoint!
+
+As some of you might have noticed, each call to a new endpoint require a new HTTP request. If we add the `/providers` and the `/document_types` endpoint, we will be doing 4 HTTP request at the same time, which is really not efficient. For now.
+
+The anyFetch API allows you to make what is know as a *batch call*. It is basically calling multiple endpoints in a single HTTP request. How, you might ask? It is very simple: just use the `/batch` endpoint with a `pages=` parameter for each endpoint you want to reach.
+
+For example, if we wanted to use a batch call to merge `/status` and `/company`, we would just need to call:
+
+```
+/batch?pages=/status&pages=/company
+```
+
+The result will be returned a an object contaning each endpoint result referenced by the url. In our example:
+
+```json
+{
+    "/status": {
+        "status": "ok",
+        "message": ""
+    },
+    "/company": {
+        "_type": "Company",
+        "id": "52bff074c8318c29e9000001",
+        "name": "test@papiel.fr",
+        "hydraters": [
+            "http://plaintext.hydrater.anyfetch.com/hydrate",
+            (...)
+        ]
+    }
+}
+```
+
+Pretty nice, right? Let's move forward and aggregate all the wanted API calls:
+
+```javascript
+apiCall('/batch?pages=/status&pages=/company&pages=/document_types&pages=/providers', function(data, err) {
+	if (err) {
+		return err;
+	}
+
+	// Update API status & Company name on index.html
+	$('#apiStatus').html(data['/status'].status);
+	$('#companyName').html(data['/company'].name);
+
+	//Create the HTML code from the data
+	var docTypesHtml = '', provHtml = '';
+	$.each( data['/document_types'], function( key, value ) {
+		docTypesHtml += '<li>'+value.name+'</li>'
+	});
+	$.each( data['/providers'], function( key, value ) {
+		provHtml += '<li>'+value.name+'</li>'
+	});
+	// Update documents types and providers list
+	$('#docTypes').html(docTypesHtml);
+	$('#provs').html(provHtml);
+});
+```
+
+And the related HTML which will give the list of document types and providers:
+
+```html
+<h5>Documents:<h5>
+<ul id="docTypes"></ul>
+
+<h5>Providers:<h5>
+<ul id="provs"></ul>
+```
+
 
 # RAW
 
