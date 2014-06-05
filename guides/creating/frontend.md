@@ -10,21 +10,21 @@ Creating a frontend range from very easy to incredibly hard, depending on what y
 
 #### Don't want to start from scratch?
 
-We already developed in open-source a [ready-to-use front end](https://github.com/Papiel/app.anyfetch.com). It is based on AngularJS, in order to have a client-side MVC. You're welcome to fork or take a look for inspiration.
+We already developed an open-source and [ready-to-use front end](https://github.com/AnyFetch/app.anyfetch.com). It is based on AngularJS, in order to have a client-side MVC. You're welcome to fork or take a look for inspiration.
 
 ## Preparations
 
-During this tutorial, you may refer to the [endpoints documentation](/endpoints) to have an exhaustive list. If this is the first time you are using a REST API, visit our [getting started](/getting-started.html) page.
+During this tutorial, you may refer to the [endpoints documentation](/endpoints). If this is the first time you are using a REST API, visit our [getting started](/getting-started.html) page.
 
 We are going to split the work in **5 steps**. Each one of them will help you master an important concept of the API.
 
-1. **Your first API calls**: using basic authentication, you will learn what you can get from basic endpoints such as ```/company```. We will also take a look on how to do batch calls.
-2. **Search for the truth**: based on a simple form and some JS code, you will be able to search for documents using the ```/document?search=(...)``` endpoint. We will cover the multiples filtering possibilities it can offer.
+1. **Your first API calls**: using basic authentication, you will learn what you can get from basic endpoints such as `/company`. We will also take a look on how to do batch calls.
+2. **Search for the truth**: based on a simple form and some JS code, you will be able to search for documents using the `/document?search=(...)` endpoint. We will cover the multiples filtering possibilities it can offer.
 3. **Display documents**: we will take a look on how to display documents directly in the web app thanks to the API.
 4. **Get secure**: because security is not optional, we will take it to the next step. We will learn how to use the API with tokens to implement a safer communication with the server.
-5. **Your imagination is the only limit**: you are now ready to enjoy the power of anyFetch and intergrate it everywhere. Mobile, web, native... This step has to be defined by you.
+5. **Your imagination is the only limit**: you are now ready to enjoy the power of anyFetch and integrate it everywhere. Mobile, web, native... This step has to be defined by you.
 
-All the code generated is available on [this repo](https://github.com/anyfetch/anyfetch-frontend-tuto).
+All the code generated is available on [this repo](https://github.com/AnyFetch/anyfetch-frontend-tuto).
 
 Ready to go? :)
 
@@ -32,7 +32,7 @@ Ready to go? :)
 
 ### Initial bootstrap
 
-Let's start by bootstraping a very simple environement, with 3 main files:
+Let's start by bootstraping a very simple environment, with 3 main files:
 
 ```
 .
@@ -64,7 +64,7 @@ The `index.html` file is linked to the [Bootstrap](http://getbootstrap.com/) and
 
 ### First API call on `/status`
 
-Our first API calls will be a GET on `/status`. It will return the global status for the API and will be a way to make sure it is up and running. There is no need to be authentificated to call this endpoint, we will just need a simple ajax call:
+Our first API calls will be a GET on `/status`. It will return the global status for the API and will be a way to make sure it is up and running. There is no need to be authenticated to call this endpoint, we will just need a simple ajax call:
 
 ```javascript
 // Get the API status
@@ -109,7 +109,7 @@ The encoded login need to be added on the `Authorization` header, after the `Bas
 
 ```javascript
 headers: {
-	'Authorization': 'Basic '+login64
+	'Authorization': 'Basic ' + login64
 }
 ```
 
@@ -120,10 +120,10 @@ var apiCall = function(endpoint, callback) {
 	$.ajax({
 			type: 'GET',
 			dataType: 'json',
-			url: 'https://api.anyfetch.com'+endpoint,
+			url: 'https://api.anyfetch.com' + endpoint,
 			// Basic Authentication
 			headers: {
-				'Authorization': 'Basic '+login64
+				'Authorization': 'Basic ' + login64
 			}
 		})
 		// All went well
@@ -138,7 +138,7 @@ var apiCall = function(endpoint, callback) {
 }
 ```
 
-It will do a authentificated API call on the `endpoint` sent in parameter and trigger the `callback` function when it is done. It has 2 parameters: data, error.
+It will do a authenticated API call on the `endpoint` sent in parameter and trigger the `callback` function when it is done. It has 2 parameters: data, error.
 
 The code to get the API status is a bit simpler now:
 
@@ -155,7 +155,7 @@ apiCall('/status', function(data, err) {
 
 ### Call on `/company`
 
-The `/company` endpoint will provide you with the company ID (explaination about Company and Subcompany system is available [here](http://developers.anyfetch.com/guides/tutorials/subcompanies.html), name and a list of hydraters your company is using. Let's create a sidebar in our homepage to put various interesting information:
+The `/company` endpoint will provide you with the company ID (explanation about Company and Subcompany system is available [here](http://developers.anyfetch.com/guides/tutorials/subcompanies.html), name and a list of hydraters your company is using. Let's create a sidebar in our homepage to put various interesting information:
 
 ```html
 <div class="container">
@@ -167,14 +167,6 @@ The `/company` endpoint will provide you with the company ID (explaination about
 		<p>The API is: <span id="apiStatus">loading...</span></p>
 	</div>
 </div>
-```
-
-With a couple lines of CSS:
-
-```css
-.sidebar {
-	border-left: #ddd 1px solid;
-}
 ```
 
 We are just missing the JS script to load the company information:
@@ -191,12 +183,12 @@ apiCall('/company', function(data, err) {
 
 ### Batch calls, `/document_types` & `/providers` endpoints
 
-Providers allows you to link your Cloud data sources to anyFetch. A list of all the providers linked to the account might an interesting information to put in the new sidebar. It is available with the `/providers` endpoint.
+Providers allows you to link your Cloud data sources to anyFetch. A list of all the providers linked to the account might be an interesting information to put in the new sidebar. It is available with the `/providers` endpoint.
 Also, each document indexed by anyFetch is categorized in a document type. A list of all the document types indexed in your account could be valuable as well. Here comes the `/document_types` endpoint!
 
 As some of you might have noticed, each call to a new endpoint require a new HTTP request. If we add the `/providers` and the `/document_types` endpoint, we will be doing 4 HTTP request at the same time, which is really not efficient. For now.
 
-The anyFetch API allows you to make what is know as a *batch call*. It is basically calling multiple endpoints in a single HTTP request. How, you might ask? It is very simple: just use the `/batch` endpoint with a `pages=` parameter for each endpoint you want to reach.
+The anyFetch API allows you to make what is known as a *batch call*. It is basically calling multiple endpoints in a single HTTP request. How, you might ask? It is very simple: just use the `/batch` endpoint with a `pages=` parameter for each endpoint you want to reach.
 
 For example, if we wanted to use a batch call to merge `/status` and `/company`, we would just need to call:
 
@@ -237,11 +229,12 @@ apiCall('/batch?pages=/status&pages=/company&pages=/document_types&pages=/provid
 	$('#companyName').html(data['/company'].name);
 
 	//Create the HTML code from the data
-	var docTypesHtml = '', provHtml = '';
-	$.each( data['/document_types'], function( key, value ) {
+	var docTypesHtml = '';
+	$.each( data['/document_types'], function(key, value) {
 		docTypesHtml += '<li>'+value.name+'</li>'
 	});
-	$.each( data['/providers'], function( key, value ) {
+	var provHtml = '';
+	$.each( data['/providers'], function(key, value) {
 		provHtml += '<li>'+value.name+'</li>'
 	});
 	// Update documents types and providers list
