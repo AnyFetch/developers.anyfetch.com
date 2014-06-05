@@ -252,10 +252,10 @@ And the related HTML which will give the list of document types and providers:
 
 ```html
 <h5>Documents:<h5>
-<ul id="docTypes"></ul>
+<ul id="docTypes"><li>Loading...</li></ul>
 
 <h5>Providers:<h5>
-<ul id="provs"></ul>
+<ul id="provs"><li>Loading...</li></ul>
 ```
 
 
