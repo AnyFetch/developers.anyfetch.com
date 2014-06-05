@@ -1,6 +1,6 @@
 ### Tutorials
 * ["Hello world" tutorial](/guides/tutorials/hello-world.html): send and search for documents using `curl`.
-* [`Subcompanies` tutorial](/guides/tutorials/subcompanies.html): more advanced tutorial using subcompanies to compartment data.
+* [Subcompanies tutorial](/guides/tutorials/subcompanies.html): more advanced tutorial using subcompanies to compartment data.
 
 ### Concepts
 * [Projections](/guides/concepts/projection.html): minimizing data transfer

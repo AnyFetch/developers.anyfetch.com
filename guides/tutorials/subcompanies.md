@@ -4,7 +4,7 @@ subtitle: Compartmentalize documents.
 layout: doc
 ---
 
-In this guide, we'll create multiple compartments (*subcompanies*) for our data,  using one master token.
+In this guide, we'll create multiple compartments (aka *subcompanies*) for our data,  using one master token.
 
 The example use case will be Dropbox-like storage: each customer requires a separate index to store documents, and you want to provide search in those documents.
 
