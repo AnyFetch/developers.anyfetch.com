@@ -491,3 +491,16 @@ a.list-group-item {
 .error-codes li code:first-child {
 	color: red;
 }
+
+#toc {
+	position: fixed;
+}
+
+#toc > ul > li {
+	list-style: none;
+	padding: 4px;
+}
+
+.toc-active {
+	font-weight: 400;
+}
