@@ -35,3 +35,8 @@ $(function() {
     item.remove();
   });
 });
+
+// Autoload TOC
+$(function() {
+  $('#toc').toc();
+});
