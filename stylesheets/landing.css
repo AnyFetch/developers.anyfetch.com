@@ -504,3 +504,19 @@ a.list-group-item {
 .toc-active {
 	font-weight: 400;
 }
+
+#toc .toc-h3 {
+	margin-left: 5px
+}
+
+#toc .toc-h4 {
+	margin-left: 15px
+}
+
+#toc .toc-h5 {
+	margin-left: 25px
+}
+
+#toc .toc-h6 {
+	margin-left: 35px
+}
