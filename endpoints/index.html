@@ -232,6 +232,7 @@ Should have a <code>status</code> of “OK”.</p>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>202</code></strong></li></ul></section><h4 id="company-reset-company">Reset company&nbsp;<a href="#company-reset-company"><i class="fa fa-link"></i></a></h4><section id="company-reset-company-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Reset company</span></div><div style="float:left"><a href="#company-reset-company-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/company/reset</code></div></div><div class="panel-body"><p>Reset <strong>all</strong> documents, tokens and providers from the account.</p>
+<p>Subcompanies and users are not affected.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
@@ -331,7 +332,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="documents">Documents&nbsp;<a href="#documents"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>Endpoints for retrieving documents</p>
 <h4 id="documents-documents">Documents&nbsp;<a href="#documents-documents"><i class="fa fa-link"></i></a></h4><p>Access documents resources.</p>
-<section id="documents-documents-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Search documents</span></div><div style="float:left"><a href="#documents-documents-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents{?search, ?before, ?after,?document_type, ?token, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit}</code></div></div><div class="panel-body"><p>Search within all available data for documents matching specified filter.</p>
+<section id="documents-documents-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Search documents</span></div><div style="float:left"><a href="#documents-documents-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents{?search, ?before, ?after, ?document_type, ?token, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit}</code></div></div><div class="panel-body"><p>Search within all available data for documents matching specified filter.</p>
 <p>Return informations aggregated over the result set. The <code>score</code> key indicated document’s relevance regarding query.</p>
 <blockquote>
 <ul>
@@ -403,7 +404,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
         }
     ]
 }
-</code></pre></li></ul></section><section id="documents-documents-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create new document</span></div><div style="float:left"><a href="#documents-documents-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/documents{?search, ?before, ?after,?document_type, ?token, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit}</code></div></div><div class="panel-body"><blockquote>
+</code></pre></li></ul></section><section id="documents-documents-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create new document</span></div><div style="float:left"><a href="#documents-documents-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/documents{?search, ?before, ?after, ?document_type, ?token, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit}</code></div></div><div class="panel-body"><blockquote>
 <p>This endpoint can only be used with token authentication.</p>
 </blockquote>
 <p>Send a new document on anyFetch.</p>

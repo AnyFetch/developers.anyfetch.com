@@ -186,6 +186,8 @@ Ping all providers for the current company, checking for new available documents
 ## Reset company [DELETE]
 Reset **all** documents, tokens and providers from the account.
 
+Subcompanies and users are not affected.
+
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 
@@ -342,7 +344,7 @@ By default, you are not allowed to remove a subcompany with subsubcompanies. To 
 # Group Documents
 Endpoints for retrieving documents
 
-## Documents [/documents{?search, ?before, ?after,?document_type, ?token, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit}]
+## Documents [/documents{?search, ?before, ?after, ?document_type, ?token, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit}]
 Access documents resources.
 
 ### Search documents [GET]
