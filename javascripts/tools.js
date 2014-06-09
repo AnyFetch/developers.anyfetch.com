@@ -1,15 +1,25 @@
 // Smooth scroll
 $(function() {
-  $('a[href*=#]:not([href=#])').click(function() {
-    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-      if (target.length) {
-        $('html,body').animate({
-          scrollTop: target.offset().top - 100
-        }, 300);
-        return false;
-      }
+  $('a[href*=#]').click(function(e) {
+    if (location.pathname.replace('/^\//','') == this.pathname.replace('/^\//','')
+        && location.hostname == this.hostname) {
+        var hash = this.hash;
+        var $target = $(this.hash);
+        $target = $target.length && $target
+            || $('[name=' + this.hash.slice(1) +']');
+        if ($target.length) {
+            $('.active').removeClass('active');
+            $(this).parent().addClass('active');
+            var targetOffset = $target.offset().top;
+            $('html,body')
+            .animate({
+                scrollTop: targetOffset
+            }, 750, function() {
+                location.hash = hash;
+            });
+            e.preventDefault();
+
+        }
     }
   });
 });
