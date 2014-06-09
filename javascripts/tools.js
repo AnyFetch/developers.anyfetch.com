@@ -22,8 +22,8 @@ $(function() {
 
   $('.panel-body blockquote').has('ul li code').each(function() {
     var item = $(this);
-    var sectionContainer = item.parent().parent();
-    var requestUl = sectionContainer.children('ul');
+    var sectionContainer = item.closest('section.panel');
+    var requestUl = sectionContainer.children('ul:last-of-type');
     var anchorId = sectionContainer.attr('id') + '-error';
 
     // Append a new item to the UL, saying "Error code // Toggle" with a link to the errors

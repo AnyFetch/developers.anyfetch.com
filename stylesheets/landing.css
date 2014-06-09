@@ -520,3 +520,7 @@ a.list-group-item {
 #toc .toc-h6 {
 	margin-left: 35px
 }
+
+.panel-body blockquote ul {
+	display:none
+}
