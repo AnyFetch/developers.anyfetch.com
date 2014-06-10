@@ -138,12 +138,7 @@ Remove the token returned by `GET /token`.
 > * `401 ForbiddenScheme`: `Bearer` authentication used, but this endpoint can only be used with `Basic` scheme.
 > * `401 InvalidCredentials`: non matching user
 
-+ Response 200 (application/json)
-    + Body
-
-            {
-                "token": "ebe7ec3ca678ad1d8b09f135155ab9b7f1eea10cee67d0629031301c82d2d688"
-            }
++ Response 204
 
 # Group Company
 ## Company [/company]
