@@ -1,14 +1,10 @@
 // Smooth scroll
 $(function() {
-console.log('gros kiki');
   $('a[href*=#]').click(function(e) {
-    console.log('kiki');
-    if (location.pathname.replace('/^\//','') == this.pathname.replace('/^\//','')
-        && location.hostname == this.hostname) {
+    if (location.pathname.replace('/^\//','') == this.pathname.replace('/^\//','') && location.hostname == this.hostname) {
         var hash = this.hash;
         var $target = $(this.hash);
-        $target = $target.length && $target
-            || $('[name=' + this.hash.slice(1) +']');
+        $target = $target.length && $target || $('[name=' + this.hash.slice(1) +']');
         if ($target.length) {
             // $('.active').removeClass('active');
             // $(this).parent().addClass('active');
@@ -29,17 +25,19 @@ console.log('gros kiki');
 $('body').scrollspy({ target: '#nav', offset: 130 });
 
 $(function(){
-        // Check the initial Poistion of the Sticky Header
-        var stickyHeaderTop = $('#toc').position().top - 100;
-         console.log(stickyHeaderTop);
+    // Check the initial Poistion of the Sticky Header
+    var toc = $('#toc');
+    if(toc[0]) {
+        var stickyHeaderTop = toc.position().top - 100;
         $(window).scroll(function(){
-                if( $(window).scrollTop() > stickyHeaderTop ) {
-                        $('#toc').css({position: 'fixed', top: '100px'});
-                } else {
-                        $('#toc').css({position: 'inherit', top: '0px'});
-                }
+            if( $(window).scrollTop() > stickyHeaderTop ) {
+                toc.css({position: 'fixed', top: '100px'});
+            } else {
+                toc.css({position: 'inherit', top: '0px'});
+            }
         });
-  });
+    }
+});
 
 
 // Display errors after requests
