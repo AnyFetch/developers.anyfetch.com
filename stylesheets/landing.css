@@ -498,29 +498,40 @@ a.list-group-item {
 
 #toc > ul > li {
 	list-style: none;
-	padding: 4px;
+	margin: 4px;
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
 .toc-active {
 	font-weight: 400;
+	border-left: 3px #00A7E4 solid;
+}
+
+#toc .toc-h2 {
+	font-weight: 600;
 }
 
 #toc .toc-h3 {
-	margin-left: 5px
+	padding-left: 10px
 }
 
 #toc .toc-h4 {
-	margin-left: 15px
+	padding-left: 25px
 }
 
 #toc .toc-h5 {
-	margin-left: 25px
+	padding-left: 40px
 }
 
 #toc .toc-h6 {
-	margin-left: 35px
+	padding-left: 55px
 }
 
 .panel-body blockquote ul {
 	display:none
+}
+
+#toc .toc-h2 {
+	font-weight: 600;
 }
