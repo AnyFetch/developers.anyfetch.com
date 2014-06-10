@@ -28,6 +28,19 @@ console.log('gros kiki');
 });
 $('body').scrollspy({ target: '#nav', offset: 130 });
 
+$(function(){
+        // Check the initial Poistion of the Sticky Header
+        var stickyHeaderTop = $('#toc').offset().top - 100;
+         console.log(stickyHeaderTop);
+        $(window).scroll(function(){
+                if( $(window).scrollTop() > stickyHeaderTop ) {
+                        $('#toc').css({position: 'fixed', top: '100px'});
+                } else {
+                        $('#toc').css({position: 'inherit', top: '0px'});
+                }
+        });
+  });
+
 
 // Display errors after requests
 $(function() {
