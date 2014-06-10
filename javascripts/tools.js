@@ -30,7 +30,7 @@ $('body').scrollspy({ target: '#nav', offset: 130 });
 
 $(function(){
         // Check the initial Poistion of the Sticky Header
-        var stickyHeaderTop = $('#toc').offset().top - 100;
+        var stickyHeaderTop = $('#toc').position().top - 100;
          console.log(stickyHeaderTop);
         $(window).scroll(function(){
                 if( $(window).scrollTop() > stickyHeaderTop ) {
@@ -67,6 +67,6 @@ $(function() {
   $('#toc').toc({
     'selectors': 'h2,h3,h4,h5,h6',
     'container': '#main-content',
-    'highlightOffset': 50
+    'highlightOffset': 20
   });
 });
