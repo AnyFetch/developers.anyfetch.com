@@ -1,6 +1,8 @@
 // Smooth scroll
 $(function() {
+console.log('gros kiki');
   $('a[href*=#]').click(function(e) {
+    console.log('kiki');
     if (location.pathname.replace('/^\//','') == this.pathname.replace('/^\//','')
         && location.hostname == this.hostname) {
         var hash = this.hash;
@@ -11,7 +13,7 @@ $(function() {
             // $('.active').removeClass('active');
             // $(this).parent().addClass('active');
             var targetOffset = $target.offset().top;
-            targetOffset -= 100
+            targetOffset -= 100;
             $('html,body')
             .animate({
                 scrollTop: targetOffset
@@ -51,6 +53,7 @@ $(function() {
 $(function() {
   $('#toc').toc({
     'selectors': 'h2,h3,h4,h5,h6',
-    'container': '#main-content'
+    'container': '#main-content',
+    'highlightOffset': 50
   });
 });
