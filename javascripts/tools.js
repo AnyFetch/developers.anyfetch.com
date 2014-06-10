@@ -8,9 +8,10 @@ $(function() {
         $target = $target.length && $target
             || $('[name=' + this.hash.slice(1) +']');
         if ($target.length) {
-            $('.active').removeClass('active');
-            $(this).parent().addClass('active');
+            // $('.active').removeClass('active');
+            // $(this).parent().addClass('active');
             var targetOffset = $target.offset().top;
+            targetOffset -= 100
             $('html,body')
             .animate({
                 scrollTop: targetOffset
@@ -23,7 +24,7 @@ $(function() {
     }
   });
 });
-$('body').scrollspy({ target: '#nav' });
+$('body').scrollspy({ target: '#nav', offset: 130 });
 
 
 // Display errors after requests
