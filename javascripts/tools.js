@@ -1,8 +1,6 @@
 // Smooth scroll
 $(function() {
-console.log('gros kiki');
   $('a[href*=#]').click(function(e) {
-    console.log('kiki');
     if (location.pathname.replace('/^\//','') == this.pathname.replace('/^\//','')
         && location.hostname == this.hostname) {
         var hash = this.hash;
