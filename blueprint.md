@@ -212,9 +212,9 @@ Subcompanies are companies you own and have created.
 They allow you to isolate data: no data stored in a subcompany can be accessed from any other place.
 
 ### Retrieve all subcompanies [GET]
-Retrieve all subcompanies from the current company.
+> This endpoint is only available to admin users.
 
-Only available for admin users.
+Retrieve all subcompanies from the current company.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -240,14 +240,13 @@ Only available for admin users.
             ]
 
 ### Create a new subcompany [POST]
+> This endpoint is only available to admin users.
+
 Create a new subcompany.
 
 You may customize hydraters list, or use default list.
 
 The user executing the call (either via `Basic` or `Bearer`) will be migrated to the new company. To create a new subcompany, the best practice is to create a new admin (`POST /users`) before, then create the new company while connected with the new user.
-
-Only available for admin users.
-
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -281,9 +280,9 @@ Only available for admin users.
 
 ## Subcompany [/subcompanies/{id}]
 ### Retrieve a subcompany [GET]
-Retrieve a specific subcompany from the current company.
+> This endpoint is only available to admin users.
 
-Only available for admin users.
+Retrieve a specific subcompany from the current company.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -434,10 +433,10 @@ Return informations aggregated over the result set. The `score` key indicated do
 
 ### Create new document [POST]
 > This endpoint can only be used with token authentication.
+> 
+> You can't send a file and a document at the same time, you need to send the document first and then send the file on `/documents/:id/file`.
 
 Send a new document on anyFetch.
-
-> You can't send a file and a document at the same time, you need to send the document first and then send the file on `/documents/:id/file`.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -489,9 +488,9 @@ Send a new document on anyFetch.
             }
 
 ## Document [/documents/{id}{?search}]
-Data regarding a document.
-
 > Please note: for every endpoint in the form `/documents/{id}`, you can also use an alternative URL `/documents/identifier/{identifier}` where `identifier` is the url-encoded provider identifier.
+
+Data regarding a document.
 
 ### Get Document [GET]
 A single document with its details.
@@ -786,6 +785,8 @@ User resources.
 
 ## Users Collection [/users]
 ### List all Users [GET]
+> This endpoint is only available to admin users.
+
 Retrieve a list of all users in the current company.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
@@ -806,9 +807,10 @@ Retrieve a list of all users in the current company.
             ]
 
 ### Create a User [POST]
+> This endpoint is only available to admin users.
+
 Create a new user on this company. If `is_admin` is not specified, a standard user will be created.
 
-> You need to be an administrator to create another user.
 
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
@@ -870,11 +872,11 @@ Retrieve information about specified user.
             }
 
 ### Remove a User [DELETE]
-Remove specified user. The user should be in your company, you can't delete a user in a subcompany.
-
-> You need to be an administrator to delete another user.
-
+> This endpoint is only available to admin users.
+> 
 > You can't delete yourself.
+
+Remove specified user. The user should be in your company, you can't delete a user in a subcompany.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.

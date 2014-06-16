@@ -237,8 +237,10 @@ Should have a <code>status</code> of “OK”.</p>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="subcompanies">Subcompanies&nbsp;<a href="#subcompanies"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="subcompanies-subcompanies">Subcompanies&nbsp;<a href="#subcompanies-subcompanies"><i class="fa fa-link"></i></a></h4><p>Subcompanies are companies you own and have created.
 They allow you to isolate data: no data stored in a subcompany can be accessed from any other place.</p>
-<section id="subcompanies-subcompanies-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve all subcompanies</span></div><div style="float:left"><a href="#subcompanies-subcompanies-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/subcompanies</code></div></div><div class="panel-body"><p>Retrieve all subcompanies from the current company.</p>
-<p>Only available for admin users.</p>
+<section id="subcompanies-subcompanies-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve all subcompanies</span></div><div style="float:left"><a href="#subcompanies-subcompanies-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/subcompanies</code></div></div><div class="panel-body"><blockquote>
+<p>This endpoint is only available to admin users.</p>
+</blockquote>
+<p>Retrieve all subcompanies from the current company.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
@@ -261,10 +263,12 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
         ]
     </span>}
 ]
-</code></pre></li></ul></section><section id="subcompanies-subcompanies-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create a new subcompany</span></div><div style="float:left"><a href="#subcompanies-subcompanies-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/subcompanies</code></div></div><div class="panel-body"><p>Create a new subcompany.</p>
+</code></pre></li></ul></section><section id="subcompanies-subcompanies-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create a new subcompany</span></div><div style="float:left"><a href="#subcompanies-subcompanies-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/subcompanies</code></div></div><div class="panel-body"><blockquote>
+<p>This endpoint is only available to admin users.</p>
+</blockquote>
+<p>Create a new subcompany.</p>
 <p>You may customize hydraters list, or use default list.</p>
 <p>The user executing the call (either via <code>Basic</code> or <code>Bearer</code>) will be migrated to the new company. To create a new subcompany, the best practice is to create a new admin (<code>POST /users</code>) before, then create the new company while connected with the new user.</p>
-<p>Only available for admin users.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
@@ -291,8 +295,10 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
             <span class="hljs-string">"http://eml.hydrater.anyfetch.com/hydrate"</span>
         ]
     </span>}
-</code></pre></li></ul></section><h4 id="subcompanies-subcompany">Subcompany&nbsp;<a href="#subcompanies-subcompany"><i class="fa fa-link"></i></a></h4><section id="subcompanies-subcompany-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve a subcompany</span></div><div style="float:left"><a href="#subcompanies-subcompany-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/subcompanies/{id}</code></div></div><div class="panel-body"><p>Retrieve a specific subcompany from the current company.</p>
-<p>Only available for admin users.</p>
+</code></pre></li></ul></section><h4 id="subcompanies-subcompany">Subcompany&nbsp;<a href="#subcompanies-subcompany"><i class="fa fa-link"></i></a></h4><section id="subcompanies-subcompany-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve a subcompany</span></div><div style="float:left"><a href="#subcompanies-subcompany-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/subcompanies/{id}</code></div></div><div class="panel-body"><blockquote>
+<p>This endpoint is only available to admin users.</p>
+</blockquote>
+<p>Retrieve a specific subcompany from the current company.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
@@ -413,10 +419,10 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 }
 </code></pre></li></ul></section><section id="documents-documents-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create new document</span></div><div style="float:left"><a href="#documents-documents-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/documents{?search, ?before, ?after, ?document_type, ?token, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit}</code></div></div><div class="panel-body"><blockquote>
 <p>This endpoint can only be used with token authentication.</p>
+<p>You can’t send a file and a document at the same time, you need to send the document first and then send the file on <code>/documents/:id/file</code>.</p>
 </blockquote>
 <p>Send a new document on anyFetch.</p>
 <blockquote>
-<p>You can’t send a file and a document at the same time, you need to send the document first and then send the file on <code>/documents/:id/file</code>.</p>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
@@ -462,10 +468,10 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
     "<span class="hljs-attribute">related</span>": <span class="hljs-value">[<span class="hljs-string">"52dff5c53923844f15885428"</span>]</span>,
     "<span class="hljs-attribute">user_access</span>": <span class="hljs-value">[<span class="hljs-string">"52d96492a7f0a3ac4226f2f7"</span>]
 </span>}
-</code></pre></li></ul></section><h4 id="documents-document">Document&nbsp;<a href="#documents-document"><i class="fa fa-link"></i></a></h4><p>Data regarding a document.</p>
-<blockquote>
+</code></pre></li></ul></section><h4 id="documents-document">Document&nbsp;<a href="#documents-document"><i class="fa fa-link"></i></a></h4><blockquote>
 <p>Please note: for every endpoint in the form <code>/documents/{id}</code>, you can also use an alternative URL <code>/documents/identifier/{identifier}</code> where <code>identifier</code> is the url-encoded provider identifier.</p>
 </blockquote>
+<p>Data regarding a document.</p>
 <section id="documents-document-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get Document</span></div><div style="float:left"><a href="#documents-document-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents/{id}{?search}</code></div></div><div class="panel-body"><p>A single document with its details.</p>
 <p>Result contains, amongst other :</p>
 <ul>
@@ -704,7 +710,10 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the Document to perform action with.</p>
 </dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#75c838c10cf6366de2e9ad6c5af2dbf6" class="pull-right">Toggle</a></li><li id="75c838c10cf6366de2e9ad6c5af2dbf6" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>    <span class="hljs-built_in">file</span>={binary <span class="hljs-built_in">file</span> content <span class="hljs-keyword">as</span> multipart form upload}
 </code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="users">Users&nbsp;<a href="#users"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>User resources.</p>
-<h4 id="users-users-collection">Users Collection&nbsp;<a href="#users-users-collection"><i class="fa fa-link"></i></a></h4><section id="users-users-collection-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">List all Users</span></div><div style="float:left"><a href="#users-users-collection-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/users</code></div></div><div class="panel-body"><p>Retrieve a list of all users in the current company.</p>
+<h4 id="users-users-collection">Users Collection&nbsp;<a href="#users-users-collection"><i class="fa fa-link"></i></a></h4><section id="users-users-collection-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">List all Users</span></div><div style="float:left"><a href="#users-users-collection-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/users</code></div></div><div class="panel-body"><blockquote>
+<p>This endpoint is only available to admin users.</p>
+</blockquote>
+<p>Retrieve a list of all users in the current company.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
@@ -721,9 +730,11 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
         "<span class="hljs-attribute">user_url</span>": <span class="hljs-value"><span class="hljs-string">"/users/52fb7b90c8318c4dc800006c"</span>
     </span>}
 ]
-</code></pre></li></ul></section><section id="users-users-collection-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create a User</span></div><div style="float:left"><a href="#users-users-collection-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/users</code></div></div><div class="panel-body"><p>Create a new user on this company. If <code>is_admin</code> is not specified, a standard user will be created.</p>
+</code></pre></li></ul></section><section id="users-users-collection-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create a User</span></div><div style="float:left"><a href="#users-users-collection-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/users</code></div></div><div class="panel-body"><blockquote>
+<p>This endpoint is only available to admin users.</p>
+</blockquote>
+<p>Create a new user on this company. If <code>is_admin</code> is not specified, a standard user will be created.</p>
 <blockquote>
-<p>You need to be an administrator to create another user.</p>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
@@ -771,10 +782,12 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
     "<span class="hljs-attribute">is_admin</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
     "<span class="hljs-attribute">user_url</span>": <span class="hljs-value"><span class="hljs-string">"/users/52fb7b90c8318c4dc800006c"</span>
 </span>}
-</code></pre></li></ul></section><section id="users-user-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Remove a User</span></div><div style="float:left"><a href="#users-user-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/users/{id}</code></div></div><div class="panel-body"><p>Remove specified user. The user should be in your company, you can’t delete a user in a subcompany.</p>
-<blockquote>
-<p>You need to be an administrator to delete another user.</p>
+</code></pre></li></ul></section><section id="users-user-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Remove a User</span></div><div style="float:left"><a href="#users-user-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/users/{id}</code></div></div><div class="panel-body"><blockquote>
+<p>This endpoint is only available to admin users.</p>
 <p>You can’t delete yourself.</p>
+</blockquote>
+<p>Remove specified user. The user should be in your company, you can’t delete a user in a subcompany.</p>
+<blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
