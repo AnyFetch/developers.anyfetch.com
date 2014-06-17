@@ -269,7 +269,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <p>Create a new subcompany.</p>
 <p>You may customize hydraters list, or use default list.</p>
 <p>The user executing the call (either via <code>Basic</code> or <code>Bearer</code>) will be migrated to the new company. To create a new subcompany, the best practice is to create a new admin (<code>POST /users</code>) before, then create the new company while connected with the new user.</p>
-<p>Note the “original” company will only be able to <code>DELETE</code> the subcompany, and can’t do anything more: the new user will effectively be the admin in the subcompany, and the only one able to view and add documents.</p>
+<p>Note the “original” company will only be able to <code>DELETE</code> the subcompany, and can’t do anything more: the new user will effectively be the admin in the subcompany, and the only one able to view and add documents, users…</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>

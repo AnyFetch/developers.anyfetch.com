@@ -248,7 +248,7 @@ You may customize hydraters list, or use default list.
 
 The user executing the call (either via `Basic` or `Bearer`) will be migrated to the new company. To create a new subcompany, the best practice is to create a new admin (`POST /users`) before, then create the new company while connected with the new user.
 
-Note the "original" company will only be able to `DELETE` the subcompany, and can't do anything more: the new user will effectively be the admin in the subcompany, and the only one able to view and add documents.
+Note the "original" company will only be able to `DELETE` the subcompany, and can't do anything more: the new user will effectively be the admin in the subcompany, and the only one able to view and add documents, users...
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
