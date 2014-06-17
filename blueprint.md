@@ -339,7 +339,7 @@ By default, you are not allowed to remove a subcompany with subsubcompanies. To 
 # Group Documents
 Endpoints for retrieving documents
 
-## Documents [/documents{?search, ?before, ?after, ?document_type, ?token, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit}]
+## Documents [/documents{?search, ?before, ?after, ?document_type, ?token, ?id, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit}]
 Access documents resources.
 
 ### Search documents [GET]
@@ -355,6 +355,7 @@ Return informations aggregated over the result set. The `score` key indicated do
     + search (optional, string, `john smith`) ... Search query, probably the most important parameter for this query
     + before (optional, date, `2014-03-21`) ... Only display documents created before this date.
     + after (optional, date, `2014-01-25`) ... Only display documents created after this date.
+    + id (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this id. <small>You can use the param multiple times to allow for multiples `id`, for instance `?id=1&id=2&id=3`</small>.
     + document_type (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this document type. <small>You can use the param multiple times to allow for multiples `document_type`</small>.
     + token (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this token. <small>You can use the param multiple times to allow for multiples `token`</small>
     + _meta (optional, string, `John Smith`) ... Strict search on `meta` key. Replace `meta` with the name of the meta you wish to search on.
