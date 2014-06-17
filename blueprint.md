@@ -341,7 +341,8 @@ By default, you are not allowed to remove a subcompany with subsubcompanies. To 
 # Group Documents
 Endpoints for retrieving documents
 
-## Documents [/documents{?search, ?before, ?after, ?document_type, ?token, ?id, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit}]
+## Documents [/documents{?search, ?before, ?after, ?document_type, ?provider, ?id, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit}]
+>>>>>>> gh-pages
 Access documents resources.
 
 ### Search documents [GET]
@@ -359,7 +360,7 @@ Return informations aggregated over the result set. The `score` key indicated do
     + after (optional, date, `2014-01-25`) ... Only display documents created after this date.
     + id (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this id. <small>You can use the param multiple times to allow for multiples `id`, for instance `?id=1&id=2&id=3`</small>.
     + document_type (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this document type. <small>You can use the param multiple times to allow for multiples `document_type`</small>.
-    + token (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this token. <small>You can use the param multiple times to allow for multiples `token`</small>
+    + provider (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this provider. <small>You can use the param multiple times to allow for multiples `provider`</small>
     + _meta (optional, string, `John Smith`) ... Strict search on `meta` key. Replace `meta` with the name of the meta you wish to search on.
     + meta (optional, string, `John`) ... (prepend name with @) Full text search on `meta` key.  Replace `meta` with the name of the meta you wish to search on, for instance `?@name=john`
     + has_meta (optional, boolean, `1`) ... Only returns document having the `meta` key. Replace `meta` with the name of the meta you wish to search on.
@@ -376,7 +377,7 @@ Return informations aggregated over the result set. The `score` key indicated do
                         "5252ce4ce4cfcd16f55cfa41": 1,
                         "5252ce4ce4cfcd16f55cfa3c": 1
                     },
-                    "tokens": {
+                    "providers": {
                         "53234698c8318cc5d100004f": 1,
                         "5320a682c8318cba94000040": 1
                     },
@@ -394,7 +395,7 @@ Return informations aggregated over the result set. The `score` key indicated do
                         "id": "5320a7735ee6eed51339a1b3",
                         "identifier": "https://dropbox.com/228115297/all/anyfetchpitchdeckSF.pdf",
                         "creation_date": "2014-03-12T18:29:07.441Z",
-                        "token": "5320a682c8318cba94000040",
+                        "provider": "5320a682c8318cba94000040",
                         "company": "52fb7b90c8318c4dc800006b",
                         "document_type": "5252ce4ce4cfcd16f55cfa3c",
                         "actions": {
@@ -415,7 +416,7 @@ Return informations aggregated over the result set. The `score` key indicated do
                         "id": "532347451eab8a0e22c2e65f",
                         "identifier": "https://evernote.com/s1/sh/6dbd89d6",
                         "creation_date": "2014-03-14T17:26:15.000Z",
-                        "token": "53234698c8318cc5d100004f",
+                        "provider": "53234698c8318cc5d100004f",
                         "company": "52fb7b90c8318c4dc800006b",
                         "document_type": "5252ce4ce4cfcd16f55cfa41",
                         "actions": {
@@ -473,7 +474,7 @@ Send a new document on anyFetch.
                 "_type":"Document",
                 "id":"52f2367374a24df253314b3c",
                 "creation_date":"2014-02-05T10:39:36.623Z",
-                "token":"52f212ca74a24df25331490c",
+                "provider":"52f212ca74a24df25331490c",
                 "company":"52f0bb24c8318c2d65000035",
                 "document_type":"5252ce4ce4cfcd16f55cfa3b",
                 "document_url":"/documents/52f2367374a24df253314b3c",
@@ -519,7 +520,7 @@ Result contains, amongst other :
                 "_type": "Document",
                 "id": "532347451eab8a0e22c2e65f",
                 "creation_date": "2014-03-14T17:26:15.000Z",
-                "token": "53234698c8318cc5d100004f",
+                "provider": "53234698c8318cc5d100004f",
                 "company": "52fb7b90c8318c4dc800006b",
                 "document_type": "5252ce4ce4cfcd16f55cfa41",
                 "actions": {
@@ -591,7 +592,7 @@ Result contains, amongst other :
                     "5252ce4ce4cfcd16f55cfa3c": 4,
                     "5252ce4ce4cfcd16f55cfa41": 1
                 },
-                "tokens": {
+                "providers": {
                     "5320a6abc8318cc5d1000049": 5,
                     "5320a682c8318cba94000040": 4,
                     "53234698c8318cc5d100004f": 1
@@ -603,7 +604,7 @@ Result contains, amongst other :
                         "_type": "Document",
                         "id": "5320a76fbc2e51d7135f0c8c",
                         "creation_date": "2014-02-14T08:46:11.000Z",
-                        "token": "5320a6abc8318cc5d1000049",
+                        "provider": "5320a6abc8318cc5d1000049",
                         "company": "52fb7b90c8318c4dc800006b",
                         "document_type": "5252ce4ce4cfcd16f55cfa3f",
                         "actions": {
@@ -653,7 +654,7 @@ Result contains, amongst other :
                     "document_types": {
                         "5252ce4ce4cfcd16f55cfa3c": 1
                     },
-                    "tokens": {
+                    "providers": {
                         "531dccedc8318cc5d1000037": 1
                     },
                     "creation_dates": {
@@ -665,7 +666,7 @@ Result contains, amongst other :
                         "_type": "Document",
                         "id": "531dcd94731d5a284f707ac1",
                         "creation_date": "2013-10-01T14:48:41.000Z",
-                        "token": "531dccedc8318cc5d1000037",
+                        "provider": "531dccedc8318cc5d1000037",
                         "company": "52f0e4f9c8318c4dc8000039",
                         "document_type": "5252ce4ce4cfcd16f55cfa3c",
                         "actions": {},
@@ -708,7 +709,7 @@ View all data for the document.
                 "_type": "Document",
                 "id": "532347451eab8a0e22c2e65f",
                 "creation_date": "2014-03-14T17:26:15.000Z",
-                "token": "53234698c8318cc5d100004f",
+                "provider": "53234698c8318cc5d100004f",
                 "company": "52fb7b90c8318c4dc800006b",
                 "document_type": "5252ce4ce4cfcd16f55cfa41",
                 "actions": {
@@ -960,7 +961,7 @@ The key will be reused on the `document_type` property for every `/documents/` e
 ### List providers [GET]
 Retrieve all providers available for the current user, with document count and the date the last document created by this provider was updated.
 
-The key will be reused on the `token` property for every `/documents/` endpoint.
+The key will be reused on the `provider` property for every `/documents/` endpoint.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.

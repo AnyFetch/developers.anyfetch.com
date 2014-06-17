@@ -25,7 +25,7 @@ $(function() {
 $('body').scrollspy({ target: '#nav', offset: 130 });
 
 $(function(){
-    // Check the initial Poistion of the Sticky Header
+    // Check the initial position of the Sticky Header
     var toc = $('#toc');
     if(toc[0]) {
         var stickyHeaderTop = toc.position().top - 100;
