@@ -56,19 +56,19 @@ Status code will be 200 if all queries passed. If an error occured, the `errored
                 },
                 "/providers": {
                     "53234698c8318cc5d100004f": {
-                        "application": "53232d1dc8318cba94000042",
+                        "client": "53232d1dc8318cba94000042",
                         "name": "Evernote",
                         "updated": "2014-03-14T18:15:37.603Z",
                         "document_count": 2
                     },
                     "5320a682c8318cba94000040": {
-                        "application": "52bff114c8318c29e9000005",
+                        "client": "52bff114c8318c29e9000005",
                         "name": "Dropbox",
                         "updated": "2014-03-21T16:48:16.486Z",
                         "document_count": 14
                     },
                     "5320a6abc8318cc5d1000049": {
-                        "application": "53047faac8318c2d65000096",
+                        "client": "53047faac8318c2d65000096",
                         "name": "GMail",
                         "updated": "2014-03-20T19:15:11.048Z",
                         "document_count": 26
@@ -212,9 +212,9 @@ Subcompanies are companies you own and have created.
 They allow you to isolate data: no data stored in a subcompany can be accessed from any other place.
 
 ### Retrieve all subcompanies [GET]
-Retrieve all subcompanies from the current company.
+> This endpoint is only available to admin users.
 
-Only available for admin users.
+Retrieve all subcompanies from the current company.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -240,13 +240,15 @@ Only available for admin users.
             ]
 
 ### Create a new subcompany [POST]
+> This endpoint is only available to admin users.
+
 Create a new subcompany.
 
 You may customize hydraters list, or use default list.
 
-Only available for admin users.
+The user executing the call (either via `Basic` or `Bearer`) will be migrated to the new company. To create a new subcompany, the best practice is to create a new admin (`POST /users`) before, then create the new company while connected with the new user.
 
-> Be careful: the user will be migrated to the new company. To create a new subcompany, the best practice is to create a new admin (`POST /users`) before, then create the new company while connected with the new user.
+Note the "original" company will only be able to `DELETE` the subcompany, and can't do anything more: the new user will effectively be the admin in the subcompany, and the only one able to view and add documents, users...
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -280,9 +282,9 @@ Only available for admin users.
 
 ## Subcompany [/subcompanies/{id}]
 ### Retrieve a subcompany [GET]
-Retrieve a specific subcompany from the current company.
+> This endpoint is only available to admin users.
 
-Only available for admin users.
+Retrieve a specific subcompany from the current company.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -339,7 +341,8 @@ By default, you are not allowed to remove a subcompany with subsubcompanies. To 
 # Group Documents
 Endpoints for retrieving documents
 
-## Documents [/documents{?search, ?before, ?after, ?document_type, ?provider, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit}]
+## Documents [/documents{?search, ?before, ?after, ?document_type, ?provider, ?id, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit}]
+>>>>>>> gh-pages
 Access documents resources.
 
 ### Search documents [GET]
@@ -355,6 +358,7 @@ Return informations aggregated over the result set. The `score` key indicated do
     + search (optional, string, `john smith`) ... Search query, probably the most important parameter for this query
     + before (optional, date, `2014-03-21`) ... Only display documents created before this date.
     + after (optional, date, `2014-01-25`) ... Only display documents created after this date.
+    + id (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this id. <small>You can use the param multiple times to allow for multiples `id`, for instance `?id=1&id=2&id=3`</small>.
     + document_type (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this document type. <small>You can use the param multiple times to allow for multiples `document_type`</small>.
     + provider (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this provider. <small>You can use the param multiple times to allow for multiples `provider`</small>
     + _meta (optional, string, `John Smith`) ... Strict search on `meta` key. Replace `meta` with the name of the meta you wish to search on.
@@ -433,10 +437,10 @@ Return informations aggregated over the result set. The `score` key indicated do
 
 ### Create new document [POST]
 > This endpoint can only be used with token authentication.
+> 
+> You can't send a file and a document at the same time, you need to send the document first and then send the file on `/documents/:id/file`.
 
 Send a new document on anyFetch.
-
-> You can't send a file and a document at the same time, you need to send the document first and then send the file on `/documents/:id/file`.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -488,9 +492,9 @@ Send a new document on anyFetch.
             }
 
 ## Document [/documents/{id}{?search}]
-Data regarding a document.
-
 > Please note: for every endpoint in the form `/documents/{id}`, you can also use an alternative URL `/documents/identifier/{identifier}` where `identifier` is the url-encoded provider identifier.
+
+Data regarding a document.
 
 ### Get Document [GET]
 A single document with its details.
@@ -785,7 +789,9 @@ User resources.
 
 ## Users Collection [/users]
 ### List all Users [GET]
-Retrieve a list of all users in the current company.
+> This endpoint is only available to admin users.
+
+Retrieve a list of all users in the current company. Users migrated in a subcompany are not shown anymore.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -805,9 +811,10 @@ Retrieve a list of all users in the current company.
             ]
 
 ### Create a User [POST]
+> This endpoint is only available to admin users.
+
 Create a new user on this company. If `is_admin` is not specified, a standard user will be created.
 
-> You need to be an administrator to create another user.
 
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
@@ -869,11 +876,11 @@ Retrieve information about specified user.
             }
 
 ### Remove a User [DELETE]
-Remove specified user. The user should be in your company, you can't delete a user in a subcompany.
-
-> You need to be an administrator to delete another user.
-
+> This endpoint is only available to admin users.
+> 
 > You can't delete yourself.
+
+Remove specified user. The user should be in your company, you can't delete a user in a subcompany.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -964,19 +971,19 @@ The key will be reused on the `provider` property for every `/documents/` endpoi
 
             {
                 "53234698c8318cc5d100004f": {
-                    "application": "53232d1dc8318cba94000042",
+                    "client": "53232d1dc8318cba94000042",
                     "name": "Evernote",
                     "updated": "2014-03-14T18:15:37.603Z",
                     "document_count": 2
                 },
                 "5320a682c8318cba94000040": {
-                    "application": "52bff114c8318c29e9000005",
+                    "client": "52bff114c8318c29e9000005",
                     "name": "Dropbox",
                     "updated": "2014-03-21T16:48:16.486Z",
                     "document_count": 14
                 },
                 "5320a6abc8318cc5d1000049": {
-                    "application": "53047faac8318c2d65000096",
+                    "client": "53047faac8318c2d65000096",
                     "name": "GMail",
                     "updated": "2014-03-20T19:15:11.048Z",
                     "document_count": 26
