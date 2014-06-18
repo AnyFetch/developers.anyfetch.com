@@ -256,6 +256,7 @@ Note the "original" company will only be able to `DELETE` the subcompany, and ca
 > * `403 NotAuthorized`: you are trying to migrate the last admin from your company.
 > * `409 MissingParameter`: `name` is not specified
 > * `409 MissingParameter`: `hydraters` is not a JSON array.
+> * `409 InvalidArgumentError`: at least one item from `hydraters` is an unknown hydrater.
 
 
 + Request (application/json)
