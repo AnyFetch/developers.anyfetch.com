@@ -343,7 +343,6 @@ By default, you are not allowed to remove a subcompany with subsubcompanies. To 
 Endpoints for retrieving documents
 
 ## Documents [/documents{?search, ?before, ?after, ?document_type, ?provider, ?id, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit}]
->>>>>>> gh-pages
 Access documents resources.
 
 ### Search documents [GET]
