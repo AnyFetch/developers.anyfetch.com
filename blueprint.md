@@ -243,6 +243,7 @@ Retrieve all subcompanies from the current company.
 > This endpoint is only available to admin users.
 
 Create a new subcompany.
+Name must only contain alphanumeric characters, `@`, `-` , and `_`.
 
 You may customize hydraters list, or use default list.
 

@@ -266,7 +266,8 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 </code></pre></li></ul></section><section id="subcompanies-subcompanies-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create a new subcompany</span></div><div style="float:left"><a href="#subcompanies-subcompanies-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/subcompanies</code></div></div><div class="panel-body"><blockquote>
 <p>This endpoint is only available to admin users.</p>
 </blockquote>
-<p>Create a new subcompany.</p>
+<p>Create a new subcompany.
+Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> , and <code>_</code>.</p>
 <p>You may customize hydraters list, or use default list.</p>
 <p>The user executing the call (either via <code>Basic</code> or <code>Bearer</code>) will be migrated to the new company. To create a new subcompany, the best practice is to create a new admin (<code>POST /users</code>) before, then create the new company while connected with the new user.</p>
 <p>Note the “original” company will only be able to <code>DELETE</code> the subcompany, and can’t do anything more: the new user will effectively be the admin in the subcompany, and the only one able to view and add documents, users…</p>
