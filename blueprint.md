@@ -888,10 +888,11 @@ Update information about specified user.
 
 The `is_admin` flag can only be toggled by an admin.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
-> * `403 Forbidden`: you are not an administrator on this account, and you can't update someone else.
 > * `401 ForbiddenScheme`: `Bearer` authentication used, but this endpoint can only be used with `Basic` scheme.
+> * `403 Forbidden`: you are not an administrator on this account, and you can't update someone else.
+> * `403 Forbidden`: you can't downgrade yourself, you need to remain an admin.
 > * `404 ResourceNotFound`: the user does not exist, or is not part of this company.
 > * `409 InvalidArgument`: `id` is not a valid id.
 
