@@ -877,6 +877,36 @@ Retrieve information about specified user.
                 "user_url": "/users/52fb7b90c8318c4dc800006c"
             }
 
+### Update a User [PATCH]
+> This endpoint can only be used with `Basic` authentication.
+>
+> An admin can update any user in his company.
+> 
+> A standard user can only update himself.
+
+Update information about specified user.
+
+The `is_admin` flag can only be toggled by an admin.
+
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+> * `403 Forbidden`: you are not an administrator on this account, and you can't update someone else.
+> * `401 ForbiddenScheme`: `Bearer` authentication used, but this endpoint can only be used with `Basic` scheme.
+> * `404 ResourceNotFound`: the user does not exist, or is not part of this company.
+> * `409 InvalidArgument`: `id` is not a valid id.
+
++ Request (application/json)
+
+            {
+                "email": "new-email@gmail.com",
+                "name": "New Name",
+                "password": "passwd",
+                "is_admin": true,
+            }
+
++ Response 204
+
+
 ### Remove a User [DELETE]
 > This endpoint is only available to admin users.
 > 
