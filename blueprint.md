@@ -31,7 +31,7 @@ Queue multiple `GET` queries in a single request. For instance, you can call `/b
 
 Status code will be 200 if all queries passed. If an error occured, the `errored` key will tell you which page failed to load.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `405 MethodNotAllowed`: unable to access some `page` with GET.
 > * `409 MissingParameter`: no `page` specified, or invalid `page` value.
@@ -93,7 +93,7 @@ Retrieve data about the current account. This endpoint return:
 - `_url` to another endpoint of the API (HATEOAS design). Notice the `current_user_url` key.
 - `server_time`: current server date, if you need to compute deltas with local client.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 
 + Response 200 (application/json)
@@ -118,7 +118,7 @@ Retrieve data about the current account. This endpoint return:
 
 Create or retrieve a token. The token will always be the same until you call `DELETE /company/reset` or `DELETE /token`.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 ForbiddenScheme`: `Bearer` authentication used, but this endpoint can only be used with `Basic` scheme.
 > * `401 InvalidCredentials`: non matching user
 
@@ -134,7 +134,7 @@ Create or retrieve a token. The token will always be the same until you call `DE
 
 Remove the token returned by `GET /token`.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 ForbiddenScheme`: `Bearer` authentication used, but this endpoint can only be used with `Basic` scheme.
 > * `401 InvalidCredentials`: non matching user
 
@@ -147,7 +147,7 @@ Retrieve the current company details.
 
 Contains your company name, and the list of hydraters used on the account.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 
 + Response 200 (application/json)
@@ -171,7 +171,7 @@ Contains your company name, and the list of hydraters used on the account.
 ### Update documents [POST]
 Ping all providers for the current company, checking for new available documents.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `429 Too Many Requests`: this endpoint is throttled at 1 request per second, with a burst of 2 / s.
 
@@ -183,7 +183,7 @@ Reset **all** documents, tokens and providers from the account.
 
 Subcompanies and users are not affected.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 
 + Response 204
@@ -216,7 +216,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 
 Retrieve all subcompanies from the current company.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator on this account.
 
@@ -251,7 +251,7 @@ The user executing the call (either via `Basic` or `Bearer`) will be migrated to
 
 Note the "original" company will only be able to `DELETE` the subcompany, and can't do anything more: the new user will effectively be the admin in the subcompany, and the only one able to view and add documents, users...
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator on this account.
 > * `403 NotAuthorized`: you are trying to migrate the last admin from your company.
@@ -288,7 +288,7 @@ Note the "original" company will only be able to `DELETE` the subcompany, and ca
 
 Retrieve a specific subcompany from the current company.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator on this account.
 > * `409 InvalidArgument`: `id` is not a valid id.
@@ -315,7 +315,7 @@ Delete the subcompany, **all** its documents and **all** its users.
 
 By default, you are not allowed to remove a subcompany with subsubcompanies. To force the subcompany removal, add `?force=1`.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator on this account.
 > * `403 Forbidden`: the subcompanies has subsubcompanies and can't be removed, use `?force=1`.
@@ -351,7 +351,7 @@ Search within all available data for documents matching specified filter.
 
 Return informations aggregated over the result set. The `score` key indicated document's relevance regarding query.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `409 InvalidArgument`: malformed search query, with misused characters (such as `+ - && || ! ( ) { } [ ] ^ \" ~ * ? : \\`)
 
@@ -444,7 +444,7 @@ Return informations aggregated over the result set. The `score` key indicated do
 
 Send a new document on anyFetch.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: document was not provided with this access token, and can't be updated.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
@@ -506,7 +506,7 @@ Result contains, amongst other :
 * `full` projection, in `data`,
 * `title` projection, in `title`.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
@@ -544,7 +544,7 @@ Result contains, amongst other :
 ### Delete Document [DELETE]
 Remove specified document.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `401 ForbiddenScheme`: `Basic` auth is not supported for this endpoint.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
@@ -566,7 +566,7 @@ Result contains, amongst other :
 * `snippet` projection for similar documents, in `data`
 * `keywords` used to find similar documents
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
@@ -636,7 +636,7 @@ Result contains, amongst other :
 * `title` projection for `id` document, in `title`.
 * `snippet` projection for related documents, in `data`
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
@@ -696,7 +696,7 @@ Also include information about hydraters (`hydratedBy`, `hydrating` and `lastHyd
 ### Get raw document [GET]
 View all data for the document.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
@@ -739,7 +739,7 @@ Work with the document's file.
 ### Get document file [GET]
 Retrieve the file associated with a document.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
@@ -757,7 +757,7 @@ Retrieve the file associated with a document.
 ### Set document's file [POST]
 This endpoint should be used when providing, to associate a file with a document.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `404 ResourceNotFound`: no file associated with this document
@@ -795,7 +795,7 @@ User resources.
 
 Retrieve a list of all users in the current company. Users migrated in a subcompany are not shown anymore.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 
 + Response 200 (application/json)
@@ -819,7 +819,7 @@ Create a new user on this company. If `is_admin` is not specified, a standard us
 
 
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator on this account.
 > * `409 MissingParameter`: missing a parameter (either `email`, `name` or `password`)
@@ -860,7 +860,7 @@ A single User object with all its details. This resource has the following attri
 ### Retrieve a User [GET]
 Retrieve information about specified user.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: the user does not exist, or is not part of this company.
 > * `409 InvalidArgument`: `id` is not a valid id.
@@ -884,7 +884,7 @@ Retrieve information about specified user.
 
 Remove specified user. The user should be in your company, you can't delete a user in a subcompany.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator on this account.
 > * `403 NotAuthorized`: you can't delete yourself
@@ -913,7 +913,7 @@ Retrieve all document types available for the current user, with document count 
 
 The key will be reused on the `document_type` property for every `/documents/` endpoint.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 
 + Response 200 (application/json)
@@ -965,7 +965,7 @@ Retrieve all providers available for the current user, with document count and t
 
 The key will be reused on the `provider` property for every `/documents/` endpoint.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 
 + Response 200 (application/json)
