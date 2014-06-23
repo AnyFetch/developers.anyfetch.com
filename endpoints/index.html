@@ -793,7 +793,7 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 <p>A standard user can only update himself.</p>
 </blockquote>
 <p>Update information about specified user. Only specified fields will be updated.</p>
-<p>The <code>is_admin</code> flag can only be toggled by an admin.</p>
+<p>The <code>is_admin</code> flag can only be toggled by an admin of the current company.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
@@ -812,7 +812,15 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
         "<span class="hljs-attribute">password</span>": <span class="hljs-value"><span class="hljs-string">"passwd"</span></span>,
         "<span class="hljs-attribute">is_admin</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     }
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><section id="users-user-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Remove a User</span></div><div style="float:left"><a href="#users-user-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/users/{id}</code></div></div><div class="panel-body"><blockquote>
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#849d37d2057900e47cb075d93fb4924b" class="pull-right">Toggle</a></li><li id="849d37d2057900e47cb075d93fb4924b" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>    {
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"User"</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"533d6b2a6355285e5563d005"</span></span>,
+        "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"new-email@gmail.com"</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"New Name"</span></span>,
+        "<span class="hljs-attribute">is_admin</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">user_url</span>": <span class="hljs-value"><span class="hljs-string">"/users/533d6b2a6355285e5563d005"</span>
+    </span>}
+</code></pre></li></ul></section><section id="users-user-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Remove a User</span></div><div style="float:left"><a href="#users-user-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/users/{id}</code></div></div><div class="panel-body"><blockquote>
 <p>This endpoint is only available to admin users.</p>
 <p>You can’t delete yourself.</p>
 </blockquote>

@@ -886,7 +886,7 @@ Retrieve information about specified user.
 
 Update information about specified user. Only specified fields will be updated.
 
-The `is_admin` flag can only be toggled by an admin.
+The `is_admin` flag can only be toggled by an admin of the current company.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -905,7 +905,16 @@ The `is_admin` flag can only be toggled by an admin.
                 "is_admin": true,
             }
 
-+ Response 204
++ Response 200
+
+            {
+                "_type": "User",
+                "id": "533d6b2a6355285e5563d005",
+                "email": "new-email@gmail.com",
+                "name": "New Name",
+                "is_admin": true,
+                "user_url": "/users/533d6b2a6355285e5563d005"
+            }
 
 
 ### Remove a User [DELETE]
