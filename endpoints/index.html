@@ -792,14 +792,15 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 <p>An admin can update any user in his company.</p>
 <p>A standard user can only update himself.</p>
 </blockquote>
-<p>Update information about specified user.</p>
+<p>Update information about specified user. Only specified fields will be updated.</p>
 <p>The <code>is_admin</code> flag can only be toggled by an admin.</p>
 <blockquote>
 <ul>
-<li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>403 Forbidden</code>: you are not an administrator on this account, and you can’t update someone else.</li>
 <li><code>401 ForbiddenScheme</code>: <code>Bearer</code> authentication used, but this endpoint can only be used with <code>Basic</code> scheme.</li>
+<li><code>403 Forbidden</code>: you are not an administrator on this account, and you can’t update someone else.</li>
+<li><code>403 Forbidden</code>: you can’t downgrade yourself, you need to remain an admin.</li>
 <li><code>404 ResourceNotFound</code>: the user does not exist, or is not part of this company.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>

@@ -884,7 +884,7 @@ Retrieve information about specified user.
 > 
 > A standard user can only update himself.
 
-Update information about specified user.
+Update information about specified user. Only specified fields will be updated.
 
 The `is_admin` flag can only be toggled by an admin.
 
