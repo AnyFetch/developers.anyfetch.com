@@ -737,11 +737,14 @@ View all data for the document.
 Work with the document's file.
 
 ### Get document file [GET]
-Retrieve the file associated with a document.
+Retrieve the file associated with a document, if any.
+
+File is discarded once hydration is ended.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
+> * `404 ResourceNotFound`: no file associated with this document.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
 > * `409 InvalidArgument`: `id` is not a valid id.
 > * `409 MissingParameter`: missing `file` content in request
