@@ -541,6 +541,41 @@ Result contains, amongst other :
                 }
             }
 
+
+### Patch Document [PATCH]
+Update a document.
+
+If new hydraters match, they'll be called right away.
+
+Hydraters use this endpoint to `PATCH` their changes too, and may overwrite some of your data if you `PATCH` before them.
+
+* `metadata` and `data` objects will be merged with their respective counterparts.
+* Identifiers in `related` will be converted to their respective `id`
+* Access tokens in `user_access` will be converted to their respective `user`.
+* A name in `document_type` will be converted to its respective `id`.
+
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+> * `404 ResourceNotFound`: document does not exist, or can't be accessed.
+> * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
+> * `409 InvalidArgument`: `id` is not a valid id.
+
++ Parameters
+    + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
++ Request (application/json)
+
+            {
+                "metadata": {
+                    from: "matthieu@anyfetch.com",
+                    to: "mehdi@anyfetch.com"
+                },
+                "document_type": "email",
+                "related": ["https://mail.google.com/mail/165sfd8qsf"]
+            }
+
++ Response 204
+
+
 ### Delete Document [DELETE]
 Remove specified document.
 
