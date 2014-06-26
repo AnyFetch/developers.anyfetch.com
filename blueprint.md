@@ -7,7 +7,7 @@ HOST: https://api.anyfetch.com
 
 **anyFetch API** is designed to help you search massive amounts of documents coming from various sources, in various formats. See [authentication](/authentication.html) for authentication details.
 
-Error codes are documented on [this page](/getting-started.html).
+Common error codes are documented on [this page](/getting-started.html).
 
 
 # Group Index
@@ -247,22 +247,27 @@ Name must only contain alphanumeric characters, `@`, `-` , and `_`.
 
 You may customize hydraters list, or use default list.
 
-The user executing the call (either via `Basic` or `Bearer`) will be migrated to the new company. To create a new subcompany, the best practice is to create a new admin (`POST /users`) before, then create the new company while connected with the new user.
+The user passed in `user` will be migrated to the new company, and made admin. To create a new subcompany, you'll need to create a new user (`POST /users`) before, then create the new company passing the `user` id.
 
-Note the "original" company will only be able to `DELETE` the subcompany, and can't do anything more: the new user will effectively be the admin in the subcompany, and the only one able to view and add documents, users...
+Note the "original" (parent) company will only be able to `DELETE` the subcompany, and can't do anything more: the new user will effectively be the admin in the subcompany, and the only one able to view and add documents, users...
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator on this account.
 > * `403 NotAuthorized`: you are trying to migrate the last admin from your company.
+> * `404 NotFound`: unable to find the user to migrate
+> * `409 MissingParameter`: `user` is not specified
+> * `409 MissingParameter`: `user` is not a valid ObjectId
 > * `409 MissingParameter`: `name` is not specified
-> * `409 MissingParameter`: `hydraters` is not a JSON array.
-> * `409 InvalidArgumentError`: at least one item from `hydraters` is an unknown hydrater.
+> * `409 InvalidArgument`: you can' migrate yourself
+> * `409 InvalidArgument`: `hydraters` is not a JSON array.
+> * `409 InvalidArgument`: at least one item from `hydraters` is an unknown hydrater.
 
 
 + Request (application/json)
 
             {
+                "user": "52fb7b90c8318c4dc800006c"
                 "name": "new-subcompany-name",
             }
 
