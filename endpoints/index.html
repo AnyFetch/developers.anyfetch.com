@@ -269,7 +269,11 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <p>Create a new subcompany.
 Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> , and <code>_</code>.</p>
 <p>You may customize hydraters list, or use default list.</p>
-<p>The user passed in <code>user</code> will be migrated to the new company, and made admin. To create a new subcompany, you’ll need to create a new user (<code>POST /users</code>) before, then create the new company passing the <code>user</code> id.</p>
+<p>The user passed in <code>user</code> will be migrated to the new company, and made admin. To create a new subcompany, you’ll need :</p>
+<ol>
+<li>to create a new user (<code>POST /users</code>) in the current company;</li>
+<li>then create the new company passing the newly created <code>user</code> id as param.</li>
+</ol>
 <p>Note the “original” (parent) company will only be able to <code>DELETE</code> the subcompany, and can’t do anything more: the new user will effectively be the admin in the subcompany, and the only one able to view and add documents, users…</p>
 <blockquote>
 <ul>

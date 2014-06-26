@@ -247,7 +247,10 @@ Name must only contain alphanumeric characters, `@`, `-` , and `_`.
 
 You may customize hydraters list, or use default list.
 
-The user passed in `user` will be migrated to the new company, and made admin. To create a new subcompany, you'll need to create a new user (`POST /users`) before, then create the new company passing the `user` id.
+The user passed in `user` will be migrated to the new company, and made admin. To create a new subcompany, you'll need :
+
+1. to create a new user (`POST /users`) in the current company;
+2. then create the new company passing the newly created `user` id as param.
 
 Note the "original" (parent) company will only be able to `DELETE` the subcompany, and can't do anything more: the new user will effectively be the admin in the subcompany, and the only one able to view and add documents, users...
 
