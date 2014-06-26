@@ -517,13 +517,13 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
     </span>}
 </span>}
 </code></pre></li></ul></section><section id="documents-document-patch" class="panel panel-warning"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Patch Document</span></div><div style="float:left"><a href="#documents-document-patch" class="btn btn-xs btn-warning">PATCH</a></div><div style="overflow:hidden"><code>/documents/{id}{?search}</code></div></div><div class="panel-body"><p>Update a document.</p>
-<p>If new hydraters match, they’ll be called right away.</p>
-<p>Hydraters use this endpoint to <code>PATCH</code> their changes too, and may overwrite some of your data if you <code>PATCH</code> before them.</p>
+<p>If the update causes new hydraters to match the document, they’ll be called right away for hydration.</p>
+<p>Hydraters use this endpoint to <code>PATCH</code> their changes to the document. They may overwrite some of your data if you <code>PATCH</code> before them.</p>
 <ul>
-<li><code>metadata</code> and <code>data</code> objects will be merged with their respective counterparts.</li>
-<li>Identifiers in <code>related</code> will be converted to their respective <code>id</code></li>
-<li>Access tokens in <code>user_access</code> will be converted to their respective <code>user</code>.</li>
-<li>A name in <code>document_type</code> will be converted to its respective <code>id</code>.</li>
+<li><code>metadata</code> and <code>data</code> objects will be merged with their respective counterparts (first-level merge only).</li>
+<li>Identifiers in <code>related</code> will be converted to their matching <code>id</code></li>
+<li>Access tokens in <code>user_access</code> will be converted to their matching <code>user</code>.</li>
+<li>A name in <code>document_type</code> will be converted to its matching <code>id</code>.</li>
 </ul>
 <blockquote>
 <ul>

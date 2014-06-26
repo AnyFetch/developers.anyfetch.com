@@ -545,14 +545,14 @@ Result contains, amongst other :
 ### Patch Document [PATCH]
 Update a document.
 
-If new hydraters match, they'll be called right away.
+If the update causes new hydraters to match the document, they'll be called right away for hydration.
 
-Hydraters use this endpoint to `PATCH` their changes too, and may overwrite some of your data if you `PATCH` before them.
+Hydraters use this endpoint to `PATCH` their changes to the document. They may overwrite some of your data if you `PATCH` before them.
 
-* `metadata` and `data` objects will be merged with their respective counterparts.
-* Identifiers in `related` will be converted to their respective `id`
-* Access tokens in `user_access` will be converted to their respective `user`.
-* A name in `document_type` will be converted to its respective `id`.
+* `metadata` and `data` objects will be merged with their respective counterparts (first-level merge only).
+* Identifiers in `related` will be converted to their matching `id`
+* Access tokens in `user_access` will be converted to their matching `user`.
+* A name in `document_type` will be converted to its matching `id`.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
