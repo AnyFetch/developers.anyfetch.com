@@ -983,3 +983,30 @@ The key will be reused on the `token` property for every `/documents/` endpoint.
                     "document_count": 26
                 }
             }
+
+## Provider [/provders/{id}]
+### Get Provider [GET]
+Retrieve basic information about one provider.
+
+> * `404 Not Found`: `id` does not match a token
+> * `409 InvalidArgument`: `id` is not a valid id.
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "id": "53234698c8318cc5d100004f",
+                "is_basic_token": false,
+                "client": {
+                    "id": "53232d1dc8318cba94000042",
+                    "name": "Evernote"
+                }
+            }
+
+### Delete Provider [DELETE]
+Revokes a provider token and subsequently deletes linked documents.
+
+> * `404 Not Found`: `id` does not match a token
+> * `409 InvalidArgument`: `id` is not a valid id.
+
++ Response 204
