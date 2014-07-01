@@ -984,10 +984,12 @@ The key will be reused on the `token` property for every `/documents/` endpoint.
                 }
             }
 
-## Provider [/provders/{id}]
+## Provider [/providers/{id}]
 ### Get Provider [GET]
 Retrieve basic information about one provider.
 
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 Not Found`: `id` does not match a token
 > * `409 InvalidArgument`: `id` is not a valid id.
 
@@ -1004,8 +1006,12 @@ Retrieve basic information about one provider.
             }
 
 ### Delete Provider [DELETE]
+> This endpoint can only be used with `Basic` authentication.
+
 Revokes a provider token and subsequently deletes linked documents.
 
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 Not Found`: `id` does not match a token
 > * `409 InvalidArgument`: `id` is not a valid id.
 
