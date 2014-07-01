@@ -507,7 +507,7 @@ Send a new document on anyFetch.
 Data regarding a document.
 
 ### Get Document [GET]
-A single document with its details.
+A single document with its details, [projected according to its `document_type`](/guides/concepts/projection.html). For raw data access, use `GET /documents/:id/raw`
 
 Result contains, amongst other :
 

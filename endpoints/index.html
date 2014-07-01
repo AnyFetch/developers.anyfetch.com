@@ -486,7 +486,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <p>Please note: for every endpoint in the form <code>/documents/{id}</code>, you can also use an alternative URL <code>/documents/identifier/{identifier}</code> where <code>identifier</code> is the url-encoded provider identifier.</p>
 </blockquote>
 <p>Data regarding a document.</p>
-<section id="documents-document-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get Document</span></div><div style="float:left"><a href="#documents-document-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents/{id}{?search}</code></div></div><div class="panel-body"><p>A single document with its details.</p>
+<section id="documents-document-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get Document</span></div><div style="float:left"><a href="#documents-document-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents/{id}{?search}</code></div></div><div class="panel-body"><p>A single document with its details, <a href="/guides/concepts/projection.html">projected according to its <code>document_type</code></a>. For raw data access, use <code>GET /documents/:id/raw</code></p>
 <p>Result contains, amongst other :</p>
 <ul>
 <li><code>full</code> projection, in <code>data</code>,</li>
