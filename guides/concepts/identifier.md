@@ -23,4 +23,4 @@ When using the second syntax, **don't forget to url-encode** your `identifier`, 
 For convenience, this identifier is repeated in each reply from the API (even if you used the `id` syntax), allowing you to completely discard the `id` if you want to keep your own `identifier`.
 
 ## Unicity
-`identifier` are unique by company. If you try to create a document with an `identifier` already provided by another `token` on the same account, you'll get a `403 Forbidden` error.
+`identifier` are unique by company. If you try to create a document with an `identifier` already provided by another `provider` on the same account, you'll get a `403 Forbidden` error.

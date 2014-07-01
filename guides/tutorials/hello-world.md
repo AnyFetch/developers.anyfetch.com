@@ -77,7 +77,7 @@ https://api.anyfetch.com/documents \
     "_type":"Document",
     "id":"52f2367374a24df253314b3c",
     "creation_date":"2014-02-05T10:39:36.623Z",
-    "token":"52f212ca74a24df25331490c",
+    "provider":"52f212ca74a24df25331490c",
     "company":"52f0bb24c8318c2d65000035",
     "document_type":"5252ce4ce4cfcd16f55cfa3b",
     "actions":{},
@@ -97,7 +97,7 @@ anyFetch replied with the new document. Keep the `id` somewhere, we'll need it l
 Things to note...
 
 * `creation_date` was automatically set for you. You can override it when need be.
-* `token`, for security reason, is not the token you used to provide, but an identifier of your token. This lets users access the documents you created without compromising your token.
+* `provider`, for security reason, is not the token you used to provide, but an identifier of your provider. This lets users access the documents you created without compromising your token.
 * `user_access` is `null`. This means every user in the company can access it.
 
 ### Send the file
@@ -130,7 +130,7 @@ https://api.anyfetch.com/documents/${ID}/raw
     "_type":"Document",
     "id":"533570229ad9a4665a8d6499",
     "creation_date":"2014-03-28T12:50:42.496Z",
-    "token":"53357005394e45c459176b4f",
+    "provider":"53357005394e45c459176b4f",
     "company":"530f392ec8318cba94000020",
     "document_type":"5252ce4ce4cfcd16f55cfa3c",
     "actions":{},
@@ -170,7 +170,7 @@ https://api.anyfetch.com/documents?search=anyfetch
         "document_types":{
             "5252ce4ce4cfcd16f55cfa3c":1
         },
-        "tokens":{
+        "providers":{
             "53330deb745e83fe25f6c3dc":1
         },
         "creation_dates":{
@@ -183,7 +183,7 @@ https://api.anyfetch.com/documents?search=anyfetch
             "id":"52f2367374a24df253314b3c",
             "identifier":"sample-txt",
             "creation_date":"2014-03-26T17:28:47.688Z",
-            "token":"53330deb745e83fe25f6c3dc",
+            "provider":"53330deb745e83fe25f6c3dc",
             "company":"52f0bb24c8318c2d65000035",
             "document_type":"5252ce4ce4cfcd16f55cfa3c",
             "actions":{},

@@ -7,7 +7,7 @@ HOST: https://api.anyfetch.com
 
 **anyFetch API** is designed to help you search massive amounts of documents coming from various sources, in various formats. See [authentication](/authentication.html) for authentication details.
 
-Error codes are documented on [this page](/getting-started.html).
+Common error codes are documented on [this page](/getting-started.html).
 
 
 # Group Index
@@ -31,7 +31,7 @@ Queue multiple `GET` queries in a single request. For instance, you can call `/b
 
 Status code will be 200 if all queries passed. If an error occured, the `errored` key will tell you which page failed to load.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `405 MethodNotAllowed`: unable to access some `page` with GET.
 > * `409 MissingParameter`: no `page` specified, or invalid `page` value.
@@ -56,19 +56,19 @@ Status code will be 200 if all queries passed. If an error occured, the `errored
                 },
                 "/providers": {
                     "53234698c8318cc5d100004f": {
-                        "application": "53232d1dc8318cba94000042",
+                        "client": "53232d1dc8318cba94000042",
                         "name": "Evernote",
                         "updated": "2014-03-14T18:15:37.603Z",
                         "document_count": 2
                     },
                     "5320a682c8318cba94000040": {
-                        "application": "52bff114c8318c29e9000005",
+                        "client": "52bff114c8318c29e9000005",
                         "name": "Dropbox",
                         "updated": "2014-03-21T16:48:16.486Z",
                         "document_count": 14
                     },
                     "5320a6abc8318cc5d1000049": {
-                        "application": "53047faac8318c2d65000096",
+                        "client": "53047faac8318c2d65000096",
                         "name": "GMail",
                         "updated": "2014-03-20T19:15:11.048Z",
                         "document_count": 26
@@ -93,7 +93,7 @@ Retrieve data about the current account. This endpoint return:
 - `_url` to another endpoint of the API (HATEOAS design). Notice the `current_user_url` key.
 - `server_time`: current server date, if you need to compute deltas with local client.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 
 + Response 200 (application/json)
@@ -118,7 +118,7 @@ Retrieve data about the current account. This endpoint return:
 
 Create or retrieve a token. The token will always be the same until you call `DELETE /company/reset` or `DELETE /token`.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 ForbiddenScheme`: `Bearer` authentication used, but this endpoint can only be used with `Basic` scheme.
 > * `401 InvalidCredentials`: non matching user
 
@@ -134,7 +134,7 @@ Create or retrieve a token. The token will always be the same until you call `DE
 
 Remove the token returned by `GET /token`.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 ForbiddenScheme`: `Bearer` authentication used, but this endpoint can only be used with `Basic` scheme.
 > * `401 InvalidCredentials`: non matching user
 
@@ -147,7 +147,7 @@ Retrieve the current company details.
 
 Contains your company name, and the list of hydraters used on the account.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 
 + Response 200 (application/json)
@@ -171,7 +171,7 @@ Contains your company name, and the list of hydraters used on the account.
 ### Update documents [POST]
 Ping all providers for the current company, checking for new available documents.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `429 Too Many Requests`: this endpoint is throttled at 1 request per second, with a burst of 2 / s.
 
@@ -183,7 +183,7 @@ Reset **all** documents, tokens and providers from the account.
 
 Subcompanies and users are not affected.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 
 + Response 204
@@ -212,11 +212,11 @@ Subcompanies are companies you own and have created.
 They allow you to isolate data: no data stored in a subcompany can be accessed from any other place.
 
 ### Retrieve all subcompanies [GET]
+> This endpoint is only available to admin users.
+
 Retrieve all subcompanies from the current company.
 
-Only available for admin users.
-
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator on this account.
 
@@ -240,26 +240,37 @@ Only available for admin users.
             ]
 
 ### Create a new subcompany [POST]
+> This endpoint is only available to admin users.
+
 Create a new subcompany.
+Name must only contain alphanumeric characters, `@`, `-` , and `_`.
 
 You may customize hydraters list, or use default list.
 
-The user executing the call (either via `Basic` or `Bearer`) will be migrated to the new company. To create a new subcompany, the best practice is to create a new admin (`POST /users`) before, then create the new company while connected with the new user.
+The user passed in `user` will be migrated to the new company, and made admin. To create a new subcompany, you'll need :
 
-Only available for admin users.
+1. to create a new user (`POST /users`) in the current company;
+2. then create the new company passing the newly created `user` id as param.
 
+Note the "original" (parent) company will only be able to `DELETE` the subcompany, and can't do anything more: the new user will effectively be the admin in the subcompany, and the only one able to view and add documents, users...
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator on this account.
 > * `403 NotAuthorized`: you are trying to migrate the last admin from your company.
+> * `404 NotFound`: unable to find the user to migrate
+> * `409 MissingParameter`: `user` is not specified
+> * `409 MissingParameter`: `user` is not a valid ObjectId
 > * `409 MissingParameter`: `name` is not specified
-> * `409 MissingParameter`: `hydraters` is not a JSON array.
+> * `409 InvalidArgument`: you can' migrate yourself
+> * `409 InvalidArgument`: `hydraters` is not a JSON array.
+> * `409 InvalidArgument`: at least one item from `hydraters` is an unknown hydrater.
 
 
 + Request (application/json)
 
             {
+                "user": "52fb7b90c8318c4dc800006c"
                 "name": "new-subcompany-name",
             }
 
@@ -281,11 +292,11 @@ Only available for admin users.
 
 ## Subcompany [/subcompanies/{id}]
 ### Retrieve a subcompany [GET]
+> This endpoint is only available to admin users.
+
 Retrieve a specific subcompany from the current company.
 
-Only available for admin users.
-
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator on this account.
 > * `409 InvalidArgument`: `id` is not a valid id.
@@ -312,7 +323,7 @@ Delete the subcompany, **all** its documents and **all** its users.
 
 By default, you are not allowed to remove a subcompany with subsubcompanies. To force the subcompany removal, add `?force=1`.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator on this account.
 > * `403 Forbidden`: the subcompanies has subsubcompanies and can't be removed, use `?force=1`.
@@ -340,7 +351,7 @@ By default, you are not allowed to remove a subcompany with subsubcompanies. To 
 # Group Documents
 Endpoints for retrieving documents
 
-## Documents [/documents{?search, ?before, ?after, ?document_type, ?token, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit}]
+## Documents [/documents{?search, ?before, ?after, ?document_type, ?provider, ?id, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit, ?sort}]
 Access documents resources.
 
 ### Search documents [GET]
@@ -348,7 +359,7 @@ Search within all available data for documents matching specified filter.
 
 Return informations aggregated over the result set. The `score` key indicated document's relevance regarding query.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `409 InvalidArgument`: malformed search query, with misused characters (such as `+ - && || ! ( ) { } [ ] ^ \" ~ * ? : \\`)
 
@@ -356,14 +367,16 @@ Return informations aggregated over the result set. The `score` key indicated do
     + search (optional, string, `john smith`) ... Search query, probably the most important parameter for this query
     + before (optional, date, `2014-03-21`) ... Only display documents created before this date.
     + after (optional, date, `2014-01-25`) ... Only display documents created after this date.
+    + id (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this id. <small>You can use the param multiple times to allow for multiples `id`, for instance `?id=1&id=2&id=3`</small>.
     + document_type (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this document type. <small>You can use the param multiple times to allow for multiples `document_type`</small>.
-    + token (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this token. <small>You can use the param multiple times to allow for multiples `token`</small>
+    + provider (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this provider. <small>You can use the param multiple times to allow for multiples `provider`</small>
     + _meta (optional, string, `John Smith`) ... Strict search on `meta` key. Replace `meta` with the name of the meta you wish to search on.
     + meta (optional, string, `John`) ... (prepend name with @) Full text search on `meta` key.  Replace `meta` with the name of the meta you wish to search on, for instance `?@name=john`
     + has_meta (optional, boolean, `1`) ... Only returns document having the `meta` key. Replace `meta` with the name of the meta you wish to search on.
     + snippet_size (optional, integer, `200`) ... Number of chars to include in the snippet
     + start (optional, integer, `5`) ... 0-based index of the first item to retrieve (for pagination).
     + limit (optional, integer, `20`) ... Max number of items to retrieve (for pagination)
+    + sort (optional, string, `creationDate`) ... Sort criteria. Can be `creationDate` (sort by document creation date), `lastModification` (sort by last modification date) or `_score` (default, sort by relevance to the query). Prepend with a `-` to reverse order (e.g. `-creationDate`).
 
 + Response 200 (application/json)
     + Body
@@ -374,7 +387,7 @@ Return informations aggregated over the result set. The `score` key indicated do
                         "5252ce4ce4cfcd16f55cfa41": 1,
                         "5252ce4ce4cfcd16f55cfa3c": 1
                     },
-                    "tokens": {
+                    "providers": {
                         "53234698c8318cc5d100004f": 1,
                         "5320a682c8318cba94000040": 1
                     },
@@ -392,7 +405,7 @@ Return informations aggregated over the result set. The `score` key indicated do
                         "id": "5320a7735ee6eed51339a1b3",
                         "identifier": "https://dropbox.com/228115297/all/anyfetchpitchdeckSF.pdf",
                         "creation_date": "2014-03-12T18:29:07.441Z",
-                        "token": "5320a682c8318cba94000040",
+                        "provider": "5320a682c8318cba94000040",
                         "company": "52fb7b90c8318c4dc800006b",
                         "document_type": "5252ce4ce4cfcd16f55cfa3c",
                         "actions": {
@@ -413,7 +426,7 @@ Return informations aggregated over the result set. The `score` key indicated do
                         "id": "532347451eab8a0e22c2e65f",
                         "identifier": "https://evernote.com/s1/sh/6dbd89d6",
                         "creation_date": "2014-03-14T17:26:15.000Z",
-                        "token": "53234698c8318cc5d100004f",
+                        "provider": "53234698c8318cc5d100004f",
                         "company": "52fb7b90c8318c4dc800006b",
                         "document_type": "5252ce4ce4cfcd16f55cfa41",
                         "actions": {
@@ -434,12 +447,12 @@ Return informations aggregated over the result set. The `score` key indicated do
 
 ### Create new document [POST]
 > This endpoint can only be used with token authentication.
+> 
+> You can't send a file and a document at the same time, you need to send the document first and then send the file on `/documents/:id/file`.
 
 Send a new document on anyFetch.
 
-> You can't send a file and a document at the same time, you need to send the document first and then send the file on `/documents/:id/file`.
-
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: document was not provided with this access token, and can't be updated.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
@@ -471,7 +484,7 @@ Send a new document on anyFetch.
                 "_type":"Document",
                 "id":"52f2367374a24df253314b3c",
                 "creation_date":"2014-02-05T10:39:36.623Z",
-                "token":"52f212ca74a24df25331490c",
+                "provider":"52f212ca74a24df25331490c",
                 "company":"52f0bb24c8318c2d65000035",
                 "document_type":"5252ce4ce4cfcd16f55cfa3b",
                 "document_url":"/documents/52f2367374a24df253314b3c",
@@ -489,9 +502,9 @@ Send a new document on anyFetch.
             }
 
 ## Document [/documents/{id}{?search}]
-Data regarding a document.
-
 > Please note: for every endpoint in the form `/documents/{id}`, you can also use an alternative URL `/documents/identifier/{identifier}` where `identifier` is the url-encoded provider identifier.
+
+Data regarding a document.
 
 ### Get Document [GET]
 A single document with its details.
@@ -501,7 +514,7 @@ Result contains, amongst other :
 * `full` projection, in `data`,
 * `title` projection, in `title`.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
@@ -517,7 +530,7 @@ Result contains, amongst other :
                 "_type": "Document",
                 "id": "532347451eab8a0e22c2e65f",
                 "creation_date": "2014-03-14T17:26:15.000Z",
-                "token": "53234698c8318cc5d100004f",
+                "provider": "53234698c8318cc5d100004f",
                 "company": "52fb7b90c8318c4dc800006b",
                 "document_type": "5252ce4ce4cfcd16f55cfa41",
                 "actions": {
@@ -536,10 +549,45 @@ Result contains, amongst other :
                 }
             }
 
+
+### Patch Document [PATCH]
+Update a document.
+
+If the update causes new hydraters to match the document, they'll be called right away for hydration.
+
+Hydraters use this endpoint to `PATCH` their changes to the document. They may overwrite some of your data if you `PATCH` before them.
+
+* `metadata` and `data` objects will be merged with their respective counterparts (first-level merge only).
+* Identifiers in `related` will be converted to their matching `id`
+* Access tokens in `user_access` will be converted to their matching `user`.
+* A name in `document_type` will be converted to its matching `id`.
+
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+> * `404 ResourceNotFound`: document does not exist, or can't be accessed.
+> * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
+> * `409 InvalidArgument`: `id` is not a valid id.
+
++ Parameters
+    + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
++ Request (application/json)
+
+            {
+                "metadata": {
+                    from: "matthieu@anyfetch.com",
+                    to: "mehdi@anyfetch.com"
+                },
+                "document_type": "email",
+                "related": ["https://mail.google.com/mail/165sfd8qsf"]
+            }
+
++ Response 204
+
+
 ### Delete Document [DELETE]
 Remove specified document.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `401 ForbiddenScheme`: `Basic` auth is not supported for this endpoint.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
@@ -561,7 +609,7 @@ Result contains, amongst other :
 * `snippet` projection for similar documents, in `data`
 * `keywords` used to find similar documents
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
@@ -589,7 +637,7 @@ Result contains, amongst other :
                     "5252ce4ce4cfcd16f55cfa3c": 4,
                     "5252ce4ce4cfcd16f55cfa41": 1
                 },
-                "tokens": {
+                "providers": {
                     "5320a6abc8318cc5d1000049": 5,
                     "5320a682c8318cba94000040": 4,
                     "53234698c8318cc5d100004f": 1
@@ -601,7 +649,7 @@ Result contains, amongst other :
                         "_type": "Document",
                         "id": "5320a76fbc2e51d7135f0c8c",
                         "creation_date": "2014-02-14T08:46:11.000Z",
-                        "token": "5320a6abc8318cc5d1000049",
+                        "provider": "5320a6abc8318cc5d1000049",
                         "company": "52fb7b90c8318c4dc800006b",
                         "document_type": "5252ce4ce4cfcd16f55cfa3f",
                         "actions": {
@@ -631,7 +679,7 @@ Result contains, amongst other :
 * `title` projection for `id` document, in `title`.
 * `snippet` projection for related documents, in `data`
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
@@ -651,7 +699,7 @@ Result contains, amongst other :
                     "document_types": {
                         "5252ce4ce4cfcd16f55cfa3c": 1
                     },
-                    "tokens": {
+                    "providers": {
                         "531dccedc8318cc5d1000037": 1
                     },
                     "creation_dates": {
@@ -663,7 +711,7 @@ Result contains, amongst other :
                         "_type": "Document",
                         "id": "531dcd94731d5a284f707ac1",
                         "creation_date": "2013-10-01T14:48:41.000Z",
-                        "token": "531dccedc8318cc5d1000037",
+                        "provider": "531dccedc8318cc5d1000037",
                         "company": "52f0e4f9c8318c4dc8000039",
                         "document_type": "5252ce4ce4cfcd16f55cfa3c",
                         "actions": {},
@@ -691,7 +739,7 @@ Also include information about hydraters (`hydratedBy`, `hydrating` and `lastHyd
 ### Get raw document [GET]
 View all data for the document.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
@@ -706,7 +754,7 @@ View all data for the document.
                 "_type": "Document",
                 "id": "532347451eab8a0e22c2e65f",
                 "creation_date": "2014-03-14T17:26:15.000Z",
-                "token": "53234698c8318cc5d100004f",
+                "provider": "53234698c8318cc5d100004f",
                 "company": "52fb7b90c8318c4dc800006b",
                 "document_type": "5252ce4ce4cfcd16f55cfa41",
                 "actions": {
@@ -732,11 +780,14 @@ View all data for the document.
 Work with the document's file.
 
 ### Get document file [GET]
-Retrieve the file associated with a document.
+Retrieve the file associated with a document, if any.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+File is discarded once hydration is ended.
+
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
+> * `404 ResourceNotFound`: no file associated with this document.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
 > * `409 InvalidArgument`: `id` is not a valid id.
 > * `409 MissingParameter`: missing `file` content in request
@@ -752,7 +803,7 @@ Retrieve the file associated with a document.
 ### Set document's file [POST]
 This endpoint should be used when providing, to associate a file with a document.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `404 ResourceNotFound`: no file associated with this document
@@ -786,9 +837,11 @@ User resources.
 
 ## Users Collection [/users]
 ### List all Users [GET]
-Retrieve a list of all users in the current company.
+> This endpoint is only available to admin users.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+Retrieve a list of all users in the current company. Users migrated in a subcompany are not shown anymore.
+
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 
 + Response 200 (application/json)
@@ -806,12 +859,13 @@ Retrieve a list of all users in the current company.
             ]
 
 ### Create a User [POST]
+> This endpoint is only available to admin users.
+
 Create a new user on this company. If `is_admin` is not specified, a standard user will be created.
 
-> You need to be an administrator to create another user.
 
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator on this account.
 > * `409 MissingParameter`: missing a parameter (either `email`, `name` or `password`)
@@ -852,7 +906,7 @@ A single User object with all its details. This resource has the following attri
 ### Retrieve a User [GET]
 Retrieve information about specified user.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: the user does not exist, or is not part of this company.
 > * `409 InvalidArgument`: `id` is not a valid id.
@@ -869,14 +923,54 @@ Retrieve information about specified user.
                 "user_url": "/users/52fb7b90c8318c4dc800006c"
             }
 
+### Update a User [PATCH]
+> This endpoint can only be used with `Basic` authentication.
+>
+> An admin can update any user in his company.
+> 
+> A standard user can only update himself.
+
+Update information about specified user. Only specified fields will be updated.
+
+The `is_admin` flag can only be toggled by an admin of the current company.
+
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+> * `401 ForbiddenScheme`: `Bearer` authentication used, but this endpoint can only be used with `Basic` scheme.
+> * `403 Forbidden`: you are not an administrator on this account, and you can't update someone else.
+> * `403 Forbidden`: you can't downgrade yourself, you need to remain an admin.
+> * `404 ResourceNotFound`: the user does not exist, or is not part of this company.
+> * `409 InvalidArgument`: `id` is not a valid id.
+
++ Request (application/json)
+
+            {
+                "email": "new-email@gmail.com",
+                "name": "New Name",
+                "password": "passwd",
+                "is_admin": true,
+            }
+
++ Response 200
+
+            {
+                "_type": "User",
+                "id": "533d6b2a6355285e5563d005",
+                "email": "new-email@gmail.com",
+                "name": "New Name",
+                "is_admin": true,
+                "user_url": "/users/533d6b2a6355285e5563d005"
+            }
+
+
 ### Remove a User [DELETE]
-Remove specified user. The user should be in your company, you can't delete a user in a subcompany.
-
-> You need to be an administrator to delete another user.
-
+> This endpoint is only available to admin users.
+> 
 > You can't delete yourself.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+Remove specified user. The user should be in your company, you can't delete a user in a subcompany.
+
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator on this account.
 > * `403 NotAuthorized`: you can't delete yourself
@@ -905,7 +999,7 @@ Retrieve all document types available for the current user, with document count 
 
 The key will be reused on the `document_type` property for every `/documents/` endpoint.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 
 + Response 200 (application/json)
@@ -955,9 +1049,9 @@ The key will be reused on the `document_type` property for every `/documents/` e
 ### List providers [GET]
 Retrieve all providers available for the current user, with document count and the date the last document created by this provider was updated.
 
-The key will be reused on the `token` property for every `/documents/` endpoint.
+The key will be reused on the `provider` property for every `/documents/` endpoint.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 
 + Response 200 (application/json)
@@ -965,19 +1059,19 @@ The key will be reused on the `token` property for every `/documents/` endpoint.
 
             {
                 "53234698c8318cc5d100004f": {
-                    "application": "53232d1dc8318cba94000042",
+                    "client": "53232d1dc8318cba94000042",
                     "name": "Evernote",
                     "updated": "2014-03-14T18:15:37.603Z",
                     "document_count": 2
                 },
                 "5320a682c8318cba94000040": {
-                    "application": "52bff114c8318c29e9000005",
+                    "client": "52bff114c8318c29e9000005",
                     "name": "Dropbox",
                     "updated": "2014-03-21T16:48:16.486Z",
                     "document_count": 14
                 },
                 "5320a6abc8318cc5d1000049": {
-                    "application": "53047faac8318c2d65000096",
+                    "client": "53047faac8318c2d65000096",
                     "name": "GMail",
                     "updated": "2014-03-20T19:15:11.048Z",
                     "document_count": 26

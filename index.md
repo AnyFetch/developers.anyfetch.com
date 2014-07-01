@@ -29,7 +29,7 @@ Every time some hydrater finishes its task, a new hydration round is started wit
 As an example, in the default setup, we use [plaintext.hydrater](https://github.com/AnyFetch/plaintext.hydrater.anyfetch.com) to read basic information about the document (is it a text document? an image?) and extract metadata. Then, depending on the returned metadata, AnyFetch will send the document along with this new metadata to other hydraters. If it is an image, we would then apply [ocr.hydrater](https://github.com/AnyFetch/ocr.hydrater.anyfetch.com), if it is an Office document we would apply [office.hydrater](https://github.com/AnyFetch/office.hydrater.anyfetch.com), and so on.
 Once all available hydraters have yielded their results, the document is indexed and made available for search.
 
-> Get more details regarding the use of a [provider](/guides/using/provider.html) or an [hydrater](/guideS/using/hydrater.html).
+> Get more details regarding the use of a [provider](/guides/using/provider.html) or an [hydrater](/guides/using/hydrater.html).
 
 ### Companies and subcompanies
 A company holds documents, which can be shared amongst users of the same company. Two companies can never share documents between themselves.
@@ -61,7 +61,11 @@ AnyFetch API
 --------------
 > First time using a REST API? Visit our [getting started](/getting-started.html) page.
 
+### Endpoints
 We hope you now grasp the basic ideas surrounding AnyFetch. Let's get technical and [discover the endpoints](/endpoints).
+
+### Authentication
+You need valid credentials to use AnyFetch. You can get more details on [the authentication page](/authentication).
 
 Guides
 ------
