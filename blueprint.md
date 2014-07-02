@@ -1100,8 +1100,6 @@ Retrieve basic information about one provider.
             }
 
 ### Delete Provider [DELETE]
-> This endpoint can only be used with `Basic` authentication.
-
 Revokes a provider token and subsequently deletes linked documents.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
