@@ -1,5 +1,5 @@
 ---
-title: How to use an anyFetch hydrater?
+title: AnyFetch hydraters resources
 layout: doc
 ---
 
