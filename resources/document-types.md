@@ -50,7 +50,7 @@ Full:
 ## Document
 > ID: 5252ce4ce4cfcd16f55cfa3c
 
-A document with a clean HTML representation: text, doc, xls...
+A document from which we were able to extract a clean HTML representation: text, doc, xls, epub...
 
 ### Projections
 * Snippet
@@ -128,7 +128,7 @@ Full:
 ## Contact
 > ID: 5252ce4ce4cfcd16f55cfa3a
 
-A person, somewhere. (contact, client, ...)
+A person (contact, client, ...)
 
 ### Projections
 * Snippet
