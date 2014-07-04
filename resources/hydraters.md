@@ -23,7 +23,7 @@ Retrieve basic information about a file (word, pdf, ppt, txt, rtf, png...). Will
 ### ocr.hydrater.anyfetch.com
 > [Source](https://github.com/AnyFetch/ocr.hydrater.anyfetch.com)
 
-Retrieve textual information from an image.
+Retrieve textual information from an image by running an OCR algorithm. Best results are obtained with scanned documents.
 
 * Input document type: `file`
 * Output metadata:
@@ -41,7 +41,7 @@ Transform a PDF file to HTML.
 ### office.hydrater.anyfetch.com
 > [Source](https://github.com/AnyFetch/office.hydrater.anyfetch.com)
 
-Transform an office file to PDF, inject it back onto anyFetch.
+Transform an Office (or OpenOffice) file to HTML.
 
 * Input document type: `document`
 * Output data:
@@ -50,11 +50,14 @@ Transform an office file to PDF, inject it back onto anyFetch.
 ### eml.hydrater.anyfetch.com
 > [Source](https://github.com/AnyFetch/eml.hydrater.anyfetch.com)
 
-Retrieve data from eml files, hydrate mail data and save back the attachments as files on anyFetch.
+Retrieve data from eml files, hydrate mail data and save back the attachments as files on AnyFetch.
+
+Each attachment is added as a new document and goes through its own hydration chain.
+
+The creation date is always set to the time at which the email has been sent.
 
 * Input document type: `document`
 * Output document type: `email`
-* Force-reset creation date
 * Output metadata:
     - `to`
     - `from`
@@ -65,12 +68,11 @@ Retrieve data from eml files, hydrate mail data and save back the attachments as
     - `text`
 * Output data:
    - `html`
-* Create additional documents for each attachment
 
 ### image.hydrater.anyfetch.com
 > [Source](https://github.com/AnyFetch/image.hydrater.anyfetch.com)
 
-Generate thumbnails and preview from an image.
+Generate thumbnails and preview from an image, store them directly in base64.
 
 * Input document type: `file`
 * Output document type: `image`
@@ -81,7 +83,7 @@ Generate thumbnails and preview from an image.
 ### iptc.hydrater.anyfetch.com
 > [Source](https://github.com/AnyFetch/iptc.hydrater.anyfetch.com)
 
-Retrieve IPTC data from an image.
+Retrieve IPTC data from an image (picture creator, keywords, description...)
 
 * Input document type: `file`
 * Output data:
@@ -92,7 +94,7 @@ Retrieve IPTC data from an image.
 ### markdown.hydrater.anyfetch.com
 > [Source](https://github.com/AnyFetch/markdown.hydrater.anyfetch.com)
 
-Generate markdown html from a document.
+Transform a Markdown file to HTML.
 
 * Input document type: `file`
 * Output document type: `document`
@@ -101,8 +103,10 @@ Generate markdown html from a document.
 * Output data:
     - `html` 
 
-## Document hydraters
-Hydraters working on raw JSON documents.
+### filecleaner.hydrater.anyfetch.com
+> [Source](https://github.com/AnyFetch/filecleaner.hydrater.anyfetch.com)
+
+Remove useless files (.log, .lock, etc.)
 
 ### embedmail.hydrater.anyfetch.com
 > [Source](https://github.com/AnyFetch/embedmail.hydrater.anyfetch.com)
@@ -111,6 +115,6 @@ Remove previous mail conversation from search index, to keep search accurate on 
 
 * Input document type: `email`
 * Output metadata:
-    - `text`, with stripped conversations
+    - `text`, with conversations stripped
 * Output data:
     - `html` 
