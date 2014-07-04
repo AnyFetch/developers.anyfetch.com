@@ -25,22 +25,6 @@ var ids = [
 
 var content = "";
 
-var idsFunctions = [];
-ids.forEach(function(id) {
-  (function(id) {
-    idsFunctions.push(function(cb) {
-      request(apiUrl)
-      .get('/document_types/' + id)
-      .end(function(err, res) {
-        if(err) {
-          return cb(err);
-        }
-        cb(null, res.body);
-      });
-    });
-  })(id);
-});
-
 fs.readFile(file, {encoding: 'utf-8'}, function(err, contentFile) {
   if(err) {
     throw err;
@@ -50,28 +34,34 @@ fs.readFile(file, {encoding: 'utf-8'}, function(err, contentFile) {
   var fileEnd = contentFile.substr(contentFile.indexOf("{% endraw %}"));
   var content = "";
 
-  async.parallel(idsFunctions, function(err, datas) {
+  async.map(ids, function(id, cb) {
+    request(apiUrl)
+    .get('/document_types/' + id)
+    .end(cb);
+  }, function(err, data) {
     if(err) {
       throw err;
     }
-    datas.forEach(function(data) {
-      content += "## " + data.name.charAt(0).toUpperCase() + data.name.slice(1) + "\n> ID: " + data.id + "\n\n";
-      content += data.description += "\n\n" + "### Projections\n* Snippet\n";
+    data.forEach(function(res) {
+      var body = res.body;
 
-      data.projections.snippet.forEach(function(param) {
+      content += "## " + body.name.charAt(0).toUpperCase() + body.name.slice(1) + "\n> ID: " + body.id + "\n\n";
+      content += body.description += "\n\n" + "### Projections\n* Snippet\n";
+
+      body.projections.snippet.forEach(function(param) {
         content += "  - " + param + "\n";
       });
 
       content += "*Full\n";
 
-      data.projections.full.forEach(function(param) {
+      body.projections.full.forEach(function(param) {
         content += "  - " + param + "\n";
       });
 
       content += "\n### Templates\nSnippet:\n\n```html\n";
-      content += data.templates.snippet;
+      content += body.templates.snippet;
       content += "\n```\n\n\nFull:\n\n```html\n";
-      content += data.templates.full;
+      content += body.templates.full;
       content += "\n```\n";
     });
 
