@@ -1,5 +1,5 @@
 // Smooth scroll
-$(function() {
+$(function smoothScroll() {
   $('a[href*=#]').click(function(e) {
     if (location.pathname.replace('/^\//','') == this.pathname.replace('/^\//','') && location.hostname == this.hostname) {
         var hash = this.hash;
@@ -24,7 +24,7 @@ $(function() {
 });
 $('body').scrollspy({ target: '#nav', offset: 130 });
 
-$(function(){
+$(function makeStickyHeader(){
     // Check the initial position of the Sticky Header
     var toc = $('#toc');
     if(toc[0]) {
@@ -41,7 +41,7 @@ $(function(){
 
 
 // Display errors after requests
-$(function() {
+$(function hideErrorCodesInEndpoints() {
   var counter = 0;
 
   $('.panel-body blockquote').has('ul li code').each(function() {
@@ -61,10 +61,14 @@ $(function() {
 });
 
 // Autoload TOC
-$(function() {
-  $('#toc').toc({
-    'selectors': 'h2,h3,h4,h5,h6',
-    'container': '#main-content',
-    'highlightOffset': 20
-  });
+$(function generateTOC() {
+    var toc = $('#toc');
+
+    if(toc && toc.toc) {
+        toc.toc({
+            'selectors': 'h2,h3,h4,h5,h6',
+            'container': '#main-content',
+            'highlightOffset': 20
+        });
+    }
 });

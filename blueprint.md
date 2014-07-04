@@ -1006,42 +1006,146 @@ The key will be reused on the `document_type` property for every `/documents/` e
     + Body
 
             {
+                "5252ce4ce4cfcd16f55cfa3b": {
+                    "_type": "DocumentType",
+                    "id": "5252ce4ce4cfcd16f55cfa3b",
+                    "name": "file",
+                    "description": "Anything that does not fit in other categories.",
+                    "projections": {
+                        "snippet": [
+                            "title",
+                            "path",
+                            "extension"
+                        ],
+                        "full": [
+                            "title",
+                            "path",
+                            "extension"
+                        ]
+                    },
+                    "templates": {
+                        "snippet": "<article>\n  <h1>{{{ title }}}</h1>\n  <code>{{{ path }}}</code>\n</article>\n",
+                        "full": "<article>\n  <h1>{{{ title }}}</h1>\n  <code>{{{ path }}}</code>\n</article>\n",
+                        "title": "{{ title }}"
+                    },
+                    "updated": "2014-07-03T21:38:54.750Z",
+                    "documents": 120
+                },
+                "5252ce4ce4cfcd16f55cfa3d": {
+                    "_type": "DocumentType",
+                    "id": "5252ce4ce4cfcd16f55cfa3d",
+                    "name": "image",
+                    "description": "Anything with image image content (png, jpg, ...)",
+                    "projections": {
+                        "snippet": [
+                            "title",
+                            "thumb"
+                        ],
+                        "full": [
+                            "title",
+                            "display"
+                        ]
+                    },
+                    "templates": {
+                        "snippet": "<article>\n  <h1>{{{ title }}}</h1>\n\n  <img src=\"{{ thumb }}\" />\n</article>\n",
+                        "full": "<article>\n  <h1>{{{ title }}}</h1>\n\n  <img src=\"{{ display }}\" />\n</article>\n",
+                        "title": "{{ title }}"
+                    },
+                    "updated": "2014-07-03T21:40:00.488Z",
+                    "documents": 660
+                },
                 "5252ce4ce4cfcd16f55cfa3c": {
                     "_type": "DocumentType",
                     "id": "5252ce4ce4cfcd16f55cfa3c",
                     "name": "document",
+                    "description": "Document with html content (word, presentation, pdf, ...)",
+                    "projections": {
+                        "snippet": [
+                            "title",
+                            "path",
+                            "snippet"
+                        ],
+                        "full": [
+                            "title",
+                            "path",
+                            "content"
+                        ]
+                    },
                     "templates": {
                         "snippet": "<article>\n  <h1>{{{ title }}}</h1>\n  <blockquote>\n  \t{{{ snippet }}}\n  </blockquote>\n</article>\n",
                         "full": "<article>\n  <section>\n    <h1>{{{ title }}}</h1>\n    <code>{{ path }}</code>\n  </section>\n\n  <section>\n    {{{ content }}}\n  </section>\n</article>\n",
                         "title": "{{ title }}"
                     },
-                    "updated": "2014-04-24T17:23:01.722Z",
-                    "documents": 1
+                    "updated": "2014-07-03T23:12:44.158Z",
+                    "documents": 7006
                 },
                 "5252ce4ce4cfcd16f55cfa3f": {
                     "_type": "DocumentType",
                     "id": "5252ce4ce4cfcd16f55cfa3f",
                     "name": "email",
+                    "description": "An email",
+                    "projections": {
+                        "snippet": [
+                            "from",
+                            "to",
+                            "subject",
+                            "snippet",
+                            "date",
+                            "attachmentCount"
+                        ],
+                        "full": [
+                            "from",
+                            "to",
+                            "labels",
+                            "subject",
+                            "html",
+                            "date"
+                        ]
+                    },
                     "templates": {
-                        "snippet": "<article>\n  <h1>{{{subject}}}</h1>\n  <div class=\"two-columns\">\n    <span>{{ date }}</span>\n    <span><small>{{from}} &rarr; {{to}}</small></span>\n  </div>\n  <blockquote>{{{snippet}}}</blockquote>\n</article>\n",
-                        "full": "<article class=\"email-projection\">\n <header>\n     <h1>{{{subject}}}</h1>\n     <small>{{ date }}</small>\n     <small>From: <strong><a href=\"anyfetch://search/{{from}}\">{{from}}</a></strong></small>\n     <small>To: <strong><a href=\"anyfetch://search/{{to}}\">{{to}}</a></strong></small>\n </header>\n\n <main>\n       {{{html}}}\n </main>\n</article>\n",
+                        "snippet": "<article>\n  <h1>{{{subject}}}</h1>\n  <div class=\"two-columns\">\n    <span>{{ date }}</span>\n    <span><small>{{{from}}} &rarr; {{{to}}}</small></span>\n  </div>\n  <blockquote>{{{snippet}}}</blockquote>\n</article>\n",
+                        "full": "<article class=\"email-projection\">\n <header>\n     <h1>{{{subject}}}</h1>\n     <small>{{ date }}</small>\n     <small>From: <strong>{{{from}}}</strong></small>\n     <small>To: <strong><{{{to}}}</strong></small>\n </header>\n\n <main>\n       {{{html}}}\n </main>\n</article>\n",
                         "title": "{{ subject }}"
                     },
-                    "updated": "2014-04-24T17:22:54.522Z",
-                    "documents": 12
+                    "updated": "2014-07-03T21:39:45.857Z",
+                    "documents": 6187
                 }
             }
 
+## Document-type [/document_types/{id}]
+### Get document-type [GET]
+Retrieve details about the specified document-type.
+This endpoint is public and can be accessed by anyone with the id.
+
+A list of default document-types can be found on [this page](/resources/document-types.html).
 
 
++ Response 200 (application/json)
+    + Body
 
-
-
-
-
-
-
-
+            {
+                "_type": "DocumentType",
+                "id": "5252ce4ce4cfcd16f55cfa3c",
+                "name": "document",
+                "description": "Document with html content (word, presentation, pdf, ...)",
+                "projections": {
+                    "snippet": [
+                        "title",
+                        "path",
+                        "snippet"
+                    ],
+                    "full": [
+                        "title",
+                        "path",
+                        "content"
+                    ]
+                },
+                "templates": {
+                    "snippet": "<article>\n  <h1>{{{ title }}}</h1>\n  <blockquote>\n  \t{{{ snippet }}}\n  </blockquote>\n</article>\n",
+                    "full": "<article>\n  <section>\n    <h1>{{{ title }}}</h1>\n    <code>{{ path }}</code>\n  </section>\n\n  <section>\n    {{{ content }}}\n  </section>\n</article>\n",
+                    "title": "{{ title }}"
+                }
+            }
 
 
 # Group Providers
