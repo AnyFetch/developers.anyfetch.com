@@ -5,11 +5,11 @@ layout: doc
 {% raw  %}
 
 You'll find here the list of default document-types and their expectations.
-Don't forget [/resources/hydraters.html](many hydraters can change the `document_type` during the hydration phase).
+Don't forget that [/resources/hydraters.html](many hydraters can change the `document_type` during the hydration phase).
 
-If you're not satisfied with the default presentation or you find some data are missing:
+If you're not satisfied with the default presentation or you find some data is missing:
 
-* You can always add more `metadata`. Even though they won't be shown to the user, the document will still be returned to the user for a relevant query.
+* You can always add more `metadata`. Even though it won't be shown to the user, the document will still be returned to the user for a relevant query, as all metadata keys are used in search.
 * You can create your own document type and make a simple hydrater updating the "old" document-type to the new one.
 
 ## File
