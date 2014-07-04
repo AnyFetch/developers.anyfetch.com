@@ -24,3 +24,12 @@ Then update the HTML after modifying `blueprint.md`:
 ```sh
 aglio -i blueprint.md -o endpoints/index.html -t _layouts/aglio.jade
 ```
+
+### Update resources/document-types.md
+
+You must install async and supertest with `npm install async supertest`
+
+```sh
+cd bin/
+./update-document-types.js
+```
