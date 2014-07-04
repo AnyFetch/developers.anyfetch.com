@@ -2,7 +2,6 @@
 title: AnyFetch document-types resources
 layout: doc
 ---
-{% raw  %}
 
 You'll find here the list of default document-types and their expectations.
 Don't forget that [/resources/hydraters.html](many hydraters can change the `document_type` during the hydration phase).
@@ -12,18 +11,18 @@ If you're not satisfied with the default presentation or you find some data is m
 * You can always add more `metadata`. Even though it won't be shown to the user, the document will still be returned to the user for a relevant query, as all metadata keys are used in search.
 * You can create your own document type and make a simple hydrater updating the "old" document-type to the new one.
 
+{% raw  %}
 ## File
 > ID: 5252ce4ce4cfcd16f55cfa3b
 
-Most basic document type for any kind of binary content.
-When a provider sends data without any additional information, it will use this `document_type`.
+Most basic document type for any kind of binary content. When a provider sends data without any additional information, it will use this document_type.
 
 ### Projections
 * Snippet
   - title
   - path
   - extension
-* Full
+*Full
   - title
   - path
   - extension
@@ -36,7 +35,9 @@ Snippet:
   <h1>{{{ title }}}</h1>
   <code>{{{ path }}}</code>
 </article>
+
 ```
+
 
 Full:
 
@@ -45,8 +46,8 @@ Full:
   <h1>{{{ title }}}</h1>
   <code>{{{ path }}}</code>
 </article>
-```
 
+```
 ## Document
 > ID: 5252ce4ce4cfcd16f55cfa3c
 
@@ -57,7 +58,7 @@ A document from which we were able to extract a clean HTML representation: text,
   - title
   - path
   - snippet
-* Full
+*Full
   - title
   - path
   - content
@@ -69,10 +70,12 @@ Snippet:
 <article>
   <h1>{{{ title }}}</h1>
   <blockquote>
-    {{{ snippet }}}
+  	{{{ snippet }}}
   </blockquote>
 </article>
+
 ```
+
 
 Full:
 
@@ -87,8 +90,8 @@ Full:
     {{{ content }}}
   </section>
 </article>
-```
 
+```
 ## Image
 > ID: 5252ce4ce4cfcd16f55cfa3d
 
@@ -98,7 +101,7 @@ Display thumbnail and preview data encoded in base64.
 * Snippet
   - title
   - thumb
-* Full
+*Full
   - title
   - display
 
@@ -114,6 +117,7 @@ Snippet:
 
 ```
 
+
 Full:
 
 ```html
@@ -124,7 +128,6 @@ Full:
 </article>
 
 ```
-
 ## Contact
 > ID: 5252ce4ce4cfcd16f55cfa3a
 
@@ -135,7 +138,7 @@ A person (contact, client, ...)
   - name
   - image
   - job
-* Full
+*Full
   - name
   - job
   - phone
@@ -157,6 +160,7 @@ Snippet:
 </article>
 
 ```
+
 
 Full:
 
@@ -219,12 +223,12 @@ Full:
   </section>
 
 </article>
-```
 
-## EMail
+```
+## Email
 > ID: 5252ce4ce4cfcd16f55cfa3f
 
-An email.
+An email
 
 ### Projections
 * Snippet
@@ -234,7 +238,7 @@ An email.
   - snippet
   - date
   - attachmentCount
-* Full
+*Full
   - from
   - to
   - labels
@@ -257,6 +261,7 @@ Snippet:
 
 ```
 
+
 Full:
 
 ```html
@@ -274,7 +279,6 @@ Full:
 </article>
 
 ```
-
 ## Event
 > ID: 5252ce4ce4cfcd16f55cfa40
 
@@ -282,10 +286,10 @@ An event, from a calendar for instance.
 
 ### Projections
 * Snippet
-  - name
   - startDate
   - endDate
-* Full
+  - name
+*Full
   - startDate
   - endDate
   - name
@@ -297,31 +301,33 @@ Snippet:
 
 ```html
 <article>
-  <h1>{{{name}}}</h1>
-  <span>{{startDate}}&mdash;{{endDate}}</span>
+	<h1>{{{name}}}</h1>
+	<span>{{startDate}}&mdash;{{endDate}}</span>
 </article>
+
 ```
+
 
 Full:
 
 ```html
 <article>
-  <section>
-    <h1>{{name}}</h1>
-    <span>{{startDate}}&mdash;{{endDate}}</span>
-  </section>
+	<section>
+		<h1>{{name}}</h1>
+		<span>{{startDate}}&mdash;{{endDate}}</span>
+	</section>
 
-  {{ #attendee.length }}
-    <h2>Attendees:</h2>
-    {{ #attendee }}
-    <li>{{.}}</li>
-    {{ /attendee }} 
-  {{ /attendee.length }}
+	{{ #attendee.length }}
+		<h2>Attendees:</h2>
+		{{ #attendee }}
+		<li>{{.}}</li>
+		{{ /attendee }}	
+	{{ /attendee.length }}
 
-  <p>{{description}}</p>
+	<p>{{description}}</p>
 </article>
-```
 
+```
 ## Task
 > ID: 5252ce4ce4cfcd16f55cfa41
 
@@ -332,8 +338,9 @@ A task, in a TODO app for instance.
   - subject
   - description
   - status
-* Full
+*Full
   - subject
+  - status
   - description
   - assignedTo
   - dueDate
@@ -343,11 +350,13 @@ Snippet:
 
 ```html
 <article>
-  <h1>{{{subject}}}</h1>
-  <span>Status: {{status}}</span>
+	<h1>{{{subject}}}</h1>
+	<span>Status: {{status}}</span>
   <p>{{{description}}}</p>
 </article>
+
 ```
+
 
 Full:
 
@@ -360,5 +369,7 @@ Full:
 
   <p>{{{description}}}</p>
 </article>
+
 ```
+
 {% endraw %}
