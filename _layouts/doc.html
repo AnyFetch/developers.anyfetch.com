@@ -65,6 +65,11 @@
           {% else %}
           <li><a href="/guides" class="navbar-title">Guides</a></li>
           {% endif %}
+          {% if page.path == "resources/index.md" %}
+          <li class="active"><a href="/resources" class="navbar-title">Resources</a></li>
+          {% else %}
+          <li><a href="/resources" class="navbar-title">Resources</a></li>
+          {% endif %}
         </ul>
 
       </div>
