@@ -270,7 +270,7 @@ Note the "original" (parent) company will only be able to `DELETE` the subcompan
 + Request (application/json)
 
             {
-                "user": "52fb7b90c8318c4dc800006c"
+                "user": "52fb7b90c8318c4dc800006c",
                 "name": "new-subcompany-name",
             }
 
