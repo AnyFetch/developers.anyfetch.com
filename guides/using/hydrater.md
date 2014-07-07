@@ -71,11 +71,4 @@ $ curl http://ocr.hydrater.anyfetch.com/status
 ```
 
 ## Sample hydraters
-Anyfetch ships with some default hydraters you may want to check:
-
-* `plaintext.hydrater.anyfetch.com`: retrieve basic information about a file (word, pdf, ppt, txt, rtf, png...). Will extract text if available. [Source](https://github.com/AnyFetch/plaintext.hydrater.anyfetch.com)
-* `ocr.hydrater.anyfetch.com`: retrieve textual information from an image. [Source](https://github.com/AnyFetch/ocr.hydrater.anyfetch.com)
-* `pdf.hydrater.anyfetch.com`: transform a PDF file to HTML. [Source](https://github.com/AnyFetch/pdf.hydrater.anyfetch.com)
-* `office.hydrater.anyfetch.com`: transform an office file to PDF, inject it back onto anyFetch. [Source](https://github.com/AnyFetch/office.hydrater.anyfetch.com)
-* `eml.hydrater.anyfetch.com`: retrieve data from eml files, hydrate mail data and save back the attachments as files on anyFetch. [Source](https://github.com/AnyFetch/eml.hydrater.anyfetch.com)
-* `image.hydrater.anyfetch.com`: generate thumbnails from an image. [Source](https://github.com/AnyFetch/image.hydrater.anyfetch.com)
+Anyfetch ships with some default hydraters you may want to check, see the [hydrater resource section](/resources/hydraters.md).

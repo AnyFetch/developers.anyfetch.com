@@ -4,7 +4,6 @@ subtitle: Manual for AnyFetch.
 layout: doc
 ---
 
-General endpoints
------------------
+You'll find here guides to get started with AnyFetch and create your own services.
 
 {% include guides.md %}

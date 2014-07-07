@@ -16,22 +16,24 @@ $(function() {
 
 $('body').scrollspy({ target: '#nav', offset: 130 });
 
-$(function(){
-        // Check the initial Poistion of the Sticky Header
-        var stickyHeaderTop = $('#toc').position().top - 100;
-         console.log(stickyHeaderTop);
+$(function makeStickyHeader(){
+    // Check the initial position of the Sticky Header
+    var toc = $('#toc');
+    if(toc[0]) {
+        var stickyHeaderTop = toc.position().top - 100;
         $(window).scroll(function(){
-                if( $(window).scrollTop() > stickyHeaderTop ) {
-                        $('#toc').css({position: 'fixed', top: '100px'});
-                } else {
-                        $('#toc').css({position: 'inherit', top: '0px'});
-                }
+            if( $(window).scrollTop() > stickyHeaderTop ) {
+                toc.css({position: 'fixed', top: '100px'});
+            } else {
+                toc.css({position: 'inherit', top: '0px'});
+            }
         });
-  });
+    }
+});
 
 
 // Display errors after requests
-$(function() {
+$(function hideErrorCodesInEndpoints() {
   var counter = 0;
 
   $('.panel-body blockquote').has('ul li code').each(function() {
@@ -51,10 +53,14 @@ $(function() {
 });
 
 // Autoload TOC
-$(function() {
-  $('#toc').toc({
-    'selectors': 'h2,h3,h4,h5,h6',
-    'container': '#main-content',
-    'highlightOffset': 20
-  });
+$(function generateTOC() {
+    var toc = $('#toc');
+
+    if(toc && toc.toc) {
+        toc.toc({
+            'selectors': 'h2,h3,h4,h5,h6',
+            'container': '#main-content',
+            'highlightOffset': 20
+        });
+    }
 });

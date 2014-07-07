@@ -17,7 +17,7 @@ Let's take an example. Here is an excerpt from a call to `GET /documents`:
     "id": "53594851aa42e58934a3c0a0",
     "identifier": "https://mail.google.com/mail/b/test.cluestr@gmail.com/?cm#all/141c18456ad0b4e8#1449059866530329832",
     "creation_date": "2013-10-16T06:46:17.000Z",
-    "token": "53594773c8318c190e000013",
+    "provider": "53594773c8318c190e000013",
     "company": "52bff074c8318c29e9000001",
     "document_type": "5252ce4ce4cfcd16f55cfa3f",
     "actions": {
