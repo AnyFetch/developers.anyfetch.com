@@ -4,12 +4,15 @@ $(function() {
     if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
       var target = $(this.hash);
       var hash = this.hash;
+      var targetID = target.attr('id');
       target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
       if (target.length) {
         $('html,body').animate({
           scrollTop: target.offset().top - 100
         }, 1000, function() {
+            target.attr('id', 'no-scroll-firefox');
             location.hash = hash;
+            target.attr('id', targetID);
         });
         return false;
       }
