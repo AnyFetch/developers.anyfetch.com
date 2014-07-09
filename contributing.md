@@ -68,6 +68,35 @@ function isPercentage(val) {
 * Ternary operator `:` is used with a space before and after
 * Don't use a space after a space (unless for indentation of course)
 
+## Application Packaging
+
+For easier deployment we need the AnyFetch Applications to follow a few conventions to have things running smoothly.
+
+### Executables
+
+- `bin/server` your main http server endpoint
+- `bin/init/*` any indempotent script you want to add to initialize your application (ex: seeding)
+
+### Environment Variables
+
+- `NODE_ENV` either set as `production`, `development` or `test`, default should be `development`
+- `PORT` the port to expose your app, default should be `3000`
+- `MONGO_URL` (optional) the mongo url, default should be `mongodb://localhost/<NODE_ENV>`
+- `ES_HOST` (optional) the elasticsearch host, default should be `localhost`
+- `ES_PORT` (optional) the elasticsearch port, default should be `9200`
+- `ES_USERNAME` (optional) the elasticsearch username
+- `ES_PASSWORD` (optional) the elasticsearch password
+- `REDIS_URL` (optional) the redis url, default should be `redis://localhost`
+- `API_URL` (optional) when you rely on an anyfetch api address, expose this address, default should be `https://api.anyfetch.com`
+- `MANAGER_URL` (optional) when you rely on anyfetch manager/oauth address, expose this address, default should be `https://manager.anyfetch.com`
+- `ANYFETCH_API_ID` (optional) the oauth anyfetch api client id
+- `ANYFETCH_API_SECRET` (optional) the oauth anyfetch api client secret
+- `ANYFETCH_REDIRECT_URI` (optional) the oauth anyfetch api redirect uri
+- `<provider>_API_ID` (optional) the oauth provider api client id
+- `<provider>_API_SECRET` (optional) the oauth provider api client secret
+- `<provider>_REDIRECT_URI` (optional) the oauth provider api redirect uri
+- `NEW_RELIC_LICENSE_KEY` (optional) the newrelic licence key
+
 ## Contributing workflow
 * Do not merge into `master` directly unless you're project owner and you know what you're doing. Always do a pull request.
 * Use CI everywhere. Test new features.
