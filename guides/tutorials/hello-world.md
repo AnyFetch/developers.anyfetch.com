@@ -9,7 +9,7 @@ In this guide, we'll send a document to anyFetch and retrieve it using the API e
 ## What do I need?
 To follow this guide, you need:
 
-* An account on anyFetch, with login and password.
+* An account on anyFetch, with login and password. Create one on [the manager](https://manager.anyfetch.com/).
 * `curl` binary to send requests from the command line
 
 
