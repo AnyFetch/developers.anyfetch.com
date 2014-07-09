@@ -88,14 +88,13 @@ For easier deployment we need the AnyFetch Applications to follow a few conventi
 - `NEW_RELIC_NO_CONFIG_FILE` (optional) the new relic config file relative to the project root
 - `NEW_RELIC_APP_NAME` (optional) The app name for new relic
 
-#### Specific to providers
+#### Provider specific
 
-- `ANYFETCH_API_ID` the oauth anyfetch api client id
-- `ANYFETCH_API_SECRET` the oauth anyfetch api client secret
-- `ANYFETCH_REDIRECT_URI` the oauth anyfetch api redirect uri
+- `ANYFETCH_API_ID` the oauth anyfetch api client id (available on the manager)
+- `ANYFETCH_API_SECRET` the oauth anyfetch api client secret (available on the manager)
 - `<provider>_API_ID` the oauth provider api client id
 - `<provider>_API_SECRET` the oauth provider api client secret
-- `<provider>_REDIRECT_URI` the oauth provider api redirect uri
+- `<provider>_URL` the url to access the provider
 
 ## Contributing workflow
 * Do not merge into `master` directly unless you're project owner and you know what you're doing. Always do a pull request.
