@@ -435,7 +435,8 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <p>This endpoint can only be used with token authentication.</p>
 <p>You can’t send a file and a document at the same time, you need to send the document first and then send the file on <code>/documents/:id/file</code>.</p>
 </blockquote>
-<p>Send a new document on anyFetch.</p>
+<p>Send a new document on AnyFetch.</p>
+<p>Minimal requests must include an <code>identifier</code>, all other values are optional (although you’ll nearly always add a <code>document_type</code>).</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
@@ -447,8 +448,9 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <li><code>409 InvalidArgument</code>: no documents matched by <code>id</code>. Use <code>identifier</code> to create a new document</li>
 </ul>
 </blockquote>
-</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#2534af76e30215e76a4148ca906721d6" class="pull-right">Toggle</a></li><li id="2534af76e30215e76a4148ca906721d6" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>    {
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#a18f79fd9d1175464e06352feb1402c0" class="pull-right">Toggle</a></li><li id="a18f79fd9d1175464e06352feb1402c0" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>    {
         "<span class="hljs-attribute">identifier</span>": <span class="hljs-value"><span class="hljs-string">"http://unique-document-identifier"</span></span>,
+        "<span class="hljs-attribute">creation_date</span>":<span class="hljs-value"><span class="hljs-string">"2014-02-05T10:39:36.623Z"</span></span>,
         "<span class="hljs-attribute">document_type</span>": <span class="hljs-value"><span class="hljs-string">"file"</span></span>,
         "<span class="hljs-attribute">actions</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">download</span>": <span class="hljs-value"><span class="hljs-string">"http://example.org/download/file/url"</span>
