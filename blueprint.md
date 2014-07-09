@@ -450,7 +450,9 @@ Return informations aggregated over the result set. The `score` key indicated do
 > 
 > You can't send a file and a document at the same time, you need to send the document first and then send the file on `/documents/:id/file`.
 
-Send a new document on anyFetch.
+Send a new document on AnyFetch.
+
+Minimal requests must include an `identifier`, all other values are optional (although you'll nearly always add a `document_type`).
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -464,6 +466,7 @@ Send a new document on anyFetch.
 
             {
                 "identifier": "http://unique-document-identifier",
+                "creation_date":"2014-02-05T10:39:36.623Z",
                 "document_type": "file",
                 "actions": {
                     "download": "http://example.org/download/file/url"
@@ -477,6 +480,7 @@ Send a new document on anyFetch.
                 "related": ["52dff5c53923844f15885428"],
                 "user_access": ["52d96492a7f0a3ac4226f2f7"]
             }
+
 + Response 200 (application/json)
     + Body
 
