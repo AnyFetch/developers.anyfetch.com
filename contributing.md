@@ -85,7 +85,7 @@ For easier deployment we need the AnyFetch Applications to follow a few conventi
 - `API_URL` (optional) when you rely on an anyfetch api address, expose this address, default should be `https://api.anyfetch.com`
 - `MANAGER_URL` (optional) when you rely on anyfetch manager/oauth address, expose this address, default should be `https://manager.anyfetch.com`
 - `NEW_RELIC_LICENSE_KEY` (optional) the newrelic licence key
-- `NEW_RELIC_NO_CONFIG_FILE` (optional) the new relic config file relative to the project root
+- `NEW_RELIC_NO_CONFIG_FILE` (optional) set to true
 - `NEW_RELIC_APP_NAME` (optional) The app name for new relic
 
 #### Provider specific
