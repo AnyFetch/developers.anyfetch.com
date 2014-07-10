@@ -92,9 +92,9 @@ For easier deployment we need the AnyFetch Applications to follow a few conventi
 
 - `ANYFETCH_API_ID` the oauth anyfetch api client id (available on the manager)
 - `ANYFETCH_API_SECRET` the oauth anyfetch api client secret (available on the manager)
+- `PROVIDER_URL` the url to access the provider
 - `<provider>_API_ID` the oauth provider api client id
 - `<provider>_API_SECRET` the oauth provider api client secret
-- `<provider>_URL` the url to access the provider
 
 ## Contributing workflow
 * Do not merge into `master` directly unless you're project owner and you know what you're doing. Always do a pull request.
