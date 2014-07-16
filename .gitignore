@@ -18,6 +18,3 @@ docs/*
 
 # Jekyll artifacts
 _site/*
-
-# Gem
-Gemfile.lock
