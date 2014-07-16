@@ -454,6 +454,8 @@ Send a new document on AnyFetch.
 
 All values are optional, however in nearly all cases you'll specify at least [a unique `identifier` to retrieve the document later](/guides/concepts/identifier.html), and a [`document_type`](/resources/document-types.html)).
 
+If no identifier is specified, it will be set to the value of the document's id.
+
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: document was not provided with this access token, and can't be updated.
