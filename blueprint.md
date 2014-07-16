@@ -452,7 +452,9 @@ Return informations aggregated over the result set. The `score` key indicated do
 
 Send a new document on AnyFetch.
 
-Minimal requests must include an `identifier`, all other values are optional (although you'll nearly always add a `document_type`).
+All values are optional, however in nearly all cases you'll specify at least [a unique `identifier` to retrieve the document later](/guides/concepts/identifier.html), and a [`document_type`](/resources/document-types.html)).
+
+If no identifier is specified, it will be set to the value of the document's id.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
