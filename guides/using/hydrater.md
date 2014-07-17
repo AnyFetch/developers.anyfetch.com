@@ -71,4 +71,4 @@ $ curl http://ocr.hydrater.anyfetch.com/status
 ```
 
 ## Sample hydraters
-Anyfetch ships with some default hydraters you may want to check, see the [hydrater resource section](/resources/hydraters.md).
+Anyfetch ships with some default hydraters you may want to check, see the [hydrater resource section](/resources/hydraters.html).
