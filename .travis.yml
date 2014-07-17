@@ -2,7 +2,6 @@ language: ruby
 before_script:
   - npm install -g aglio
 script:
-  - jekyll build --trace
   - aglio -i blueprint.md -o /tmp/output.html -t _layouts/aglio.jade
 branches:
   only: gh-pages
