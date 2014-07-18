@@ -220,6 +220,7 @@ Should have a <code>status</code> of “OK”.</p>
     ]
 </span>}
 </code></pre></li></ul></section><h4 id="company-update-company-documents">Update company documents&nbsp;<a href="#company-update-company-documents"><i class="fa fa-link"></i></a></h4><section id="company-update-company-documents-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Update documents</span></div><div style="float:left"><a href="#company-update-company-documents-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/company/update</code></div></div><div class="panel-body"><p>Ping all providers for the current company, checking for new available documents.</p>
+<p>Return the response code from each provider — 202 means <code>Accepted</code>. Most provider will reply with <code>429 Too Many Requests</code> if they’re already working on the user tasks.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
@@ -227,7 +228,12 @@ Should have a <code>status</code> of “OK”.</p>
 <li><code>429 Too Many Requests</code>: this endpoint is throttled at 1 request per second, with a burst of 2 / s.</li>
 </ul>
 </blockquote>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>202</code></strong></li></ul></section><h4 id="company-reset-company">Reset company&nbsp;<a href="#company-reset-company"><i class="fa fa-link"></i></a></h4><section id="company-reset-company-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Reset company</span></div><div style="float:left"><a href="#company-reset-company-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/company/reset</code></div></div><div class="panel-body"><p>Reset <strong>all</strong> documents, tokens and providers from the account.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#d1b1751b0ff8ff7479307f0e03a14b0b" class="pull-right">Toggle</a></li><li id="d1b1751b0ff8ff7479307f0e03a14b0b" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">53234698c8318cc5d100004f</span>": <span class="hljs-value"><span class="hljs-number">202</span>
+    <span class="hljs-string">"5320a682c8318cba94000040"</span>: <span class="hljs-number">202</span>
+    <span class="hljs-string">"5320a6abc8318cc5d1000049"</span>: <span class="hljs-number">429</span>
+</span>}
+</code></pre></li></ul></section><h4 id="company-reset-company">Reset company&nbsp;<a href="#company-reset-company"><i class="fa fa-link"></i></a></h4><section id="company-reset-company-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Reset company</span></div><div style="float:left"><a href="#company-reset-company-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/company/reset</code></div></div><div class="panel-body"><p>Reset <strong>all</strong> documents, tokens and providers from the account.</p>
 <p>Subcompanies and users are not affected.</p>
 <blockquote>
 <ul>
