@@ -220,7 +220,8 @@ Should have a <code>status</code> of “OK”.</p>
     ]
 </span>}
 </code></pre></li></ul></section><h4 id="company-update-company-documents">Update company documents&nbsp;<a href="#company-update-company-documents"><i class="fa fa-link"></i></a></h4><section id="company-update-company-documents-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Update documents</span></div><div style="float:left"><a href="#company-update-company-documents-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/company/update</code></div></div><div class="panel-body"><p>Ping all providers for the current company, checking for new available documents.</p>
-<p>Return the response code from each provider — 202 means <code>Accepted</code>. Most provider will reply with <code>429 Too Many Requests</code> if they’re already working on the user tasks.</p>
+<p>Return the response code from each provider—202 means <code>Accepted</code>. Most provider will reply with <code>429 Too Many Requests</code> if they’re already working on this user’s tasks.
+Note that even if each providers responds with an error, this endpoint will still return 200 and the status for each provider.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
