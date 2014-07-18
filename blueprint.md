@@ -171,11 +171,21 @@ Contains your company name, and the list of hydraters used on the account.
 ### Update documents [POST]
 Ping all providers for the current company, checking for new available documents.
 
+Return the response code from each provider—202 means `Accepted`. Most provider will reply with `429 Too Many Requests` if they're already working on this user's tasks.
+Note that even if each providers responds with an error, this endpoint will still return 200 and the status for each provider.
+
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `429 Too Many Requests`: this endpoint is throttled at 1 request per second, with a burst of 2 / s.
 
-+ Response 202
++ Response 200 (application/json)
+    + Body
+
+            {
+                "53234698c8318cc5d100004f": 202
+                "5320a682c8318cba94000040": 202
+                "5320a6abc8318cc5d1000049": 429
+            }
 
 ## Reset company [/company/reset]
 ## Reset company [DELETE]
