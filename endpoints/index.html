@@ -229,10 +229,10 @@ Note that even if each providers responds with an error, this endpoint will stil
 <li><code>429 Too Many Requests</code>: this endpoint is throttled at 1 request per second, with a burst of 2 / s.</li>
 </ul>
 </blockquote>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#d1b1751b0ff8ff7479307f0e03a14b0b" class="pull-right">Toggle</a></li><li id="d1b1751b0ff8ff7479307f0e03a14b0b" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
-    "<span class="hljs-attribute">53234698c8318cc5d100004f</span>": <span class="hljs-value"><span class="hljs-number">202</span>
-    <span class="hljs-string">"5320a682c8318cba94000040"</span>: <span class="hljs-number">202</span>
-    <span class="hljs-string">"5320a6abc8318cc5d1000049"</span>: <span class="hljs-number">429</span>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#a771bcc6c272ca45f248c4be91965f9c" class="pull-right">Toggle</a></li><li id="a771bcc6c272ca45f248c4be91965f9c" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">53234698c8318cc5d100004f</span>": <span class="hljs-value"><span class="hljs-number">202</span></span>,
+    "<span class="hljs-attribute">5320a682c8318cba94000040</span>": <span class="hljs-value"><span class="hljs-number">202</span></span>,
+    "<span class="hljs-attribute">5320a6abc8318cc5d1000049</span>": <span class="hljs-value"><span class="hljs-number">429</span>
 </span>}
 </code></pre></li></ul></section><h4 id="company-reset-company">Reset company&nbsp;<a href="#company-reset-company"><i class="fa fa-link"></i></a></h4><section id="company-reset-company-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Reset company</span></div><div style="float:left"><a href="#company-reset-company-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/company/reset</code></div></div><div class="panel-body"><p>Reset <strong>all</strong> documents, tokens and providers from the account.</p>
 <p>Subcompanies and users are not affected.</p>

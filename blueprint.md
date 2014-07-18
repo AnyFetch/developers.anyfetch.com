@@ -182,8 +182,8 @@ Note that even if each providers responds with an error, this endpoint will stil
     + Body
 
             {
-                "53234698c8318cc5d100004f": 202
-                "5320a682c8318cba94000040": 202
+                "53234698c8318cc5d100004f": 202,
+                "5320a682c8318cba94000040": 202,
                 "5320a6abc8318cc5d1000049": 429
             }
 
