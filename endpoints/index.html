@@ -330,69 +330,156 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 </dd><dt>start</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>5</span></span><p>0-based index of the first item to retrieve (for pagination).</p>
 </dd><dt>limit</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>20</span></span><p>Max number of items to retrieve (for pagination)</p>
 </dd><dt>sort</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>creationDate</span></span><p>Sort criteria. Can be <code>creationDate</code> (sort by document creation date), <code>lastModification</code> (sort by last modification date) or <code>_score</code> (default, sort by relevance to the query). Prepend with a <code>-</code> to reverse order (e.g. <code>-creationDate</code>).</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#15a202609d0b1491753cabe82147b2dc" class="pull-right">Toggle</a></li><li id="15a202609d0b1491753cabe82147b2dc" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
-    facets: {
-        <span class="hljs-string">"document_types"</span>: {
-            <span class="hljs-string">"5252ce4ce4cfcd16f55cfa41"</span>: <span class="hljs-number">1</span>,
-            <span class="hljs-string">"5252ce4ce4cfcd16f55cfa3c"</span>: <span class="hljs-number">1</span>
-        },
-        <span class="hljs-string">"providers"</span>: {
-            <span class="hljs-string">"53234698c8318cc5d100004f"</span>: <span class="hljs-number">1</span>,
-            <span class="hljs-string">"5320a682c8318cba94000040"</span>: <span class="hljs-number">1</span>
-        },
-        <span class="hljs-string">"creation_dates"</span>: {
-            <span class="hljs-string">"1393632000000"</span>: <span class="hljs-number">2</span>
-        },
-    },
-    <span class="hljs-string">"max_score"</span>: <span class="hljs-number">0</span>.<span class="hljs-number">4612878</span>,
-    <span class="hljs-string">"count"</span>: <span class="hljs-number">2</span>,
-    <span class="hljs-string">"next_page_url"</span>: <span class="hljs-string">"coming"</span>,
-    <span class="hljs-string">"previous_page_url"</span>: <span class="hljs-string">"coming"</span>,
-    <span class="hljs-string">"data"</span>: [
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#72197b5b245d5b40f7ccf5dcaffb9841" class="pull-right">Toggle</a></li><li id="72197b5b245d5b40f7ccf5dcaffb9841" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">facets</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">document_types</span>": <span class="hljs-value">[
+            {
+                "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
+                "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3c"</span></span>,
+                "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"document"</span></span>,
+                "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
+                    "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n  &lt;blockquote&gt;\n  \t{{{ snippet }}}\n  &lt;/blockquote&gt;\n&lt;/article&gt;\n"</span></span>,
+                    "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;section&gt;\n    &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n    &lt;code&gt;{{ path }}&lt;/code&gt;\n  &lt;/section&gt;\n\n  &lt;section&gt;\n    {{{ content }}}\n  &lt;/section&gt;\n&lt;/article&gt;\n"</span></span>,
+                    "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ title }}"</span>
+                </span>}</span>,
+                "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"A document from which we were able to extract a clean HTML representation: text, doc, xls, epub..."</span></span>,
+                "<span class="hljs-attribute">projections</span>": <span class="hljs-value">{
+                    "<span class="hljs-attribute">snippet</span>": <span class="hljs-value">[
+                        <span class="hljs-string">"title"</span>,
+                        <span class="hljs-string">"path"</span>,
+                        <span class="hljs-string">"snippet"</span>
+                    ]</span>,
+                    "<span class="hljs-attribute">full</span>": <span class="hljs-value">[
+                        <span class="hljs-string">"title"</span>,
+                        <span class="hljs-string">"path"</span>,
+                        <span class="hljs-string">"content"</span>
+                    ]
+                </span>}</span>,
+                "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">2</span>
+            </span>}
+        ]</span>,
+        "<span class="hljs-attribute">providers</span>": <span class="hljs-value">[
+            {
+                "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"AccessToken"</span></span>,
+                "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53cf9b4fa60b43c235680d7a"</span></span>,
+                "<span class="hljs-attribute">client</span>": <span class="hljs-value">{
+                    "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Client"</span></span>,
+                    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"GMail"</span></span>,
+                    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53047faac8318c2d65000096"</span>
+                </span>}</span>,
+                "<span class="hljs-attribute">is_basic_token</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+                "<span class="hljs-attribute">account_name</span>": <span class="hljs-value"><span class="hljs-string">"matthieu.bacconnier@papiel.fr"</span></span>,
+                "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">1</span>
+            </span>},
+            {
+                "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"AccessToken"</span></span>,
+                "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53cf88997f247be935ebfd7a"</span></span>,
+                "<span class="hljs-attribute">client</span>": <span class="hljs-value">{
+                    "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Client"</span></span>,
+                    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Google Drive"</span></span>,
+                    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"539ef7289f240405465a2e1f"</span>
+                </span>}</span>,
+                "<span class="hljs-attribute">is_basic_token</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+                "<span class="hljs-attribute">account_name</span>": <span class="hljs-value"><span class="hljs-string">"matthieu.bacconnier@papiel.fr"</span></span>,
+                "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">1</span>
+            </span>}
+        ]</span>,
+        "<span class="hljs-attribute">creation_dates</span>": <span class="hljs-value">[
+            {
+                "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Date"</span></span>,
+                "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value"><span class="hljs-string">"1370044800000"</span></span>,
+                "<span class="hljs-attribute">date</span>": <span class="hljs-value"><span class="hljs-string">"2013-06-26T00:00:00.000Z"</span></span>,
+                "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">1</span>
+            </span>},
+            {
+                "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Date"</span></span>,
+                "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value"><span class="hljs-string">"1404172800000"</span></span>,
+                "<span class="hljs-attribute">date</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T00:00:00.000Z"</span></span>,
+                "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">1</span>
+            </span>}
+        ]
+    </span>}</span>,
+    "<span class="hljs-attribute">data</span>": <span class="hljs-value">[
         {
-            <span class="hljs-string">"_type"</span>: <span class="hljs-string">"Document"</span>,
-            <span class="hljs-string">"id"</span>: <span class="hljs-string">"5320a7735ee6eed51339a1b3"</span>,
-            <span class="hljs-string">"identifier"</span>: <span class="hljs-string">"https://dropbox.com/228115297/all/anyfetchpitchdeckSF.pdf"</span>,
-            <span class="hljs-string">"creation_date"</span>: <span class="hljs-string">"2014-03-12T18:29:07.441Z"</span>,
-            <span class="hljs-string">"provider"</span>: <span class="hljs-string">"5320a682c8318cba94000040"</span>,
-            <span class="hljs-string">"company"</span>: <span class="hljs-string">"52fb7b90c8318c4dc800006b"</span>,
-            <span class="hljs-string">"document_type"</span>: <span class="hljs-string">"5252ce4ce4cfcd16f55cfa3c"</span>,
-            <span class="hljs-string">"actions"</span>: {
-                <span class="hljs-string">"show"</span>: <span class="hljs-string">"https://www.dropbox.com/home<span class="hljs-variable">%2Fall</span><span class="hljs-variable">%2FanyFetch</span><span class="hljs-variable">%20pitch</span><span class="hljs-variable">%20deck</span><span class="hljs-variable">%20SF</span><span class="hljs-variable">%20</span>-<span class="hljs-variable">%20CHarly</span><span class="hljs-variable">%20Kevers</span>.pdf"</span>
-            },
-            <span class="hljs-string">"document_url"</span>: <span class="hljs-string">"/documents/5320a7735ee6eed51339a1b3"</span>,
-            <span class="hljs-string">"data"</span>: {
-                <span class="hljs-string">"title"</span>: <span class="hljs-string">"anyFetch pitch deck SF   CHarly Kevers"</span>,
-                <span class="hljs-string">"path"</span>: <span class="hljs-string">"/all/anyFetch pitch deck SF - CHarly Kevers.pdf"</span>,
-                <span class="hljs-string">"snippet"</span>: <span class="hljs-string">"\nanyFetch\nENTERPRISE SEARCH in the CLOUD\nMehdi Bouheddi - CEO\n10-03-2014\nThe amount of data in the enterprise is more than 10 000 × Google\nBut it is a mess...\nChallenge : find the relevant information\n"</span>
-            },
-            <span class="hljs-string">"projection_type"</span>: <span class="hljs-string">"snippet"</span>,
-            <span class="hljs-string">"related_count"</span>: <span class="hljs-number">0</span>,
-            <span class="hljs-string">"score"</span>: <span class="hljs-number">0</span>.<span class="hljs-number">4612878</span>
-        },
+            "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Document"</span></span>,
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53cf88a5cf25841c6144ee46"</span></span>,
+            "<span class="hljs-attribute">identifier</span>": <span class="hljs-value"><span class="hljs-string">"https://docs.google.com/file/d/0Ao1Q9EZ6RihjdHBSSnlzWG5mRFMxTm5YRVMwZzd0b0E"</span></span>,
+            "<span class="hljs-attribute">creation_date</span>": <span class="hljs-value"><span class="hljs-string">"2013-06-26T09:13:46.552Z"</span></span>,
+            "<span class="hljs-attribute">provider</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"AccessToken"</span></span>,
+                "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53cf88997f247be935ebfd7a"</span></span>,
+                "<span class="hljs-attribute">client</span>": <span class="hljs-value">{
+                    "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Client"</span></span>,
+                    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Google Drive"</span></span>,
+                    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"539ef7289f240405465a2e1f"</span>
+                </span>}</span>,
+                "<span class="hljs-attribute">is_basic_token</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+                "<span class="hljs-attribute">account_name</span>": <span class="hljs-value"><span class="hljs-string">"matthieu.bacconnier@papiel.fr"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">company</span>": <span class="hljs-value"><span class="hljs-string">"53c0190ae83613e049a4845b"</span></span>,
+            "<span class="hljs-attribute">document_type</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
+                "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3c"</span></span>,
+                "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"document"</span></span>,
+                "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
+                    "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n  &lt;blockquote&gt;\n  \t{{{ snippet }}}\n  &lt;/blockquote&gt;\n&lt;/article&gt;\n"</span>
+                </span>}
+            </span>}</span>,
+            "<span class="hljs-attribute">actions</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">show</span>": <span class="hljs-value"><span class="hljs-string">"https://docs.google.com/file/d/0Ao1Q9EZ6RihjdHBSSnlzWG5mRFMxTm5YRVMwZzd0b0E"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"/documents/53cf88a5cf25841c6144ee46"</span></span>,
+            "<span class="hljs-attribute">projection_type</span>": <span class="hljs-value"><span class="hljs-string">"snippet"</span></span>,
+            "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Traductions.pdf"</span></span>,
+                "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"/Traductions.pdf"</span></span>,
+                "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"des entreprises\nIntégration du &lt;span class=\"hlt\"&gt;CV&lt;/span&gt; des participants\nApplication de recherche pour les recruteurs\nà partir de 50€/mois\nPapiel Process\nPour recrutement grande échelle\nTraductions\nIntégrez les &lt;span class=\"hlt\"&gt;CVs&lt;/span&gt; images"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">related_count</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+            "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0.58171546</span>
+        </span>},
         {
-            <span class="hljs-string">"_type"</span>: <span class="hljs-string">"Document"</span>,
-            <span class="hljs-string">"id"</span>: <span class="hljs-string">"532347451eab8a0e22c2e65f"</span>,
-            <span class="hljs-string">"identifier"</span>: <span class="hljs-string">"https://evernote.com/s1/sh/6dbd89d6"</span>,
-            <span class="hljs-string">"creation_date"</span>: <span class="hljs-string">"2014-03-14T17:26:15.000Z"</span>,
-            <span class="hljs-string">"provider"</span>: <span class="hljs-string">"53234698c8318cc5d100004f"</span>,
-            <span class="hljs-string">"company"</span>: <span class="hljs-string">"52fb7b90c8318c4dc800006b"</span>,
-            <span class="hljs-string">"document_type"</span>: <span class="hljs-string">"5252ce4ce4cfcd16f55cfa41"</span>,
-            <span class="hljs-string">"actions"</span>: {
-                <span class="hljs-string">"show"</span>: <span class="hljs-string">"http://anyfetch-provider-evernote.herokuapp.com/shard/s1/sh/6dbd89d6-1d80-4292-97fb-a0511cee5973/c5a8ad2ccc6b21ef43bb80fccc2d3544"</span>
-            },
-            <span class="hljs-string">"document_url"</span>: <span class="hljs-string">"/documents/532347451eab8a0e22c2e65f"</span>,
-            <span class="hljs-string">"data"</span>: {
-                <span class="hljs-string">"subject"</span>: <span class="hljs-string">"Follow up Charly &lt;span class=\"hlt\"&gt;Kevers&lt;/span&gt;"</span>,
-                <span class="hljs-string">"description"</span>: <span class="hljs-string">"Ask him to send an Email to Nick and schedule a meeting with Alex."</span>,
-                <span class="hljs-string">"status"</span>: <span class="hljs-string">"TODO"</span>
-            },
-            <span class="hljs-string">"projection_type"</span>: <span class="hljs-string">"snippet"</span>,
-            <span class="hljs-string">"related_count"</span>: <span class="hljs-number">0</span>,
-            <span class="hljs-string">"score"</span>: <span class="hljs-number">0</span>.<span class="hljs-number">16041306</span>
-        }
-    ]
-}
+            "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Document"</span></span>,
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53cf9ceacf25841c6144fbc7"</span></span>,
+            "<span class="hljs-attribute">identifier</span>": <span class="hljs-value"><span class="hljs-string">"https://mail.google.com/mail/#inbox/13ec7d0b8ca2b818#13f050ec6027ecef-CREATION_PHINNOV-Dossierdemande-versionjuillet2012.doc.docx"</span></span>,
+            "<span class="hljs-attribute">creation_date</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T11:30:50.270Z"</span></span>,
+            "<span class="hljs-attribute">provider</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"AccessToken"</span></span>,
+                "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53cf9b4fa60b43c235680d7a"</span></span>,
+                "<span class="hljs-attribute">client</span>": <span class="hljs-value">{
+                    "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Client"</span></span>,
+                    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"GMail"</span></span>,
+                    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53047faac8318c2d65000096"</span>
+                </span>}</span>,
+                "<span class="hljs-attribute">is_basic_token</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+                "<span class="hljs-attribute">account_name</span>": <span class="hljs-value"><span class="hljs-string">"matthieu.bacconnier@papiel.fr"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">company</span>": <span class="hljs-value"><span class="hljs-string">"53c0190ae83613e049a4845b"</span></span>,
+            "<span class="hljs-attribute">document_type</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
+                "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3c"</span></span>,
+                "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"document"</span></span>,
+                "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
+                    "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n  &lt;blockquote&gt;\n  \t{{{ snippet }}}\n  &lt;/blockquote&gt;\n&lt;/article&gt;\n"</span>
+                </span>}
+            </span>}</span>,
+            "<span class="hljs-attribute">actions</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">show</span>": <span class="hljs-value"><span class="hljs-string">"https://mail.google.com/mail/#inbox/13ec7d0b8ca2b818"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"/documents/53cf9ceacf25841c6144fbc7"</span></span>,
+            "<span class="hljs-attribute">projection_type</span>": <span class="hljs-value"><span class="hljs-string">"snippet"</span></span>,
+            "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"CREATION PHINNOV Dossierdemande versionjuillet2012.doc"</span></span>,
+                "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"/CREATION_PHINNOV-Dossierdemande-versionjuillet2012.doc.docx"</span></span>,
+                "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"de recrutement : - Recherche des candidats en temps réel\n- Partage des profils\n- Suivi des candidatures\nPapiel Process :\n- Extraction des informations des &lt;span class=\"hlt\"&gt;CVs&lt;/span&gt; image\n- Interfaçage avec les outils métiers déjà"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">related_count</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+            "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0.18271412</span>
+        </span>},
+    ]</span>,
+    "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+    "<span class="hljs-attribute">max_score</span>": <span class="hljs-value"><span class="hljs-number">0.58171546</span>
+</span>}
 </code></pre></li></ul></section><section id="documents-documents-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create new document</span></div><div style="float:left"><a href="#documents-documents-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/documents{?search, ?before, ?after, ?document_type, ?provider, ?id, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit, ?sort}</code></div></div><div class="panel-body"><blockquote>
 <p>This endpoint can only be used with token authentication.</p>
 <p>You can’t send a file and a document at the same time, you need to send the document first and then send the file on <code>/documents/:id/file</code>.</p>
@@ -468,26 +555,56 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the Document to perform action with.</p>
 </dd><dt>search</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>john smith</span></span><p>String to highlight in the rendered document</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#9628c35be12688fa4f66207cb2c8d381" class="pull-right">Toggle</a></li><li id="9628c35be12688fa4f66207cb2c8d381" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#13508d02cdfa0d04ef3022127e9c3a58" class="pull-right">Toggle</a></li><li id="13508d02cdfa0d04ef3022127e9c3a58" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Document"</span></span>,
-    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"532347451eab8a0e22c2e65f"</span></span>,
-    "<span class="hljs-attribute">creation_date</span>": <span class="hljs-value"><span class="hljs-string">"2014-03-14T17:26:15.000Z"</span></span>,
-    "<span class="hljs-attribute">provider</span>": <span class="hljs-value"><span class="hljs-string">"53234698c8318cc5d100004f"</span></span>,
-    "<span class="hljs-attribute">company</span>": <span class="hljs-value"><span class="hljs-string">"52fb7b90c8318c4dc800006b"</span></span>,
-    "<span class="hljs-attribute">document_type</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa41"</span></span>,
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53ce71b24882ec9d58f08235"</span></span>,
+    "<span class="hljs-attribute">identifier</span>": <span class="hljs-value"><span class="hljs-string">"https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/79516afe8f2cdfba"</span></span>,
+    "<span class="hljs-attribute">creation_date</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-22T14:14:10.150Z"</span></span>,
+    "<span class="hljs-attribute">provider</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"AccessToken"</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53ce7198ebb324595ee9b49c"</span></span>,
+        "<span class="hljs-attribute">client</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Client"</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Google Contacts"</span></span>,
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"52bff1eec8318cb228000001"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">is_basic_token</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+        "<span class="hljs-attribute">account_name</span>": <span class="hljs-value"><span class="hljs-string">"matthieu.bacconnier@papiel.fr"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">company</span>": <span class="hljs-value"><span class="hljs-string">"53c0190ae83613e049a4845b"</span></span>,
+    "<span class="hljs-attribute">document_type</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3a"</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"contact"</span></span>,
+        "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n\n  &lt;section class=\"two-columns\"&gt;\n    &lt;aside&gt;\n      &lt;img src=\"{{ image }}\"/&gt;    \n    &lt;/aside&gt;\n    &lt;section&gt;\n      &lt;h1&gt;&lt;a href=\"anyfetch://search/{{name}}\"&gt;{{{ name }}}&lt;/a&gt;&lt;/h1&gt;\n      &lt;span&gt;{{{ job }}}&lt;/span&gt;   \n    &lt;/section&gt;\n  &lt;/section&gt;\n\n  &lt;section&gt;\n    {{#phone.length}}\n    &lt;h2&gt;Phones:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #phone }}\n      &lt;li&gt;{{ phone }} ( {{ type }} )&lt;/li&gt;\n      {{ /phone }}\n    &lt;/ul&gt;\n    {{/phone.length}}\n\n    {{#email.length}}\n    &lt;h2&gt;Emails:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #email }}\n      &lt;li&gt;{{ email }} ( {{ type }} )&lt;/li&gt;\n      {{ /email }}\n    &lt;/ul&gt;\n    {{/email.length}}\n\n    {{#address.length}}\n    &lt;h2&gt;Address:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #address }}\n      &lt;li&gt;{{ address }} ( {{ type }} )&lt;/li&gt;\n      {{ /address }}\n    &lt;/ul&gt;\n    {{/address.length}}\n\n    {{#website.length}}\n    &lt;h2&gt;Website:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #website }}\n      &lt;li&gt;{{{ website }}}&lt;/li&gt;\n      {{ /website }}\n    &lt;/ul&gt;\n    {{/website.length}}\n\n\n    {{#birthday}}\n    &lt;h2&gt;Birthday:&lt;/h2&gt;\n    &lt;span&gt;{{birthday}}&lt;/span&gt;\n    {{/birthday}}\n\n  &lt;/section&gt;\n\n&lt;/article&gt;\n"</span>
+        </span>}
+    </span>}</span>,
     "<span class="hljs-attribute">actions</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">show</span>": <span class="hljs-value"><span class="hljs-string">"http://anyfetch-provider-evernote.herokuapp.com/shard/s1/sh/6dbd89d6-1d80-4292-97fb-a0511cee5973/c5a8ad2ccc6b21ef43bb80fccc2d3544"</span>
+        "<span class="hljs-attribute">show</span>": <span class="hljs-value"><span class="hljs-string">"https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/79516afe8f2cdfba"</span>
     </span>}</span>,
-    "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"/documents/532347451eab8a0e22c2e65f"</span></span>,
-    "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">subject</span>": <span class="hljs-value"><span class="hljs-string">"Follow up Charly Kevers"</span></span>,
-        "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"TODO"</span></span>,
-        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Ask him to send an Email to Nick and schedule a meeting with Alex."</span>
-    </span>}</span>,
+    "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"/documents/53ce71b24882ec9d58f08235"</span></span>,
     "<span class="hljs-attribute">projection_type</span>": <span class="hljs-value"><span class="hljs-string">"full"</span></span>,
+    "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Florian Rossiaud"</span></span>,
+        "<span class="hljs-attribute">job</span>": <span class="hljs-value"><span class="hljs-string">" "</span></span>,
+        "<span class="hljs-attribute">phone</span>": <span class="hljs-value">[
+            {
+                "<span class="hljs-attribute">phone</span>": <span class="hljs-value"><span class="hljs-string">"+336 43 19 05 98"</span></span>,
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"mobile"</span>
+            </span>}
+        ]</span>,
+        "<span class="hljs-attribute">email</span>": <span class="hljs-value">[
+            {
+                "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"florianrossiaud@gmail.com"</span></span>,
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"work"</span>
+            </span>}
+        ]</span>,
+        "<span class="hljs-attribute">image</span>": <span class="hljs-value"><span class="hljs-string">"data:image/*;base64,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"</span>
+    </span>}</span>,
     "<span class="hljs-attribute">related</span>": <span class="hljs-value">[]</span>,
     "<span class="hljs-attribute">title</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">subject</span>": <span class="hljs-value"><span class="hljs-string">"Follow up Charly Kevers"</span>
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Florian Rossiaud"</span>
     </span>}
 </span>}
 </code></pre></li></ul></section><section id="documents-document-patch" class="panel panel-warning"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Patch Document</span></div><div style="float:left"><a href="#documents-document-patch" class="btn btn-xs btn-warning">PATCH</a></div><div style="overflow:hidden"><code>/documents/{id}{?search}</code></div></div><div class="panel-body"><p>Update a document.</p>
@@ -546,53 +663,174 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the Document to perform action with.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#b8253c57a1f7dfc96fd8a7061fe790fa" class="pull-right">Toggle</a></li><li id="b8253c57a1f7dfc96fd8a7061fe790fa" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#aa737ebdceac9c174dd4c5610c9ab212" class="pull-right">Toggle</a></li><li id="aa737ebdceac9c174dd4c5610c9ab212" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">title</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">subject</span>": <span class="hljs-value"><span class="hljs-string">"Follow up Charly Kevers"</span>
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Florian Rossiaud"</span>
     </span>}</span>,
-    "<span class="hljs-attribute">document_type</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa41"</span></span>,
+    "<span class="hljs-attribute">document_type</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3a"</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"contact"</span></span>,
+        "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ name }}"</span>
+        </span>}
+    </span>}</span>,
     "<span class="hljs-attribute">keywords</span>": <span class="hljs-value">[
-        <span class="hljs-string">"todo"</span>,
-        <span class="hljs-string">"nick"</span>,
-        <span class="hljs-string">"alex"</span>,
-        <span class="hljs-string">"charly"</span>,
-        <span class="hljs-string">"kevers"</span>
+        <span class="hljs-string">"Florian"</span>,
+        <span class="hljs-string">"Rossiaud"</span>,
+        <span class="hljs-string">"http://www.viadeo.com/profile/0021wjjcnuk953go"</span>,
+        <span class="hljs-string">"http://www.google.com/profiles/104432074843338689271"</span>,
+        <span class="hljs-string">"florianrossiaud@gmail.com"</span>,
     ]</span>,
-    "<span class="hljs-attribute">document_types</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">5252ce4ce4cfcd16f55cfa3f</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
-        "<span class="hljs-attribute">5252ce4ce4cfcd16f55cfa3c</span>": <span class="hljs-value"><span class="hljs-number">4</span></span>,
-        "<span class="hljs-attribute">5252ce4ce4cfcd16f55cfa41</span>": <span class="hljs-value"><span class="hljs-number">1</span>
+    "<span class="hljs-attribute">facets</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">document_types</span>": <span class="hljs-value">[
+            {
+                "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
+                "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3c"</span></span>,
+                "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"document"</span></span>,
+                "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
+                    "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n  &lt;blockquote&gt;\n  \t{{{ snippet }}}\n  &lt;/blockquote&gt;\n&lt;/article&gt;\n"</span></span>,
+                    "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;section&gt;\n    &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n    &lt;code&gt;{{ path }}&lt;/code&gt;\n  &lt;/section&gt;\n\n  &lt;section&gt;\n    {{{ content }}}\n  &lt;/section&gt;\n&lt;/article&gt;\n"</span></span>,
+                    "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ title }}"</span>
+                </span>}</span>,
+                "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"A document from which we were able to extract a clean HTML representation: text, doc, xls, epub..."</span></span>,
+                "<span class="hljs-attribute">projections</span>": <span class="hljs-value">{
+                    "<span class="hljs-attribute">snippet</span>": <span class="hljs-value">[
+                        <span class="hljs-string">"title"</span>,
+                        <span class="hljs-string">"path"</span>,
+                        <span class="hljs-string">"snippet"</span>
+                    ]</span>,
+                    "<span class="hljs-attribute">full</span>": <span class="hljs-value">[
+                        <span class="hljs-string">"title"</span>,
+                        <span class="hljs-string">"path"</span>,
+                        <span class="hljs-string">"content"</span>
+                    ]
+                </span>}</span>,
+                "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">9</span>
+            </span>},
+            {
+                "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
+                "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa40"</span></span>,
+                "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"event"</span></span>,
+                "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
+                    "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n\t&lt;h1&gt;{{{name}}}&lt;/h1&gt;\n\t&lt;span&gt;{{startDate}}&amp;mdash;{{endDate}}&lt;/span&gt;\n&lt;/article&gt;\n"</span></span>,
+                    "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n\t&lt;section&gt;\n\t\t&lt;h1&gt;{{name}}&lt;/h1&gt;\n\t\t&lt;span&gt;{{startDate}}&amp;mdash;{{endDate}}&lt;/span&gt;\n\t&lt;/section&gt;\n\n\t{{ #attendee.length }}\n\t\t&lt;h2&gt;Attendees:&lt;/h2&gt;\n\t\t{{ #attendee }}\n\t\t&lt;li&gt;{{.}}&lt;/li&gt;\n\t\t{{ /attendee }}\t\n\t{{ /attendee.length }}\n\n\t&lt;p&gt;{{description}}&lt;/p&gt;\n&lt;/article&gt;\n"</span></span>,
+                    "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ name }}"</span>
+                </span>}</span>,
+                "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"An event, from a calendar for instance."</span></span>,
+                "<span class="hljs-attribute">projections</span>": <span class="hljs-value">{
+                    "<span class="hljs-attribute">snippet</span>": <span class="hljs-value">[
+                        <span class="hljs-string">"startDate"</span>,
+                        <span class="hljs-string">"endDate"</span>,
+                        <span class="hljs-string">"name"</span>
+                    ]</span>,
+                    "<span class="hljs-attribute">full</span>": <span class="hljs-value">[
+                        <span class="hljs-string">"startDate"</span>,
+                        <span class="hljs-string">"endDate"</span>,
+                        <span class="hljs-string">"name"</span>,
+                        <span class="hljs-string">"description"</span>,
+                        <span class="hljs-string">"attendee"</span>
+                    ]
+                </span>}</span>,
+                "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">8</span>
+            </span>}
+        ]</span>,
+        "<span class="hljs-attribute">providers</span>": <span class="hljs-value">[
+            {
+                "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"AccessToken"</span></span>,
+                "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53ce7198ebb324595ee9b49c"</span></span>,
+                "<span class="hljs-attribute">client</span>": <span class="hljs-value">{
+                    "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Client"</span></span>,
+                    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Google Contacts"</span></span>,
+                    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"52bff1eec8318cb228000001"</span>
+                </span>}</span>,
+                "<span class="hljs-attribute">is_basic_token</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+                "<span class="hljs-attribute">account_name</span>": <span class="hljs-value"><span class="hljs-string">"matthieu.bacconnier@papiel.fr"</span></span>,
+                "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">71</span>
+            </span>},
+            {
+                "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"AccessToken"</span></span>,
+                "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53cf9b4fa60b43c235680d7a"</span></span>,
+                "<span class="hljs-attribute">client</span>": <span class="hljs-value">{
+                    "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Client"</span></span>,
+                    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"GMail"</span></span>,
+                    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53047faac8318c2d65000096"</span>
+                </span>}</span>,
+                "<span class="hljs-attribute">is_basic_token</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+                "<span class="hljs-attribute">account_name</span>": <span class="hljs-value"><span class="hljs-string">"matthieu.bacconnier@papiel.fr"</span></span>,
+                "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">16</span>
+            </span>},
+            {
+                "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"AccessToken"</span></span>,
+                "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53cf88997f247be935ebfd7a"</span></span>,
+                "<span class="hljs-attribute">client</span>": <span class="hljs-value">{
+                    "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Client"</span></span>,
+                    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Google Drive"</span></span>,
+                    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"539ef7289f240405465a2e1f"</span>
+                </span>}</span>,
+                "<span class="hljs-attribute">is_basic_token</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+                "<span class="hljs-attribute">account_name</span>": <span class="hljs-value"><span class="hljs-string">"matthieu.bacconnier@papiel.fr"</span></span>,
+                "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">1</span>
+            </span>}
+        ]</span>,
+        "<span class="hljs-attribute">creation_dates</span>": <span class="hljs-value">[
+            {
+                "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Date"</span></span>,
+                "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value"><span class="hljs-string">"1370044800000"</span></span>,
+                "<span class="hljs-attribute">date</span>": <span class="hljs-value"><span class="hljs-string">"2013-06-01T00:00:00.000Z"</span></span>,
+                "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">1</span>
+            </span>},
+            {
+                "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Date"</span></span>,
+                "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value"><span class="hljs-string">"1404172800000"</span></span>,
+                "<span class="hljs-attribute">date</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-01T00:00:00.000Z"</span></span>,
+                "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">87</span>
+            </span>}
+        ]
     </span>}</span>,
-    "<span class="hljs-attribute">providers</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">5320a6abc8318cc5d1000049</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
-        "<span class="hljs-attribute">5320a682c8318cba94000040</span>": <span class="hljs-value"><span class="hljs-number">4</span></span>,
-        "<span class="hljs-attribute">53234698c8318cc5d100004f</span>": <span class="hljs-value"><span class="hljs-number">1</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">next_page_url</span>": <span class="hljs-value"><span class="hljs-string">"coming"</span></span>,
-    "<span class="hljs-attribute">previous_page_url</span>": <span class="hljs-value"><span class="hljs-string">"coming"</span></span>,
     "<span class="hljs-attribute">data</span>": <span class="hljs-value">[
         {
             "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Document"</span></span>,
-            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5320a76fbc2e51d7135f0c8c"</span></span>,
-            "<span class="hljs-attribute">creation_date</span>": <span class="hljs-value"><span class="hljs-string">"2014-02-14T08:46:11.000Z"</span></span>,
-            "<span class="hljs-attribute">provider</span>": <span class="hljs-value"><span class="hljs-string">"5320a6abc8318cc5d1000049"</span></span>,
-            "<span class="hljs-attribute">company</span>": <span class="hljs-value"><span class="hljs-string">"52fb7b90c8318c4dc800006b"</span></span>,
-            "<span class="hljs-attribute">document_type</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3f"</span></span>,
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53ce71ab4882ec9d58f08215"</span></span>,
+            "<span class="hljs-attribute">identifier</span>": <span class="hljs-value"><span class="hljs-string">"https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/3d721b5e8b215a41"</span></span>,
+            "<span class="hljs-attribute">creation_date</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-22T14:14:03.396Z"</span></span>,
+            "<span class="hljs-attribute">provider</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"AccessToken"</span></span>,
+                "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53ce7198ebb324595ee9b49c"</span></span>,
+                "<span class="hljs-attribute">client</span>": <span class="hljs-value">{
+                    "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Client"</span></span>,
+                    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Google Contacts"</span></span>,
+                    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"52bff1eec8318cb228000001"</span>
+                </span>}</span>,
+                "<span class="hljs-attribute">is_basic_token</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+                "<span class="hljs-attribute">account_name</span>": <span class="hljs-value"><span class="hljs-string">"matthieu.bacconnier@papiel.fr"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">company</span>": <span class="hljs-value"><span class="hljs-string">"53c0190ae83613e049a4845b"</span></span>,
+            "<span class="hljs-attribute">document_type</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
+                "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3a"</span></span>,
+                "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"contact"</span></span>,
+                "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
+                    "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article class=\"two-columns\"&gt;\n  &lt;aside&gt;\n    &lt;img src=\"{{ image }}\" /&gt;\n  &lt;/aside&gt;\n  &lt;section&gt;\n    &lt;h1&gt;{{{ name }}}&lt;/h1&gt;\n    &lt;span&gt;{{{ job }}}&lt;/span&gt;\n  &lt;/section&gt;\n&lt;/article&gt;\n"</span>
+                </span>}
+            </span>}</span>,
             "<span class="hljs-attribute">actions</span>": <span class="hljs-value">{
-                "<span class="hljs-attribute">show</span>": <span class="hljs-value"><span class="hljs-string">"https://mail.google.com/mail/b/anyfetch@gmail.com/?cm#all/1442f93143ab3bb6"</span>
+                "<span class="hljs-attribute">show</span>": <span class="hljs-value"><span class="hljs-string">"https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/3d721b5e8b215a41"</span>
             </span>}</span>,
-            "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"/documents/5320a76fbc2e51d7135f0c8c"</span></span>,
-            "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
-                "<span class="hljs-attribute">from</span>": <span class="hljs-value"><span class="hljs-string">"Udacity &lt;support@udacity.com&gt;"</span></span>,
-                "<span class="hljs-attribute">to</span>": <span class="hljs-value"><span class="hljs-string">"anyfetch@gmail.com"</span></span>,
-                "<span class="hljs-attribute">subject</span>": <span class="hljs-value"><span class="hljs-string">"Verify Your &lt;span class=\"hlt\"&gt;Email&lt;/span&gt; on Udacity"</span></span>,
-                "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"Hi Any,\r\n\r\nTo complete your sign &lt;span class=\"hlt\"&gt;up&lt;/span&gt;, please verify your &lt;span class=\"hlt\"&gt;email&lt;/span&gt; using the following link:\r\n\r\nhttps://www.udacity.com/account/verify_email?user_key=788038764&amp;code=YbD5SsnEMa\r\n\r\nCheers,\r\n\r\nThe Udacity Team\r\n"</span></span>,
-                "<span class="hljs-attribute">date</span>": <span class="hljs-value"><span class="hljs-string">"Friday, February 14, 2014"</span>
-            </span>}</span>,
+            "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"/documents/53ce71ab4882ec9d58f08215"</span></span>,
             "<span class="hljs-attribute">projection_type</span>": <span class="hljs-value"><span class="hljs-string">"snippet"</span></span>,
-            "<span class="hljs-attribute">related_count</span>": <span class="hljs-value"><span class="hljs-number">0</span>
-        </span>}
-    ]
+            "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Alexandre David"</span></span>,
+                "<span class="hljs-attribute">image</span>": <span class="hljs-value"><span class="hljs-string">"data:image/*;base64,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"</span></span>,
+                "<span class="hljs-attribute">job</span>": <span class="hljs-value"><span class="hljs-string">"Entrepreneur Shapter"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">related_count</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+            "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">1.0125184</span>
+        </span>},
+        ...
+    ]</span>,
+    "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">88</span></span>,
+    "<span class="hljs-attribute">max_score</span>": <span class="hljs-value"><span class="hljs-number">1.0125184</span>
 </span>}
 </code></pre></li></ul></section><h4 id="documents-related-documents">Related documents&nbsp;<a href="#documents-related-documents"><i class="fa fa-link"></i></a></h4><section id="documents-related-documents-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Find related documents</span></div><div style="float:left"><a href="#documents-related-documents-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents/{id}/related</code></div></div><div class="panel-body"><p>Documents related to <code>id</code>.</p>
 <p>Result contains, amongst other :</p>
@@ -663,28 +901,86 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the Document to perform action with.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#5c65940e50e4289342a677f357c13805" class="pull-right">Toggle</a></li><li id="5c65940e50e4289342a677f357c13805" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#e28729c0b2391668050dca9fcf048bb1" class="pull-right">Toggle</a></li><li id="e28729c0b2391668050dca9fcf048bb1" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Document"</span></span>,
-    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"532347451eab8a0e22c2e65f"</span></span>,
-    "<span class="hljs-attribute">creation_date</span>": <span class="hljs-value"><span class="hljs-string">"2014-03-14T17:26:15.000Z"</span></span>,
-    "<span class="hljs-attribute">provider</span>": <span class="hljs-value"><span class="hljs-string">"53234698c8318cc5d100004f"</span></span>,
-    "<span class="hljs-attribute">company</span>": <span class="hljs-value"><span class="hljs-string">"52fb7b90c8318c4dc800006b"</span></span>,
-    "<span class="hljs-attribute">document_type</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa41"</span></span>,
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53ce71b24882ec9d58f08235"</span></span>,
+    "<span class="hljs-attribute">identifier</span>": <span class="hljs-value"><span class="hljs-string">"https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/79516afe8f2cdfba"</span></span>,
+    "<span class="hljs-attribute">creation_date</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-22T14:14:10.150Z"</span></span>,
+    "<span class="hljs-attribute">provider</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"AccessToken"</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53ce7198ebb324595ee9b49c"</span></span>,
+        "<span class="hljs-attribute">client</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Client"</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Google Contacts"</span></span>,
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"52bff1eec8318cb228000001"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">is_basic_token</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+        "<span class="hljs-attribute">account_name</span>": <span class="hljs-value"><span class="hljs-string">"matthieu.bacconnier@papiel.fr"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">company</span>": <span class="hljs-value"><span class="hljs-string">"53c0190ae83613e049a4845b"</span></span>,
+    "<span class="hljs-attribute">document_type</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3a"</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"contact"</span></span>,
+        "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article class=\"two-columns\"&gt;\n  &lt;aside&gt;\n    &lt;img src=\"{{ image }}\" /&gt;\n  &lt;/aside&gt;\n  &lt;section&gt;\n    &lt;h1&gt;{{{ name }}}&lt;/h1&gt;\n    &lt;span&gt;{{{ job }}}&lt;/span&gt;\n  &lt;/section&gt;\n&lt;/article&gt;\n"</span></span>,
+            "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n\n  &lt;section class=\"two-columns\"&gt;\n    &lt;aside&gt;\n      &lt;img src=\"{{ image }}\"/&gt;    \n    &lt;/aside&gt;\n    &lt;section&gt;\n      &lt;h1&gt;&lt;a href=\"anyfetch://search/{{name}}\"&gt;{{{ name }}}&lt;/a&gt;&lt;/h1&gt;\n      &lt;span&gt;{{{ job }}}&lt;/span&gt;   \n    &lt;/section&gt;\n  &lt;/section&gt;\n\n  &lt;section&gt;\n    {{#phone.length}}\n    &lt;h2&gt;Phones:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #phone }}\n      &lt;li&gt;{{ phone }} ( {{ type }} )&lt;/li&gt;\n      {{ /phone }}\n    &lt;/ul&gt;\n    {{/phone.length}}\n\n    {{#email.length}}\n    &lt;h2&gt;Emails:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #email }}\n      &lt;li&gt;{{ email }} ( {{ type }} )&lt;/li&gt;\n      {{ /email }}\n    &lt;/ul&gt;\n    {{/email.length}}\n\n    {{#address.length}}\n    &lt;h2&gt;Address:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #address }}\n      &lt;li&gt;{{ address }} ( {{ type }} )&lt;/li&gt;\n      {{ /address }}\n    &lt;/ul&gt;\n    {{/address.length}}\n\n    {{#website.length}}\n    &lt;h2&gt;Website:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #website }}\n      &lt;li&gt;{{{ website }}}&lt;/li&gt;\n      {{ /website }}\n    &lt;/ul&gt;\n    {{/website.length}}\n\n\n    {{#birthday}}\n    &lt;h2&gt;Birthday:&lt;/h2&gt;\n    &lt;span&gt;{{birthday}}&lt;/span&gt;\n    {{/birthday}}\n\n  &lt;/section&gt;\n\n&lt;/article&gt;\n"</span></span>,
+            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ name }}"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"A person (contact, client, ...)"</span></span>,
+        "<span class="hljs-attribute">projections</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value">[
+                <span class="hljs-string">"name"</span>,
+                <span class="hljs-string">"image"</span>,
+                <span class="hljs-string">"job"</span>
+            ]</span>,
+            "<span class="hljs-attribute">full</span>": <span class="hljs-value">[
+                <span class="hljs-string">"name"</span>,
+                <span class="hljs-string">"job"</span>,
+                <span class="hljs-string">"phone"</span>,
+                <span class="hljs-string">"email"</span>,
+                <span class="hljs-string">"image"</span>
+            ]
+        </span>}
+    </span>}</span>,
     "<span class="hljs-attribute">actions</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">show</span>": <span class="hljs-value"><span class="hljs-string">"http://anyfetch-provider-evernote.herokuapp.com/shard/s1/sh/6dbd89d6-1d80-4292-97fb-a0511cee5973/c5a8ad2ccc6b21ef43bb80fccc2d3544"</span>
+        "<span class="hljs-attribute">show</span>": <span class="hljs-value"><span class="hljs-string">"https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/79516afe8f2cdfba"</span>
     </span>}</span>,
-    "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"/documents/532347451eab8a0e22c2e65f"</span></span>,
-    "<span class="hljs-attribute">identifier</span>": <span class="hljs-value"><span class="hljs-string">"http://anyfetch-provider-evernote.herokuapp.com/shard/s1/sh/6dbd89d6-1d80-4292-97fb-a0511cee5973/c5a8ad2ccc6b21ef43bb80fccc2d3544"</span></span>,
-    "<span class="hljs-attribute">data</span>": <span class="hljs-value">{}</span>,
+    "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"/documents/53ce71b24882ec9d58f08235"</span></span>,
+    "<span class="hljs-attribute">projection_type</span>": <span class="hljs-value"><span class="hljs-string">"raw"</span></span>,
+    "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">image</span>": <span class="hljs-value"><span class="hljs-string">"data:image/*;base64,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"</span>
+    </span>}</span>,
     "<span class="hljs-attribute">metadata</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"TODO"</span></span>,
-        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Ask him to send an Email to Nick and schedule a meeting with Alex."</span></span>,
-        "<span class="hljs-attribute">subject</span>": <span class="hljs-value"><span class="hljs-string">"Follow up Charly Kevers"</span>
+        "<span class="hljs-attribute">groups</span>": <span class="hljs-value">[
+            <span class="hljs-string">"System Group: My Contacts"</span>,
+            <span class="hljs-string">"Evercontact"</span>
+        ]</span>,
+        "<span class="hljs-attribute">website</span>": <span class="hljs-value">[
+            <span class="hljs-string">"http://www.viadeo.com/profile/0021wjjcnuk953go"</span>,
+            <span class="hljs-string">"http://www.google.com/profiles/104432074843338689271"</span>
+        ]</span>,
+        "<span class="hljs-attribute">phone</span>": <span class="hljs-value">[
+            {
+                "<span class="hljs-attribute">phone</span>": <span class="hljs-value"><span class="hljs-string">"+336 43 19 04 96"</span></span>,
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"mobile"</span>
+            </span>}
+        ]</span>,
+        "<span class="hljs-attribute">email</span>": <span class="hljs-value">[
+            {
+                "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"florianrossiaud@gmail.com"</span></span>,
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"work"</span>
+            </span>}
+        ]</span>,
+        "<span class="hljs-attribute">family_name</span>": <span class="hljs-value"><span class="hljs-string">"Rossiaud"</span></span>,
+        "<span class="hljs-attribute">given_name</span>": <span class="hljs-value"><span class="hljs-string">"Florian"</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Florian Rossiaud"</span>
     </span>}</span>,
-    "<span class="hljs-attribute">last_hydration</span>": <span class="hljs-value"><span class="hljs-string">"2014-03-14T18:15:37.600Z"</span></span>,
+    "<span class="hljs-attribute">last_hydration</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
     "<span class="hljs-attribute">hydrating</span>": <span class="hljs-value">[]</span>,
     "<span class="hljs-attribute">hydrated_by</span>": <span class="hljs-value">[]</span>,
-    "<span class="hljs-attribute">projection_type</span>": <span class="hljs-value"><span class="hljs-string">"raw"</span></span>,
+    "<span class="hljs-attribute">hydrater_errored</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+    "<span class="hljs-attribute">hydration_error</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
     "<span class="hljs-attribute">related</span>": <span class="hljs-value">[]
 </span>}
 </code></pre></li></ul></section><h4 id="documents-associated-file">Associated file&nbsp;<a href="#documents-associated-file"><i class="fa fa-link"></i></a></h4><p>Work with the document’s file.</p>
@@ -847,37 +1143,17 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 </ul>
 </blockquote>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#71ebec85a7e4fa31d8e787ab4bf29827" class="pull-right">Toggle</a></li><li id="71ebec85a7e4fa31d8e787ab4bf29827" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
-    "<span class="hljs-attribute">5252ce4ce4cfcd16f55cfa3b</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
-        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3b"</span></span>,
-        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"file"</span></span>,
-        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Anything that does not fit in other categories."</span></span>,
-        "<span class="hljs-attribute">projections</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value">[
-                <span class="hljs-string">"title"</span>,
-                <span class="hljs-string">"path"</span>,
-                <span class="hljs-string">"extension"</span>
-            ]</span>,
-            "<span class="hljs-attribute">full</span>": <span class="hljs-value">[
-                <span class="hljs-string">"title"</span>,
-                <span class="hljs-string">"path"</span>,
-                <span class="hljs-string">"extension"</span>
-            ]
-        </span>}</span>,
-        "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n  &lt;code&gt;{{{ path }}}&lt;/code&gt;\n&lt;/article&gt;\n"</span></span>,
-            "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n  &lt;code&gt;{{{ path }}}&lt;/code&gt;\n&lt;/article&gt;\n"</span></span>,
-            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ title }}"</span>
-        </span>}</span>,
-        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-03T21:38:54.750Z"</span></span>,
-        "<span class="hljs-attribute">documents</span>": <span class="hljs-value"><span class="hljs-number">120</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">5252ce4ce4cfcd16f55cfa3d</span>": <span class="hljs-value">{
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#fd9c79c4990b55124fbedfe4f247442c" class="pull-right">Toggle</a></li><li id="fd9c79c4990b55124fbedfe4f247442c" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
+    {
         "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
         "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3d"</span></span>,
         "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"image"</span></span>,
-        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Anything with image image content (png, jpg, ...)"</span></span>,
+        "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n\n  &lt;img src=\"{{ thumb }}\" /&gt;\n&lt;/article&gt;\n"</span></span>,
+            "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n\n  &lt;img src=\"{{ display }}\" /&gt;\n&lt;/article&gt;\n"</span></span>,
+            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ title }}"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Display thumbnail and preview data encoded in base64."</span></span>,
         "<span class="hljs-attribute">projections</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">snippet</span>": <span class="hljs-value">[
                 <span class="hljs-string">"title"</span>,
@@ -888,43 +1164,45 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
                 <span class="hljs-string">"display"</span>
             ]
         </span>}</span>,
-        "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n\n  &lt;img src=\"{{ thumb }}\" /&gt;\n&lt;/article&gt;\n"</span></span>,
-            "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n\n  &lt;img src=\"{{ display }}\" /&gt;\n&lt;/article&gt;\n"</span></span>,
-            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ title }}"</span>
-        </span>}</span>,
-        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-03T21:40:00.488Z"</span></span>,
-        "<span class="hljs-attribute">documents</span>": <span class="hljs-value"><span class="hljs-number">660</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">5252ce4ce4cfcd16f55cfa3c</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">439</span></span>,
+        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T11:31:53.739Z"</span>
+    </span>},
+    {
         "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
-        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3c"</span></span>,
-        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"document"</span></span>,
-        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Document with html content (word, presentation, pdf, ...)"</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa40"</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"event"</span></span>,
+        "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n\t&lt;h1&gt;{{{name}}}&lt;/h1&gt;\n\t&lt;span&gt;{{startDate}}&amp;mdash;{{endDate}}&lt;/span&gt;\n&lt;/article&gt;\n"</span></span>,
+            "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n\t&lt;section&gt;\n\t\t&lt;h1&gt;{{name}}&lt;/h1&gt;\n\t\t&lt;span&gt;{{startDate}}&amp;mdash;{{endDate}}&lt;/span&gt;\n\t&lt;/section&gt;\n\n\t{{ #attendee.length }}\n\t\t&lt;h2&gt;Attendees:&lt;/h2&gt;\n\t\t{{ #attendee }}\n\t\t&lt;li&gt;{{.}}&lt;/li&gt;\n\t\t{{ /attendee }}\t\n\t{{ /attendee.length }}\n\n\t&lt;p&gt;{{description}}&lt;/p&gt;\n&lt;/article&gt;\n"</span></span>,
+            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ name }}"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"An event, from a calendar for instance."</span></span>,
         "<span class="hljs-attribute">projections</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">snippet</span>": <span class="hljs-value">[
-                <span class="hljs-string">"title"</span>,
-                <span class="hljs-string">"path"</span>,
-                <span class="hljs-string">"snippet"</span>
+                <span class="hljs-string">"startDate"</span>,
+                <span class="hljs-string">"endDate"</span>,
+                <span class="hljs-string">"name"</span>
             ]</span>,
             "<span class="hljs-attribute">full</span>": <span class="hljs-value">[
-                <span class="hljs-string">"title"</span>,
-                <span class="hljs-string">"path"</span>,
-                <span class="hljs-string">"content"</span>
+                <span class="hljs-string">"startDate"</span>,
+                <span class="hljs-string">"endDate"</span>,
+                <span class="hljs-string">"name"</span>,
+                <span class="hljs-string">"description"</span>,
+                <span class="hljs-string">"attendee"</span>
             ]
         </span>}</span>,
-        "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n  &lt;blockquote&gt;\n  \t{{{ snippet }}}\n  &lt;/blockquote&gt;\n&lt;/article&gt;\n"</span></span>,
-            "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;section&gt;\n    &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n    &lt;code&gt;{{ path }}&lt;/code&gt;\n  &lt;/section&gt;\n\n  &lt;section&gt;\n    {{{ content }}}\n  &lt;/section&gt;\n&lt;/article&gt;\n"</span></span>,
-            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ title }}"</span>
-        </span>}</span>,
-        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-03T23:12:44.158Z"</span></span>,
-        "<span class="hljs-attribute">documents</span>": <span class="hljs-value"><span class="hljs-number">7006</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">5252ce4ce4cfcd16f55cfa3f</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">133</span></span>,
+        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T11:30:54.948Z"</span>
+    </span>},
+    {
         "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
         "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3f"</span></span>,
         "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"email"</span></span>,
+        "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{subject}}}&lt;/h1&gt;\n  &lt;div class=\"two-columns\"&gt;\n    &lt;span&gt;{{ date }}&lt;/span&gt;\n    &lt;span&gt;&lt;small&gt;{{{from}}} &amp;rarr; {{{to}}}&lt;/small&gt;&lt;/span&gt;\n  &lt;/div&gt;\n  &lt;blockquote&gt;{{{snippet}}}&lt;/blockquote&gt;\n&lt;/article&gt;\n"</span></span>,
+            "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article class=\"email-projection\"&gt;\n &lt;header&gt;\n     &lt;h1&gt;{{{subject}}}&lt;/h1&gt;\n     &lt;small&gt;{{ date }}&lt;/small&gt;\n     &lt;small&gt;From: &lt;strong&gt;{{{from}}}&lt;/strong&gt;&lt;/small&gt;\n     &lt;small&gt;To: &lt;strong&gt;{{{to}}}&lt;/strong&gt;&lt;/small&gt;\n &lt;/header&gt;\n\n &lt;main&gt;\n       {{{html}}}\n &lt;/main&gt;\n&lt;/article&gt;\n"</span></span>,
+            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{{ subject }}}"</span>
+        </span>}</span>,
         "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"An email"</span></span>,
         "<span class="hljs-attribute">projections</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">snippet</span>": <span class="hljs-value">[
@@ -944,23 +1222,100 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
                 <span class="hljs-string">"date"</span>
             ]
         </span>}</span>,
+        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">5857</span></span>,
+        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T11:31:01.601Z"</span>
+    </span>},
+    {
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3c"</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"document"</span></span>,
         "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{subject}}}&lt;/h1&gt;\n  &lt;div class=\"two-columns\"&gt;\n    &lt;span&gt;{{ date }}&lt;/span&gt;\n    &lt;span&gt;&lt;small&gt;{{{from}}} &amp;rarr; {{{to}}}&lt;/small&gt;&lt;/span&gt;\n  &lt;/div&gt;\n  &lt;blockquote&gt;{{{snippet}}}&lt;/blockquote&gt;\n&lt;/article&gt;\n"</span></span>,
-            "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article class=\"email-projection\"&gt;\n &lt;header&gt;\n     &lt;h1&gt;{{{subject}}}&lt;/h1&gt;\n     &lt;small&gt;{{ date }}&lt;/small&gt;\n     &lt;small&gt;From: &lt;strong&gt;{{{from}}}&lt;/strong&gt;&lt;/small&gt;\n     &lt;small&gt;To: &lt;strong&gt;&lt;{{{to}}}&lt;/strong&gt;&lt;/small&gt;\n &lt;/header&gt;\n\n &lt;main&gt;\n       {{{html}}}\n &lt;/main&gt;\n&lt;/article&gt;\n"</span></span>,
-            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ subject }}"</span>
+            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n  &lt;blockquote&gt;\n  \t{{{ snippet }}}\n  &lt;/blockquote&gt;\n&lt;/article&gt;\n"</span></span>,
+            "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;section&gt;\n    &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n    &lt;code&gt;{{ path }}&lt;/code&gt;\n  &lt;/section&gt;\n\n  &lt;section&gt;\n    {{{ content }}}\n  &lt;/section&gt;\n&lt;/article&gt;\n"</span></span>,
+            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ title }}"</span>
         </span>}</span>,
-        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-03T21:39:45.857Z"</span></span>,
-        "<span class="hljs-attribute">documents</span>": <span class="hljs-value"><span class="hljs-number">6187</span>
+        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"A document from which we were able to extract a clean HTML representation: text, doc, xls, epub..."</span></span>,
+        "<span class="hljs-attribute">projections</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value">[
+                <span class="hljs-string">"title"</span>,
+                <span class="hljs-string">"path"</span>,
+                <span class="hljs-string">"snippet"</span>
+            ]</span>,
+            "<span class="hljs-attribute">full</span>": <span class="hljs-value">[
+                <span class="hljs-string">"title"</span>,
+                <span class="hljs-string">"path"</span>,
+                <span class="hljs-string">"content"</span>
+            ]
+        </span>}</span>,
+        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">296</span></span>,
+        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T11:32:06.347Z"</span>
+    </span>},
+    {
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3b"</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"file"</span></span>,
+        "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n  &lt;code&gt;{{{ path }}}&lt;/code&gt;\n&lt;/article&gt;\n"</span></span>,
+            "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n  &lt;code&gt;{{{ path }}}&lt;/code&gt;\n&lt;/article&gt;\n"</span></span>,
+            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ title }}"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Most basic document type for any kind of binary content. When a provider sends data without any additional information, it will use this document_type."</span></span>,
+        "<span class="hljs-attribute">projections</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value">[
+                <span class="hljs-string">"title"</span>,
+                <span class="hljs-string">"path"</span>,
+                <span class="hljs-string">"extension"</span>
+            ]</span>,
+            "<span class="hljs-attribute">full</span>": <span class="hljs-value">[
+                <span class="hljs-string">"title"</span>,
+                <span class="hljs-string">"path"</span>,
+                <span class="hljs-string">"extension"</span>
+            ]
+        </span>}</span>,
+        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">214</span></span>,
+        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T11:31:15.593Z"</span>
+    </span>},
+    {
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3a"</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"contact"</span></span>,
+        "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article class=\"two-columns\"&gt;\n  &lt;aside&gt;\n    &lt;img src=\"{{ image }}\" /&gt;\n  &lt;/aside&gt;\n  &lt;section&gt;\n    &lt;h1&gt;{{{ name }}}&lt;/h1&gt;\n    &lt;span&gt;{{{ job }}}&lt;/span&gt;\n  &lt;/section&gt;\n&lt;/article&gt;\n"</span></span>,
+            "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n\n  &lt;section class=\"two-columns\"&gt;\n    &lt;aside&gt;\n      &lt;img src=\"{{ image }}\"/&gt;    \n    &lt;/aside&gt;\n    &lt;section&gt;\n      &lt;h1&gt;&lt;a href=\"anyfetch://search/{{name}}\"&gt;{{{ name }}}&lt;/a&gt;&lt;/h1&gt;\n      &lt;span&gt;{{{ job }}}&lt;/span&gt;   \n    &lt;/section&gt;\n  &lt;/section&gt;\n\n  &lt;section&gt;\n    {{#phone.length}}\n    &lt;h2&gt;Phones:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #phone }}\n      &lt;li&gt;{{ phone }} ( {{ type }} )&lt;/li&gt;\n      {{ /phone }}\n    &lt;/ul&gt;\n    {{/phone.length}}\n\n    {{#email.length}}\n    &lt;h2&gt;Emails:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #email }}\n      &lt;li&gt;{{ email }} ( {{ type }} )&lt;/li&gt;\n      {{ /email }}\n    &lt;/ul&gt;\n    {{/email.length}}\n\n    {{#address.length}}\n    &lt;h2&gt;Address:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #address }}\n      &lt;li&gt;{{ address }} ( {{ type }} )&lt;/li&gt;\n      {{ /address }}\n    &lt;/ul&gt;\n    {{/address.length}}\n\n    {{#website.length}}\n    &lt;h2&gt;Website:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #website }}\n      &lt;li&gt;{{{ website }}}&lt;/li&gt;\n      {{ /website }}\n    &lt;/ul&gt;\n    {{/website.length}}\n\n\n    {{#birthday}}\n    &lt;h2&gt;Birthday:&lt;/h2&gt;\n    &lt;span&gt;{{birthday}}&lt;/span&gt;\n    {{/birthday}}\n\n  &lt;/section&gt;\n\n&lt;/article&gt;\n"</span></span>,
+            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ name }}"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"A person (contact, client, ...)"</span></span>,
+        "<span class="hljs-attribute">projections</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value">[
+                <span class="hljs-string">"name"</span>,
+                <span class="hljs-string">"image"</span>,
+                <span class="hljs-string">"job"</span>
+            ]</span>,
+            "<span class="hljs-attribute">full</span>": <span class="hljs-value">[
+                <span class="hljs-string">"name"</span>,
+                <span class="hljs-string">"job"</span>,
+                <span class="hljs-string">"phone"</span>,
+                <span class="hljs-string">"email"</span>,
+                <span class="hljs-string">"image"</span>
+            ]
+        </span>}</span>,
+        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">239</span></span>,
+        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-22T14:14:16.640Z"</span>
     </span>}
-</span>}
+]
 </code></pre></li></ul></section><h4 id="document-types-document-type">Document-type&nbsp;<a href="#document-types-document-type"><i class="fa fa-link"></i></a></h4><section id="document-types-document-type-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get document-type</span></div><div style="float:left"><a href="#document-types-document-type-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/document_types/{id}</code></div></div><div class="panel-body"><p>Retrieve details about the specified document-type.
 This endpoint is public and can be accessed by anyone with the id.</p>
 <p>A list of default document-types can be found on <a href="/resources/document-types.html">this page</a>.</p>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#d2aae4820a9c26c6649c404eb54ad06f" class="pull-right">Toggle</a></li><li id="d2aae4820a9c26c6649c404eb54ad06f" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#b95524d1195a2082ca1e193b6da27aad" class="pull-right">Toggle</a></li><li id="b95524d1195a2082ca1e193b6da27aad" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
     "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3c"</span></span>,
     "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"document"</span></span>,
-    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Document with html content (word, presentation, pdf, ...)"</span></span>,
+    "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n  &lt;blockquote&gt;\n  \t{{{ snippet }}}\n  &lt;/blockquote&gt;\n&lt;/article&gt;\n"</span></span>,
+        "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;section&gt;\n    &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n    &lt;code&gt;{{ path }}&lt;/code&gt;\n  &lt;/section&gt;\n\n  &lt;section&gt;\n    {{{ content }}}\n  &lt;/section&gt;\n&lt;/article&gt;\n"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ title }}"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"A document from which we were able to extract a clean HTML representation: text, doc, xls, epub..."</span></span>,
     "<span class="hljs-attribute">projections</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">snippet</span>": <span class="hljs-value">[
             <span class="hljs-string">"title"</span>,
@@ -972,11 +1327,6 @@ This endpoint is public and can be accessed by anyone with the id.</p>
             <span class="hljs-string">"path"</span>,
             <span class="hljs-string">"content"</span>
         ]
-    </span>}</span>,
-    "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n  &lt;blockquote&gt;\n  \t{{{ snippet }}}\n  &lt;/blockquote&gt;\n&lt;/article&gt;\n"</span></span>,
-        "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;section&gt;\n    &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n    &lt;code&gt;{{ path }}&lt;/code&gt;\n  &lt;/section&gt;\n\n  &lt;section&gt;\n    {{{ content }}}\n  &lt;/section&gt;\n&lt;/article&gt;\n"</span></span>,
-        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ title }}"</span>
     </span>}
 </span>}
 </code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="providers">Providers&nbsp;<a href="#providers"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="providers-providers">Providers&nbsp;<a href="#providers-providers"><i class="fa fa-link"></i></a></h4><section id="providers-providers-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">List providers</span></div><div style="float:left"><a href="#providers-providers-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/providers</code></div></div><div class="panel-body"><p>Retrieve all providers available for the current user, with document count and the date the last document created by this provider was updated.</p>
@@ -987,26 +1337,56 @@ This endpoint is public and can be accessed by anyone with the id.</p>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 </ul>
 </blockquote>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#24c4d357c06c7955c6ba258d301bbf2a" class="pull-right">Toggle</a></li><li id="24c4d357c06c7955c6ba258d301bbf2a" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
-    "<span class="hljs-attribute">53234698c8318cc5d100004f</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">client</span>": <span class="hljs-value"><span class="hljs-string">"53232d1dc8318cba94000042"</span></span>,
-        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Evernote"</span></span>,
-        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-03-14T18:15:37.603Z"</span></span>,
-        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">2</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">5320a682c8318cba94000040</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">client</span>": <span class="hljs-value"><span class="hljs-string">"52bff114c8318c29e9000005"</span></span>,
-        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Dropbox"</span></span>,
-        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-03-21T16:48:16.486Z"</span></span>,
-        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">14</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">5320a6abc8318cc5d1000049</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">client</span>": <span class="hljs-value"><span class="hljs-string">"53047faac8318c2d65000096"</span></span>,
-        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"GMail"</span></span>,
-        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-03-20T19:15:11.048Z"</span></span>,
-        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">26</span>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#e6c078168a8cae7e5b92ff6175088abe" class="pull-right">Toggle</a></li><li id="e6c078168a8cae7e5b92ff6175088abe" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
+    {
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"AccessToken"</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53c91957cfb3211a4fc877c0"</span></span>,
+        "<span class="hljs-attribute">client</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+        "<span class="hljs-attribute">is_basic_token</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">account_name</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
+        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T12:01:16.036Z"</span>
+    </span>},
+    {
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"AccessToken"</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53ce7198ebb324595ee9b49c"</span></span>,
+        "<span class="hljs-attribute">client</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Client"</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Google Contacts"</span></span>,
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"52bff1eec8318cb228000001"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">is_basic_token</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+        "<span class="hljs-attribute">account_name</span>": <span class="hljs-value"><span class="hljs-string">"matthieu.bacconnier@papiel.fr"</span></span>,
+        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">239</span></span>,
+        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-22T14:14:16.640Z"</span>
+    </span>},
+    {
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"AccessToken"</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53cf88997f247be935ebfd7a"</span></span>,
+        "<span class="hljs-attribute">client</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Client"</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Google Drive"</span></span>,
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"539ef7289f240405465a2e1f"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">is_basic_token</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+        "<span class="hljs-attribute">account_name</span>": <span class="hljs-value"><span class="hljs-string">"matthieu.bacconnier@papiel.fr"</span></span>,
+        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">192</span></span>,
+        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T11:24:37.644Z"</span>
+    </span>},
+    {
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"AccessToken"</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53cf9b4fa60b43c235680d7a"</span></span>,
+        "<span class="hljs-attribute">client</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Client"</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"GMail"</span></span>,
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53047faac8318c2d65000096"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">is_basic_token</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+        "<span class="hljs-attribute">account_name</span>": <span class="hljs-value"><span class="hljs-string">"matthieu.bacconnier@papiel.fr"</span></span>,
+        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">6747</span></span>,
+        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T11:32:06.347Z"</span>
     </span>}
-</span>}
+]
 </code></pre></li></ul></section><h4 id="providers-provider">Provider&nbsp;<a href="#providers-provider"><i class="fa fa-link"></i></a></h4><section id="providers-provider-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get Provider</span></div><div style="float:left"><a href="#providers-provider-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/providers/{id}</code></div></div><div class="panel-body"><p>Retrieve basic information about one provider.</p>
 <blockquote>
 <ul>
@@ -1016,13 +1396,16 @@ This endpoint is public and can be accessed by anyone with the id.</p>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#596b017e814075fe7cc722147b0c27ce" class="pull-right">Toggle</a></li><li id="596b017e814075fe7cc722147b0c27ce" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
-    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53234698c8318cc5d100004f"</span></span>,
-    "<span class="hljs-attribute">is_basic_token</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#eeb171e5eb2eb1bf111790e23005e0e0" class="pull-right">Toggle</a></li><li id="eeb171e5eb2eb1bf111790e23005e0e0" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"AccessToken"</span></span>,
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53ce7198ebb324595ee9b49c"</span></span>,
     "<span class="hljs-attribute">client</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53232d1dc8318cba94000042"</span></span>,
-        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Evernote"</span>
-    </span>}
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Client"</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Google Contacts"</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"52bff1eec8318cb228000001"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">is_basic_token</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+    "<span class="hljs-attribute">account_name</span>": <span class="hljs-value"><span class="hljs-string">"matthieu.bacconnier@papiel.fr"</span>
 </span>}
 </code></pre></li></ul></section><section id="providers-provider-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Delete Provider</span></div><div style="float:left"><a href="#providers-provider-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/providers/{id}</code></div></div><div class="panel-body"><p>Revokes a provider token and subsequently deletes linked documents.</p>
 <blockquote>
@@ -1044,37 +1427,40 @@ This endpoint is public and can be accessed by anyone with the id.</p>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>pages</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>/document_types</span></span><p>url to retrieve (url-encoded). <small>Multiple pages parameters can be used to queue queries.</small></p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#0dbc092c35678676c9748ac87c5bb8cb" class="pull-right">Toggle</a></li><li id="0dbc092c35678676c9748ac87c5bb8cb" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#c86914ddc0f0e5aa5992ddcef0a791a0" class="pull-right">Toggle</a></li><li id="c86914ddc0f0e5aa5992ddcef0a791a0" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">/</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">user_email</span>": <span class="hljs-value"><span class="hljs-string">"anyfetch@gmail.com"</span></span>,
+        "<span class="hljs-attribute">user_email</span>": <span class="hljs-value"><span class="hljs-string">"matthieu@anyfetch.com"</span></span>,
         "<span class="hljs-attribute">documents_url</span>": <span class="hljs-value"><span class="hljs-string">"/documents/"</span></span>,
         "<span class="hljs-attribute">document_types_url</span>": <span class="hljs-value"><span class="hljs-string">"/document_types/"</span></span>,
         "<span class="hljs-attribute">providers_url</span>": <span class="hljs-value"><span class="hljs-string">"/providers/"</span></span>,
         "<span class="hljs-attribute">users_url</span>": <span class="hljs-value"><span class="hljs-string">"/users/"</span></span>,
-        "<span class="hljs-attribute">current_user_url</span>": <span class="hljs-value"><span class="hljs-string">"/users/52fb7b90c8318c4dc800006c"</span></span>,
+        "<span class="hljs-attribute">current_user_url</span>": <span class="hljs-value"><span class="hljs-string">"/users/53c0190ae83613e049a4845a"</span></span>,
         "<span class="hljs-attribute">update_url</span>": <span class="hljs-value"><span class="hljs-string">"/company/update"</span></span>,
         "<span class="hljs-attribute">reset_url</span>": <span class="hljs-value"><span class="hljs-string">"/company/reset"</span></span>,
         "<span class="hljs-attribute">token_url</span>": <span class="hljs-value"><span class="hljs-string">"/token"</span></span>,
-        "<span class="hljs-attribute">server_time</span>": <span class="hljs-value"><span class="hljs-string">"2014-03-24T16:33:41.074Z"</span>
+        "<span class="hljs-attribute">server_time</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T13:38:38.397Z"</span>
     </span>}</span>,
-    "<span class="hljs-attribute">/providers</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">53234698c8318cc5d100004f</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">client</span>": <span class="hljs-value"><span class="hljs-string">"53232d1dc8318cba94000042"</span></span>,
-            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Evernote"</span></span>,
-            "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-03-14T18:15:37.603Z"</span></span>,
-            "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">2</span>
+    "<span class="hljs-attribute">/document_types/5252ce4ce4cfcd16f55cfa3c</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3c"</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"document"</span></span>,
+        "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n  &lt;blockquote&gt;\n  \t{{{ snippet }}}\n  &lt;/blockquote&gt;\n&lt;/article&gt;\n"</span></span>,
+            "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;section&gt;\n    &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n    &lt;code&gt;{{ path }}&lt;/code&gt;\n  &lt;/section&gt;\n\n  &lt;section&gt;\n    {{{ content }}}\n  &lt;/section&gt;\n&lt;/article&gt;\n"</span></span>,
+            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ title }}"</span>
         </span>}</span>,
-        "<span class="hljs-attribute">5320a682c8318cba94000040</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">client</span>": <span class="hljs-value"><span class="hljs-string">"52bff114c8318c29e9000005"</span></span>,
-            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Dropbox"</span></span>,
-            "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-03-21T16:48:16.486Z"</span></span>,
-            "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">14</span>
-        </span>}</span>,
-        "<span class="hljs-attribute">5320a6abc8318cc5d1000049</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">client</span>": <span class="hljs-value"><span class="hljs-string">"53047faac8318c2d65000096"</span></span>,
-            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"GMail"</span></span>,
-            "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-03-20T19:15:11.048Z"</span></span>,
-            "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">26</span>
+        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"A document from which we were able to extract a clean HTML representation: text, doc, xls, epub..."</span></span>,
+        "<span class="hljs-attribute">projections</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value">[
+                <span class="hljs-string">"title"</span>,
+                <span class="hljs-string">"path"</span>,
+                <span class="hljs-string">"snippet"</span>
+            ]</span>,
+            "<span class="hljs-attribute">full</span>": <span class="hljs-value">[
+                <span class="hljs-string">"title"</span>,
+                <span class="hljs-string">"path"</span>,
+                <span class="hljs-string">"content"</span>
+            ]
         </span>}
     </span>}
 </span>}
