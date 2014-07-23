@@ -339,67 +339,154 @@ Return informations aggregated over the result set. The `score` key indicated do
     + Body
 
             {
-                facets: {
-                    "document_types": {
-                        "5252ce4ce4cfcd16f55cfa41": 1,
-                        "5252ce4ce4cfcd16f55cfa3c": 1
-                    },
-                    "providers": {
-                        "53234698c8318cc5d100004f": 1,
-                        "5320a682c8318cba94000040": 1
-                    },
-                    "creation_dates": {
-                        "1393632000000": 2
-                    },
+                "facets": {
+                    "document_types": [
+                        {
+                            "_type": "DocumentType",
+                            "id": "5252ce4ce4cfcd16f55cfa3c",
+                            "name": "document",
+                            "templates": {
+                                "snippet": "<article>\n  <h1>{{{ title }}}</h1>\n  <blockquote>\n  \t{{{ snippet }}}\n  </blockquote>\n</article>\n",
+                                "full": "<article>\n  <section>\n    <h1>{{{ title }}}</h1>\n    <code>{{ path }}</code>\n  </section>\n\n  <section>\n    {{{ content }}}\n  </section>\n</article>\n",
+                                "title": "{{ title }}"
+                            },
+                            "description": "A document from which we were able to extract a clean HTML representation: text, doc, xls, epub...",
+                            "projections": {
+                                "snippet": [
+                                    "title",
+                                    "path",
+                                    "snippet"
+                                ],
+                                "full": [
+                                    "title",
+                                    "path",
+                                    "content"
+                                ]
+                            },
+                            "document_count": 2
+                        }
+                    ],
+                    "providers": [
+                        {
+                            "_type": "AccessToken",
+                            "id": "53cf9b4fa60b43c235680d7a",
+                            "client": {
+                                "_type": "Client",
+                                "name": "GMail",
+                                "id": "53047faac8318c2d65000096"
+                            },
+                            "is_basic_token": false,
+                            "account_name": "matthieu.bacconnier@papiel.fr",
+                            "document_count": 1
+                        },
+                        {
+                            "_type": "AccessToken",
+                            "id": "53cf88997f247be935ebfd7a",
+                            "client": {
+                                "_type": "Client",
+                                "name": "Google Drive",
+                                "id": "539ef7289f240405465a2e1f"
+                            },
+                            "is_basic_token": false,
+                            "account_name": "matthieu.bacconnier@papiel.fr",
+                            "document_count": 1
+                        }
+                    ],
+                    "creation_dates": [
+                        {
+                            "_type": "Date",
+                            "timestamp": "1370044800000",
+                            "date": "2013-06-26T00:00:00.000Z",
+                            "document_count": 1
+                        },
+                        {
+                            "_type": "Date",
+                            "timestamp": "1404172800000",
+                            "date": "2014-07-23T00:00:00.000Z",
+                            "document_count": 1
+                        }
+                    ]
                 },
-                "max_score": 0.4612878,
-                "count": 2,
-                "next_page_url": "coming",
-                "previous_page_url": "coming",
                 "data": [
                     {
                         "_type": "Document",
-                        "id": "5320a7735ee6eed51339a1b3",
-                        "identifier": "https://dropbox.com/228115297/all/anyfetchpitchdeckSF.pdf",
-                        "creation_date": "2014-03-12T18:29:07.441Z",
-                        "provider": "5320a682c8318cba94000040",
-                        "company": "52fb7b90c8318c4dc800006b",
-                        "document_type": "5252ce4ce4cfcd16f55cfa3c",
+                        "id": "53cf88a5cf25841c6144ee46",
+                        "identifier": "https://docs.google.com/file/d/0Ao1Q9EZ6RihjdHBSSnlzWG5mRFMxTm5YRVMwZzd0b0E",
+                        "creation_date": "2013-06-26T09:13:46.552Z",
+                        "provider": {
+                            "_type": "AccessToken",
+                            "id": "53cf88997f247be935ebfd7a",
+                            "client": {
+                                "_type": "Client",
+                                "name": "Google Drive",
+                                "id": "539ef7289f240405465a2e1f"
+                            },
+                            "is_basic_token": false,
+                            "account_name": "matthieu.bacconnier@papiel.fr"
+                        },
+                        "company": "53c0190ae83613e049a4845b",
+                        "document_type": {
+                            "_type": "DocumentType",
+                            "id": "5252ce4ce4cfcd16f55cfa3c",
+                            "name": "document",
+                            "templates": {
+                                "snippet": "<article>\n  <h1>{{{ title }}}</h1>\n  <blockquote>\n  \t{{{ snippet }}}\n  </blockquote>\n</article>\n"
+                            }
+                        },
                         "actions": {
-                            "show": "https://www.dropbox.com/home%2Fall%2FanyFetch%20pitch%20deck%20SF%20-%20CHarly%20Kevers.pdf"
+                            "show": "https://docs.google.com/file/d/0Ao1Q9EZ6RihjdHBSSnlzWG5mRFMxTm5YRVMwZzd0b0E"
                         },
-                        "document_url": "/documents/5320a7735ee6eed51339a1b3",
-                        "data": {
-                            "title": "anyFetch pitch deck SF   CHarly Kevers",
-                            "path": "/all/anyFetch pitch deck SF - CHarly Kevers.pdf",
-                            "snippet": "\nanyFetch\nENTERPRISE SEARCH in the CLOUD\nMehdi Bouheddi - CEO\n10-03-2014\nThe amount of data in the enterprise is more than 10 000 × Google\nBut it is a mess...\nChallenge : find the relevant information\n"
-                        },
+                        "document_url": "/documents/53cf88a5cf25841c6144ee46",
                         "projection_type": "snippet",
+                        "data": {
+                            "title": "Traductions.pdf",
+                            "path": "/Traductions.pdf",
+                            "snippet": "des entreprises\nIntégration du <span class=\"hlt\">CV</span> des participants\nApplication de recherche pour les recruteurs\nà partir de 50€/mois\nPapiel Process\nPour recrutement grande échelle\nTraductions\nIntégrez les <span class=\"hlt\">CVs</span> images"
+                        },
                         "related_count": 0,
-                        "score": 0.4612878
+                        "score": 0.58171546
                     },
                     {
                         "_type": "Document",
-                        "id": "532347451eab8a0e22c2e65f",
-                        "identifier": "https://evernote.com/s1/sh/6dbd89d6",
-                        "creation_date": "2014-03-14T17:26:15.000Z",
-                        "provider": "53234698c8318cc5d100004f",
-                        "company": "52fb7b90c8318c4dc800006b",
-                        "document_type": "5252ce4ce4cfcd16f55cfa41",
+                        "id": "53cf9ceacf25841c6144fbc7",
+                        "identifier": "https://mail.google.com/mail/#inbox/13ec7d0b8ca2b818#13f050ec6027ecef-CREATION_PHINNOV-Dossierdemande-versionjuillet2012.doc.docx",
+                        "creation_date": "2014-07-23T11:30:50.270Z",
+                        "provider": {
+                            "_type": "AccessToken",
+                            "id": "53cf9b4fa60b43c235680d7a",
+                            "client": {
+                                "_type": "Client",
+                                "name": "GMail",
+                                "id": "53047faac8318c2d65000096"
+                            },
+                            "is_basic_token": false,
+                            "account_name": "matthieu.bacconnier@papiel.fr"
+                        },
+                        "company": "53c0190ae83613e049a4845b",
+                        "document_type": {
+                            "_type": "DocumentType",
+                            "id": "5252ce4ce4cfcd16f55cfa3c",
+                            "name": "document",
+                            "templates": {
+                                "snippet": "<article>\n  <h1>{{{ title }}}</h1>\n  <blockquote>\n  \t{{{ snippet }}}\n  </blockquote>\n</article>\n"
+                            }
+                        },
                         "actions": {
-                            "show": "http://anyfetch-provider-evernote.herokuapp.com/shard/s1/sh/6dbd89d6-1d80-4292-97fb-a0511cee5973/c5a8ad2ccc6b21ef43bb80fccc2d3544"
+                            "show": "https://mail.google.com/mail/#inbox/13ec7d0b8ca2b818"
                         },
-                        "document_url": "/documents/532347451eab8a0e22c2e65f",
-                        "data": {
-                            "subject": "Follow up Charly <span class=\"hlt\">Kevers</span>",
-                            "description": "Ask him to send an Email to Nick and schedule a meeting with Alex.",
-                            "status": "TODO"
-                        },
+                        "document_url": "/documents/53cf9ceacf25841c6144fbc7",
                         "projection_type": "snippet",
-                        "related_count": 0,
-                        "score": 0.16041306
-                    }
-                ]
+                        "data": {
+                            "title": "CREATION PHINNOV Dossierdemande versionjuillet2012.doc",
+                            "path": "/CREATION_PHINNOV-Dossierdemande-versionjuillet2012.doc.docx",
+                            "snippet": "de recrutement : - Recherche des candidats en temps réel\n- Partage des profils\n- Suivi des candidatures\nPapiel Process :\n- Extraction des informations des <span class=\"hlt\">CVs</span> image\n- Interfaçage avec les outils métiers déjà"
+                        },
+                        "related_count": 1,
+                        "score": 0.18271412
+                    },
+                ],
+                "count": 2,
+                "max_score": 0.58171546
             }
 
 ### Create new document [POST]
@@ -489,28 +576,58 @@ Result contains, amongst other :
 + Response 200 (application/json)
     + Body
 
+{
+    "_type": "Document",
+    "id": "53ce71b24882ec9d58f08235",
+    "identifier": "https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/79516afe8f2cdfba",
+    "creation_date": "2014-07-22T14:14:10.150Z",
+    "provider": {
+        "_type": "AccessToken",
+        "id": "53ce7198ebb324595ee9b49c",
+        "client": {
+            "_type": "Client",
+            "name": "Google Contacts",
+            "id": "52bff1eec8318cb228000001"
+        },
+        "is_basic_token": false,
+        "account_name": "matthieu.bacconnier@papiel.fr"
+    },
+    "company": "53c0190ae83613e049a4845b",
+    "document_type": {
+        "_type": "DocumentType",
+        "id": "5252ce4ce4cfcd16f55cfa3a",
+        "name": "contact",
+        "templates": {
+            "full": "<article>\n\n  <section class=\"two-columns\">\n    <aside>\n      <img src=\"{{ image }}\"/>    \n    </aside>\n    <section>\n      <h1><a href=\"anyfetch://search/{{name}}\">{{{ name }}}</a></h1>\n      <span>{{{ job }}}</span>   \n    </section>\n  </section>\n\n  <section>\n    {{#phone.length}}\n    <h2>Phones:</h2>\n    <ul>\n      {{ #phone }}\n      <li>{{ phone }} ( {{ type }} )</li>\n      {{ /phone }}\n    </ul>\n    {{/phone.length}}\n\n    {{#email.length}}\n    <h2>Emails:</h2>\n    <ul>\n      {{ #email }}\n      <li>{{ email }} ( {{ type }} )</li>\n      {{ /email }}\n    </ul>\n    {{/email.length}}\n\n    {{#address.length}}\n    <h2>Address:</h2>\n    <ul>\n      {{ #address }}\n      <li>{{ address }} ( {{ type }} )</li>\n      {{ /address }}\n    </ul>\n    {{/address.length}}\n\n    {{#website.length}}\n    <h2>Website:</h2>\n    <ul>\n      {{ #website }}\n      <li>{{{ website }}}</li>\n      {{ /website }}\n    </ul>\n    {{/website.length}}\n\n\n    {{#birthday}}\n    <h2>Birthday:</h2>\n    <span>{{birthday}}</span>\n    {{/birthday}}\n\n  </section>\n\n</article>\n"
+        }
+    },
+    "actions": {
+        "show": "https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/79516afe8f2cdfba"
+    },
+    "document_url": "/documents/53ce71b24882ec9d58f08235",
+    "projection_type": "full",
+    "data": {
+        "name": "Florian Rossiaud",
+        "job": " ",
+        "phone": [
             {
-                "_type": "Document",
-                "id": "532347451eab8a0e22c2e65f",
-                "creation_date": "2014-03-14T17:26:15.000Z",
-                "provider": "53234698c8318cc5d100004f",
-                "company": "52fb7b90c8318c4dc800006b",
-                "document_type": "5252ce4ce4cfcd16f55cfa41",
-                "actions": {
-                    "show": "http://anyfetch-provider-evernote.herokuapp.com/shard/s1/sh/6dbd89d6-1d80-4292-97fb-a0511cee5973/c5a8ad2ccc6b21ef43bb80fccc2d3544"
-                },
-                "document_url": "/documents/532347451eab8a0e22c2e65f",
-                "data": {
-                    "subject": "Follow up Charly Kevers",
-                    "status": "TODO",
-                    "description": "Ask him to send an Email to Nick and schedule a meeting with Alex."
-                },
-                "projection_type": "full",
-                "related": [],
-                "title": {
-                    "subject": "Follow up Charly Kevers"
-                }
+                "phone": "+336 43 19 05 98",
+                "type": "mobile"
             }
+        ],
+        "email": [
+            {
+                "email": "florianrossiaud@gmail.com",
+                "type": "work"
+            }
+        ],
+        "image": "data:image/*;base64,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"
+    },
+    "related": [],
+    "title": {
+        "name": "Florian Rossiaud"
+    }
+}
 
 
 ### Patch Document [PATCH]
@@ -585,51 +702,172 @@ Result contains, amongst other :
 
             {
                 "title": {
-                    "subject": "Follow up Charly Kevers"
+                    "name": "Florian Rossiaud"
                 },
-                "document_type": "5252ce4ce4cfcd16f55cfa41",
+                "document_type": {
+                    "_type": "DocumentType",
+                    "id": "5252ce4ce4cfcd16f55cfa3a",
+                    "name": "contact",
+                    "templates": {
+                        "title": "{{ name }}"
+                    }
+                },
                 "keywords": [
-                    "todo",
-                    "nick",
-                    "alex",
-                    "charly",
-                    "kevers"
+                    "Florian",
+                    "Rossiaud",
+                    "http://www.viadeo.com/profile/0021wjjcnuk953go",
+                    "http://www.google.com/profiles/104432074843338689271",
+                    "florianrossiaud@gmail.com",
                 ],
-                "document_types": {
-                    "5252ce4ce4cfcd16f55cfa3f": 5,
-                    "5252ce4ce4cfcd16f55cfa3c": 4,
-                    "5252ce4ce4cfcd16f55cfa41": 1
+                "facets": {
+                    "document_types": [
+                        {
+                            "_type": "DocumentType",
+                            "id": "5252ce4ce4cfcd16f55cfa3c",
+                            "name": "document",
+                            "templates": {
+                                "snippet": "<article>\n  <h1>{{{ title }}}</h1>\n  <blockquote>\n  \t{{{ snippet }}}\n  </blockquote>\n</article>\n",
+                                "full": "<article>\n  <section>\n    <h1>{{{ title }}}</h1>\n    <code>{{ path }}</code>\n  </section>\n\n  <section>\n    {{{ content }}}\n  </section>\n</article>\n",
+                                "title": "{{ title }}"
+                            },
+                            "description": "A document from which we were able to extract a clean HTML representation: text, doc, xls, epub...",
+                            "projections": {
+                                "snippet": [
+                                    "title",
+                                    "path",
+                                    "snippet"
+                                ],
+                                "full": [
+                                    "title",
+                                    "path",
+                                    "content"
+                                ]
+                            },
+                            "document_count": 9
+                        },
+                        {
+                            "_type": "DocumentType",
+                            "id": "5252ce4ce4cfcd16f55cfa40",
+                            "name": "event",
+                            "templates": {
+                                "snippet": "<article>\n\t<h1>{{{name}}}</h1>\n\t<span>{{startDate}}&mdash;{{endDate}}</span>\n</article>\n",
+                                "full": "<article>\n\t<section>\n\t\t<h1>{{name}}</h1>\n\t\t<span>{{startDate}}&mdash;{{endDate}}</span>\n\t</section>\n\n\t{{ #attendee.length }}\n\t\t<h2>Attendees:</h2>\n\t\t{{ #attendee }}\n\t\t<li>{{.}}</li>\n\t\t{{ /attendee }}\t\n\t{{ /attendee.length }}\n\n\t<p>{{description}}</p>\n</article>\n",
+                                "title": "{{ name }}"
+                            },
+                            "description": "An event, from a calendar for instance.",
+                            "projections": {
+                                "snippet": [
+                                    "startDate",
+                                    "endDate",
+                                    "name"
+                                ],
+                                "full": [
+                                    "startDate",
+                                    "endDate",
+                                    "name",
+                                    "description",
+                                    "attendee"
+                                ]
+                            },
+                            "document_count": 8
+                        }
+                    ],
+                    "providers": [
+                        {
+                            "_type": "AccessToken",
+                            "id": "53ce7198ebb324595ee9b49c",
+                            "client": {
+                                "_type": "Client",
+                                "name": "Google Contacts",
+                                "id": "52bff1eec8318cb228000001"
+                            },
+                            "is_basic_token": false,
+                            "account_name": "matthieu.bacconnier@papiel.fr",
+                            "document_count": 71
+                        },
+                        {
+                            "_type": "AccessToken",
+                            "id": "53cf9b4fa60b43c235680d7a",
+                            "client": {
+                                "_type": "Client",
+                                "name": "GMail",
+                                "id": "53047faac8318c2d65000096"
+                            },
+                            "is_basic_token": false,
+                            "account_name": "matthieu.bacconnier@papiel.fr",
+                            "document_count": 16
+                        },
+                        {
+                            "_type": "AccessToken",
+                            "id": "53cf88997f247be935ebfd7a",
+                            "client": {
+                                "_type": "Client",
+                                "name": "Google Drive",
+                                "id": "539ef7289f240405465a2e1f"
+                            },
+                            "is_basic_token": false,
+                            "account_name": "matthieu.bacconnier@papiel.fr",
+                            "document_count": 1
+                        }
+                    ],
+                    "creation_dates": [
+                        {
+                            "_type": "Date",
+                            "timestamp": "1370044800000",
+                            "date": "2013-06-01T00:00:00.000Z",
+                            "document_count": 1
+                        },
+                        {
+                            "_type": "Date",
+                            "timestamp": "1404172800000",
+                            "date": "2014-07-01T00:00:00.000Z",
+                            "document_count": 87
+                        }
+                    ]
                 },
-                "providers": {
-                    "5320a6abc8318cc5d1000049": 5,
-                    "5320a682c8318cba94000040": 4,
-                    "53234698c8318cc5d100004f": 1
-                },
-                "next_page_url": "coming",
-                "previous_page_url": "coming",
                 "data": [
                     {
                         "_type": "Document",
-                        "id": "5320a76fbc2e51d7135f0c8c",
-                        "creation_date": "2014-02-14T08:46:11.000Z",
-                        "provider": "5320a6abc8318cc5d1000049",
-                        "company": "52fb7b90c8318c4dc800006b",
-                        "document_type": "5252ce4ce4cfcd16f55cfa3f",
+                        "id": "53ce71ab4882ec9d58f08215",
+                        "identifier": "https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/3d721b5e8b215a41",
+                        "creation_date": "2014-07-22T14:14:03.396Z",
+                        "provider": {
+                            "_type": "AccessToken",
+                            "id": "53ce7198ebb324595ee9b49c",
+                            "client": {
+                                "_type": "Client",
+                                "name": "Google Contacts",
+                                "id": "52bff1eec8318cb228000001"
+                            },
+                            "is_basic_token": false,
+                            "account_name": "matthieu.bacconnier@papiel.fr"
+                        },
+                        "company": "53c0190ae83613e049a4845b",
+                        "document_type": {
+                            "_type": "DocumentType",
+                            "id": "5252ce4ce4cfcd16f55cfa3a",
+                            "name": "contact",
+                            "templates": {
+                                "snippet": "<article class=\"two-columns\">\n  <aside>\n    <img src=\"{{ image }}\" />\n  </aside>\n  <section>\n    <h1>{{{ name }}}</h1>\n    <span>{{{ job }}}</span>\n  </section>\n</article>\n"
+                            }
+                        },
                         "actions": {
-                            "show": "https://mail.google.com/mail/b/anyfetch@gmail.com/?cm#all/1442f93143ab3bb6"
+                            "show": "https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/3d721b5e8b215a41"
                         },
-                        "document_url": "/documents/5320a76fbc2e51d7135f0c8c",
-                        "data": {
-                            "from": "Udacity <support@udacity.com>",
-                            "to": "anyfetch@gmail.com",
-                            "subject": "Verify Your <span class=\"hlt\">Email</span> on Udacity",
-                            "snippet": "Hi Any,\r\n\r\nTo complete your sign <span class=\"hlt\">up</span>, please verify your <span class=\"hlt\">email</span> using the following link:\r\n\r\nhttps://www.udacity.com/account/verify_email?user_key=788038764&code=YbD5SsnEMa\r\n\r\nCheers,\r\n\r\nThe Udacity Team\r\n",
-                            "date": "Friday, February 14, 2014"
-                        },
+                        "document_url": "/documents/53ce71ab4882ec9d58f08215",
                         "projection_type": "snippet",
-                        "related_count": 0
-                    }
-                ]
+                        "data": {
+                            "name": "Alexandre David",
+                            "image": "data:image/*;base64,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",
+                            "job": "Entrepreneur Shapter"
+                        },
+                        "related_count": 0,
+                        "score": 1.0125184
+                    },
+                    ...
+                ],
+                "count": 88,
+                "max_score": 1.0125184
             }
 
 
