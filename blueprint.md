@@ -1256,8 +1256,6 @@ Remove specified user. The user should be in your company, you can't delete a us
 ### List document-types [GET]
 Retrieve all document types available for the current user, with document count and the date the last document with this document type was updated.
 
-The key will be reused on the `document_type` property for every `/documents/` endpoint.
-
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 
@@ -1465,8 +1463,6 @@ A list of default document-types can be found on [this page](/resources/document
 ## Providers [/providers]
 ### List providers [GET]
 Retrieve all providers available for the current user, with document count and the date the last document created by this provider was updated.
-
-The key will be reused on the `provider` property for every `/documents/` endpoint.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
