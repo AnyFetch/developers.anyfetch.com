@@ -953,26 +953,84 @@ View all data for the document.
 
             {
                 "_type": "Document",
-                "id": "532347451eab8a0e22c2e65f",
-                "creation_date": "2014-03-14T17:26:15.000Z",
-                "provider": "53234698c8318cc5d100004f",
-                "company": "52fb7b90c8318c4dc800006b",
-                "document_type": "5252ce4ce4cfcd16f55cfa41",
+                "id": "53ce71b24882ec9d58f08235",
+                "identifier": "https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/79516afe8f2cdfba",
+                "creation_date": "2014-07-22T14:14:10.150Z",
+                "provider": {
+                    "_type": "AccessToken",
+                    "id": "53ce7198ebb324595ee9b49c",
+                    "client": {
+                        "_type": "Client",
+                        "name": "Google Contacts",
+                        "id": "52bff1eec8318cb228000001"
+                    },
+                    "is_basic_token": false,
+                    "account_name": "matthieu.bacconnier@papiel.fr"
+                },
+                "company": "53c0190ae83613e049a4845b",
+                "document_type": {
+                    "_type": "DocumentType",
+                    "id": "5252ce4ce4cfcd16f55cfa3a",
+                    "name": "contact",
+                    "templates": {
+                        "snippet": "<article class=\"two-columns\">\n  <aside>\n    <img src=\"{{ image }}\" />\n  </aside>\n  <section>\n    <h1>{{{ name }}}</h1>\n    <span>{{{ job }}}</span>\n  </section>\n</article>\n",
+                        "full": "<article>\n\n  <section class=\"two-columns\">\n    <aside>\n      <img src=\"{{ image }}\"/>    \n    </aside>\n    <section>\n      <h1><a href=\"anyfetch://search/{{name}}\">{{{ name }}}</a></h1>\n      <span>{{{ job }}}</span>   \n    </section>\n  </section>\n\n  <section>\n    {{#phone.length}}\n    <h2>Phones:</h2>\n    <ul>\n      {{ #phone }}\n      <li>{{ phone }} ( {{ type }} )</li>\n      {{ /phone }}\n    </ul>\n    {{/phone.length}}\n\n    {{#email.length}}\n    <h2>Emails:</h2>\n    <ul>\n      {{ #email }}\n      <li>{{ email }} ( {{ type }} )</li>\n      {{ /email }}\n    </ul>\n    {{/email.length}}\n\n    {{#address.length}}\n    <h2>Address:</h2>\n    <ul>\n      {{ #address }}\n      <li>{{ address }} ( {{ type }} )</li>\n      {{ /address }}\n    </ul>\n    {{/address.length}}\n\n    {{#website.length}}\n    <h2>Website:</h2>\n    <ul>\n      {{ #website }}\n      <li>{{{ website }}}</li>\n      {{ /website }}\n    </ul>\n    {{/website.length}}\n\n\n    {{#birthday}}\n    <h2>Birthday:</h2>\n    <span>{{birthday}}</span>\n    {{/birthday}}\n\n  </section>\n\n</article>\n",
+                        "title": "{{ name }}"
+                    },
+                    "description": "A person (contact, client, ...)",
+                    "projections": {
+                        "snippet": [
+                            "name",
+                            "image",
+                            "job"
+                        ],
+                        "full": [
+                            "name",
+                            "job",
+                            "phone",
+                            "email",
+                            "image"
+                        ]
+                    }
+                },
                 "actions": {
-                    "show": "http://anyfetch-provider-evernote.herokuapp.com/shard/s1/sh/6dbd89d6-1d80-4292-97fb-a0511cee5973/c5a8ad2ccc6b21ef43bb80fccc2d3544"
+                    "show": "https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/79516afe8f2cdfba"
                 },
-                "document_url": "/documents/532347451eab8a0e22c2e65f",
-                "identifier": "http://anyfetch-provider-evernote.herokuapp.com/shard/s1/sh/6dbd89d6-1d80-4292-97fb-a0511cee5973/c5a8ad2ccc6b21ef43bb80fccc2d3544",
-                "data": {},
+                "document_url": "/documents/53ce71b24882ec9d58f08235",
+                "projection_type": "raw",
+                "data": {
+                    "image": "data:image/*;base64,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"
+                },
                 "metadata": {
-                    "status": "TODO",
-                    "description": "Ask him to send an Email to Nick and schedule a meeting with Alex.",
-                    "subject": "Follow up Charly Kevers"
+                    "groups": [
+                        "System Group: My Contacts",
+                        "Evercontact"
+                    ],
+                    "website": [
+                        "http://www.viadeo.com/profile/0021wjjcnuk953go",
+                        "http://www.google.com/profiles/104432074843338689271"
+                    ],
+                    "phone": [
+                        {
+                            "phone": "+336 43 19 04 96",
+                            "type": "mobile"
+                        }
+                    ],
+                    "email": [
+                        {
+                            "email": "florianrossiaud@gmail.com",
+                            "type": "work"
+                        }
+                    ],
+                    "family_name": "Rossiaud",
+                    "given_name": "Florian",
+                    "name": "Florian Rossiaud"
                 },
-                "last_hydration": "2014-03-14T18:15:37.600Z",
+                "last_hydration": null,
                 "hydrating": [],
                 "hydrated_by": [],
-                "projection_type": "raw",
+                "hydrater_errored": null,
+                "hydration_error": null,
                 "related": []
             }
 
@@ -1206,37 +1264,17 @@ The key will be reused on the `document_type` property for every `/documents/` e
 + Response 200 (application/json)
     + Body
 
-            {
-                "5252ce4ce4cfcd16f55cfa3b": {
-                    "_type": "DocumentType",
-                    "id": "5252ce4ce4cfcd16f55cfa3b",
-                    "name": "file",
-                    "description": "Anything that does not fit in other categories.",
-                    "projections": {
-                        "snippet": [
-                            "title",
-                            "path",
-                            "extension"
-                        ],
-                        "full": [
-                            "title",
-                            "path",
-                            "extension"
-                        ]
-                    },
-                    "templates": {
-                        "snippet": "<article>\n  <h1>{{{ title }}}</h1>\n  <code>{{{ path }}}</code>\n</article>\n",
-                        "full": "<article>\n  <h1>{{{ title }}}</h1>\n  <code>{{{ path }}}</code>\n</article>\n",
-                        "title": "{{ title }}"
-                    },
-                    "updated": "2014-07-03T21:38:54.750Z",
-                    "documents": 120
-                },
-                "5252ce4ce4cfcd16f55cfa3d": {
+            [
+                {
                     "_type": "DocumentType",
                     "id": "5252ce4ce4cfcd16f55cfa3d",
                     "name": "image",
-                    "description": "Anything with image image content (png, jpg, ...)",
+                    "templates": {
+                        "snippet": "<article>\n  <h1>{{{ title }}}</h1>\n\n  <img src=\"{{ thumb }}\" />\n</article>\n",
+                        "full": "<article>\n  <h1>{{{ title }}}</h1>\n\n  <img src=\"{{ display }}\" />\n</article>\n",
+                        "title": "{{ title }}"
+                    },
+                    "description": "Display thumbnail and preview data encoded in base64.",
                     "projections": {
                         "snippet": [
                             "title",
@@ -1247,43 +1285,45 @@ The key will be reused on the `document_type` property for every `/documents/` e
                             "display"
                         ]
                     },
-                    "templates": {
-                        "snippet": "<article>\n  <h1>{{{ title }}}</h1>\n\n  <img src=\"{{ thumb }}\" />\n</article>\n",
-                        "full": "<article>\n  <h1>{{{ title }}}</h1>\n\n  <img src=\"{{ display }}\" />\n</article>\n",
-                        "title": "{{ title }}"
-                    },
-                    "updated": "2014-07-03T21:40:00.488Z",
-                    "documents": 660
+                    "document_count": 439,
+                    "updated": "2014-07-23T11:31:53.739Z"
                 },
-                "5252ce4ce4cfcd16f55cfa3c": {
+                {
                     "_type": "DocumentType",
-                    "id": "5252ce4ce4cfcd16f55cfa3c",
-                    "name": "document",
-                    "description": "Document with html content (word, presentation, pdf, ...)",
+                    "id": "5252ce4ce4cfcd16f55cfa40",
+                    "name": "event",
+                    "templates": {
+                        "snippet": "<article>\n\t<h1>{{{name}}}</h1>\n\t<span>{{startDate}}&mdash;{{endDate}}</span>\n</article>\n",
+                        "full": "<article>\n\t<section>\n\t\t<h1>{{name}}</h1>\n\t\t<span>{{startDate}}&mdash;{{endDate}}</span>\n\t</section>\n\n\t{{ #attendee.length }}\n\t\t<h2>Attendees:</h2>\n\t\t{{ #attendee }}\n\t\t<li>{{.}}</li>\n\t\t{{ /attendee }}\t\n\t{{ /attendee.length }}\n\n\t<p>{{description}}</p>\n</article>\n",
+                        "title": "{{ name }}"
+                    },
+                    "description": "An event, from a calendar for instance.",
                     "projections": {
                         "snippet": [
-                            "title",
-                            "path",
-                            "snippet"
+                            "startDate",
+                            "endDate",
+                            "name"
                         ],
                         "full": [
-                            "title",
-                            "path",
-                            "content"
+                            "startDate",
+                            "endDate",
+                            "name",
+                            "description",
+                            "attendee"
                         ]
                     },
-                    "templates": {
-                        "snippet": "<article>\n  <h1>{{{ title }}}</h1>\n  <blockquote>\n  \t{{{ snippet }}}\n  </blockquote>\n</article>\n",
-                        "full": "<article>\n  <section>\n    <h1>{{{ title }}}</h1>\n    <code>{{ path }}</code>\n  </section>\n\n  <section>\n    {{{ content }}}\n  </section>\n</article>\n",
-                        "title": "{{ title }}"
-                    },
-                    "updated": "2014-07-03T23:12:44.158Z",
-                    "documents": 7006
+                    "document_count": 133,
+                    "updated": "2014-07-23T11:30:54.948Z"
                 },
-                "5252ce4ce4cfcd16f55cfa3f": {
+                {
                     "_type": "DocumentType",
                     "id": "5252ce4ce4cfcd16f55cfa3f",
                     "name": "email",
+                    "templates": {
+                        "snippet": "<article>\n  <h1>{{{subject}}}</h1>\n  <div class=\"two-columns\">\n    <span>{{ date }}</span>\n    <span><small>{{{from}}} &rarr; {{{to}}}</small></span>\n  </div>\n  <blockquote>{{{snippet}}}</blockquote>\n</article>\n",
+                        "full": "<article class=\"email-projection\">\n <header>\n     <h1>{{{subject}}}</h1>\n     <small>{{ date }}</small>\n     <small>From: <strong>{{{from}}}</strong></small>\n     <small>To: <strong>{{{to}}}</strong></small>\n </header>\n\n <main>\n       {{{html}}}\n </main>\n</article>\n",
+                        "title": "{{{ subject }}}"
+                    },
                     "description": "An email",
                     "projections": {
                         "snippet": [
@@ -1303,15 +1343,87 @@ The key will be reused on the `document_type` property for every `/documents/` e
                             "date"
                         ]
                     },
+                    "document_count": 5857,
+                    "updated": "2014-07-23T11:31:01.601Z"
+                },
+                {
+                    "_type": "DocumentType",
+                    "id": "5252ce4ce4cfcd16f55cfa3c",
+                    "name": "document",
                     "templates": {
-                        "snippet": "<article>\n  <h1>{{{subject}}}</h1>\n  <div class=\"two-columns\">\n    <span>{{ date }}</span>\n    <span><small>{{{from}}} &rarr; {{{to}}}</small></span>\n  </div>\n  <blockquote>{{{snippet}}}</blockquote>\n</article>\n",
-                        "full": "<article class=\"email-projection\">\n <header>\n     <h1>{{{subject}}}</h1>\n     <small>{{ date }}</small>\n     <small>From: <strong>{{{from}}}</strong></small>\n     <small>To: <strong><{{{to}}}</strong></small>\n </header>\n\n <main>\n       {{{html}}}\n </main>\n</article>\n",
-                        "title": "{{ subject }}"
+                        "snippet": "<article>\n  <h1>{{{ title }}}</h1>\n  <blockquote>\n  \t{{{ snippet }}}\n  </blockquote>\n</article>\n",
+                        "full": "<article>\n  <section>\n    <h1>{{{ title }}}</h1>\n    <code>{{ path }}</code>\n  </section>\n\n  <section>\n    {{{ content }}}\n  </section>\n</article>\n",
+                        "title": "{{ title }}"
                     },
-                    "updated": "2014-07-03T21:39:45.857Z",
-                    "documents": 6187
+                    "description": "A document from which we were able to extract a clean HTML representation: text, doc, xls, epub...",
+                    "projections": {
+                        "snippet": [
+                            "title",
+                            "path",
+                            "snippet"
+                        ],
+                        "full": [
+                            "title",
+                            "path",
+                            "content"
+                        ]
+                    },
+                    "document_count": 296,
+                    "updated": "2014-07-23T11:32:06.347Z"
+                },
+                {
+                    "_type": "DocumentType",
+                    "id": "5252ce4ce4cfcd16f55cfa3b",
+                    "name": "file",
+                    "templates": {
+                        "snippet": "<article>\n  <h1>{{{ title }}}</h1>\n  <code>{{{ path }}}</code>\n</article>\n",
+                        "full": "<article>\n  <h1>{{{ title }}}</h1>\n  <code>{{{ path }}}</code>\n</article>\n",
+                        "title": "{{ title }}"
+                    },
+                    "description": "Most basic document type for any kind of binary content. When a provider sends data without any additional information, it will use this document_type.",
+                    "projections": {
+                        "snippet": [
+                            "title",
+                            "path",
+                            "extension"
+                        ],
+                        "full": [
+                            "title",
+                            "path",
+                            "extension"
+                        ]
+                    },
+                    "document_count": 214,
+                    "updated": "2014-07-23T11:31:15.593Z"
+                },
+                {
+                    "_type": "DocumentType",
+                    "id": "5252ce4ce4cfcd16f55cfa3a",
+                    "name": "contact",
+                    "templates": {
+                        "snippet": "<article class=\"two-columns\">\n  <aside>\n    <img src=\"{{ image }}\" />\n  </aside>\n  <section>\n    <h1>{{{ name }}}</h1>\n    <span>{{{ job }}}</span>\n  </section>\n</article>\n",
+                        "full": "<article>\n\n  <section class=\"two-columns\">\n    <aside>\n      <img src=\"{{ image }}\"/>    \n    </aside>\n    <section>\n      <h1><a href=\"anyfetch://search/{{name}}\">{{{ name }}}</a></h1>\n      <span>{{{ job }}}</span>   \n    </section>\n  </section>\n\n  <section>\n    {{#phone.length}}\n    <h2>Phones:</h2>\n    <ul>\n      {{ #phone }}\n      <li>{{ phone }} ( {{ type }} )</li>\n      {{ /phone }}\n    </ul>\n    {{/phone.length}}\n\n    {{#email.length}}\n    <h2>Emails:</h2>\n    <ul>\n      {{ #email }}\n      <li>{{ email }} ( {{ type }} )</li>\n      {{ /email }}\n    </ul>\n    {{/email.length}}\n\n    {{#address.length}}\n    <h2>Address:</h2>\n    <ul>\n      {{ #address }}\n      <li>{{ address }} ( {{ type }} )</li>\n      {{ /address }}\n    </ul>\n    {{/address.length}}\n\n    {{#website.length}}\n    <h2>Website:</h2>\n    <ul>\n      {{ #website }}\n      <li>{{{ website }}}</li>\n      {{ /website }}\n    </ul>\n    {{/website.length}}\n\n\n    {{#birthday}}\n    <h2>Birthday:</h2>\n    <span>{{birthday}}</span>\n    {{/birthday}}\n\n  </section>\n\n</article>\n",
+                        "title": "{{ name }}"
+                    },
+                    "description": "A person (contact, client, ...)",
+                    "projections": {
+                        "snippet": [
+                            "name",
+                            "image",
+                            "job"
+                        ],
+                        "full": [
+                            "name",
+                            "job",
+                            "phone",
+                            "email",
+                            "image"
+                        ]
+                    },
+                    "document_count": 239,
+                    "updated": "2014-07-22T14:14:16.640Z"
                 }
-            }
+            ]
 
 ## Document-type [/document_types/{id}]
 ### Get document-type [GET]
@@ -1328,7 +1440,12 @@ A list of default document-types can be found on [this page](/resources/document
                 "_type": "DocumentType",
                 "id": "5252ce4ce4cfcd16f55cfa3c",
                 "name": "document",
-                "description": "Document with html content (word, presentation, pdf, ...)",
+                "templates": {
+                    "snippet": "<article>\n  <h1>{{{ title }}}</h1>\n  <blockquote>\n  \t{{{ snippet }}}\n  </blockquote>\n</article>\n",
+                    "full": "<article>\n  <section>\n    <h1>{{{ title }}}</h1>\n    <code>{{ path }}</code>\n  </section>\n\n  <section>\n    {{{ content }}}\n  </section>\n</article>\n",
+                    "title": "{{ title }}"
+                },
+                "description": "A document from which we were able to extract a clean HTML representation: text, doc, xls, epub...",
                 "projections": {
                     "snippet": [
                         "title",
@@ -1340,11 +1457,6 @@ A list of default document-types can be found on [this page](/resources/document
                         "path",
                         "content"
                     ]
-                },
-                "templates": {
-                    "snippet": "<article>\n  <h1>{{{ title }}}</h1>\n  <blockquote>\n  \t{{{ snippet }}}\n  </blockquote>\n</article>\n",
-                    "full": "<article>\n  <section>\n    <h1>{{{ title }}}</h1>\n    <code>{{ path }}</code>\n  </section>\n\n  <section>\n    {{{ content }}}\n  </section>\n</article>\n",
-                    "title": "{{ title }}"
                 }
             }
 
@@ -1362,26 +1474,56 @@ The key will be reused on the `provider` property for every `/documents/` endpoi
 + Response 200 (application/json)
     + Body
 
-            {
-                "53234698c8318cc5d100004f": {
-                    "client": "53232d1dc8318cba94000042",
-                    "name": "Evernote",
-                    "updated": "2014-03-14T18:15:37.603Z",
-                    "document_count": 2
+            [
+                {
+                    "_type": "AccessToken",
+                    "id": "53c91957cfb3211a4fc877c0",
+                    "client": null,
+                    "is_basic_token": true,
+                    "account_name": "",
+                    "document_count": 2,
+                    "updated": "2014-07-23T12:01:16.036Z"
                 },
-                "5320a682c8318cba94000040": {
-                    "client": "52bff114c8318c29e9000005",
-                    "name": "Dropbox",
-                    "updated": "2014-03-21T16:48:16.486Z",
-                    "document_count": 14
+                {
+                    "_type": "AccessToken",
+                    "id": "53ce7198ebb324595ee9b49c",
+                    "client": {
+                        "_type": "Client",
+                        "name": "Google Contacts",
+                        "id": "52bff1eec8318cb228000001"
+                    },
+                    "is_basic_token": false,
+                    "account_name": "matthieu.bacconnier@papiel.fr",
+                    "document_count": 239,
+                    "updated": "2014-07-22T14:14:16.640Z"
                 },
-                "5320a6abc8318cc5d1000049": {
-                    "client": "53047faac8318c2d65000096",
-                    "name": "GMail",
-                    "updated": "2014-03-20T19:15:11.048Z",
-                    "document_count": 26
+                {
+                    "_type": "AccessToken",
+                    "id": "53cf88997f247be935ebfd7a",
+                    "client": {
+                        "_type": "Client",
+                        "name": "Google Drive",
+                        "id": "539ef7289f240405465a2e1f"
+                    },
+                    "is_basic_token": false,
+                    "account_name": "matthieu.bacconnier@papiel.fr",
+                    "document_count": 192,
+                    "updated": "2014-07-23T11:24:37.644Z"
+                },
+                {
+                    "_type": "AccessToken",
+                    "id": "53cf9b4fa60b43c235680d7a",
+                    "client": {
+                        "_type": "Client",
+                        "name": "GMail",
+                        "id": "53047faac8318c2d65000096"
+                    },
+                    "is_basic_token": false,
+                    "account_name": "matthieu.bacconnier@papiel.fr",
+                    "document_count": 6747,
+                    "updated": "2014-07-23T11:32:06.347Z"
                 }
-            }
+            ]
 
 ## Provider [/providers/{id}]
 ### Get Provider [GET]
@@ -1396,12 +1538,15 @@ Retrieve basic information about one provider.
     + Body
 
             {
-                "id": "53234698c8318cc5d100004f",
-                "is_basic_token": false,
+                "_type": "AccessToken",
+                "id": "53ce7198ebb324595ee9b49c",
                 "client": {
-                    "id": "53232d1dc8318cba94000042",
-                    "name": "Evernote"
-                }
+                    "_type": "Client",
+                    "name": "Google Contacts",
+                    "id": "52bff1eec8318cb228000001"
+                },
+                "is_basic_token": false,
+                "account_name": "matthieu.bacconnier@papiel.fr"
             }
 
 ### Delete Provider [DELETE]
@@ -1433,35 +1578,38 @@ Status code will be 200 if all queries passed. If an error occured, the `errored
 
             {
                 "/": {
-                    "user_email": "anyfetch@gmail.com",
+                    "user_email": "matthieu@anyfetch.com",
                     "documents_url": "/documents/",
                     "document_types_url": "/document_types/",
                     "providers_url": "/providers/",
                     "users_url": "/users/",
-                    "current_user_url": "/users/52fb7b90c8318c4dc800006c",
+                    "current_user_url": "/users/53c0190ae83613e049a4845a",
                     "update_url": "/company/update",
                     "reset_url": "/company/reset",
                     "token_url": "/token",
-                    "server_time": "2014-03-24T16:33:41.074Z"
+                    "server_time": "2014-07-23T13:38:38.397Z"
                 },
-                "/providers": {
-                    "53234698c8318cc5d100004f": {
-                        "client": "53232d1dc8318cba94000042",
-                        "name": "Evernote",
-                        "updated": "2014-03-14T18:15:37.603Z",
-                        "document_count": 2
+                "/document_types/5252ce4ce4cfcd16f55cfa3c": {
+                    "_type": "DocumentType",
+                    "id": "5252ce4ce4cfcd16f55cfa3c",
+                    "name": "document",
+                    "templates": {
+                        "snippet": "<article>\n  <h1>{{{ title }}}</h1>\n  <blockquote>\n  \t{{{ snippet }}}\n  </blockquote>\n</article>\n",
+                        "full": "<article>\n  <section>\n    <h1>{{{ title }}}</h1>\n    <code>{{ path }}</code>\n  </section>\n\n  <section>\n    {{{ content }}}\n  </section>\n</article>\n",
+                        "title": "{{ title }}"
                     },
-                    "5320a682c8318cba94000040": {
-                        "client": "52bff114c8318c29e9000005",
-                        "name": "Dropbox",
-                        "updated": "2014-03-21T16:48:16.486Z",
-                        "document_count": 14
-                    },
-                    "5320a6abc8318cc5d1000049": {
-                        "client": "53047faac8318c2d65000096",
-                        "name": "GMail",
-                        "updated": "2014-03-20T19:15:11.048Z",
-                        "document_count": 26
+                    "description": "A document from which we were able to extract a clean HTML representation: text, doc, xls, epub...",
+                    "projections": {
+                        "snippet": [
+                            "title",
+                            "path",
+                            "snippet"
+                        ],
+                        "full": [
+                            "title",
+                            "path",
+                            "content"
+                        ]
                     }
                 }
             }
