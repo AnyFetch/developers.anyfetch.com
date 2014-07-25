@@ -496,7 +496,7 @@ Return informations aggregated over the result set. The `score` key indicated do
 
 Send a new document on AnyFetch.
 
-All values are optional, however in nearly all cases you'll specify at least [a unique `identifier` to retrieve the document later](/guides/concepts/identifier.html), and a [`document_type`](/resources/document-types.html)).
+The [`document_type`](/resources/document-types.html) value is mandatory, every other parameter is optional, however in nearly all cases you'll specify [a unique `identifier` to retrieve the document later](/guides/concepts/identifier.html).
 
 If no identifier is specified, it will be set to the value of the document's id.
 
