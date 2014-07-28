@@ -22,7 +22,7 @@ Most basic document type for any kind of binary content. When a provider sends d
   - title
   - path
   - extension
-*Full
+* Full
   - title
   - path
   - extension
@@ -58,7 +58,7 @@ A document from which we were able to extract a clean HTML representation: text,
   - title
   - path
   - snippet
-*Full
+* Full
   - title
   - path
   - content
@@ -101,7 +101,7 @@ Display thumbnail and preview data encoded in base64.
 * Snippet
   - title
   - thumb
-*Full
+* Full
   - title
   - display
 
@@ -138,7 +138,7 @@ A person (contact, client, ...)
   - name
   - image
   - job
-*Full
+* Full
   - name
   - job
   - phone
@@ -238,7 +238,7 @@ An email
   - snippet
   - date
   - attachmentCount
-*Full
+* Full
   - from
   - to
   - labels
@@ -289,7 +289,7 @@ An event, from a calendar for instance.
   - startDate
   - endDate
   - name
-*Full
+* Full
   - startDate
   - endDate
   - name
@@ -338,7 +338,7 @@ A task, in a TODO app for instance.
   - subject
   - description
   - status
-*Full
+* Full
   - subject
   - status
   - description

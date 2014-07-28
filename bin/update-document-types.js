@@ -10,7 +10,7 @@ var fs = require('fs');
 var async = require('async');
 var request = require('supertest');
 
-var apiUrl = "http://staging.api.anyfetch.com";
+var apiUrl = "https://api.anyfetch.com";
 var file = "../resources/document-types.md";
 
 var ids = [
@@ -52,7 +52,7 @@ fs.readFile(file, {encoding: 'utf-8'}, function(err, contentFile) {
         content += "  - " + param + "\n";
       });
 
-      content += "*Full\n";
+      content += "* Full\n";
 
       body.projections.full.forEach(function(param) {
         content += "  - " + param + "\n";
