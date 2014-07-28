@@ -4,7 +4,7 @@ subtitle: The client API is designed to let your app access documents and metada
 layout: doc
 ---
 
-The API is standard REST. This page will guide you through all the basics, if you're already familiar with APIs you can skip it and head to the [quick start](/quick-start) ;)
+The API is standard REST. This page will guide you through all the basics, if you're already familiar with APIs you can skip it and head to the [guides](/guides) ;)
 
 > All examples in this documentation will use CURL. You can find the CURL binary in any UNIX system.
 

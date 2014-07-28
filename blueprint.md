@@ -3,7 +3,7 @@ HOST: https://api.anyfetch.com
 
 # anyFetch API Documentation
 
-> This page is anyFetch reference. See [http://developers.anyfetch.com](this page) for informations regarding general usage.
+> This page is anyFetch reference. See [this page](http://developers.anyfetch.com) for informations regarding general usage.
 
 **anyFetch API** is designed to help you search massive amounts of documents coming from various sources, in various formats. See [authentication](/authentication.html) for authentication details.
 

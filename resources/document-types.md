@@ -4,7 +4,7 @@ layout: doc
 ---
 
 You'll find here the list of default document-types and their expectations.
-Don't forget that [/resources/hydraters.html](many hydraters can change the `document_type` during the hydration phase).
+Don't forget that [many hydraters can change the `document_type` during the hydration phase](/resources/hydraters.html).
 
 If you're not satisfied with the default presentation or you find some data is missing:
 

@@ -38,7 +38,7 @@ Now we can send the file, using a standard multipart POST request including the 
 If everything went well, we'll get `204 No Content` -- our document was stored, and hydration has begun.
 
 ## OAuth 2.0
-> You should read [how to use a provider](/guides/using/provider.md) for more details about authentication.
+> You should read [how to use a provider](/guides/using/provider.html) for more details about authentication.
 
 Before being able to send data, you need to get a provider token.
 The user need to click on the name of your provider in the frontend. He'll then be redirected to the page you registered for initial setup, with a `?code` parameter. Setup everything you need to access your data (maybe there will be OAuth on the other side too, maybe you need to ask for some configuration).
@@ -57,4 +57,4 @@ To do so, send to `http://settings.anyfetch.com/oauth/token` the following value
 ```
 
 ## Lib
-Here at anyFetch, we use node.js for our providers to improve latency and send multiple files at once. You can use the [anyFetch](https://npmjs.org/package/anyfetch) library from npm, or [anyFetch Provider](https://npmjs.org/package/anyfetch-provider). You'll find additional documentation directly on those packages.
+Here at anyFetch, we use node.js for our providers to improve latency and send multiple files at once. You can use the [anyFetch](https://www.npmjs.org/package/anyfetch) library from npm, or [anyFetch Provider](https://www.npmjs.org/package/anyfetch-provider). You'll find additional documentation directly on those packages.
