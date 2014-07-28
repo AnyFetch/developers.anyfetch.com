@@ -625,7 +625,18 @@ Result contains, amongst other :
                 },
                 "related": [],
                 "title": {
-                    "name": "Florian Rossiaud"
+                    "projection_type": "title",
+                    "document_type": {
+                        "_type": "DocumentType",
+                        "id": "5252ce4ce4cfcd16f55cfa3a",
+                        "name": "contact",
+                        "templates": {
+                            "title": "{{ name }}"
+                        }
+                    },
+                    "data": {
+                        "name": "Florian Rossiaud"
+                    }
                 }
             }
 
