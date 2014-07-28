@@ -10,7 +10,7 @@ var fs = require('fs');
 var async = require('async');
 var request = require('supertest');
 
-var apiUrl = "https://api-staging.anyfetch.com";
+var apiUrl = "https://api.anyfetch.com";
 var file = "../resources/document-types.md";
 
 var ids = [
