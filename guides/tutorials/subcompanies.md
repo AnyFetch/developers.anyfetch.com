@@ -17,7 +17,7 @@ To follow this guide, you need:
 We use `curl` for simplicity purpose. Of course, in a real use case, you'll need to use whatever utility your language provide (`http` for node, `curl` for php, `requests` for Python, `Net::HTTP` for Ruby)
 
 ## Setting up
-Retrieve your token as described on the ["Hello world" tutorial](/guides/hello-world.html): `GET /token`.
+Retrieve your token as described on the ["Hello world" tutorial](/guides/tutorials/hello-world.html): `GET /token`.
 
 Keep it somewhere safe, as it will be your master token (you'll be able to delete subcompanies with it).
 

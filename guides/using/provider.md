@@ -32,10 +32,10 @@ The provider will then asynchronously send documents to anyFetch.
 ## Sample providers
 anyFetch ships with some default providers you may want to check:
 
-* `dropbox.provider.anyfetch.com`: connect a Dropbox account. [Source](https://github.com/AnyFetch/dropbox.provider.anyfetch.com)
-* `gmail.provider.anyfetch.com`: connect a GMail account. [Source](https://github.com/AnyFetch/gmail.provider.anyfetch.com)
-* `gdrive.provider.anyfetch.com`: connect a Google Drive account. [Source](https://github.com/AnyFetch/gdrive.provider.anyfetch.com)
-* `local.provider.anyfetch.com`: sync a local directory with anyFetch. [Source](https://github.com/AnyFetch/local.provider.anyfetch.com)
-* `salesforce.provider.anyfetch.com`: connect a Salesfetch account. [Source](https://github.com/AnyFetch/salesforce.provider.anyfetch.com)
-* `evernote.provider.anyfetch.com`: connect an Evernote account. [Source](https://github.com/AnyFetch/evernote.provider.anyfetch.com)
-* `box.provider.anyfetch.com`: connect a Box account. [Source](https://github.com/AnyFetch/box.provider.anyfetch.com)
+* `dropbox.provider.anyfetch.com`: connect a Dropbox account. [Source](https://github.com/AnyFetch/dropbox-provider.anyfetch.com)
+* `gmail.provider.anyfetch.com`: connect a GMail account. [Source](https://github.com/AnyFetch/gmail-provider.anyfetch.com)
+* `gdrive.provider.anyfetch.com`: connect a Google Drive account. [Source](https://github.com/AnyFetch/gdrive-provider.anyfetch.com)
+* `local.provider.anyfetch.com`: sync a local directory with anyFetch. [Source](https://github.com/AnyFetch/local-provider.anyfetch.com)
+* `salesforce.provider.anyfetch.com`: connect a Salesfetch account. [Source](https://github.com/AnyFetch/salesforce-provider.anyfetch.com)
+* `evernote.provider.anyfetch.com`: connect an Evernote account. [Source](https://github.com/AnyFetch/evernote-provider.anyfetch.com)
+* `box.provider.anyfetch.com`: connect a Box account. [Source](https://github.com/AnyFetch/box-provider.anyfetch.com)
