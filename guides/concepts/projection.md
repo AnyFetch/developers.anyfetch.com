@@ -66,7 +66,7 @@ That's the basis for document types: every document has a document-type, and thi
 
 Every document-type defines three projectors:
 
-* A projector for `title`, used to display the document in one line;
+* A projector for `title`, used to display the document in one line (note this is always a subset from the `snippet` and `full` projection: with any type of projected data, you can find the `title` projection);
 * A projector for `snippet`, used after a query to render small results;
 * A projector to display the document in `full`. Note that this *does not* contain all metadata, since most of them are not relevant to the end user.
 
