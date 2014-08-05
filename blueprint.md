@@ -308,7 +308,7 @@ By default, you are not allowed to remove a subcompany with subsubcompanies. To 
 # Group Documents
 Endpoints for retrieving documents
 
-## Documents [/documents{?search, ?before, ?after, ?document_type, ?provider, ?id, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit, ?sort}]
+## Documents [/documents{?search, ?before, ?after, ?document_type, ?provider, ?id, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit, ?sort, ?render_templates}]
 Access documents resources.
 
 ### Search documents [GET]
@@ -334,6 +334,7 @@ Return informations aggregated over the result set. The `score` key indicated do
     + start (optional, integer, `5`) ... 0-based index of the first item to retrieve (for pagination).
     + limit (optional, integer, `20`) ... Max number of items to retrieve (for pagination)
     + sort (optional, string, `creationDate`) ... Sort criteria. Can be `creationDate` (sort by document creation date), `lastModification` (sort by last modification date) or `_score` (default, sort by relevance to the query). Prepend with a `-` to reverse order (e.g. `-creationDate`).
+    + render_templates (optional, boolean, `false`) ... Whether to pre-render the HTML for you in the results. Documents will have the keys `rendered_snippet` and `rendered_title`.
 
 + Response 200 (application/json)
     + Body
