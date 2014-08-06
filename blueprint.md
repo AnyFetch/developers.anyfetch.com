@@ -289,6 +289,20 @@ By default, you are not allowed to remove a subcompany with subsubcompanies. To 
 
 + Response 204
 
+## Reset a subcompany [/subcompanies/{id}/reset]
+###  Reset a subcompany [DELETE]
+Reset **all** documents, tokens and providers from the subcompany.
+
+Subcompanies and users are not affected.
+
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+> * `403 Forbidden`: you are not an administrator on this account.
+> * `404 ResourceNotFound`: the subcompany does not exist, or is not available for this user.
+> * `409 InvalidArgument`: `id` is not a valid id.
+
++ Response 204
+
 
 
 
