@@ -111,7 +111,10 @@ Contains your company name, and the list of hydraters used on the account.
                     "http://image.hydrater.anyfetch.com/hydrate",
                     "http://ocr.hydrater.anyfetch.com/hydrate",
                     "http://eml.hydrater.anyfetch.com/hydrate"
-                ]
+                ],
+                document_count: 4284,
+                user_count: 1,
+                subcompany_count: 1
             }
 
 ## Update company documents [/company/update]
@@ -192,7 +195,10 @@ Retrieve all subcompanies from the current company.
                         "http://image.hydrater.anyfetch.com/hydrate",
                         "http://ocr.hydrater.anyfetch.com/hydrate",
                         "http://eml.hydrater.anyfetch.com/hydrate"
-                    ]
+                    ],
+                    document_count: 1337,
+                    user_count: 1,
+                    subcompany_count: 0
                 }
             ]
 
@@ -244,7 +250,10 @@ Note the "original" (parent) company will only be able to `DELETE` the subcompan
                     "http://image.hydrater.anyfetch.com/hydrate",
                     "http://ocr.hydrater.anyfetch.com/hydrate",
                     "http://eml.hydrater.anyfetch.com/hydrate"
-                ]
+                ],
+                document_count: null,
+                user_count: null,
+                subcompany_count: null
             }
 
 ## Subcompany [/subcompanies/{id}]
@@ -272,7 +281,10 @@ Retrieve a specific subcompany from the current company.
                     "http://image.hydrater.anyfetch.com/hydrate",
                     "http://ocr.hydrater.anyfetch.com/hydrate",
                     "http://eml.hydrater.anyfetch.com/hydrate"
-                ]
+                ],
+                document_count: 1337,
+                user_count: 1,
+                subcompany_count: 0
             }
 
 ### Delete a subcompany [DELETE]

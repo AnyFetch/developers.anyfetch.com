@@ -161,19 +161,22 @@ Should have a <code>status</code> of “OK”.</p>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 </ul>
 </blockquote>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#51ce8c1e21f7323fcc559cf9e54c5d29" class="pull-right">Toggle</a></li><li id="51ce8c1e21f7323fcc559cf9e54c5d29" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
-    "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Company"</span></span>,
-    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"531dd2f3c8318cc5d100003c"</span></span>,
-    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"test@anyfetch.com"</span></span>,
-    "<span class="hljs-attribute">hydraters</span>": <span class="hljs-value">[
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#b160503860f5028a9e68c244f52a183f" class="pull-right">Toggle</a></li><li id="b160503860f5028a9e68c244f52a183f" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    <span class="hljs-string">"_type"</span>: <span class="hljs-string">"Company"</span>,
+    <span class="hljs-string">"id"</span>: <span class="hljs-string">"531dd2f3c8318cc5d100003c"</span>,
+    <span class="hljs-string">"name"</span>: <span class="hljs-string">"test<span class="hljs-variable">@anyfetch</span>.com"</span>,
+    <span class="hljs-string">"hydraters"</span>: [
         <span class="hljs-string">"http://plaintext.hydrater.anyfetch.com/hydrate"</span>,
         <span class="hljs-string">"http://pdf.hydrater.anyfetch.com/hydrate"</span>,
         <span class="hljs-string">"http://office.hydrater.anyfetch.com/hydrate"</span>,
         <span class="hljs-string">"http://image.hydrater.anyfetch.com/hydrate"</span>,
         <span class="hljs-string">"http://ocr.hydrater.anyfetch.com/hydrate"</span>,
         <span class="hljs-string">"http://eml.hydrater.anyfetch.com/hydrate"</span>
-    ]
-</span>}
+    ],
+    document_count: <span class="hljs-number">4284</span>,
+    user_count: <span class="hljs-number">1</span>,
+    subcompany_count: <span class="hljs-number">1</span>
+}
 </code></pre></li></ul></section><h4 id="company-update-company-documents">Update company documents&nbsp;<a href="#company-update-company-documents"><i class="fa fa-link"></i></a></h4><section id="company-update-company-documents-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Update documents</span></div><div style="float:left"><a href="#company-update-company-documents-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/company/update</code></div></div><div class="panel-body"><p>Ping all providers for the current company, checking for new available documents.</p>
 <p>Return the response code from each provider—202 means <code>Accepted</code>. Most provider will reply with <code>429 Too Many Requests</code> if they’re already working on this user’s tasks.
 Note that even if each providers responds with an error, this endpoint will still return 200 and the status for each provider.</p>
@@ -210,20 +213,23 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <li><code>403 Forbidden</code>: you are not an administrator on this account.</li>
 </ul>
 </blockquote>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#435fcbcdd277aed52668af4e30b610ab" class="pull-right">Toggle</a></li><li id="435fcbcdd277aed52668af4e30b610ab" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#5e007c82a2344e8ede44f4e10ad7576d" class="pull-right">Toggle</a></li><li id="5e007c82a2344e8ede44f4e10ad7576d" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
     {
-        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Company"</span></span>,
-        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"533d87ea162215a5375d34d1"</span></span>,
-        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"new-user-subcompany"</span></span>,
-        "<span class="hljs-attribute">hydraters</span>": <span class="hljs-value">[
+        <span class="hljs-string">"_type"</span>: <span class="hljs-string">"Company"</span>,
+        <span class="hljs-string">"id"</span>: <span class="hljs-string">"533d87ea162215a5375d34d1"</span>,
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"new-user-subcompany"</span>,
+        <span class="hljs-string">"hydraters"</span>: [
             <span class="hljs-string">"http://plaintext.hydrater.anyfetch.com/hydrate"</span>,
             <span class="hljs-string">"http://pdf.hydrater.anyfetch.com/hydrate"</span>,
             <span class="hljs-string">"http://office.hydrater.anyfetch.com/hydrate"</span>,
             <span class="hljs-string">"http://image.hydrater.anyfetch.com/hydrate"</span>,
             <span class="hljs-string">"http://ocr.hydrater.anyfetch.com/hydrate"</span>,
             <span class="hljs-string">"http://eml.hydrater.anyfetch.com/hydrate"</span>
-        ]
-    </span>}
+        ],
+        document_count: <span class="hljs-number">1337</span>,
+        user_count: <span class="hljs-number">1</span>,
+        subcompany_count: <span class="hljs-number">0</span>
+    }
 ]
 </code></pre></li></ul></section><section id="subcompanies-subcompanies-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create a new subcompany</span></div><div style="float:left"><a href="#subcompanies-subcompanies-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/subcompanies</code></div></div><div class="panel-body"><blockquote>
 <p>This endpoint is only available to admin users.</p>
@@ -256,19 +262,22 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
         "<span class="hljs-attribute">user</span>": <span class="hljs-value"><span class="hljs-string">"52fb7b90c8318c4dc800006c"</span></span>,
         "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"new-subcompany-name"</span></span>,
     }
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#8e18d9bd9418254dcefa811a2138bf27" class="pull-right">Toggle</a></li><li id="8e18d9bd9418254dcefa811a2138bf27" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>    {
-        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Company"</span></span>,
-        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"533d9161162215a5375d34d2"</span></span>,
-        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"new-subcompany-name"</span></span>,
-        "<span class="hljs-attribute">hydraters</span>": <span class="hljs-value">[
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#3e59853fccaca1f6c132634bd8999685" class="pull-right">Toggle</a></li><li id="3e59853fccaca1f6c132634bd8999685" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>    {
+        <span class="hljs-string">"_type"</span>: <span class="hljs-string">"Company"</span>,
+        <span class="hljs-string">"id"</span>: <span class="hljs-string">"533d9161162215a5375d34d2"</span>,
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"new-subcompany-name"</span>,
+        <span class="hljs-string">"hydraters"</span>: [
             <span class="hljs-string">"http://plaintext.hydrater.anyfetch.com/hydrate"</span>,
             <span class="hljs-string">"http://pdf.hydrater.anyfetch.com/hydrate"</span>,
             <span class="hljs-string">"http://office.hydrater.anyfetch.com/hydrate"</span>,
             <span class="hljs-string">"http://image.hydrater.anyfetch.com/hydrate"</span>,
             <span class="hljs-string">"http://ocr.hydrater.anyfetch.com/hydrate"</span>,
             <span class="hljs-string">"http://eml.hydrater.anyfetch.com/hydrate"</span>
-        ]
-    </span>}
+        ],
+        document_count: <span class="hljs-keyword">null</span>,
+        user_count: <span class="hljs-keyword">null</span>,
+        subcompany_count: <span class="hljs-keyword">null</span>
+    }
 </code></pre></li></ul></section><h4 id="subcompanies-subcompany">Subcompany&nbsp;<a href="#subcompanies-subcompany"><i class="fa fa-link"></i></a></h4><section id="subcompanies-subcompany-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve a subcompany</span></div><div style="float:left"><a href="#subcompanies-subcompany-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/subcompanies/{id}</code></div></div><div class="panel-body"><blockquote>
 <p>This endpoint is only available to admin users.</p>
 </blockquote>
@@ -281,19 +290,22 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#5ab9ceb7f5b5510e8d9971d63f62ef7b" class="pull-right">Toggle</a></li><li id="5ab9ceb7f5b5510e8d9971d63f62ef7b" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
-    "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Company"</span></span>,
-    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"533d87ea162215a5375d34d1"</span></span>,
-    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"new-user-subcompany"</span></span>,
-    "<span class="hljs-attribute">hydraters</span>": <span class="hljs-value">[
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#71f5775f4369dbc0479921766a33563f" class="pull-right">Toggle</a></li><li id="71f5775f4369dbc0479921766a33563f" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    <span class="hljs-string">"_type"</span>: <span class="hljs-string">"Company"</span>,
+    <span class="hljs-string">"id"</span>: <span class="hljs-string">"533d87ea162215a5375d34d1"</span>,
+    <span class="hljs-string">"name"</span>: <span class="hljs-string">"new-user-subcompany"</span>,
+    <span class="hljs-string">"hydraters"</span>: [
         <span class="hljs-string">"http://plaintext.hydrater.anyfetch.com/hydrate"</span>,
         <span class="hljs-string">"http://pdf.hydrater.anyfetch.com/hydrate"</span>,
         <span class="hljs-string">"http://office.hydrater.anyfetch.com/hydrate"</span>,
         <span class="hljs-string">"http://image.hydrater.anyfetch.com/hydrate"</span>,
         <span class="hljs-string">"http://ocr.hydrater.anyfetch.com/hydrate"</span>,
         <span class="hljs-string">"http://eml.hydrater.anyfetch.com/hydrate"</span>
-    ]
-</span>}
+    ],
+    document_count: <span class="hljs-number">1337</span>,
+    user_count: <span class="hljs-number">1</span>,
+    subcompany_count: <span class="hljs-number">0</span>
+}
 </code></pre></li></ul></section><section id="subcompanies-subcompany-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Delete a subcompany</span></div><div style="float:left"><a href="#subcompanies-subcompany-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/subcompanies/{id}</code></div></div><div class="panel-body"><p>Delete the subcompany, <strong>all</strong> its documents and <strong>all</strong> its users.</p>
 <p>By default, you are not allowed to remove a subcompany with subsubcompanies. To force the subcompany removal, add <code>?force=1</code>.</p>
 <blockquote>
