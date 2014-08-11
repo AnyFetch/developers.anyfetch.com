@@ -251,9 +251,9 @@ Note the "original" (parent) company will only be able to `DELETE` the subcompan
                     "http://ocr.hydrater.anyfetch.com/hydrate",
                     "http://eml.hydrater.anyfetch.com/hydrate"
                 ],
-                document_count: null,
-                user_count: null,
-                subcompany_count: null
+                document_count: 0,
+                user_count: 1,
+                subcompany_count: 0
             }
 
 ## Subcompany [/subcompanies/{id}]
