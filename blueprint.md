@@ -290,12 +290,12 @@ Retrieve a specific subcompany from the current company.
 ### Delete a subcompany [DELETE]
 Delete the subcompany, **all** its documents and **all** its users.
 
-By default, you are not allowed to remove a subcompany with subsubcompanies. To force the subcompany removal, add `?force=1`.
+By default, you are not allowed to remove a subcompany with subsubcompanies. To force the subcompany removal, add `?force=true`.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator on this account.
-> * `403 Forbidden`: the subcompanies has subsubcompanies and can't be removed, use `?force=1`.
+> * `403 Forbidden`: the subcompanies has subsubcompanies and can't be removed, use `?force=true`.
 > * `404 ResourceNotFound`: the subcompany does not exist, or is not available for this user.
 > * `409 InvalidArgument`: `id` is not a valid id.
 
@@ -334,7 +334,7 @@ Subcompanies and users are not affected.
 # Group Documents
 Endpoints for retrieving documents
 
-## Documents [/documents{?search, ?before, ?after, ?document_type, ?provider, ?id, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit, ?sort, ?render_templates}]
+## Documents [/documents{?search, ?before, ?after, ?document_type, ?provider, ?id, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit, ?sort, ?render_templates, ?strict}]
 Access documents resources.
 
 ### Search documents [GET]
@@ -361,6 +361,7 @@ Return informations aggregated over the result set. The `score` key indicated do
     + limit (optional, integer, `20`) ... Max number of items to retrieve (for pagination)
     + sort (optional, string, `creationDate`) ... Sort criteria. Can be `creationDate` (sort by document creation date), `lastModification` (sort by last modification date) or `_score` (default, sort by relevance to the query). Prepend with a `-` to reverse order (e.g. `-creationDate`).
     + render_templates (optional, boolean, `false`) ... Whether to pre-render the HTML for you in the results. Documents will have the keys `rendered_snippet` and `rendered_title`.
+    + strict (optional, boolean, `false`) ... When using strict mode, only results matching exactly the query will be returned (a search for "John Doe" will never return documents about "Doe" only)
 
 + Response 200 (application/json)
     + Body
