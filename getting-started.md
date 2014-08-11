@@ -46,7 +46,7 @@ Many API methods take optional parameters. For GET requests, any parameters not 
 
 ```sh
 $ curl -X GET \
- -H "Authorization: token ${TOKEN}" \
+ -H "Authorization: Bearer ${OAUTH-TOKEN}" \
 "https://api.anyfetch.com/documents?search=${query}"
 ```
 
