@@ -307,13 +307,13 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
     subcompany_count: <span class="hljs-number">0</span>
 }
 </code></pre></li></ul></section><section id="subcompanies-subcompany-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Delete a subcompany</span></div><div style="float:left"><a href="#subcompanies-subcompany-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/subcompanies/{id}</code></div></div><div class="panel-body"><p>Delete the subcompany, <strong>all</strong> its documents and <strong>all</strong> its users.</p>
-<p>By default, you are not allowed to remove a subcompany with subsubcompanies. To force the subcompany removal, add <code>?force=1</code>.</p>
+<p>By default, you are not allowed to remove a subcompany with subsubcompanies. To force the subcompany removal, add <code>?force=true</code>.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>403 Forbidden</code>: you are not an administrator on this account.</li>
-<li><code>403 Forbidden</code>: the subcompanies has subsubcompanies and can’t be removed, use <code>?force=1</code>.</li>
+<li><code>403 Forbidden</code>: the subcompanies has subsubcompanies and can’t be removed, use <code>?force=true</code>.</li>
 <li><code>404 ResourceNotFound</code>: the subcompany does not exist, or is not available for this user.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
