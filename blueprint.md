@@ -114,7 +114,8 @@ Contains your company name, and the list of hydraters used on the account.
                 ],
                 document_count: 4284,
                 user_count: 1,
-                subcompany_count: 1
+                subcompany_count: 1,
+                documents_per_update: 2500
             }
 
 ## Update company documents [/company/update]
