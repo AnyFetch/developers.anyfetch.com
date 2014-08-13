@@ -1077,7 +1077,7 @@ Retrieve the image. In case you need to display the image directly, you can use 
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
-    + width (required, int, `500`) ... Final image width. Only realist values will be allowed.
+    + width (required, int, `500`) ... Final image width, in pixel. Value must be between 400 and 1920.
     + search (optional, string, `john smith`) ... String to highlight in the rendered document
 
 + Response 200 (image/png)
