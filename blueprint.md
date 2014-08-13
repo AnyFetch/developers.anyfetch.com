@@ -1061,7 +1061,7 @@ View all data for the document.
             }
 
 
-## Image access [/documents/{id}/image{?width}]
+## Image access [/documents/{id}/image{?width, ?search}]
 Render an image for the document, using its `document_type` full projection. This is especially useful for mobile devices, where rendering complex HTML can be heavy for the user.
 
 ### Get document's image [GET]
@@ -1077,11 +1077,13 @@ Retrieve the image. In case you need to display the image directly, you can use 
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
+    + width (required, int, `500`) ... Final image width. Only realist values will be allowed.
+    + search (optional, string, `john smith`) ... String to highlight in the rendered document
 
-+ Response 200
++ Response 200 (image/png)
     + Body
 
-            {image/png file content}
+            {binary image content}
 
 ## Associated file [/documents/{id}/file]
 Work with the document's file.
@@ -1101,7 +1103,7 @@ File is discarded once hydration is ended.
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
-+ Response 200
++ Response 200 (application/octet-stream)
     + Body
 
             {binary file content}
