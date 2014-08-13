@@ -1061,6 +1061,28 @@ View all data for the document.
             }
 
 
+## Image access [/documents/{id}/image{?width}]
+Render an image for the document, using its `document_type` full projection. This is especially useful for mobile devices, where rendering complex HTML can be heavy for the user.
+
+### Get document's image [GET]
+Retrieve the image. In case you need to display the image directly, you can use the [`?oauth_access_token` authorization](/authentication.html), but be careful as sending the image URL will reveal the user token.
+
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+> * `404 ResourceNotFound`: document does not exist, or can't be accessed.
+> * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
+> * `409 InvalidArgument`: `id` is not a valid id.
+> * `409 MissingParameter`: missing `width` content in request
+> * `409 InvalidArgumentError`: `width` value must be between 400 and 1920px.
+
++ Parameters
+    + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
+
++ Response 200
+    + Body
+
+            {image/png file content}
+
 ## Associated file [/documents/{id}/file]
 Work with the document's file.
 
