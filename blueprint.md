@@ -199,7 +199,8 @@ Retrieve all subcompanies from the current company.
                     ],
                     document_count: 1337,
                     user_count: 1,
-                    subcompany_count: 0
+                    subcompany_count: 0,
+                    documents_per_update: 2500
                 }
             ]
 
@@ -254,7 +255,8 @@ Note the "original" (parent) company will only be able to `DELETE` the subcompan
                 ],
                 document_count: 0,
                 user_count: 1,
-                subcompany_count: 0
+                subcompany_count: 0,
+                documents_per_update: 2500
             }
 
 ## Subcompany [/subcompanies/{id}]
@@ -285,7 +287,8 @@ Retrieve a specific subcompany from the current company.
                 ],
                 document_count: 1337,
                 user_count: 1,
-                subcompany_count: 0
+                subcompany_count: 0,
+                documents_per_update: 2500
             }
 
 ### Delete a subcompany [DELETE]
