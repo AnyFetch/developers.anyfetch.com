@@ -1073,11 +1073,11 @@ Retrieve the image. In case you need to display the image directly, you can use 
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
 > * `409 InvalidArgument`: `id` is not a valid id.
 > * `409 MissingParameter`: missing `width` content in request
-> * `409 InvalidArgumentError`: `width` value must be between 400 and 1920px.
+> * `409 InvalidArgumentError`: `width` value must be between 100 and 1920px.
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
-    + width (optional, int, `500`) ... Final image width, in pixel. Value must be between 400 and 1920. When left unspecified, optimal size will be selected according to content.
+    + width (optional, int, `500`) ... Final image width, in pixel. Value must be between 100 and 1920. When left unspecified, optimal size will be selected according to content.
     + search (optional, string, `john smith`) ... String to highlight in the rendered document
 
 + Response 200 (image/png)
