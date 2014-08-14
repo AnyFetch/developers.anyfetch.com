@@ -10,9 +10,9 @@ $(function() {
         $('html,body').animate({
           scrollTop: target.offset().top - 100
         }, 1000, function() {
-            target.attr('id', 'no-scroll-firefox');
-            location.hash = hash;
-            target.attr('id', targetID);
+          target.attr('id', 'no-scroll-firefox');
+          location.hash = hash;
+          target.attr('id', targetID);
         });
         return false;
       }
@@ -23,18 +23,18 @@ $(function() {
 $('body').scrollspy({ target: '#nav', offset: 130 });
 
 $(function makeStickyHeader(){
-    // Check the initial position of the Sticky Header
-    var toc = $('#toc');
-    if(toc[0]) {
-        var stickyHeaderTop = toc.position().top - 100;
-        $(window).scroll(function(){
-            if( $(window).scrollTop() > stickyHeaderTop ) {
-                toc.css({position: 'fixed', top: '100px'});
-            } else {
-                toc.css({position: 'inherit', top: '0px'});
-            }
-        });
-    }
+  // Check the initial position of the Sticky Header
+  var toc = $('#toc');
+  if(toc[0]) {
+    var stickyHeaderTop = toc.position().top - 100;
+    $(window).scroll(function(){
+      if( $(window).scrollTop() > stickyHeaderTop ) {
+        toc.css({position: 'fixed', top: '100px'});
+      } else {
+        toc.css({position: 'inherit', top: '0px'});
+      }
+    });
+  }
 });
 
 
