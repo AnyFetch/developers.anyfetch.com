@@ -360,7 +360,7 @@ Return informations aggregated over the result set. The `score` key indicated do
     + start (optional, integer, `5`) ... 0-based index of the first item to retrieve (for pagination).
     + limit (optional, integer, `20`) ... Max number of items to retrieve (for pagination)
     + sort (optional, string, `creationDate`) ... Sort criteria. Can be `creationDate` (sort by document creation date), `lastModification` (sort by last modification date) or `_score` (default, sort by relevance to the query). Prepend with a `-` to reverse order (e.g. `-creationDate`).
-    + render_templates (optional, boolean, `false`) ... Whether to pre-render the HTML for you in the results. Documents will have the keys `rendered_snippet` and `rendered_title`.
+    + render_templates (optional, boolean, `false`) ... Whether to pre-render the HTML for you in the results. Documents will have the keys `rendered_snippet` and `rendered_title`. The `data` key will be removed for faster transfer.
     + strict (optional, boolean, `true`) ... When using strict mode, only results matching exactly the query will be returned (a search for "John Doe" will never return documents about "Doe" only)
 
 + Response 200 (application/json)
@@ -579,7 +579,7 @@ If no identifier is specified, it will be set to the value of the document's id.
                 "user_access": ["52d96492a7f0a3ac4226f2f7"]
             }
 
-## Document [/documents/{id}{?search}]
+## Document [/documents/{id}{?search, ?render_templates}]
 > Please note: for every endpoint in the form `/documents/{id}`, you can also use an alternative URL `/documents/identifier/{identifier}` where `identifier` is the url-encoded provider identifier.
 
 Data regarding a document.
@@ -601,6 +601,7 @@ Result contains, amongst other :
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
     + search (optional, string, `john smith`) ... String to highlight in the rendered document
+    + render_templates (optional, boolean, `false`) ... Whether to pre-render the HTML for you in the result. Document will have the keys `rendered_full` and `rendered_title`. The `data` key will be removed for faster transfer.
 + Response 200 (application/json)
     + Body
 
