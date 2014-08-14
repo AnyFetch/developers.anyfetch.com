@@ -24,10 +24,17 @@ The Playground lets you experiment with how content is returned by the API
     </div>
   </form>
   <hr>
+  <h3>Status:</h3>
+  <h5>Hydrating by:</h5>
+  <pre id="status-hydrating">None</pre>
+  <h5>Hydrated by:</h5>
+  <pre id="status-hydrated">None</pre>
+  <h5>Errored hydraters:</h5>
+  <pre id="status-errored">None</pre>
+  <h5>Hydration errors:</h5>
+  <pre id="status-errors">None</pre>
   <h3>Result:</h3>
-  <pre id="result">
-
-  </pre>
+  <pre id="result">None</pre>
 </article>
 <script type="text/javascript" src="/javascripts/async.js"></script>
 <script type="text/javascript" src="/javascripts/playground.js"></script>

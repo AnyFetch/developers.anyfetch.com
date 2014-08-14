@@ -108,6 +108,10 @@
       type: "GET",
       beforeSend: setAuthorization,
       success: function(response) {
+        $('#status-hydrating').html(response.hydrating.length ? response.hydrating.join('<br>') : 'None');
+        $('#status-hydrated').html(response.hydrated_by.length ? response.hydrated_by.join('<br>') : 'None');
+        $('#status-errored').html(response.hydrater_errored ? response.hydrater_errored.join('<br>') : 'None');
+        $('#status-errors').html(response.hydration_error || 'None');
         if(response.hydrating.length) {
           window.setTimeout(function() {
             cb(null, false);
