@@ -364,7 +364,7 @@ Return informations aggregated over the result set. The `score` key indicated do
     + start (optional, integer, `5`) ... 0-based index of the first item to retrieve (for pagination).
     + limit (optional, integer, `20`) ... Max number of items to retrieve (for pagination)
     + sort (optional, string, `creationDate`) ... Sort criteria. Can be `creationDate` (sort by document creation date), `lastModification` (sort by last modification date) or `_score` (default, sort by relevance to the query). Prepend with a `-` to reverse order (e.g. `-creationDate`).
-    + render_templates (optional, boolean, `false`) ... Whether to pre-render the HTML for you in the results. Documents will have the keys `rendered_snippet` and `rendered_title`.
+    + render_templates (optional, boolean, `false`) ... Whether to pre-render the HTML for you in the results. Documents will have the keys `rendered_snippet` and `rendered_title`. The `data` key will be removed for faster transfer.
     + strict (optional, boolean, `true`) ... When using strict mode, only results matching exactly the query will be returned (a search for "John Doe" will never return documents about "Doe" only)
 
 + Response 200 (application/json)
@@ -583,7 +583,7 @@ If no identifier is specified, it will be set to the value of the document's id.
                 "user_access": ["52d96492a7f0a3ac4226f2f7"]
             }
 
-## Document [/documents/{id}{?search}]
+## Document [/documents/{id}{?search, ?render_templates}]
 > Please note: for every endpoint in the form `/documents/{id}`, you can also use an alternative URL `/documents/identifier/{identifier}` where `identifier` is the url-encoded provider identifier.
 
 Data regarding a document.
@@ -605,6 +605,7 @@ Result contains, amongst other :
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
     + search (optional, string, `john smith`) ... String to highlight in the rendered document
+    + render_templates (optional, boolean, `false`) ... Whether to pre-render the HTML for you in the result. Document will have the keys `rendered_full` and `rendered_title`. The `data` key will be removed for faster transfer.
 + Response 200 (application/json)
     + Body
 
@@ -1065,6 +1066,30 @@ View all data for the document.
             }
 
 
+## Image access [/documents/{id}/image{?width, ?search}]
+Render an image for the document, using its `document_type` full projection. This is especially useful for mobile devices, where rendering complex HTML can be heavy for the user.
+
+### Get document's image [GET]
+Retrieve the image. In case you need to display the image directly, you can use the [`?oauth_access_token` authorization](/authentication.html), but be careful as sending the image URL will reveal the user token.
+
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+> * `404 ResourceNotFound`: document does not exist, or can't be accessed.
+> * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
+> * `409 InvalidArgument`: `id` is not a valid id.
+> * `409 MissingParameter`: missing `width` content in request
+> * `409 InvalidArgumentError`: `width` value must be between 100 and 1920px.
+
++ Parameters
+    + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
+    + width (optional, int, `500`) ... Final image width, in pixel. Value must be between 100 and 1920. When left unspecified, optimal size will be selected according to content.
+    + search (optional, string, `john smith`) ... String to highlight in the rendered document
+
++ Response 200 (image/png)
+    + Body
+
+            {binary image content}
+
 ## Associated file [/documents/{id}/file]
 Work with the document's file.
 
@@ -1083,7 +1108,7 @@ File is discarded once hydration is ended.
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
-+ Response 200
++ Response 200 (application/octet-stream)
     + Body
 
             {binary file content}

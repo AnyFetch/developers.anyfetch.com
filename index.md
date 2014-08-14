@@ -65,7 +65,7 @@ AnyFetch API
 We hope you now grasp the basic ideas surrounding AnyFetch. Let's get technical and [discover the endpoints](/endpoints).
 
 ### Authentication
-You need valid credentials to use AnyFetch. You can get more details on [the authentication page](/authentication).
+You need valid credentials to use AnyFetch. You can get more details on [the authentication page](/authentication.html).
 
 Guides
 ------
