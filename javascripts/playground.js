@@ -32,7 +32,7 @@
   var checkStorage = function checkStorage() {
     try {
       return 'localStorage' in window && window.localStorage !== null;
-    } catch (e) {
+    } catch(e) {
       return false;
     }
   };
@@ -82,7 +82,6 @@
   };
 
   var sendDocument = function sendDocument(id, data, cb) {
-    console.log(arguments);
     $.ajax({
       url: apiUrl + '/documents/' + id + '/file',
       type: "POST",
@@ -152,7 +151,7 @@
       beforeSend: setAuthorization,
       success: function(response) {
         $('#result').html(escapeHtml(JSON.stringify(response, undefined, 2).replace(/(\\n)/gm, "\n")));
-        cb(null);
+        cb(null, id);
       },
       error: function(response) {
         makeAlert('danger', response.responseText);
@@ -171,7 +170,15 @@
   };
 
   $(document).ready(function() {
+    // enable tabs
+    $('#tabnav a:first').tab('show');
+    $('#tabnav a').click(function(event) {
+      event.preventDefault();
+      $(this).tab('show');
+    });
+
     checkApi();
+
     // restore token from previous session
     if(checkStorage() && localStorage.token) {
       $("#token").val(localStorage.token);
