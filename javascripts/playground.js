@@ -152,11 +152,12 @@
 
   var finalDisplay = function finalDisplay(identifier, cb) {
     $.ajax({
-      url: apiUrl + '/documents/identifier/' + encodeURIComponent(identifier),
+      url: apiUrl + '/documents/identifier/' + encodeURIComponent(identifier) + '?render_templates=true',
       type: "GET",
       beforeSend: setAuthorization,
       success: function(response) {
         $('#result').html(escapeHtml(JSON.stringify(response, undefined, 2).replace(/(\\n)/gm, "\n")));
+        $('#iframe-render').contents().find('html').html(response.data.content);
         cb(null, identifier);
       },
       error: function(response) {
