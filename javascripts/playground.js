@@ -200,7 +200,6 @@
 
     $("#playground").submit(function(event) {
       event.preventDefault();
-      var data = new FormData(event.target);
 
       $("#submit-button").button('loading');
       $(".alert").alert('close');
@@ -209,9 +208,10 @@
           cb(null, $('#identifier').val() || '');
         },
         createDocument,
-        function sendDocumentWrapper(id, cb) {
-          sendDocument(id, data, cb);
+        function getData(id, cb) {
+          cb(null, id, new FormData(event.target));
         },
+        sendDocument,
         watchState,
         finalDisplay
       ], function(err) {
