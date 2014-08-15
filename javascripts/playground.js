@@ -193,6 +193,7 @@
       event.preventDefault();
       var data = new FormData(event.target);
 
+      $(".alert").alert('close');
       async.waterfall([
         createDocument,
         function sendDocumentWrapper(id, cb) {
