@@ -115,7 +115,7 @@
       success: function(response) {
         $('#status-hydrating').html(response.hydrating.length ? response.hydrating.join('<br>') : 'None');
         $('#status-hydrated').html(response.hydrated_by.length ? response.hydrated_by.join('<br>') : 'None');
-        $('#status-errored').html(response.hydrater_errored ? response.hydrater_errored.join('<br>') : 'None');
+        $('#status-errored').html(response.hydrater_errored || 'None');
         $('#status-errors').html(response.hydration_error || 'None');
         if(response.hydrating.length) {
           window.setTimeout(function() {
@@ -158,7 +158,9 @@
       success: function(response) {
         $('#result').html(escapeHtml(JSON.stringify(response, undefined, 2).replace(/(\\n)/gm, "\n")));
         $('#result').html(hljs.highlight('json', JSON.stringify(response, undefined, 2)).value);
-        $('#iframe-render').contents().find('html').html(response.data.content);
+        if(response.data && response.data.content) {
+          $('#iframe-render').contents().find('html').html(response.data.content);
+        }
         cb(null, identifier);
       },
       error: function(response) {
