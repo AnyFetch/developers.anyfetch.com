@@ -69,15 +69,16 @@
     });
   };
 
-  var createDocument = function createFileRequest(identifier, cb) {
+  var createDocument = function createDocument(identifier, cb) {
     $.ajax({
       url: apiUrl + '/documents',
       type: "POST",
       data: {identifier: identifier, document_type: "file"},
       beforeSend: setAuthorization,
       success: function(response) {
+        $('#status-id').html(response.id || 'None');
         makeAlert('success', 'Document created');
-        cb(null, response.id);
+        cb(null, response.identifier);
       },
       error: function(response) {
         cleanUpError(response.responseText);
@@ -86,9 +87,9 @@
     });
   };
 
-  var sendDocument = function sendDocument(id, data, cb) {
+  var sendDocument = function sendDocument(identifier, data, cb) {
     $.ajax({
-      url: apiUrl + '/documents/' + id + '/file',
+      url: apiUrl + '/documents/identifier/' + encodeURIComponent(identifier) + '/file',
       type: "POST",
       data: data,
       cache: false,
@@ -97,7 +98,7 @@
       beforeSend: setAuthorization,
       success: function(response) {
         makeAlert('success', 'Document uploaded');
-        cb(null, id);
+        cb(null, identifier);
       },
       error: function(response) {
         cleanUpError(response.responseText);
@@ -106,9 +107,9 @@
     });
   };
 
-  var getRaw = function getRaw(id, cb) {
+  var getRaw = function getRaw(identifier, cb) {
     $.ajax({
-      url: apiUrl + '/documents/' + id + '/raw',
+      url: apiUrl + '/documents/identifier/' + encodeURIComponent(identifier) + '/raw',
       type: "GET",
       beforeSend: setAuthorization,
       success: function(response) {
@@ -132,31 +133,31 @@
     });
   };
 
-  var watchState = function watchState(id, cb) {
+  var watchState = function watchState(identifier, cb) {
     var test = false;
 
     async.until(
       function() { return test; },
       function getRawWrapper(cb) {
-        getRaw(id, function(err, state) {
+        getRaw(identifier, function(err, state) {
           test = state;
           cb(null);
         });
       },
       function(err) {
-        cb(err, id);
+        cb(err, identifier);
       }
     );
   };
 
-  var finalDisplay = function finalDisplay(id, cb) {
+  var finalDisplay = function finalDisplay(identifier, cb) {
     $.ajax({
-      url: apiUrl + '/documents/' + id,
+      url: apiUrl + '/documents/identifier/' + encodeURIComponent(identifier),
       type: "GET",
       beforeSend: setAuthorization,
       success: function(response) {
         $('#result').html(escapeHtml(JSON.stringify(response, undefined, 2).replace(/(\\n)/gm, "\n")));
-        cb(null, id);
+        cb(null, identifier);
       },
       error: function(response) {
         cleanUpError(response.responseText);
@@ -208,8 +209,8 @@
           cb(null, $('#identifier').val() || '');
         },
         createDocument,
-        function getData(id, cb) {
-          cb(null, id, new FormData(event.target));
+        function getData(identifier, cb) {
+          cb(null, identifier, new FormData(event.target));
         },
         sendDocument,
         watchState,

@@ -43,6 +43,8 @@ The Playground lets you experiment with how content is returned by the API
   <!-- Tab panes -->
   <div class="tab-content panel-body">
     <article class="tab-pane" id="status-tab">
+      <h5>Id:</h5>
+      <pre id="status-id">None</pre>
       <h5>Hydrating by:</h5>
       <pre id="status-hydrating">None</pre>
       <h5>Hydrated by:</h5>
