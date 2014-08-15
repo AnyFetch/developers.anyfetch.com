@@ -20,6 +20,11 @@
     $('.alert').alert();
   };
 
+  var cleanUpError = function cleanUpError(error) {
+    $("#submit-button").button('loading');
+    makeAlert('danger', error);
+  };
+
   var escapeHtml = function escapeHtml(unsafe) {
     return unsafe
       .replace(/&/g, "&amp;")
@@ -75,7 +80,7 @@
         cb(null, response.id);
       },
       error: function(response) {
-        makeAlert('danger', response.responseText);
+        cleanUpError(response.responseText);
         cb(response.responseText);
       }
     });
@@ -95,7 +100,7 @@
         cb(null, id);
       },
       error: function(response) {
-        makeAlert('danger', response.responseText);
+        cleanUpError(response.responseText);
         cb(response.responseText);
       }
     });
@@ -121,7 +126,7 @@
         }
       },
       error: function(response) {
-        makeAlert('danger', response.responseText);
+        cleanUpError(response.responseText);
         cb(response.responseText);
       }
     });
@@ -154,7 +159,7 @@
         cb(null, id);
       },
       error: function(response) {
-        makeAlert('danger', response.responseText);
+        cleanUpError(response.responseText);
         cb(response.responseText);
       }
     });
@@ -189,10 +194,20 @@
       checkToken($(this).val());
     });
 
+    $("#submit-button").click(function () {
+      event.preventDefault();
+      var btn = $(this);
+      btn.button('loading');
+      window.setTimeout(function () {
+        btn.button('reset');
+      }, 10000);
+    });
+
     $("#playground").submit(function(event) {
       event.preventDefault();
       var data = new FormData(event.target);
 
+      $("#submit-button").button('loading');
       $(".alert").alert('close');
       async.waterfall([
         createDocument,
@@ -201,7 +216,12 @@
         },
         watchState,
         finalDisplay
-      ]);
+      ], function(err) {
+        if(err) {
+          return cleanUpError(err);
+        }
+        $("#submit-button").button('reset');
+      });
     });
   });
 }());

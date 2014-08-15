@@ -21,7 +21,7 @@ The Playground lets you experiment with how content is returned by the API
       <input type="file" name="file" id="file">
     </div>
     <div class="form-group">
-      <input type="submit" value="Upload to API" class="btn btn-default">
+      <input type="submit" id="submit-button" value="Upload to API" class="btn btn-orange" data-loading-text="Working...">
     </div>
   </form>
 </article>
