@@ -58,10 +58,10 @@ The Playground lets you experiment with how content is returned by the API
       <pre id="result">None</pre>
     </article>
     <article class="tab-pane" id="iframe-tab">
-      <iframe id="iframe-render" style="position: relative; height: 100%; width: 100%; border: none; min-height: 600px;"></iframe>
+      <iframe id="iframe-render" style="position: relative; height: 100%; width: 100%; border: none; min-height: 500px;"></iframe>
     </article>
     <article class="tab-pane" id="image-tab">
-
+      <div id="image-render" style="position: relative; height: 100%; width: 100%; min-height: 500px;"></div>
     </article>
   </div>
 </div>

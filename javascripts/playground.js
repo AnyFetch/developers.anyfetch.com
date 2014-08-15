@@ -150,7 +150,7 @@
     );
   };
 
-  var finalDisplay = function finalDisplay(identifier, cb) {
+  var jsonDisplay = function jsonDisplay(identifier, cb) {
     $.ajax({
       url: apiUrl + '/documents/identifier/' + encodeURIComponent(identifier) + '?render_templates=true',
       type: "GET",
@@ -165,6 +165,13 @@
         cb(response.responseText);
       }
     });
+  };
+
+  var imageDisplay = function imageDisplay(identifier, cb) {
+    var img = apiUrl + '/documents/identifier/' + encodeURIComponent(identifier);
+    img += '?oauth_access_token=' + userToken; // authentification
+    $('#image-render').html('<img scr="' + img + '"/>');
+    cb(null, identifier);
   };
 
   var checkApi = function checkApi() {
@@ -215,7 +222,8 @@
         },
         sendDocument,
         watchState,
-        finalDisplay
+        jsonDisplay,
+        imageDisplay
       ], function(err) {
         if(err) {
           return cleanUpError(err);
