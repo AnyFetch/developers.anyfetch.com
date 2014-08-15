@@ -1,5 +1,5 @@
 ---
-title: Developers Playground
+title: Playground
 no_toc: true
 layout: doc
 ---
