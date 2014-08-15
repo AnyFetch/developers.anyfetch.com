@@ -157,6 +157,7 @@
       beforeSend: setAuthorization,
       success: function(response) {
         $('#result').html(escapeHtml(JSON.stringify(response, undefined, 2).replace(/(\\n)/gm, "\n")));
+        $('#result').html(hljs.highlight('json', JSON.stringify(response, undefined, 2)).value);
         $('#iframe-render').contents().find('html').html(response.data.content);
         cb(null, identifier);
       },
@@ -168,7 +169,7 @@
   };
 
   var imageDisplay = function imageDisplay(identifier, cb) {
-    var img = apiUrl + '/documents/identifier/' + encodeURIComponent(identifier);
+    var img = apiUrl + '/documents/identifier/' + encodeURIComponent(identifier) + '/image';
     img += '?oauth_access_token=' + userToken; // authentification
     $('#image-render').html('<img scr="' + img + '"/>');
     cb(null, identifier);

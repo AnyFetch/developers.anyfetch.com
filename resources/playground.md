@@ -6,6 +6,7 @@ layout: doc
 
 The Playground lets you experiment with how content is returned by the API
 
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
 
 <div id="errors">
 </div>
@@ -66,4 +67,5 @@ The Playground lets you experiment with how content is returned by the API
   </div>
 </div>
 <script type="text/javascript" src="/javascripts/async.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script>
 <script type="text/javascript" src="/javascripts/playground.js"></script>
