@@ -69,11 +69,11 @@
     });
   };
 
-  var createDocument = function createFileRequest(cb) {
+  var createDocument = function createFileRequest(identifier, cb) {
     $.ajax({
       url: apiUrl + '/documents',
       type: "POST",
-      data: {document_type: "file"},
+      data: {identifier: identifier, document_type: "file"},
       beforeSend: setAuthorization,
       success: function(response) {
         makeAlert('success', 'Document created');
@@ -194,13 +194,8 @@
       checkToken($(this).val());
     });
 
-    $("#submit-button").click(function () {
-      event.preventDefault();
-      var btn = $(this);
-      btn.button('loading');
-      window.setTimeout(function () {
-        btn.button('reset');
-      }, 10000);
+    $('#file').bind('change', function(event) {
+      $('#identifier').val($(this).val());
     });
 
     $("#playground").submit(function(event) {
@@ -210,6 +205,9 @@
       $("#submit-button").button('loading');
       $(".alert").alert('close');
       async.waterfall([
+        function getIdentifier(cb) {
+          cb(null, $('#identifier').val() || '');
+        },
         createDocument,
         function sendDocumentWrapper(id, cb) {
           sendDocument(id, data, cb);

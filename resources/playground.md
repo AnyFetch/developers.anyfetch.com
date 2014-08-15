@@ -21,6 +21,11 @@ The Playground lets you experiment with how content is returned by the API
       <input type="file" name="file" id="file">
     </div>
     <div class="form-group">
+      <label class="control-label">Identifier:</label>
+      <a href="/guides/concepts/identifier.html"><span class="glyphicon glyphicon-question-sign form-control-feedback"></span></a>
+      <input type="text" name="identifier" id="identifier" class="form-control" placeholder="The identifier will be generated automatically when you choose your file">
+    </div>
+    <div class="form-group">
       <input type="submit" id="submit-button" value="Upload to API" class="btn btn-orange" data-loading-text="Working...">
     </div>
   </form>
