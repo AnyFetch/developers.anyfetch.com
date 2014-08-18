@@ -12,6 +12,7 @@
   var apiUrl = 'https://api-staging.anyfetch.com';
   var userToken = '';
   var tabWidth;
+  var working = false;
 
   var makeAlert = function makeAlert(type, message) {
     $('#errors').append('<div class="alert alert-' + type + ' alert-dismissible" role="alert">' +
@@ -183,16 +184,12 @@
 
   var jsonDisplay = function jsonDisplay(identifier, cb) {
     $.ajax({
-      url: apiUrl + '/documents/identifier/' + encodeURIComponent(identifier) + '?render_templates=true',
+      url: apiUrl + '/documents/identifier/' + encodeURIComponent(identifier),
       type: "GET",
       beforeSend: setAuthorization,
       success: function(response) {
-        setProgress(100, 'Complete!', 'success');
         $('#result').html(escapeHtml(JSON.stringify(response, undefined, 2).replace(/(\\n)/gm, "\n")));
         $('#result').html(hljs.highlight('json', JSON.stringify(response, undefined, 2)).value);
-        if(response.rendered_full) {
-          $('#iframe-render').contents().find('html').html(response.rendered_full);
-        }
         cb(null, identifier);
       },
       error: function(response) {
@@ -202,8 +199,24 @@
     });
   };
 
-  var imageDisplay = function imageDisplay(identifier, cb) {
+  var htmlDisplay = function htmlDisplay(identifier, cb) {
+    $.ajax({
+      url: apiUrl + '/documents/identifier/' + encodeURIComponent(identifier) + '?render_templates=true',
+      type: "GET",
+      beforeSend: setAuthorization,
+      success: function(response) {
+        $('#iframe-render').contents().find('html').html(response.rendered_full);
+        cb(null, identifier);
+      },
+      error: function(response) {
+        cleanUpError(response.responseText);
+        cb(response.responseText);
+      }
+    });
+  };
 
+
+  var imageDisplay = function imageDisplay(identifier, cb) {
     var img = apiUrl + '/documents/identifier/' + encodeURIComponent(identifier) + '/image';
     img += '?oauth_access_token=' + userToken; // authentification
     if(tabWidth) {
@@ -228,6 +241,18 @@
         cb(response.responseText);
       }
     });
+  };
+
+  var getIdentifier = function checkParams(cb) {
+    var file = $('#file').val();
+    if(!file || file === '') {
+      return cb('You must choose a file to upload');
+    }
+    var identifier = $('#identifier').val();
+    if(!identifier || identifier === '') {
+      return cb('Identifer must be provided (choose a file, or input one manually)');
+    }
+    cb(null, identifier);
   };
 
   var checkApi = function checkApi() {
@@ -269,12 +294,21 @@
 
     // delete the document
     $('#delete-button').click(function(event) {
+      if(working) {
+        makeAlert('warning', 'Please wait the current action before deleting the file');
+        return;
+      }
+      working = true;
       async.waterfall([
-        function getIdentifier(cb) {
-          cb(null, $('#identifier').val() || '');
-        },
+        getIdentifier,
         deleteDocument
-      ]);
+      ], function(err) {
+        working = false;
+        if(err){
+          makeAlert('danger', err);
+        }
+        $("#submit-button").button('reset');
+      });
     });
 
     $("#submit-button").click(function(event) {
@@ -284,6 +318,7 @@
     // prevent form submit and execute our waterfall
     $("#playground").submit(function(event) {
       event.preventDefault();
+      working = true;
 
       $("#submit-button").button('loading');
       // close all alerts
@@ -292,9 +327,7 @@
       // reset progress bar
       setProgress(0, '', 'info');
       async.waterfall([
-        function getIdentifier(cb) {
-          cb(null, $('#identifier').val() || '');
-        },
+        getIdentifier,
         createDocument,
         function getData(identifier, cb) {
           cb(null, identifier, new FormData(event.target));
@@ -302,10 +335,17 @@
         sendDocument,
         watchState,
         jsonDisplay,
-        imageDisplay
+        htmlDisplay,
+        imageDisplay,
+        function showDeleteButton(identifier, cb) {
+          $('#delete-button').attr('type', 'button');
+          setProgress(100, 'Complete!', 'success');
+          cb(null, identifier);
+        },
       ], function(err) {
-        if(err) {
-          return cleanUpError(err);
+        working = false;
+        if(err){
+          makeAlert('danger', err);
         }
         $("#submit-button").button('reset');
       });

@@ -27,8 +27,8 @@ The Playground lets you experiment with how content is returned by the API
       <input type="text" name="identifier" id="identifier" class="form-control" placeholder="The identifier will be generated automatically when you choose your file" required/>
     </div>
   </form>
-  <input type="submit" id="submit-button" value="Upload to API" class="btn btn-orange" data-loading-text="Working..."/>
-  <input type="button" id="delete-button" value="Delete this document" class="btn btn-danger" data-loading-text="Working..."/>
+  <input type="button" id="submit-button" value="Upload to API" class="btn btn-orange" data-loading-text="Working..."/>
+  <input type="hidden" id="delete-button" value="Delete this document" class="btn btn-danger" data-loading-text="Working..."/>
 </article>
 
 <label class="control-label" id="progress-label">Progress:</label>
