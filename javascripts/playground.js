@@ -1,13 +1,7 @@
 (function () {
   'use strict';
   /*jslint indent: 2 */
-  /*global $: true */
-  /*global window: true */
-  /*global document: true */
-  /*global console: true */
-  /*global localStorage: true */
-  /*global async: true */
-  /*global FormData: true */
+  /*global $: false, window: false, document: false, localStorage: false, async: false, FormData: false */
 
   var apiUrl = 'https://api.anyfetch.com';
   var userToken = '';
