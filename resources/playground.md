@@ -19,17 +19,16 @@ The Playground lets you experiment with how content is returned by the API
     </div>
     <div class="form-group">
       <label class="control-label">Your file:</label>
-      <input type="file" name="file" id="file"/>
+      <input type="file" name="file" id="file" required/>
     </div>
     <div class="form-group">
       <label class="control-label">Identifier:</label>
       <a href="/guides/concepts/identifier.html"><span class="glyphicon glyphicon-question-sign form-control-feedback"></span></a>
-      <input type="text" name="identifier" id="identifier" class="form-control" placeholder="The identifier will be generated automatically when you choose your file"/>
-    </div>
-    <div class="form-group">
-      <input type="submit" id="submit-button" value="Upload to API" class="btn btn-orange" data-loading-text="Working..."/>
+      <input type="text" name="identifier" id="identifier" class="form-control" placeholder="The identifier will be generated automatically when you choose your file" required/>
     </div>
   </form>
+  <input type="submit" id="submit-button" value="Upload to API" class="btn btn-orange" data-loading-text="Working..."/>
+  <input type="button" id="delete-button" value="Delete this document" class="btn btn-danger" data-loading-text="Working..."/>
 </article>
 
 <label class="control-label" id="progress-label">Progress:</label>

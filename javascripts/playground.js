@@ -39,7 +39,7 @@
   };
 
   var cleanUpError = function cleanUpError(error) {
-    $("#submit-button").button('loading');
+    $("#submit-button").button('reset');
     makeAlert('danger', error);
     setProgress(100, error, 'danger');
   };
@@ -213,6 +213,23 @@
     cb(null, identifier);
   };
 
+  var deleteDocument = function deleteDocument(identifier, cb) {
+    setProgress(0, 'Deleting document', 'info');
+    $.ajax({
+      url: apiUrl + '/documents/identifier/' + encodeURIComponent(identifier),
+      type: "DELETE",
+      beforeSend: setAuthorization,
+      success: function(response) {
+        setProgress(100, 'Document deleted!', 'success');
+        cb(null, identifier);
+      },
+      error: function(response) {
+        cleanUpError(response.responseText);
+        cb(response.responseText);
+      }
+    });
+  };
+
   var checkApi = function checkApi() {
     $.ajax({
       url: apiUrl + '/status',
@@ -231,7 +248,6 @@
     });
 
     tabWidth = $("#tabs .tab-pane.active").width();
-    console.log(tabWidth);
 
     checkApi();
 
@@ -241,14 +257,31 @@
       checkToken(localStorage.token);
     }
 
+    // check token when changed
     $("#token").bind('change paste keyup', function(event) {
       checkToken($(this).val());
     });
 
+    // update the identifer when a file is choosen
     $('#file').bind('change', function(event) {
       $('#identifier').val($(this).val());
     });
 
+    // delete the document
+    $('#delete-button').click(function(event) {
+      async.waterfall([
+        function getIdentifier(cb) {
+          cb(null, $('#identifier').val() || '');
+        },
+        deleteDocument
+      ]);
+    });
+
+    $("#submit-button").click(function(event) {
+      $("#playground").submit();
+    });
+
+    // prevent form submit and execute our waterfall
     $("#playground").submit(function(event) {
       event.preventDefault();
 
