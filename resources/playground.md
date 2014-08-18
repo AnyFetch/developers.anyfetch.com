@@ -32,6 +32,12 @@ The Playground lets you experiment with how content is returned by the API
   </form>
 </article>
 
+<label class="control-label" id="progress-label">Progress:</label>
+<div class="progress">
+  <div class="progress-bar progress-bar-info" id="progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+  </div>
+</div>
+
 <div class="panel panel-default">
   <!-- Nav tabs -->
   <ul class="nav nav-pills panel-heading no-smooth" role="tablist" id="tabnav">

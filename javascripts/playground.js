@@ -20,9 +20,27 @@
     $('.alert').alert();
   };
 
+  var setProgress = function setProgress(percentage, label, type) {
+    $('#progress')
+      .attr('aria-valuenow', percentage)
+      .attr('style', 'width: ' + percentage + '%');
+    if(label) {
+      $('#progress-label').html('Progress: ' + label);
+    }
+    if(type) {
+      $('#progress')
+        .removeClass('progress-bar-info')
+        .removeClass('progress-bar-success')
+        .removeClass('progress-bar-warning')
+        .removeClass('progress-bar-danger')
+        .addClass('progress-bar-' + type);
+    }
+  };
+
   var cleanUpError = function cleanUpError(error) {
     $("#submit-button").button('loading');
     makeAlert('danger', error);
+    setProgress(100, error, 'danger');
   };
 
   var escapeHtml = function escapeHtml(unsafe) {
@@ -70,6 +88,7 @@
   };
 
   var createDocument = function createDocument(identifier, cb) {
+    setProgress(0, 'Creating document');
     $.ajax({
       url: apiUrl + '/documents',
       type: "POST",
@@ -77,7 +96,6 @@
       beforeSend: setAuthorization,
       success: function(response) {
         $('#status-id').html(response.id || 'None');
-        makeAlert('success', 'Document created');
         cb(null, response.identifier);
       },
       error: function(response) {
@@ -88,6 +106,7 @@
   };
 
   var sendDocument = function sendDocument(identifier, data, cb) {
+    setProgress(10, 'Uploading file (0%)');
     $.ajax({
       url: apiUrl + '/documents/identifier/' + encodeURIComponent(identifier) + '/file',
       type: "POST",
@@ -97,13 +116,22 @@
       processData: false,
       beforeSend: setAuthorization,
       success: function(response) {
-        makeAlert('success', 'Document uploaded');
+        setProgress(50, 'Uploading file (100%)');
         cb(null, identifier);
       },
       error: function(response) {
         cleanUpError(response.responseText);
         cb(response.responseText);
-      }
+      },
+      xhr: function(){
+        // get the native xhr object
+        var xhr = $.ajaxSettings.xhr();
+        xhr.upload.onprogress = function onprogress(progress) {
+          var percentage = progress.loaded / progress.total;
+          setProgress(10 + Math.floor(percentage * 40), 'Uploading file (' + Math.floor(percentage * 100) + '%)');
+        };
+        return xhr;
+      },
     });
   };
 
@@ -113,6 +141,8 @@
       type: "GET",
       beforeSend: setAuthorization,
       success: function(response) {
+        var hydraters = response.hydrating.length + response.hydrated_by.length;
+        setProgress(50 + (response.hydrated_by.length / hydraters) * 45, 'Hydrating... (' + response.hydrated_by.length + '/' + hydraters + ')');
         $('#status-hydrating').html(response.hydrating.length ? response.hydrating.join('<br>') : 'None');
         $('#status-hydrated').html(response.hydrated_by.length ? response.hydrated_by.join('<br>') : 'None');
         $('#status-errored').html(response.hydrater_errored || 'None');
@@ -156,10 +186,11 @@
       type: "GET",
       beforeSend: setAuthorization,
       success: function(response) {
+        setProgress(100, 'Complete!', 'success');
         $('#result').html(escapeHtml(JSON.stringify(response, undefined, 2).replace(/(\\n)/gm, "\n")));
         $('#result').html(hljs.highlight('json', JSON.stringify(response, undefined, 2)).value);
-        if(response.data && response.data.content) {
-          $('#iframe-render').contents().find('html').html(response.data.content);
+        if(response.rendered_full) {
+          $('#iframe-render').contents().find('html').html(response.rendered_full);
         }
         cb(null, identifier);
       },
@@ -214,7 +245,11 @@
       event.preventDefault();
 
       $("#submit-button").button('loading');
+      // close all alerts
       $(".alert").alert('close');
+
+      // reset progress bar
+      setProgress(0, '', 'info');
       async.waterfall([
         function getIdentifier(cb) {
           cb(null, $('#identifier').val() || '');
