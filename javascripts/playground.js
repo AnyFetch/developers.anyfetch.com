@@ -41,6 +41,7 @@
 
   var cleanUpError = function cleanUpError(error) {
     $("#submit-button").button('reset');
+    $("#delete-button").button('reset');
     makeAlert('danger', error);
     setProgress(100, error, 'danger');
   };
@@ -299,6 +300,7 @@
         return;
       }
       working = true;
+      $("#delete-button").button('loading');
       async.waterfall([
         getIdentifier,
         deleteDocument
@@ -307,7 +309,7 @@
         if(err){
           makeAlert('danger', err);
         }
-        $("#submit-button").button('reset');
+        $("#delete-button").button('reset');
       });
     });
 
