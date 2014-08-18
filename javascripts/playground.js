@@ -9,7 +9,7 @@
   /*global async: true */
   /*global FormData: true */
 
-  var apiUrl = 'https://api-staging.anyfetch.com';
+  var apiUrl = 'https://api.anyfetch.com';
   var userToken = '';
   var working = false;
 
