@@ -31,6 +31,7 @@
     ga('send', 'pageview');
 
   </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -84,15 +85,19 @@
       <p>{{ page.subtitle }}</p>
     </div>
 
-    <div class="row">
-      <div class="col-md-4 hidden-sm hidden-xs">
-        <nav id="toc">
-        </nav>
+    {% if page.no_toc %}
+      {{ content }}
+    {% else %}
+      <div class="row">
+        <div class="col-md-4 hidden-sm hidden-xs">
+          <nav id="toc">
+          </nav>
+        </div>
+        <div data-spy="scroll" data-target="#toc" class="col-md-8 col-sm-12">
+          {{ content }}
+        </div>
       </div>
-      <div data-spy="scroll" data-target="#toc" class="col-md-8 col-sm-12">
-        {{ content }}
-      </div>
-    </div>
+    {% endif %}
   </div>
 
   <footer class="footer">
@@ -130,7 +135,6 @@
     </div>
   </footer>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <script src="/javascripts/toc.min.js"></script>
   <script src="/javascripts/bootstrap.min.js"></script>
   <script src="/javascripts/tools.js"></script>
