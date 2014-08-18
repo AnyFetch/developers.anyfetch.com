@@ -48,7 +48,7 @@ The Playground lets you experiment with how content is returned by the API
   </ul>
 
   <!-- Tab panes -->
-  <div class="tab-content panel-body">
+  <div class="tab-content panel-body" id="tabs">
     <article class="tab-pane" id="status-tab">
       <h5>Id:</h5>
       <pre id="status-id">None</pre>
@@ -68,7 +68,7 @@ The Playground lets you experiment with how content is returned by the API
       <iframe id="iframe-render" style="position: relative; height: 100%; width: 100%; border: none; min-height: 500px;"></iframe>
     </article>
     <article class="tab-pane" id="image-tab">
-      <div id="image-render" style="position: relative; height: 100%; width: 100%; min-height: 500px;"></div>
+      <img src="/images/placeholder.png" alt="Image render" id="image-render" style="display: block; margin: auto;">
     </article>
   </div>
 </div>

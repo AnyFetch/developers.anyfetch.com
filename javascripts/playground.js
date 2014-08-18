@@ -11,6 +11,7 @@
 
   var apiUrl = 'https://api-staging.anyfetch.com';
   var userToken = '';
+  var tabWidth;
 
   var makeAlert = function makeAlert(type, message) {
     $('#errors').append('<div class="alert alert-' + type + ' alert-dismissible" role="alert">' +
@@ -202,9 +203,13 @@
   };
 
   var imageDisplay = function imageDisplay(identifier, cb) {
+
     var img = apiUrl + '/documents/identifier/' + encodeURIComponent(identifier) + '/image';
     img += '?oauth_access_token=' + userToken; // authentification
-    $('#image-render').html('<img scr="' + img + '"/>');
+    if(tabWidth) {
+      img += '&width=' + tabWidth; // width
+    }
+    $('#image-render').attr('src', img);
     cb(null, identifier);
   };
 
@@ -224,6 +229,9 @@
       event.preventDefault();
       $(this).tab('show');
     });
+
+    tabWidth = $("#tabs .tab-pane.active").width();
+    console.log(tabWidth);
 
     checkApi();
 
