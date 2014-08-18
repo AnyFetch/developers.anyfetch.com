@@ -67,7 +67,7 @@ The Playground lets you experiment with how content is returned by the API
       <iframe id="iframe-render" style="position: relative; height: 100%; width: 100%; border: none; min-height: 500px;"></iframe>
     </article>
     <article class="tab-pane" id="image-tab">
-      <img src="/images/placeholder.png" alt="Image render" id="image-render" style="display: block; margin: auto;">
+      <img src="/images/placeholder.png" alt="Image render" id="image-render" style="display: block; margin: auto; max-width: 100%">
     </article>
   </div>
 </div>
