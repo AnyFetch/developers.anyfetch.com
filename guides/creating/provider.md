@@ -44,7 +44,7 @@ Before being able to send data, you need to get a provider token.
 The user need to click on the name of your provider in the frontend. He'll then be redirected to the page you registered for initial setup, with a `?code` parameter. Setup everything you need to access your data (maybe there will be OAuth on the other side too, maybe you need to ask for some configuration).
 
 You can then initiate the OAuth flow by trading the code for an `access_token`.
-To do so, send to `http://settings.anyfetch.com/oauth/token` the following values:
+To do so, send to `https://manager.anyfetch.com/oauth/access_token` the following values:
 
 ```javascript
 {

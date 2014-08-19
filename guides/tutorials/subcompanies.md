@@ -86,12 +86,12 @@ https://api.anyfetch.com/subcompanies \
     "id":"534ea2bd1d6202ba087383ed",
     "name":"Subcompany",
     "hydraters":[
-        "http://plaintext.hydrater.anyfetch.com/hydrate",
-        "http://pdf.hydrater.anyfetch.com/hydrate",
-        "http://office.hydrater.anyfetch.com/hydrate",
-        "http://image.hydrater.anyfetch.com/hydrate",
-        "http://ocr.hydrater.anyfetch.com/hydrate",
-        "http://eml.hydrater.anyfetch.com/hydrate"
+        "https://plaintext.anyfetch.com/hydrate",
+        "https://pdf.anyfetch.com/hydrate",
+        "https://office.anyfetch.com/hydrate",
+        "https://image.anyfetch.com/hydrate",
+        "https://ocr.anyfetch.com/hydrate",
+        "https://eml.anyfetch.com/hydrate"
     ]
 }
 ```

@@ -24,7 +24,7 @@ Dependencies indicates your hydrater require another hydrater to complete before
 
 ```javascript
 {
-  dependencies: ['http://tikahydrater.anyfetch.com/hydrate'],
+  dependencies: ['https://plaintext.anyfetch.com/hydrate'],
 }
 ```
 
@@ -33,7 +33,7 @@ In most of the cases, you only want to run your hydrater on specific kind of fil
 
 ```javascript
 {
-  dependencies: ['http://tikahydrater.anyfetch.com/hydrate'],
+  dependencies: ['https://plaintext.anyfetch.com/hydrate'],
   filters: [
     {
       metadata: {

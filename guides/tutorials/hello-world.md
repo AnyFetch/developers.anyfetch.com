@@ -149,7 +149,7 @@ https://api.anyfetch.com/documents/${ID}/raw
     "projection_type": "raw",
     "last_hydration":"2014-03-28T12:51:17.755Z",
     "hydrating":[],
-    "hydrated_by":["http://plaintext.hydrater.anyfetch.com/hydrate"],
+    "hydrated_by":["https://plaintext.anyfetch.com/hydrate"],
     "related":[]
 }
 ```

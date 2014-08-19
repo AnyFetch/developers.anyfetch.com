@@ -105,12 +105,12 @@ Contains your company name, and the list of hydraters used on the account.
                 "id": "531dd2f3c8318cc5d100003c",
                 "name": "test@anyfetch.com",
                 "hydraters": [
-                    "http://plaintext.hydrater.anyfetch.com/hydrate",
-                    "http://pdf.hydrater.anyfetch.com/hydrate",
-                    "http://office.hydrater.anyfetch.com/hydrate",
-                    "http://image.hydrater.anyfetch.com/hydrate",
-                    "http://ocr.hydrater.anyfetch.com/hydrate",
-                    "http://eml.hydrater.anyfetch.com/hydrate"
+                    "https://plaintext.anyfetch.com/hydrate",
+                    "https://pdf.anyfetch.com/hydrate",
+                    "https://office.anyfetch.com/hydrate",
+                    "https://image.anyfetch.com/hydrate",
+                    "https://ocr.anyfetch.com/hydrate",
+                    "https://eml.anyfetch.com/hydrate"
                 ],
                 document_count: 4284,
                 user_count: 1,
@@ -190,12 +190,12 @@ Retrieve all subcompanies from the current company.
                     "id": "533d87ea162215a5375d34d1",
                     "name": "new-user-subcompany",
                     "hydraters": [
-                        "http://plaintext.hydrater.anyfetch.com/hydrate",
-                        "http://pdf.hydrater.anyfetch.com/hydrate",
-                        "http://office.hydrater.anyfetch.com/hydrate",
-                        "http://image.hydrater.anyfetch.com/hydrate",
-                        "http://ocr.hydrater.anyfetch.com/hydrate",
-                        "http://eml.hydrater.anyfetch.com/hydrate"
+                        "https://plaintext.anyfetch.com/hydrate",
+                        "https://pdf.anyfetch.com/hydrate",
+                        "https://office.anyfetch.com/hydrate",
+                        "https://image.anyfetch.com/hydrate",
+                        "https://ocr.anyfetch.com/hydrate",
+                        "https://eml.anyfetch.com/hydrate"
                     ],
                     document_count: 1337,
                     user_count: 1,
@@ -246,12 +246,12 @@ Note the "original" (parent) company will only be able to `DELETE` the subcompan
                 "id": "533d9161162215a5375d34d2",
                 "name": "new-subcompany-name",
                 "hydraters": [
-                    "http://plaintext.hydrater.anyfetch.com/hydrate",
-                    "http://pdf.hydrater.anyfetch.com/hydrate",
-                    "http://office.hydrater.anyfetch.com/hydrate",
-                    "http://image.hydrater.anyfetch.com/hydrate",
-                    "http://ocr.hydrater.anyfetch.com/hydrate",
-                    "http://eml.hydrater.anyfetch.com/hydrate"
+                    "https://plaintext.anyfetch.com/hydrate",
+                    "https://pdf.anyfetch.com/hydrate",
+                    "https://office.anyfetch.com/hydrate",
+                    "https://image.anyfetch.com/hydrate",
+                    "https://ocr.anyfetch.com/hydrate",
+                    "https://eml.anyfetch.com/hydrate"
                 ],
                 document_count: 0,
                 user_count: 1,
@@ -278,12 +278,12 @@ Retrieve a specific subcompany from the current company.
                 "id": "533d87ea162215a5375d34d1",
                 "name": "new-user-subcompany",
                 "hydraters": [
-                    "http://plaintext.hydrater.anyfetch.com/hydrate",
-                    "http://pdf.hydrater.anyfetch.com/hydrate",
-                    "http://office.hydrater.anyfetch.com/hydrate",
-                    "http://image.hydrater.anyfetch.com/hydrate",
-                    "http://ocr.hydrater.anyfetch.com/hydrate",
-                    "http://eml.hydrater.anyfetch.com/hydrate"
+                    "https://plaintext.anyfetch.com/hydrate",
+                    "https://pdf.anyfetch.com/hydrate",
+                    "https://office.anyfetch.com/hydrate",
+                    "https://image.anyfetch.com/hydrate",
+                    "https://ocr.anyfetch.com/hydrate",
+                    "https://eml.anyfetch.com/hydrate"
                 ],
                 document_count: 1337,
                 user_count: 1,

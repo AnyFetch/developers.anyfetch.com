@@ -8,7 +8,7 @@ Anyfetch ships with some default hydraters you may want to check.
 ## File hydraters
 Hydraters working on binary files.
 
-### plaintext.hydrater.anyfetch.com
+### plaintext.anyfetch.com
 > [Source](https://github.com/AnyFetch/plaintext.hydrater.anyfetch.com)
 
 Retrieve basic information about a file (word, pdf, ppt, txt, rtf, png...). Will extract text if available.
@@ -20,7 +20,7 @@ Retrieve basic information about a file (word, pdf, ppt, txt, rtf, png...). Will
 * Output data:
     - `html` 
 
-### ocr.hydrater.anyfetch.com
+### ocr.anyfetch.com
 > [Source](https://github.com/AnyFetch/ocr.hydrater.anyfetch.com)
 
 Retrieve textual information from an image by running an OCR algorithm. Best results are obtained with scanned documents.
@@ -29,7 +29,7 @@ Retrieve textual information from an image by running an OCR algorithm. Best res
 * Output metadata:
     - `text`
 
-### pdf.hydrater.anyfetch.com
+### pdf.anyfetch.com
 > [Source](https://github.com/AnyFetch/pdf.hydrater.anyfetch.com)
 
 Transform a PDF file to HTML.
@@ -38,7 +38,7 @@ Transform a PDF file to HTML.
 * Output data:
     - `html`
 
-### office.hydrater.anyfetch.com
+### office.anyfetch.com
 > [Source](https://github.com/AnyFetch/office.hydrater.anyfetch.com)
 
 Transform an Office (or OpenOffice) file to HTML.
@@ -47,7 +47,7 @@ Transform an Office (or OpenOffice) file to HTML.
 * Output data:
     - `html`
 
-### eml.hydrater.anyfetch.com
+### eml.anyfetch.com
 > [Source](https://github.com/AnyFetch/eml.hydrater.anyfetch.com)
 
 Retrieve data from eml files, hydrate mail data and save back the attachments as files on AnyFetch.
@@ -69,7 +69,7 @@ The creation date is always set to the time at which the email has been sent.
 * Output data:
    - `html`
 
-### image.hydrater.anyfetch.com
+### image.anyfetch.com
 > [Source](https://github.com/AnyFetch/image.hydrater.anyfetch.com)
 
 Generate thumbnails and preview from an image, store them directly in base64.
@@ -80,7 +80,7 @@ Generate thumbnails and preview from an image, store them directly in base64.
    - `display`
    - `thumb`
 
-### iptc.hydrater.anyfetch.com
+### iptc.anyfetch.com
 > [Source](https://github.com/AnyFetch/iptc.hydrater.anyfetch.com)
 
 Retrieve IPTC data from an image (picture creator, keywords, description...)
@@ -91,7 +91,7 @@ Retrieve IPTC data from an image (picture creator, keywords, description...)
    - `description`
    - `keywords`
 
-### markdown.hydrater.anyfetch.com
+### markdown.anyfetch.com
 > [Source](https://github.com/AnyFetch/markdown.hydrater.anyfetch.com)
 
 Transform a Markdown file to HTML.
@@ -103,12 +103,12 @@ Transform a Markdown file to HTML.
 * Output data:
     - `html` 
 
-### filecleaner.hydrater.anyfetch.com
+### filecleaner.anyfetch.com
 > [Source](https://github.com/AnyFetch/filecleaner.hydrater.anyfetch.com)
 
 Remove useless files (.log, .lock, etc.)
 
-### embedmail.hydrater.anyfetch.com
+### embedmail.anyfetch.com
 > [Source](https://github.com/AnyFetch/embedmail.hydrater.anyfetch.com)
 
 Remove previous mail conversation from search index, to keep search accurate on new information only.
