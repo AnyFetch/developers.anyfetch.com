@@ -1605,10 +1605,186 @@ Revokes a provider token and subsequently deletes linked documents.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
-> * `404 Not Found`: `id` does not match a token
+> * `404 Not Found`: `id` does not match a provider
 > * `409 InvalidArgument`: `id` is not a valid id.
 
 + Response 204
+
+
+
+
+
+
+
+
+# Group Hydraters
+## Hydraters [/hydraters]
+### List Hydraters [GET]
+List the available hydraters for the logged in user (i.e. hydraters of the company and hydraters of parent companies).
+
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+
+
++ Response 200 (application/json)
+    + Body
+
+            [
+                {
+                    "_type": "Hydrater",
+                    "id": "5252ce4ce4cfcd16f55cfb01",
+                    "url": "https://pdf.anyfetch.com/hydrate",
+                    "short_name": "pdf",
+                    "description": "AnyFetch Hydrater for pdf files."
+                },
+                {
+                    "_type": "Hydrater",
+                    "id": "5252ce4ce4cfcd16f55cfb06",
+                    "url": "https://markdown.anyfetch.com/hydrate",
+                    "short_name": "markdown",
+                    "description": "AnyFetch Hydrater for markdown files."
+                },
+                {
+                    "_type": "Hydrater",
+                    "id": "5252ce4ce4cfcd16f55cfb07",
+                    "url": "https://eml.anyfetch.com/hydrate",
+                    "short_name": "eml",
+                    "description": "AnyFetch Hydrater for EML documents."
+                },
+                {
+                    "_type": "Hydrater",
+                    "id": "5252ce4ce4cfcd16f55cfb02",
+                    "url": "https://office.anyfetch.com/hydrate",
+                    "short_name": "office",
+                    "description": "AnyFetch Hydrater for classic office files."
+                },
+                {
+                    "_type": "Hydrater",
+                    "id": "5252ce4ce4cfcd16f55cfb03",
+                    "url": "https://image.anyfetch.com/hydrate",
+                    "short_name": "image",
+                    "description": "AnyFetch Hydrater for images."
+                },
+                {
+                    "_type": "Hydrater",
+                    "id": "5252ce4ce4cfcd16f55cfb08",
+                    "url": "https://embedmail.anyfetch.com/hydrate",
+                    "short_name": "embedmail",
+                    "description": "AnyFetch Hydrater for embed mail."
+                },
+                {
+                    "_type": "Hydrater",
+                    "id": "5252ce4ce4cfcd16f55cfb04",
+                    "url": "https://ocr.anyfetch.com/hydrate",
+                    "short_name": "ocr",
+                    "description": "AnyFetch Hydrater for text in images."
+                },
+                {
+                    "_type": "Hydrater",
+                    "id": "5252ce4ce4cfcd16f55cfb09",
+                    "url": "https://ics.anyfetch.com/hydrate",
+                    "short_name": "ics",
+                    "description": "AnyFetch Hydrater for ics files."
+                },
+                {
+                    "_type": "Hydrater",
+                    "id": "5252ce4ce4cfcd16f55cfb00",
+                    "url": "https://plaintext.anyfetch.com/hydrate",
+                    "short_name": "plaintext",
+                    "description": "AnyFetch Hydrater for generic files."
+                },
+                {
+                    "_type": "Hydrater",
+                    "id": "5252ce4ce4cfcd16f55cfb05",
+                    "url": "https://iptc.anyfetch.com/hydrate",
+                    "short_name": "iptc",
+                    "description": "AnyFetch Hydrater for images metadata."
+                },
+                {
+                    "_type": "Hydrater",
+                    "id": "5252ce4ce4cfcd16f55cfb10",
+                    "url": "https://filecleaner.anyfetch.com/hydrate",
+                    "short_name": "filecleaner",
+                    "description": "AnyFetch Hydrater that removes garbage documents."
+                }
+            ]
+
+
+### Create Hydrater [POST]
+Create a new hydrater.
+See [how to create an hydrater](/guides/creating/hydrater.html).
+
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+> * `403 Forbidden`: you are not an administrator on this account.
+
++ Request (application/json)
+    + Body
+
+            {
+                "short_name": "markdown",
+                "description": "AnyFetch Hydrater for markdown files.",
+                "url": "https://markdown.anyfetch.com/hydrate",
+                "excludes": ["https://plaintext.anyfetch.com/hydrate"],
+                "filters": [
+                    {
+                        "metadata" : {
+                            "path": "/\\.(md|mkd|markdown)$/i",
+                        },
+                        "documentType": {
+                            "name": "file"
+                        },
+                        "filePath": "/^./"
+                    },
+                ]
+            }
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "_type": "Hydrater",
+                "id": "5252ce4ce4cfcd16f55a565c",
+                "url": "https://markdown.anyfetch.com/hydrate",
+                "short_name": "markdown",
+                "description": "AnyFetch Hydrater for markdown files."
+            },
+
+
+
+## Hydrater [/hydraters/{id}]
+### Get Hydrater [GET]
+Retrieve information about one hydrater.
+
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+> * `404 Not Found`: `id` does not match an hydrater
+> * `409 InvalidArgument`: `id` is not a valid id.
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "_type": "Hydrater",
+                "id": "5252ce4ce4cfcd16f55a565c",
+                "url": "https://markdown.anyfetch.com/hydrate",
+                "short_name": "markdown",
+                "description": "AnyFetch Hydrater for markdown files."
+            },
+
+
+### Delete Hydrater [DELETE]
+Delete an hydrater
+
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+> * `403 Forbidden`: you are not an administrator on this account.
+> * `404 NotFound`: unable to find the hydrater to delete
+
++ Response 204
+
+
+
 
 # Group Misc
 ## Batch calls [/batch{?pages}]
