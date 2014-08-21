@@ -1620,7 +1620,7 @@ Revokes a provider token and subsequently deletes linked documents.
 # Group Hydraters
 ## Hydraters [/hydraters]
 ### List Hydraters [GET]
-List the available hydraters for the logged in user (i.e. hydraters of the company and hydraters of parent companies).
+List hydraters owned by the user's company and its parent companies. These represent the hydraters which can be applied to your company's documents.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -1711,8 +1711,8 @@ List the available hydraters for the logged in user (i.e. hydraters of the compa
 
 
 ### Create Hydrater [POST]
-Create a new hydrater.
-See [how to create an hydrater](/guides/creating/hydrater.html).
+Create a new hydrater owned by your company. Your company and subcompanies will be able to use it to hydrate their documents.
+See [how to create a hydrater](/guides/creating/hydrater.html).
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -1758,7 +1758,7 @@ Retrieve information about one hydrater.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
-> * `404 Not Found`: `id` does not match an hydrater
+> * `404 Not Found`: `id` does not match any hydrater
 > * `409 InvalidArgument`: `id` is not a valid id.
 
 + Response 200 (application/json)
@@ -1774,7 +1774,9 @@ Retrieve information about one hydrater.
 
 
 ### Delete Hydrater [DELETE]
-Delete an hydrater
+Delete a hydrater.
+You must be admin of your company to delete a hydrater.
+You cannot delete a hydrater which is owned by one of your subcompanies.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
