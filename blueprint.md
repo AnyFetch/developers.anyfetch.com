@@ -1635,7 +1635,7 @@ List hydraters owned by the user's company and its parent companies. These repre
                     "id": "5252ce4ce4cfcd16f55cfb01",
                     "url": "https://pdf.anyfetch.com/hydrate",
                     "short_name": "pdf",
-                    "description": "AnyFetch Hydrater for pdf files."
+                    "description": "AnyFetch Hydrater for PDF files."
                 },
                 {
                     "_type": "Hydrater",
@@ -1663,14 +1663,14 @@ List hydraters owned by the user's company and its parent companies. These repre
                     "id": "5252ce4ce4cfcd16f55cfb03",
                     "url": "https://image.anyfetch.com/hydrate",
                     "short_name": "image",
-                    "description": "AnyFetch Hydrater for images."
+                    "description": "AnyFetch Hydrater for images of all formats."
                 },
                 {
                     "_type": "Hydrater",
                     "id": "5252ce4ce4cfcd16f55cfb08",
                     "url": "https://embedmail.anyfetch.com/hydrate",
                     "short_name": "embedmail",
-                    "description": "AnyFetch Hydrater for embed mail."
+                    "description": "AnyFetch Hydrater to improve email conversations."
                 },
                 {
                     "_type": "Hydrater",
@@ -1698,7 +1698,7 @@ List hydraters owned by the user's company and its parent companies. These repre
                     "id": "5252ce4ce4cfcd16f55cfb05",
                     "url": "https://iptc.anyfetch.com/hydrate",
                     "short_name": "iptc",
-                    "description": "AnyFetch Hydrater for images metadata."
+                    "description": "AnyFetch Hydrater for metadata embedded into image files."
                 },
                 {
                     "_type": "Hydrater",
@@ -1708,7 +1708,6 @@ List hydraters owned by the user's company and its parent companies. These repre
                     "description": "AnyFetch Hydrater that removes garbage documents."
                 }
             ]
-
 
 ### Create Hydrater [POST]
 Create a new hydrater owned by your company. Your company and subcompanies will be able to use it to hydrate their documents.
