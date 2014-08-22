@@ -9,7 +9,8 @@ Documents are enhanced with data on the fly: an image with OCR, a document with 
 
 Creating an hydrater is very simple. Most AnyFetch hydraters are open-source, [check them](https://github.com/search?q=%40AnyFetch+hydrater).
 
-An hydrater needs to be registered on AnyFetch, with an API endpoint and some constraints for the documents it wants to handle.
+A hydrater needs to be registered on AnyFetch using an API endpoint. When registering your hydrater, you will specify the endpoint to reach and the constraints describing the documents it can handle.
+
 Every time a provider sends data matching those constraints, the hydrater's endpoint will be pinged with the JSON document, a `file_path` parameter with the url to the file and a `callback` url to ping with the new document data.
 The hydrater should immediately reply with `202 Accepted` status code, indicating the task has been acknowledged and will be handled in the future.
 
@@ -17,7 +18,7 @@ Don't keep alive this initial request. Reply immediately, close the connection a
 You can then take nearly as long as you want to hydrate the document and send your reply to the `callback` URL.
 
 ## Specifying constraints
-In most cases, you only want to run your hydrater on specific kind of file. You can specify multiple `filters` in your hydrater configuration: if at least one match, your hydrater will be called. Here is an example to handle csv files:
+In most cases, you only want to run your hydrater on a specific kind of file. You can specify multiple `filters` in your hydrater configuration: if at least one matches, your hydrater will be called. Here is an example to handle csv files:
 
 ```javascript
 {
@@ -37,10 +38,10 @@ In most cases, you only want to run your hydrater on specific kind of file. You 
 
 > Contraints are specified using [this syntax](https://www.npmjs.org/package/match-constraints).
 
-This filter require a `metadata.path` ending with a csv extension, with a `documentType` of `file` and a file (`filePath` is empty when the document has no associated file).
+This filter require a `metadata.path` ending with a csv extension, with a `documentType` of `file` and an associated file (`filePath` is empty when the document has no associated file).
 
 ### Dependencies
-Dependencies indicates your hydrater require another hydrater to complete before being able to work. AnyFetch will call the hydrater you depend upon, and after completion call your hydrater. For instance, to indicate you want to run after the plaintext hydrater (which takes as input any kind of file, and extracts a textual representation from it), you can say:
+Dependencies indicates that your hydrater requires another hydrater to complete before being able to work. AnyFetch will call the hydrater you depend upon, and after completion calls your hydrater. For instance, to indicate you want to run after the plaintext hydrater (which takes as input any kind of file, and extracts a textual representation from it), you can specify:
 
 ```javascript
 {
@@ -93,6 +94,8 @@ You may want to exclude some other hydraters from running when your hydrater wou
   ]
 ```
 
+Note the exclusion will only work for this hydration round. On the next round, the document will be hydrated it its content is still matching the filters from the previously excluded hydrater. 
+
 ## Hydrating and providing
 In some (rare) cases, you may need to access other documents (for instance, a zip hydrater creating new documents for each file in the archive). To do this, you are entrusted with the `access_token` used by the provider, so you can create, update or delete other documents on the account.
 
@@ -100,6 +103,7 @@ In some (rare) cases, you may need to access other documents (for instance, a zi
 To create an hydrater, you can `POST /hydraters` with your hydrater data; for instance:
 
 ```javascript
+{
   shortName: 'markdown',
   description: 'AnyFetch Hydrater for markdown files.',
   url: 'https://markdown.anyfetch.com/hydrate',
@@ -115,6 +119,7 @@ To create an hydrater, you can `POST /hydraters` with your hydrater data; for in
       filePath: /^./
     },
   ]
+}
 ```
 
 ## Lib
