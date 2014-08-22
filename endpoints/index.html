@@ -1597,6 +1597,7 @@ See <a href="/guides/creating/hydrater.html">how to create a hydrater</a>.</p>
 </code></pre></li></ul></section><section id="hydraters-hydrater-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Delete Hydrater</span></div><div style="float:left"><a href="#hydraters-hydrater-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/hydraters/{id}</code></div></div><div class="panel-body"><p>Delete a hydrater.
 You must be admin of your company to delete a hydrater.
 You cannot delete a hydrater which is owned by one of your subcompanies.</p>
+<p>Deleting a hydrater will result in removing this hydrater in your company and subcompanies selected hydraters.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
