@@ -147,7 +147,7 @@ Subcompanies and users are not affected.
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 
-+ Response 202
++ Response 204
 
 
 
