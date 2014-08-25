@@ -1517,7 +1517,7 @@ A list of default document-types can be found on [this page](/resources/document
 # Group Providers
 ## Providers [/providers]
 ### List providers [GET]
-Retrieve all providers available for the current user, with document count and the date the last document created by this provider was updated.
+Retrieve all providers available for the current user, with document count, a providing flag, and the date the last document created by this provider was updated.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -1533,7 +1533,8 @@ Retrieve all providers available for the current user, with document count and t
                     "is_basic_token": true,
                     "account_name": "",
                     "document_count": 2,
-                    "updated": "2014-07-23T12:01:16.036Z"
+                    "updated": "2014-07-23T12:01:16.036Z",
+                    "providing": true
                 },
                 {
                     "_type": "AccessToken",
@@ -1546,7 +1547,8 @@ Retrieve all providers available for the current user, with document count and t
                     "is_basic_token": false,
                     "account_name": "matthieu.bacconnier@papiel.fr",
                     "document_count": 239,
-                    "updated": "2014-07-22T14:14:16.640Z"
+                    "updated": "2014-07-22T14:14:16.640Z",
+                    "providing": false
                 },
                 {
                     "_type": "AccessToken",
@@ -1559,7 +1561,8 @@ Retrieve all providers available for the current user, with document count and t
                     "is_basic_token": false,
                     "account_name": "matthieu.bacconnier@papiel.fr",
                     "document_count": 192,
-                    "updated": "2014-07-23T11:24:37.644Z"
+                    "updated": "2014-07-23T11:24:37.644Z",
+                    "providing": false
                 },
                 {
                     "_type": "AccessToken",
@@ -1572,7 +1575,8 @@ Retrieve all providers available for the current user, with document count and t
                     "is_basic_token": false,
                     "account_name": "matthieu.bacconnier@papiel.fr",
                     "document_count": 6747,
-                    "updated": "2014-07-23T11:32:06.347Z"
+                    "updated": "2014-07-23T11:32:06.347Z",
+                    "providing": false
                 }
             ]
 
