@@ -48,14 +48,14 @@ Retrieve data about the current account. This endpoint return:
 
             {
                 "user_email": "test@anyfetch.com",
-                "documents_url": "/documents/",
-                "document_types_url": "/document_types/",
-                "providers_url": "/providers/",
-                "users_url": "/users/",
-                "current_user_url": "/users/52fb7b90c8318c4dc800006c",
-                "update_url": "/company/update",
-                "reset_url": "/company/reset",
-                "token_url": "/token",
+                "documents_url": "https://api.anyfetch.com/documents/",
+                "document_types_url": "https://api.anyfetch.com/document_types/",
+                "providers_url": "https://api.anyfetch.com/providers/",
+                "users_url": "https://api.anyfetch.com/users/",
+                "current_user_url": "https://api.anyfetch.com/users/52fb7b90c8318c4dc800006c",
+                "update_url": "https://api.anyfetch.com/company/update",
+                "reset_url": "https://api.anyfetch.com/company/reset",
+                "token_url": "https://api.anyfetch.com/token",
                 "server_time": "2014-03-21T16:15:04.813Z"
             }
 
@@ -468,7 +468,7 @@ Return informations aggregated over the result set. The `score` key indicated do
                         "actions": {
                             "show": "https://docs.google.com/file/d/0Ao1Q9EZ6RihjdHBSSnlzWG5mRFMxTm5YRVMwZzd0b0E"
                         },
-                        "document_url": "/documents/53cf88a5cf25841c6144ee46",
+                        "document_url": "https://api.anyfetch.com/documents/53cf88a5cf25841c6144ee46",
                         "projection_type": "snippet",
                         "data": {
                             "title": "Traductions.pdf",
@@ -506,7 +506,7 @@ Return informations aggregated over the result set. The `score` key indicated do
                         "actions": {
                             "show": "https://mail.google.com/mail/#inbox/13ec7d0b8ca2b818"
                         },
-                        "document_url": "/documents/53cf9ceacf25841c6144fbc7",
+                        "document_url": "https://api.anyfetch.com/documents/53cf9ceacf25841c6144fbc7",
                         "projection_type": "snippet",
                         "data": {
                             "title": "CREATION PHINNOV Dossierdemande versionjuillet2012.doc",
@@ -569,7 +569,7 @@ If no identifier is specified, it will be set to the value of the document's id.
                 "provider":"52f212ca74a24df25331490c",
                 "company":"52f0bb24c8318c2d65000035",
                 "document_type":"5252ce4ce4cfcd16f55cfa3b",
-                "document_url":"/documents/52f2367374a24df253314b3c",
+                "document_url":"https://api.anyfetch.com/documents/52f2367374a24df253314b3c",
                 "actions": {
                     "download": "http://example.org/download/file/url"
                 },
@@ -638,7 +638,7 @@ Result contains, amongst other :
                 "actions": {
                     "show": "https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/79516afe8f2cdfba"
                 },
-                "document_url": "/documents/53ce71b24882ec9d58f08235",
+                "document_url": "https://api.anyfetch.com/documents/53ce71b24882ec9d58f08235",
                 "projection_type": "full",
                 "data": {
                     "name": "Florian Rossiaud",
@@ -885,7 +885,7 @@ Result contains, amongst other :
                         "actions": {
                             "show": "https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/3d721b5e8b215a41"
                         },
-                        "document_url": "/documents/53ce71ab4882ec9d58f08215",
+                        "document_url": "https://api.anyfetch.com/documents/53ce71ab4882ec9d58f08215",
                         "projection_type": "snippet",
                         "data": {
                             "name": "Alexandre David",
@@ -947,7 +947,7 @@ Result contains, amongst other :
                         "company": "52f0e4f9c8318c4dc8000039",
                         "document_type": "5252ce4ce4cfcd16f55cfa3c",
                         "actions": {},
-                        "document_url": "/documents/531dcd94731d5a284f707ac1",
+                        "document_url": "https://api.anyfetch.com/documents/531dcd94731d5a284f707ac1",
                         "data": {
                             "title": "4400000451947",
                             "path": "/4400000451947.pdf",
@@ -958,9 +958,7 @@ Result contains, amongst other :
                         "score": 1
                     }
                 ],
-                "max_score": 1,
-                "next_page_url": "coming",
-                "previous_page_url": "coming"
+                "max_score": 1
             }
 
 
@@ -1027,7 +1025,7 @@ View all data for the document.
                 "actions": {
                     "show": "https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/79516afe8f2cdfba"
                 },
-                "document_url": "/documents/53ce71b24882ec9d58f08235",
+                "document_url": "https://api.anyfetch.com/documents/53ce71b24882ec9d58f08235",
                 "projection_type": "raw",
                 "data": {
                     "image": "data:image/*;base64,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"
@@ -1168,7 +1166,7 @@ Retrieve a list of all users in the current company. Users migrated in a subcomp
                     "email": "anyfetch@gmail.com",
                     "name": "",
                     "is_admin": false,
-                    "user_url": "/users/52fb7b90c8318c4dc800006c"
+                    "user_url": "https://api.anyfetch.com/users/52fb7b90c8318c4dc800006c"
                 }
             ]
 
@@ -1203,7 +1201,7 @@ Create a new user on this company. If `is_admin` is not specified, a standard us
                 "email": "newuser@company.com",
                 "name": "New User",
                 "is_admin": false,
-                "user_url": "/users/533d6b2a6355285e5563d005"
+                "user_url": "https://api.anyfetch.com/users/533d6b2a6355285e5563d005"
             }
 
 ## User [/users/{id}]
@@ -1234,7 +1232,7 @@ Retrieve information about specified user.
                 "email": "anyfetch@gmail.com",
                 "name": "",
                 "is_admin": false,
-                "user_url": "/users/52fb7b90c8318c4dc800006c"
+                "user_url": "https://api.anyfetch.com/users/52fb7b90c8318c4dc800006c"
             }
 
 ### Update a User [PATCH]
@@ -1273,7 +1271,7 @@ The `is_admin` flag can only be toggled by an admin of the current company.
                 "email": "new-email@gmail.com",
                 "name": "New Name",
                 "is_admin": true,
-                "user_url": "/users/533d6b2a6355285e5563d005"
+                "user_url": "https://api.anyfetch.com/users/533d6b2a6355285e5563d005"
             }
 
 
@@ -1813,14 +1811,14 @@ Status code will be 200 if all queries passed. If an error occured, the `errored
             {
                 "/": {
                     "user_email": "matthieu@anyfetch.com",
-                    "documents_url": "/documents/",
-                    "document_types_url": "/document_types/",
-                    "providers_url": "/providers/",
-                    "users_url": "/users/",
-                    "current_user_url": "/users/53c0190ae83613e049a4845a",
-                    "update_url": "/company/update",
-                    "reset_url": "/company/reset",
-                    "token_url": "/token",
+                    "documents_url": "https://api.anyfetch.com/documents/",
+                    "document_types_url": "https://api.anyfetch.com/document_types/",
+                    "providers_url": "https://api.anyfetch.com/providers/",
+                    "users_url": "https://api.anyfetch.com/users/",
+                    "current_user_url": "https://api.anyfetch.com/users/53c0190ae83613e049a4845a",
+                    "update_url": "https://api.anyfetch.com/company/update",
+                    "reset_url": "https://api.anyfetch.com/company/reset",
+                    "token_url": "https://api.anyfetch.com/token",
                     "server_time": "2014-07-23T13:38:38.397Z"
                 },
                 "/document_types/5252ce4ce4cfcd16f55cfa3c": {

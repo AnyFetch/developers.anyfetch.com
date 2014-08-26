@@ -116,16 +116,16 @@ Should have a <code>status</code> of “OK”.</p>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 </ul>
 </blockquote>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#d582738c53f5b6658fd08513bd462e01" class="pull-right">Toggle</a></li><li id="d582738c53f5b6658fd08513bd462e01" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#86bfe97229a79675929a3a6b28e17833" class="pull-right">Toggle</a></li><li id="86bfe97229a79675929a3a6b28e17833" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">user_email</span>": <span class="hljs-value"><span class="hljs-string">"test@anyfetch.com"</span></span>,
-    "<span class="hljs-attribute">documents_url</span>": <span class="hljs-value"><span class="hljs-string">"/documents/"</span></span>,
-    "<span class="hljs-attribute">document_types_url</span>": <span class="hljs-value"><span class="hljs-string">"/document_types/"</span></span>,
-    "<span class="hljs-attribute">providers_url</span>": <span class="hljs-value"><span class="hljs-string">"/providers/"</span></span>,
-    "<span class="hljs-attribute">users_url</span>": <span class="hljs-value"><span class="hljs-string">"/users/"</span></span>,
-    "<span class="hljs-attribute">current_user_url</span>": <span class="hljs-value"><span class="hljs-string">"/users/52fb7b90c8318c4dc800006c"</span></span>,
-    "<span class="hljs-attribute">update_url</span>": <span class="hljs-value"><span class="hljs-string">"/company/update"</span></span>,
-    "<span class="hljs-attribute">reset_url</span>": <span class="hljs-value"><span class="hljs-string">"/company/reset"</span></span>,
-    "<span class="hljs-attribute">token_url</span>": <span class="hljs-value"><span class="hljs-string">"/token"</span></span>,
+    "<span class="hljs-attribute">documents_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/documents/"</span></span>,
+    "<span class="hljs-attribute">document_types_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/document_types/"</span></span>,
+    "<span class="hljs-attribute">providers_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/providers/"</span></span>,
+    "<span class="hljs-attribute">users_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/users/"</span></span>,
+    "<span class="hljs-attribute">current_user_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/users/52fb7b90c8318c4dc800006c"</span></span>,
+    "<span class="hljs-attribute">update_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/company/update"</span></span>,
+    "<span class="hljs-attribute">reset_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/company/reset"</span></span>,
+    "<span class="hljs-attribute">token_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/token"</span></span>,
     "<span class="hljs-attribute">server_time</span>": <span class="hljs-value"><span class="hljs-string">"2014-03-21T16:15:04.813Z"</span>
 </span>}
 </code></pre></li></ul></section><h4 id="account-token">Token&nbsp;<a href="#account-token"><i class="fa fa-link"></i></a></h4><section id="account-token-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve frontend token</span></div><div style="float:left"><a href="#account-token-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/token</code></div></div><div class="panel-body"><blockquote>
@@ -359,7 +359,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 </dd><dt>sort</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>creationDate</span></span><p>Sort criteria. Can be <code>creationDate</code> (sort by document creation date), <code>lastModification</code> (sort by last modification date) or <code>_score</code> (default, sort by relevance to the query). Prepend with a <code>-</code> to reverse order (e.g. <code>-creationDate</code>).</p>
 </dd><dt>render_templates</dt><dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>false</span></span><p>Whether to pre-render the HTML for you in the results. Documents will have the keys <code>rendered_snippet</code> and <code>rendered_title</code>. The <code>data</code> key will be removed for faster transfer.</p>
 </dd><dt>strict</dt><dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>true</span></span><p>When using strict mode, only results matching exactly the query will be returned (a search for “John Doe” will never return documents about “Doe” only)</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#72197b5b245d5b40f7ccf5dcaffb9841" class="pull-right">Toggle</a></li><li id="72197b5b245d5b40f7ccf5dcaffb9841" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#e490456e566b0a9f8e74ed63ae7f031d" class="pull-right">Toggle</a></li><li id="e490456e566b0a9f8e74ed63ae7f031d" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">facets</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">document_types</span>": <span class="hljs-value">[
             {
@@ -457,7 +457,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
             "<span class="hljs-attribute">actions</span>": <span class="hljs-value">{
                 "<span class="hljs-attribute">show</span>": <span class="hljs-value"><span class="hljs-string">"https://docs.google.com/file/d/0Ao1Q9EZ6RihjdHBSSnlzWG5mRFMxTm5YRVMwZzd0b0E"</span>
             </span>}</span>,
-            "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"/documents/53cf88a5cf25841c6144ee46"</span></span>,
+            "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/documents/53cf88a5cf25841c6144ee46"</span></span>,
             "<span class="hljs-attribute">projection_type</span>": <span class="hljs-value"><span class="hljs-string">"snippet"</span></span>,
             "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
                 "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Traductions.pdf"</span></span>,
@@ -495,7 +495,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
             "<span class="hljs-attribute">actions</span>": <span class="hljs-value">{
                 "<span class="hljs-attribute">show</span>": <span class="hljs-value"><span class="hljs-string">"https://mail.google.com/mail/#inbox/13ec7d0b8ca2b818"</span>
             </span>}</span>,
-            "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"/documents/53cf9ceacf25841c6144fbc7"</span></span>,
+            "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/documents/53cf9ceacf25841c6144fbc7"</span></span>,
             "<span class="hljs-attribute">projection_type</span>": <span class="hljs-value"><span class="hljs-string">"snippet"</span></span>,
             "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
                 "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"CREATION PHINNOV Dossierdemande versionjuillet2012.doc"</span></span>,
@@ -543,14 +543,14 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
         "<span class="hljs-attribute">related</span>": <span class="hljs-value">[<span class="hljs-string">"52dff5c53923844f15885428"</span>]</span>,
         "<span class="hljs-attribute">user_access</span>": <span class="hljs-value">[<span class="hljs-string">"52d96492a7f0a3ac4226f2f7"</span>]
     </span>}
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#303b7b98551926d259c6d877c6192011" class="pull-right">Toggle</a></li><li id="303b7b98551926d259c6d877c6192011" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#effff1a32b785b6074f92adaa99b75dd" class="pull-right">Toggle</a></li><li id="effff1a32b785b6074f92adaa99b75dd" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">_type</span>":<span class="hljs-value"><span class="hljs-string">"Document"</span></span>,
     "<span class="hljs-attribute">id</span>":<span class="hljs-value"><span class="hljs-string">"52f2367374a24df253314b3c"</span></span>,
     "<span class="hljs-attribute">creation_date</span>":<span class="hljs-value"><span class="hljs-string">"2014-02-05T10:39:36.623Z"</span></span>,
     "<span class="hljs-attribute">provider</span>":<span class="hljs-value"><span class="hljs-string">"52f212ca74a24df25331490c"</span></span>,
     "<span class="hljs-attribute">company</span>":<span class="hljs-value"><span class="hljs-string">"52f0bb24c8318c2d65000035"</span></span>,
     "<span class="hljs-attribute">document_type</span>":<span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3b"</span></span>,
-    "<span class="hljs-attribute">document_url</span>":<span class="hljs-value"><span class="hljs-string">"/documents/52f2367374a24df253314b3c"</span></span>,
+    "<span class="hljs-attribute">document_url</span>":<span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/documents/52f2367374a24df253314b3c"</span></span>,
     "<span class="hljs-attribute">actions</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">download</span>": <span class="hljs-value"><span class="hljs-string">"http://example.org/download/file/url"</span>
     </span>}</span>,
@@ -585,7 +585,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the Document to perform action with.</p>
 </dd><dt>search</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>john smith</span></span><p>String to highlight in the rendered document</p>
 </dd><dt>render_templates</dt><dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>false</span></span><p>Whether to pre-render the HTML for you in the result. Document will have the keys <code>rendered_full</code> and <code>rendered_title</code>. The <code>data</code> key will be removed for faster transfer.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#386732039760d1cd50cb404b54d503e4" class="pull-right">Toggle</a></li><li id="386732039760d1cd50cb404b54d503e4" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#345b3794fbdfdfb988a7d444f78f12ba" class="pull-right">Toggle</a></li><li id="345b3794fbdfdfb988a7d444f78f12ba" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Document"</span></span>,
     "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53ce71b24882ec9d58f08235"</span></span>,
     "<span class="hljs-attribute">identifier</span>": <span class="hljs-value"><span class="hljs-string">"https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/79516afe8f2cdfba"</span></span>,
@@ -614,7 +614,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
     "<span class="hljs-attribute">actions</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">show</span>": <span class="hljs-value"><span class="hljs-string">"https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/79516afe8f2cdfba"</span>
     </span>}</span>,
-    "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"/documents/53ce71b24882ec9d58f08235"</span></span>,
+    "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/documents/53ce71b24882ec9d58f08235"</span></span>,
     "<span class="hljs-attribute">projection_type</span>": <span class="hljs-value"><span class="hljs-string">"full"</span></span>,
     "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Florian Rossiaud"</span></span>,
@@ -691,7 +691,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the Document to perform action with.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#aa737ebdceac9c174dd4c5610c9ab212" class="pull-right">Toggle</a></li><li id="aa737ebdceac9c174dd4c5610c9ab212" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#b3b5b55d07ace98290382bd0315bc07b" class="pull-right">Toggle</a></li><li id="b3b5b55d07ace98290382bd0315bc07b" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">title</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Florian Rossiaud"</span>
     </span>}</span>,
@@ -845,7 +845,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
             "<span class="hljs-attribute">actions</span>": <span class="hljs-value">{
                 "<span class="hljs-attribute">show</span>": <span class="hljs-value"><span class="hljs-string">"https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/3d721b5e8b215a41"</span>
             </span>}</span>,
-            "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"/documents/53ce71ab4882ec9d58f08215"</span></span>,
+            "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/documents/53ce71ab4882ec9d58f08215"</span></span>,
             "<span class="hljs-attribute">projection_type</span>": <span class="hljs-value"><span class="hljs-string">"snippet"</span></span>,
             "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
                 "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Alexandre David"</span></span>,
@@ -876,7 +876,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the Document to perform action with.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#48c1e5b6e5ab39f32c89ccbac1dbd79f" class="pull-right">Toggle</a></li><li id="48c1e5b6e5ab39f32c89ccbac1dbd79f" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#fd9ce299d85f3b4eba9a4c82265284da" class="pull-right">Toggle</a></li><li id="fd9ce299d85f3b4eba9a4c82265284da" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">title</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">subject</span>": <span class="hljs-value"><span class="hljs-string">"very important stuff"</span>
     </span>}</span>,
@@ -901,7 +901,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
             "<span class="hljs-attribute">company</span>": <span class="hljs-value"><span class="hljs-string">"52f0e4f9c8318c4dc8000039"</span></span>,
             "<span class="hljs-attribute">document_type</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3c"</span></span>,
             "<span class="hljs-attribute">actions</span>": <span class="hljs-value">{}</span>,
-            "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"/documents/531dcd94731d5a284f707ac1"</span></span>,
+            "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/documents/531dcd94731d5a284f707ac1"</span></span>,
             "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
                 "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"4400000451947"</span></span>,
                 "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"/4400000451947.pdf"</span></span>,
@@ -912,9 +912,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
             "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">1</span>
         </span>}
     ]</span>,
-    "<span class="hljs-attribute">max_score</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-    "<span class="hljs-attribute">next_page_url</span>": <span class="hljs-value"><span class="hljs-string">"coming"</span></span>,
-    "<span class="hljs-attribute">previous_page_url</span>": <span class="hljs-value"><span class="hljs-string">"coming"</span>
+    "<span class="hljs-attribute">max_score</span>": <span class="hljs-value"><span class="hljs-number">1</span>
 </span>}
 </code></pre></li></ul></section><h4 id="documents-raw-access">Raw access&nbsp;<a href="#documents-raw-access"><i class="fa fa-link"></i></a></h4><p>Retrieve all raw data for <code>id</code> document.
 Also include information about hydraters (<code>hydratedBy</code>, <code>hydrating</code> and <code>lastHydration</code>).</p>
@@ -929,7 +927,7 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the Document to perform action with.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#e28729c0b2391668050dca9fcf048bb1" class="pull-right">Toggle</a></li><li id="e28729c0b2391668050dca9fcf048bb1" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#07587d1a1cd3497269872ec583279a87" class="pull-right">Toggle</a></li><li id="07587d1a1cd3497269872ec583279a87" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Document"</span></span>,
     "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53ce71b24882ec9d58f08235"</span></span>,
     "<span class="hljs-attribute">identifier</span>": <span class="hljs-value"><span class="hljs-string">"https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/79516afe8f2cdfba"</span></span>,
@@ -974,7 +972,7 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
     "<span class="hljs-attribute">actions</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">show</span>": <span class="hljs-value"><span class="hljs-string">"https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/79516afe8f2cdfba"</span>
     </span>}</span>,
-    "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"/documents/53ce71b24882ec9d58f08235"</span></span>,
+    "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/documents/53ce71b24882ec9d58f08235"</span></span>,
     "<span class="hljs-attribute">projection_type</span>": <span class="hljs-value"><span class="hljs-string">"raw"</span></span>,
     "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">image</span>": <span class="hljs-value"><span class="hljs-string">"data:image/*;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAUDBAsGCwYICwsGCAYIBgcGCAgGBwYJBgcGBgcGBwUJCAYHFhwXBwgaCQgHGCEYGh0dHx8fBxciJCIeJBweHx4BBQUFBwYHBQgIBRIIBQgSEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEv/AABEIAGAAYAMBIgACEQEDEQH/xAAcAAACAwEBAQEAAAAAAAAAAAAFBgMECAcBAgn/xAA9EAABAwEEBwQGCQQDAAAAAAACAQMSAAQRISIFBhMxMkFCUVJhcQcjcoGR8DNigpKhorHB0QiywtIUFUP/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AyHbzll+0v+KVC0zLlUjDe2MRTqKmktBG0MUQidlFREb85CRRS7iyJQKSBj9ap2LIRLu/1o1b9HC3IesAEnIjdcRcQrf9qhzSK4sUyjL4UFmyaKNxRFI5vklTwpr1b1bPiVYj+vlRTU7QQiAuLxci6vrL53U52ay4YJl4ctBW0cwjQiKUREcOmqtq0cRZUPY9pSzR7PChNu0W61mad2hcXrTP9qAhpWwi4mKDl3CQ5fOuc646tq4hOAjc+JRyhcI9g7qdbNp5xr1NpbiPS60UgzR38xxUa90zZxJJIgkJe8VoOCvNqCxWiujnJAPaOX591XtdrMIuDFBHt/mheiEwc86CxqaYja7DLhW0CCy4fWorY/itdrYsKxbFUZENkTmY43ukJbVFJMd/LnXCNDsE443FRExIXBkscwEhCkunGu9amaV24xcAhtESbcbOKXhGN/YQUCNrLo5WGoooltTK8upSFdmSr4Tl8aE6pWNCVslSREQuL4jxXfhT3rrZkaFsYjGWAD9dSL7WdaDapWNGouXcR4d3LIW8vZi4vuoHCxMo3G7h5DRFl2NUbIkl30XbaoBemlccSTezcPkJ5RXwQk50FsWsSXky606y+O/atXBHhkL4YEl/bTPbbMt2758KXre0Tkh4ijHNKUS5STiTwoPQbG27VtElw3eFepYCZa2ZdJYDvuGruqFlSxSkhERDxHJSQR5STiwqnrXplG3CbESiI7TLj3sKDnXpDskXG8MpB+bqWl2yBs0/NTDrFpZLbuHhIhzfZoQBLQTav6sla0khRPiTAo/ep70fohbMHrCJwxyhKWSXYO4am1P0edmk2QkJgRNqJDEgISISRRXnKVGdPkgj7O//ACWO/dQANNuE62xjIgiOaS3kIl1eVTWZF9QIpmnJBzYkSRx7qXSqGzOg6uzv9QBDPkUuIV7b8d3jR7RjYjmSIlGI8+7uH7tAV0HZ1uxzZukfajmpis1mQvZ+zQqxM7JZFm6o5ooN0b+2/wDii9kcykRR4ZJHkPZHdfQR2skFMaWrRFxzDh51PbNK7ciEEIhHLIfn8aqA8AiQquzKUkl3hL9KAsBNDlQs/MTAhJPjvpN11eRo9onWHd6hLMv1cFpma0khORcabcakAo+wRSz8O0BUw86BekpWyEYdJCKcKkvevu8V30HNjakrhIg5jJz73KvNko8qLM2apnLAtxFdQaa9JGqYkhW9oRE8o2kR6x4W3cOaZUXw8q5LrWwotySUpRSOGYi/W9K1PpDRZCjlyNkBAQkESgYFlcGPThzT4VnP0maKJpX7NcQyEnWSJMzgf+SpyMrpJ5pQcqK2+sbbSIgOVwhwNSyy37lw300avMiUokMh3cUkLNLMnAsuS0FsrcZN3SKOUjEU+qU8L0uXlVqxPm2oiqbMSERykKCsRzZTXd+tA82UiFWxX6IjFvMO6JEIr96PxolpFpNm5FcxDs5ZuG7lQzRFpwETQvqkQil0pSX7vZRz/kC4kZDKPDu+GHgVAr2/V1HEEmiJt0RG4gW4VHsWgVucdYT1ibQBkKyG8k71/MvdT8+Ud8eHp/KtKWsdqIjHqAumN90ecumgW7RasW4lEHXQlEyQkEizXFvuqi+yjjr4ycKAhASK/jzEq+6NfNrbFsyeT6IC4R4TdjluLzUas6vty2hHGbpSTl3pe6/9KAjovRko4U1WDVBy0tlAcvslJI0/eif0aWjSgtviGzsfJ9/KDkcpbId7vuww31ovVXUhmxNxKJLHGIRFV6lxoFgLU10ObMu47JB8oOftQfWrVtnTDRWZ1BbOe1sz4Yky+Wa9suoVLePO/wB9F3pcgEvu0LtNndzbNoR9k4isu0bri96UGWvSDq67oW1Osutx4HGz3tPASlJxrnHD3c6GWl3hJIkOUl7yd0cPKtOa3aB/7+zuWS1tEy+Ak5ZLcMT2Lvdchjs1y39qeKItZT1q0a/ol11lwczR7JweIY8Ux5EF3PmlATb0sbcSEiGDuzhmS4elceKj2i9YdoRXlEs2UsSy88MCxXktcyPSG3RwtoQllGJcMRjHz31PYrUoiQqolGVxdWbsJOd0aDqzGmRfQpREpFwkK5ZFHd4Upa02rurGX4SpPXTRsLgZEPEokoyiRZlknDjLDxobprWVXEIU4i3+zLdQFrS/t1aZD6Brq3TPqL+740xauIyyQkZSIemVwB7R7hS+uZBpUrt/7DVizaRIudBs3VH+oJqxNWSyGzths7QNI7ZyFsINJFoUaPAlig43pu3UyJ/UFZbpIza5RLKZsJm9pL6xHZtJKPP56aJs6dUliq5hy+dB+gChULoLyWrqJXyQUAd951vkJDzHcXnSjrvqfYdaG3GXB2FvgUXQERfTz5Whvw/Sn19vwoHpfRovplWJjmQgwNCHn8aDC3pY1Xd1ZtJWR5CE/pGzEfVPNXxFxo03p4UoJpIh3L0x+e9WwfTrq4usdgeszoiOl7EJ2uwPxFBfinr2V8SBPiCLyrFxiorFUJCHKqKlxIqcSKJblvoJ37YRc6rouNfJV5QTIX91WWHY1TRa9U6AgNqUa8G1Lfv6pUPUqv2Kwk5mJYj+df4oP//Z"</span>
@@ -1069,14 +1067,14 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 </ul>
 </blockquote>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#69c2641d265a7bca3c0c5320da645575" class="pull-right">Toggle</a></li><li id="69c2641d265a7bca3c0c5320da645575" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#82a06532f680b59d38b4968e87e129a6" class="pull-right">Toggle</a></li><li id="82a06532f680b59d38b4968e87e129a6" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
     {
         "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"User"</span></span>,
         "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"52fb7b90c8318c4dc800006c"</span></span>,
         "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"anyfetch@gmail.com"</span></span>,
         "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
         "<span class="hljs-attribute">is_admin</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
-        "<span class="hljs-attribute">user_url</span>": <span class="hljs-value"><span class="hljs-string">"/users/52fb7b90c8318c4dc800006c"</span>
+        "<span class="hljs-attribute">user_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/users/52fb7b90c8318c4dc800006c"</span>
     </span>}
 ]
 </code></pre></li></ul></section><section id="users-users-collection-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create a User</span></div><div style="float:left"><a href="#users-users-collection-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/users</code></div></div><div class="panel-body"><blockquote>
@@ -1098,13 +1096,13 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
         "<span class="hljs-attribute">password</span>": <span class="hljs-value"><span class="hljs-string">"password"</span></span>,
         "<span class="hljs-attribute">is_admin</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
     </span>}
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#6a184fd3f4f5cd60062bd04c2e0527c9" class="pull-right">Toggle</a></li><li id="6a184fd3f4f5cd60062bd04c2e0527c9" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#9ad4c2c498145c073caecd554ff2fe8c" class="pull-right">Toggle</a></li><li id="9ad4c2c498145c073caecd554ff2fe8c" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"User"</span></span>,
     "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"533d6b2a6355285e5563d005"</span></span>,
     "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"newuser@company.com"</span></span>,
     "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"New User"</span></span>,
     "<span class="hljs-attribute">is_admin</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
-    "<span class="hljs-attribute">user_url</span>": <span class="hljs-value"><span class="hljs-string">"/users/533d6b2a6355285e5563d005"</span>
+    "<span class="hljs-attribute">user_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/users/533d6b2a6355285e5563d005"</span>
 </span>}
 </code></pre></li></ul></section><h4 id="users-user">User&nbsp;<a href="#users-user"><i class="fa fa-link"></i></a></h4><p>A single User object with all its details. This resource has the following attributes :</p>
 <ul>
@@ -1123,13 +1121,13 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the User to perform action with.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#c9f88c0c16cb9399e1df65d5eda68c1e" class="pull-right">Toggle</a></li><li id="c9f88c0c16cb9399e1df65d5eda68c1e" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#b40d2230ced1ef737fcf99457da728c7" class="pull-right">Toggle</a></li><li id="b40d2230ced1ef737fcf99457da728c7" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"User"</span></span>,
     "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"52fb7b90c8318c4dc800006c"</span></span>,
     "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"anyfetch@gmail.com"</span></span>,
     "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
     "<span class="hljs-attribute">is_admin</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
-    "<span class="hljs-attribute">user_url</span>": <span class="hljs-value"><span class="hljs-string">"/users/52fb7b90c8318c4dc800006c"</span>
+    "<span class="hljs-attribute">user_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/users/52fb7b90c8318c4dc800006c"</span>
 </span>}
 </code></pre></li></ul></section><section id="users-user-patch" class="panel panel-warning"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Update a User</span></div><div style="float:left"><a href="#users-user-patch" class="btn btn-xs btn-warning">PATCH</a></div><div style="overflow:hidden"><code>/users/{id}</code></div></div><div class="panel-body"><blockquote>
 <p>This endpoint can only be used with <code>Basic</code> authentication.</p>
@@ -1156,13 +1154,13 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
         "<span class="hljs-attribute">password</span>": <span class="hljs-value"><span class="hljs-string">"passwd"</span></span>,
         "<span class="hljs-attribute">is_admin</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     }
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#849d37d2057900e47cb075d93fb4924b" class="pull-right">Toggle</a></li><li id="849d37d2057900e47cb075d93fb4924b" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>    {
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#2c3fda572842c85e016f6e2dc73bf9ac" class="pull-right">Toggle</a></li><li id="2c3fda572842c85e016f6e2dc73bf9ac" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>    {
         "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"User"</span></span>,
         "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"533d6b2a6355285e5563d005"</span></span>,
         "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"new-email@gmail.com"</span></span>,
         "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"New Name"</span></span>,
         "<span class="hljs-attribute">is_admin</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-        "<span class="hljs-attribute">user_url</span>": <span class="hljs-value"><span class="hljs-string">"/users/533d6b2a6355285e5563d005"</span>
+        "<span class="hljs-attribute">user_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/users/533d6b2a6355285e5563d005"</span>
     </span>}
 </code></pre></li></ul></section><section id="users-user-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Remove a User</span></div><div style="float:left"><a href="#users-user-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/users/{id}</code></div></div><div class="panel-body"><blockquote>
 <p>This endpoint is only available to admin users.</p>
@@ -1621,17 +1619,17 @@ You cannot delete a hydrater which is owned by one of your subcompanies.</p>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>pages</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>/document_types</span></span><p>url to retrieve (url-encoded). <small>Multiple pages parameters can be used to queue queries.</small></p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#c86914ddc0f0e5aa5992ddcef0a791a0" class="pull-right">Toggle</a></li><li id="c86914ddc0f0e5aa5992ddcef0a791a0" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#e2768e91afc7826be818d93f0f96ae01" class="pull-right">Toggle</a></li><li id="e2768e91afc7826be818d93f0f96ae01" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">/</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">user_email</span>": <span class="hljs-value"><span class="hljs-string">"matthieu@anyfetch.com"</span></span>,
-        "<span class="hljs-attribute">documents_url</span>": <span class="hljs-value"><span class="hljs-string">"/documents/"</span></span>,
-        "<span class="hljs-attribute">document_types_url</span>": <span class="hljs-value"><span class="hljs-string">"/document_types/"</span></span>,
-        "<span class="hljs-attribute">providers_url</span>": <span class="hljs-value"><span class="hljs-string">"/providers/"</span></span>,
-        "<span class="hljs-attribute">users_url</span>": <span class="hljs-value"><span class="hljs-string">"/users/"</span></span>,
-        "<span class="hljs-attribute">current_user_url</span>": <span class="hljs-value"><span class="hljs-string">"/users/53c0190ae83613e049a4845a"</span></span>,
-        "<span class="hljs-attribute">update_url</span>": <span class="hljs-value"><span class="hljs-string">"/company/update"</span></span>,
-        "<span class="hljs-attribute">reset_url</span>": <span class="hljs-value"><span class="hljs-string">"/company/reset"</span></span>,
-        "<span class="hljs-attribute">token_url</span>": <span class="hljs-value"><span class="hljs-string">"/token"</span></span>,
+        "<span class="hljs-attribute">documents_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/documents/"</span></span>,
+        "<span class="hljs-attribute">document_types_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/document_types/"</span></span>,
+        "<span class="hljs-attribute">providers_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/providers/"</span></span>,
+        "<span class="hljs-attribute">users_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/users/"</span></span>,
+        "<span class="hljs-attribute">current_user_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/users/53c0190ae83613e049a4845a"</span></span>,
+        "<span class="hljs-attribute">update_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/company/update"</span></span>,
+        "<span class="hljs-attribute">reset_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/company/reset"</span></span>,
+        "<span class="hljs-attribute">token_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/token"</span></span>,
         "<span class="hljs-attribute">server_time</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T13:38:38.397Z"</span>
     </span>}</span>,
     "<span class="hljs-attribute">/document_types/5252ce4ce4cfcd16f55cfa3c</span>": <span class="hljs-value">{
