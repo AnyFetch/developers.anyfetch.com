@@ -33,7 +33,7 @@ Access-Control-Allow-Origin: *
 }
 ```
 
-> Note: throughout this guide, we'll left out the `-v` flag. Add it when you want to see the headers.
+> Note: throughout this guide, we've left out the `-v` flag. Add it when you want to see the headers.
 
 ## JSON extension
 All timestamps are returned in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
@@ -42,7 +42,7 @@ All timestamps are returned in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
 
 ## Parameters
 
-Many API methods take optional parameters. For GET requests, any parameters not specified as a segment in the path can be passed as an HTTP query string parameter:
+Many API methods take optional parameters. For GET requests, any parameter not specified as a segment in the path can be passed as an HTTP query string parameter:
 
 ```sh
 $ curl -X GET \
@@ -56,14 +56,14 @@ For POST, PATCH, PUT, and DELETE requests, parameters not included in the URL ca
 
 Expect to receive errors when you send invalid requests. The return code will include a `code` key, and a `message` to help you debug your application.
 
-> In some case, you'll only get a `4XX` HTTP status. This will happen, for instance, when your `Content-Length` header is invalid, when you try to send a request too large, or when your JSON can't be parsed.
+> In some cases, you'll only get a `4XX` HTTP status. This will happen, for instance, when your `Content-Length` header is invalid, when you try to send a request too large, or when your JSON can't be parsed.
 
 Standard errors include :
 
-* `401 UnauthorizedError`: you did not specify any credentials, or you're using a non-supported `Authorization` scheme
+* `401 UnauthorizedError`: you did not specify any credentials, or you're using an unsupported `Authorization` scheme
 * `401 InvalidCredentialsError`: you did not specify a token, or your token is invalid / has been revoked.
-* `403 ForbiddenError`: you are not allowed access to the resource
-* `404 ResourceNotFoundError`: you are trying to acces a non existing or out-of-scope object.
+* `403 ForbiddenError`: you are not allowed to access the resource
+* `404 ResourceNotFoundError`: you are trying to access a non existing or out-of-scope object.
 * `405 MethodNotAllowedError`: you used a POST instead of a GET, or vice versa.
 * `409 InvalidArgumentError`: you used a non existing argument.
 * `409 MissingParameterError`: you forgot a mandatory parameter.
@@ -75,8 +75,9 @@ Standard errors include :
 
 anyFetch API uses HTTP redirection where appropriate. Clients should assume that any request may result in a redirection. Receiving an HTTP redirection is not an error and clients should follow that redirect. Redirect responses will have a `Location` header field which contains the URI of the resource to which the client should repeat the requests.
 
-- __301__ Permanent redirection. The URI you used to make the request has been superseded by the one specified in the `Location` header field. This and all future requests to this resource should be directed to the new URI.
-- __302, 307__ Temporary redirection. The request should be repeated verbatim to the URI specified in the `Location` header field but clients should continue to use the original URI for future requests.
+- __301__ Permanent redirection. The URI you requested has been superseded by the one specified in the `Location` header field. This and all future requests to this resource should be directed to the new URI.
+- __302, 307__ Temporary redirection. The request should be repeated verbatim to the URI specified in the `Location` header field but clients should continue using the original URI for future requests.
+
 
 Other redirection status codes may be used in accordance with the HTTP 1.1 spec.
 
