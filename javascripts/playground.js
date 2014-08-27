@@ -144,7 +144,6 @@
         }
       },
       error: function(response) {
-        console.log(response);
         if(response.status === 404) {
           return cb('The file was deleted by the API');
         }
@@ -324,10 +323,14 @@
           cb(null, identifier);
         },
       ], function(err) {
-        console.log("message");
         working = false;
         if(err) {
-          err = new Error(err.code + (err.message !== '' ? (': ' + err.message) : '')).toString();
+          if(!(err instanceof Error) && err.code && err.message) {
+            err = err.code + (err.message !== '' ? (': ' + err.message) : '');
+          }
+          else if (err instanceof Error){
+            err = err.toString();
+          }
           makeAlert('danger', err);
           setProgress(100, err, 'danger');
         }
