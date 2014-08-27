@@ -32,13 +32,6 @@
     }
   };
 
-  var cleanUpError = function cleanUpError(error) {
-    $("#submit-button").button('reset');
-    $("#delete-button").button('reset');
-    makeAlert('danger', error);
-    setProgress(100, error, 'danger');
-  };
-
   var escapeHtml = function escapeHtml(unsafe) {
     return unsafe
       .replace(/&/g, "&amp;")
@@ -95,8 +88,7 @@
         cb(null, response.identifier);
       },
       error: function(response) {
-        cleanUpError(response.responseText);
-        cb(response.responseText);
+        cb(response.responseJSON);
       }
     });
   };
@@ -116,8 +108,7 @@
         cb(null, identifier);
       },
       error: function(response) {
-        cleanUpError(response.responseText);
-        cb(response.responseText);
+        cb(response.responseJSON);
       },
       xhr: function(){
         // get the native xhr object
@@ -153,8 +144,11 @@
         }
       },
       error: function(response) {
-        cleanUpError(response.responseText);
-        cb(response.responseText);
+        console.log(response);
+        if(response.status === 404) {
+          return cb('The file was deleted by the API');
+        }
+        cb(response.responseJSON);
       }
     });
   };
@@ -167,7 +161,7 @@
       function getRawWrapper(cb) {
         getRaw(identifier, function(err, state) {
           test = state;
-          cb(null);
+          cb(err);
         });
       },
       function(err) {
@@ -187,8 +181,7 @@
         cb(null, identifier);
       },
       error: function(response) {
-        cleanUpError(response.responseText);
-        cb(response.responseText);
+        cb(response.responseJSON);
       }
     });
   };
@@ -203,8 +196,7 @@
         cb(null, identifier);
       },
       error: function(response) {
-        cleanUpError(response.responseText);
-        cb(response.responseText);
+        cb(response.responseJSON);
       }
     });
   };
@@ -228,8 +220,7 @@
         cb(null, identifier);
       },
       error: function(response) {
-        cleanUpError(response.responseText);
-        cb(response.responseText);
+        cb(response.responseJSON);
       }
     });
   };
@@ -333,10 +324,14 @@
           cb(null, identifier);
         },
       ], function(err) {
+        console.log("message");
         working = false;
-        if(err){
+        if(err) {
+          err = new Error(err.code + (err.message !== '' ? (': ' + err.message) : '')).toString();
           makeAlert('danger', err);
+          setProgress(100, err, 'danger');
         }
+        $("#delete-button").button('reset');
         $("#submit-button").button('reset');
       });
     });
