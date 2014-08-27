@@ -30,6 +30,8 @@ For simple use, you can find a token on [`GET /token`](/endpoints/#account-token
 $ curl "https://api.anyfetch.com?oauth_access_token=${OAUTH-TOKEN}"
 ```
 
+> Please note: this is really insecure. Anyone with the URL can view the token and reuse it. This should only be used for testing purposes.
+
 ### Error codes
 
 * Using no authentication in a request will result in `401 Authorization Required`
