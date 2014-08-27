@@ -145,7 +145,7 @@
       },
       error: function(response) {
         if(response.status === 404) {
-          return cb('The file was deleted by the API');
+          return cb('The file was deleted by the API or by a hydrater');
         }
         cb(response.responseJSON);
       }
