@@ -357,7 +357,6 @@ Return informations aggregated over the result set. The `score` key indicated do
     + id (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this id. <small>You can use the param multiple times to allow for multiples `id`, for instance `?id=1&id=2&id=3`</small>.
     + document_type (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this document type. <small>You can use the param multiple times to allow for multiples `document_type`</small>.
     + provider (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this provider. <small>You can use the param multiple times to allow for multiples `provider`</small>
-    + _meta (optional, string, `John Smith`) ... Strict search on `meta` key. Replace `meta` with the name of the meta you wish to search on.
     + meta (optional, string, `John`) ... (prepend name with @) Full text search on `meta` key.  Replace `meta` with the name of the meta you wish to search on, for instance `?@name=john`
     + has_meta (optional, boolean, `1`) ... Only returns document having the `meta` key. Replace `meta` with the name of the meta you wish to search on.
     + snippet_size (optional, integer, `200`) ... Number of chars to include in the snippet
