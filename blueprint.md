@@ -1612,6 +1612,20 @@ Revokes a provider token and subsequently deletes linked documents.
 + Response 204
 
 
+## Reset a Provider [/providers/{id}/reset]
+
+### Reset Provider [DELETE]
+Resets the provider internal token. This means next time this provider is called for an update, the token's cursor will be empty, and as a consequence, all documents will be resent.
+
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+> * `404 Not Found`: `id` does not match a provider
+> * `409 InvalidArgument`: `id` is not a valid id.
+
++ Response 204
+
+
+
 
 
 
