@@ -76,11 +76,20 @@ Dependencies indicates that your hydrater requires another hydrater to complete 
 
 In this example, all Office files (detected either by extension or by MIME-type) will be hydrated after they've been hydrated by `https://plaintext.anyfetch.com/hydrate`.
 
-### Exclusion
-You may want to exclude some other hydraters from running when your hydrater would be in conflict. Let's say for instance we want to hydrate `eml` files. The `plaintext` hydrater would return the raw content, which is clearly not interesting. To exclude an hydrater, use `excludes`:
+
+### Priority
+You can specify a `priority` for your hydrater. Three states are at the moment available:
+
+* Positive number: High priority
+* Zero or not specified: Normal priority
+* Negative number: Low priority
+
+When several hydraters are matching the document, hydraters having the higher priority will be run before the others. This means for example that low priority hydraters will be run in parallel after every high and normal priority hydraters are successfuly run.
+
+Let's say for instance we want to hydrate `eml` files. The `plaintext` hydrater would return the raw content, which is clearly not interesting. To prevent this behaviour, set a positive priority for the `eml` hydrater therefore it will run before `plaintext`, that will not match on the next round:
 
 ```javascript
-  excludes: ['https://plaintext.anyfetch.com/hydrate'],
+  priority: 1,
   filters: [
     {
       metadata: {
@@ -93,8 +102,6 @@ You may want to exclude some other hydraters from running when your hydrater wou
     },
   ]
 ```
-
-Note the exclusion will only work for this hydration round. On the next round, the document will be hydrated it its content is still matching the filters from the previously excluded hydrater. 
 
 ## Hydrating and providing
 In some (rare) cases, you may need to access other documents (for instance, a zip hydrater creating new documents for each file in the archive). To do this, you are entrusted with the `access_token` used by the provider, so you can create, update or delete other documents on the account.
