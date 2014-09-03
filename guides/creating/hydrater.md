@@ -22,6 +22,7 @@ In most cases, you only want to run your hydrater on a specific kind of file. Yo
 
 ```javascript
 {
+<<<<<<< Updated upstream
   filters: [
     {
       metadata: {
@@ -33,6 +34,9 @@ In most cases, you only want to run your hydrater on a specific kind of file. Yo
       filePath: /^./
     },
 ]
+=======
+  dependencies: ['https://plaintext.anyfetch.com/hydrate'],
+>>>>>>> Stashed changes
 }
 ```
 
@@ -45,6 +49,10 @@ Dependencies indicates that your hydrater requires another hydrater to complete 
 
 ```javascript
 {
+<<<<<<< Updated upstream
+=======
+  dependencies: ['https://plaintext.anyfetch.com/hydrate'],
+>>>>>>> Stashed changes
   filters: [
     {
       hydratedBy: {
