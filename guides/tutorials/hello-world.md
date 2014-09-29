@@ -74,31 +74,54 @@ https://api.anyfetch.com/documents \
 
 ```json
 {
-    "_type":"Document",
-    "id":"52f2367374a24df253314b3c",
-    "creation_date":"2014-02-05T10:39:36.623Z",
-    "provider":"52f212ca74a24df25331490c",
-    "company":"52f0bb24c8318c2d65000035",
-    "document_type":"5252ce4ce4cfcd16f55cfa3b",
-    "actions":{},
-    "document_url":"/documents/52f2367374a24df253314b3c",
-    "related":[],
-    "identifier":"sample-txt",
-    "data":{},
-    "metadata": {
-        "path":"/home/anyfetch/sample.txt",
-        "title":"anyFetch sample file"
+  "_type": "Document",
+  "id": "542925d3ca5f27ba66e9ed9a",
+  "identifier": "sample-txt",
+  "creation_date": "2014-09-29T09:26:43.019Z",
+  "modification_date": "2014-09-29T09:26:43.019Z",
+  "provider": {
+    "_type": "AccessToken",
+    "id": "540852e3d035a4c213fb5c03",
+    "client": null,
+    "is_basic_token": true,
+    "account_name": ""
+  },
+  "company": "53e0b2256f18dce71fce0bfe",
+  "document_type": {
+    "_type": "DocumentType",
+    "id": "5252ce4ce4cfcd16f55cfa3b",
+    "name": "file",
+    "templates": {
+      "title": "{{{ title }}}",
+      "full": "<article class=\"anyfetch-document-full anyfetch-type-file\">\n  <header class=\"anyfetch-header\">\n    <hgroup class=\"anyfetch-title-group\">\n      <h1 class=\"anyfetch-title\">{{{ title }}}</h1>\n      <code class=\"anyfetch-title-detail\">{{ path }}</code>\n    </hgroup>\n  </header>\n</article>\n",
+      "snippet": "<article class=\"anyfetch-document-snippet anyfetch-type-file\">\n  <header class=\"anyfetch-header\">\n    <hgroup class=\"anyfetch-title-group\">\n      <h1 class=\"anyfetch-title\">{{{ title }}}</h1>\n      <code class=\"anyfetch-title-detail\">{{ path }}</code>\n    </hgroup>\n  </header>\n</article>\n"
     },
-    "user_access": null
+    "description": "Most basic document type for any kind of binary content. When a provider sends data without any additional information, it will use this document_type."
+  },
+  "actions": {},
+  "document_url": "https://api-staging.anyfetch.com/documents/542925d3ca5f27ba66e9ed9a",
+  "projection_type": "raw",
+  "data": {},
+  "metadata": {
+    "path": "/home/anyfetch/sample.txt",
+    "title": "anyFetch sample file"
+  },
+  "last_hydration": null,
+  "hydrating": [],
+  "hydrated_by": [],
+  "hydrater_errored": null,
+  "hydration_error": null,
+  "related": [],
+  "user_access": null
 }
 ```
 
 anyFetch replied with the new document. Keep the `id` somewhere, we'll need it later.
 Things to note...
 
-* `creation_date` was automatically set for you. You can override it when need be.
-* `provider`, for security reason, is not the token you used to provide, but an identifier of your provider. This lets users access the documents you created without compromising your token.
-* `user_access` is `null`. This means every user in the company can access it.
+* `creation_date` and `modification_date` were automatically set for you. You can override them when needed.
+* `provider.id`, for security reason, is not the OAuth token you used to provide, but an identifier of your provider. This lets users access the documents you created without compromising your token.
+* `user_access` is `null`. This means every user in the company can access the document.
 
 ### Send the file
 Now that we've created the document on anyFetch, we can associate it with a file. This is a simple file upload, under the `file` key.
@@ -127,30 +150,50 @@ https://api.anyfetch.com/documents/${ID}/raw
 
 ```json
 {
-    "_type":"Document",
-    "id":"533570229ad9a4665a8d6499",
-    "creation_date":"2014-03-28T12:50:42.496Z",
-    "provider":"53357005394e45c459176b4f",
-    "company":"530f392ec8318cba94000020",
-    "document_type":"5252ce4ce4cfcd16f55cfa3c",
-    "actions":{},
-    "document_url":"/documents/533570229ad9a4665a8d6499",
-    "identifier":"sample-txt",
-    "data":{
-        "html":"<p>This is a sample document, for hello world purposes.\n</p>\n"
+  "_type": "Document",
+  "id": "542925d3ca5f27ba66e9ed9a",
+  "identifier": "sample-txt",
+  "creation_date": "2014-09-29T09:26:43.019Z",
+  "modification_date": "2014-09-29T09:26:43.019Z",
+  "provider": {
+    "_type": "AccessToken",
+    "id": "540852e3d035a4c213fb5c03",
+    "client": null,
+    "is_basic_token": true,
+    "account_name": ""
+  },
+  "company": "53e0b2256f18dce71fce0bfe",
+  "document_type": {
+    "_type": "DocumentType",
+    "id": "5252ce4ce4cfcd16f55cfa3c",
+    "name": "document",
+    "templates": {
+      "title": "{{{ title }}}",
+      "full": "<article class=\"anyfetch-document-full anyfetch-type-document\">\n  <header class=\"anyfetch-header\">\n    <hgroup class=\"anyfetch-title-group\">\n      <h1 class=\"anyfetch-title\">{{{ title }}}</h1>\n      <code class=\"anyfetch-title-detail\">{{ path }}</code>\n    </hgroup>\n  </header>\n\n  <main class=\"anyfetch-content\">\n    {{{ content }}}\n  </main>\n</article>\n",
+      "snippet": "<article class=\"anyfetch-document-snippet anyfetch-type-document\">\n  <header class=\"anyfetch-header\">\n    <h1 class=\"anyfetch-title\">{{{ title }}}</h1>\n  </header>\n  <main class=\"anyfetch-content\">\n    <p>{{{ snippet }}}</p>\n  </main>\n</article>\n"
     },
-    "metadata":{
-        "content-type":"text/plain; charset=ISO-8859-1",
-        "content-encoding":"ISO-8859-1",
-        "text":"This is a sample document, for hello world purposes.\n",
-        "path":"/home/anyfetch/sample.txt",
-        "title":"anyFetch sample file"
-    },
-    "projection_type": "raw",
-    "last_hydration":"2014-03-28T12:51:17.755Z",
-    "hydrating":[],
-    "hydrated_by":["https://plaintext.anyfetch.com/hydrate"],
-    "related":[]
+    "description": "A document from which we were able to extract a clean HTML representation: text, doc, xls, epub..."
+  },
+  "actions": {},
+  "document_url": "https://api-staging.anyfetch.com/documents/542925d3ca5f27ba66e9ed9a",
+  "projection_type": "raw",
+  "data": {
+    "content-type": "text/plain; charset=ISO-8859-1",
+    "html": "<p>This is a sample document, for hello world purposes.\n</p>\n"
+  },
+  "metadata": {
+    "title": "anyFetch sample file",
+    "path": "/home/anyfetch/sample.txt",
+    "text": "This is a sample document, for hello world purposes.\n"
+  },
+  "last_hydration": "2014-09-29T09:30:03.229Z",
+  "hydrating": [],
+  "hydrated_by": [
+    "https://plaintext-staging.anyfetch.com/hydrate"
+  ],
+  "hydrater_errored": null,
+  "hydration_error": null,
+  "related": []
 }
 ```
 
@@ -166,41 +209,78 @@ https://api.anyfetch.com/documents?search=anyfetch
 
 ```json
 {
-    "facets":{
-        "document_types":{
-            "5252ce4ce4cfcd16f55cfa3c":1
+  "facets": {
+    "document_types": [
+      {
+        "_type": "DocumentType",
+        "id": "5252ce4ce4cfcd16f55cfa3c",
+        "name": "document",
+        "templates": {
+          "title": "{{{ title }}}",
+          "full": "<article class=\"anyfetch-document-full anyfetch-type-document\">\n  <header class=\"anyfetch-header\">\n    <hgroup class=\"anyfetch-title-group\">\n      <h1 class=\"anyfetch-title\">{{{ title }}}</h1>\n      <code class=\"anyfetch-title-detail\">{{ path }}</code>\n    </hgroup>\n  </header>\n\n  <main class=\"anyfetch-content\">\n    {{{ content }}}\n  </main>\n</article>\n",
+          "snippet": "<article class=\"anyfetch-document-snippet anyfetch-type-document\">\n  <header class=\"anyfetch-header\">\n    <h1 class=\"anyfetch-title\">{{{ title }}}</h1>\n  </header>\n  <main class=\"anyfetch-content\">\n    <p>{{{ snippet }}}</p>\n  </main>\n</article>\n"
         },
-        "providers":{
-            "53330deb745e83fe25f6c3dc":1
-        },
-        "creation_dates":{
-            "1393632000000":1
-        }
-    },
-    "data":[
-        {
-            "_type":"Document",
-            "id":"52f2367374a24df253314b3c",
-            "identifier":"sample-txt",
-            "creation_date":"2014-03-26T17:28:47.688Z",
-            "provider":"53330deb745e83fe25f6c3dc",
-            "company":"52f0bb24c8318c2d65000035",
-            "document_type":"5252ce4ce4cfcd16f55cfa3c",
-            "actions":{},
-            "document_url":"/documents/52f2367374a24df253314b3c",
-            "data":{
-                "title":"anyFetch sample file",
-                "path":"/home/<span class=\"hlt\">anyfetch</span>/sample.txt",
-                "snippet":"This is a sample document, for hello world purposes.\n"
-            },
-            "projection_type": "snippet",
-            "related_count":0,
-            "score":0.19178301
-        }
+        "description": "A document from which we were able to extract a clean HTML representation: text, doc, xls, epub...",
+        "document_count": 1
+      }
     ],
-    "max_score":0.19178301,
-    "next_page_url":"coming",
-    "previous_page_url":"coming"
+    "providers": [
+      {
+        "_type": "AccessToken",
+        "id": "540852e3d035a4c213fb5c03",
+        "client": null,
+        "is_basic_token": true,
+        "account_name": "",
+        "document_count": 1
+      }
+    ],
+    "creation_dates": [
+      {
+        "_type": "Date",
+        "timestamp": "1409529600000",
+        "date": "2014-09-01T00:00:00.000Z",
+        "document_count": 1
+      }
+    ]
+  },
+  "data": [
+    {
+      "_type": "Document",
+      "id": "542925d3ca5f27ba66e9ed9a",
+      "identifier": "sample-txt",
+      "creation_date": "2014-09-29T09:26:43.019Z",
+      "modification_date": "2014-09-29T09:26:43.019Z",
+      "provider": {
+        "_type": "AccessToken",
+        "id": "540852e3d035a4c213fb5c03",
+        "client": null,
+        "is_basic_token": true,
+        "account_name": ""
+      },
+      "company": "53e0b2256f18dce71fce0bfe",
+      "document_type": {
+        "_type": "DocumentType",
+        "id": "5252ce4ce4cfcd16f55cfa3c",
+        "name": "document",
+        "templates": {
+          "title": "{{{ title }}}",
+          "snippet": "<article class=\"anyfetch-document-snippet anyfetch-type-document\">\n  <header class=\"anyfetch-header\">\n    <h1 class=\"anyfetch-title\">{{{ title }}}</h1>\n  </header>\n  <main class=\"anyfetch-content\">\n    <p>{{{ snippet }}}</p>\n  </main>\n</article>\n"
+        }
+      },
+      "actions": {},
+      "document_url": "https://api-staging.anyfetch.com/documents/542925d3ca5f27ba66e9ed9a",
+      "projection_type": "snippet",
+      "data": {
+        "title": "<span class=\"anyfetch-hlt\">anyFetch</span> sample file",
+        "path": "/home/<span class=\"anyfetch-hlt\">anyfetch</span>/sample.txt",
+        "snippet": "This is a sample document, for hello world purposes.\n"
+      },
+      "related_count": 0,
+      "score": 1.0786586
+    }
+  ],
+  "count": 1,
+  "max_score": 1.0786586
 }
 ```
 
