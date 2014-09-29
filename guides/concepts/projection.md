@@ -22,8 +22,6 @@ The best way to understand projection is by example. Let's say you have a big PD
             "second page [trunc ...]",
             ...
         ],
-        "creation": "2013-10-08T14:59:07.895Z",
-        "updated": "2013-10-09T13:01:22.783Z",
         "author": "PDF Author",
         "print_informations": "300dpi"
     }
