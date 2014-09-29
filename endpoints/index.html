@@ -358,7 +358,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 </dd><dt>sort</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>creationDate</span></span><p>Sort criteria. Can be <code>creationDate</code> (sort by document creation date), <code>modificationDate</code> (sort by last modification date) or <code>_score</code> (default, sort by relevance to the query). Prepend with a <code>-</code> to reverse order (e.g. <code>-creationDate</code>).</p>
 </dd><dt>render_templates</dt><dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>false</span></span><p>Whether to pre-render the HTML for you in the results. Documents will have the keys <code>rendered_snippet</code> and <code>rendered_title</code>. The <code>data</code> key will be removed for faster transfer.</p>
 </dd><dt>strict</dt><dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>true</span></span><p>When using strict mode, only results matching exactly the query will be returned (a search for “John Doe” will never return documents about “Doe” only)</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#e490456e566b0a9f8e74ed63ae7f031d" class="pull-right">Toggle</a></li><li id="e490456e566b0a9f8e74ed63ae7f031d" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#5c1068bb65588dc3150671f1ec323502" class="pull-right">Toggle</a></li><li id="5c1068bb65588dc3150671f1ec323502" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">facets</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">document_types</span>": <span class="hljs-value">[
             {
@@ -433,6 +433,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
             "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53cf88a5cf25841c6144ee46"</span></span>,
             "<span class="hljs-attribute">identifier</span>": <span class="hljs-value"><span class="hljs-string">"https://docs.google.com/file/d/0Ao1Q9EZ6RihjdHBSSnlzWG5mRFMxTm5YRVMwZzd0b0E"</span></span>,
             "<span class="hljs-attribute">creation_date</span>": <span class="hljs-value"><span class="hljs-string">"2013-06-26T09:13:46.552Z"</span></span>,
+            "<span class="hljs-attribute">modification_date</span>": <span class="hljs-value"><span class="hljs-string">"2013-06-26T09:13:46.552Z"</span></span>,
             "<span class="hljs-attribute">provider</span>": <span class="hljs-value">{
                 "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"AccessToken"</span></span>,
                 "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53cf88997f247be935ebfd7a"</span></span>,
@@ -471,6 +472,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
             "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53cf9ceacf25841c6144fbc7"</span></span>,
             "<span class="hljs-attribute">identifier</span>": <span class="hljs-value"><span class="hljs-string">"https://mail.google.com/mail/#inbox/13ec7d0b8ca2b818#13f050ec6027ecef-CREATION_PHINNOV-Dossierdemande-versionjuillet2012.doc.docx"</span></span>,
             "<span class="hljs-attribute">creation_date</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T11:30:50.270Z"</span></span>,
+            "<span class="hljs-attribute">modification_date</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T11:30:50.270Z"</span></span>,
             "<span class="hljs-attribute">provider</span>": <span class="hljs-value">{
                 "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"AccessToken"</span></span>,
                 "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53cf9b4fa60b43c235680d7a"</span></span>,
@@ -526,9 +528,10 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <li><code>409 InvalidArgument</code>: no documents matched by <code>id</code>. Use <code>identifier</code> to create a new document</li>
 </ul>
 </blockquote>
-</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#a18f79fd9d1175464e06352feb1402c0" class="pull-right">Toggle</a></li><li id="a18f79fd9d1175464e06352feb1402c0" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>    {
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#ab4a85d5bb6e793014b24dcf58368482" class="pull-right">Toggle</a></li><li id="ab4a85d5bb6e793014b24dcf58368482" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>    {
         "<span class="hljs-attribute">identifier</span>": <span class="hljs-value"><span class="hljs-string">"http://unique-document-identifier"</span></span>,
-        "<span class="hljs-attribute">creation_date</span>":<span class="hljs-value"><span class="hljs-string">"2014-02-05T10:39:36.623Z"</span></span>,
+        "<span class="hljs-attribute">creation_date</span>": <span class="hljs-value"><span class="hljs-string">"2014-02-05T10:39:36.623Z"</span></span>,
+        "<span class="hljs-attribute">modification_date</span>": <span class="hljs-value"><span class="hljs-string">"2014-02-07T12:45:56.254Z"</span></span>,
         "<span class="hljs-attribute">document_type</span>": <span class="hljs-value"><span class="hljs-string">"file"</span></span>,
         "<span class="hljs-attribute">actions</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">download</span>": <span class="hljs-value"><span class="hljs-string">"http://example.org/download/file/url"</span>
@@ -542,10 +545,11 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
         "<span class="hljs-attribute">related</span>": <span class="hljs-value">[<span class="hljs-string">"52dff5c53923844f15885428"</span>]</span>,
         "<span class="hljs-attribute">user_access</span>": <span class="hljs-value">[<span class="hljs-string">"52d96492a7f0a3ac4226f2f7"</span>]
     </span>}
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#effff1a32b785b6074f92adaa99b75dd" class="pull-right">Toggle</a></li><li id="effff1a32b785b6074f92adaa99b75dd" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#461ca1c672cebf6ff0d40d930248d250" class="pull-right">Toggle</a></li><li id="461ca1c672cebf6ff0d40d930248d250" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">_type</span>":<span class="hljs-value"><span class="hljs-string">"Document"</span></span>,
     "<span class="hljs-attribute">id</span>":<span class="hljs-value"><span class="hljs-string">"52f2367374a24df253314b3c"</span></span>,
     "<span class="hljs-attribute">creation_date</span>":<span class="hljs-value"><span class="hljs-string">"2014-02-05T10:39:36.623Z"</span></span>,
+    "<span class="hljs-attribute">modification_date</span>": <span class="hljs-value"><span class="hljs-string">"2014-02-07T12:45:56.254Z"</span></span>,
     "<span class="hljs-attribute">provider</span>":<span class="hljs-value"><span class="hljs-string">"52f212ca74a24df25331490c"</span></span>,
     "<span class="hljs-attribute">company</span>":<span class="hljs-value"><span class="hljs-string">"52f0bb24c8318c2d65000035"</span></span>,
     "<span class="hljs-attribute">document_type</span>":<span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3b"</span></span>,
@@ -584,11 +588,12 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the Document to perform action with.</p>
 </dd><dt>search</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>john smith</span></span><p>String to highlight in the rendered document</p>
 </dd><dt>render_templates</dt><dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>false</span></span><p>Whether to pre-render the HTML for you in the result. Document will have the keys <code>rendered_full</code> and <code>rendered_title</code>. The <code>data</code> key will be removed for faster transfer.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#345b3794fbdfdfb988a7d444f78f12ba" class="pull-right">Toggle</a></li><li id="345b3794fbdfdfb988a7d444f78f12ba" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#b60807efd6152f75a0248019a299e8a3" class="pull-right">Toggle</a></li><li id="b60807efd6152f75a0248019a299e8a3" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Document"</span></span>,
     "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53ce71b24882ec9d58f08235"</span></span>,
     "<span class="hljs-attribute">identifier</span>": <span class="hljs-value"><span class="hljs-string">"https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/79516afe8f2cdfba"</span></span>,
     "<span class="hljs-attribute">creation_date</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-22T14:14:10.150Z"</span></span>,
+    "<span class="hljs-attribute">modification_date</span>": <span class="hljs-value"><span class="hljs-string">"2014-02-07T12:45:56.254Z"</span></span>,
     "<span class="hljs-attribute">provider</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"AccessToken"</span></span>,
         "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53ce7198ebb324595ee9b49c"</span></span>,
@@ -690,7 +695,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the Document to perform action with.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#b3b5b55d07ace98290382bd0315bc07b" class="pull-right">Toggle</a></li><li id="b3b5b55d07ace98290382bd0315bc07b" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#e4de35379d42481d7105841d0181249a" class="pull-right">Toggle</a></li><li id="e4de35379d42481d7105841d0181249a" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">title</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Florian Rossiaud"</span>
     </span>}</span>,
@@ -821,6 +826,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
             "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53ce71ab4882ec9d58f08215"</span></span>,
             "<span class="hljs-attribute">identifier</span>": <span class="hljs-value"><span class="hljs-string">"https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/3d721b5e8b215a41"</span></span>,
             "<span class="hljs-attribute">creation_date</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-22T14:14:03.396Z"</span></span>,
+            "<span class="hljs-attribute">modification_date</span>": <span class="hljs-value"><span class="hljs-string">"2014-02-07T12:45:56.254Z"</span></span>,
             "<span class="hljs-attribute">provider</span>": <span class="hljs-value">{
                 "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"AccessToken"</span></span>,
                 "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53ce7198ebb324595ee9b49c"</span></span>,
@@ -875,7 +881,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the Document to perform action with.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#fd9ce299d85f3b4eba9a4c82265284da" class="pull-right">Toggle</a></li><li id="fd9ce299d85f3b4eba9a4c82265284da" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#b541d827bdc3d4919d0fe24f2d9608f9" class="pull-right">Toggle</a></li><li id="b541d827bdc3d4919d0fe24f2d9608f9" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">title</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">subject</span>": <span class="hljs-value"><span class="hljs-string">"very important stuff"</span>
     </span>}</span>,
@@ -896,6 +902,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
             "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Document"</span></span>,
             "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"531dcd94731d5a284f707ac1"</span></span>,
             "<span class="hljs-attribute">creation_date</span>": <span class="hljs-value"><span class="hljs-string">"2013-10-01T14:48:41.000Z"</span></span>,
+            "<span class="hljs-attribute">modification_date</span>": <span class="hljs-value"><span class="hljs-string">"2014-02-07T12:45:56.254Z"</span></span>,
             "<span class="hljs-attribute">provider</span>": <span class="hljs-value"><span class="hljs-string">"531dccedc8318cc5d1000037"</span></span>,
             "<span class="hljs-attribute">company</span>": <span class="hljs-value"><span class="hljs-string">"52f0e4f9c8318c4dc8000039"</span></span>,
             "<span class="hljs-attribute">document_type</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3c"</span></span>,
@@ -926,11 +933,12 @@ Also include information about hydraters (<code>hydratedBy</code>, <code>hydrati
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the Document to perform action with.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#07587d1a1cd3497269872ec583279a87" class="pull-right">Toggle</a></li><li id="07587d1a1cd3497269872ec583279a87" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#dbf08ab7058e04d524dcbcb77eb2286c" class="pull-right">Toggle</a></li><li id="dbf08ab7058e04d524dcbcb77eb2286c" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Document"</span></span>,
     "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53ce71b24882ec9d58f08235"</span></span>,
     "<span class="hljs-attribute">identifier</span>": <span class="hljs-value"><span class="hljs-string">"https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/79516afe8f2cdfba"</span></span>,
     "<span class="hljs-attribute">creation_date</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-22T14:14:10.150Z"</span></span>,
+    "<span class="hljs-attribute">modification_date</span>": <span class="hljs-value"><span class="hljs-string">"2014-02-07T12:45:56.254Z"</span></span>,
     "<span class="hljs-attribute">provider</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"AccessToken"</span></span>,
         "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53ce7198ebb324595ee9b49c"</span></span>,

@@ -444,6 +444,7 @@ Return informations aggregated over the result set. The `score` key indicated do
                         "id": "53cf88a5cf25841c6144ee46",
                         "identifier": "https://docs.google.com/file/d/0Ao1Q9EZ6RihjdHBSSnlzWG5mRFMxTm5YRVMwZzd0b0E",
                         "creation_date": "2013-06-26T09:13:46.552Z",
+                        "modification_date": "2013-06-26T09:13:46.552Z",
                         "provider": {
                             "_type": "AccessToken",
                             "id": "53cf88997f247be935ebfd7a",
@@ -482,6 +483,7 @@ Return informations aggregated over the result set. The `score` key indicated do
                         "id": "53cf9ceacf25841c6144fbc7",
                         "identifier": "https://mail.google.com/mail/#inbox/13ec7d0b8ca2b818#13f050ec6027ecef-CREATION_PHINNOV-Dossierdemande-versionjuillet2012.doc.docx",
                         "creation_date": "2014-07-23T11:30:50.270Z",
+                        "modification_date": "2014-07-23T11:30:50.270Z",
                         "provider": {
                             "_type": "AccessToken",
                             "id": "53cf9b4fa60b43c235680d7a",
@@ -543,7 +545,8 @@ If no identifier is specified, it will be set to the value of the document's id.
 
             {
                 "identifier": "http://unique-document-identifier",
-                "creation_date":"2014-02-05T10:39:36.623Z",
+                "creation_date": "2014-02-05T10:39:36.623Z",
+                "modification_date": "2014-02-07T12:45:56.254Z",
                 "document_type": "file",
                 "actions": {
                     "download": "http://example.org/download/file/url"
@@ -565,6 +568,7 @@ If no identifier is specified, it will be set to the value of the document's id.
                 "_type":"Document",
                 "id":"52f2367374a24df253314b3c",
                 "creation_date":"2014-02-05T10:39:36.623Z",
+                "modification_date": "2014-02-07T12:45:56.254Z",
                 "provider":"52f212ca74a24df25331490c",
                 "company":"52f0bb24c8318c2d65000035",
                 "document_type":"5252ce4ce4cfcd16f55cfa3b",
@@ -613,6 +617,7 @@ Result contains, amongst other :
                 "id": "53ce71b24882ec9d58f08235",
                 "identifier": "https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/79516afe8f2cdfba",
                 "creation_date": "2014-07-22T14:14:10.150Z",
+                "modification_date": "2014-02-07T12:45:56.254Z",
                 "provider": {
                     "_type": "AccessToken",
                     "id": "53ce7198ebb324595ee9b49c",
@@ -861,6 +866,7 @@ Result contains, amongst other :
                         "id": "53ce71ab4882ec9d58f08215",
                         "identifier": "https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/3d721b5e8b215a41",
                         "creation_date": "2014-07-22T14:14:03.396Z",
+                        "modification_date": "2014-02-07T12:45:56.254Z",
                         "provider": {
                             "_type": "AccessToken",
                             "id": "53ce7198ebb324595ee9b49c",
@@ -942,6 +948,7 @@ Result contains, amongst other :
                         "_type": "Document",
                         "id": "531dcd94731d5a284f707ac1",
                         "creation_date": "2013-10-01T14:48:41.000Z",
+                        "modification_date": "2014-02-07T12:45:56.254Z",
                         "provider": "531dccedc8318cc5d1000037",
                         "company": "52f0e4f9c8318c4dc8000039",
                         "document_type": "5252ce4ce4cfcd16f55cfa3c",
@@ -984,6 +991,7 @@ View all data for the document.
                 "id": "53ce71b24882ec9d58f08235",
                 "identifier": "https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/79516afe8f2cdfba",
                 "creation_date": "2014-07-22T14:14:10.150Z",
+                "modification_date": "2014-02-07T12:45:56.254Z",
                 "provider": {
                     "_type": "AccessToken",
                     "id": "53ce7198ebb324595ee9b49c",
