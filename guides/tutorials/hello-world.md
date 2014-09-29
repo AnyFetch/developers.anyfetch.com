@@ -120,8 +120,8 @@ anyFetch replied with the new document. Keep the `id` somewhere, we'll need it l
 Things to note...
 
 * `creation_date` and `modification_date` were automatically set for you. You can override them when needed.
-* `provider`, for security reason, is not the token you used to provide, but an identifier of your provider. This lets users access the documents you created without compromising your token.
-* `user_access` is `null`. This means every user in the company can access it.
+* `provider.id`, for security reason, is not the OAuth token you used to provide, but an identifier of your provider. This lets users access the documents you created without compromising your token.
+* `user_access` is `null`. This means every user in the company can access the document.
 
 ### Send the file
 Now that we've created the document on anyFetch, we can associate it with a file. This is a simple file upload, under the `file` key.
