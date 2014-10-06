@@ -1385,7 +1385,7 @@ This endpoint is public and can be accessed by anyone with the id.</p>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 </ul>
 </blockquote>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#ab7ba0cb5aeec7b96cd49b5d3149e906" class="pull-right">Toggle</a></li><li id="ab7ba0cb5aeec7b96cd49b5d3149e906" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#685e58fe07397ff55fd950f6709db4b0" class="pull-right">Toggle</a></li><li id="685e58fe07397ff55fd950f6709db4b0" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
     {
         "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"AccessToken"</span></span>,
         "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53c91957cfb3211a4fc877c0"</span></span>,
@@ -1394,7 +1394,8 @@ This endpoint is public and can be accessed by anyone with the id.</p>
         "<span class="hljs-attribute">account_name</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
         "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
         "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T12:01:16.036Z"</span></span>,
-        "<span class="hljs-attribute">providing</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+        "<span class="hljs-attribute">providing</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">current</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
     </span>},
     {
         "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"AccessToken"</span></span>,
@@ -1408,7 +1409,8 @@ This endpoint is public and can be accessed by anyone with the id.</p>
         "<span class="hljs-attribute">account_name</span>": <span class="hljs-value"><span class="hljs-string">"matthieu.bacconnier@papiel.fr"</span></span>,
         "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">239</span></span>,
         "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-22T14:14:16.640Z"</span></span>,
-        "<span class="hljs-attribute">providing</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+        "<span class="hljs-attribute">providing</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+        "<span class="hljs-attribute">current</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
     </span>},
     {
         "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"AccessToken"</span></span>,
@@ -1422,7 +1424,8 @@ This endpoint is public and can be accessed by anyone with the id.</p>
         "<span class="hljs-attribute">account_name</span>": <span class="hljs-value"><span class="hljs-string">"matthieu.bacconnier@papiel.fr"</span></span>,
         "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">192</span></span>,
         "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T11:24:37.644Z"</span></span>,
-        "<span class="hljs-attribute">providing</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+        "<span class="hljs-attribute">providing</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+        "<span class="hljs-attribute">current</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
     </span>},
     {
         "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"AccessToken"</span></span>,
@@ -1436,7 +1439,8 @@ This endpoint is public and can be accessed by anyone with the id.</p>
         "<span class="hljs-attribute">account_name</span>": <span class="hljs-value"><span class="hljs-string">"matthieu.bacconnier@papiel.fr"</span></span>,
         "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">6747</span></span>,
         "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T11:32:06.347Z"</span></span>,
-        "<span class="hljs-attribute">providing</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+        "<span class="hljs-attribute">providing</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+        "<span class="hljs-attribute">current</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
     </span>}
 ]
 </code></pre></li></ul></section><h4 id="providers-provider">Provider&nbsp;<a href="#providers-provider"><i class="fa fa-link"></i></a></h4><section id="providers-provider-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get Provider</span></div><div style="float:left"><a href="#providers-provider-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/providers/{id}</code></div></div><div class="panel-body"><p>Retrieve basic information about one provider.</p>

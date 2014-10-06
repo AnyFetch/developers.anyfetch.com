@@ -1539,7 +1539,8 @@ Retrieve all providers available for the current user, with document count, a pr
                     "account_name": "",
                     "document_count": 2,
                     "updated": "2014-07-23T12:01:16.036Z",
-                    "providing": true
+                    "providing": true,
+                    "current": true
                 },
                 {
                     "_type": "AccessToken",
@@ -1553,7 +1554,8 @@ Retrieve all providers available for the current user, with document count, a pr
                     "account_name": "matthieu.bacconnier@papiel.fr",
                     "document_count": 239,
                     "updated": "2014-07-22T14:14:16.640Z",
-                    "providing": false
+                    "providing": false,
+                    "current": false
                 },
                 {
                     "_type": "AccessToken",
@@ -1567,7 +1569,8 @@ Retrieve all providers available for the current user, with document count, a pr
                     "account_name": "matthieu.bacconnier@papiel.fr",
                     "document_count": 192,
                     "updated": "2014-07-23T11:24:37.644Z",
-                    "providing": false
+                    "providing": false,
+                    "current": false
                 },
                 {
                     "_type": "AccessToken",
@@ -1581,7 +1584,8 @@ Retrieve all providers available for the current user, with document count, a pr
                     "account_name": "matthieu.bacconnier@papiel.fr",
                     "document_count": 6747,
                     "updated": "2014-07-23T11:32:06.347Z",
-                    "providing": false
+                    "providing": false,
+                    "current": false
                 }
             ]
 
