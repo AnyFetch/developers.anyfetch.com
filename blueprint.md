@@ -533,6 +533,10 @@ The [`document_type`](/resources/document-types.html) value is mandatory, every 
 
 If no identifier is specified, it will be set to the value of the document's id.
 
+* Identifiers in `related` will be converted to their matching `id`
+* Access tokens in `user_access` will be converted to their matching `user`.
+* A name in `document_type` will be converted to its matching `id`.
+
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: document was not provided with this access token, and can't be updated.

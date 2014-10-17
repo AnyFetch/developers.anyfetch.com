@@ -4,7 +4,7 @@ subtitle: Say "Hello world"!
 layout: doc
 ---
 
-In this guide, we'll send a document to anyFetch and retrieve it using the API endpoint.
+In this guide, we'll send a document to anyFetch and retrieve it using REST API endpoints.
 
 ## What do I need?
 To follow this guide, you need:
@@ -12,6 +12,7 @@ To follow this guide, you need:
 * An account on anyFetch, with login and password. Create one on [the manager](https://manager.anyfetch.com/).
 * `curl` binary to send requests from the command line
 
+> We use curl for simplicity purpose. Of course, in a real use case, you'll need to use whatever utility your language provide (http for node, curl for php, requests for Python, Net::HTTP for Ruby)
 
 ## Setting up
 You need to base64 encode your login and password separated with a colon.
@@ -54,6 +55,9 @@ https://api.anyfetch.com/token
 
 Keep this token somewhere safe.
 
+> The `GET /token` endpoint is special and always returns the same token until you call `DELETE /token`. To create application specific token, [head to the manager](https://manager.anyfetch.com/).
+
+
 ## Providing data
 Now that we're set up, we can send our document. This requires two steps: first, sending metadata about our files, and then sending the actual file.
 
@@ -61,7 +65,7 @@ Now that we're set up, we can send our document. This requires two steps: first,
 Before sending the file, we need to give anyFetch basic informations about our documents. We'll send the following params:
 
 * `identifier`: this identifier must be unique by document and across our account, and will be used again if we need to update our document in the future. For now, we'll pick something simple, like `sample-txt`.
-* `document_type`: this value lets us specify what we know about our document. This can be `email`, `contact`... in our case, we'll keep this basic and set it to `file` which is the default for every document containing a file.  The document type will determine which hydraters it will go through once uploaded.
+* `document_type`: this value lets us specify what we know about our document. This can be `email`, `contact`... in our case, we'll keep this basic and set it to `file` which is the default for every document containing a file.  The document type will determine which hydraters the document will go through once uploaded. Hydraters can later update this value to something more specific.
 * `metadata`: a JSON object containing basic information about our document. For now, we'll simply send a `path` (path of the file on our local document tree, this can be useful to provide a search in folder name) and a `title` (formatted document name).
 
 ```sh
@@ -71,6 +75,8 @@ $ curl -XPOST \
 https://api.anyfetch.com/documents \
 -d '{"identifier": "sample-txt", "document_type": "file", "metadata": {"path": "/home/anyfetch/sample.txt", "title": "anyFetch sample file"}}'
 ```
+
+And here is the reply, formatted for convenience:
 
 ```json
 {
@@ -120,8 +126,8 @@ anyFetch replied with the new document. Keep the `id` somewhere, we'll need it l
 Things to note...
 
 * `creation_date` and `modification_date` were automatically set for you. You can override them when needed.
-* `provider.id`, for security reason, is not the OAuth token you used to provide, but an identifier of your provider. This lets users access the documents you created without compromising your token.
-* `user_access` is `null`. This means every user in the company can access the document.
+* `provider.id`, for security reason, is not the OAuth token you used to provide, but an identifier of your provider. This lets users access the documents you created without compromising your token. In our case, we used an user-specific token, so the `client` is null.
+* `user_access` is `null`. This means every user in the company can access, view and search the document. To restrict access, send an array with allowed users id (or any token matching the user)
 
 ### Send the file
 Now that we've created the document on anyFetch, we can associate it with a file. This is a simple file upload, under the `file` key.
@@ -197,10 +203,10 @@ https://api.anyfetch.com/documents/${ID}/raw
 }
 ```
 
-> Alternatively, you can also ping on `GET /documents/identifier/${identifier}/raw`. This trick works for all endpoint using an `id`, just replace `/${id}/` with `/identifier/${identifier}/`. See (this page)[/guides/concepts/identifier.html] for more details regarding `identifier`.
+> Alternatively, you can also ping on `GET /documents/identifier/${identifier}/raw`. This trick works for all endpoint using an `id`, just replace `/${id}/` with `/identifier/${identifier}/`. See [this page](/guides/concepts/identifier.html) for more details regarding `identifier`.
 
 ## Searching
-Alright, we're done. We can now reap the fruit of our hard work, and start searching...
+Alright, we're done. We can now reap the fruit of our "hard" work, and start searching...
 
 ```sh
 $ curl -H "Authorization: Bearer ${TOKEN}" \

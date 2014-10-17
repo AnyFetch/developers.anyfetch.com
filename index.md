@@ -34,7 +34,7 @@ Once all available hydraters have yielded their results, the document is indexed
 ### Companies and subcompanies
 A company holds documents, which can be shared amongst users of the same company. Two companies can never share documents between themselves.
 
-An admin user from a company can create a subcompany, which will hold other documents just like any other company ; however the parent company can delete the subcompany anytime.
+An admin user from a company can create a subcompany, which will hold other documents just like any other company (no communication with the parent company) ; however the parent company can delete the subcompany anytime.
 
 ### Document-type
 The word *document* is used here as an abstract term, and can represent a file, a contact, as well as a huge pile of analytics data.
