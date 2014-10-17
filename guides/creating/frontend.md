@@ -19,14 +19,12 @@ When using anyFetch, be wary as some endpoints may return megabytes of data. Fre
 
 ## Principles
 ### Endpoints
-Three endpoints are really useful for frontend-related queries:
+The main endpoint for frontend-related queries is [`GET /documents`](/endpoints/#documents-documents-get). This lets you search in all documents, filter by document-type, provider, date...
 
-* [`GET /documents`](/endpoints/#documents-documents-get) : to search in all documents, filter by document-type, provider, date...
-* [`GET /document_types`](/endpoints/#document-types-document-types) : to retrieve templates associated with document-types
-* [`GET /providers`](/endpoints/#providers-providers) : to retrieve the name of a provider, and its type
-
-Since these 3 endpoints are available with `GET`, you may want to try [batch calls](/endpoints/#index-batch-calls).
+After that, you may want to check `GET /documents/:id` which displays more data about the document than a simple snippet.
 
 ### Templating
 [Templating](/guides/concepts/templating.html) will be very useful to display data.
 However, if you want you can reimplement a templating system to display data the way you want.
+
+At anyfetch, we made [a bower lib](https://github.com/AnyFetch/anyfetch-assets) containing all required assets for a basic application: document types icons, providers, basic CSS... Feel free to reuse it, add your own images, or create a whole new experience.
