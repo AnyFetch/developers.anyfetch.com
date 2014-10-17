@@ -3,8 +3,11 @@ title: Guidestyle
 subtitle: Coding convention
 layout: doc
 ---
+> Read this file carefully if you plan on contributing to anyfetch code.
+> If you're just using anyfetch API, you don't need to read this.
 
 All projects follow the same convention.
+
 > Before trying to apply this, make sure the linter `npm run-script lint` passes ok.
 
 ## File structure
@@ -70,16 +73,16 @@ function isPercentage(val) {
 
 ## Application Packaging
 
-For easier deployment we need the AnyFetch Applications to follow a few conventions to have things running smoothly.
+For easier deployment we need all applications to follow a few conventions to keep things running smoothly.
 
 ### Executables
 
-- `bin/server` your main http server endpoint
-- `bin/init/*` any indempotent script you want to add to initialize your application (ex: seeding)
+- `bin/server`: your main http server endpoint
+- `bin/init/*`: any indempotent script you want to add to initialize your application (e.g. seeding)
 
 ### Environment Variables
 
-- `NODE_ENV` either set as `production`, `development` or `test`, default should be `development`
+- `NODE_ENV` either set as `production`, `development`, `staging` or `test`, default should be `development`
 - `PORT` the port to expose your app, default should be `8000`
 - `REDIS_URL` (optional) the redis url, default should be `redis://localhost`
 - `API_URL` (optional) when you rely on an anyfetch api address, expose this address, default should be `https://api.anyfetch.com`
@@ -90,11 +93,11 @@ For easier deployment we need the AnyFetch Applications to follow a few conventi
 
 #### Provider specific
 
-- `ANYFETCH_API_ID` the oauth anyfetch api client id (available on the manager)
-- `ANYFETCH_API_SECRET` the oauth anyfetch api client secret (available on the manager)
+- `ANYFETCH_API_ID` the OAuth anyfetch api client id (available on the manager)
+- `ANYFETCH_API_SECRET` the OAuth anyfetch api client secret (available on the manager)
 - `PROVIDER_URL` the url to access the provider
-- `<provider>_API_ID` the oauth provider api client id
-- `<provider>_API_SECRET` the oauth provider api client secret
+- `<provider>_API_ID` the OAuth provider api client id
+- `<provider>_API_SECRET` the OAuth provider api client secret
 
 ## Contributing workflow
 * Do not merge into `master` directly unless you're project owner and you know what you're doing. Always do a pull request.
