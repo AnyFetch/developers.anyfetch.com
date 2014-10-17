@@ -15,13 +15,12 @@ When you send the request to `/hydrate`, it will be queued on the hydrater's pen
 The hydrater will immediately reply with `202 Accepted` and nothing else; the hydration results will later be sent to `callback` URL.
 
 #### Hydration
-When it is your turn, the hydrater will download the file from `file_path` (so it needs to be available from Internet; sending the file as `multipart` on the first call is not allowed, as it would totally explode the hydrater queue).
+Once previous tasks are finished, the hydrater will download the file from `file_path`.
 
 Hydration will then occur. Once completed, the endpoint you specified as `callback` will be pinged with a `PATCH` verb and a json payload.
 
 #### Testing
-Sometime, you want to test the results and you don't want to ping another adress with the result.
-You can then use the `long_poll` option. This is not for production use, and only for testing purposes (anyway, in production, if the hydrater is busy, your request will be dropped). The `long_poll` option returns the result with the request (instead of returning instantly 202).
+For cases where you want to test the results and don't want to ping another adress with the result, you can then use the `long_poll` option. This is not for production use, and only for testing purposes (anyway, in production, if the hydrater is busy, your request will be dropped). The `long_poll` option returns the result with the request (instead of instantly returning 202).
 
 ```sh
 $ curl --header "Content-Type:application/json" --data '{"file_path":"https://raw2.github.com/AnyFetch/ocr.hydrater.anyfetch.com/763ca1c77b33451de3fff733ad850287b48d2f96/test/samples/sample.png", "long_poll":true}' https://ocr.anyfetch.com/hydrate
