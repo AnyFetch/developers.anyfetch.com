@@ -24,3 +24,5 @@ For convenience, this identifier is repeated in each reply from the API (even if
 
 ## Unicity
 `identifier` are unique by company. If you try to create a document with an `identifier` already provided by another `provider` on the same account, you'll get a `403 Forbidden` error.
+
+When using the same provider, the previous document will be replaced with the new one, keeping the same `id`.

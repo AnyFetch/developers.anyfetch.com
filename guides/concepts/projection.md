@@ -4,7 +4,7 @@ subtitle: Projection, you said?
 layout: doc
 ---
 
-Documents in anyFetch revolve around the notion of projection, that is to display only data relevant to the context.
+Documents in anyFetch revolve around the notion of **projection**, that is to display only data relevant to the context.
 
 The best way to understand projection is by example. Let's say you have a big PDF file, hydrated with the following metadata:
 
@@ -23,8 +23,8 @@ The best way to understand projection is by example. Let's say you have a big PD
             ...
         ],
         "author": "PDF Author",
-        "print_informations": "300dpi"
     }
+    ...
 }
 ```
 
