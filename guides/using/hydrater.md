@@ -54,7 +54,7 @@ $ curl --header "Content-Type:application/json" --data '{"file_path":"https://ra
 In this particular case, nothing was changed, but some hydraters can use the initial data to compute and improve their results.
 
 #### Hydrater status
-Hydrater queue can get quite long sometimes. You may want to check the status of an hydrater using `/status` endpoint:
+Hydrater queue can get quite long sometimes. You may want to check the status of a hydrater using `/status` endpoint:
 
 ```sh
 $ curl https://ocr.anyfetch.com/status

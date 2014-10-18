@@ -9,7 +9,7 @@
 
 ### Using existing projects
 * [Using a provider](/guides/using/provider.html)
-* [Using an hydrater](/guides/using/hydrater.html)
+* [Using a hydrater](/guides/using/hydrater.html)
 
 ### Creating new projects
 * [How to create my own frontend?](/guides/creating/frontend.html)
