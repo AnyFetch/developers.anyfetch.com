@@ -9,7 +9,7 @@ Documents are enhanced with data on the fly: an image with OCR, a document with 
 
 Creating a hydrater is very simple. Most AnyFetch hydraters are open-source, [check them](https://github.com/search?q=%40AnyFetch+hydrater).
 
-A hydrater needs to be registered on AnyFetch using `POST /hydraters`. When registering your hydrater, you will specify the endpoint to reach and the constraints describing the documents it can handle.
+A hydrater needs to be registered on AnyFetch using [`POST /hydraters`](endpoints/#hydraters-hydraters-post). When registering your hydrater, you will specify the endpoint to reach and the constraints describing the documents it can handle.
 
 Every time a provider sends data matching those constraints, the hydrater's endpoint will be pinged with the JSON document, a `file_path` parameter with the url to the file and a `callback` url to ping with the new document data.
 The hydrater should immediately reply with `202 Accepted` status code, indicating the task has been acknowledged and will be handled in the future.

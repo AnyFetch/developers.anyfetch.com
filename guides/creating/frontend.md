@@ -6,7 +6,7 @@ layout: doc
 
 Creating a frontend range from very easy to incredibly hard, depending on what you want to achieve.
 
-You'll need to read the documentation for [all endpoints](/endpoints), especially the `/documents/` one.
+You'll need to read the documentation for [all endpoints](/endpoints), especially the [`/documents/`](/endpoints/#documents) one.
 
 The [default frontend for anyFetch](https://github.com/AnyFetch/app.anyfetch.com) is open-sourced, and can be used for inspiration. You're welcome to fork.
 
@@ -21,7 +21,7 @@ When using anyFetch, be wary as some endpoints may return megabytes of data. Fre
 ### Endpoints
 The main endpoint for frontend-related queries is [`GET /documents`](/endpoints/#documents-documents-get). This lets you search in all documents, filter by document-type, provider, date...
 
-After that, you may want to check `GET /documents/:id` which displays more data about the document than a simple snippet.
+After that, you may want to check [`GET /documents/:id`](/endpoints/#documents-document-get) which displays more data about the document than a simple snippet.
 
 ### Templating
 [Templating](/guides/concepts/templating.html) will be very useful to display data.

@@ -1800,7 +1800,7 @@ Retrieve information about one hydrater.
                 "url": "https://markdown.anyfetch.com/hydrate",
                 "short_name": "markdown",
                 "description": "AnyFetch Hydrater for markdown files."
-            },
+            }
 
 
 ### Delete Hydrater [DELETE]

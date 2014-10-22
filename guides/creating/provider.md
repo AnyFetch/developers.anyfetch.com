@@ -9,13 +9,13 @@ A **provider** is the connector that retrieves data. You can use the providers w
 
 Creating a provider is very simple. Most anyFetch providers are open-source, [check them](https://github.com/search?q=%40AnyFetch+provider).
 
-Basically, a provider is a simple gateway between some data-source (Dropbox, a folder on your computer, Gmail) and anyFetch. You just need to take the data and send them using the `/documents` and `/documents/:id/file` API endpoints.
+Basically, a provider is a simple gateway between some data-source (Dropbox, a folder on your computer, Gmail) and anyFetch. You just need to take the data and send them using the [`POST /documents`](/endpoints/#documents-documents-post) and [`POST /documents/:id/file`](/endpoints/#documents-associated-file-post) API endpoints.
 
 ## Sending document
 Let's say we have a file on our local drive we want to provide.
 We also have a token to communicate with anyFetch.
 
-The first step will be to create a new document. Let's send the following JSON to `POST /documents`:
+The first step will be to create a new document. Let's send the following JSON to [`POST /documents`](/endpoints/#documents-documents-post):
 
 ```json
 {

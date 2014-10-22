@@ -24,7 +24,7 @@ You can now send requests using [basic authentication](/authentication.html): an
 ### Clean up your account
 > Warning: this will remove **all data** from this account! Only use on testing accounts.
 
-The first step will be to clean everything that may be available on your account. To do that, we'll send a simple `DELETE` request to `/reset`:
+The first step will be to clean everything that may be available on your account. To do that, we'll send a simple `DELETE` request to [`/reset`](/endpoints/#company-reset-company):
 
 ```sh
 $ curl -i -XDELETE \
@@ -40,7 +40,7 @@ Great! You've cleaned up your account.
 
 ### Retrieve a token
 Although you can do most things using Basic Authentication, tokens are faster to use, and generally more secure since you can revoke them at any time.
-For our test, we'll use a token:
+For our test, we'll use a token retrieved from [`GET /token`](/endpoints/#account-token-get):
 
 ```sh
 $ curl -H "Authorization: Basic ${BASE64}" \
@@ -55,7 +55,7 @@ https://api.anyfetch.com/token
 
 Keep this token somewhere safe.
 
-> The `GET /token` endpoint is special and always returns the same token until you call `DELETE /token`. To create application specific token, [head to the manager](https://manager.anyfetch.com/).
+> The [`GET /token`](/endpoints/#account-token-get) endpoint is special and always returns the same token until you call [`DELETE /token`](/endpoints/#account-token-delete). To create application specific token, [head to the manager](https://manager.anyfetch.com/).
 
 
 ## Providing data

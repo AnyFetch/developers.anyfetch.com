@@ -11,7 +11,7 @@ Here is the detailed overview of how this will work.
 ## Hydration workflow
 #### Starting a new hydration
 To hydrate a document, you need to specify two parameters : the `file_path` (an URL to download the file you wish to hydrate), and the `callback` (an URL where you want the hydrater to send the results).
-When you send the request to `/hydrate`, it will be queued on the hydrater's pending tasks queue.
+When you POST the request to `/hydrate`, it will be queued on the hydrater's pending tasks queue.
 The hydrater will immediately reply with `202 Accepted` and nothing else; the hydration results will later be sent to `callback` URL.
 
 #### Hydration
