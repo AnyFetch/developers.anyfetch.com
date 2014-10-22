@@ -94,7 +94,7 @@ https://api.anyfetch.com/subcompanies \
 
 You may customize the hydraters list according to your needs. When unspecified, a default list working for standard use-cases will be used.
 
-A renewed request for `GET /subcompanies` with our master token will now yield this subcompany. Note however the same request made with `newuser@subcompany.fr` will still be `[]`, since this user was migrated to the new subcompany which has no subcompanies by itself.
+A renewed request for [`GET /subcompanies`](/endpoints/#subcompanies-subcompanies-get) with our master token will now yield this subcompany. Note however the same request made with `newuser@subcompany.fr` will still be `[]`, since this user was migrated to the new subcompany which has no subcompanies by itself.
 
 You can now send documents as usual with the second user.
 
