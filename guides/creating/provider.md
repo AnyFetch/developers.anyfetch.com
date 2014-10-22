@@ -9,13 +9,13 @@ A **provider** is the connector that retrieves data. You can use the providers w
 
 Creating a provider is very simple. Most anyFetch providers are open-source, [check them](https://github.com/search?q=%40AnyFetch+provider).
 
-Basically, a provider is a simple gateway between some data-source (Dropbox, a folder on your computer, Gmail) and anyFetch. You just need to take the data and send them using the `/documents` and `/documents/:id/file` endpoints.
+Basically, a provider is a simple gateway between some data-source (Dropbox, a folder on your computer, Gmail) and anyFetch. You just need to take the data and send them using the [`POST /documents`](/endpoints/#documents-documents-post) and [`POST /documents/:id/file`](/endpoints/#documents-associated-file-post) API endpoints.
 
 ## Sending document
 Let's say we have a file on our local drive we want to provide.
 We also have a token to communicate with anyFetch.
 
-The first step will then be to create a new document. To do this, we'll send the following JSON to `/documents`:
+The first step will be to create a new document. Let's send the following JSON to [`POST /documents`](/endpoints/#documents-documents-post):
 
 ```json
 {
@@ -27,7 +27,7 @@ The first step will then be to create a new document. To do this, we'll send the
 }
 ```
 
-* `identifier` is a unique identifier you can choose, which can later be used to retrieve or update the document.
+* `identifier` is [a unique identifier of your choosing](/guides/concepts/identifier.html), which can later be used to retrieve or update the document.
 * `document_type` is set to `file` (some providers may use semantic information, for instance "customer". Here, we chose not to deal with the complexity: hydration stack will retrieve relevant data from the file).
 
 Although not mandatory, we also chose to send `metadata.path` to improve search relevance and help the hydration getting started the right way.
@@ -41,10 +41,10 @@ If everything went well, we'll get `204 No Content` -- our document was stored, 
 > You should read [how to use a provider](/guides/using/provider.html) for more details about authentication.
 
 Before being able to send data, you need to get a provider token.
-The user need to click on the name of your provider in the frontend. He'll then be redirected to the page you registered for initial setup, with a `?code` parameter. Setup everything you need to access your data (maybe there will be OAuth on the other side too, maybe you need to ask for some configuration).
+The user need to click on the name of your provider in the frontend. He'll then be redirected to the page you registered for initial setup, with a `?code` parameter. Setup everything you need to access your data (maybe there will be OAuth on the other side too, or you need to ask for some configuration).
 
 You can then initiate the OAuth flow by trading the code for an `access_token`.
-To do so, send to `https://manager.anyfetch.com/oauth/access_token` the following values:
+To do so, send to `POST https://manager.anyfetch.com/oauth/access_token` the following values:
 
 ```javascript
 {

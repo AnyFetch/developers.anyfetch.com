@@ -26,6 +26,7 @@ Retrieve basic information about a file (word, pdf, ppt, txt, rtf, png...). Will
 Retrieve textual information from an image by running an OCR algorithm. Best results are obtained with scanned documents.
 
 * Input document type: `file`
+* Output document type: `image`
 * Output metadata:
     - `text`
 
@@ -86,6 +87,7 @@ Generate thumbnails and preview from an image, store them directly in base64.
 Retrieve IPTC data from an image (picture creator, keywords, description...)
 
 * Input document type: `file`
+* Output document type: `image`
 * Output data:
    - `author`
    - `description`

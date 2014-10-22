@@ -5,11 +5,11 @@ layout: doc
 ---
 Documents are enhanced with data on the fly: an image with OCR, a document with full-text extraction. This process is achieved using **hydraters**.
 
-> Before reading about creating a new hydrater, you may be interested in [how to use an hydrater](/guides/using/hydrater.html).
+> Before reading about creating a new hydrater, you may be interested in [how to use a hydrater](/guides/using/hydrater.html).
 
-Creating an hydrater is very simple. Most AnyFetch hydraters are open-source, [check them](https://github.com/search?q=%40AnyFetch+hydrater).
+Creating a hydrater is very simple. Most AnyFetch hydraters are open-source, [check them](https://github.com/search?q=%40AnyFetch+hydrater).
 
-A hydrater needs to be registered on AnyFetch using an API endpoint. When registering your hydrater, you will specify the endpoint to reach and the constraints describing the documents it can handle.
+A hydrater needs to be registered on AnyFetch using [`POST /hydraters`](endpoints/#hydraters-hydraters-post). When registering your hydrater, you will specify the endpoint to reach and the constraints describing the documents it can handle.
 
 Every time a provider sends data matching those constraints, the hydrater's endpoint will be pinged with the JSON document, a `file_path` parameter with the url to the file and a `callback` url to ping with the new document data.
 The hydrater should immediately reply with `202 Accepted` status code, indicating the task has been acknowledged and will be handled in the future.
@@ -86,7 +86,7 @@ You can specify a `priority` for your hydrater. Three states are at the moment a
 
 When several hydraters are matching the document, hydraters having the higher priority will be run before the others. This means for example that low priority hydraters will be run in parallel after every high and normal priority hydraters are successfuly run.
 
-Let's say for instance we want to hydrate `eml` files. The `plaintext` hydrater would return the raw content, which is clearly not interesting. To prevent this behaviour, set a positive priority for the `eml` hydrater therefore it will run before `plaintext`, that will not match on the next round:
+Let's say for instance we want to hydrate `eml` files. The `plaintext` hydrater would return the raw content, which is clearly not interesting. To prevent this behaviour, set a positive priority for the `eml` hydrater, therefore preventing `plaintext`:
 
 ```javascript
   priority: 1,
@@ -103,11 +103,13 @@ Let's say for instance we want to hydrate `eml` files. The `plaintext` hydrater 
   ]
 ```
 
-## Hydrating and providing
-In some (rare) cases, you may need to access other documents (for instance, a zip hydrater creating new documents for each file in the archive). To do this, you are entrusted with the `access_token` used by the provider, so you can create, update or delete other documents on the account.
+On the next hdyration round, the document will not match `plaintext` anymore, and the hdyration process will continue.
 
-## Registering an hydrater
-To create an hydrater, you can `POST /hydraters` with your hydrater data; for instance:
+## Hydrating and providing
+In some (rare) cases, you may need to access other documents from the same account (for instance, a zip hydrater creating new documents for each file in the archive). To do this, you are entrusted with the `access_token` used by the provider, so you can create, update or delete other documents on the account.
+
+## Registering a hydrater
+To create a hydrater, you can `POST /hydraters` with your hydrater data; for instance:
 
 ```javascript
 {

@@ -14,7 +14,7 @@ To follow this guide, you need:
 * An account on anyFetch, with login and password.
 * `curl` binary
 
-We use `curl` for simplicity purpose. Of course, in a real use case, you'll need to use whatever utility your language provide (`http` for node, `curl` for php, `requests` for Python, `Net::HTTP` for Ruby)
+> We use `curl` for simplicity purpose. Of course, in a real use case, you'll need to use whatever utility your language provide (`http` for node, `curl` for php, `requests` for Python, `Net::HTTP` for Ruby)
 
 ## Setting up
 Retrieve your token as described on the ["Hello world" tutorial](/guides/tutorials/hello-world.html): `GET /token`.
@@ -42,21 +42,16 @@ This list is common to all admins in your company.
 ### Creating a new subcompany
 > Event: you have a new customer.
  
-Using our master token, we'll create a subcompany. This subcompany will only be able to view its own documents list, and to share documents with people in the same subcompany.
+Using our master token, we'll create a subcompany. This subcompany will only be able to view its own documents list, and to share documents with people in the same subcompany. to create a subcompany, you need to specify a user currently in your company: he'll leave the parent company and becomes the first admin for the new company.
 
-There are two tricks however:
-
-* creating a subcompany migrate the currently connected user to the new subcompany;
-* only admins can create subcompanies.
-
-Therefore, before we create our subcompany, we'll need to create a new admin:
+Therefore, before we create our subcompany, we'll need to create a new user:
 
 ```sh
 $ curl -XPOST \
 -H "Authorization: Bearer ${MASTER_TOKEN}" \
 -H "Content-Type:application/json" \
 https://api.anyfetch.com/users \
--d '{"email": "newuser@subcompany.fr", "name": "New User", "password": "password", "is_admin": true}'
+-d '{"email": "newuser@subcompany.fr", "name": "New User", "password": "password"}'
 ```
 
 ```json
@@ -65,19 +60,18 @@ https://api.anyfetch.com/users \
     "id":"534ea1ca50d473ce08985cb1",
     "email":"newuser@subcompany.fr",
     "name":"New User",
-    "is_admin":true,
+    "is_admin":false,
     "user_url":"/users/534ea1ca50d473ce08985cb1"
 }
 ```
 
-We can now connect as our new user (for instance by base64-encoding `newuser@subcompany.fr:password` into `bmV3dXNlckBzdWJjb21wYW55LmZyOnBhc3N3b3Jk`) and send the query to create the subcompany:
-
+We can now create the subcompany (only admin can do this), specifying the new user should be the admin:
 ```sh
 curl -XPOST \
 -H "Authorization: Basic ${BASE64}" \
 -H "Content-Type:application/json" \
 https://api.anyfetch.com/subcompanies \
--d '{"name": "Subcompany"}'
+-d '{"name": "Subcompany", "user": "534ea1ca50d473ce08985cb1"}'
 ```
 
 ```json
@@ -98,16 +92,16 @@ https://api.anyfetch.com/subcompanies \
 
 > Note: subcompany name must be unique across all companies.
 
-You may customize the hydraters list according to your needs.
+You may customize the hydraters list according to your needs. When unspecified, a default list working for standard use-cases will be used.
 
-A renewed request for `GET /subcompanies` with our master token will now yield this subcompany. Note however the same request made with `newuser@subcompany.fr` will still be `[]`, since this user was migrated to the new subcompany which has no subcompanies by itself.
+A renewed request for [`GET /subcompanies`](/endpoints/#subcompanies-subcompanies-get) with our master token will now yield this subcompany. Note however the same request made with `newuser@subcompany.fr` will still be `[]`, since this user was migrated to the new subcompany which has no subcompanies by itself.
 
 You can now send documents as usual with the second user.
 
 ### Deleting subcompany
 > Event: you want to remove a customer
 
-You just need to send with your master token a query to delete the subcompany:
+You just need to send a query with your master token to delete the subcompany:
 
 ```sh
 curl -XDELETE \
@@ -115,4 +109,4 @@ curl -XDELETE \
 https://api.anyfetch.com/subcompanies/534ea2bd1d6202ba087383ed
 ```
 
-And *voilà*, everything has been removed.
+And *voilà*, everything has been removed (users, documents, providers...).
