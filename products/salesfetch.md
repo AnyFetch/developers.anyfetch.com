@@ -59,7 +59,9 @@ To do so, we need to create a Visual Force Page.
 Move to your VisualForce Pages administration panel in **App Setup > Develop > Pages** and create a new one by clicking on the **New** button on top of the page list.
 
 This page will be inserted in the Contact layout.
-Add in the Label input: "`Context Contact`" and in the Name input: "`ContextContact`". You can now fill the Visualforce Markup text area with this code:
+Add in the Label input: "`Context Contact`" and in the Name input: "`ContextContact`".
+
+You can now fill the Visualforce Markup text area with this code:
 
 ```html
 <apex:page StandardController="Contact">
@@ -92,3 +94,42 @@ On the top of the page drag the **ContextContact** in **Visualforce Pages > Cont
 Your Context is now integrated in your layout, you can save this layout by clicking on **Save** on the top of your window. Check your integration by going to the **Contact Tab** and scrolling down to the **Context Section**. The users are now ready to connect their data sources to add documents in the context.
 
 ![Mike Smith](/images/products/salesfetch/mike-smith.png)
+
+### For Salesforce1
+Let's say you want to display a Salesfetch timeline next to your contacts in the desktop edition of Salesforce.
+
+To do so, we need to create a new Visual Force Page.
+Move to your VisualForce Pages administration panel in **App Setup > Develop > Pages** and create a new one by clicking on the **New** button on top of the page list.
+
+This page will be inserted in the Contact layout.
+Add in the Label input: "`Mobile Context Contact`" and in the Name input: "`MobileContextContact`". Don't forget to check "Available for Salesforce mobile apps".
+
+You can now fill the Visualforce Markup text area with this code:
+
+```html
+<apex:page StandardController="Contact">
+    <anyfetch:IframeComponent Query="{!Contact.Name}" 
+        SFDCId="{!Contact.Id}" 
+        Display="{!Contact.Name}" 
+        Type="Contact">
+    </anyfetch:IframeComponent>
+</apex:page>
+```
+
+![Visual Force Page for mobile contact](/images/products/salesfetch/mobile-force-page.png)
+
+Save the page, and now click on **Customize > Contacts > Buttons, Links, and Actions** and select **New Button or Link**.
+
+![Button](/images/products/salesfetch/button-link.png)
+
+Then go to the Contacts Page Layout, in **App Setup > Customize > Contacts > Page Layouts**. If you have more than one layout, execute the following instruction on each layout to allow all users to access the context panel. Click on **Edit** next to the layout
+
+Click on **Buttons**, then drag and drop the buttons onto "Custom buttons".
+
+![Mobile layout properties](/images/products/salesfetch/mobile-layout-properties.png)
+
+Hit save, and reload your salesforce1:
+
+![Mobile layout properties](/images/products/salesfetch/salesforce1.png)
+
+Of course, this is just samples of whant you can do to integrate Salesfetch onto your Salesforce. You may change the described workflow to display the timeline directly in Salesforce1, in a custom tab...
