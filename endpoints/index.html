@@ -517,6 +517,11 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <p>Send a new document on AnyFetch.</p>
 <p>The <a href="/resources/document-types.html"><code>document_type</code></a> value is mandatory, every other parameter is optional, however in nearly all cases you’ll specify <a href="/guides/concepts/identifier.html">a unique <code>identifier</code> to retrieve the document later</a>.</p>
 <p>If no identifier is specified, it will be set to the value of the document’s id.</p>
+<ul>
+<li>Identifiers in <code>related</code> will be converted to their matching <code>id</code></li>
+<li>Access tokens in <code>user_access</code> will be converted to their matching <code>user</code>.</li>
+<li>A name in <code>document_type</code> will be converted to its matching <code>id</code>.</li>
+</ul>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
@@ -1609,13 +1614,13 @@ See <a href="/guides/creating/hydrater.html">how to create a hydrater</a>.</p>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#354ced3c8ea4636c44558fe7d45ba5ec" class="pull-right">Toggle</a></li><li id="354ced3c8ea4636c44558fe7d45ba5ec" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
-    <span class="hljs-string">"_type"</span>: <span class="hljs-string">"Hydrater"</span>,
-    <span class="hljs-string">"id"</span>: <span class="hljs-string">"5252ce4ce4cfcd16f55a565c"</span>,
-    <span class="hljs-string">"url"</span>: <span class="hljs-string">"https://markdown.anyfetch.com/hydrate"</span>,
-    <span class="hljs-string">"short_name"</span>: <span class="hljs-string">"markdown"</span>,
-    <span class="hljs-string">"description"</span>: <span class="hljs-string">"AnyFetch Hydrater for markdown files."</span>
-},
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#c5da6e5a0dc799c3a36fe3d4d76fc8ab" class="pull-right">Toggle</a></li><li id="c5da6e5a0dc799c3a36fe3d4d76fc8ab" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Hydrater"</span></span>,
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55a565c"</span></span>,
+    "<span class="hljs-attribute">url</span>": <span class="hljs-value"><span class="hljs-string">"https://markdown.anyfetch.com/hydrate"</span></span>,
+    "<span class="hljs-attribute">short_name</span>": <span class="hljs-value"><span class="hljs-string">"markdown"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"AnyFetch Hydrater for markdown files."</span>
+</span>}
 </code></pre></li></ul></section><section id="hydraters-hydrater-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Delete Hydrater</span></div><div style="float:left"><a href="#hydraters-hydrater-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/hydraters/{id}</code></div></div><div class="panel-body"><p>Delete a hydrater.
 You must be admin of your company to delete a hydrater.
 You cannot delete a hydrater which is owned by one of your subcompanies.</p>
