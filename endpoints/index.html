@@ -145,7 +145,7 @@ Should have a <code>status</code> of “OK”.</p>
 </code></pre></li></ul></section><section id="account-token-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Remove token</span></div><div style="float:left"><a href="#account-token-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/token</code></div></div><div class="panel-body"><blockquote>
 <p>This endpoint can only be used with <code>Basic</code> authentication.</p>
 </blockquote>
-<p>Remove the token returned by <code>GET /token</code>.</p>
+<p>Remove the token returned by <code>GET /token</code>, and associated documents.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
@@ -154,7 +154,7 @@ Should have a <code>status</code> of “OK”.</p>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="company">Company&nbsp;<a href="#company"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="company-company">Company&nbsp;<a href="#company-company"><i class="fa fa-link"></i></a></h4><section id="company-company-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve current company</span></div><div style="float:left"><a href="#company-company-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/company</code></div></div><div class="panel-body"><p>Retrieve the current company details.</p>
-<p>Contains your company name, and the list of hydraters used on the account.</p>
+<p>Contains your company name, the list of hydraters used on the account and basic stats (document count, user count…)</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
@@ -181,6 +181,7 @@ Should have a <code>status</code> of “OK”.</p>
 </code></pre></li></ul></section><h4 id="company-update-company-documents">Update company documents&nbsp;<a href="#company-update-company-documents"><i class="fa fa-link"></i></a></h4><section id="company-update-company-documents-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Update documents</span></div><div style="float:left"><a href="#company-update-company-documents-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/company/update</code></div></div><div class="panel-body"><p>Ping all providers for the current company, checking for new available documents.</p>
 <p>Return the response code from each provider—202 means <code>Accepted</code>. Most provider will reply with <code>429 Too Many Requests</code> if they’re already working on this user’s tasks.
 Note that even if each providers responds with an error, this endpoint will still return 200 and the status for each provider.</p>
+<p>See <code>GET /providers</code> to map id to real providers.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
@@ -206,7 +207,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <section id="subcompanies-subcompanies-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve all subcompanies</span></div><div style="float:left"><a href="#subcompanies-subcompanies-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/subcompanies</code></div></div><div class="panel-body"><blockquote>
 <p>This endpoint is only available to admin users.</p>
 </blockquote>
-<p>Retrieve all subcompanies from the current company.</p>
+<p>Retrieve all subcompanies from the current company, returning the same detail as <code>GET /company</code>.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
@@ -310,7 +311,10 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
     subcompany_count: <span class="hljs-number">0</span>,
     documents_per_update: <span class="hljs-number">2500</span>
 }
-</code></pre></li></ul></section><section id="subcompanies-subcompany-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Delete a subcompany</span></div><div style="float:left"><a href="#subcompanies-subcompany-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/subcompanies/{id}</code></div></div><div class="panel-body"><p>Delete the subcompany, <strong>all</strong> its documents and <strong>all</strong> its users.</p>
+</code></pre></li></ul></section><section id="subcompanies-subcompany-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Delete a subcompany</span></div><div style="float:left"><a href="#subcompanies-subcompany-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/subcompanies/{id}</code></div></div><div class="panel-body"><blockquote>
+<p>This endpoint is only available to admin users.</p>
+</blockquote>
+<p>Delete the subcompany, <strong>all</strong> its documents and <strong>all</strong> its users.</p>
 <p>By default, you are not allowed to remove a subcompany with subsubcompanies. To force the subcompany removal, add <code>?force=true</code>.</p>
 <blockquote>
 <ul>
@@ -322,7 +326,10 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="subcompanies-reset-a-subcompany">Reset a subcompany&nbsp;<a href="#subcompanies-reset-a-subcompany"><i class="fa fa-link"></i></a></h4><section id="subcompanies-reset-a-subcompany-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Reset a subcompany</span></div><div style="float:left"><a href="#subcompanies-reset-a-subcompany-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/subcompanies/{id}/reset</code></div></div><div class="panel-body"><p>Reset <strong>all</strong> documents, tokens and providers from the subcompany.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="subcompanies-reset-a-subcompany">Reset a subcompany&nbsp;<a href="#subcompanies-reset-a-subcompany"><i class="fa fa-link"></i></a></h4><section id="subcompanies-reset-a-subcompany-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Reset a subcompany</span></div><div style="float:left"><a href="#subcompanies-reset-a-subcompany-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/subcompanies/{id}/reset</code></div></div><div class="panel-body"><blockquote>
+<p>This endpoint is only available to admin users.</p>
+</blockquote>
+<p>Reset <strong>all</strong> documents, tokens and providers from the subcompany (using the same bahavior as <code>DELETE /company/reset</code>).</p>
 <p>Subcompanies and users are not affected.</p>
 <blockquote>
 <ul>
@@ -336,7 +343,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="documents">Documents&nbsp;<a href="#documents"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>Endpoints for retrieving documents</p>
 <h4 id="documents-documents">Documents&nbsp;<a href="#documents-documents"><i class="fa fa-link"></i></a></h4><p>Access documents resources.</p>
 <section id="documents-documents-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Search documents</span></div><div style="float:left"><a href="#documents-documents-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents{?search, ?before, ?after, ?document_type, ?provider, ?id, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit, ?sort, ?render_templates, ?strict}</code></div></div><div class="panel-body"><p>Search within all available data for documents matching specified filter.</p>
-<p>Return informations aggregated over the result set. The <code>score</code> key indicated document’s relevance regarding query.</p>
+<p>Return informations aggregated over the result set. The <code>score</code> key indicates document’s relevance regarding query.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
@@ -344,20 +351,20 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <li><code>409 InvalidArgument</code>: malformed search query, with misused characters (such as <code>+ - &amp;&amp; || ! ( ) { } [ ] ^ \&quot; ~ * ? : \\</code>)</li>
 </ul>
 </blockquote>
-</div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>search</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>john smith</span></span><p>Search query, probably the most important parameter for this query</p>
+</div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>search</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>john smith</span></span><p>Search query, probably the most important parameter for this query.</p>
 </dd><dt>before</dt><dd><code>date</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>2014-03-21</span></span><p>Only display documents created before this date.</p>
 </dd><dt>after</dt><dd><code>date</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>2014-01-25</span></span><p>Only display documents created after this date.</p>
 </dd><dt>id</dt><dd><code>array</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>5252ce4ce4cfcd16f55cfa3f</span></span><p>Only retrieve documents matching this id. <small>You can use the param multiple times to allow for multiples <code>id</code>, for instance <code>?id=1&amp;id=2&amp;id=3</code></small>.</p>
 </dd><dt>document_type</dt><dd><code>array</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>5252ce4ce4cfcd16f55cfa3f</span></span><p>Only retrieve documents matching this document type. <small>You can use the param multiple times to allow for multiples <code>document_type</code></small>.</p>
-</dd><dt>provider</dt><dd><code>array</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>5252ce4ce4cfcd16f55cfa3f</span></span><p>Only retrieve documents matching this provider. <small>You can use the param multiple times to allow for multiples <code>provider</code></small></p>
-</dd><dt>meta</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>John</span></span><p>(prepend name with @) Full text search on <code>meta</code> key.  Replace <code>meta</code> with the name of the meta you wish to search on, for instance <code>?@name=john</code></p>
+</dd><dt>provider</dt><dd><code>array</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>5252ce4ce4cfcd16f55cfa3f</span></span><p>Only retrieve documents matching this provider. <small>You can use the param multiple times to allow for multiples <code>provider</code>.</small></p>
+</dd><dt>meta</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>John</span></span><p>(prepend name with @) Full text search on <code>meta</code> key.  Replace <code>meta</code> with the name of the meta you wish to search on, for instance <code>?@name=john</code>.</p>
 </dd><dt>has_meta</dt><dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Only returns document having the <code>meta</code> key. Replace <code>meta</code> with the name of the meta you wish to search on.</p>
-</dd><dt>snippet_size</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>200</span></span><p>Number of chars to include in the snippet</p>
+</dd><dt>snippet_size</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>200</span></span><p>Number of chars to include in the snippet.</p>
 </dd><dt>start</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>5</span></span><p>0-based index of the first item to retrieve (for pagination).</p>
-</dd><dt>limit</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>20</span></span><p>Max number of items to retrieve (for pagination)</p>
+</dd><dt>limit</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>20</span></span><p>Max number of items to retrieve (for pagination).</p>
 </dd><dt>sort</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>creationDate</span></span><p>Sort criteria. Can be <code>creationDate</code> (sort by document creation date), <code>modificationDate</code> (sort by last modification date) or <code>_score</code> (default, sort by relevance to the query). Prepend with a <code>-</code> to reverse order (e.g. <code>-creationDate</code>).</p>
 </dd><dt>render_templates</dt><dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>false</span></span><p>Whether to pre-render the HTML for you in the results. Documents will have the keys <code>rendered_snippet</code> and <code>rendered_title</code>. The <code>data</code> key will be removed for faster transfer.</p>
-</dd><dt>strict</dt><dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>true</span></span><p>When using strict mode, only results matching exactly the query will be returned (a search for “John Doe” will never return documents about “Doe” only)</p>
+</dd><dt>strict</dt><dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>true</span></span><p>When using strict mode, only results matching exactly the query will be returned (a search for “John Doe” will never return documents about “Doe” only).</p>
 </dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#5c1068bb65588dc3150671f1ec323502" class="pull-right">Toggle</a></li><li id="5c1068bb65588dc3150671f1ec323502" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">facets</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">document_types</span>": <span class="hljs-value">[
