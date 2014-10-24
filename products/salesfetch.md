@@ -133,3 +133,44 @@ Hit save, and reload your salesforce1:
 ![Mobile layout properties](/images/products/salesfetch/salesforce1.png)
 
 Of course, this is just samples of whant you can do to integrate Salesfetch onto your Salesforce. You may change the described workflow to display the timeline directly in Salesforce1, in a custom tab...
+
+## Further customisation
+The Context Panel configuration offers you the possibility to create context fitting your business needs. Both `anyfetch:IframeComponent` and `anyfetch:ContextButtonComponent` need several information to execute a consistent search into your documents.
+
+
+|  Name       | Description          |
+| ----------- | -------------------- |
+| Type        | Concerned Salesforce record type (eg. Contact, Lead, Account or a CustomObject ...). |
+| SFDCId      | Concerned Salesforce record Id.  |
+| Display     | Display string displayed on the top of the Context Panel.  |
+| Query       | Actual query executed on your documents.  |
+
+
+Knowing that Salesforce dynamically generate each Visualforce Page, you'll need to use Visualforce Page markup to bind each context page with the selected record. In fact, `SFDCId`, `Display` and `Query` parameters should be passed as `{![object type].[field name]}` to be evaluated by Salesforce.
+
+### Examples
+The following code let you attach a context to a **Lead** record. The displayed context will be the `Lead.Name` and the provided context will return all your documents containing the `Lead.Name` field.
+
+```html
+<apex:page StandardController="Lead">
+    <anyfetch:IframeComponent
+        Query="{!Lead.Name}"
+        SFDCId="{!Lead.Id}"
+        Display="{!Lead.Name}"
+        Type="Lead">
+    </anyfetch:IframeComponent>
+</apex:page>
+```
+
+The `Display` and `Query` parameters don't need to have the same value, `Display` let you create a user-friendly context. For instance, if you want to attach a context to your **Contracts** knowing that your contracts follow the `Contract-[Contract Number]` naming standard, the resulting Context configuration will be:
+
+```html
+<apex:page StandardController="Contract">
+    <anyfetch:IframeComponent
+        Query="Contract-{!Contract.ContractNumber}"
+        SFDCId="{!Contract.Id}"
+        Display="{!Contract.Name}"
+        Type="Contract">
+    </anyfetch:IframeComponent>
+</apex:page>
+```
