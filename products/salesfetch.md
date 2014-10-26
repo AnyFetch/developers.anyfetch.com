@@ -56,7 +56,7 @@ Installation is now complete, you can add Salesfetch to your Salesforce objects.
 Let's say you want to display a Salesfetch timeline next to your contacts in the desktop edition of Salesforce.
 
 To do so, we need to create a Visual Force Page.
-Move to your VisualForce Pages administration panel in **App Setup > Develop > Pages** and create a new one by clicking on the **New** button on top of the page list.
+Move to your VisualForce Pages administration panel in **Build > Develop > Pages** and create a new one by clicking on the **New** button on top of the page list.
 
 This page will be inserted in the Contact layout.
 Add in the Label input: "`Context Contact`" and in the Name input: "`ContextContact`".
@@ -77,7 +77,7 @@ You can now fill the Visualforce Markup text area with this code:
 
 When you're done, click on **Save** on the top menu.
 
-Then go to the Contact Page Layout, in **App Setup > Customize > Contacts > Page Layouts**. If you have more than one layout, execute the following instruction on each layout to allow all users to access the context panel. Click on **Edit** next to the layout.
+Then go to the Contact Page Layout, in **Build > Customize > Contacts > Page Layouts**. If you have more than one layout, execute the following instruction on each layout to allow all users to access the context panel. Click on **Edit** next to the layout.
 
 Click and drag on **Visualforce Pages > Section** and drop it just after your custom link section. The following panel should be displayed.
 
@@ -99,7 +99,7 @@ Your Context is now integrated in your layout, you can save this layout by click
 Let's say you want to display a Salesfetch timeline next to your contacts in the desktop edition of Salesforce.
 
 To do so, we need to create a new Visual Force Page.
-Move to your VisualForce Pages administration panel in **App Setup > Develop > Pages** and create a new one by clicking on the **New** button on top of the page list.
+Move to your VisualForce Pages administration panel in **Build > Develop > Pages** and create a new one by clicking on the **New** button on top of the page list.
 
 This page will be inserted in the Contact layout.
 Add in the Label input: "`Mobile Context Contact`" and in the Name input: "`MobileContextContact`". Don't forget to check "Available for Salesforce mobile apps".
@@ -122,7 +122,7 @@ Save the page, and now click on **Customize > Contacts > Buttons, Links, and Act
 
 ![Button](/images/products/salesfetch/button-link.png)
 
-Then go to the Contacts Page Layout, in **App Setup > Customize > Contacts > Page Layouts**. If you have more than one layout, execute the following instruction on each layout to allow all users to access the context panel. Click on **Edit** next to the layout
+Then go to the Contacts Page Layout, in **Build > Customize > Contacts > Page Layouts**. If you have more than one layout, execute the following instruction on each layout to allow all users to access the context panel. Click on **Edit** next to the layout
 
 Click on **Buttons**, then drag and drop the buttons onto "Custom buttons".
 
