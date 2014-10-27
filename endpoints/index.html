@@ -88,7 +88,7 @@ h4 {
   padding-bottom: 12px;
   overflow-y: auto;
 }
-@media (max-width: 1199px) {
+@media( max-width: 1199px) {
   #nav {
     min-width: 212px;
   }
@@ -342,7 +342,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="documents">Documents&nbsp;<a href="#documents"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>Endpoints for retrieving documents</p>
 <h4 id="documents-documents">Documents&nbsp;<a href="#documents-documents"><i class="fa fa-link"></i></a></h4><p>Access documents resources.</p>
-<section id="documents-documents-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Search documents</span></div><div style="float:left"><a href="#documents-documents-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents{?search, ?before, ?after, ?document_type, ?provider, ?id, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit, ?sort, ?render_templates, ?strict}</code></div></div><div class="panel-body"><p>Search within all available data for documents matching specified filter.</p>
+<section id="documents-documents-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Search documents</span></div><div style="float:left"><a href="#documents-documents-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents{?search,before,after,document_type,provider,id,_meta,has_meta,snippet_size,start,limit,sort,render_templates,strict}</code></div></div><div class="panel-body"><p>Search within all available data for documents matching specified filter.</p>
 <p>Return informations aggregated over the result set. The <code>score</code> key indicates document’s relevance regarding query.</p>
 <blockquote>
 <ul>
@@ -517,7 +517,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
     "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
     "<span class="hljs-attribute">max_score</span>": <span class="hljs-value"><span class="hljs-number">0.58171546</span>
 </span>}
-</code></pre></li></ul></section><section id="documents-documents-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create new document</span></div><div style="float:left"><a href="#documents-documents-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/documents{?search, ?before, ?after, ?document_type, ?provider, ?id, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit, ?sort, ?render_templates, ?strict}</code></div></div><div class="panel-body"><blockquote>
+</code></pre></li></ul></section><section id="documents-documents-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create new document</span></div><div style="float:left"><a href="#documents-documents-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/documents{?search,before,after,document_type,provider,id,_meta,has_meta,snippet_size,start,limit,sort,render_templates,strict}</code></div></div><div class="panel-body"><blockquote>
 <p>This endpoint can only be used with token authentication.</p>
 <p>You can’t send a file and a document at the same time, you need to send the document first and then send the file on <code>/documents/:id/file</code>.</p>
 </blockquote>
@@ -583,7 +583,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <p>Please note: for every endpoint in the form <code>/documents/{id}</code>, you can also use an alternative URL <code>/documents/identifier/{identifier}</code> where <code>identifier</code> is the url-encoded provider identifier.</p>
 </blockquote>
 <p>Data regarding a document.</p>
-<section id="documents-document-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get Document</span></div><div style="float:left"><a href="#documents-document-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents/{id}{?search, ?render_templates}</code></div></div><div class="panel-body"><p>A single document with its details, <a href="/guides/concepts/projection.html">projected according to its <code>document_type</code></a>. For raw data access, use <code>GET /documents/:id/raw</code></p>
+<section id="documents-document-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get Document</span></div><div style="float:left"><a href="#documents-document-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents/{id}{?search,render_templates}</code></div></div><div class="panel-body"><p>A single document with its details, <a href="/guides/concepts/projection.html">projected according to its <code>document_type</code></a>. For raw data access, use <code>GET /documents/:id/raw</code></p>
 <p>Result contains, amongst other :</p>
 <ul>
 <li><code>full</code> projection, in <code>data</code>,</li>
@@ -602,57 +602,57 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 </dd><dt>search</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>john smith</span></span><p>String to highlight in the rendered document</p>
 </dd><dt>render_templates</dt><dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>false</span></span><p>Whether to pre-render the HTML for you in the result. Document will have the keys <code>rendered_full</code> and <code>rendered_title</code>. The <code>data</code> key will be removed for faster transfer.</p>
 </dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#b60807efd6152f75a0248019a299e8a3" class="pull-right">Toggle</a></li><li id="b60807efd6152f75a0248019a299e8a3" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
-    "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Document"</span></span>,
-    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53ce71b24882ec9d58f08235"</span></span>,
-    "<span class="hljs-attribute">identifier</span>": <span class="hljs-value"><span class="hljs-string">"https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/79516afe8f2cdfba"</span></span>,
-    "<span class="hljs-attribute">creation_date</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-22T14:14:10.150Z"</span></span>,
-    "<span class="hljs-attribute">modification_date</span>": <span class="hljs-value"><span class="hljs-string">"2014-02-07T12:45:56.254Z"</span></span>,
-    "<span class="hljs-attribute">provider</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"AccessToken"</span></span>,
-        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53ce7198ebb324595ee9b49c"</span></span>,
-        "<span class="hljs-attribute">client</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Client"</span></span>,
-            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Google Contacts"</span></span>,
-            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"52bff1eec8318cb228000001"</span>
-        </span>}</span>,
-        "<span class="hljs-attribute">is_basic_token</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
-        "<span class="hljs-attribute">account_name</span>": <span class="hljs-value"><span class="hljs-string">"matthieu.bacconnier@papiel.fr"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">company</span>": <span class="hljs-value"><span class="hljs-string">"53c0190ae83613e049a4845b"</span></span>,
-    "<span class="hljs-attribute">document_type</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
-        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3a"</span></span>,
-        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"contact"</span></span>,
-        "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n\n  &lt;section class=\"two-columns\"&gt;\n    &lt;aside&gt;\n      &lt;img src=\"{{ image }}\"/&gt;    \n    &lt;/aside&gt;\n    &lt;section&gt;\n      &lt;h1&gt;&lt;a href=\"anyfetch://search/{{name}}\"&gt;{{{ name }}}&lt;/a&gt;&lt;/h1&gt;\n      &lt;span&gt;{{{ job }}}&lt;/span&gt;   \n    &lt;/section&gt;\n  &lt;/section&gt;\n\n  &lt;section&gt;\n    {{#phone.length}}\n    &lt;h2&gt;Phones:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #phone }}\n      &lt;li&gt;{{ phone }} ( {{ type }} )&lt;/li&gt;\n      {{ /phone }}\n    &lt;/ul&gt;\n    {{/phone.length}}\n\n    {{#email.length}}\n    &lt;h2&gt;Emails:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #email }}\n      &lt;li&gt;{{ email }} ( {{ type }} )&lt;/li&gt;\n      {{ /email }}\n    &lt;/ul&gt;\n    {{/email.length}}\n\n    {{#address.length}}\n    &lt;h2&gt;Address:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #address }}\n      &lt;li&gt;{{ address }} ( {{ type }} )&lt;/li&gt;\n      {{ /address }}\n    &lt;/ul&gt;\n    {{/address.length}}\n\n    {{#website.length}}\n    &lt;h2&gt;Website:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #website }}\n      &lt;li&gt;{{{ website }}}&lt;/li&gt;\n      {{ /website }}\n    &lt;/ul&gt;\n    {{/website.length}}\n\n\n    {{#birthday}}\n    &lt;h2&gt;Birthday:&lt;/h2&gt;\n    &lt;span&gt;{{birthday}}&lt;/span&gt;\n    {{/birthday}}\n\n  &lt;/section&gt;\n\n&lt;/article&gt;\n"</span></span>,
-            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ name }}"</span>
-        </span>}
-    </span>}</span>,
-    "<span class="hljs-attribute">actions</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">show</span>": <span class="hljs-value"><span class="hljs-string">"https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/79516afe8f2cdfba"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">document_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/documents/53ce71b24882ec9d58f08235"</span></span>,
-    "<span class="hljs-attribute">projection_type</span>": <span class="hljs-value"><span class="hljs-string">"full"</span></span>,
-    "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Florian Rossiaud"</span></span>,
-        "<span class="hljs-attribute">job</span>": <span class="hljs-value"><span class="hljs-string">" "</span></span>,
-        "<span class="hljs-attribute">phone</span>": <span class="hljs-value">[
+    <span class="hljs-string">"_type"</span>: <span class="hljs-string">"Document"</span>,
+    <span class="hljs-string">"id"</span>: <span class="hljs-string">"53ce71b24882ec9d58f08235"</span>,
+    <span class="hljs-string">"identifier"</span>: <span class="hljs-string">"https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/79516afe8f2cdfba"</span>,
+    <span class="hljs-string">"creation_date"</span>: <span class="hljs-string">"2014-07-22T14:14:10.150Z"</span>,
+    <span class="hljs-string">"modification_date"</span>: <span class="hljs-string">"2014-02-07T12:45:56.254Z"</span>,
+    <span class="hljs-string">"provider"</span>: {
+        <span class="hljs-string">"_type"</span>: <span class="hljs-string">"AccessToken"</span>,
+        <span class="hljs-string">"id"</span>: <span class="hljs-string">"53ce7198ebb324595ee9b49c"</span>,
+        <span class="hljs-string">"client"</span>: {
+            <span class="hljs-string">"_type"</span>: <span class="hljs-string">"Client"</span>,
+            <span class="hljs-string">"name"</span>: <span class="hljs-string">"Google Contacts"</span>,
+            <span class="hljs-string">"id"</span>: <span class="hljs-string">"52bff1eec8318cb228000001"</span>
+        },
+        <span class="hljs-string">"is_basic_token"</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-string">"account_name"</span>: <span class="hljs-string">"matthieu.bacconnier@papiel.fr"</span>
+    },
+    <span class="hljs-string">"company"</span>: <span class="hljs-string">"53c0190ae83613e049a4845b"</span>,
+    <span class="hljs-string">"document_type"</span>: {
+        <span class="hljs-string">"_type"</span>: <span class="hljs-string">"DocumentType"</span>,
+        <span class="hljs-string">"id"</span>: <span class="hljs-string">"5252ce4ce4cfcd16f55cfa3a"</span>,
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"contact"</span>,
+        <span class="hljs-string">"templates"</span>: {
+            <span class="hljs-string">"full"</span>: <span class="hljs-string">"&lt;article&gt;\n\n  &lt;section class=\"two-columns\"&gt;\n    &lt;aside&gt;\n      &lt;img src=\"{{ image }}\"/&gt;    \n    &lt;/aside&gt;\n    &lt;section&gt;\n      &lt;h1&gt;&lt;a href=\"anyfetch://search/{{name}}\"&gt;{{{ name }}}&lt;/a&gt;&lt;/h1&gt;\n      &lt;span&gt;{{{ job }}}&lt;/span&gt;   \n    &lt;/section&gt;\n  &lt;/section&gt;\n\n  &lt;section&gt;\n    {{#phone.length}}\n    &lt;h2&gt;Phones:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #phone }}\n      &lt;li&gt;{{ phone }} ( {{ type }} )&lt;/li&gt;\n      {{ /phone }}\n    &lt;/ul&gt;\n    {{/phone.length}}\n\n    {{#email.length}}\n    &lt;h2&gt;Emails:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #email }}\n      &lt;li&gt;{{ email }} ( {{ type }} )&lt;/li&gt;\n      {{ /email }}\n    &lt;/ul&gt;\n    {{/email.length}}\n\n    {{#address.length}}\n    &lt;h2&gt;Address:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #address }}\n      &lt;li&gt;{{ address }} ( {{ type }} )&lt;/li&gt;\n      {{ /address }}\n    &lt;/ul&gt;\n    {{/address.length}}\n\n    {{#website.length}}\n    &lt;h2&gt;Website:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #website }}\n      &lt;li&gt;{{{ website }}}&lt;/li&gt;\n      {{ /website }}\n    &lt;/ul&gt;\n    {{/website.length}}\n\n\n    {{#birthday}}\n    &lt;h2&gt;Birthday:&lt;/h2&gt;\n    &lt;span&gt;{{birthday}}&lt;/span&gt;\n    {{/birthday}}\n\n  &lt;/section&gt;\n\n&lt;/article&gt;\n"</span>,
+            <span class="hljs-string">"title"</span>: <span class="hljs-string">"{{ name }}"</span>
+        }
+    },
+    <span class="hljs-string">"actions"</span>: {
+        <span class="hljs-string">"show"</span>: <span class="hljs-string">"https://mail.google.com/mail/b/matthieu.bacconnier@papiel.fr/#contact/79516afe8f2cdfba"</span>
+    },
+    <span class="hljs-string">"document_url"</span>: <span class="hljs-string">"https://api.anyfetch.com/documents/53ce71b24882ec9d58f08235"</span>,
+    <span class="hljs-string">"projection_type"</span>: <span class="hljs-string">"full"</span>,
+    <span class="hljs-string">"data"</span>: {
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"Florian Rossiaud"</span>,
+        <span class="hljs-string">"job"</span>: <span class="hljs-string">" "</span>,
+        <span class="hljs-string">"phone"</span>: [
             {
-                "<span class="hljs-attribute">phone</span>": <span class="hljs-value"><span class="hljs-string">"+336 43 19 05 98"</span></span>,
-                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"mobile"</span>
-            </span>}
-        ]</span>,
-        "<span class="hljs-attribute">email</span>": <span class="hljs-value">[
+                <span class="hljs-string">"phone"</span>: <span class="hljs-string">"+336 43 19 05 98"</span>,
+                <span class="hljs-string">"type"</span>: <span class="hljs-string">"mobile"</span>
+            }
+        ],
+        <span class="hljs-string">"email"</span>: [
             {
-                "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"florianrossiaud@gmail.com"</span></span>,
-                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"work"</span>
-            </span>}
-        ]</span>,
-        "<span class="hljs-attribute">image</span>": <span class="hljs-value"><span class="hljs-string">"data:image/*;base64,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"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">related</span>": <span class="hljs-value">[]
-</span>}
-</code></pre></li></ul></section><section id="documents-document-patch" class="panel panel-warning"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Patch Document</span></div><div style="float:left"><a href="#documents-document-patch" class="btn btn-xs btn-warning">PATCH</a></div><div style="overflow:hidden"><code>/documents/{id}{?search, ?render_templates}</code></div></div><div class="panel-body"><p>Update a document.</p>
+                <span class="hljs-string">"email"</span>: <span class="hljs-string">"florianrossiaud@gmail.com"</span>,
+                <span class="hljs-string">"type"</span>: <span class="hljs-string">"work"</span>
+            }
+        ],
+        <span class="hljs-string">"image"</span>: <span class="hljs-string">"data:image/*;base64,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"</span>
+    },
+    <span class="hljs-string">"related"</span>: []
+}
+</code></pre></li></ul></section><section id="documents-document-patch" class="panel panel-warning"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Patch Document</span></div><div style="float:left"><a href="#documents-document-patch" class="btn btn-xs btn-warning">PATCH</a></div><div style="overflow:hidden"><code>/documents/{id}{?search,render_templates}</code></div></div><div class="panel-body"><p>Update a document.</p>
 <p>If the update causes new hydraters to match the document, they’ll be called right away for hydration.</p>
 <p>Hydraters use this endpoint to <code>PATCH</code> their changes to the document. They may overwrite some of your data if you <code>PATCH</code> before them.</p>
 <ul>
@@ -674,13 +674,13 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the Document to perform action with.</p>
 </dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#735f87fb7992fff1d7a63c6cc5d4e4c2" class="pull-right">Toggle</a></li><li id="735f87fb7992fff1d7a63c6cc5d4e4c2" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>    {
         <span class="hljs-string">"metadata"</span>: {
-            <span class="hljs-built_in">from</span>: <span class="hljs-string">"matthieu@anyfetch.com"</span>,
-            <span class="hljs-built_in">to</span>: <span class="hljs-string">"mehdi@anyfetch.com"</span>
+            <span class="hljs-keyword">from</span>: <span class="hljs-string">"matthieu@anyfetch.com"</span>,
+            <span class="hljs-keyword">to</span>: <span class="hljs-string">"mehdi@anyfetch.com"</span>
         },
         <span class="hljs-string">"document_type"</span>: <span class="hljs-string">"email"</span>,
         <span class="hljs-string">"related"</span>: [<span class="hljs-string">"https://mail.google.com/mail/165sfd8qsf"</span>]
     }
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><section id="documents-document-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Delete Document</span></div><div style="float:left"><a href="#documents-document-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/documents/{id}{?search, ?render_templates}</code></div></div><div class="panel-body"><p>Remove specified document.</p>
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><section id="documents-document-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Delete Document</span></div><div style="float:left"><a href="#documents-document-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/documents/{id}{?search,render_templates}</code></div></div><div class="panel-body"><p>Remove specified document.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
@@ -1031,7 +1031,7 @@ Also include information about hydraters (<code>hydrated_by</code>, <code>hydrat
     "<span class="hljs-attribute">related</span>": <span class="hljs-value">[]
 </span>}
 </code></pre></li></ul></section><h4 id="documents-image-access">Image access&nbsp;<a href="#documents-image-access"><i class="fa fa-link"></i></a></h4><p>Render an image for the document, using its <code>document_type</code> full projection. This is especially useful for mobile devices, where rendering complex HTML can be heavy for the user.</p>
-<section id="documents-image-access-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get document's image</span></div><div style="float:left"><a href="#documents-image-access-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents/{id}/image{?width, ?search}</code></div></div><div class="panel-body"><p>Retrieve the image. In case you need to display the image directly, you can use the <a href="/authentication.html"><code>?oauth_access_token</code> authorization</a>, but be careful as sending the image URL will reveal the user token.</p>
+<section id="documents-image-access-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get document's image</span></div><div style="float:left"><a href="#documents-image-access-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents/{id}/image{?width,search}</code></div></div><div class="panel-body"><p>Retrieve the image. In case you need to display the image directly, you can use the <a href="/authentication.html"><code>?oauth_access_token</code> authorization</a>, but be careful as sending the image URL will reveal the user token.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
@@ -1046,7 +1046,7 @@ Also include information about hydraters (<code>hydrated_by</code>, <code>hydrat
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the Document to perform action with.</p>
 </dd><dt>width</dt><dd><code>int</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>500</span></span><p>Final image width, in pixel. Value must be between 100 and 1920. When left unspecified, optimal size will be selected according to content.</p>
 </dd><dt>search</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>john smith</span></span><p>String to highlight in the rendered document</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#c0d4c18c221b460e9ebd340af7fe7dd7" class="pull-right">Toggle</a></li><li id="c0d4c18c221b460e9ebd340af7fe7dd7" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">image/png</span><br></code></pre><h5>Body</h5><pre><code><span class="hljs-list">{binary image content}</span>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#c0d4c18c221b460e9ebd340af7fe7dd7" class="pull-right">Toggle</a></li><li id="c0d4c18c221b460e9ebd340af7fe7dd7" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">image/png</span><br></code></pre><h5>Body</h5><pre><code>{<span class="hljs-built_in">binary</span> <span class="hljs-built_in">image</span> content}
 </code></pre></li></ul></section><h4 id="documents-associated-file">Associated file&nbsp;<a href="#documents-associated-file"><i class="fa fa-link"></i></a></h4><p>Work with the document’s file.</p>
 <section id="documents-associated-file-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get document file</span></div><div style="float:left"><a href="#documents-associated-file-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents/{id}/file</code></div></div><div class="panel-body"><p>Retrieve the file associated with a document, if any.</p>
 <p>File is discarded once hydration is ended.</p>
@@ -1062,7 +1062,7 @@ Also include information about hydraters (<code>hydrated_by</code>, <code>hydrat
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the Document to perform action with.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#cbc4e83075a30c348888b4d8b0f771e2" class="pull-right">Toggle</a></li><li id="cbc4e83075a30c348888b4d8b0f771e2" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/octet-stream</span><br></code></pre><h5>Body</h5><pre><code><span class="hljs-list">{binary file content}</span>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#cbc4e83075a30c348888b4d8b0f771e2" class="pull-right">Toggle</a></li><li id="cbc4e83075a30c348888b4d8b0f771e2" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/octet-stream</span><br></code></pre><h5>Body</h5><pre><code><span class="hljs-keyword">{</span><span class="hljs-literal">binary</span> <span class="hljs-keyword">file</span> <span class="hljs-literal">content</span><span class="hljs-keyword">}</span>
 </code></pre></li></ul></section><section id="documents-associated-file-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Set document's file</span></div><div style="float:left"><a href="#documents-associated-file-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/documents/{id}/file</code></div></div><div class="panel-body"><p>This endpoint should be used when providing, to associate a file with a document.</p>
 <blockquote>
 <ul>
@@ -1076,7 +1076,7 @@ Also include information about hydraters (<code>hydrated_by</code>, <code>hydrat
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the Document to perform action with.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#75c838c10cf6366de2e9ad6c5af2dbf6" class="pull-right">Toggle</a></li><li id="75c838c10cf6366de2e9ad6c5af2dbf6" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>    <span class="hljs-built_in">file</span>={binary <span class="hljs-built_in">file</span> content <span class="hljs-keyword">as</span> multipart form upload}
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#75c838c10cf6366de2e9ad6c5af2dbf6" class="pull-right">Toggle</a></li><li id="75c838c10cf6366de2e9ad6c5af2dbf6" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>    <span class="hljs-keyword">file</span>=<span class="hljs-keyword">{</span><span class="hljs-literal">binary</span> <span class="hljs-keyword">file</span> <span class="hljs-literal">content</span> as multipart form upload<span class="hljs-keyword">}</span>
 </code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="users">Users&nbsp;<a href="#users"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>User resources.</p>
 <h4 id="users-users-collection">Users Collection&nbsp;<a href="#users-users-collection"><i class="fa fa-link"></i></a></h4><section id="users-users-collection-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">List all Users</span></div><div style="float:left"><a href="#users-users-collection-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/users</code></div></div><div class="panel-body"><blockquote>
 <p>This endpoint is only available to admin users.</p>
@@ -1208,75 +1208,75 @@ Also include information about hydraters (<code>hydrated_by</code>, <code>hydrat
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#fd9c79c4990b55124fbedfe4f247442c" class="pull-right">Toggle</a></li><li id="fd9c79c4990b55124fbedfe4f247442c" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
     {
-        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
-        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3d"</span></span>,
-        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"image"</span></span>,
-        "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n\n  &lt;img src=\"{{ thumb }}\" /&gt;\n&lt;/article&gt;\n"</span></span>,
-            "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n\n  &lt;img src=\"{{ display }}\" /&gt;\n&lt;/article&gt;\n"</span></span>,
-            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ title }}"</span>
-        </span>}</span>,
-        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Display thumbnail and preview data encoded in base64."</span></span>,
-        "<span class="hljs-attribute">projections</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value">[
+        <span class="hljs-string">"_type"</span>: <span class="hljs-string">"DocumentType"</span>,
+        <span class="hljs-string">"id"</span>: <span class="hljs-string">"5252ce4ce4cfcd16f55cfa3d"</span>,
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"image"</span>,
+        <span class="hljs-string">"templates"</span>: {
+            <span class="hljs-string">"snippet"</span>: <span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n\n  &lt;img src=\"{{ thumb }}\" /&gt;\n&lt;/article&gt;\n"</span>,
+            <span class="hljs-string">"full"</span>: <span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n\n  &lt;img src=\"{{ display }}\" /&gt;\n&lt;/article&gt;\n"</span>,
+            <span class="hljs-string">"title"</span>: <span class="hljs-string">"{{ title }}"</span>
+        },
+        <span class="hljs-string">"description"</span>: <span class="hljs-string">"Display thumbnail and preview data encoded in base64."</span>,
+        <span class="hljs-string">"projections"</span>: {
+            <span class="hljs-string">"snippet"</span>: [
                 <span class="hljs-string">"title"</span>,
                 <span class="hljs-string">"thumb"</span>
-            ]</span>,
-            "<span class="hljs-attribute">full</span>": <span class="hljs-value">[
+            ],
+            <span class="hljs-string">"full"</span>: [
                 <span class="hljs-string">"title"</span>,
                 <span class="hljs-string">"display"</span>
             ]
-        </span>}</span>,
-        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">439</span></span>,
-        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T11:31:53.739Z"</span>
-    </span>},
+        },
+        <span class="hljs-string">"document_count"</span>: <span class="hljs-number">439</span>,
+        <span class="hljs-string">"updated"</span>: <span class="hljs-string">"2014-07-23T11:31:53.739Z"</span>
+    },
     {
-        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
-        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa40"</span></span>,
-        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"event"</span></span>,
-        "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n\t&lt;h1&gt;{{{name}}}&lt;/h1&gt;\n\t&lt;span&gt;{{startDate}}&amp;mdash;{{endDate}}&lt;/span&gt;\n&lt;/article&gt;\n"</span></span>,
-            "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n\t&lt;section&gt;\n\t\t&lt;h1&gt;{{name}}&lt;/h1&gt;\n\t\t&lt;span&gt;{{startDate}}&amp;mdash;{{endDate}}&lt;/span&gt;\n\t&lt;/section&gt;\n\n\t{{ #attendee.length }}\n\t\t&lt;h2&gt;Attendees:&lt;/h2&gt;\n\t\t{{ #attendee }}\n\t\t&lt;li&gt;{{.}}&lt;/li&gt;\n\t\t{{ /attendee }}\t\n\t{{ /attendee.length }}\n\n\t&lt;p&gt;{{description}}&lt;/p&gt;\n&lt;/article&gt;\n"</span></span>,
-            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ name }}"</span>
-        </span>}</span>,
-        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"An event, from a calendar for instance."</span></span>,
-        "<span class="hljs-attribute">projections</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value">[
+        <span class="hljs-string">"_type"</span>: <span class="hljs-string">"DocumentType"</span>,
+        <span class="hljs-string">"id"</span>: <span class="hljs-string">"5252ce4ce4cfcd16f55cfa40"</span>,
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"event"</span>,
+        <span class="hljs-string">"templates"</span>: {
+            <span class="hljs-string">"snippet"</span>: <span class="hljs-string">"&lt;article&gt;\n\t&lt;h1&gt;{{{name}}}&lt;/h1&gt;\n\t&lt;span&gt;{{startDate}}&amp;mdash;{{endDate}}&lt;/span&gt;\n&lt;/article&gt;\n"</span>,
+            <span class="hljs-string">"full"</span>: <span class="hljs-string">"&lt;article&gt;\n\t&lt;section&gt;\n\t\t&lt;h1&gt;{{name}}&lt;/h1&gt;\n\t\t&lt;span&gt;{{startDate}}&amp;mdash;{{endDate}}&lt;/span&gt;\n\t&lt;/section&gt;\n\n\t{{ #attendee.length }}\n\t\t&lt;h2&gt;Attendees:&lt;/h2&gt;\n\t\t{{ #attendee }}\n\t\t&lt;li&gt;{{.}}&lt;/li&gt;\n\t\t{{ /attendee }}\t\n\t{{ /attendee.length }}\n\n\t&lt;p&gt;{{description}}&lt;/p&gt;\n&lt;/article&gt;\n"</span>,
+            <span class="hljs-string">"title"</span>: <span class="hljs-string">"{{ name }}"</span>
+        },
+        <span class="hljs-string">"description"</span>: <span class="hljs-string">"An event, from a calendar for instance."</span>,
+        <span class="hljs-string">"projections"</span>: {
+            <span class="hljs-string">"snippet"</span>: [
                 <span class="hljs-string">"startDate"</span>,
                 <span class="hljs-string">"endDate"</span>,
                 <span class="hljs-string">"name"</span>
-            ]</span>,
-            "<span class="hljs-attribute">full</span>": <span class="hljs-value">[
+            ],
+            <span class="hljs-string">"full"</span>: [
                 <span class="hljs-string">"startDate"</span>,
                 <span class="hljs-string">"endDate"</span>,
                 <span class="hljs-string">"name"</span>,
                 <span class="hljs-string">"description"</span>,
                 <span class="hljs-string">"attendee"</span>
             ]
-        </span>}</span>,
-        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">133</span></span>,
-        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T11:30:54.948Z"</span>
-    </span>},
+        },
+        <span class="hljs-string">"document_count"</span>: <span class="hljs-number">133</span>,
+        <span class="hljs-string">"updated"</span>: <span class="hljs-string">"2014-07-23T11:30:54.948Z"</span>
+    },
     {
-        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
-        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3f"</span></span>,
-        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"email"</span></span>,
-        "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{subject}}}&lt;/h1&gt;\n  &lt;div class=\"two-columns\"&gt;\n    &lt;span&gt;{{ date }}&lt;/span&gt;\n    &lt;span&gt;&lt;small&gt;{{{from}}} &amp;rarr; {{{to}}}&lt;/small&gt;&lt;/span&gt;\n  &lt;/div&gt;\n  &lt;blockquote&gt;{{{snippet}}}&lt;/blockquote&gt;\n&lt;/article&gt;\n"</span></span>,
-            "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article class=\"email-projection\"&gt;\n &lt;header&gt;\n     &lt;h1&gt;{{{subject}}}&lt;/h1&gt;\n     &lt;small&gt;{{ date }}&lt;/small&gt;\n     &lt;small&gt;From: &lt;strong&gt;{{{from}}}&lt;/strong&gt;&lt;/small&gt;\n     &lt;small&gt;To: &lt;strong&gt;{{{to}}}&lt;/strong&gt;&lt;/small&gt;\n &lt;/header&gt;\n\n &lt;main&gt;\n       {{{html}}}\n &lt;/main&gt;\n&lt;/article&gt;\n"</span></span>,
-            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{{ subject }}}"</span>
-        </span>}</span>,
-        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"An email"</span></span>,
-        "<span class="hljs-attribute">projections</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value">[
+        <span class="hljs-string">"_type"</span>: <span class="hljs-string">"DocumentType"</span>,
+        <span class="hljs-string">"id"</span>: <span class="hljs-string">"5252ce4ce4cfcd16f55cfa3f"</span>,
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"email"</span>,
+        <span class="hljs-string">"templates"</span>: {
+            <span class="hljs-string">"snippet"</span>: <span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{subject}}}&lt;/h1&gt;\n  &lt;div class=\"two-columns\"&gt;\n    &lt;span&gt;{{ date }}&lt;/span&gt;\n    &lt;span&gt;&lt;small&gt;{{{from}}} &amp;rarr; {{{to}}}&lt;/small&gt;&lt;/span&gt;\n  &lt;/div&gt;\n  &lt;blockquote&gt;{{{snippet}}}&lt;/blockquote&gt;\n&lt;/article&gt;\n"</span>,
+            <span class="hljs-string">"full"</span>: <span class="hljs-string">"&lt;article class=\"email-projection\"&gt;\n &lt;header&gt;\n     &lt;h1&gt;{{{subject}}}&lt;/h1&gt;\n     &lt;small&gt;{{ date }}&lt;/small&gt;\n     &lt;small&gt;From: &lt;strong&gt;{{{from}}}&lt;/strong&gt;&lt;/small&gt;\n     &lt;small&gt;To: &lt;strong&gt;{{{to}}}&lt;/strong&gt;&lt;/small&gt;\n &lt;/header&gt;\n\n &lt;main&gt;\n       {{{html}}}\n &lt;/main&gt;\n&lt;/article&gt;\n"</span>,
+            <span class="hljs-string">"title"</span>: <span class="hljs-string">"{{{ subject }}}"</span>
+        },
+        <span class="hljs-string">"description"</span>: <span class="hljs-string">"An email"</span>,
+        <span class="hljs-string">"projections"</span>: {
+            <span class="hljs-string">"snippet"</span>: [
                 <span class="hljs-string">"from"</span>,
                 <span class="hljs-string">"to"</span>,
                 <span class="hljs-string">"subject"</span>,
                 <span class="hljs-string">"snippet"</span>,
                 <span class="hljs-string">"date"</span>,
                 <span class="hljs-string">"attachmentCount"</span>
-            ]</span>,
-            "<span class="hljs-attribute">full</span>": <span class="hljs-value">[
+            ],
+            <span class="hljs-string">"full"</span>: [
                 <span class="hljs-string">"from"</span>,
                 <span class="hljs-string">"to"</span>,
                 <span class="hljs-string">"labels"</span>,
@@ -1284,87 +1284,87 @@ Also include information about hydraters (<code>hydrated_by</code>, <code>hydrat
                 <span class="hljs-string">"html"</span>,
                 <span class="hljs-string">"date"</span>
             ]
-        </span>}</span>,
-        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">5857</span></span>,
-        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T11:31:01.601Z"</span>
-    </span>},
+        },
+        <span class="hljs-string">"document_count"</span>: <span class="hljs-number">5857</span>,
+        <span class="hljs-string">"updated"</span>: <span class="hljs-string">"2014-07-23T11:31:01.601Z"</span>
+    },
     {
-        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
-        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3c"</span></span>,
-        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"document"</span></span>,
-        "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n  &lt;blockquote&gt;\n  \t{{{ snippet }}}\n  &lt;/blockquote&gt;\n&lt;/article&gt;\n"</span></span>,
-            "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;section&gt;\n    &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n    &lt;code&gt;{{ path }}&lt;/code&gt;\n  &lt;/section&gt;\n\n  &lt;section&gt;\n    {{{ content }}}\n  &lt;/section&gt;\n&lt;/article&gt;\n"</span></span>,
-            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ title }}"</span>
-        </span>}</span>,
-        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"A document from which we were able to extract a clean HTML representation: text, doc, xls, epub..."</span></span>,
-        "<span class="hljs-attribute">projections</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value">[
+        <span class="hljs-string">"_type"</span>: <span class="hljs-string">"DocumentType"</span>,
+        <span class="hljs-string">"id"</span>: <span class="hljs-string">"5252ce4ce4cfcd16f55cfa3c"</span>,
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"document"</span>,
+        <span class="hljs-string">"templates"</span>: {
+            <span class="hljs-string">"snippet"</span>: <span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n  &lt;blockquote&gt;\n  \t{{{ snippet }}}\n  &lt;/blockquote&gt;\n&lt;/article&gt;\n"</span>,
+            <span class="hljs-string">"full"</span>: <span class="hljs-string">"&lt;article&gt;\n  &lt;section&gt;\n    &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n    &lt;code&gt;{{ path }}&lt;/code&gt;\n  &lt;/section&gt;\n\n  &lt;section&gt;\n    {{{ content }}}\n  &lt;/section&gt;\n&lt;/article&gt;\n"</span>,
+            <span class="hljs-string">"title"</span>: <span class="hljs-string">"{{ title }}"</span>
+        },
+        <span class="hljs-string">"description"</span>: <span class="hljs-string">"A document from which we were able to extract a clean HTML representation: text, doc, xls, epub..."</span>,
+        <span class="hljs-string">"projections"</span>: {
+            <span class="hljs-string">"snippet"</span>: [
                 <span class="hljs-string">"title"</span>,
                 <span class="hljs-string">"path"</span>,
                 <span class="hljs-string">"snippet"</span>
-            ]</span>,
-            "<span class="hljs-attribute">full</span>": <span class="hljs-value">[
+            ],
+            <span class="hljs-string">"full"</span>: [
                 <span class="hljs-string">"title"</span>,
                 <span class="hljs-string">"path"</span>,
                 <span class="hljs-string">"content"</span>
             ]
-        </span>}</span>,
-        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">296</span></span>,
-        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T11:32:06.347Z"</span>
-    </span>},
+        },
+        <span class="hljs-string">"document_count"</span>: <span class="hljs-number">296</span>,
+        <span class="hljs-string">"updated"</span>: <span class="hljs-string">"2014-07-23T11:32:06.347Z"</span>
+    },
     {
-        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
-        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3b"</span></span>,
-        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"file"</span></span>,
-        "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n  &lt;code&gt;{{{ path }}}&lt;/code&gt;\n&lt;/article&gt;\n"</span></span>,
-            "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n  &lt;code&gt;{{{ path }}}&lt;/code&gt;\n&lt;/article&gt;\n"</span></span>,
-            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ title }}"</span>
-        </span>}</span>,
-        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Most basic document type for any kind of binary content. When a provider sends data without any additional information, it will use this document_type."</span></span>,
-        "<span class="hljs-attribute">projections</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value">[
+        <span class="hljs-string">"_type"</span>: <span class="hljs-string">"DocumentType"</span>,
+        <span class="hljs-string">"id"</span>: <span class="hljs-string">"5252ce4ce4cfcd16f55cfa3b"</span>,
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"file"</span>,
+        <span class="hljs-string">"templates"</span>: {
+            <span class="hljs-string">"snippet"</span>: <span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n  &lt;code&gt;{{{ path }}}&lt;/code&gt;\n&lt;/article&gt;\n"</span>,
+            <span class="hljs-string">"full"</span>: <span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n  &lt;code&gt;{{{ path }}}&lt;/code&gt;\n&lt;/article&gt;\n"</span>,
+            <span class="hljs-string">"title"</span>: <span class="hljs-string">"{{ title }}"</span>
+        },
+        <span class="hljs-string">"description"</span>: <span class="hljs-string">"Most basic document type for any kind of binary content. When a provider sends data without any additional information, it will use this document_type."</span>,
+        <span class="hljs-string">"projections"</span>: {
+            <span class="hljs-string">"snippet"</span>: [
                 <span class="hljs-string">"title"</span>,
                 <span class="hljs-string">"path"</span>,
                 <span class="hljs-string">"extension"</span>
-            ]</span>,
-            "<span class="hljs-attribute">full</span>": <span class="hljs-value">[
+            ],
+            <span class="hljs-string">"full"</span>: [
                 <span class="hljs-string">"title"</span>,
                 <span class="hljs-string">"path"</span>,
                 <span class="hljs-string">"extension"</span>
             ]
-        </span>}</span>,
-        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">214</span></span>,
-        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T11:31:15.593Z"</span>
-    </span>},
+        },
+        <span class="hljs-string">"document_count"</span>: <span class="hljs-number">214</span>,
+        <span class="hljs-string">"updated"</span>: <span class="hljs-string">"2014-07-23T11:31:15.593Z"</span>
+    },
     {
-        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
-        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3a"</span></span>,
-        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"contact"</span></span>,
-        "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article class=\"two-columns\"&gt;\n  &lt;aside&gt;\n    &lt;img src=\"{{ image }}\" /&gt;\n  &lt;/aside&gt;\n  &lt;section&gt;\n    &lt;h1&gt;{{{ name }}}&lt;/h1&gt;\n    &lt;span&gt;{{{ job }}}&lt;/span&gt;\n  &lt;/section&gt;\n&lt;/article&gt;\n"</span></span>,
-            "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n\n  &lt;section class=\"two-columns\"&gt;\n    &lt;aside&gt;\n      &lt;img src=\"{{ image }}\"/&gt;    \n    &lt;/aside&gt;\n    &lt;section&gt;\n      &lt;h1&gt;&lt;a href=\"anyfetch://search/{{name}}\"&gt;{{{ name }}}&lt;/a&gt;&lt;/h1&gt;\n      &lt;span&gt;{{{ job }}}&lt;/span&gt;   \n    &lt;/section&gt;\n  &lt;/section&gt;\n\n  &lt;section&gt;\n    {{#phone.length}}\n    &lt;h2&gt;Phones:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #phone }}\n      &lt;li&gt;{{ phone }} ( {{ type }} )&lt;/li&gt;\n      {{ /phone }}\n    &lt;/ul&gt;\n    {{/phone.length}}\n\n    {{#email.length}}\n    &lt;h2&gt;Emails:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #email }}\n      &lt;li&gt;{{ email }} ( {{ type }} )&lt;/li&gt;\n      {{ /email }}\n    &lt;/ul&gt;\n    {{/email.length}}\n\n    {{#address.length}}\n    &lt;h2&gt;Address:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #address }}\n      &lt;li&gt;{{ address }} ( {{ type }} )&lt;/li&gt;\n      {{ /address }}\n    &lt;/ul&gt;\n    {{/address.length}}\n\n    {{#website.length}}\n    &lt;h2&gt;Website:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #website }}\n      &lt;li&gt;{{{ website }}}&lt;/li&gt;\n      {{ /website }}\n    &lt;/ul&gt;\n    {{/website.length}}\n\n\n    {{#birthday}}\n    &lt;h2&gt;Birthday:&lt;/h2&gt;\n    &lt;span&gt;{{birthday}}&lt;/span&gt;\n    {{/birthday}}\n\n  &lt;/section&gt;\n\n&lt;/article&gt;\n"</span></span>,
-            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ name }}"</span>
-        </span>}</span>,
-        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"A person (contact, client, ...)"</span></span>,
-        "<span class="hljs-attribute">projections</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value">[
+        <span class="hljs-string">"_type"</span>: <span class="hljs-string">"DocumentType"</span>,
+        <span class="hljs-string">"id"</span>: <span class="hljs-string">"5252ce4ce4cfcd16f55cfa3a"</span>,
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"contact"</span>,
+        <span class="hljs-string">"templates"</span>: {
+            <span class="hljs-string">"snippet"</span>: <span class="hljs-string">"&lt;article class=\"two-columns\"&gt;\n  &lt;aside&gt;\n    &lt;img src=\"{{ image }}\" /&gt;\n  &lt;/aside&gt;\n  &lt;section&gt;\n    &lt;h1&gt;{{{ name }}}&lt;/h1&gt;\n    &lt;span&gt;{{{ job }}}&lt;/span&gt;\n  &lt;/section&gt;\n&lt;/article&gt;\n"</span>,
+            <span class="hljs-string">"full"</span>: <span class="hljs-string">"&lt;article&gt;\n\n  &lt;section class=\"two-columns\"&gt;\n    &lt;aside&gt;\n      &lt;img src=\"{{ image }}\"/&gt;    \n    &lt;/aside&gt;\n    &lt;section&gt;\n      &lt;h1&gt;&lt;a href=\"anyfetch://search/{{name}}\"&gt;{{{ name }}}&lt;/a&gt;&lt;/h1&gt;\n      &lt;span&gt;{{{ job }}}&lt;/span&gt;   \n    &lt;/section&gt;\n  &lt;/section&gt;\n\n  &lt;section&gt;\n    {{#phone.length}}\n    &lt;h2&gt;Phones:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #phone }}\n      &lt;li&gt;{{ phone }} ( {{ type }} )&lt;/li&gt;\n      {{ /phone }}\n    &lt;/ul&gt;\n    {{/phone.length}}\n\n    {{#email.length}}\n    &lt;h2&gt;Emails:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #email }}\n      &lt;li&gt;{{ email }} ( {{ type }} )&lt;/li&gt;\n      {{ /email }}\n    &lt;/ul&gt;\n    {{/email.length}}\n\n    {{#address.length}}\n    &lt;h2&gt;Address:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #address }}\n      &lt;li&gt;{{ address }} ( {{ type }} )&lt;/li&gt;\n      {{ /address }}\n    &lt;/ul&gt;\n    {{/address.length}}\n\n    {{#website.length}}\n    &lt;h2&gt;Website:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #website }}\n      &lt;li&gt;{{{ website }}}&lt;/li&gt;\n      {{ /website }}\n    &lt;/ul&gt;\n    {{/website.length}}\n\n\n    {{#birthday}}\n    &lt;h2&gt;Birthday:&lt;/h2&gt;\n    &lt;span&gt;{{birthday}}&lt;/span&gt;\n    {{/birthday}}\n\n  &lt;/section&gt;\n\n&lt;/article&gt;\n"</span>,
+            <span class="hljs-string">"title"</span>: <span class="hljs-string">"{{ name }}"</span>
+        },
+        <span class="hljs-string">"description"</span>: <span class="hljs-string">"A person (contact, client, ...)"</span>,
+        <span class="hljs-string">"projections"</span>: {
+            <span class="hljs-string">"snippet"</span>: [
                 <span class="hljs-string">"name"</span>,
                 <span class="hljs-string">"image"</span>,
                 <span class="hljs-string">"job"</span>
-            ]</span>,
-            "<span class="hljs-attribute">full</span>": <span class="hljs-value">[
+            ],
+            <span class="hljs-string">"full"</span>: [
                 <span class="hljs-string">"name"</span>,
                 <span class="hljs-string">"job"</span>,
                 <span class="hljs-string">"phone"</span>,
                 <span class="hljs-string">"email"</span>,
                 <span class="hljs-string">"image"</span>
             ]
-        </span>}</span>,
-        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">239</span></span>,
-        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-22T14:14:16.640Z"</span>
-    </span>}
+        },
+        <span class="hljs-string">"document_count"</span>: <span class="hljs-number">239</span>,
+        <span class="hljs-string">"updated"</span>: <span class="hljs-string">"2014-07-22T14:14:16.640Z"</span>
+    }
 ]
 </code></pre></li></ul></section><h4 id="document-types-document-type">Document-type&nbsp;<a href="#document-types-document-type"><i class="fa fa-link"></i></a></h4><section id="document-types-document-type-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get document-type</span></div><div style="float:left"><a href="#document-types-document-type-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/document_types/{id}</code></div></div><div class="panel-body"><p>Retrieve details about the specified document-type.
 This endpoint is public and can be accessed by anyone with the id.</p>

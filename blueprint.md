@@ -344,7 +344,7 @@ Subcompanies and users are not affected.
 # Group Documents
 Endpoints for retrieving documents
 
-## Documents [/documents{?search, ?before, ?after, ?document_type, ?provider, ?id, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit, ?sort, ?render_templates, ?strict}]
+## Documents [/documents{?search,before,after,document_type,provider,id,_meta,has_meta,snippet_size,start,limit,sort,render_templates,strict}]
 Access documents resources.
 
 ### Search documents [GET]
@@ -598,7 +598,7 @@ Common parameters include `data` (data to use for full display), `metadata` (dat
                 "user_access": ["52d96492a7f0a3ac4226f2f7"]
             }
 
-## Document [/documents/{id}{?search, ?render_templates}]
+## Document [/documents/{id}{?search,render_templates}]
 > Please note: for every endpoint in the form `/documents/{id}`, you can also use an alternative URL `/documents/identifier/{identifier}` where `identifier` is the url-encoded provider identifier.
 
 Data regarding a document.
@@ -1084,7 +1084,7 @@ View all data for the document.
             }
 
 
-## Image access [/documents/{id}/image{?width, ?search}]
+## Image access [/documents/{id}/image{?width,search}]
 Render an image for the document, using its `document_type` full projection. This is especially useful for mobile devices, where rendering complex HTML can be heavy for the user.
 
 ### Get document's image [GET]
