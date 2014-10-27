@@ -539,6 +539,8 @@ The [`document_type`](/resources/document-types.html) value is mandatory, every 
 
 If no identifier is specified, it will be set to the value of the document's id.
 
+Common parameters include `data` (data to use for full display), `metadata` (data to use for search and snippet display), `actions` (object of links) and `user_access` (an array of users authorized to view the document).
+
 * Identifiers in `related` will be converted to their matching `id`
 * Access tokens in `user_access` will be converted to their matching `user`.
 * A name in `document_type` will be converted to its matching `id`.
@@ -686,6 +688,7 @@ Hydraters use this endpoint to `PATCH` their changes to the document. They may o
 * Identifiers in `related` will be converted to their matching `id`
 * Access tokens in `user_access` will be converted to their matching `user`.
 * A name in `document_type` will be converted to its matching `id`.
+* You can't update the `hydrated_by` and `hydrating` properties; they're managed internally.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -980,7 +983,7 @@ Result contains, amongst other :
 
 ## Raw access [/documents/{id}/raw]
 Retrieve all raw data for `id` document.
-Also include information about hydraters (`hydratedBy`, `hydrating` and `lastHydration`).
+Also include information about hydraters (`hydrated_by`, `hydrating` and `last_hydration`).
 
 ### Get raw document [GET]
 View all data for the document.
@@ -1603,6 +1606,8 @@ Retrieve all providers available for the current user, with document count, a pr
 ### Get Provider [GET]
 Retrieve basic information about one provider.
 
+Note this endpoint currently returns less information than `GET /providers`.
+
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 Not Found`: `id` does not match a token
@@ -1624,7 +1629,7 @@ Retrieve basic information about one provider.
             }
 
 ### Delete Provider [DELETE]
-Revokes a provider token and subsequently deletes linked documents.
+Revokes a provider token and subsequently delete linked documents.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -1638,6 +1643,9 @@ Revokes a provider token and subsequently deletes linked documents.
 
 ### Reset Provider [DELETE]
 Resets the provider internal token. This means next time this provider is called for an update, the token's cursor will be empty, and as a consequence, all documents will be resent.
+
+This endpoint is to be used for testing purposes, and has no reason to be used in production.
+Also note the behavior for this endpoint differ from `DELETE /company/reset`, which delete linked providers.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.

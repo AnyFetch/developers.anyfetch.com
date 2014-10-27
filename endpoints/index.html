@@ -524,6 +524,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <p>Send a new document on AnyFetch.</p>
 <p>The <a href="/resources/document-types.html"><code>document_type</code></a> value is mandatory, every other parameter is optional, however in nearly all cases you’ll specify <a href="/guides/concepts/identifier.html">a unique <code>identifier</code> to retrieve the document later</a>.</p>
 <p>If no identifier is specified, it will be set to the value of the document’s id.</p>
+<p>Common parameters include <code>data</code> (data to use for full display), <code>metadata</code> (data to use for search and snippet display), <code>actions</code> (object of links) and <code>user_access</code> (an array of users authorized to view the document).</p>
 <ul>
 <li>Identifiers in <code>related</code> will be converted to their matching <code>id</code></li>
 <li>Access tokens in <code>user_access</code> will be converted to their matching <code>user</code>.</li>
@@ -659,6 +660,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <li>Identifiers in <code>related</code> will be converted to their matching <code>id</code></li>
 <li>Access tokens in <code>user_access</code> will be converted to their matching <code>user</code>.</li>
 <li>A name in <code>document_type</code> will be converted to its matching <code>id</code>.</li>
+<li>You can’t update the <code>hydrated_by</code> and <code>hydrating</code> properties; they’re managed internally.</li>
 </ul>
 <blockquote>
 <ul>
@@ -933,7 +935,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
     "<span class="hljs-attribute">max_score</span>": <span class="hljs-value"><span class="hljs-number">1</span>
 </span>}
 </code></pre></li></ul></section><h4 id="documents-raw-access">Raw access&nbsp;<a href="#documents-raw-access"><i class="fa fa-link"></i></a></h4><p>Retrieve all raw data for <code>id</code> document.
-Also include information about hydraters (<code>hydratedBy</code>, <code>hydrating</code> and <code>lastHydration</code>).</p>
+Also include information about hydraters (<code>hydrated_by</code>, <code>hydrating</code> and <code>last_hydration</code>).</p>
 <section id="documents-raw-access-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get raw document</span></div><div style="float:left"><a href="#documents-raw-access-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents/{id}/raw</code></div></div><div class="panel-body"><p>View all data for the document.</p>
 <blockquote>
 <ul>
@@ -1456,6 +1458,7 @@ This endpoint is public and can be accessed by anyone with the id.</p>
     </span>}
 ]
 </code></pre></li></ul></section><h4 id="providers-provider">Provider&nbsp;<a href="#providers-provider"><i class="fa fa-link"></i></a></h4><section id="providers-provider-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get Provider</span></div><div style="float:left"><a href="#providers-provider-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/providers/{id}</code></div></div><div class="panel-body"><p>Retrieve basic information about one provider.</p>
+<p>Note this endpoint currently returns less information than <code>GET /providers</code>.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
@@ -1475,7 +1478,7 @@ This endpoint is public and can be accessed by anyone with the id.</p>
     "<span class="hljs-attribute">is_basic_token</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
     "<span class="hljs-attribute">account_name</span>": <span class="hljs-value"><span class="hljs-string">"matthieu.bacconnier@papiel.fr"</span>
 </span>}
-</code></pre></li></ul></section><section id="providers-provider-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Delete Provider</span></div><div style="float:left"><a href="#providers-provider-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/providers/{id}</code></div></div><div class="panel-body"><p>Revokes a provider token and subsequently deletes linked documents.</p>
+</code></pre></li></ul></section><section id="providers-provider-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Delete Provider</span></div><div style="float:left"><a href="#providers-provider-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/providers/{id}</code></div></div><div class="panel-body"><p>Revokes a provider token and subsequently delete linked documents.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
@@ -1485,6 +1488,8 @@ This endpoint is public and can be accessed by anyone with the id.</p>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="providers-reset-a-provider">Reset a Provider&nbsp;<a href="#providers-reset-a-provider"><i class="fa fa-link"></i></a></h4><section id="providers-reset-a-provider-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Reset Provider</span></div><div style="float:left"><a href="#providers-reset-a-provider-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/providers/{id}/reset</code></div></div><div class="panel-body"><p>Resets the provider internal token. This means next time this provider is called for an update, the token’s cursor will be empty, and as a consequence, all documents will be resent.</p>
+<p>This endpoint is to be used for testing purposes, and has no reason to be used in production.
+Also note the behavior for this endpoint differ from <code>DELETE /company/reset</code>, which delete linked providers.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
