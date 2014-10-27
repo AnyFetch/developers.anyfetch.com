@@ -79,7 +79,7 @@ Create or retrieve a token. The token will always be the same until you call `DE
 ### Remove token [DELETE]
 > This endpoint can only be used with `Basic` authentication.
 
-Remove the token returned by `GET /token`.
+Remove the token returned by `GET /token`, and associated documents.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 ForbiddenScheme`: `Bearer` authentication used, but this endpoint can only be used with `Basic` scheme.
@@ -92,7 +92,7 @@ Remove the token returned by `GET /token`.
 ### Retrieve current company [GET]
 Retrieve the current company details.
 
-Contains your company name, and the list of hydraters used on the account.
+Contains your company name, the list of hydraters used on the account and basic stats (document count, user count...)
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -124,6 +124,8 @@ Ping all providers for the current company, checking for new available documents
 
 Return the response code from each provider—202 means `Accepted`. Most provider will reply with `429 Too Many Requests` if they're already working on this user's tasks.
 Note that even if each providers responds with an error, this endpoint will still return 200 and the status for each provider.
+
+See `GET /providers` to map id to real providers.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -175,7 +177,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 ### Retrieve all subcompanies [GET]
 > This endpoint is only available to admin users.
 
-Retrieve all subcompanies from the current company.
+Retrieve all subcompanies from the current company, returning the same detail as `GET /company`.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -292,6 +294,8 @@ Retrieve a specific subcompany from the current company.
             }
 
 ### Delete a subcompany [DELETE]
+> This endpoint is only available to admin users.
+
 Delete the subcompany, **all** its documents and **all** its users.
 
 By default, you are not allowed to remove a subcompany with subsubcompanies. To force the subcompany removal, add `?force=true`.
@@ -306,8 +310,10 @@ By default, you are not allowed to remove a subcompany with subsubcompanies. To 
 + Response 204
 
 ## Reset a subcompany [/subcompanies/{id}/reset]
-###  Reset a subcompany [DELETE]
-Reset **all** documents, tokens and providers from the subcompany.
+### Reset a subcompany [DELETE]
+> This endpoint is only available to admin users.
+
+Reset **all** documents, tokens and providers from the subcompany (using the same bahavior as `DELETE /company/reset`).
 
 Subcompanies and users are not affected.
 
@@ -338,33 +344,33 @@ Subcompanies and users are not affected.
 # Group Documents
 Endpoints for retrieving documents
 
-## Documents [/documents{?search, ?before, ?after, ?document_type, ?provider, ?id, ?_meta, ?has_meta, ?snippet_size, ?start, ?limit, ?sort, ?render_templates, ?strict}]
+## Documents [/documents{?search,before,after,document_type,provider,id,_meta,has_meta,snippet_size,start,limit,sort,render_templates,strict}]
 Access documents resources.
 
 ### Search documents [GET]
 Search within all available data for documents matching specified filter.
 
-Return informations aggregated over the result set. The `score` key indicated document's relevance regarding query.
+Return informations aggregated over the result set. The `score` key indicates document's relevance regarding query.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `409 InvalidArgument`: malformed search query, with misused characters (such as `+ - && || ! ( ) { } [ ] ^ \" ~ * ? : \\`)
 
 + Parameters
-    + search (optional, string, `john smith`) ... Search query, probably the most important parameter for this query
+    + search (optional, string, `john smith`) ... Search query, probably the most important parameter for this query.
     + before (optional, date, `2014-03-21`) ... Only display documents created before this date.
     + after (optional, date, `2014-01-25`) ... Only display documents created after this date.
     + id (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this id. <small>You can use the param multiple times to allow for multiples `id`, for instance `?id=1&id=2&id=3`</small>.
     + document_type (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this document type. <small>You can use the param multiple times to allow for multiples `document_type`</small>.
-    + provider (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this provider. <small>You can use the param multiple times to allow for multiples `provider`</small>
-    + meta (optional, string, `John`) ... (prepend name with @) Full text search on `meta` key.  Replace `meta` with the name of the meta you wish to search on, for instance `?@name=john`
+    + provider (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this provider. <small>You can use the param multiple times to allow for multiples `provider`.</small>
+    + meta (optional, string, `John`) ... (prepend name with @) Full text search on `meta` key.  Replace `meta` with the name of the meta you wish to search on, for instance `?@name=john`.
     + has_meta (optional, boolean, `1`) ... Only returns document having the `meta` key. Replace `meta` with the name of the meta you wish to search on.
-    + snippet_size (optional, integer, `200`) ... Number of chars to include in the snippet
+    + snippet_size (optional, integer, `200`) ... Number of chars to include in the snippet.
     + start (optional, integer, `5`) ... 0-based index of the first item to retrieve (for pagination).
-    + limit (optional, integer, `20`) ... Max number of items to retrieve (for pagination)
+    + limit (optional, integer, `20`) ... Max number of items to retrieve (for pagination).
     + sort (optional, string, `creationDate`) ... Sort criteria. Can be `creationDate` (sort by document creation date), `modificationDate` (sort by last modification date) or `_score` (default, sort by relevance to the query). Prepend with a `-` to reverse order (e.g. `-creationDate`).
     + render_templates (optional, boolean, `false`) ... Whether to pre-render the HTML for you in the results. Documents will have the keys `rendered_snippet` and `rendered_title`. The `data` key will be removed for faster transfer.
-    + strict (optional, boolean, `true`) ... When using strict mode, only results matching exactly the query will be returned (a search for "John Doe" will never return documents about "Doe" only)
+    + strict (optional, boolean, `true`) ... When using strict mode, only results matching exactly the query will be returned (a search for "John Doe" will never return documents about "Doe" only).
 
 + Response 200 (application/json)
     + Body
@@ -533,6 +539,8 @@ The [`document_type`](/resources/document-types.html) value is mandatory, every 
 
 If no identifier is specified, it will be set to the value of the document's id.
 
+Common parameters include `data` (data to use for full display), `metadata` (data to use for search and snippet display), `actions` (object of links) and `user_access` (an array of users authorized to view the document).
+
 * Identifiers in `related` will be converted to their matching `id`
 * Access tokens in `user_access` will be converted to their matching `user`.
 * A name in `document_type` will be converted to its matching `id`.
@@ -590,7 +598,7 @@ If no identifier is specified, it will be set to the value of the document's id.
                 "user_access": ["52d96492a7f0a3ac4226f2f7"]
             }
 
-## Document [/documents/{id}{?search, ?render_templates}]
+## Document [/documents/{id}{?search,render_templates}]
 > Please note: for every endpoint in the form `/documents/{id}`, you can also use an alternative URL `/documents/identifier/{identifier}` where `identifier` is the url-encoded provider identifier.
 
 Data regarding a document.
@@ -680,6 +688,7 @@ Hydraters use this endpoint to `PATCH` their changes to the document. They may o
 * Identifiers in `related` will be converted to their matching `id`
 * Access tokens in `user_access` will be converted to their matching `user`.
 * A name in `document_type` will be converted to its matching `id`.
+* You can't update the `hydrated_by` and `hydrating` properties; they're managed internally.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -974,7 +983,7 @@ Result contains, amongst other :
 
 ## Raw access [/documents/{id}/raw]
 Retrieve all raw data for `id` document.
-Also include information about hydraters (`hydratedBy`, `hydrating` and `lastHydration`).
+Also include information about hydraters (`hydrated_by`, `hydrating` and `last_hydration`).
 
 ### Get raw document [GET]
 View all data for the document.
@@ -1075,7 +1084,7 @@ View all data for the document.
             }
 
 
-## Image access [/documents/{id}/image{?width, ?search}]
+## Image access [/documents/{id}/image{?width,search}]
 Render an image for the document, using its `document_type` full projection. This is especially useful for mobile devices, where rendering complex HTML can be heavy for the user.
 
 ### Get document's image [GET]
@@ -1597,6 +1606,8 @@ Retrieve all providers available for the current user, with document count, a pr
 ### Get Provider [GET]
 Retrieve basic information about one provider.
 
+Note this endpoint currently returns less information than `GET /providers`.
+
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 Not Found`: `id` does not match a token
@@ -1618,7 +1629,7 @@ Retrieve basic information about one provider.
             }
 
 ### Delete Provider [DELETE]
-Revokes a provider token and subsequently deletes linked documents.
+Revokes a provider token and subsequently delete linked documents.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -1632,6 +1643,9 @@ Revokes a provider token and subsequently deletes linked documents.
 
 ### Reset Provider [DELETE]
 Resets the provider internal token. This means next time this provider is called for an update, the token's cursor will be empty, and as a consequence, all documents will be resent.
+
+This endpoint is to be used for testing purposes, and has no reason to be used in production.
+Also note the behavior for this endpoint differ from `DELETE /company/reset`, which delete linked providers.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
