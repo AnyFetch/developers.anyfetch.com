@@ -96,7 +96,7 @@ Your Context is now integrated in your layout, you can save this layout by click
 ![Mike Smith](/images/products/salesfetch/mike-smith.png)
 
 ### For Salesforce1
-Let's say you want to display a Salesfetch timeline next to your contacts in the desktop edition of Salesforce.
+Let's say you want to display a Salesfetch timeline next to your contacts in the mobile Salesforce1 app.
 
 To do so, we need to create a new Visual Force Page.
 Move to your VisualForce Pages administration panel in **Build > Develop > Pages** and create a new one by clicking on the **New** button on top of the page list.
