@@ -4,7 +4,7 @@ subtitle: Displaying data
 layout: doc
 ---
 
-Everywhere in the API, documents will have a property `projection_type` (for instance on `/documents`, `/documents/:id`, `/documents/:id/raw`, `/documents/:id/similar`).
+Everywhere in the API, documents will have a property `projection_type` (for instance on `/documents`, `/documents/:id`, `/documents/:id/raw`, `/documents/:id/similar`), indicating the keys you'll find in `data`.
 
 However, the end user is not really interested in projected JSON.
 To solve this problem, anyFetch provides "templating": each document type define a mustache HTML template, which can be used to display data.

@@ -124,7 +124,7 @@ Save the page, and now click on **Customize > Contacts > Buttons, Links, and Act
 
 Then go to the Contacts Page Layout, in **Build > Customize > Contacts > Page Layouts**. If you have more than one layout, execute the following instruction on each layout to allow all users to access the context panel. Click on **Edit** next to the layout
 
-Click on **Buttons**, then drag and drop the buttons onto "Custom buttons".
+Click on **Buttons**, then drag and drop the "Show Context" button onto "Custom buttons".
 
 ![Mobile layout properties](/images/products/salesfetch/mobile-layout-properties.png)
 
