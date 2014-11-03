@@ -47,7 +47,7 @@ Leave the setting untouched, unless explicitly asked otherwise by AnyFetch -- ju
 
 ![First run](/images/products/salesfetch/first-run.png)
 
-> Do *not* use the "clear master key" button, you'd lose all your data on Anyfetch.
+> **Note:** Do *not* use the "clear master key" button, you'd lose all your data on Anyfetch.
 
 Installation is now complete, you can add Salesfetch to your Salesforce objects. Keep reading!
 
@@ -77,6 +77,8 @@ You can now fill the Visualforce Markup text area with this code:
 
 
 When you're done, click on **Save** on the top menu.
+
+>**Note**: `standardStylesheets`, `showheader`, `sidebar` must be `false` to avoid property overriding by Salesforce stylesheets. Enabling or removing those options can lead to unpredictable behaviours.
 
 Then go to the Contact Page Layout, in **Build > Customize > Contacts > Page Layouts**. If you have more than one layout, execute the following instruction on each layout to allow all users to access the context panel. Click on **Edit** next to the layout.
 
