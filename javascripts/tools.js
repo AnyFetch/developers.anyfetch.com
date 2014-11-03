@@ -70,3 +70,9 @@ $(function generateTOC() {
         });
     }
 });
+
+
+// Clickable images
+$( "p img" ).wrap(function() {
+  return "<a href='" + $(this).attr('src') + "' target='_blank'></a>";
+});
