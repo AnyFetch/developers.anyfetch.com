@@ -16,9 +16,12 @@ strong {
 	font-weight: 600;
 }
 
-p > img {
-	max-width: 80%;
-	margin: 0% 10% 0% 10%;
+p img {
+	max-height: 400px;
+	max-width: 100%;
+	display: block;
+	margin: auto;
+	cursor: pointer;
 }
 
 blockquote {
@@ -572,4 +575,13 @@ table td {
 	border: 1px solid gray;
 	border-collapse: collapse;
 	padding: 0 15px;
+}
+
+pre {
+	overflow-x: auto;
+}
+
+pre code {
+	overflow-wrap: normal;
+	white-space: pre;
 }
