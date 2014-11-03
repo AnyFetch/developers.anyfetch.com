@@ -149,6 +149,7 @@ The Context Panel configuration offers you the possibility to create context fit
 Knowing that Salesforce dynamically generate each Visualforce Page, you'll need to use Visualforce Page markup to bind each context page with the selected record. In fact, `SFDCId`, `Display` and `Query` parameters should be passed as `{![object type].[field name]}` to be evaluated by Salesforce.
 
 ### Examples
+#### On standard objects
 The following code let you attach a context to a **Lead** record. The displayed context will be the `Lead.Name` and the provided context will return all your documents containing the `Lead.Name` field.
 
 ```html
@@ -171,6 +172,19 @@ The `Display` and `Query` parameters don't need to have the same value, `Display
         SFDCId="{!Contract.Id}"
         Display="{!Contract.Name}"
         Type="Contract">
+    </anyfetch:IframeComponent>
+</apex:page>
+```
+
+#### On custom objects
+The idea is the same. However, you need to add `__c` to the name of your controllers to use the automatically generated Controller.
+
+```html
+<apex:page StandardController="MyCustomObject__c">
+    <anyfetch:IframeComponent Query="{!MyCustomObject__c.Name}" 
+        SFDCId="{!MyCustomObject__c.Id}" 
+        Display="{!MyCustomObject__c.Name}" 
+        Type="MyCustomObject">
     </anyfetch:IframeComponent>
 </apex:page>
 ```
