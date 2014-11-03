@@ -61,10 +61,12 @@ Move to your VisualForce Pages administration panel in **Build > Develop > Pages
 This page will be inserted in the Contact layout.
 Add in the Label input: "`Context Contact`" and in the Name input: "`ContextContact`".
 
+![Visual Force Page for contact](/images/products/salesfetch/force-page.png)
+
 You can now fill the Visualforce Markup text area with this code:
 
 ```html
-<apex:page StandardController="Contact">
+<apex:page StandardController="Contact" standardStylesheets="false" showheader="false" sidebar="false">
     <anyfetch:IframeComponent Query="{!Contact.Name}" 
         SFDCId="{!Contact.Id}" 
         Display="{!Contact.Name}" 
@@ -73,7 +75,6 @@ You can now fill the Visualforce Markup text area with this code:
 </apex:page>
 ```
 
-![Visual Force Page for contact](/images/products/salesfetch/force-page.png)
 
 When you're done, click on **Save** on the top menu.
 
@@ -104,10 +105,12 @@ Move to your VisualForce Pages administration panel in **Build > Develop > Pages
 This page will be inserted in the Contact layout.
 Add in the Label input: "`Mobile Context Contact`" and in the Name input: "`MobileContextContact`". Don't forget to check "Available for Salesforce mobile apps".
 
+![Visual Force Page for mobile contact](/images/products/salesfetch/mobile-force-page.png)
+
 You can now fill the Visualforce Markup text area with this code:
 
 ```html
-<apex:page StandardController="Contact">
+<apex:page StandardController="Contact" standardStylesheets="false" showheader="false" sidebar="false">
     <anyfetch:IframeComponent Query="{!Contact.Name}" 
         SFDCId="{!Contact.Id}" 
         Display="{!Contact.Name}" 
@@ -116,7 +119,6 @@ You can now fill the Visualforce Markup text area with this code:
 </apex:page>
 ```
 
-![Visual Force Page for mobile contact](/images/products/salesfetch/mobile-force-page.png)
 
 Save the page, and now click on **Customize > Contacts > Buttons, Links, and Actions** and select **New Button or Link**.
 
@@ -127,6 +129,9 @@ Then go to the Contacts Page Layout, in **Build > Customize > Contacts > Page La
 Click on **Buttons**, then drag and drop the "Show Context" button onto "Custom buttons".
 
 ![Mobile layout properties](/images/products/salesfetch/mobile-layout-properties.png)
+
+![Show context button](/images/products/salesfetch/mobile-custom-buttons.png)
+
 
 Hit save, and reload your salesforce1:
 
@@ -153,7 +158,7 @@ Knowing that Salesforce dynamically generate each Visualforce Page, you'll need 
 The following code let you attach a context to a **Lead** record. The displayed context will be the `Lead.Name` and the provided context will return all your documents containing the `Lead.Name` field.
 
 ```html
-<apex:page StandardController="Lead">
+<apex:page StandardController="Lead" standardStylesheets="false" showheader="false" sidebar="false">
     <anyfetch:IframeComponent
         Query="{!Lead.Name}"
         SFDCId="{!Lead.Id}"
@@ -166,7 +171,7 @@ The following code let you attach a context to a **Lead** record. The displayed 
 The `Display` and `Query` parameters don't need to have the same value, `Display` let you create a user-friendly context. For instance, if you want to attach a context to your **Contracts** knowing that your contracts follow the `Contract-[Contract Number]` naming standard, the resulting Context configuration will be:
 
 ```html
-<apex:page StandardController="Contract">
+<apex:page StandardController="Contract" standardStylesheets="false" showheader="false" sidebar="false">
     <anyfetch:IframeComponent
         Query="Contract-{!Contract.ContractNumber}"
         SFDCId="{!Contract.Id}"
@@ -180,7 +185,7 @@ The `Display` and `Query` parameters don't need to have the same value, `Display
 The idea is the same. However, you need to add `__c` to the name of your controllers to use the automatically generated Controller.
 
 ```html
-<apex:page StandardController="MyCustomObject__c">
+<apex:page StandardController="MyCustomObject__c" standardStylesheets="false" showheader="false" sidebar="false">
     <anyfetch:IframeComponent Query="{!MyCustomObject__c.Name}" 
         SFDCId="{!MyCustomObject__c.Id}" 
         Display="{!MyCustomObject__c.Name}" 
