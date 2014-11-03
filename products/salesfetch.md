@@ -188,3 +188,5 @@ The idea is the same. However, you need to add `__c` to the name of your control
     </anyfetch:IframeComponent>
 </apex:page>
 ```
+
+To update a custom object layout, display one of them an click on the small "Edit layout" link on the top right corner.
