@@ -51,7 +51,7 @@ Things to note:
 * `attr` will return a highlight if any, or the metadata with this name, or the data for this name (in this order).
 * `#trim` will return a trimmed string (removing whitespace before and after)
 * `shortAttr` will work as `attr`, except its output will be truncated to 200 characters by default
-* `{{&gt; title}}` is used to import the following template:
+* `> title` is used to import the `title` template:
 
 ```
 {%raw%}
