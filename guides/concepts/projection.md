@@ -36,7 +36,7 @@ Projectors are written using [handlebars](http://handlebarsjs.com/), and handled
 
 For documents, the projector is quite simple:
 
-```json
+```
 {%raw%}
 {
   "title": {{> title}},
@@ -51,6 +51,21 @@ Things to note:
 * `attr` will return a highlight if any, or the metadata with this name, or the data for this name (in this order).
 * `#trim` will return a trimmed string (removing whitespace before and after)
 * `shortAttr` will work as `attr`, except its output will be truncated to 200 characters by default
+* `{{&gt; title}}` is used to import the following template:
+
+```
+{%raw%}
+{{#if metadata.title}}
+  "{{attr 'title'}}"
+{{else}}
+  {{#if metadata.path}}
+    "{{extractFilename metadata.path}}"
+  {{else}}
+    "Unknown document: no path."
+  {{/if}}
+{{/if~}}
+{%endraw%}
+```
 
 
 When the user searches for the term "many many", we'll then generate a new, smaller object:
@@ -86,7 +101,7 @@ You can now read about [templating](/guides/concepts/templating.html) to learn h
 
 Here is a more complex projector, used to display an email-thread in full view:
 
-```json
+```
 {%raw%}
 {
   "subject": "{{attr 'subject'}}",
@@ -152,7 +167,7 @@ Here is a more complex projector, used to display an email-thread in full view:
 
 And another one, to display an event:
 
-```json
+```
 {%raw%}
 {
   "name": "{{attr 'name'}}",
