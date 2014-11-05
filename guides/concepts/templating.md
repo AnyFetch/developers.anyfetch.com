@@ -34,7 +34,7 @@ When calling `GET /documents` or `GET /documents/:id`, you can add `render_templ
     "score": 1.9280857,
     "rendered_snippet": "<article class=\"anyfetch-document-snippet anyfetch-type-email-thread\">\n  <header class=\"anyfetch-header\">\n    <h1 class=\"anyfetch-title\">\n      <span class=\"anyfetch-number anyfetch-message-count\">3</span>\n      <span class=\"anyfetch-hlt\">Trick or Treat</span> from Loggly!\n    </h1>\n    <ul class=\"anyfetch-pill-list anyfetch-participants\">\n      <li class=\"anyfetch-title-detail\">3 <span class=\"anyfetch-icon-people\"></li>\n        <li class=\"anyfetch-pill anyfetch-name \">\n            Stephanie Skuratow\n        </li>\n        <li class=\"anyfetch-pill anyfetch-name \">\n            Matthieu Bacconnier\n        </li>\n        <li class=\"anyfetch-pill anyfetch-name \">\n            Anyfetch Flowdock\n        </li>\n    </ul>\n  </header>\n  <main class=\"anyfetch-content\">\n    <p>Hi Matthieu, As a Halloween <span class=\"anyfetch-hlt\">treat</span> (no <span class=\"anyfetch-hlt\">tricks</span>!), we're running special promotional pricing on our Pro tier of service that will be available only through October 31st</p>\n  </main>\n</article>\n",
     "rendered_title": "<span class=\"anyfetch-hlt\">Trick</span> <span class=\"anyfetch-hlt\">or</span> <span class=\"anyfetch-hlt\">Treat</span> from Loggly!"
-},
+}
 ```
 
 This snippet will be generated on the server using the same method as described below, except you don't have to do anything. This is great for web based display, or when you don't need to override content or display.
@@ -46,6 +46,7 @@ Everywhere in the API, documents will have a property `projection_type` (for ins
 Let's take an example. Here is an excerpt from a call to `GET /documents`, under the `data` key:
 
 ```json
+{%raw%}
 {
     "_type": "Document",
     "id": "544fb0a76d6e65310f05c176",
@@ -99,6 +100,7 @@ Let's take an example. Here is an excerpt from a call to `GET /documents`, under
     "related_count": 0,
     "score": 1.9280857
 }
+{%endraw%}
 ```
 
 * `projection_type` has a value of `snippet` ([the projection used](/guides/concepts/projection.html))
@@ -110,7 +112,9 @@ Since `projection_type` in the above document is `snippet`, we can find the rele
 > Note: if you want to display a shorter overview, you can also inject `data` in `document_type.templates.title` which will give a one-liner of the document.
 
 Here is the template, extracted from the JSON:
+
 ```html
+{%raw%}
 <article class="anyfetch-document-snippet anyfetch-type-email-thread">
   <header class="anyfetch-header">
     <h1 class="anyfetch-title">
@@ -145,6 +149,7 @@ Here is the template, extracted from the JSON:
     <p>{{{snippet}}}</p>
   </main>
 </article>
+{%endraw%}
 ```
 
 Using [any mustache rendering engine](http://mustache.github.io/), we can now generate the final layout:
