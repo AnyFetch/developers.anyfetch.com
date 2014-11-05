@@ -1271,6 +1271,27 @@ This endpoint should be used when providing, to associate a file with a document
 # Group Users
 User resources.
 
+## Current User [/user]
+### Get the current user [GET]
+
+Retrieve the currently logged in user.
+
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "_type": "User",
+                "id": "52fb7b90c8318c4dc800006c",
+                "email": "anyfetch@gmail.com",
+                "name": "",
+                "is_admin": false,
+                "user_url": "https://api.anyfetch.com/users/52fb7b90c8318c4dc800006c"
+            }
+
+
 ## Users Collection [/users]
 ### List all Users [GET]
 > This endpoint is only available to admin users.
