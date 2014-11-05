@@ -169,3 +169,5 @@ And another one, to display an event:
 }
 {%endraw%}
 ```
+
+> This guide is still a work in progress.
