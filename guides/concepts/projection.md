@@ -85,7 +85,7 @@ When the user searches for the term "many many", we'll then generate a new, smal
 
 ## Projections and document-types
 
-Obviously, we can't use the same projection for all document types: we don't want to project a PDF, a contact or an e- mail in the same way.
+Obviously, we can't use the same projection for all document types: we don't want to project a PDF, a contact or an email in the same way.
 Here comes the document-types: every document has a document-type, and this document-type defines how it will be projected.
 
 Every document-type defines three projectors:
