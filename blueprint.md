@@ -243,7 +243,7 @@ Childs are listed in the `childs` fields as an array of companies.
                             "childs": []
                         }
                     ]
-                }
+                },
                 {
                     "_type": "Company",
                     "id": "545a365336cb20533b63a693",
