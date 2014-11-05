@@ -222,7 +222,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <li><code>403 Forbidden</code>: you are not an administrator on this account.</li>
 </ul>
 </blockquote>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#e4db170102ce83713f991b20f1a36fa0" class="pull-right">Toggle</a></li><li id="e4db170102ce83713f991b20f1a36fa0" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#508975ae5192ebbf8b869c9110893215" class="pull-right">Toggle</a></li><li id="508975ae5192ebbf8b869c9110893215" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
     {
         "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Company"</span></span>,
         "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"545a2aec36cb20533b63a68f"</span></span>,
@@ -241,7 +241,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
             <span class="hljs-string">"https://plaintext.anyfetch.com/hydrate"</span>,
             <span class="hljs-string">"https://deduplicator.anyfetch.com/hydrate"</span>
         ]</span>,
-        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">1337</span></span>,
         "<span class="hljs-attribute">user_count</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
         "<span class="hljs-attribute">subcompany_count</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
         "<span class="hljs-attribute">documents_per_update</span>": <span class="hljs-value"><span class="hljs-number">2500</span></span>,
@@ -264,13 +264,37 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
                     <span class="hljs-string">"https://plaintext.anyfetch.com/hydrate"</span>,
                     <span class="hljs-string">"https://deduplicator.anyfetch.com/hydrate"</span>
                 ]</span>,
-                "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+                "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">4242</span></span>,
                 "<span class="hljs-attribute">user_count</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
                 "<span class="hljs-attribute">subcompany_count</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
                 "<span class="hljs-attribute">documents_per_update</span>": <span class="hljs-value"><span class="hljs-number">2500</span></span>,
                 "<span class="hljs-attribute">childs</span>": <span class="hljs-value">[]
             </span>}
         ]
+    </span>}
+    {
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Company"</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"545a365336cb20533b63a693"</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"other-subcompany"</span></span>,
+        "<span class="hljs-attribute">hydraters</span>": <span class="hljs-value">[
+            <span class="hljs-string">"https://embedmail.anyfetch.com/hydrate"</span>,
+            <span class="hljs-string">"https://eml.anyfetch.com/hydrate"</span>,
+            <span class="hljs-string">"https://filecleaner.anyfetch.com/hydrate"</span>,
+            <span class="hljs-string">"https://ics.anyfetch.com/hydrate"</span>,
+            <span class="hljs-string">"https://image.anyfetch.com/hydrate"</span>,
+            <span class="hljs-string">"https://iptc.anyfetch.com/hydrate"</span>,
+            <span class="hljs-string">"https://markdown.anyfetch.com/hydrate"</span>,
+            <span class="hljs-string">"https://ocr.anyfetch.com/hydrate"</span>,
+            <span class="hljs-string">"https://office.anyfetch.com/hydrate"</span>,
+            <span class="hljs-string">"https://pdf.anyfetch.com/hydrate"</span>,
+            <span class="hljs-string">"https://plaintext.anyfetch.com/hydrate"</span>,
+            <span class="hljs-string">"https://deduplicator.anyfetch.com/hydrate"</span>
+        ]</span>,
+        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">5478</span></span>,
+        "<span class="hljs-attribute">user_count</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+        "<span class="hljs-attribute">subcompany_count</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+        "<span class="hljs-attribute">documents_per_update</span>": <span class="hljs-value"><span class="hljs-number">2500</span></span>,
+        "<span class="hljs-attribute">childs</span>": <span class="hljs-value">[]
     </span>}
 ]
 </code></pre></li></ul></section><section id="subcompanies-subcompanies-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create a new subcompany</span></div><div style="float:left"><a href="#subcompanies-subcompanies-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/subcompanies</code></div></div><div class="panel-body"><blockquote>
@@ -340,7 +364,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
 </blockquote>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#e66044e33fc723c34ceb226316878de1" class="pull-right">Toggle</a></li><li id="e66044e33fc723c34ceb226316878de1" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#4f96a390715fe1be4c197a16dee7266a" class="pull-right">Toggle</a></li><li id="4f96a390715fe1be4c197a16dee7266a" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Company"</span></span>,
     "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"545a2aec36cb20533b63a68f"</span></span>,
     "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"subcompany"</span></span>,
@@ -358,7 +382,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
         <span class="hljs-string">"https://plaintext.anyfetch.com/hydrate"</span>,
         <span class="hljs-string">"https://deduplicator.anyfetch.com/hydrate"</span>
     ]</span>,
-    "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">1337</span></span>,
     "<span class="hljs-attribute">user_count</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
     "<span class="hljs-attribute">subcompany_count</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
     "<span class="hljs-attribute">documents_per_update</span>": <span class="hljs-value"><span class="hljs-number">2500</span></span>,
@@ -381,7 +405,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
                 <span class="hljs-string">"https://plaintext.anyfetch.com/hydrate"</span>,
                 <span class="hljs-string">"https://deduplicator.anyfetch.com/hydrate"</span>
             ]</span>,
-            "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+            "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">4242</span></span>,
             "<span class="hljs-attribute">user_count</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
             "<span class="hljs-attribute">subcompany_count</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
             "<span class="hljs-attribute">documents_per_update</span>": <span class="hljs-value"><span class="hljs-number">2500</span></span>,

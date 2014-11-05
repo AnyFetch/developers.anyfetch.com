@@ -213,7 +213,7 @@ Childs are listed in the `childs` fields as an array of companies.
                         "https://plaintext.anyfetch.com/hydrate",
                         "https://deduplicator.anyfetch.com/hydrate"
                     ],
-                    "document_count": 0,
+                    "document_count": 1337,
                     "user_count": 1,
                     "subcompany_count": 1,
                     "documents_per_update": 2500,
@@ -236,13 +236,37 @@ Childs are listed in the `childs` fields as an array of companies.
                                 "https://plaintext.anyfetch.com/hydrate",
                                 "https://deduplicator.anyfetch.com/hydrate"
                             ],
-                            "document_count": 0,
+                            "document_count": 4242,
                             "user_count": 1,
                             "subcompany_count": 0,
                             "documents_per_update": 2500,
                             "childs": []
                         }
                     ]
+                }
+                {
+                    "_type": "Company",
+                    "id": "545a365336cb20533b63a693",
+                    "name": "other-subcompany",
+                    "hydraters": [
+                        "https://embedmail.anyfetch.com/hydrate",
+                        "https://eml.anyfetch.com/hydrate",
+                        "https://filecleaner.anyfetch.com/hydrate",
+                        "https://ics.anyfetch.com/hydrate",
+                        "https://image.anyfetch.com/hydrate",
+                        "https://iptc.anyfetch.com/hydrate",
+                        "https://markdown.anyfetch.com/hydrate",
+                        "https://ocr.anyfetch.com/hydrate",
+                        "https://office.anyfetch.com/hydrate",
+                        "https://pdf.anyfetch.com/hydrate",
+                        "https://plaintext.anyfetch.com/hydrate",
+                        "https://deduplicator.anyfetch.com/hydrate"
+                    ],
+                    "document_count": 5478,
+                    "user_count": 2,
+                    "subcompany_count": 1,
+                    "documents_per_update": 2500,
+                    "childs": []
                 }
             ]
 
@@ -341,7 +365,7 @@ Retrieve a specific subcompany from the current company, and its subcompanies re
                     "https://plaintext.anyfetch.com/hydrate",
                     "https://deduplicator.anyfetch.com/hydrate"
                 ],
-                "document_count": 0,
+                "document_count": 1337,
                 "user_count": 1,
                 "subcompany_count": 1,
                 "documents_per_update": 2500,
@@ -364,7 +388,7 @@ Retrieve a specific subcompany from the current company, and its subcompanies re
                             "https://plaintext.anyfetch.com/hydrate",
                             "https://deduplicator.anyfetch.com/hydrate"
                         ],
-                        "document_count": 0,
+                        "document_count": 4242,
                         "user_count": 1,
                         "subcompany_count": 0,
                         "documents_per_update": 2500,
