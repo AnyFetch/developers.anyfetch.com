@@ -198,7 +198,7 @@ Childs are listed in the `childs` fields as an array of companies.
                 {
                     "_type": "Company",
                     "id": "545a2aec36cb20533b63a68f",
-                    "name": "sub-company",
+                    "name": "subcompany",
                     "hydraters": [
                         "https://embedmail.anyfetch.com/hydrate",
                         "https://eml.anyfetch.com/hydrate",
@@ -221,7 +221,7 @@ Childs are listed in the `childs` fields as an array of companies.
                         {
                             "_type": "Company",
                             "id": "545a2b7936cb20533b63a691",
-                            "name": "sub-sub-company",
+                            "name": "subsubcompany",
                             "hydraters": [
                                 "https://embedmail.anyfetch.com/hydrate",
                                 "https://eml.anyfetch.com/hydrate",
@@ -278,15 +278,16 @@ Note the "original" (parent) company will only be able to `DELETE` the subcompan
 
             {
                 "user": "52fb7b90c8318c4dc800006c",
-                "name": "new-subcompany-name",
+                "name": "subcompany",
             }
 
 + Response 200 (application/json)
+    + Body
 
             {
                 "_type": "Company",
-                "id": "533d9161162215a5375d34d2",
-                "name": "new-subcompany-name",
+                "id": "545a2aec36cb20533b63a68f",
+                "name": "subcompany",
                 "hydraters": [
                     "https://embedmail.anyfetch.com/hydrate",
                     "https://eml.anyfetch.com/hydrate",
@@ -301,19 +302,18 @@ Note the "original" (parent) company will only be able to `DELETE` the subcompan
                     "https://plaintext.anyfetch.com/hydrate",
                     "https://deduplicator.anyfetch.com/hydrate"
                 ],
-                document_count: 0,
-                user_count: 1,
-                subcompany_count: 0,
-                documents_per_update: 2500
+                "document_count": 0,
+                "user_count": 1,
+                "subcompany_count": 1,
+                "documents_per_update": 2500,
+                "childs": []
             }
 
 ## Subcompany [/subcompanies/{id}]
 ### Retrieve a subcompany [GET]
 > This endpoint is only available to admin users.
 
-Retrieve a specific subcompany from the current company.
-
-Note this endpoint is not recursive.
+Retrieve a specific subcompany from the current company, and its subcompanies recursively in the `childs` field.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -325,8 +325,8 @@ Note this endpoint is not recursive.
 
             {
                 "_type": "Company",
-                "id": "533d87ea162215a5375d34d1",
-                "name": "new-user-subcompany",
+                "id": "545a2aec36cb20533b63a68f",
+                "name": "subcompany",
                 "hydraters": [
                     "https://embedmail.anyfetch.com/hydrate",
                     "https://eml.anyfetch.com/hydrate",
@@ -341,10 +341,36 @@ Note this endpoint is not recursive.
                     "https://plaintext.anyfetch.com/hydrate",
                     "https://deduplicator.anyfetch.com/hydrate"
                 ],
-                document_count: 1337,
-                user_count: 1,
-                subcompany_count: 0,
-                documents_per_update: 2500
+                "document_count": 0,
+                "user_count": 1,
+                "subcompany_count": 1,
+                "documents_per_update": 2500,
+                "childs": [
+                    {
+                        "_type": "Company",
+                        "id": "545a2b7936cb20533b63a691",
+                        "name": "subsubcompany",
+                        "hydraters": [
+                            "https://embedmail.anyfetch.com/hydrate",
+                            "https://eml.anyfetch.com/hydrate",
+                            "https://filecleaner.anyfetch.com/hydrate",
+                            "https://ics.anyfetch.com/hydrate",
+                            "https://image.anyfetch.com/hydrate",
+                            "https://iptc.anyfetch.com/hydrate",
+                            "https://markdown.anyfetch.com/hydrate",
+                            "https://ocr.anyfetch.com/hydrate",
+                            "https://office.anyfetch.com/hydrate",
+                            "https://pdf.anyfetch.com/hydrate",
+                            "https://plaintext.anyfetch.com/hydrate",
+                            "https://deduplicator.anyfetch.com/hydrate"
+                        ],
+                        "document_count": 0,
+                        "user_count": 1,
+                        "subcompany_count": 0,
+                        "documents_per_update": 2500,
+                        "childs": []
+                    }
+                ]
             }
 
 ### Delete a subcompany [DELETE]
