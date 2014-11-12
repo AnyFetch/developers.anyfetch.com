@@ -200,7 +200,43 @@ Contains your company name, the list of hydraters used on your account and basic
 ### Update current company [POST]
 Allows you to update your current company details: hydrater list, name and `documents_per_update`.
 
-**TODO**
+Warning: if you lower your own `documents_per_update` value, you'll *never* be able to restore it to some higher value. Be careful.
+
+
++ Request (application/json)
+
+            {
+                "documents_per_update": "2499"
+            }
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "_type": "Company",
+                "id": "53e0b2256f18dce71fce0bfe",
+                "name": "matthieu@anyfetch.com",
+                "hydraters": [
+                    "https://plaintext-staging.anyfetch.com/hydrate",
+                    "https://pdf-staging.anyfetch.com/hydrate",
+                    "https://office-staging.anyfetch.com/hydrate",
+                    "https://image-staging.anyfetch.com/hydrate",
+                    "https://ocr-staging.anyfetch.com/hydrate",
+                    "https://iptc-staging.anyfetch.com/hydrate",
+                    "https://markdown-staging.anyfetch.com/hydrate",
+                    "https://eml-staging.anyfetch.com/hydrate",
+                    "https://embedmail-staging.anyfetch.com/hydrate",
+                    "https://ics-staging.anyfetch.com/hydrate",
+                    "https://filecleaner-staging.anyfetch.com/hydrate",
+                    "https://deduplicator-staging.anyfetch.com/hydrate"
+                ],
+                "document_count": 23989,
+                "user_count": 1,
+                "subcompany_count": 0,
+                "documents_per_update": 2499,
+                "last_update": "2014-11-12T15:35:18.236Z"
+            }
+
 
 
 ## Update company documents [/company/update]
@@ -1372,10 +1408,41 @@ Retrieve the currently logged in user.
 
 Errors and response are exactly the same as calling [`GET /users/:id`](#users-user-get) with your own id.
 
++ Response 200 (application/json)
+
+            {
+                "_type": "User",
+                "id": "53e0b2257976bdce1f250f93",
+                "email": "matthieu@anyfetch.com",
+                "name": "Matthieu Bacconnier",
+                "is_admin": true,
+                "user_url": "https://api-staging.anyfetch.com/users/53e0b2257976bdce1f250f93"
+            }
+
 ### Update the current user [PATCH]
 Update data from the currently logged in user.
 
 Errors, request and response are exactly the same as calling [`PATCH /users/:id`](#users-user-patch) with your own id.
+
+
++ Request (application/json)
+
+            {
+                "email": "matthieu@anyfetch.com",
+                "name": "Matthieu Bacconnier",
+            }
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "_type": "User",
+                "id": "53e0b2257976bdce1f250f93",
+                "email": "matthieu@anyfetch.com",
+                "name": "Matthieu Bacconnier",
+                "is_admin": true,
+                "user_url": "https://api-staging.anyfetch.com/users/53e0b2257976bdce1f250f93"
+            }
 
 
 ## Users Collection [/users]

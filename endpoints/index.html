@@ -186,8 +186,35 @@ Should have a <code>status</code> of “OK”.</p>
     "<span class="hljs-attribute">last_update</span>": <span class="hljs-value"><span class="hljs-string">"2014-11-12T15:22:26.044Z"</span>
 </span>}
 </code></pre></li></ul></section><section id="company-company-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Update current company</span></div><div style="float:left"><a href="#company-company-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/company</code></div></div><div class="panel-body"><p>Allows you to update your current company details: hydrater list, name and <code>documents_per_update</code>.</p>
-<p><strong>TODO</strong></p>
-</div><ul class="list-group"></ul></section><h4 id="company-update-company-documents">Update company documents&nbsp;<a href="#company-update-company-documents"><i class="fa fa-link"></i></a></h4><section id="company-update-company-documents-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Update documents</span></div><div style="float:left"><a href="#company-update-company-documents-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/company/update</code></div></div><div class="panel-body"><p>Ping all providers for the current company, checking for new available documents.</p>
+<p>Warning: if you lower your own <code>documents_per_update</code> value, you’ll <em>never</em> be able to restore it to some higher value. Be careful.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#920274599c886e5b6b8a85068f82754d" class="pull-right">Toggle</a></li><li id="920274599c886e5b6b8a85068f82754d" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>    {
+        "<span class="hljs-attribute">documents_per_update</span>": <span class="hljs-value"><span class="hljs-string">"2499"</span>
+    </span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#bf014a996492c198fa7ac2fb89b80561" class="pull-right">Toggle</a></li><li id="bf014a996492c198fa7ac2fb89b80561" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Company"</span></span>,
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53e0b2256f18dce71fce0bfe"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"matthieu@anyfetch.com"</span></span>,
+    "<span class="hljs-attribute">hydraters</span>": <span class="hljs-value">[
+        <span class="hljs-string">"https://plaintext-staging.anyfetch.com/hydrate"</span>,
+        <span class="hljs-string">"https://pdf-staging.anyfetch.com/hydrate"</span>,
+        <span class="hljs-string">"https://office-staging.anyfetch.com/hydrate"</span>,
+        <span class="hljs-string">"https://image-staging.anyfetch.com/hydrate"</span>,
+        <span class="hljs-string">"https://ocr-staging.anyfetch.com/hydrate"</span>,
+        <span class="hljs-string">"https://iptc-staging.anyfetch.com/hydrate"</span>,
+        <span class="hljs-string">"https://markdown-staging.anyfetch.com/hydrate"</span>,
+        <span class="hljs-string">"https://eml-staging.anyfetch.com/hydrate"</span>,
+        <span class="hljs-string">"https://embedmail-staging.anyfetch.com/hydrate"</span>,
+        <span class="hljs-string">"https://ics-staging.anyfetch.com/hydrate"</span>,
+        <span class="hljs-string">"https://filecleaner-staging.anyfetch.com/hydrate"</span>,
+        <span class="hljs-string">"https://deduplicator-staging.anyfetch.com/hydrate"</span>
+    ]</span>,
+    "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">23989</span></span>,
+    "<span class="hljs-attribute">user_count</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+    "<span class="hljs-attribute">subcompany_count</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">documents_per_update</span>": <span class="hljs-value"><span class="hljs-number">2499</span></span>,
+    "<span class="hljs-attribute">last_update</span>": <span class="hljs-value"><span class="hljs-string">"2014-11-12T15:35:18.236Z"</span>
+</span>}
+</code></pre></li></ul></section><h4 id="company-update-company-documents">Update company documents&nbsp;<a href="#company-update-company-documents"><i class="fa fa-link"></i></a></h4><section id="company-update-company-documents-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Update documents</span></div><div style="float:left"><a href="#company-update-company-documents-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/company/update</code></div></div><div class="panel-body"><p>Ping all providers for the current company, checking for new available documents.</p>
 <p>Return the response code from each provider—202 means <code>Accepted</code>. Most provider will reply with <code>429 Too Many Requests</code> if they’re already working on this user’s tasks.
 Note that even if each providers responds with an error, this endpoint will still return 200 and the status for each provider.</p>
 <p>See <code>GET /providers</code> to map id to real providers.</p>
@@ -1185,9 +1212,29 @@ Also include information about hydraters (<code>hydrated_by</code>, <code>hydrat
 </code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="users">Users&nbsp;<a href="#users"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>User resources.</p>
 <h4 id="users-current-user">Current User&nbsp;<a href="#users-current-user"><i class="fa fa-link"></i></a></h4><section id="users-current-user-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get the current user</span></div><div style="float:left"><a href="#users-current-user-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/user</code></div></div><div class="panel-body"><p>Retrieve the currently logged in user.</p>
 <p>Errors and response are exactly the same as calling <a href="#users-user-get"><code>GET /users/:id</code></a> with your own id.</p>
-</div><ul class="list-group"></ul></section><section id="users-current-user-patch" class="panel panel-warning"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Update the current user</span></div><div style="float:left"><a href="#users-current-user-patch" class="btn btn-xs btn-warning">PATCH</a></div><div style="overflow:hidden"><code>/user</code></div></div><div class="panel-body"><p>Update data from the currently logged in user.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#b4d42f10026d0c538676d70c1a3e3aab" class="pull-right">Toggle</a></li><li id="b4d42f10026d0c538676d70c1a3e3aab" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>    {
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"User"</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53e0b2257976bdce1f250f93"</span></span>,
+        "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"matthieu@anyfetch.com"</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Matthieu Bacconnier"</span></span>,
+        "<span class="hljs-attribute">is_admin</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">user_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api-staging.anyfetch.com/users/53e0b2257976bdce1f250f93"</span>
+    </span>}
+</code></pre></li></ul></section><section id="users-current-user-patch" class="panel panel-warning"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Update the current user</span></div><div style="float:left"><a href="#users-current-user-patch" class="btn btn-xs btn-warning">PATCH</a></div><div style="overflow:hidden"><code>/user</code></div></div><div class="panel-body"><p>Update data from the currently logged in user.</p>
 <p>Errors, request and response are exactly the same as calling <a href="#users-user-patch"><code>PATCH /users/:id</code></a> with your own id.</p>
-</div><ul class="list-group"></ul></section><h4 id="users-users-collection">Users Collection&nbsp;<a href="#users-users-collection"><i class="fa fa-link"></i></a></h4><section id="users-users-collection-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">List all Users</span></div><div style="float:left"><a href="#users-users-collection-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/users</code></div></div><div class="panel-body"><blockquote>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#9ffe895a4030cf1ee418eb4585152ac5" class="pull-right">Toggle</a></li><li id="9ffe895a4030cf1ee418eb4585152ac5" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>    {
+        "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"matthieu@anyfetch.com"</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Matthieu Bacconnier"</span></span>,
+    }
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#5c73a6269194dae5055852edc17aeeea" class="pull-right">Toggle</a></li><li id="5c73a6269194dae5055852edc17aeeea" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"User"</span></span>,
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"53e0b2257976bdce1f250f93"</span></span>,
+    "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"matthieu@anyfetch.com"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Matthieu Bacconnier"</span></span>,
+    "<span class="hljs-attribute">is_admin</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">user_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api-staging.anyfetch.com/users/53e0b2257976bdce1f250f93"</span>
+</span>}
+</code></pre></li></ul></section><h4 id="users-users-collection">Users Collection&nbsp;<a href="#users-users-collection"><i class="fa fa-link"></i></a></h4><section id="users-users-collection-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">List all Users</span></div><div style="float:left"><a href="#users-users-collection-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/users</code></div></div><div class="panel-body"><blockquote>
 <p>This endpoint is only available to admin users.</p>
 </blockquote>
 <p>Retrieve a list of all users in the current company. Users migrated in a subcompany are not shown anymore.</p>
