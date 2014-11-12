@@ -166,6 +166,8 @@ Retrieve the current company details.
 
 Contains your company name, the list of hydraters used on your account and basic stats (document count, user count...)
 
+Errors and response are exactly the same as calling [`GET /users/:id`](#users-user-get) with your own id.
+
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 
@@ -197,7 +199,7 @@ Contains your company name, the list of hydraters used on your account and basic
                 "last_update": "2014-11-12T15:22:26.044Z"
             }
 
-### Update current company [POST]
+### Update current company [PATCH]
 Allows you to update your current company details: hydrater list, name and `documents_per_update`.
 
 Warning: if you lower your own `documents_per_update` value, you'll *never* be able to restore it to some higher value. Be careful.
