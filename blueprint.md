@@ -10,7 +10,30 @@ HOST: https://api.anyfetch.com
 Common error codes are documented on [this page](/getting-started.html).
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Group Index
+
+
 ## API status [/status]
 ### anyFetch status [GET]
 Get the current global status for the API.
@@ -31,7 +54,31 @@ Should have a `status` of "OK".
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Group Account
+
+
 ## Index [/]
 ### Retrieve API links [GET]
 Retrieve data about the current account. This endpoint return:
@@ -58,6 +105,7 @@ Retrieve data about the current account. This endpoint return:
                 "token_url": "https://api.anyfetch.com/token",
                 "server_time": "2014-03-21T16:15:04.813Z"
             }
+
 
 ## Token [/token]
 ### Retrieve frontend token [GET]
@@ -87,12 +135,36 @@ Remove the token returned by `GET /token`, and associated documents.
 
 + Response 204
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Group Company
+
+
 ## Company [/company]
 ### Retrieve current company [GET]
 Retrieve the current company details.
 
-Contains your company name, the list of hydraters used on the account and basic stats (document count, user count...)
+Contains your company name, the list of hydraters used on your account and basic stats (document count, user count...)
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -102,7 +174,7 @@ Contains your company name, the list of hydraters used on the account and basic 
 
             {
                 "_type": "Company",
-                "id": "531dd2f3c8318cc5d100003c",
+                "id": "53f31b0a6a77dce00d9ca289",
                 "name": "test@anyfetch.com",
                 "hydraters": [
                     "https://embedmail.anyfetch.com/hydrate",
@@ -118,11 +190,18 @@ Contains your company name, the list of hydraters used on the account and basic 
                     "https://plaintext.anyfetch.com/hydrate",
                     "https://deduplicator.anyfetch.com/hydrate"
                 ],
-                document_count: 4284,
-                user_count: 1,
-                subcompany_count: 1,
-                documents_per_update: 2500
+                "document_count": 14359,
+                "user_count": 4,
+                "subcompany_count": 0,
+                "documents_per_update": 2500,
+                "last_update": "2014-11-12T15:22:26.044Z"
             }
+
+### Update current company [POST]
+Allows you to update your current company details: hydrater list, name and `documents_per_update`.
+
+**TODO**
+
 
 ## Update company documents [/company/update]
 ### Update documents [POST]
@@ -146,8 +225,9 @@ See `GET /providers` to map id to real providers.
                 "5320a6abc8318cc5d1000049": 429
             }
 
+
 ## Reset company [/company/reset]
-## Reset company [DELETE]
+### Reset company [DELETE]
 Reset **all** documents, tokens and providers from the account.
 
 Subcompanies and users are not affected.
@@ -175,7 +255,15 @@ Subcompanies and users are not affected.
 
 
 
+
+
+
+
+
+
 # Group Subcompanies
+
+
 ## Subcompanies [/subcompanies]
 Subcompanies are companies you own and have created.
 They allow you to isolate data: no data stored in a subcompany can be accessed from any other place.
@@ -333,6 +421,7 @@ Note the "original" (parent) company will only be able to `DELETE` the subcompan
                 "childs": []
             }
 
+
 ## Subcompany [/subcompanies/{id}]
 ### Retrieve a subcompany [GET]
 > This endpoint is only available to admin users.
@@ -413,6 +502,7 @@ By default, you are not allowed to remove a subcompany with subsubcompanies. To 
 
 + Response 204
 
+
 ## Reset a subcompany [/subcompanies/{id}/reset]
 ### Reset a subcompany [DELETE]
 > This endpoint is only available to admin users.
@@ -445,8 +535,11 @@ Subcompanies and users are not affected.
 
 
 
+
+
 # Group Documents
 Endpoints for retrieving documents
+
 
 ## Documents [/documents{?search,before,after,document_type,provider,id,_meta,has_meta,snippet_size,start,limit,sort,render_templates,strict}]
 Access documents resources.
@@ -701,6 +794,7 @@ Common parameters include `data` (data to use for full display), `metadata` (dat
                 "related": ["52dff5c53923844f15885428"],
                 "user_access": ["52d96492a7f0a3ac4226f2f7"]
             }
+
 
 ## Document [/documents/{id}{?search,render_templates}]
 > Please note: for every endpoint in the form `/documents/{id}`, you can also use an alternative URL `/documents/identifier/{identifier}` where `identifier` is the url-encoded provider identifier.
@@ -1271,25 +1365,17 @@ This endpoint should be used when providing, to associate a file with a document
 # Group Users
 User resources.
 
+
 ## Current User [/user]
 ### Get the current user [GET]
-
 Retrieve the currently logged in user.
 
-> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
-> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+Errors and response are exactly the same as calling [`GET /users/:id`](#users-user-get) with your own id.
 
-+ Response 200 (application/json)
-    + Body
+### Update the current user [PATCH]
+Update data from the currently logged in user.
 
-            {
-                "_type": "User",
-                "id": "52fb7b90c8318c4dc800006c",
-                "email": "anyfetch@gmail.com",
-                "name": "",
-                "is_admin": false,
-                "user_url": "https://api.anyfetch.com/users/52fb7b90c8318c4dc800006c"
-            }
+Errors, request and response are exactly the same as calling [`PATCH /users/:id`](#users-user-patch) with your own id.
 
 
 ## Users Collection [/users]
@@ -1348,6 +1434,7 @@ Create a new user on this company. If `is_admin` is not specified, a standard us
                 "is_admin": false,
                 "user_url": "https://api.anyfetch.com/users/533d6b2a6355285e5563d005"
             }
+
 
 ## User [/users/{id}]
 A single User object with all its details. This resource has the following attributes :
@@ -1450,6 +1537,8 @@ Remove specified user. The user should be in your company, you can't delete a us
 
 
 # Group Document Types
+
+
 ## Document types [/document_types]
 ### List document-types [GET]
 Retrieve all document types available for the current user, with document count and the date the last document with this document type was updated.
@@ -1657,6 +1746,29 @@ A list of default document-types can be found on [this page](/resources/document
             }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Group Providers
 ## Providers [/providers]
 ### List providers [GET]
@@ -1727,6 +1839,7 @@ Retrieve all providers available for the current user, with document count, a pr
                 }
             ]
 
+
 ## Provider [/providers/{id}]
 ### Get Provider [GET]
 Retrieve basic information about one provider.
@@ -1765,7 +1878,6 @@ Revokes a provider token and subsequently delete linked documents.
 
 
 ## Reset a Provider [/providers/{id}/reset]
-
 ### Reset Provider [DELETE]
 Resets the provider internal token. This means next time this provider is called for an update, the token's cursor will be empty, and as a consequence, all documents will be resent.
 
@@ -1787,7 +1899,18 @@ Also note the behavior for this endpoint differ from `DELETE /company/reset`, wh
 
 
 
+
+
+
+
+
+
+
+
+
 # Group Hydraters
+
+
 ## Hydraters [/hydraters]
 ### List Hydraters [GET]
 List hydraters owned by the user's company and its parent companies. These represent the hydraters which can be applied to your company's documents.
@@ -1920,7 +2043,6 @@ See [how to create a hydrater](/guides/creating/hydrater.html).
             },
 
 
-
 ## Hydrater [/hydraters/{id}]
 ### Get Hydrater [GET]
 Retrieve information about one hydrater.
@@ -1959,7 +2081,27 @@ Deleting a hydrater will result in removing this hydrater in your company and su
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Group Misc
+
+
 ## Batch calls [/batch{?pages}]
 ### Batch querying [GET]
 Queue multiple `GET` queries in a single request. For instance, you can call `/batch?pages=/&pages=/document_types&pages=/providers` to get one JSON object with all data, indexed by url.
