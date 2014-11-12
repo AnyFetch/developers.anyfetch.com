@@ -1,5 +1,5 @@
 ---
-title: Guidestyle
+title: Style Guide
 subtitle: Coding convention
 layout: doc
 ---
