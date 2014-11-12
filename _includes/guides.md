@@ -17,5 +17,5 @@
 * [How to create my own hydrater?](/guides/creating/hydrater.html)
 
 ### Participating in existing projects
-* [Guidestyle for contributing](/contributing.html)
+* [Style Guide for contributing](/contributing.html)
 
