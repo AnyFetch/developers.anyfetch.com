@@ -480,6 +480,7 @@ Retrieve a specific subcompany from the current company, and its subcompanies re
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 MissingScope`: token does not have the `read_companies` scope.
 > * `403 Forbidden`: you are not an administrator on this account.
+> * `404 ResourceNotFound`: the subcompany does not exist, or is not available for this user.
 > * `409 InvalidArgument`: `id` is not a valid id.
 
 + Response 200 (application/json)
@@ -533,6 +534,42 @@ Retrieve a specific subcompany from the current company, and its subcompanies re
                         "childs": []
                     }
                 ]
+            }
+
+### Update a subcompany [PATCH]
+> This endpoint is only available to admin users.
+
+Update the specified subcompany.
+
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+> * `403 MissingScope`: token does not have the `write_companies` scope.
+> * `403 Forbidden`: you are not an administrator on this account.
+> * `404 ResourceNotFound`: the subcompany does not exist, or is not available for this user.
+> * `409 InvalidArgument`: `id` is not a valid id.
+> * `409 InvalidArgument`: invalid value for `documents_per_update`.
+
+
++ Request (application/json)
+
+            {
+                "hydraters": ["https://plaintext.anyfetch.com"]
+                "name": "new_name",
+                "documents_per_update": 240,
+            }
+
++ Response 200
+
+            {
+                "_type": "Company",
+                "id": "546a14aa5ebce54e1258147b",
+                "name": "new_name",
+                "hydraters": ["https://plaintext.anyfetch.com"],
+                "document_count": 0,
+                "user_count": 1,
+                "subcompany_count": 0,
+                "documents_per_update": 240,
+                "last_update": "2014-11-17T15:30:50.218Z"
             }
 
 ### Delete a subcompany [DELETE]
