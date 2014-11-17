@@ -114,6 +114,7 @@ Retrieve data about the current account. This endpoint return:
 Create or retrieve a token. The token will always be the same until you call `DELETE /company/reset` or `DELETE /token`.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `read_tokens` scope.
 > * `401 ForbiddenScheme`: `Bearer` authentication used, but this endpoint can only be used with `Basic` scheme.
 > * `401 InvalidCredentials`: non matching user
 
@@ -130,6 +131,7 @@ Create or retrieve a token. The token will always be the same until you call `DE
 Remove the token returned by `GET /token`, and associated documents.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `delete_tokens` scope.
 > * `401 ForbiddenScheme`: `Bearer` authentication used, but this endpoint can only be used with `Basic` scheme.
 > * `401 InvalidCredentials`: non matching user
 
@@ -169,6 +171,7 @@ Contains your company name, the list of hydraters used on your account and basic
 Errors and response are exactly the same as calling [`GET /users/:id`](#users-user-get) with your own id.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `read_companies` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 
 + Response 200 (application/json)
@@ -204,6 +207,10 @@ Allows you to update your current company details: hydrater list, name and `docu
 
 Warning: if you lower your own `documents_per_update` value, you'll *never* be able to restore it to some higher value. Be careful.
 
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `write_companies` scope.
+> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+> * `409 InvalidArgument`: invalid value for `documents_per_update`.
 
 + Request (application/json)
 
@@ -271,6 +278,7 @@ Reset **all** documents, tokens and providers from the account.
 Subcompanies and users are not affected.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> `401 Unauthorized`: token does not have the `delete_tokens` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 
 + Response 204
@@ -314,6 +322,7 @@ Retrieve all subcompanies recursively from the current company, returning the sa
 Childs are listed in the `childs` fields as an array of companies.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `read_companies` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator on this account.
 
@@ -412,6 +421,7 @@ The user passed in `user` will be migrated to the new company, and made admin. T
 Note the "original" (parent) company will only be able to `DELETE` the subcompany, and can't do anything more: the new user will effectively be the admin in the subcompany, and the only one able to view and add documents, users...
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `write_companies` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator on this account.
 > * `403 NotAuthorized`: you are trying to migrate the last admin from your company.
@@ -467,6 +477,7 @@ Note the "original" (parent) company will only be able to `DELETE` the subcompan
 Retrieve a specific subcompany from the current company, and its subcompanies recursively in the `childs` field.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `read_companies` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator on this account.
 > * `409 InvalidArgument`: `id` is not a valid id.
@@ -532,6 +543,7 @@ Delete the subcompany, **all** its documents and **all** its users.
 By default, you are not allowed to remove a subcompany with subsubcompanies. To force the subcompany removal, add `?force=true`.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `delete_companies` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator on this account.
 > * `403 Forbidden`: the subcompanies has subsubcompanies and can't be removed, use `?force=true`.
@@ -550,6 +562,7 @@ Reset **all** documents, tokens and providers from the subcompany (using the sam
 Subcompanies and users are not affected.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `delete_tokens` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator on this account.
 > * `404 ResourceNotFound`: the subcompany does not exist, or is not available for this user.
@@ -588,6 +601,7 @@ Search within all available data for documents matching specified filter.
 Return informations aggregated over the result set. The `score` key indicates document's relevance regarding query.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `read_documents` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `409 InvalidArgument`: malformed search query, with misused characters (such as `+ - && || ! ( ) { } [ ] ^ \" ~ * ? : \\`)
 
@@ -781,6 +795,7 @@ Common parameters include `data` (data to use for full display), `metadata` (dat
 * A name in `document_type` will be converted to its matching `id`.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `write_documents` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: document was not provided with this access token, and can't be updated.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
@@ -848,6 +863,7 @@ Result contains, amongst other :
 * `title` projection, in `title`.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `read_documents` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
@@ -927,6 +943,7 @@ Hydraters use this endpoint to `PATCH` their changes to the document. They may o
 * You can't update the `hydrated_by` and `hydrating` properties; they're managed internally.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `write_documents` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
@@ -952,6 +969,7 @@ Hydraters use this endpoint to `PATCH` their changes to the document. They may o
 Remove specified document.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `delete_documents` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `401 ForbiddenScheme`: `Basic` auth is not supported for this endpoint.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
@@ -974,6 +992,7 @@ Result contains, amongst other :
 * `keywords` used to find similar documents
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `read_documents` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
@@ -1166,6 +1185,7 @@ Result contains, amongst other :
 * `snippet` projection for related documents, in `data`
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `read_documents` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
@@ -1225,6 +1245,7 @@ Also include information about hydraters (`hydrated_by`, `hydrating` and `last_h
 View all data for the document.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `read_documents` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
@@ -1327,6 +1348,7 @@ Render an image for the document, using its `document_type` full projection. Thi
 Retrieve the image. In case you need to display the image directly, you can use the [`?oauth_access_token` authorization](/authentication.html), but be careful as sending the image URL will reveal the user token.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `read_documents` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
@@ -1353,6 +1375,7 @@ Retrieve the file associated with a document, if any.
 File is discarded once hydration is ended.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `read_documents` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `404 ResourceNotFound`: no file associated with this document.
@@ -1372,6 +1395,7 @@ File is discarded once hydration is ended.
 This endpoint should be used when providing, to associate a file with a document.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `write_documents` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `404 ResourceNotFound`: no file associated with this document
@@ -1454,6 +1478,7 @@ Errors, request and response are exactly the same as calling [`PATCH /users/:id`
 Retrieve a list of all users in the current company. Users migrated in a subcompany are not shown anymore.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `read_users` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 
 + Response 200 (application/json)
@@ -1478,6 +1503,7 @@ Create a new user on this company. If `is_admin` is not specified, a standard us
 
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `write_users` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator on this account.
 > * `409 MissingParameter`: missing a parameter (either `email`, `name` or `password`)
@@ -1520,6 +1546,7 @@ A single User object with all its details. This resource has the following attri
 Retrieve information about specified user.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `read_users` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 ResourceNotFound`: the user does not exist, or is not part of this company.
 > * `409 InvalidArgument`: `id` is not a valid id.
@@ -1548,6 +1575,7 @@ Update information about specified user. Only specified fields will be updated.
 The `is_admin` flag can only be toggled by an admin of the current company.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `write_users` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `401 ForbiddenScheme`: `Bearer` authentication used, but this endpoint can only be used with `Basic` scheme.
 > * `403 Forbidden`: you are not an administrator on this account, and you can't update someone else.
@@ -1584,6 +1612,7 @@ The `is_admin` flag can only be toggled by an admin of the current company.
 Remove specified user. The user should be in your company, you can't delete a user in a subcompany.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `delete_users` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator on this account.
 > * `403 NotAuthorized`: you can't delete yourself
@@ -1844,6 +1873,7 @@ A list of default document-types can be found on [this page](/resources/document
 Retrieve all providers available for the current user, with document count, a providing flag, and the date the last document created by this provider was updated.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `read_tokens` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 
 + Response 200 (application/json)
@@ -1916,6 +1946,7 @@ Retrieve basic information about one provider.
 Note this endpoint currently returns less information than `GET /providers`.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: token does not have the `read_tokens` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 Not Found`: `id` does not match a token
 > * `409 InvalidArgument`: `id` is not a valid id.
@@ -1939,6 +1970,7 @@ Note this endpoint currently returns less information than `GET /providers`.
 Revokes a provider token and subsequently delete linked documents.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: token does not have the `delete_tokens` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 Not Found`: `id` does not match a provider
 > * `409 InvalidArgument`: `id` is not a valid id.
@@ -1954,6 +1986,7 @@ This endpoint is to be used for testing purposes, and has no reason to be used i
 Also note the behavior for this endpoint differ from `DELETE /company/reset`, which delete linked providers.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: token does not have the `delete_documents` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 Not Found`: `id` does not match a provider
 > * `409 InvalidArgument`: `id` is not a valid id.
@@ -1985,6 +2018,7 @@ Also note the behavior for this endpoint differ from `DELETE /company/reset`, wh
 List hydraters owned by the user's company and its parent companies. These represent the hydraters which can be applied to your company's documents.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `read_hydraters` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 
 
@@ -2076,6 +2110,7 @@ Create a new hydrater owned by your company. Your company and subcompanies will 
 See [how to create a hydrater](/guides/creating/hydrater.html).
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 Unauthorized`: token does not have the `write_hydraters` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator on this account.
 
@@ -2117,6 +2152,7 @@ See [how to create a hydrater](/guides/creating/hydrater.html).
 Retrieve information about one hydrater.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: token does not have the `read_hydraters` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `404 Not Found`: `id` does not match any hydrater
 > * `409 InvalidArgument`: `id` is not a valid id.
@@ -2138,9 +2174,10 @@ Delete a hydrater.
 You must be admin of your company to delete a hydrater.
 You cannot delete a hydrater which is owned by one of your subcompanies.
 
-Deleting a hydrater will result in removing this hydrater in your company and subcompanies selected hydraters.
+Deleting a hydrater will remove this hydrater in your company and all your subcompanies. Existing documents will not be affected.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme
+> * `401 Unauthorized`: token does not have the `delete_hydraters` scope.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 Forbidden`: you are not an administrator on this account.
 > * `404 NotFound`: unable to find the hydrater to delete

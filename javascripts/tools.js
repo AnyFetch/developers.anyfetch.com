@@ -1,12 +1,12 @@
 // Smooth scroll
 $(function() {
   $('a[href*=#]:not([href=#]):not(.no-smooth a)').click(function() {
-    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+    if(location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
       var target = $(this.hash);
       var hash = this.hash;
       var targetID = target.attr('id');
-      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-      if (target.length) {
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      if(target.length) {
         $('html,body').animate({
           scrollTop: target.offset().top - 100
         }, 1000, function() {
@@ -20,17 +20,21 @@ $(function() {
   });
 });
 
-$('body').scrollspy({ target: '#nav', offset: 130 });
+$('body').scrollspy({
+  target: '#nav',
+  offset: 130
+});
 
-$(function makeStickyHeader(){
+$(function makeStickyHeader() {
   // Check the initial position of the Sticky Header
   var toc = $('#toc');
   if(toc[0]) {
     var stickyHeaderTop = toc.position().top - 100;
-    $(window).scroll(function(){
-      if( $(window).scrollTop() > stickyHeaderTop ) {
+    $(window).scroll(function() {
+      if($(window).scrollTop() > stickyHeaderTop) {
         toc.css({position: 'fixed', top: '100px'});
-      } else {
+      }
+      else {
         toc.css({position: 'inherit', top: '0px'});
       }
     });
@@ -60,19 +64,19 @@ $(function hideErrorCodesInEndpoints() {
 
 // Autoload TOC
 $(function generateTOC() {
-    var toc = $('#toc');
+  var toc = $('#toc');
 
-    if(toc && toc.toc) {
-        toc.toc({
-            'selectors': 'h2,h3,h4,h5,h6',
-            'container': '#main-content',
-            'highlightOffset': 20
-        });
-    }
+  if(toc && toc.toc) {
+    toc.toc({
+      'selectors': 'h2,h3,h4,h5,h6',
+      'container': '#main-content',
+      'highlightOffset': 20
+    });
+  }
 });
 
 
 // Clickable images
-$( "p img" ).wrap(function() {
+$("p img").wrap(function() {
   return "<a href='" + $(this).attr('src') + "' target='_blank'></a>";
 });
