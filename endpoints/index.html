@@ -136,7 +136,6 @@ Should have a <code>status</code> of “OK”.</p>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>403 MissingScope</code>: token does not have the <code>read_tokens</code> scope.</li>
-<li><code>401 ForbiddenScheme</code>: <code>Bearer</code> authentication used, but this endpoint can only be used with <code>Basic</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: non matching user</li>
 </ul>
 </blockquote>
@@ -150,7 +149,6 @@ Should have a <code>status</code> of “OK”.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
-<li><code>401 ForbiddenScheme</code>: <code>Bearer</code> authentication used, but this endpoint can only be used with <code>Basic</code> scheme.</li>
 <li><code>403 MissingScope</code>: token does not have the <code>delete_tokens</code> scope.</li>
 <li><code>401 InvalidCredentials</code>: non matching user</li>
 </ul>
@@ -1260,7 +1258,6 @@ Also include information about hydraters (<code>hydrated_by</code>, <code>hydrat
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>401 ForbiddenScheme</code>: <code>Bearer</code> authentication used, but this endpoint can only be used with <code>Basic</code> scheme.</li>
 <li><code>403 MissingScope</code>: token does not have the <code>write_users</code> scope.</li>
 <li><code>403 Forbidden</code>: you can’t downgrade yourself, you need to remain an admin.</li>
 </ul>
@@ -1363,7 +1360,6 @@ Also include information about hydraters (<code>hydrated_by</code>, <code>hydrat
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
-<li><code>401 ForbiddenScheme</code>: <code>Bearer</code> authentication used, but this endpoint can only be used with <code>Basic</code> scheme.</li>
 <li><code>403 MissingScope</code>: token does not have the <code>write_users</code> scope.</li>
 <li><code>403 Forbidden</code>: you are not an administrator on this account, and you can’t update someone else.</li>
 <li><code>403 Forbidden</code>: you can’t downgrade yourself, you need to remain an admin.</li>

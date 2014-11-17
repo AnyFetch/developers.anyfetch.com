@@ -115,7 +115,6 @@ Create or retrieve a token. The token will always be the same until you call `DE
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `403 MissingScope`: token does not have the `read_tokens` scope.
-> * `401 ForbiddenScheme`: `Bearer` authentication used, but this endpoint can only be used with `Basic` scheme.
 > * `401 InvalidCredentials`: non matching user
 
 + Response 200 (application/json)
@@ -131,7 +130,6 @@ Create or retrieve a token. The token will always be the same until you call `DE
 Remove the token returned by `GET /token`, and associated documents.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
-> * `401 ForbiddenScheme`: `Bearer` authentication used, but this endpoint can only be used with `Basic` scheme.
 > * `403 MissingScope`: token does not have the `delete_tokens` scope.
 > * `401 InvalidCredentials`: non matching user
 
@@ -1453,7 +1451,6 @@ Update data from the currently logged in user.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
-> * `401 ForbiddenScheme`: `Bearer` authentication used, but this endpoint can only be used with `Basic` scheme.
 > * `403 MissingScope`: token does not have the `write_users` scope.
 > * `403 Forbidden`: you can't downgrade yourself, you need to remain an admin.
 
@@ -1581,7 +1578,6 @@ The `is_admin` flag can only be toggled by an admin of the current company.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
-> * `401 ForbiddenScheme`: `Bearer` authentication used, but this endpoint can only be used with `Basic` scheme.
 > * `403 MissingScope`: token does not have the `write_users` scope.
 > * `403 Forbidden`: you are not an administrator on this account, and you can't update someone else.
 > * `403 Forbidden`: you can't downgrade yourself, you need to remain an admin.
