@@ -56,7 +56,11 @@ Installation is now complete, you can add Salesfetch to your Salesforce objects.
 Let's say you want to display a Salesfetch timeline next to your contacts in the desktop edition of Salesforce.
 
 To do so, we need to create a Visual Force Page.
+
+![Build > Develop > Pages](/images/products/salesfetch/build-develop-pages.png)
+
 Move to your VisualForce Pages administration panel in **Build > Develop > Pages** and create a new one by clicking on the **New** button on top of the page list.
+
 
 This page will be inserted in the Contact layout.
 Add in the Label input: "`Context Contact`" and in the Name input: "`ContextContact`".
@@ -140,6 +144,13 @@ Hit save, and reload your salesforce1:
 ![Mobile layout properties](/images/products/salesfetch/salesforce1.png)
 
 Of course, this is just samples of whant you can do to integrate Salesfetch onto your Salesforce. You may change the described workflow to display the timeline directly in Salesforce1, in a custom tab...
+
+## Adding new content sources
+Each user can now add its own providers.
+
+To do so, while using the desktop version of Salesfetch, click on the "+" tab and connect your data sources:
+
+![Add documents to Salesfetch](/images/products/salesfetch/add-provider.png)
 
 ## Further customisation
 The Context Panel configuration offers you the possibility to create context fitting your business needs. Both `anyfetch:IframeComponent` and `anyfetch:ContextButtonComponent` need several information to execute a consistent search into your documents.
