@@ -61,15 +61,21 @@ $(function hideErrorCodesInEndpoints() {
     // Remove <blockquote> item
     item.remove();
 
-    // Try to extract the scope
+    // Try to extract the scope and authorization
     var errors = ulItem.text();
+    var requireAuthentication = errors.indexOf("Unauthorized") !== -1;
+
+    var title = "This endpoint require authentication.";
+
     var scope = errors.match(/MissingScope.+ ([a-z_]+) scope/);
     if(scope && scope[1]) {
-      var panelHeading = sectionContainer.children('.panel-heading');
-
-      $('<div style="float:left; padding-right:5px;"><i class="fa fa-lock" title="Required scopes: ' + scope[1] + '"></i></div>').prependTo(panelHeading);
-      panelHeading.find('i[title]').tooltip();
+      title = 'Required scopes: ' + scope[1];
     }
+
+    var panelHeading = sectionContainer.children('.panel-heading');
+
+    $('<div style="float:left; padding-right:5px;"><i class="fa fa-lock" title="' + title + '"></i></div>').prependTo(panelHeading);
+    panelHeading.find('i[title]').tooltip();
   });
 });
 
