@@ -135,6 +135,7 @@ Should have a <code>status</code> of “OK”.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>read_tokens</code> scope.</li>
 <li><code>401 ForbiddenScheme</code>: <code>Bearer</code> authentication used, but this endpoint can only be used with <code>Basic</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: non matching user</li>
 </ul>
@@ -150,6 +151,7 @@ Should have a <code>status</code> of “OK”.</p>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 ForbiddenScheme</code>: <code>Bearer</code> authentication used, but this endpoint can only be used with <code>Basic</code> scheme.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>delete_tokens</code> scope.</li>
 <li><code>401 InvalidCredentials</code>: non matching user</li>
 </ul>
 </blockquote>
@@ -160,6 +162,7 @@ Should have a <code>status</code> of “OK”.</p>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>read_companies</code> scope.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#2f4bed02aca1410ac036ea6d0ac130b6" class="pull-right">Toggle</a></li><li id="2f4bed02aca1410ac036ea6d0ac130b6" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
@@ -188,6 +191,14 @@ Should have a <code>status</code> of “OK”.</p>
 </span>}
 </code></pre></li></ul></section><section id="company-company-patch" class="panel panel-warning"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Update current company</span></div><div style="float:left"><a href="#company-company-patch" class="btn btn-xs btn-warning">PATCH</a></div><div style="overflow:hidden"><code>/company</code></div></div><div class="panel-body"><p>Allows you to update your current company details: hydrater list, name and <code>documents_per_update</code>.</p>
 <p>Warning: if you lower your own <code>documents_per_update</code> value, you’ll <em>never</em> be able to restore it to some higher value. Be careful.</p>
+<blockquote>
+<ul>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>write_companies</code> scope.</li>
+<li><code>409 InvalidArgument</code>: invalid value for <code>documents_per_update</code>.</li>
+</ul>
+</blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#ad04006468687d79b59c4fe3068dd55c" class="pull-right">Toggle</a></li><li id="ad04006468687d79b59c4fe3068dd55c" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>    {
         "<span class="hljs-attribute">documents_per_update</span>": <span class="hljs-value"><span class="hljs-string">"2499"</span>
     </span>}
@@ -236,7 +247,8 @@ Note that even if each providers responds with an error, this endpoint will stil
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
-<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.
+<code>403 MissingScope</code>: token does not have the <code>delete_tokens</code> scope.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="subcompanies">Subcompanies&nbsp;<a href="#subcompanies"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="subcompanies-subcompanies">Subcompanies&nbsp;<a href="#subcompanies-subcompanies"><i class="fa fa-link"></i></a></h4><p>Subcompanies are companies you own and have created.
@@ -250,6 +262,7 @@ They allow you to isolate data: no data stored in a subcompany can be accessed f
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>read_companies</code> scope.</li>
 <li><code>403 Forbidden</code>: you are not an administrator on this account.</li>
 </ul>
 </blockquote>
@@ -344,6 +357,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>write_companies</code> scope.</li>
 <li><code>403 Forbidden</code>: you are not an administrator on this account.</li>
 <li><code>403 NotAuthorized</code>: you are trying to migrate the last admin from your company.</li>
 <li><code>404 NotFound</code>: unable to find the user to migrate</li>
@@ -391,6 +405,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>read_companies</code> scope.</li>
 <li><code>403 Forbidden</code>: you are not an administrator on this account.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
@@ -453,6 +468,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>delete_companies</code> scope.</li>
 <li><code>403 Forbidden</code>: you are not an administrator on this account.</li>
 <li><code>403 Forbidden</code>: the subcompanies has subsubcompanies and can’t be removed, use <code>?force=true</code>.</li>
 <li><code>404 ResourceNotFound</code>: the subcompany does not exist, or is not available for this user.</li>
@@ -468,6 +484,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>delete_tokens</code> scope.</li>
 <li><code>403 Forbidden</code>: you are not an administrator on this account.</li>
 <li><code>404 ResourceNotFound</code>: the subcompany does not exist, or is not available for this user.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
@@ -481,6 +498,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>read_documents</code> scope.</li>
 <li><code>409 InvalidArgument</code>: malformed search query, with misused characters (such as <code>+ - &amp;&amp; || ! ( ) { } [ ] ^ \&quot; ~ * ? : \\</code>)</li>
 </ul>
 </blockquote>
@@ -667,6 +685,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>write_documents</code> scope.</li>
 <li><code>403 Forbidden</code>: document was not provided with this access token, and can’t be updated.</li>
 <li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
@@ -726,6 +745,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>read_documents</code> scope.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
 <li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
@@ -799,6 +819,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>write_documents</code> scope.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
 <li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
@@ -819,6 +840,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>401 ForbiddenScheme</code>: <code>Basic</code> auth is not supported for this endpoint.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>delete_documents</code> scope.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
 <li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
@@ -836,6 +858,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>read_documents</code> scope.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
 <li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
@@ -1022,6 +1045,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>read_documents</code> scope.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
 <li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
@@ -1074,6 +1098,7 @@ Also include information about hydraters (<code>hydrated_by</code>, <code>hydrat
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>read_documents</code> scope.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
 <li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
@@ -1169,6 +1194,7 @@ Also include information about hydraters (<code>hydrated_by</code>, <code>hydrat
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>read_documents</code> scope.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
 <li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
@@ -1187,6 +1213,7 @@ Also include information about hydraters (<code>hydrated_by</code>, <code>hydrat
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>read_documents</code> scope.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
 <li><code>404 ResourceNotFound</code>: no file associated with this document.</li>
 <li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
@@ -1201,6 +1228,7 @@ Also include information about hydraters (<code>hydrated_by</code>, <code>hydrat
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>write_documents</code> scope.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
 <li><code>404 ResourceNotFound</code>: no file associated with this document</li>
 <li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
@@ -1243,6 +1271,7 @@ Also include information about hydraters (<code>hydrated_by</code>, <code>hydrat
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>read_users</code> scope.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#82a06532f680b59d38b4968e87e129a6" class="pull-right">Toggle</a></li><li id="82a06532f680b59d38b4968e87e129a6" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
@@ -1263,6 +1292,7 @@ Also include information about hydraters (<code>hydrated_by</code>, <code>hydrat
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>write_users</code> scope.</li>
 <li><code>403 Forbidden</code>: you are not an administrator on this account.</li>
 <li><code>409 MissingParameter</code>: missing a parameter (either <code>email</code>, <code>name</code> or <code>password</code>)</li>
 <li><code>409 InvalidArgument</code>: a user with this email already exists.</li>
@@ -1294,6 +1324,7 @@ Also include information about hydraters (<code>hydrated_by</code>, <code>hydrat
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>read_users</code> scope.</li>
 <li><code>404 ResourceNotFound</code>: the user does not exist, or is not part of this company.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
@@ -1319,6 +1350,7 @@ Also include information about hydraters (<code>hydrated_by</code>, <code>hydrat
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>401 ForbiddenScheme</code>: <code>Bearer</code> authentication used, but this endpoint can only be used with <code>Basic</code> scheme.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>write_users</code> scope.</li>
 <li><code>403 Forbidden</code>: you are not an administrator on this account, and you can’t update someone else.</li>
 <li><code>403 Forbidden</code>: you can’t downgrade yourself, you need to remain an admin.</li>
 <li><code>404 ResourceNotFound</code>: the user does not exist, or is not part of this company.</li>
@@ -1349,6 +1381,7 @@ Also include information about hydraters (<code>hydrated_by</code>, <code>hydrat
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>delete_users</code> scope.</li>
 <li><code>403 Forbidden</code>: you are not an administrator on this account.</li>
 <li><code>403 NotAuthorized</code>: you can’t delete yourself</li>
 <li><code>404 ResourceNotFound</code>: the user does not exist, or is not part of this company.</li>
@@ -1554,6 +1587,7 @@ This endpoint is public and can be accessed by anyone with the id.</p>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>read_tokens</code> scope.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#685e58fe07397ff55fd950f6709db4b0" class="pull-right">Toggle</a></li><li id="685e58fe07397ff55fd950f6709db4b0" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
@@ -1620,6 +1654,7 @@ This endpoint is public and can be accessed by anyone with the id.</p>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>read_tokens</code> scope.</li>
 <li><code>404 Not Found</code>: <code>id</code> does not match a token</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
@@ -1640,6 +1675,7 @@ This endpoint is public and can be accessed by anyone with the id.</p>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>delete_tokens</code> scope.</li>
 <li><code>404 Not Found</code>: <code>id</code> does not match a provider</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
@@ -1651,6 +1687,7 @@ Also note the behavior for this endpoint differ from <code>DELETE /company/reset
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>delete_documents</code> scope.</li>
 <li><code>404 Not Found</code>: <code>id</code> does not match a provider</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
@@ -1660,6 +1697,7 @@ Also note the behavior for this endpoint differ from <code>DELETE /company/reset
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>read_hydraters</code> scope.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#331dd1f169d4dbdf05ac8ae538cebd5a" class="pull-right">Toggle</a></li><li id="331dd1f169d4dbdf05ac8ae538cebd5a" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
@@ -1747,6 +1785,7 @@ See <a href="/guides/creating/hydrater.html">how to create a hydrater</a>.</p>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>write_hydraters</code> scope.</li>
 <li><code>403 Forbidden</code>: you are not an administrator on this account.</li>
 </ul>
 </blockquote>
@@ -1779,6 +1818,7 @@ See <a href="/guides/creating/hydrater.html">how to create a hydrater</a>.</p>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>read_hydraters</code> scope.</li>
 <li><code>404 Not Found</code>: <code>id</code> does not match any hydrater</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 </ul>
@@ -1793,11 +1833,12 @@ See <a href="/guides/creating/hydrater.html">how to create a hydrater</a>.</p>
 </code></pre></li></ul></section><section id="hydraters-hydrater-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Delete Hydrater</span></div><div style="float:left"><a href="#hydraters-hydrater-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/hydraters/{id}</code></div></div><div class="panel-body"><p>Delete a hydrater.
 You must be admin of your company to delete a hydrater.
 You cannot delete a hydrater which is owned by one of your subcompanies.</p>
-<p>Deleting a hydrater will result in removing this hydrater in your company and subcompanies selected hydraters.</p>
+<p>Deleting a hydrater will remove this hydrater in your company and all your subcompanies. Existing documents will not be affected.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>delete_hydraters</code> scope.</li>
 <li><code>403 Forbidden</code>: you are not an administrator on this account.</li>
 <li><code>404 NotFound</code>: unable to find the hydrater to delete</li>
 </ul>

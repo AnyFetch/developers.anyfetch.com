@@ -1,12 +1,12 @@
 // Smooth scroll
 $(function() {
   $('a[href*=#]:not([href=#]):not(.no-smooth a)').click(function() {
-    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+    if(location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
       var target = $(this.hash);
       var hash = this.hash;
       var targetID = target.attr('id');
-      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-      if (target.length) {
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      if(target.length) {
         $('html,body').animate({
           scrollTop: target.offset().top - 100
         }, 1000, function() {
@@ -20,17 +20,21 @@ $(function() {
   });
 });
 
-$('body').scrollspy({ target: '#nav', offset: 130 });
+$('body').scrollspy({
+  target: '#nav',
+  offset: 130
+});
 
-$(function makeStickyHeader(){
+$(function makeStickyHeader() {
   // Check the initial position of the Sticky Header
   var toc = $('#toc');
   if(toc[0]) {
     var stickyHeaderTop = toc.position().top - 100;
-    $(window).scroll(function(){
-      if( $(window).scrollTop() > stickyHeaderTop ) {
+    $(window).scroll(function() {
+      if($(window).scrollTop() > stickyHeaderTop) {
         toc.css({position: 'fixed', top: '100px'});
-      } else {
+      }
+      else {
         toc.css({position: 'inherit', top: '0px'});
       }
     });
@@ -52,27 +56,44 @@ $(function hideErrorCodesInEndpoints() {
     requestUl.append('<li class="list-group-item"><strong>Error codes</strong><a data-toggle="collapse" data-target="#' + anchorId + '" class="pull-right">Toggle</a></li>');
 
     // Append the errors at the end of the UL, hidden (collapsed) by default.
+    var ulItem = item.children('ul');
     $('<li id="' + anchorId + '" class="list-group-item panel-collapse collapse error-codes"></li>').appendTo(requestUl).append(item.children('ul'));
     // Remove <blockquote> item
     item.remove();
+
+    // Try to extract the scope and authorization
+    var errors = ulItem.text();
+    var requireAuthentication = errors.indexOf("Unauthorized") !== -1;
+
+    var title = "This endpoint require authentication.";
+
+    var scope = errors.match(/MissingScope.+ ([a-z_]+) scope/);
+    if(scope && scope[1]) {
+      title = 'Required scopes: ' + scope[1];
+    }
+
+    var panelHeading = sectionContainer.children('.panel-heading');
+
+    $('<div style="float:left; padding-right:5px;"><i class="fa fa-lock" title="' + title + '"></i></div>').prependTo(panelHeading);
+    panelHeading.find('i[title]').tooltip();
   });
 });
 
 // Autoload TOC
 $(function generateTOC() {
-    var toc = $('#toc');
+  var toc = $('#toc');
 
-    if(toc && toc.toc) {
-        toc.toc({
-            'selectors': 'h2,h3,h4,h5,h6',
-            'container': '#main-content',
-            'highlightOffset': 20
-        });
-    }
+  if(toc && toc.toc) {
+    toc.toc({
+      'selectors': 'h2,h3,h4,h5,h6',
+      'container': '#main-content',
+      'highlightOffset': 20
+    });
+  }
 });
 
 
 // Clickable images
-$( "p img" ).wrap(function() {
+$("p img").wrap(function() {
   return "<a href='" + $(this).attr('src') + "' target='_blank'></a>";
 });
