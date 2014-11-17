@@ -1432,7 +1432,9 @@ User resources.
 ### Get the current user [GET]
 Retrieve the currently logged in user.
 
-Errors and response are exactly the same as calling [`GET /users/:id`](#users-user-get) with your own id.
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+> * `403 MissingScope`: token does not have the `read_users` scope.
 
 + Response 200 (application/json)
 
@@ -1448,8 +1450,12 @@ Errors and response are exactly the same as calling [`GET /users/:id`](#users-us
 ### Update the current user [PATCH]
 Update data from the currently logged in user.
 
-Errors, request and response are exactly the same as calling [`PATCH /users/:id`](#users-user-patch) with your own id.
 
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+> * `401 ForbiddenScheme`: `Bearer` authentication used, but this endpoint can only be used with `Basic` scheme.
+> * `403 MissingScope`: token does not have the `write_users` scope.
+> * `403 Forbidden`: you can't downgrade yourself, you need to remain an admin.
 
 + Request (application/json)
 
@@ -1499,7 +1505,6 @@ Retrieve a list of all users in the current company. Users migrated in a subcomp
 > This endpoint is only available to admin users.
 
 Create a new user on this company. If `is_admin` is not specified, a standard user will be created.
-
 
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
