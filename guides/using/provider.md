@@ -34,7 +34,7 @@ If an update of the `access_token` is already pending, the status will be `429 T
 The provider will then asynchronously send documents to anyFetch.
 
 ## Delete provider
-When an authorization is revoked, the manager will automatically call `DELETE /access_token` to remove tokens.
+When an authorization is revoked, the manager will automatically call `DELETE /token` to remove tokens.
 
 ## Sample providers
 anyFetch ships with some default providers you may want to check:
