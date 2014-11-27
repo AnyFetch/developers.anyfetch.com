@@ -666,24 +666,6 @@ Return informations aggregated over the result set. The `score` key indicates do
                             "_type": "DocumentType",
                             "id": "5252ce4ce4cfcd16f55cfa3c",
                             "name": "document",
-                            "templates": {
-                                "snippet": "<article>\n  <h1>{{{ title }}}</h1>\n  <blockquote>\n  \t{{{ snippet }}}\n  </blockquote>\n</article>\n",
-                                "full": "<article>\n  <section>\n    <h1>{{{ title }}}</h1>\n    <code>{{ path }}</code>\n  </section>\n\n  <section>\n    {{{ content }}}\n  </section>\n</article>\n",
-                                "title": "{{ title }}"
-                            },
-                            "description": "A document from which we were able to extract a clean HTML representation: text, doc, xls, epub...",
-                            "projections": {
-                                "snippet": [
-                                    "title",
-                                    "path",
-                                    "snippet"
-                                ],
-                                "full": [
-                                    "title",
-                                    "path",
-                                    "content"
-                                ]
-                            },
                             "document_count": 2
                         }
                     ],
