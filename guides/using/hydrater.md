@@ -20,7 +20,7 @@ Once previous tasks are finished, the hydrater will download the file from `file
 Hydration will then occur. Once completed, the endpoint you specified as `callback` will be pinged with a `PATCH` verb and a json payload.
 
 #### Testing
-For cases where you want to test the results and don't have another adress to ping, you can use the `http://echo.anyfetch.com` server. This server will simply "echo" back the requests it receives. For instance, you can call the OCR with this:
+For cases where you want to test the results and don't have another address to ping, you can use the `http://echo.anyfetch.com` server. This server will simply "echo" back the received requests. For instance, you can call the OCR with this:
 
 ```sh
 $ curl --header "Content-Type:application/json" --data '{"file_path":"https://raw.githubusercontent.com/AnyFetch/ocr-hydrater.anyfetch.com/2552ef2e683020e80884bdb7b339b64f81d25ad3/test/samples/sample.png", "callback":"http://echo.anyfetch.com/sample_ocr_hydration"}' https://ocr.anyfetch.com/hydrate
