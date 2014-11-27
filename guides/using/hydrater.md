@@ -20,26 +20,60 @@ Once previous tasks are finished, the hydrater will download the file from `file
 Hydration will then occur. Once completed, the endpoint you specified as `callback` will be pinged with a `PATCH` verb and a json payload.
 
 #### Testing
-For cases where you want to test the results and don't want to ping another adress with the result, you can then use the `long_poll` option. This is not for production use, and only for testing purposes (anyway, in production, if the hydrater is busy, your request will be dropped). The `long_poll` option returns the result with the request (instead of instantly returning 202).
+For cases where you want to test the results and don't have another address to ping, you can use the `http://echo.anyfetch.com` server. This server will simply "echo" back the received requests. For instance, you can call the OCR with this:
 
 ```sh
-$ curl --header "Content-Type:application/json" --data '{"file_path":"https://raw2.github.com/AnyFetch/ocr.hydrater.anyfetch.com/763ca1c77b33451de3fff733ad850287b48d2f96/test/samples/sample.png", "long_poll":true}' https://ocr.anyfetch.com/hydrate
+$ curl --header "Content-Type:application/json" --data '{"file_path":"https://raw.githubusercontent.com/AnyFetch/ocr-hydrater.anyfetch.com/2552ef2e683020e80884bdb7b339b64f81d25ad3/test/samples/sample.png", "callback":"http://echo.anyfetch.com/sample_ocr_hydration"}' https://ocr.anyfetch.com/hydrate
 ```
+
+And then, you can view `http://echo.anyfetch.com/sample_ocr_hydration` (the interesting part is under the `body` key):
 
 ```json
 {
-    "metadata": {
-        "text":"Tesseract sample image. The quick brown fox jumps over the lazy dog.\n\n"
-    },
-    "document_type":"image"
+   "url":"/sample_ocr_hydration",
+   "headers":{
+      "host":"echo.anyfetch.com",
+      "connection":"close",
+      "accept-encoding":"gzip, deflate",
+      "cookie":"",
+      "user-agent":"node-superagent/0.18.0",
+      "content-type":"application/json",
+      "x-request-id":"fd2e36f6-3b59-449a-b32b-aa0fa0e306a4",
+      "x-forwarded-for":"87.98.216.35",
+      "x-forwarded-proto":"http",
+      "x-forwarded-port":"80",
+      "via":"1.1 vegur",
+      "connect-time":"1",
+      "x-request-start":"1417099491530",
+      "total-route-time":"0",
+      "content-length":"120"
+   },
+   "query":{
+
+   },
+   "body":{
+      "metadata":{
+         "text":"Tesseract sample image. The quick brown fox jumps over the lazy dog.\n\n"
+      },
+      "document_type":"image"
+   },
+   "date":"2014-11-27T14:44:51.551Z"
 }
 ```
+
+You may have to refresh this page multiple times before seeing the content, depending on the hydrater load (that's why hydraters are asynchronous by design, and why you should only use this solution for testing.)
+
+Of course, replace `/sample_ocr_hydration` with any endpoint name you want.
+
+> *Tip*: You can call `GET /status` on any hydrater (e.g. https://ocr.anyfetch.com/status) to see how many tasks are queued.
+
+> *Tip*: If you need your own `echo` server, [fork this project](https://github.com/AnyFetch/echo-server).
 
 ### Real hydration workflow
 Although this workflow works fine for most hydraters, you'll often need more advanced metadata. Anyfetch often distinguish between a file and a document (a file is a file on a hard drive somewhere, a document is a JSON object with data). Hydraters use the same scheme, and allows you to send a document "to start with". To keep going with our previous example, here is a more complex call to the OCR with an initial document:
 
 ```sh
-$ curl --header "Content-Type:application/json" --data '{"file_path":"https://raw2.github.com/AnyFetch/ocr.hydrater.anyfetch.com/763ca1c77b33451de3fff733ad850287b48d2f96/test/samples/sample.png", "callback":"http://example.com","long_poll":true, "metadata": {"previous-data":"something"}}' https://ocr.anyfetch.com/hydrate
+$ curl --header "Content-Type:application/json" --data '{"file_path":"https://raw2.github.com/AnyFetch/ocr.hydrater.anyfetch.com/763ca1c77b33451de3fff733ad850287b48d2f96/test/samples/sample.png", "callback":"http://example.com","metadata": {"previous-data":"something"}}' https://ocr.anyfetch.com/hydrate
 ```
 
 ```json
@@ -54,7 +88,7 @@ $ curl --header "Content-Type:application/json" --data '{"file_path":"https://ra
 In this particular case, nothing was changed, but some hydraters can use the initial data to compute and improve their results.
 
 #### Hydrater status
-Hydrater queue can get quite long sometimes. You may want to check the status of a hydrater using `/status` endpoint:
+Hydrater queue can get quite long sometimes. You can check the status of a hydrater using `/status` endpoint:
 
 ```sh
 $ curl https://ocr.anyfetch.com/status
