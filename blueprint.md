@@ -1659,7 +1659,10 @@ Remove specified user. The user should be in your company, you can't delete a us
 
 ## Document types [/document_types]
 ### List document-types [GET]
-Retrieve all document types available for the current user, with document count and the date the last document with this document type was updated.
+Retrieve all document types available for the current user, with document count and the date the last document with this document type was updated (or null if the document-type is not in use on this account).
+
+A list of default document-types can be found on [this page](/resources/document-types.html).
+
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -1831,10 +1834,6 @@ Retrieve all document types available for the current user, with document count 
 ## Document-type [/document_types/{id}]
 ### Get document-type [GET]
 Retrieve details about the specified document-type.
-This endpoint is public and can be accessed by anyone with the id.
-
-A list of default document-types can be found on [this page](/resources/document-types.html).
-
 
 + Response 200 (application/json)
     + Body
