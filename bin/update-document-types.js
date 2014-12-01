@@ -24,6 +24,12 @@ fs.readFile(file, {encoding: 'utf-8'}, function(err, contentFile) {
   var fileEnd = contentFile.substr(contentFile.indexOf("{% endraw %}"));
   var content = "";
   var bearer = process.argv[2];
+
+  if(!bearer) {
+    console.warn("Usage: node update-document-types.js <token>");
+    process.exit(1);
+  }
+
   console.log("Retrieving document type from " + apiUrl + " using token " + bearer);
 
   request(apiUrl)
@@ -45,13 +51,14 @@ fs.readFile(file, {encoding: 'utf-8'}, function(err, contentFile) {
     res.body.forEach(function(body) {
       content += "## " + body.name.charAt(0).toUpperCase() + body.name.slice(1) + "\n> ID: `" + body.id + "`\n\n";
       content += body.description += "\n\n" + "### Projections\n";
-      content += "#### Snippet\n\n```jinja\n" + body.projections.snippet + "\n```\n";
-      content += "#### Full\n\n```jinja\n" + body.projections.full + "\n```\n";
-      content += "#### Title\n\n```jinja\n" + body.projections.title + "\n```\n";
+      content += "Snippet\n\n```jinja\n" + body.projections.snippet + "\n```\n";
+      content += "Full\n\n```jinja\n" + body.projections.full + "\n```\n";
+      content += "Title\n\n```jinja\n" + body.projections.title + "\n```\n";
 
       content += "\n### Templates\n";
       content += "Snippet:\n\n```html\n" + body.templates.snippet + "\n```\n";
       content += "Full:\n\n```html\n" + body.templates.full + "\n```\n";
+      content += "Title:\n\n```html\n" + body.templates.title + "\n```\n";
     });
 
     fs.writeFile(file, fileBegin + "{% raw  %}\n" + content + "\n" + fileEnd, function(err) {

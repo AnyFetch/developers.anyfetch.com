@@ -17,7 +17,7 @@ Default document-types have no "owner", meaning only the AnyFetch organization i
 A person (contact, client, ...)
 
 ### Projections
-#### Snippet
+Snippet
 
 ```jinja
 {
@@ -42,7 +42,7 @@ A person (contact, client, ...)
 }
 
 ```
-#### Full
+Full
 
 ```jinja
 {
@@ -67,7 +67,7 @@ A person (contact, client, ...)
 }
 
 ```
-#### Title
+Title
 
 ```jinja
 { "name": {{> contact-name}} }
@@ -161,13 +161,18 @@ Full:
 </article>
 
 ```
+Title:
+
+```html
+{{{ name }}}
+```
 ## File
 > ID: `5252ce4ce4cfcd16f55cfa3b`
 
 Most basic document type for any kind of binary content. When a provider sends data without any additional information, it will use this document_type.
 
 ### Projections
-#### Snippet
+Snippet
 
 ```jinja
 {
@@ -177,7 +182,7 @@ Most basic document type for any kind of binary content. When a provider sends d
 }
 
 ```
-#### Full
+Full
 
 ```jinja
 {
@@ -187,7 +192,7 @@ Most basic document type for any kind of binary content. When a provider sends d
 }
 
 ```
-#### Title
+Title
 
 ```jinja
 { "title": {{> title}} }
@@ -220,13 +225,18 @@ Full:
 </article>
 
 ```
+Title:
+
+```html
+{{{ title }}}
+```
 ## Document
 > ID: `5252ce4ce4cfcd16f55cfa3c`
 
 A document from which we were able to extract a clean HTML representation: text, doc, xls, epub...
 
 ### Projections
-#### Snippet
+Snippet
 
 ```jinja
 {
@@ -236,7 +246,7 @@ A document from which we were able to extract a clean HTML representation: text,
 }
 
 ```
-#### Full
+Full
 
 ```jinja
 {
@@ -246,7 +256,7 @@ A document from which we were able to extract a clean HTML representation: text,
 }
 
 ```
-#### Title
+Title
 
 ```jinja
 { "name": {{> title}} }
@@ -283,13 +293,18 @@ Full:
 </article>
 
 ```
+Title:
+
+```html
+{{{ title }}}
+```
 ## Image
 > ID: `5252ce4ce4cfcd16f55cfa3d`
 
 Display thumbnail and preview data encoded in base64.
 
 ### Projections
-#### Snippet
+Snippet
 
 ```jinja
 {
@@ -298,7 +313,7 @@ Display thumbnail and preview data encoded in base64.
 }
 
 ```
-#### Full
+Full
 
 ```jinja
 {
@@ -310,7 +325,7 @@ Display thumbnail and preview data encoded in base64.
 }
 
 ```
-#### Title
+Title
 
 ```jinja
 { "title": {{> title}} }
@@ -374,13 +389,18 @@ Full:
 </article>
 
 ```
+Title:
+
+```html
+{{{ title }}}
+```
 ## Trello-card
 > ID: `5252ce4ce4cfcd16f55cfa3e`
 
 Display Trello cards
 
 ### Projections
-#### Snippet
+Snippet
 
 ```jinja
 {
@@ -405,7 +425,7 @@ Display Trello cards
 }
 
 ```
-#### Full
+Full
 
 ```jinja
 {
@@ -453,7 +473,7 @@ Display Trello cards
 }
 
 ```
-#### Title
+Title
 
 ```jinja
 { "title": {{> title}} }
@@ -538,13 +558,18 @@ Full:
 </article>
 
 ```
+Title:
+
+```html
+{{{ title }}}
+```
 ## Email
 > ID: `5252ce4ce4cfcd16f55cfa3f`
 
 An email
 
 ### Projections
-#### Snippet
+Snippet
 
 ```jinja
 {
@@ -573,7 +598,7 @@ An email
 }
 
 ```
-#### Full
+Full
 
 ```jinja
 {
@@ -603,7 +628,7 @@ An email
 }
 
 ```
-#### Title
+Title
 
 ```jinja
 { "subject": "{{attr "subject"}}" }
@@ -671,13 +696,18 @@ Full:
 </article>
 
 ```
+Title:
+
+```html
+{{{ subject }}}
+```
 ## Event
 > ID: `5252ce4ce4cfcd16f55cfa40`
 
 An event, from a calendar for instance.
 
 ### Projections
-#### Snippet
+Snippet
 
 ```jinja
 {
@@ -699,7 +729,7 @@ An event, from a calendar for instance.
 }
 
 ```
-#### Full
+Full
 
 ```jinja
 {
@@ -721,7 +751,7 @@ An event, from a calendar for instance.
 }
 
 ```
-#### Title
+Title
 
 ```jinja
 { "name": "{{attr "name"}}" }
@@ -823,13 +853,18 @@ Full:
 </article>
 
 ```
+Title:
+
+```html
+{{{ name }}}
+```
 ## Email-thread
 > ID: `656d61696c2d746872656164`
 
 An email thread or conversation
 
 ### Projections
-#### Snippet
+Snippet
 
 ```jinja
 {
@@ -873,7 +908,7 @@ An email thread or conversation
 }
 
 ```
-#### Full
+Full
 
 ```jinja
 {
@@ -938,7 +973,7 @@ An email thread or conversation
 }
 
 ```
-#### Title
+Title
 
 ```jinja
 { "subject": "{{attr "subject"}}" }
@@ -1069,6 +1104,11 @@ Full:
 
 
 
+```
+Title:
+
+```html
+{{{ subject }}}
 ```
 
 {% endraw %}
