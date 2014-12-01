@@ -867,7 +867,7 @@ Common parameters include `data` (data to use for full display), `metadata` (dat
 
 
 ## Document [/documents/{id}{?search,render_templates}]
-> Please note: for every endpoint in the form `/documents/{id}`, you can also use an alternative URL `/documents/identifier/{identifier}` where `identifier` is the url-encoded provider identifier.
+> Please note: for every endpoint in the form `/documents/{id}`, you can also use an alternative URL `/documents/identifier/{identifier}` where `identifier` is the url-encoded **provider** identifier. See [this guide](/guides/concepts/identifier.html) for details.
 
 Data regarding a document.
 

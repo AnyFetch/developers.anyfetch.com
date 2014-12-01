@@ -7,7 +7,7 @@ layout: doc
 ## `id` and `identifier`
 Internally, anyFetch affects an hexadecimal `id` to each document. With this `id`, you can edit, update or delete the document.
 
-This works great for simple use cases, but it requires to maintain an index of mappings between your documents and anyFetch's `id`.
+This works great for simple use cases, but it requires to maintain a mapping between your documents and anyFetch's `id`.
 
 This is why you can use your own `identifier`, instead of the `id`. When sending the document for the first time, specify some string which uniquely indentifies the document in your context (a URI works fine for most cases).
 
