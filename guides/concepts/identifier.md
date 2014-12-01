@@ -20,9 +20,11 @@ All `/documents/` endpoints can be accessed:
 
 When using the second syntax, **don't forget to url-encode** your `identifier`, especially if you used an URI.
 
+> *Warning*. You can only access your own documents by `identifier`. Other providers or tokens can't access documents from other providers using this syntax, since multiples documents may be available with the same identifier on different providers for the same user.
+
 For convenience, this identifier is repeated in each reply from the API (even if you used the `id` syntax), allowing you to completely discard the `id` if you want to keep your own `identifier`.
 
-## Unicity
-`identifier` are unique by company. If you try to create a document with an `identifier` already provided by another `provider` on the same account, you'll get a `403 Forbidden` error.
+Please note however that other providers will be able to see this identifier, so don't include tokens or other private content.
 
-When using the same provider, the previous document will be replaced with the new one, keeping the same `id`.
+## Unicity
+`identifier` are unique by provider. If you try to create a document with an `identifier` already provided, you'll simply update the previous document sent with this identifier, keeping the same `id`.
