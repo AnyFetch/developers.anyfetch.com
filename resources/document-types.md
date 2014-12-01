@@ -8,7 +8,9 @@ Don't forget that [many hydraters can change the `document_type` during the hydr
 
 If you're not satisfied with the default presentation or you find some data is missing, you can create your own document-type and make a simple hydrater updating the "old" document-type to the new one.
 
-Default document-types have no "owner", meaning only the AnyFetch organization is able to update them.
+Default document-types (those presented here) have no "owner", meaning only the AnyFetch team is able to update them.
+
+Before reading this page, make sure you understand [projections](/concepts/projection.html) and  [templating](/concepts/templating.html).
 
 {% raw  %}
 ## Contact
