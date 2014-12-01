@@ -15,6 +15,7 @@
 * [How to create my own frontend?](/guides/creating/frontend.html)
 * [How to create my own provider?](/guides/creating/provider.html)
 * [How to create my own hydrater?](/guides/creating/hydrater.html)
+* [How to create my own document-type?](/guides/creating/document-type.html)
 
 ### Participating in existing projects
 * [Style Guide for contributing](/contributing.html)
