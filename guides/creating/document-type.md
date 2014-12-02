@@ -7,6 +7,7 @@ layout: doc
 To properly display a document, we need to know some basic information about its underlying schema: which keys can exist, how they should be displayed, etc. This process is achieved using **document-types**.
 
 > Before reading about creating a new document-type, you may be interested in [projection](/guides/concepts/projection.html) and [templating](/guides/concepts/templating.html).
+> Document-type creation is probably the hardest concept on the anyFetch API, so read those other guides carefully.
 
 A document-type can be created by `POST`ing to `/document_types`. Document-types created this way will only be available to your company and all its subcompanies.
 
@@ -27,14 +28,8 @@ A valid `projections` value looks like that (this one return raw event data prop
 {
   "projections": {
     "title": "{ \"name\": \"{{attr \"name\"}}\" }",
-    "full": "{\n  \"eventName\": \"{{attr 'name'}}\",\n  \"startDate\": \"{{dateRfc metadata.startDate}}\",\n  \"endDate\": \"{{dateRfc metadata.endDate}}\",\n  \"description\": \"{{attr 'description'
-}}\",\n  \"organizer\": \"{{#if name}}{{#escapeQuotes .}}{{name}}{{/escapeQuotes}}{{/if}} &lt;{{#escapeQuotes .}}{{mail}}{{/escapeQuotes}}&gt;\",\n  \"attendee\": [\n    {{#list metadata.attendee}}\n 
-     {\n        {{#if name}}\"name\": \"{{#escapeQuotes .}}{{name}}{{/escapeQuotes}}\",{{/if}}\n        \"address\": \"{{#escapeQuotes .}}{{mail}}{{/escapeQuotes}}\",\n        \"highlight\": {{isHighl
-ight .}}\n      }\n    {{/list}}\n  ],\n  \"location\" : \"{{#if metadata.location}}{{attr 'location'}}{{/if}}\"\n}\n",
-    "snippet": "{\n  \"eventName\": \"{{attr 'name'}}\",\n  \"startDate\": \"{{dateRfc metadata.startDate}}\",\n  \"endDate\": \"{{dateRfc metadata.endDate}}\",\n  \"description\": \"{{attr 'descripti
-on'}}\",\n  \"organizer\": \"{{#if name}}{{#escapeQuotes .}}{{name}}{{/escapeQuotes}}{{/if}} &lt;{{#escapeQuotes .}}{{mail}}{{/escapeQuotes}}&gt;\",\n  \"attendee\": [\n    {{#list metadata.attendee}}
-\n      {\n        {{#if name}}\"name\": \"{{#escapeQuotes .}}{{name}}{{/escapeQuotes}}\",{{/if}}\n        \"address\": \"{{#escapeQuotes .}}{{mail}}{{/escapeQuotes}}\",\n        \"highlight\": {{isHi
-ghlight .}}\n      }\n    {{/list}}\n  ],\n  \"location\" : \"{{#if metadata.location}}{{attr 'location'}}{{/if}}\"\n}\n"
+    "full": "{\n  \"eventName\": \"{{attr 'name'}}\",\n  \"startDate\": \"{{dateRfc metadata.startDate}}\",\n  \"endDate\": \"{{dateRfc metadata.endDate}}\",\n  \"description\": \"{{attr 'description'}}\",\n  \"organizer\": \"{{#if name}}{{#escapeQuotes .}}{{name}}{{/escapeQuotes}}{{/if}} &lt;{{#escapeQuotes .}}{{mail}}{{/escapeQuotes}}&gt;\",\n  \"attendee\": [\n    {{#list metadata.attendee}}\n     {\n        {{#if name}}\"name\": \"{{#escapeQuotes .}}{{name}}{{/escapeQuotes}}\",{{/if}}\n        \"address\": \"{{#escapeQuotes .}}{{mail}}{{/escapeQuotes}}\",\n        \"highlight\": {{isHighlight .}}\n      }\n    {{/list}}\n  ],\n  \"location\" : \"{{#if metadata.location}}{{attr 'location'}}{{/if}}\"\n}\n",
+    "snippet": "{\n  \"eventName\": \"{{attr 'name'}}\",\n  \"startDate\": \"{{dateRfc metadata.startDate}}\",\n  \"endDate\": \"{{dateRfc metadata.endDate}}\",\n  \"description\": \"{{attr 'description'}}\",\n  \"organizer\": \"{{#if name}}{{#escapeQuotes .}}{{name}}{{/escapeQuotes}}{{/if}} &lt;{{#escapeQuotes .}}{{mail}}{{/escapeQuotes}}&gt;\",\n  \"attendee\": [\n    {{#list metadata.attendee}}\n      {\n        {{#if name}}\"name\": \"{{#escapeQuotes .}}{{name}}{{/escapeQuotes}}\",{{/if}}\n        \"address\": \"{{#escapeQuotes .}}{{mail}}{{/escapeQuotes}}\",\n        \"highlight\": {{isHighlight .}}\n      }\n    {{/list}}\n  ],\n  \"location\" : \"{{#if metadata.location}}{{attr 'location'}}{{/if}}\"\n}\n"
   }
 }
 {%endraw%}
@@ -50,21 +45,8 @@ A valid `templates` value looks like that (taking as input the JSON returned by 
 {
   "templates": {
     "title": "{{{ name }}}",
-    "full": "<article class=\"anyfetch-document-full anyfetch-type-event\">\n  <header class=\"anyfetch-header\">\n    <hgroup class=\"anyfetch-title-group\">\n      <h1 class=\"anyfetch-title\">\n   
-     {{#eventName}}\n          {{{eventName}}}\n        {{/eventName}}\n        {{^eventName}}\n          (untitled event)\n        {{/eventName}}\n      </h1>\n      <p class=\"anyfetch-title-detail\">\n
-     <time class=\"anyfetch-date\">{{ startDate }}</time>\n        <span class=\"anyfetch-right-arrow\"></span>\n        <time class=\"anyfetch-date\">{{ endDate }}</time>\n      </p>\n      {{
-#location}}\n        <p>\n          {{{location}}}\n        </p>\n      {{/location}}\n    </hgroup>\n  </header>\n  <main class=\"anyfetch-content\">\n    <h4 class=\"anyfetch-section-title\">Attende
-es</h4>\n    {{ #attendee.length }}\n      <ul class=\"anyfetch-list-no-bullet\">\n        {{ #attendee }}\n          <li>\n            <span class=\"anyfetch-icon-people\"></span>\n            <span 
-class=\"anyfetch-pill anyfetch-person {{#highlight}}anyfetch-hlt{{/highlight}}\">\n              {{#name}}{{{name}}}{{/name}} &lt;{{{address}}}&gt;\n            </span>\n          </li>\n        {{ /a
-ttendee }}\n      </ul>\n    {{ /attendee.length }}\n    {{ ^attendee.length }}\n      <p>\n        (no attendees to this event)\n      </p>\n    {{ /attendee.length }}\n\n    <h4 class=\"anyfetch-sec
-tion-title\">Description</h4>\n    <p>\n      {{#description}}\n        {{{description}}}\n      {{/description}}\n      {{^description}}\n        (no description)\n      {{/description}}\n    </p>\n 
- </main>\n</article>\n",
-    "snippet": "<article class=\"anyfetch-document-snippet anyfetch-type-event\">\n  <header class=\"anyfetch-header\">\n    <hgroup class=\"anyfetch-title-group\">\n      <h1 class=\"anyfetch-title\"
->\n        {{#eventName}}\n          {{{eventName}}}\n        {{/eventName}}\n        {{^eventName}}\n          (untitled event)\n        {{/eventName}}\n      </h1>\n      <p class=\"anyfetch-title-d
-etail anyfetch-date-span\">\n        <time class=\"anyfetch-date\">{{ startDate }}</time>\n        <span class=\"anyfetch-right-arrow\"></span>\n        <time class=\"anyfetch-date\">{{ endDate }}</ti
-me>\n      </p>\n      <ul class=\"anyfetch-pill-list anyfetch-participants\">\n        {{#attendee}}\n          <li class=\"anyfetch-pill anyfetch-name {{#highlight}}anyfetch-hlt{{/highlight}}\">\n  
-          {{#name}}\n              {{{.}}}\n            {{/name}}\n            {{^name}}\n              {{{address}}}\n            {{/name}}\n          </li>\n        {{/attendee}}\n      </ul>\n    <
-/hgroup>\n  </header>\n</article>\n"
+    "full": "<article class=\"anyfetch-document-full anyfetch-type-event\">\n  <header class=\"anyfetch-header\">\n    <hgroup class=\"anyfetch-title-group\">\n      <h1 class=\"anyfetch-title\">\n        {{#eventName}}\n          {{{eventName}}}\n        {{/eventName}}\n        {{^eventName}}\n          (untitled event)\n        {{/eventName}}\n      </h1>\n      <p class=\"anyfetch-title-detail\">\n     <time class=\"anyfetch-date\">{{ startDate }}</time>\n        <span class=\"anyfetch-right-arrow\"></span>\n        <time class=\"anyfetch-date\">{{ endDate }}</time>\n      </p>\n      {{#location}}\n        <p>\n          {{{location}}}\n        </p>\n      {{/location}}\n    </hgroup>\n  </header>\n  <main class=\"anyfetch-content\">\n    <h4 class=\"anyfetch-section-title\">Attendees</h4>\n    {{ #attendee.length }}\n      <ul class=\"anyfetch-list-no-bullet\">\n        {{ #attendee }}\n          <li>\n            <span class=\"anyfetch-icon-people\"></span>\n            <span class=\"anyfetch-pill anyfetch-person {{#highlight}}anyfetch-hlt{{/highlight}}\">\n              {{#name}}{{{name}}}{{/name}} &lt;{{{address}}}&gt;\n            </span>\n          </li>\n        {{ /attendee }}\n      </ul>\n    {{ /attendee.length }}\n    {{ ^attendee.length }}\n      <p>\n        (no attendees to this event)\n      </p>\n    {{ /attendee.length }}\n\n    <h4 class=\"anyfetch-section-title\">Description</h4>\n    <p>\n      {{#description}}\n        {{{description}}}\n      {{/description}}\n      {{^description}}\n        (no description)\n      {{/description}}\n    </p>\n  </main>\n</article>\n",
+    "snippet": "<article class=\"anyfetch-document-snippet anyfetch-type-event\">\n  <header class=\"anyfetch-header\">\n    <hgroup class=\"anyfetch-title-group\">\n      <h1 class=\"anyfetch-title\">\n        {{#eventName}}\n          {{{eventName}}}\n        {{/eventName}}\n        {{^eventName}}\n          (untitled event)\n        {{/eventName}}\n      </h1>\n      <p class=\"anyfetch-title-detail anyfetch-date-span\">\n        <time class=\"anyfetch-date\">{{ startDate }}</time>\n        <span class=\"anyfetch-right-arrow\"></span>\n        <time class=\"anyfetch-date\">{{ endDate }}</time>\n      </p>\n      <ul class=\"anyfetch-pill-list anyfetch-participants\">\n        {{#attendee}}\n          <li class=\"anyfetch-pill anyfetch-name {{#highlight}}anyfetch-hlt{{/highlight}}\">\n            {{#name}}\n              {{{.}}}\n            {{/name}}\n            {{^name}}\n              {{{address}}}\n            {{/name}}\n          </li>\n        {{/attendee}}\n      </ul>\n    </hgroup>\n  </header>\n</article>\n"
   }
 }
 {%endraw%}
@@ -138,6 +120,12 @@ Once again, here is a valid sample for an event:
 ```
 
 ## Updating a document type
-Due to their nature, updating a document type
+Due to their nature, updating a document type is tricky.
+Of course, you can only update document-types you own.
+
+You can't change the `name` of your document type, or the `esMapping` -- if you really need to change something here, you'll have to either [contact us](contact@anyfetch.com) or `DELETE` your document-type and start over.
+
+Aside from that, you can update `projections`, `description` and `templates`.
 
 ## Deleting a document type
+There's a slight catch here, as you can't delete a document-type in use by you *or* by any of your subcompanies. You really have to be careful when you start rolling your custom document-types to subcompanies...
