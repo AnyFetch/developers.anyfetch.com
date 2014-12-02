@@ -37,7 +37,7 @@ As expected, we don't have any for now:
 []
 ```
 
-This list is common to all admins in your company.
+This list is shared with all admins in your company.
 
 ### Creating a new subcompany
 > Event: you have a new customer.

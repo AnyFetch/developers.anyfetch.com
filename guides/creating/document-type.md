@@ -129,3 +129,5 @@ Aside from that, you can update `projections`, `description` and `templates`.
 
 ## Deleting a document type
 There's a slight catch here, as you can't delete a document-type in use by you *or* by any of your subcompanies. You really have to be careful when you start rolling your custom document-types to subcompanies...
+
+> This is probably still very abstract to you. You may want to check [the document-type tutorial](/guides/tutorials/document-type.html), creating a new document-type from scratch.
