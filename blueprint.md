@@ -1659,10 +1659,14 @@ Remove specified user. The user should be in your company, you can't delete a us
 
 ## Document types [/document_types]
 ### List document-types [GET]
-Retrieve all document types available for the current user, with document count and the date the last document with this document type was updated.
+Retrieve all document types available for the current user, with document count and the date the last document with this document type was updated (or null if the document-type is not in use on this account).
+
+A list of default document-types can be found on [this page](/resources/document-types.html).
+
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+> * `403 MissingScope`: token does not have the `read_document_types` scope.
 
 + Response 200 (application/json)
     + Body
@@ -1831,10 +1835,11 @@ Retrieve all document types available for the current user, with document count 
 ## Document-type [/document_types/{id}]
 ### Get document-type [GET]
 Retrieve details about the specified document-type.
-This endpoint is public and can be accessed by anyone with the id.
 
-A list of default document-types can be found on [this page](/resources/document-types.html).
-
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+> * `403 MissingScope`: token does not have the `read_document_types` scope.
+> * `404 ResourceNotFound`: the document-type does not exist.
 
 + Response 200 (application/json)
     + Body
@@ -1960,6 +1965,10 @@ Retrieve all providers available for the current user, with document count, a pr
 
 
 ## Provider [/providers/{id}]
+This section explains how to interact with providers.
+Providers can be read, resetted, updated and deleted; however they can't be created dynamically and will always be connected through `https://manager.anyfetch.com`.
+
+
 ### Get Provider [GET]
 Retrieve basic information about one provider.
 
@@ -2164,7 +2173,7 @@ See [how to create a hydrater](/guides/creating/hydrater.html).
                 "url": "https://markdown.anyfetch.com/hydrate",
                 "short_name": "markdown",
                 "description": "AnyFetch Hydrater for markdown files."
-            },
+            }
 
 
 ## Hydrater [/hydraters/{id}]
