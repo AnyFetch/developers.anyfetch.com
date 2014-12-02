@@ -36,7 +36,7 @@ Projectors are written using [handlebars](http://handlebarsjs.com/), and handled
 
 For documents, the projector is quite simple:
 
-```
+```django
 {%raw%}
 {
   "title": {{> title}},
@@ -53,7 +53,7 @@ Things to note:
 * `shortAttr` will work as `attr`, except its output will be truncated to 200 characters by default
 * `> title` is used to import the `title` template:
 
-```
+```django
 {%raw%}
 {{#if metadata.title}}
   "{{attr 'title'}}"
@@ -101,7 +101,7 @@ You can now read about [templating](/guides/concepts/templating.html) to learn h
 
 Here is a more complex projector, used to display an email-thread in full view:
 
-```
+```django
 {%raw%}
 {
   "subject": "{{attr 'subject'}}",
@@ -167,7 +167,7 @@ Here is a more complex projector, used to display an email-thread in full view:
 
 And another one, to display an event:
 
-```
+```django
 {%raw%}
 {
   "name": "{{attr 'name'}}",
