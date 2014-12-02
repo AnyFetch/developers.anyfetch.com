@@ -49,6 +49,10 @@ fs.readFile(file, {encoding: 'utf-8'}, function(err, contentFile) {
     });
 
     res.body.forEach(function(body) {
+      if(body.owner !== null) {
+        return;
+      }
+
       content += "## " + body.name.charAt(0).toUpperCase() + body.name.slice(1) + "\n> ID: `" + body.id + "`\n\n";
       content += body.description += "\n\n" + "### Projections\n";
       content += "Snippet\n\n```jinja\n" + body.projections.snippet + "\n```\n";
