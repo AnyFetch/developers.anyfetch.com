@@ -1832,6 +1832,40 @@ A list of default document-types can be found on [this page](/resources/document
                 }
             ]
 
+
+### Create document-type [POST]
+Create a new document type. This document-type will be available for your company and all its descendants.
+
+See [how to create a document-type](/guides/creating/document-type.html).
+
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+> * `403 MissingScope`: token does not have the `write_hydraters` scope.
+> * `403 Forbidden`: you are not an administrator on this account.
+
+
++ Request (application/json)
+    + Body
+
+            {
+                "short_name": "markdown",
+                "description": "AnyFetch Hydrater for markdown files.",
+                "url": "https://markdown.anyfetch.com/hydrate",
+                "excludes": ["https://plaintext.anyfetch.com/hydrate"],
+                "filters": [
+                    {
+                        "metadata" : {
+                            "path": "/\\.(md|mkd|markdown)$/i",
+                        },
+                        "documentType": {
+                            "name": "file"
+                        },
+                        "filePath": "/^./"
+                    },
+                ]
+            }
+
+
 ## Document-type [/document_types/{id}]
 ### Get document-type [GET]
 Retrieve details about the specified document-type.
