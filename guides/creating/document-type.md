@@ -119,6 +119,13 @@ Once again, here is a valid sample for an event:
 }
 ```
 
+> All esMappings inherits from a default mapping, specifying the default properties for some basic metadata:
+> * `title`, with a default boost of 4
+> * `starred`, a true value boost the score of the document
+> * `path`
+> * `hash` to automatically merge duplicated documents when using `deduplicator.anyfetch.com`
+> * `text`, to hold any string.
+
 ## Updating a document type
 Due to their nature, updating a document type is tricky.
 Of course, you can only update document-types you own.
