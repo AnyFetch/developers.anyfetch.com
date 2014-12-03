@@ -20,9 +20,9 @@ To follow this guide, you need:
 Retrieve your token as described on the ["Hello world" tutorial](/guides/tutorials/hello-world.html): `GET /token`.
 
 ## What do we want to achieve?
-We want to be able to index a new kind of documents on the API, and display them properly. For instance:
+We want to be able to index a new kind of documents on the API, and display them properly. For instance, **products** from a database:
 
-TODO
+![Snippet view](/images/tutorials/snippet.png)
 
 What is needed? For each document, we'll need to have a name, a description, categories, an image and a thumbnail. We wish to be able to search by name and description.
 
@@ -116,7 +116,7 @@ And for `full`, let's display everything!
   "name": "{{attr "name"}}",
   "description": "{{attr "description"}}",
   "image": "{{attr "image"}}",
-  "categories": [
+  "categories": [²
     {{#list metadata.categories}}
       "{{.}}"
     {{/list}}
@@ -214,3 +214,51 @@ We can now create our document-type:
 
 {%endraw%}
 ```
+
+> Don't forget the document-type name must be unique. If you're following along on this tutorial, you'll need to update the name, or you'll get an `InvalidContent` error.
+
+## Display document
+We now need to create a document on the API using our new document-type:
+
+Here is the JSON we'll use (update `document_type` to use your document-type name):
+
+```json
+{
+  "identifier": "my-product",
+  "user_access": [
+    "83c26a310d43f9a67d99f917832cad212907e54630f9df99dca1dff5d8b51a50"
+  ],
+  "document_type": "product",
+  "data": {
+    "image": "http://developers.anyfetch.com/images/tutorials/phone.png"
+  },
+  "metadata": {
+    "name": "Nexus 5",
+    "description": "Nexus 5 helps you capture the everyday and the epic in fresh new ways. The slimmest and fastest Nexus phone ever made, powered by Android.",
+    "categories": [
+      "phone",
+      "android",
+      "nexus"
+    ],
+    "thumbnail": "http://developers.anyfetch.com/images/tutorials/phone_thumbnail.png"
+  }
+}
+```
+
+And the resulting curl call:
+
+```sh
+curl -XPOST \
+-H "Authorization: Bearer ${TOKEN}" \
+-H "Content-Type:application/json" \
+https://api.anyfetch.com//documents \
+-d '{"identifier":"my-product","user_access":["83c26a310d43f9a67d99f917832cad212907e54630f9df99dca1dff5d8b51a50"],"document_type":"product","data":{"image":"http://developers.anyfetch.com/images/tutorials/phone.png"},"metadata":{"name":"Nexus 5","description":"Nexus 5 helps you capture the everyday and the epic in fresh new ways. The slimmest and fastest Nexus phone ever made, powered by Android.","categories":["phone","android","nexus"],"thumbnail":"http://developers.anyfetch.com/images/tutorials/phone_thumbnail.png"}}'
+```
+
+And *voilà*, we're done! You can try to display `GET /documents/identifier/my-product` or simply use any frontend:
+
+![Snippet view](/images/tutorials/snippet.png)
+
+And the full view:
+
+![Full view](/images/tutorials/full.png)
