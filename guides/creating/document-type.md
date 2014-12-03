@@ -35,6 +35,8 @@ A valid `projections` value looks like that (this one returns raw event data pro
 {%endraw%}
 ```
 
+> Remember the `snippet` projection has no access to the `data`, only to `metadata`.
+
 ### Templates
 Now, let's move to `templates`. They should indicate, using [mustache](http://mustache.github.io/), how to display the results from the `projections`. More details can be found in this [concept guide about templating](/guides/concepts/templating.html). Once again, this should be 3 templates returning valid HTML data, with mustache markup.
 
@@ -52,7 +54,7 @@ A valid `templates` value looks like that (taking as input the JSON returned by 
 {%endraw%}
 ```
 
-### esMapping
+### Elasticsearch mappings
 Sadly, we're still not done.
 As the last step, we also need to specify the Elasticsearch mapping we want to use for our new document type.
 
@@ -61,14 +63,14 @@ Note this is about the raw fields, those used *before* projecting.
 
 What does this mean? We need to keep 3 distinct data representation: the `raw` values, stored on `data` and `metadata`; the projected data returned after going through `projections`, and finally the HTML view of the data as returned by `templates`.
 
-`esMapping` should explain what's the raw data and how it should be "understood": is this field a string, a mail, a date...
+`es_mapping` should explain what's the raw data and how it should be "understood": is this field a string, a mail, a date...
 The syntax comes from [ElasticSearch mapping](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/mapping.html).
 
 Once again, here is a valid sample for an event:
 
 ```json
 {
-  "esMapping": {
+  "es_mapping": {
     "properties": {
       "metadata": {
         "properties": {
@@ -130,9 +132,11 @@ Once again, here is a valid sample for an event:
 Due to their nature, updating a document type is tricky.
 Of course, you can only update document-types you own.
 
-You can't change the `name` of your document type, or the `esMapping` -- if you really need to change something here, you'll have to either [contact us](contact@anyfetch.com) or `DELETE` your document-type and start over.
+You can't change the `name` of your document type, or the `es_mapping` -- if you really need to change something here, you'll have to either [contact us](contact@anyfetch.com) or `DELETE` your document-type and start over.
 
 Aside from that, you can update `projections`, `description` and `templates`.
 
 ## Deleting a document type
 There's a slight catch here, as you can't delete a document-type in use by you *or* by any of your subcompanies. You really have to be careful when you start rolling your custom document-types to subcompanies...
+
+> This is probably still very abstract to you. You may want to check [the document-type tutorial](/guides/tutorials/document-type.html), creating a new document-type from scratch.

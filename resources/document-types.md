@@ -6,7 +6,7 @@ layout: doc
 You'll find here the list of default document-types and their expectations.
 Don't forget that [many hydraters can change the `document_type` during the hydration phase](/resources/hydraters.html).
 
-If you're not satisfied with the default presentation or you find some data is missing, you can create your own document-type and make a simple hydrater updating the "old" document-type to the new one.
+If you're not satisfied with the default presentation or you find some data is missing, you can [create your own document-type](/guides/creating/document-types) and make a simple hydrater updating the "old" document-type to the new one.
 
 Default document-types (those presented here) have no "owner", meaning only the AnyFetch team is able to update them.
 

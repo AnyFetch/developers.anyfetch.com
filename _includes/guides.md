@@ -1,6 +1,7 @@
 ### Tutorials
 * ["Hello world" tutorial](/guides/tutorials/hello-world.html): send and search for documents using `curl`.
 * [Subcompanies tutorial](/guides/tutorials/subcompanies.html): more advanced tutorial using subcompanies to compartment data.
+* [Document-type tutorial](/guides/tutorials/document-type.html): creating custom document-types 
 
 ### Concepts
 * [Projections](/guides/concepts/projection.html): minimizing data transfer

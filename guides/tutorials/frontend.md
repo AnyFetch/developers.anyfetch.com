@@ -1,5 +1,5 @@
 ---
-title: Creating a frontend for anyFetch
+title: Creating a AnyFetch frontend
 subtitle: Display documents
 layout: doc
 ---
