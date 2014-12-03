@@ -1,5 +1,5 @@
 ---
-title: anyFetch example use for subcompanies
+title: Using AnyFetch subcompanies
 subtitle: Compartmentalize documents.
 layout: doc
 ---

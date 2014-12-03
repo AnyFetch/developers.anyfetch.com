@@ -1,5 +1,5 @@
 ---
-title: anyFetch example use for creating document-types
+title: Creating document-types
 subtitle: Display documents the right way
 layout: doc
 ---
@@ -39,7 +39,7 @@ The list is already quite long, and contains all the default document-type. You 
 
 What we want to do is add our own, to display `product` documents.
 
-We'll have to specify many things: [how we want to display a document](/guides/concepts/templating.html) (`templates`), [which data should be transferred by the API to the enduser](](/guides/concepts/projection.html)) (`projections`) and which data should be user for searching (`esMapping`).
+We'll have to specify many things: [how we want to display a document](/guides/concepts/templating.html) (`templates`), [which data should be transferred by the API to the enduser](](/guides/concepts/projection.html)) (`projections`) and which data should be user for searching (`es_mapping`).
 
 ### ElasticSearch mapping
 This one is pretty straightfoward: we just list the keys we want, and the type of data they're supposed to store.
@@ -48,7 +48,7 @@ Here is our mapping:
 
 ```json
 {
-  "esMapping": {
+  "es_mapping": {
     "properties": {
       "metadata": {
         "properties": {
@@ -77,7 +77,7 @@ Description is a simple string. Categories is an array of string, but is simply 
 
 > Note the `image` is not here. This is because we're only describing the `metadata`, and we'll store the `image` in data. The only reason `thumbnail` is in `metadata` is we want to display it in the snippet, and `snippet` can't access `data`.
 
-### Formatting
+### Projections
 Now, we want to indicate which data should be returned to the user, and how. We'll have to take into account the fact that some properties may be highlighted and should be handled carefully.
 
 We need to specify this three times: when the document is to be displayed in one line (`title`), as a snippet (`snippet`) and globally (`full`).
@@ -85,14 +85,17 @@ We need to specify this three times: when the document is to be displayed in one
 For the `title` projection, we'll simply return the product name:
 
 ```django
+{%raw%}
 {
   "name": "{{attr "name"}}"
 }
+{%endraw%}
 ```
 
 For `snippet`, we'll return the name, the thumbnail and the categories:
 
 ```django
+{%raw%}
 {
   "name": "{{attr "name"}}",
   "thumbnail": "{{attr "thumbnail"}}",
@@ -102,11 +105,13 @@ For `snippet`, we'll return the name, the thumbnail and the categories:
     {{/list}}
   ]
 }
+{%endraw%}
 ```
 
 And for `full`, let's display everything!
 
 ```django
+{%raw%}
 {
   "name": "{{attr "name"}}",
   "description": "{{attr "description"}}",
@@ -117,12 +122,15 @@ And for `full`, let's display everything!
     {{/list}}
   ]
 }
+{%endraw%}
 ```
 
 This is what we get when merging everything together:
 
 ```json
+{%raw%}
 TODO
+{%endraw%}
 ```
 
 ### Templating
@@ -132,39 +140,77 @@ Once again, we have to write this three times, once for each kind of projection.
 For the `title`, it's really easy:
 
 ```django
+{%raw%}
 {{{ name }}}
+{%endraw%}
 ```
 
-For `snippet`:
+For `snippet` (we can only use the `name`, `thumbnail` and `categories` defined earlier):
 
 ```django
+{%raw%}
 <article class="anyfetch-document-snippet anyfetch-type-product">
+  <header class="anyfetch-header">
+    <figure class="anyfetch-aside-image">
+      <img src="{{ thumbnail }}" alt="{{ name }}" />
+    </figure>
+    <hgroup class="anyfetch-title-group">
+      <h1 class="anyfetch-title">{{{ name }}}</h1>
+    </hgroup>
+    <main class="anyfetch-content">
+    {{ #categories.length }}
+      <ul class="anyfetch-inline-list anyfetch-comma-list">
+        {{ #categories }}
+          <li>{{ . }}</li>
+        {{ /categories }}
+      </ul>
+    {{ /categories.length }}
+    </main>
+  </header>
+</article>
+{%endraw%}
+```
+
+For `full` (where we can use `name`, `description`, `image`, `categories`):
+
+```django
+{%raw%}
+<article class="anyfetch-document-full anyfetch-type-contact">
   <header class="anyfetch-header">
     <figure class="anyfetch-aside-image">
       <img src="{{ image }}" alt="{{ name }}" />
     </figure>
     <hgroup class="anyfetch-title-group">
       <h1 class="anyfetch-title">{{{ name }}}</h1>
-      <p class="anyfetch-title-detail">{{{ job }}}</p>
+      <p class="anyfetch-title-detail">{{{ description }}}</p>
     </hgroup>
-    <main class="anyfetch-content">
-      <ul class="anyfetch-inline-list anyfetch-comma-list">
-        {{ #email }}
-          <li><span class="anyfetch-email">{{ . }}</span></li>
-        {{ /email }}
-      </ul>
-      <ul class="anyfetch-inline-list anyfetch-comma-list">
-        {{ #phone }}
-          <li><span class="anyfetch-phone">{{ . }}</span></li>
-        {{ /phone }}
-      </ul>
-      <ul class="anyfetch-inline-list anyfetch-comma-list">
-        {{ #address }}
-          <li><span class="anyfetch-address">{{ . }}</span></li>
-        {{ /address }}
-      </ul>
-    </main>
   </header>
+  <main class="anyfetch-content">
+    {{ #categories.length }}
+      <ul class="anyfetch-inline-list anyfetch-comma-list">
+        {{ #categories }}
+          <li>{{ . }}</li>
+        {{ /categories }}
+      </ul>
+    {{ /categories.length }}
+  </main>
 </article>
+{%endraw%}
+```
 
+And when merging all the templates together:
+
+```django
+{%raw%}
+TODO
+{%endraw%}
+```
+
+### Wrapping up
+We can now create our document-type:
+
+```sh
+{%raw%}
+
+{%endraw%}
 ```
