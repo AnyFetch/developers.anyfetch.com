@@ -8,6 +8,8 @@ In this guide, we'll create a new *document-type* to display a new kind of docum
 
 The example use case will be a store indexing "products" onto anyfetch, wishing to display them properly.
 
+> Grab a beer, take a seat, this is probably the hardest tutorial on the site.
+
 ## What do I need?
 To follow this guide, you need:
 
@@ -19,7 +21,7 @@ To follow this guide, you need:
 ## Setting up
 Retrieve your token as described on the ["Hello world" tutorial](/guides/tutorials/hello-world.html): `GET /token`.
 
-## What do we want to achieve?
+## Visualizing the final result
 We want to be able to index a new kind of documents on the API, and display them properly. For instance, **products** from a database:
 
 ![Snippet view](/images/tutorials/document-type/snippet.png)
