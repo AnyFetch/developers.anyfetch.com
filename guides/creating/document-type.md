@@ -17,11 +17,11 @@ The `/document_types` is tricky to use and require multiple complex parameters.
 The simplest are obviously `name` and `description`, which should hold strings explaining the purpose of your document-type. Be careful, as the `name` parameter must be **globally** unique: a good practice is to prefix your document-type with your company name or id.
 
 ### Projections
-The next parameter we'll document is `projections`. This should be 3 valid [handlebars](http://handlebarsjs.com/) templates, each yielding a valid JSON, as explained in this [concept guide about projections](/guides/concepts/projection.html).
+The next parameter is `projections`. This should be 3 valid [handlebars](http://handlebarsjs.com/) templates, each yielding a valid JSON, as explained in this [concept guide about projections](/guides/concepts/projection.html).
 
 Each template is used in distinct situations: `title` for one line display, `snippet` for short document presentation and `full` for a global document view.
 
-A valid `projections` value looks like that (this one return raw event data properly projected) :
+A valid `projections` value looks like that (this one returns raw event data properly projected) :
 
 ```json
 {%raw%}
