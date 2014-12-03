@@ -245,7 +245,7 @@ Here is the JSON we'll use (update `document_type` to use your document-type nam
   ],
   "document_type": "product",
   "data": {
-    "image": "http://developers.anyfetch.com/images/tutorials/phone.png"
+    "image": "http://developers.anyfetch.com/images/tutorials/document_type/phone.png"
   },
   "metadata": {
     "name": "Nexus 5",
@@ -255,7 +255,7 @@ Here is the JSON we'll use (update `document_type` to use your document-type nam
       "android",
       "nexus"
     ],
-    "thumbnail": "http://developers.anyfetch.com/images/tutorials/phone_thumbnail.png"
+    "thumbnail": "http://developers.anyfetch.com/images/tutorials/document-type/phone_thumbnail.png"
   }
 }
 ```
@@ -267,7 +267,7 @@ curl -XPOST \
 -H "Authorization: Bearer ${TOKEN}" \
 -H "Content-Type:application/json" \
 https://api.anyfetch.com//documents \
--d '{"identifier":"my-product","user_access":["83c26a310d43f9a67d99f917832cad212907e54630f9df99dca1dff5d8b51a50"],"document_type":"product","data":{"image":"http://developers.anyfetch.com/images/tutorials/phone.png"},"metadata":{"name":"Nexus 5","description":"Nexus 5 helps you capture the everyday and the epic in fresh new ways. The slimmest and fastest Nexus phone ever made, powered by Android.","categories":["phone","android","nexus"],"thumbnail":"http://developers.anyfetch.com/images/tutorials/phone_thumbnail.png"}}'
+-d '{"identifier":"my-product","user_access":["83c26a310d43f9a67d99f917832cad212907e54630f9df99dca1dff5d8b51a50"],"document_type":"product","data":{"image":"http://developers.anyfetch.com/images/tutorials/document_type/phone.png"},"metadata":{"name":"Nexus 5","description":"Nexus 5 helps you capture the everyday and the epic in fresh new ways. The slimmest and fastest Nexus phone ever made, powered by Android.","categories":["phone","android","nexus"],"thumbnail":"http://developers.anyfetch.com/images/tutorials/document-type/phone_thumbnail.png"}}'
 ```
 
 And *voilà*, we're done! You can try to display `GET /documents/identifier/my-product?render_templates=1` or simply use any frontend:
@@ -280,3 +280,4 @@ And the full view:
 
 ## What's next?
 * You can polish your HTML templates and JSON projections at any time
+* You may want to fork 
