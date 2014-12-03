@@ -22,7 +22,7 @@ Retrieve your token as described on the ["Hello world" tutorial](/guides/tutoria
 ## What do we want to achieve?
 We want to be able to index a new kind of documents on the API, and display them properly. For instance, **products** from a database:
 
-![Snippet view](/images/tutorials/snippet.png)
+![Snippet view](/images/tutorials/document-type/snippet.png)
 
 What is needed? For each document, we'll need to have a name, a description, categories, an image and a thumbnail. We wish to be able to search by name and description.
 
@@ -125,11 +125,17 @@ And for `full`, let's display everything!
 {%endraw%}
 ```
 
-This is what we get when merging everything together:
+This is what we get when we merge everything together:
 
 ```json
 {%raw%}
-TODO
+{
+  "projections": {
+    "full": "{\n  \"name\": \"{{attr \"name\"}}\",\n  \"description\": \"{{attr \"description\"}}\",\n  \"image\": \"{{attr \"image\"}}\",\n  \"categories\": [\n    {{#list metadata.categories}}\n      \"{{.}}\"\n    {{/list}}\n  ]\n}",
+    "snippet": "{\n  \"name\": \"{{attr \"name\"}}\",\n  \"thumbnail\": \"{{attr \"thumbnail\"}}\",\n  \"categories\": [\n    {{#list metadata.categories}}\n      \"{{.}}\"\n    {{/list}}\n  ]\n}",
+    "title": "{\n  \"name\": \"{{attr \"name\"}}\"\n}\n"
+  }
+}
 {%endraw%}
 ```
 
@@ -139,7 +145,7 @@ Once again, we have to write this three times, once for each kind of projection.
 
 For the `title`, it's really easy:
 
-```django
+```html
 {%raw%}
 {{{ name }}}
 {%endraw%}
@@ -147,7 +153,7 @@ For the `title`, it's really easy:
 
 For `snippet` (we can only use the `name`, `thumbnail` and `categories` defined earlier):
 
-```django
+```html
 {%raw%}
 <article class="anyfetch-document-snippet anyfetch-type-product">
   <header class="anyfetch-header">
@@ -156,16 +162,14 @@ For `snippet` (we can only use the `name`, `thumbnail` and `categories` defined 
     </figure>
     <hgroup class="anyfetch-title-group">
       <h1 class="anyfetch-title">{{{ name }}}</h1>
-    </hgroup>
-    <main class="anyfetch-content">
-    {{ #categories.length }}
-      <ul class="anyfetch-inline-list anyfetch-comma-list">
-        {{ #categories }}
-          <li>{{ . }}</li>
-        {{ /categories }}
+      {{ #categories.length }}
+      <ul class="anyfetch-title-detail anyfetch-inline-list anyfetch-comma-list">
+      {{ #categories }}
+        <li>{{ . }}</li>
+      {{ /categories }}
       </ul>
-    {{ /categories.length }}
-    </main>
+      {{ /categories.length }}
+    </hgroup>
   </header>
 </article>
 {%endraw%}
@@ -173,7 +177,7 @@ For `snippet` (we can only use the `name`, `thumbnail` and `categories` defined 
 
 For `full` (where we can use `name`, `description`, `image`, `categories`):
 
-```django
+```html
 {%raw%}
 <article class="anyfetch-document-full anyfetch-type-contact">
   <header class="anyfetch-header">
@@ -182,36 +186,47 @@ For `full` (where we can use `name`, `description`, `image`, `categories`):
     </figure>
     <hgroup class="anyfetch-title-group">
       <h1 class="anyfetch-title">{{{ name }}}</h1>
-      <p class="anyfetch-title-detail">{{{ description }}}</p>
+      {{ #categories.length }}
+      <ul class="anyfetch-title-detail anyfetch-inline-list anyfetch-comma-list">
+      {{ #categories }}
+        <li>{{ . }}</li>
+      {{ /categories }}
+      </ul>
+      {{ /categories.length }}
     </hgroup>
   </header>
   <main class="anyfetch-content">
-    {{ #categories.length }}
-      <ul class="anyfetch-inline-list anyfetch-comma-list">
-        {{ #categories }}
-          <li>{{ . }}</li>
-        {{ /categories }}
-      </ul>
-    {{ /categories.length }}
+      <p>{{{ description }}}</p>
   </main>
 </article>
+
 {%endraw%}
 ```
 
 And when merging all the templates together:
 
-```django
+```json
 {%raw%}
-TODO
+{
+  "templates": {
+    "full": "<article class=\"anyfetch-document-full anyfetch-type-contact\">\n  <header class=\"anyfetch-header\">\n    <figure class=\"anyfetch-aside-image\">\n      <img src=\"{{ image }}\" alt=\"{{ name }}\" />\n    </figure>\n    <hgroup class=\"anyfetch-title-group\">\n      <h1 class=\"anyfetch-title\">{{{ name }}}</h1>\n      {{ #categories.length }}\n      <ul class=\"anyfetch-title-detail anyfetch-inline-list anyfetch-comma-list\">\n      {{ #categories }}\n        <li>{{ . }}</li>\n      {{ /categories }}\n      </ul>\n      {{ /categories.length }}\n    </hgroup>\n  </header>\n  <main class=\"anyfetch-content\">\n      <p>{{{ description }}}</p>\n  </main>\n</article>\n",
+    "snippet": "<article class=\"anyfetch-document-snippet anyfetch-type-product\">\n  <header class=\"anyfetch-header\">\n    <figure class=\"anyfetch-aside-image\">\n      <img src=\"{{ thumbnail }}\" alt=\"{{ name }}\" />\n    </figure>\n    <hgroup class=\"anyfetch-title-group\">\n      <h1 class=\"anyfetch-title\">{{{ name }}}</h1>\n      {{ #categories.length }}\n      <ul class=\"anyfetch-title-detail anyfetch-inline-list anyfetch-comma-list\">\n      {{ #categories }}\n        <li>{{ . }}</li>\n      {{ /categories }}\n      </ul>\n      {{ /categories.length }}\n    </hgroup>\n  </header>\n</article>\n",
+    "title": "{{{ name }}}"
+  }
+}
 {%endraw%}
 ```
 
 ### Wrapping up
-We can now create our document-type:
+We can now create our document-type (don't get scared, this is just a merge from all our previous JSON):
 
 ```sh
 {%raw%}
-
+curl -XPOST \
+-H "Authorization: Bearer ${TOKEN}" \
+-H "Content-Type:application/json" \
+https://api.anyfetch.com/document_types \
+-d '{"name":"product","description":"A product in our database","es_mapping":{"properties":{"metadata":{"properties":{"name":{"boost":8,"type":"string"},"description":{"type":"string"},"categories":{"type":"string"},"thumbnail":{"type":"string","index":"not_analyzed"}}}}},"templates":{"full":"<article class=\"anyfetch-document-full anyfetch-type-contact\">\n  <header class=\"anyfetch-header\">\n    <figure class=\"anyfetch-aside-image\">\n      <img src=\"{{ image }}\" alt=\"{{ name }}\" />\n    </figure>\n    <hgroup class=\"anyfetch-title-group\">\n      <h1 class=\"anyfetch-title\">{{{ name }}}</h1>\n      {{ #categories.length }}\n      <ul class=\"anyfetch-title-detail anyfetch-inline-list anyfetch-comma-list\">\n      {{ #categories }}\n        <li>{{ . }}</li>\n      {{ /categories }}\n      </ul>\n      {{ /categories.length }}\n    </hgroup>\n  </header>\n  <main class=\"anyfetch-content\">\n      <p>{{{ description }}}</p>\n  </main>\n</article>\n","snippet":"<article class=\"anyfetch-document-snippet anyfetch-type-product\">\n  <header class=\"anyfetch-header\">\n    <figure class=\"anyfetch-aside-image\">\n      <img src=\"{{ thumbnail }}\" alt=\"{{ name }}\" />\n    </figure>\n    <hgroup class=\"anyfetch-title-group\">\n      <h1 class=\"anyfetch-title\">{{{ name }}}</h1>\n      {{ #categories.length }}\n      <ul class=\"anyfetch-title-detail anyfetch-inline-list anyfetch-comma-list\">\n      {{ #categories }}\n        <li>{{ . }}</li>\n      {{ /categories }}\n      </ul>\n      {{ /categories.length }}\n    </hgroup>\n  </header>\n</article>\n","title":"{{{ name }}}"},"projections":{"full":"{\n  \"name\": \"{{attr \"name\"}}\",\n  \"description\": \"{{attr \"description\"}}\",\n  \"image\": \"{{attr \"image\"}}\",\n  \"categories\": [\n    {{#list metadata.categories}}\n      \"{{.}}\"\n    {{/list}}\n  ]\n}","snippet":"{\n  \"name\": \"{{attr \"name\"}}\",\n  \"thumbnail\": \"{{attr \"thumbnail\"}}\",\n  \"categories\": [\n    {{#list metadata.categories}}\n      \"{{.}}\"\n    {{/list}}\n  ]\n}","title":"{\n  \"name\": \"{{attr \"name\"}}\"\n}\n"}}'
 {%endraw%}
 ```
 
@@ -255,10 +270,13 @@ https://api.anyfetch.com//documents \
 -d '{"identifier":"my-product","user_access":["83c26a310d43f9a67d99f917832cad212907e54630f9df99dca1dff5d8b51a50"],"document_type":"product","data":{"image":"http://developers.anyfetch.com/images/tutorials/phone.png"},"metadata":{"name":"Nexus 5","description":"Nexus 5 helps you capture the everyday and the epic in fresh new ways. The slimmest and fastest Nexus phone ever made, powered by Android.","categories":["phone","android","nexus"],"thumbnail":"http://developers.anyfetch.com/images/tutorials/phone_thumbnail.png"}}'
 ```
 
-And *voilà*, we're done! You can try to display `GET /documents/identifier/my-product` or simply use any frontend:
+And *voilà*, we're done! You can try to display `GET /documents/identifier/my-product?render_templates=1` or simply use any frontend:
 
-![Snippet view](/images/tutorials/snippet.png)
+![Snippet view](/images/tutorials/document-type/snippet.png)
 
 And the full view:
 
-![Full view](/images/tutorials/full.png)
+![Full view](/images/tutorials/document-type/full.png)
+
+## What's next?
+* You can polish your HTML templates and JSON projections at any time
