@@ -35,6 +35,8 @@ A valid `projections` value looks like that (this one return raw event data prop
 {%endraw%}
 ```
 
+> Remember the `snippet` projection has no access to the `data`, only to `metadata`.
+
 ### Templates
 Now, let's move to `templates`. They should indicate, using [mustache](http://mustache.github.io/), how to display the results from the `projections`. More details can be found in this [concept guide about templating](/guides/concepts/templating.html). Once again, this should be 3 templates returning valid HTML data, with mustache markup.
 
