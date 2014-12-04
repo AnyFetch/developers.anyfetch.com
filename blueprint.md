@@ -1654,10 +1654,10 @@ Remove specified user. The user should be in your company, you can't delete a us
 
 
 
-# Group document-types
+# Group Document-Types
 
 
-## document-types [/document_types]
+## Document-Types [/document_types]
 ### List document-types [GET]
 Retrieve all document-types available for the current user, with document count and the date the last document with this document-type was updated (or null if the document-type is not in use on this account).
 
