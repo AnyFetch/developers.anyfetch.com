@@ -1777,58 +1777,6 @@ A list of default document-types can be found on [this page](/resources/document
                     },
                     "document_count": 296,
                     "updated": "2014-07-23T11:32:06.347Z"
-                },
-                {
-                    "_type": "DocumentType",
-                    "id": "5252ce4ce4cfcd16f55cfa3b",
-                    "name": "file",
-                    "templates": {
-                        "snippet": "<article>\n  <h1>{{{ title }}}</h1>\n  <code>{{{ path }}}</code>\n</article>\n",
-                        "full": "<article>\n  <h1>{{{ title }}}</h1>\n  <code>{{{ path }}}</code>\n</article>\n",
-                        "title": "{{ title }}"
-                    },
-                    "description": "Most basic document type for any kind of binary content. When a provider sends data without any additional information, it will use this document_type.",
-                    "projections": {
-                        "snippet": [
-                            "title",
-                            "path",
-                            "extension"
-                        ],
-                        "full": [
-                            "title",
-                            "path",
-                            "extension"
-                        ]
-                    },
-                    "document_count": 214,
-                    "updated": "2014-07-23T11:31:15.593Z"
-                },
-                {
-                    "_type": "DocumentType",
-                    "id": "5252ce4ce4cfcd16f55cfa3a",
-                    "name": "contact",
-                    "templates": {
-                        "snippet": "<article class=\"two-columns\">\n  <aside>\n    <img src=\"{{ image }}\" />\n  </aside>\n  <section>\n    <h1>{{{ name }}}</h1>\n    <span>{{{ job }}}</span>\n  </section>\n</article>\n",
-                        "full": "<article>\n\n  <section class=\"two-columns\">\n    <aside>\n      <img src=\"{{ image }}\"/>    \n    </aside>\n    <section>\n      <h1><a href=\"anyfetch://search/{{name}}\">{{{ name }}}</a></h1>\n      <span>{{{ job }}}</span>   \n    </section>\n  </section>\n\n  <section>\n    {{#phone.length}}\n    <h2>Phones:</h2>\n    <ul>\n      {{ #phone }}\n      <li>{{ phone }} ( {{ type }} )</li>\n      {{ /phone }}\n    </ul>\n    {{/phone.length}}\n\n    {{#email.length}}\n    <h2>Emails:</h2>\n    <ul>\n      {{ #email }}\n      <li>{{ email }} ( {{ type }} )</li>\n      {{ /email }}\n    </ul>\n    {{/email.length}}\n\n    {{#address.length}}\n    <h2>Address:</h2>\n    <ul>\n      {{ #address }}\n      <li>{{ address }} ( {{ type }} )</li>\n      {{ /address }}\n    </ul>\n    {{/address.length}}\n\n    {{#website.length}}\n    <h2>Website:</h2>\n    <ul>\n      {{ #website }}\n      <li>{{{ website }}}</li>\n      {{ /website }}\n    </ul>\n    {{/website.length}}\n\n\n    {{#birthday}}\n    <h2>Birthday:</h2>\n    <span>{{birthday}}</span>\n    {{/birthday}}\n\n  </section>\n\n</article>\n",
-                        "title": "{{ name }}"
-                    },
-                    "description": "A person (contact, client, ...)",
-                    "projections": {
-                        "snippet": [
-                            "name",
-                            "image",
-                            "job"
-                        ],
-                        "full": [
-                            "name",
-                            "job",
-                            "phone",
-                            "email",
-                            "image"
-                        ]
-                    },
-                    "document_count": 239,
-                    "updated": "2014-07-22T14:14:16.640Z"
                 }
             ]
 
@@ -1836,35 +1784,85 @@ A list of default document-types can be found on [this page](/resources/document
 ### Create document-type [POST]
 Create a new document type. This document-type will be available for your company and all its descendants.
 
-See [how to create a document-type](/guides/creating/document-type.html).
+See [how to create a document-type](/guides/creating/document-type.html), or the [document-type tutorial](/guides/tutorials/document-type.html).
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 MissingScope`: token does not have the `write_hydraters` scope.
 > * `403 Forbidden`: you are not an administrator on this account.
+> * `409 MissingParameter`: Missing parameter (name, templates, projections, es_mapping, description)
+> * `409 InvalidArgument`: es_mapping must be a valid JSON object, not a string
+> * `409 InvalidArgument`: you specified an unknown argument
+> * `409 InvalidContent`: A document-type with this name already exists
 
 
 + Request (application/json)
     + Body
 
             {
-                "short_name": "markdown",
-                "description": "AnyFetch Hydrater for markdown files.",
-                "url": "https://markdown.anyfetch.com/hydrate",
-                "excludes": ["https://plaintext.anyfetch.com/hydrate"],
-                "filters": [
-                    {
-                        "metadata" : {
-                            "path": "/\\.(md|mkd|markdown)$/i",
-                        },
-                        "documentType": {
-                            "name": "file"
-                        },
-                        "filePath": "/^./"
-                    },
-                ]
+                "name": "sample_document_type",
+                "description": "My sample document type",
+                "es_mapping": {
+                    "properties": {
+                        "metadata": {
+                            "properties": {
+                                "name": {
+                                    "boost": 8,
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "projections": {
+                    "full": "{\n  \"name\": \"{{attr \"name\"}}\",\n  \"description\": \"{{attr \"description\"}}\"}",
+                    "snippet": "{\n  \"name\": \"{{attr \"name\"}}\",\n  \"description\": \"{{attr \"description\"}}\"}",
+                    "title": "{\n  \"name\": \"{{attr \"name\"}}\"\n}\n"
+                },
+                "templates": {
+                    "full": "<article class=\"anyfetch-document-full anyfetch-type-sample\"><h1>{{{ name }}}</h1><p>{{{ description }}}</p></article>",
+                    "snippet": "<article class=\"anyfetch-document-full anyfetch-type-sample\"><h1>{{{ name }}}</h1><p>{{{ description }}}</p></article>",
+                    "title": "{{{ name }}}"
+                }
             }
++ Response 200 (application/json)
+    + Body
 
+            {
+                "_type": "DocumentType",
+                "id": "54804bac12ebf8f552cd0474",
+                "name": "sample_document_type",
+                "templates": {
+                    "full": "<article class=\"anyfetch-document-full anyfetch-type-sample\"><h1>{{{ name }}}</h1><p>{{{ description }}}</p></article>",
+                    "snippet": "<article class=\"anyfetch-document-full anyfetch-type-sample\"><h1>{{{ name }}}</h1><p>{{{ description }}}</p></article>",
+                    "title": "{{{ name }}}"
+                },
+                "owner": "547c7674c73384fa1615b3b8",
+                "description": "My sample document type",
+                "projections": {
+                    "full": "{\n  \"name\": \"{{attr \"name\"}}\",\n  \"description\": \"{{attr \"description\"}}\"}",
+                    "snippet": "{\n  \"name\": \"{{attr \"name\"}}\",\n  \"description\": \"{{attr \"description\"}}\"}",
+                    "title": "{\n  \"name\": \"{{attr \"name\"}}\"\n}\n"
+                },
+                "es_mapping": {
+                    "properties": {
+                        "metadata": {
+                            "properties": {
+                                "name": {
+                                    "boost": 8,
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
 ## Document-type [/document_types/{id}]
 ### Get document-type [GET]
@@ -1880,25 +1878,36 @@ Retrieve details about the specified document-type.
 
             {
                 "_type": "DocumentType",
-                "id": "5252ce4ce4cfcd16f55cfa3c",
-                "name": "document",
+                "id": "5252ce4ce4cfcd16f55cfa3d",
+                "name": "image",
                 "templates": {
-                    "snippet": "<article>\n  <h1>{{{ title }}}</h1>\n  <blockquote>\n  \t{{{ snippet }}}\n  </blockquote>\n</article>\n",
-                    "full": "<article>\n  <section>\n    <h1>{{{ title }}}</h1>\n    <code>{{ path }}</code>\n  </section>\n\n  <section>\n    {{{ content }}}\n  </section>\n</article>\n",
-                    "title": "{{ title }}"
+                    "title": "{{{ title }}}",
+                    "full": "<article class=\"anyfetch-document-full anyfetch-type-image\">\n  <header class=\"anyfetch-header\">\n    <hgroup class=\"anyfetch-title-group\">\n      <h1 class=\"anyfetch-title\">{{{ title }}}</h1>\n      {{#author}}\n        <p class=\"anyfetch-title-detail anyfetch-person\">{{.}}</p>\n      {{/author}}\n    </hgroup>\n    <ul class=\"anyfetch-pill-list\">\n      {{#keywords}}\n        <li class=\"anyfetch-pill anyfetch-label\">{{.}}</li>\n      {{/keywords}}\n    </ul>\n  </header>\n\n  <main class=\"anyfetch-content\">\n    <figure class=\"anyfetch-full-image\">\n      {{#display}}\n        <img src=\"{{.}}\" alt=\"{{{ title }}}\" />\n      {{/display}}\n      {{#description}}\n        <figcaption class=\"anyfetch-image-caption\">{{{description}}}</figcaption>\n      {{/description}}\n    </figure>\n  </main>\n\n</article>\n",
+                    "snippet": "<article class=\"anyfetch-document-snippet anyfetch-type-image\">\n  <header class=\"anyfetch-header\">\n    {{#thumb}}\n      <figure class=\"anyfetch-aside-image\">\n        <img src=\"{{ thumb }}\" alt=\"{{ title }}\" />\n      </figure>\n    {{/thumb}}\n    <hgroup class=\"anyfetch-title-group\">\n      <h1 class=\"anyfetch-title\">{{{ title }}}</h1>\n      {{#author}}\n        <p class=\"anyfetch-title-detail anyfetch-person\">{{.}}</p>\n      {{/author}}\n      <ul class=\"anyfetch-pill-list anyfetch-participants\">\n      {{#keywords}}\n        <li class=\"anyfetch-pill anyfetch-name\">{{.}}</li>\n      {{/keywords}}\n      </ul>\n    </hgroup>\n  </header>\n</article>\n"
                 },
-                "description": "A document from which we were able to extract a clean HTML representation: text, doc, xls, epub...",
+                "owner": null,
+                "description": "Display thumbnail and preview data encoded in base64.",
                 "projections": {
-                    "snippet": [
-                        "title",
-                        "path",
-                        "snippet"
-                    ],
-                    "full": [
-                        "title",
-                        "path",
-                        "content"
-                    ]
+                    "title": "{ \"title\": {{> title}} }",
+                    "full": "{\n  \"title\": {{> title}},\n  \"display\": \"{{{attr 'display'}}}\",\n  \"author\": \"{{attr 'author'}}\",\n  \"description\": \"{{attr 'description'}}\",\n  \"keywords\": \"{{attr 'keywords'}}\"\n}\n",
+                    "snippet": "{\n  \"title\": {{> title}},\n  \"thumb\": \"{{{attr 'thumb'}}}\"\n}\n"
+                },
+                "es_mapping": {
+                    "properties": {
+                        "metadata": {
+                            "properties": {
+                                "keywords": {
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                },
+                                "author": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
                 }
             }
 
