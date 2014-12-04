@@ -58,3 +58,6 @@ To do so, send to `POST https://manager.anyfetch.com/oauth/access_token` the fol
 
 ## Lib
 Here at anyFetch, we use node.js for our providers to improve latency and send multiple files at once. You can use the [anyFetch](https://www.npmjs.org/package/anyfetch) library from npm, or [anyFetch Provider](https://www.npmjs.org/package/anyfetch-provider). You'll find additional documentation directly on those packages.
+
+## Icons
+If you want your provider to display a nice icon on your frontend, please [fork this repo](https://github.com/AnyFetch/anyfetch-assets). That way, your icon will be deployed on all frontends.

@@ -39,7 +39,7 @@ An admin user from a company can create a subcompany, which will hold other docu
 ### Document-type
 The word *document* is used here as an abstract term, and can represent a file, a contact, as well as a huge pile of analytics data.
 
-To reflect this variety of possible sources, each document is affected a *document type* (`document`, `image`, `mail`, `contact`, `invoice`...).
+To reflect this variety of possible sources, each document is affected a *document-type* (`document`, `image`, `mail`, `contact`, `invoice`...).
 This `document-type` can be modified by any of the hydraters along the hydration chain.
 
 The default document-type is `file`, but a document-type can also be something more abstract, for instance `mail`, `contact` or `invoice`.

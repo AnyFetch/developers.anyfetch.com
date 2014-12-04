@@ -1,6 +1,7 @@
 ### Tutorials
 * ["Hello world" tutorial](/guides/tutorials/hello-world.html): send and search for documents using `curl`.
 * [Subcompanies tutorial](/guides/tutorials/subcompanies.html): more advanced tutorial using subcompanies to compartment data.
+* [Document-type tutorial](/guides/tutorials/document-type.html): creating custom document-types 
 
 ### Concepts
 * [Projections](/guides/concepts/projection.html): minimizing data transfer
@@ -15,6 +16,7 @@
 * [How to create my own frontend?](/guides/creating/frontend.html)
 * [How to create my own provider?](/guides/creating/provider.html)
 * [How to create my own hydrater?](/guides/creating/hydrater.html)
+* [How to create my own document-type?](/guides/creating/document-type.html)
 
 ### Participating in existing projects
 * [Style Guide for contributing](/contributing.html)

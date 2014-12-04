@@ -536,7 +536,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 </dd><dt>before</dt><dd><code>date</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>2014-03-21</span></span><p>Only display documents created before this date.</p>
 </dd><dt>after</dt><dd><code>date</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>2014-01-25</span></span><p>Only display documents created after this date.</p>
 </dd><dt>id</dt><dd><code>array</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>5252ce4ce4cfcd16f55cfa3f</span></span><p>Only retrieve documents matching this id. <small>You can use the param multiple times to allow for multiples <code>id</code>, for instance <code>?id=1&amp;id=2&amp;id=3</code></small>.</p>
-</dd><dt>document_type</dt><dd><code>array</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>5252ce4ce4cfcd16f55cfa3f</span></span><p>Only retrieve documents matching this document type. <small>You can use the param multiple times to allow for multiples <code>document_type</code></small>.</p>
+</dd><dt>document_type</dt><dd><code>array</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>5252ce4ce4cfcd16f55cfa3f</span></span><p>Only retrieve documents matching this document-type. <small>You can use the param multiple times to allow for multiples <code>document_type</code></small>.</p>
 </dd><dt>provider</dt><dd><code>array</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>5252ce4ce4cfcd16f55cfa3f</span></span><p>Only retrieve documents matching this provider. <small>You can use the param multiple times to allow for multiples <code>provider</code>.</small></p>
 </dd><dt>meta</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>John</span></span><p>(prepend name with @) Full text search on <code>meta</code> key.  Replace <code>meta</code> with the name of the meta you wish to search on, for instance <code>?@name=john</code>.</p>
 </dd><dt>has_meta</dt><dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Only returns document having the <code>meta</code> key. Replace <code>meta</code> with the name of the meta you wish to search on.</p>
@@ -1413,84 +1413,86 @@ Also include information about hydraters (<code>hydrated_by</code>, <code>hydrat
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the User to perform action with.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="document-types">Document Types&nbsp;<a href="#document-types"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="document-types-document-types">Document types&nbsp;<a href="#document-types-document-types"><i class="fa fa-link"></i></a></h4><section id="document-types-document-types-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">List document-types</span></div><div style="float:left"><a href="#document-types-document-types-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/document_types</code></div></div><div class="panel-body"><p>Retrieve all document types available for the current user, with document count and the date the last document with this document type was updated.</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="document-types">document-types&nbsp;<a href="#document-types"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="document-types-document-types">document-types&nbsp;<a href="#document-types-document-types"><i class="fa fa-link"></i></a></h4><section id="document-types-document-types-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">List document-types</span></div><div style="float:left"><a href="#document-types-document-types-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/document_types</code></div></div><div class="panel-body"><p>Retrieve all document-types available for the current user, with document count and the date the last document with this document-type was updated (or null if the document-type is not in use on this account).</p>
+<p>A list of default document-types can be found on <a href="/resources/document-types.html">this page</a>.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>read_document_types</code> scope.</li>
 </ul>
 </blockquote>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#fd9c79c4990b55124fbedfe4f247442c" class="pull-right">Toggle</a></li><li id="fd9c79c4990b55124fbedfe4f247442c" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#5e5c8b5e895ea415293dcadcb33bfe4c" class="pull-right">Toggle</a></li><li id="5e5c8b5e895ea415293dcadcb33bfe4c" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
     {
-        <span class="hljs-string">"_type"</span>: <span class="hljs-string">"DocumentType"</span>,
-        <span class="hljs-string">"id"</span>: <span class="hljs-string">"5252ce4ce4cfcd16f55cfa3d"</span>,
-        <span class="hljs-string">"name"</span>: <span class="hljs-string">"image"</span>,
-        <span class="hljs-string">"templates"</span>: {
-            <span class="hljs-string">"snippet"</span>: <span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n\n  &lt;img src=\"{{ thumb }}\" /&gt;\n&lt;/article&gt;\n"</span>,
-            <span class="hljs-string">"full"</span>: <span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n\n  &lt;img src=\"{{ display }}\" /&gt;\n&lt;/article&gt;\n"</span>,
-            <span class="hljs-string">"title"</span>: <span class="hljs-string">"{{ title }}"</span>
-        },
-        <span class="hljs-string">"description"</span>: <span class="hljs-string">"Display thumbnail and preview data encoded in base64."</span>,
-        <span class="hljs-string">"projections"</span>: {
-            <span class="hljs-string">"snippet"</span>: [
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3d"</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"image"</span></span>,
+        "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n\n  &lt;img src=\"{{ thumb }}\" /&gt;\n&lt;/article&gt;\n"</span></span>,
+            "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n\n  &lt;img src=\"{{ display }}\" /&gt;\n&lt;/article&gt;\n"</span></span>,
+            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ title }}"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Display thumbnail and preview data encoded in base64."</span></span>,
+        "<span class="hljs-attribute">projections</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value">[
                 <span class="hljs-string">"title"</span>,
                 <span class="hljs-string">"thumb"</span>
-            ],
-            <span class="hljs-string">"full"</span>: [
+            ]</span>,
+            "<span class="hljs-attribute">full</span>": <span class="hljs-value">[
                 <span class="hljs-string">"title"</span>,
                 <span class="hljs-string">"display"</span>
             ]
-        },
-        <span class="hljs-string">"document_count"</span>: <span class="hljs-number">439</span>,
-        <span class="hljs-string">"updated"</span>: <span class="hljs-string">"2014-07-23T11:31:53.739Z"</span>
-    },
+        </span>}</span>,
+        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">439</span></span>,
+        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T11:31:53.739Z"</span>
+    </span>},
     {
-        <span class="hljs-string">"_type"</span>: <span class="hljs-string">"DocumentType"</span>,
-        <span class="hljs-string">"id"</span>: <span class="hljs-string">"5252ce4ce4cfcd16f55cfa40"</span>,
-        <span class="hljs-string">"name"</span>: <span class="hljs-string">"event"</span>,
-        <span class="hljs-string">"templates"</span>: {
-            <span class="hljs-string">"snippet"</span>: <span class="hljs-string">"&lt;article&gt;\n\t&lt;h1&gt;{{{name}}}&lt;/h1&gt;\n\t&lt;span&gt;{{startDate}}&amp;mdash;{{endDate}}&lt;/span&gt;\n&lt;/article&gt;\n"</span>,
-            <span class="hljs-string">"full"</span>: <span class="hljs-string">"&lt;article&gt;\n\t&lt;section&gt;\n\t\t&lt;h1&gt;{{name}}&lt;/h1&gt;\n\t\t&lt;span&gt;{{startDate}}&amp;mdash;{{endDate}}&lt;/span&gt;\n\t&lt;/section&gt;\n\n\t{{ #attendee.length }}\n\t\t&lt;h2&gt;Attendees:&lt;/h2&gt;\n\t\t{{ #attendee }}\n\t\t&lt;li&gt;{{.}}&lt;/li&gt;\n\t\t{{ /attendee }}\t\n\t{{ /attendee.length }}\n\n\t&lt;p&gt;{{description}}&lt;/p&gt;\n&lt;/article&gt;\n"</span>,
-            <span class="hljs-string">"title"</span>: <span class="hljs-string">"{{ name }}"</span>
-        },
-        <span class="hljs-string">"description"</span>: <span class="hljs-string">"An event, from a calendar for instance."</span>,
-        <span class="hljs-string">"projections"</span>: {
-            <span class="hljs-string">"snippet"</span>: [
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa40"</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"event"</span></span>,
+        "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n\t&lt;h1&gt;{{{name}}}&lt;/h1&gt;\n\t&lt;span&gt;{{startDate}}&amp;mdash;{{endDate}}&lt;/span&gt;\n&lt;/article&gt;\n"</span></span>,
+            "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n\t&lt;section&gt;\n\t\t&lt;h1&gt;{{name}}&lt;/h1&gt;\n\t\t&lt;span&gt;{{startDate}}&amp;mdash;{{endDate}}&lt;/span&gt;\n\t&lt;/section&gt;\n\n\t{{ #attendee.length }}\n\t\t&lt;h2&gt;Attendees:&lt;/h2&gt;\n\t\t{{ #attendee }}\n\t\t&lt;li&gt;{{.}}&lt;/li&gt;\n\t\t{{ /attendee }}\t\n\t{{ /attendee.length }}\n\n\t&lt;p&gt;{{description}}&lt;/p&gt;\n&lt;/article&gt;\n"</span></span>,
+            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ name }}"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"An event, from a calendar for instance."</span></span>,
+        "<span class="hljs-attribute">projections</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value">[
                 <span class="hljs-string">"startDate"</span>,
                 <span class="hljs-string">"endDate"</span>,
                 <span class="hljs-string">"name"</span>
-            ],
-            <span class="hljs-string">"full"</span>: [
+            ]</span>,
+            "<span class="hljs-attribute">full</span>": <span class="hljs-value">[
                 <span class="hljs-string">"startDate"</span>,
                 <span class="hljs-string">"endDate"</span>,
                 <span class="hljs-string">"name"</span>,
                 <span class="hljs-string">"description"</span>,
                 <span class="hljs-string">"attendee"</span>
             ]
-        },
-        <span class="hljs-string">"document_count"</span>: <span class="hljs-number">133</span>,
-        <span class="hljs-string">"updated"</span>: <span class="hljs-string">"2014-07-23T11:30:54.948Z"</span>
-    },
+        </span>}</span>,
+        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">133</span></span>,
+        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T11:30:54.948Z"</span>
+    </span>},
     {
-        <span class="hljs-string">"_type"</span>: <span class="hljs-string">"DocumentType"</span>,
-        <span class="hljs-string">"id"</span>: <span class="hljs-string">"5252ce4ce4cfcd16f55cfa3f"</span>,
-        <span class="hljs-string">"name"</span>: <span class="hljs-string">"email"</span>,
-        <span class="hljs-string">"templates"</span>: {
-            <span class="hljs-string">"snippet"</span>: <span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{subject}}}&lt;/h1&gt;\n  &lt;div class=\"two-columns\"&gt;\n    &lt;span&gt;{{ date }}&lt;/span&gt;\n    &lt;span&gt;&lt;small&gt;{{{from}}} &amp;rarr; {{{to}}}&lt;/small&gt;&lt;/span&gt;\n  &lt;/div&gt;\n  &lt;blockquote&gt;{{{snippet}}}&lt;/blockquote&gt;\n&lt;/article&gt;\n"</span>,
-            <span class="hljs-string">"full"</span>: <span class="hljs-string">"&lt;article class=\"email-projection\"&gt;\n &lt;header&gt;\n     &lt;h1&gt;{{{subject}}}&lt;/h1&gt;\n     &lt;small&gt;{{ date }}&lt;/small&gt;\n     &lt;small&gt;From: &lt;strong&gt;{{{from}}}&lt;/strong&gt;&lt;/small&gt;\n     &lt;small&gt;To: &lt;strong&gt;{{{to}}}&lt;/strong&gt;&lt;/small&gt;\n &lt;/header&gt;\n\n &lt;main&gt;\n       {{{html}}}\n &lt;/main&gt;\n&lt;/article&gt;\n"</span>,
-            <span class="hljs-string">"title"</span>: <span class="hljs-string">"{{{ subject }}}"</span>
-        },
-        <span class="hljs-string">"description"</span>: <span class="hljs-string">"An email"</span>,
-        <span class="hljs-string">"projections"</span>: {
-            <span class="hljs-string">"snippet"</span>: [
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3f"</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"email"</span></span>,
+        "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{subject}}}&lt;/h1&gt;\n  &lt;div class=\"two-columns\"&gt;\n    &lt;span&gt;{{ date }}&lt;/span&gt;\n    &lt;span&gt;&lt;small&gt;{{{from}}} &amp;rarr; {{{to}}}&lt;/small&gt;&lt;/span&gt;\n  &lt;/div&gt;\n  &lt;blockquote&gt;{{{snippet}}}&lt;/blockquote&gt;\n&lt;/article&gt;\n"</span></span>,
+            "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article class=\"email-projection\"&gt;\n &lt;header&gt;\n     &lt;h1&gt;{{{subject}}}&lt;/h1&gt;\n     &lt;small&gt;{{ date }}&lt;/small&gt;\n     &lt;small&gt;From: &lt;strong&gt;{{{from}}}&lt;/strong&gt;&lt;/small&gt;\n     &lt;small&gt;To: &lt;strong&gt;{{{to}}}&lt;/strong&gt;&lt;/small&gt;\n &lt;/header&gt;\n\n &lt;main&gt;\n       {{{html}}}\n &lt;/main&gt;\n&lt;/article&gt;\n"</span></span>,
+            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{{ subject }}}"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"An email"</span></span>,
+        "<span class="hljs-attribute">projections</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value">[
                 <span class="hljs-string">"from"</span>,
                 <span class="hljs-string">"to"</span>,
                 <span class="hljs-string">"subject"</span>,
                 <span class="hljs-string">"snippet"</span>,
                 <span class="hljs-string">"date"</span>,
                 <span class="hljs-string">"attachmentCount"</span>
-            ],
-            <span class="hljs-string">"full"</span>: [
+            ]</span>,
+            "<span class="hljs-attribute">full</span>": <span class="hljs-value">[
                 <span class="hljs-string">"from"</span>,
                 <span class="hljs-string">"to"</span>,
                 <span class="hljs-string">"labels"</span>,
@@ -1498,115 +1500,215 @@ Also include information about hydraters (<code>hydrated_by</code>, <code>hydrat
                 <span class="hljs-string">"html"</span>,
                 <span class="hljs-string">"date"</span>
             ]
-        },
-        <span class="hljs-string">"document_count"</span>: <span class="hljs-number">5857</span>,
-        <span class="hljs-string">"updated"</span>: <span class="hljs-string">"2014-07-23T11:31:01.601Z"</span>
-    },
+        </span>}</span>,
+        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">5857</span></span>,
+        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T11:31:01.601Z"</span>
+    </span>},
     {
-        <span class="hljs-string">"_type"</span>: <span class="hljs-string">"DocumentType"</span>,
-        <span class="hljs-string">"id"</span>: <span class="hljs-string">"5252ce4ce4cfcd16f55cfa3c"</span>,
-        <span class="hljs-string">"name"</span>: <span class="hljs-string">"document"</span>,
-        <span class="hljs-string">"templates"</span>: {
-            <span class="hljs-string">"snippet"</span>: <span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n  &lt;blockquote&gt;\n  \t{{{ snippet }}}\n  &lt;/blockquote&gt;\n&lt;/article&gt;\n"</span>,
-            <span class="hljs-string">"full"</span>: <span class="hljs-string">"&lt;article&gt;\n  &lt;section&gt;\n    &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n    &lt;code&gt;{{ path }}&lt;/code&gt;\n  &lt;/section&gt;\n\n  &lt;section&gt;\n    {{{ content }}}\n  &lt;/section&gt;\n&lt;/article&gt;\n"</span>,
-            <span class="hljs-string">"title"</span>: <span class="hljs-string">"{{ title }}"</span>
-        },
-        <span class="hljs-string">"description"</span>: <span class="hljs-string">"A document from which we were able to extract a clean HTML representation: text, doc, xls, epub..."</span>,
-        <span class="hljs-string">"projections"</span>: {
-            <span class="hljs-string">"snippet"</span>: [
+        "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3c"</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"document"</span></span>,
+        "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n  &lt;blockquote&gt;\n  \t{{{ snippet }}}\n  &lt;/blockquote&gt;\n&lt;/article&gt;\n"</span></span>,
+            "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;section&gt;\n    &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n    &lt;code&gt;{{ path }}&lt;/code&gt;\n  &lt;/section&gt;\n\n  &lt;section&gt;\n    {{{ content }}}\n  &lt;/section&gt;\n&lt;/article&gt;\n"</span></span>,
+            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ title }}"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"A document from which we were able to extract a clean HTML representation: text, doc, xls, epub..."</span></span>,
+        "<span class="hljs-attribute">projections</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">snippet</span>": <span class="hljs-value">[
                 <span class="hljs-string">"title"</span>,
                 <span class="hljs-string">"path"</span>,
                 <span class="hljs-string">"snippet"</span>
-            ],
-            <span class="hljs-string">"full"</span>: [
+            ]</span>,
+            "<span class="hljs-attribute">full</span>": <span class="hljs-value">[
                 <span class="hljs-string">"title"</span>,
                 <span class="hljs-string">"path"</span>,
                 <span class="hljs-string">"content"</span>
             ]
-        },
-        <span class="hljs-string">"document_count"</span>: <span class="hljs-number">296</span>,
-        <span class="hljs-string">"updated"</span>: <span class="hljs-string">"2014-07-23T11:32:06.347Z"</span>
-    },
-    {
-        <span class="hljs-string">"_type"</span>: <span class="hljs-string">"DocumentType"</span>,
-        <span class="hljs-string">"id"</span>: <span class="hljs-string">"5252ce4ce4cfcd16f55cfa3b"</span>,
-        <span class="hljs-string">"name"</span>: <span class="hljs-string">"file"</span>,
-        <span class="hljs-string">"templates"</span>: {
-            <span class="hljs-string">"snippet"</span>: <span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n  &lt;code&gt;{{{ path }}}&lt;/code&gt;\n&lt;/article&gt;\n"</span>,
-            <span class="hljs-string">"full"</span>: <span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n  &lt;code&gt;{{{ path }}}&lt;/code&gt;\n&lt;/article&gt;\n"</span>,
-            <span class="hljs-string">"title"</span>: <span class="hljs-string">"{{ title }}"</span>
-        },
-        <span class="hljs-string">"description"</span>: <span class="hljs-string">"Most basic document type for any kind of binary content. When a provider sends data without any additional information, it will use this document_type."</span>,
-        <span class="hljs-string">"projections"</span>: {
-            <span class="hljs-string">"snippet"</span>: [
-                <span class="hljs-string">"title"</span>,
-                <span class="hljs-string">"path"</span>,
-                <span class="hljs-string">"extension"</span>
-            ],
-            <span class="hljs-string">"full"</span>: [
-                <span class="hljs-string">"title"</span>,
-                <span class="hljs-string">"path"</span>,
-                <span class="hljs-string">"extension"</span>
-            ]
-        },
-        <span class="hljs-string">"document_count"</span>: <span class="hljs-number">214</span>,
-        <span class="hljs-string">"updated"</span>: <span class="hljs-string">"2014-07-23T11:31:15.593Z"</span>
-    },
-    {
-        <span class="hljs-string">"_type"</span>: <span class="hljs-string">"DocumentType"</span>,
-        <span class="hljs-string">"id"</span>: <span class="hljs-string">"5252ce4ce4cfcd16f55cfa3a"</span>,
-        <span class="hljs-string">"name"</span>: <span class="hljs-string">"contact"</span>,
-        <span class="hljs-string">"templates"</span>: {
-            <span class="hljs-string">"snippet"</span>: <span class="hljs-string">"&lt;article class=\"two-columns\"&gt;\n  &lt;aside&gt;\n    &lt;img src=\"{{ image }}\" /&gt;\n  &lt;/aside&gt;\n  &lt;section&gt;\n    &lt;h1&gt;{{{ name }}}&lt;/h1&gt;\n    &lt;span&gt;{{{ job }}}&lt;/span&gt;\n  &lt;/section&gt;\n&lt;/article&gt;\n"</span>,
-            <span class="hljs-string">"full"</span>: <span class="hljs-string">"&lt;article&gt;\n\n  &lt;section class=\"two-columns\"&gt;\n    &lt;aside&gt;\n      &lt;img src=\"{{ image }}\"/&gt;    \n    &lt;/aside&gt;\n    &lt;section&gt;\n      &lt;h1&gt;&lt;a href=\"anyfetch://search/{{name}}\"&gt;{{{ name }}}&lt;/a&gt;&lt;/h1&gt;\n      &lt;span&gt;{{{ job }}}&lt;/span&gt;   \n    &lt;/section&gt;\n  &lt;/section&gt;\n\n  &lt;section&gt;\n    {{#phone.length}}\n    &lt;h2&gt;Phones:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #phone }}\n      &lt;li&gt;{{ phone }} ( {{ type }} )&lt;/li&gt;\n      {{ /phone }}\n    &lt;/ul&gt;\n    {{/phone.length}}\n\n    {{#email.length}}\n    &lt;h2&gt;Emails:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #email }}\n      &lt;li&gt;{{ email }} ( {{ type }} )&lt;/li&gt;\n      {{ /email }}\n    &lt;/ul&gt;\n    {{/email.length}}\n\n    {{#address.length}}\n    &lt;h2&gt;Address:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #address }}\n      &lt;li&gt;{{ address }} ( {{ type }} )&lt;/li&gt;\n      {{ /address }}\n    &lt;/ul&gt;\n    {{/address.length}}\n\n    {{#website.length}}\n    &lt;h2&gt;Website:&lt;/h2&gt;\n    &lt;ul&gt;\n      {{ #website }}\n      &lt;li&gt;{{{ website }}}&lt;/li&gt;\n      {{ /website }}\n    &lt;/ul&gt;\n    {{/website.length}}\n\n\n    {{#birthday}}\n    &lt;h2&gt;Birthday:&lt;/h2&gt;\n    &lt;span&gt;{{birthday}}&lt;/span&gt;\n    {{/birthday}}\n\n  &lt;/section&gt;\n\n&lt;/article&gt;\n"</span>,
-            <span class="hljs-string">"title"</span>: <span class="hljs-string">"{{ name }}"</span>
-        },
-        <span class="hljs-string">"description"</span>: <span class="hljs-string">"A person (contact, client, ...)"</span>,
-        <span class="hljs-string">"projections"</span>: {
-            <span class="hljs-string">"snippet"</span>: [
-                <span class="hljs-string">"name"</span>,
-                <span class="hljs-string">"image"</span>,
-                <span class="hljs-string">"job"</span>
-            ],
-            <span class="hljs-string">"full"</span>: [
-                <span class="hljs-string">"name"</span>,
-                <span class="hljs-string">"job"</span>,
-                <span class="hljs-string">"phone"</span>,
-                <span class="hljs-string">"email"</span>,
-                <span class="hljs-string">"image"</span>
-            ]
-        },
-        <span class="hljs-string">"document_count"</span>: <span class="hljs-number">239</span>,
-        <span class="hljs-string">"updated"</span>: <span class="hljs-string">"2014-07-22T14:14:16.640Z"</span>
-    }
-]
-</code></pre></li></ul></section><h4 id="document-types-document-type">Document-type&nbsp;<a href="#document-types-document-type"><i class="fa fa-link"></i></a></h4><section id="document-types-document-type-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get document-type</span></div><div style="float:left"><a href="#document-types-document-type-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/document_types/{id}</code></div></div><div class="panel-body"><p>Retrieve details about the specified document-type.
-This endpoint is public and can be accessed by anyone with the id.</p>
-<p>A list of default document-types can be found on <a href="/resources/document-types.html">this page</a>.</p>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#b95524d1195a2082ca1e193b6da27aad" class="pull-right">Toggle</a></li><li id="b95524d1195a2082ca1e193b6da27aad" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
-    "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"DocumentType"</span></span>,
-    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55cfa3c"</span></span>,
-    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"document"</span></span>,
-    "<span class="hljs-attribute">templates</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">snippet</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n  &lt;blockquote&gt;\n  \t{{{ snippet }}}\n  &lt;/blockquote&gt;\n&lt;/article&gt;\n"</span></span>,
-        "<span class="hljs-attribute">full</span>": <span class="hljs-value"><span class="hljs-string">"&lt;article&gt;\n  &lt;section&gt;\n    &lt;h1&gt;{{{ title }}}&lt;/h1&gt;\n    &lt;code&gt;{{ path }}&lt;/code&gt;\n  &lt;/section&gt;\n\n  &lt;section&gt;\n    {{{ content }}}\n  &lt;/section&gt;\n&lt;/article&gt;\n"</span></span>,
-        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"{{ title }}"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"A document from which we were able to extract a clean HTML representation: text, doc, xls, epub..."</span></span>,
-    "<span class="hljs-attribute">projections</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">snippet</span>": <span class="hljs-value">[
-            <span class="hljs-string">"title"</span>,
-            <span class="hljs-string">"path"</span>,
-            <span class="hljs-string">"snippet"</span>
-        ]</span>,
-        "<span class="hljs-attribute">full</span>": <span class="hljs-value">[
-            <span class="hljs-string">"title"</span>,
-            <span class="hljs-string">"path"</span>,
-            <span class="hljs-string">"content"</span>
-        ]
+        </span>}</span>,
+        "<span class="hljs-attribute">document_count</span>": <span class="hljs-value"><span class="hljs-number">296</span></span>,
+        "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T11:32:06.347Z"</span>
     </span>}
+]
+</code></pre></li></ul></section><section id="document-types-document-types-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create document-type</span></div><div style="float:left"><a href="#document-types-document-types-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/document_types</code></div></div><div class="panel-body"><p>Create a new document-type. This document-type will be available for your company and all its descendants.</p>
+<p>See <a href="/guides/creating/document-type.html">how to create a document-type</a>, or the <a href="/guides/tutorials/document-type.html">document-type tutorial</a>.</p>
+<blockquote>
+<ul>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>write_hydraters</code> scope.</li>
+<li><code>403 Forbidden</code>: you are not an administrator on this account.</li>
+<li><code>409 MissingParameter</code>: Missing parameter (name, templates, projections, es_mapping, description)</li>
+<li><code>409 InvalidArgument</code>: es_mapping must be a valid JSON object, not a string</li>
+<li><code>409 InvalidArgument</code>: you specified an unknown argument</li>
+<li><code>409 InvalidContent</code>: A document-type with this name already exists</li>
+</ul>
+</blockquote>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#41599bc9f8f866172cab565f5067fdda" class="pull-right">Toggle</a></li><li id="41599bc9f8f866172cab565f5067fdda" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    <span class="hljs-string">"name"</span>: <span class="hljs-string">"sample_document_type"</span>,
+    <span class="hljs-string">"description"</span>: <span class="hljs-string">"My sample document-type"</span>,
+    <span class="hljs-string">"es_mapping"</span>: {
+        <span class="hljs-string">"properties"</span>: {
+            <span class="hljs-string">"metadata"</span>: {
+                <span class="hljs-string">"properties"</span>: {
+                    <span class="hljs-string">"name"</span>: {
+                        <span class="hljs-string">"boost"</span>: <span class="hljs-number">8</span>,
+                        <span class="hljs-string">"type"</span>: <span class="hljs-string">"string"</span>
+                    },
+                    <span class="hljs-string">"description"</span>: {
+                        <span class="hljs-string">"type"</span>: <span class="hljs-string">"string"</span>
+                    }
+                }
+            }
+        }
+    },
+    <span class="hljs-string">"projections"</span>: {
+        <span class="hljs-string">"full"</span>: <span class="hljs-string">"{\n  \"name\": \"{{attr \"name\"}}\",\n  \"description\": \"{{attr \"description\"}}\"}"</span>,
+        <span class="hljs-string">"snippet"</span>: <span class="hljs-string">"{\n  \"name\": \"{{attr \"name\"}}\",\n  \"description\": \"{{attr \"description\"}}\"}"</span>,
+        <span class="hljs-string">"title"</span>: <span class="hljs-string">"{\n  \"name\": \"{{attr \"name\"}}\"\n}\n"</span>
+    },
+    <span class="hljs-string">"templates"</span>: {
+        <span class="hljs-string">"full"</span>: <span class="hljs-string">"&lt;article class=\"anyfetch-document-full anyfetch-type-sample\"&gt;&lt;h1&gt;{{{ name }}}&lt;/h1&gt;&lt;p&gt;{{{ description }}}&lt;/p&gt;&lt;/article&gt;"</span>,
+        <span class="hljs-string">"snippet"</span>: <span class="hljs-string">"&lt;article class=\"anyfetch-document-full anyfetch-type-sample\"&gt;&lt;h1&gt;{{{ name }}}&lt;/h1&gt;&lt;p&gt;{{{ description }}}&lt;/p&gt;&lt;/article&gt;"</span>,
+        <span class="hljs-string">"title"</span>: <span class="hljs-string">"{{{ name }}}"</span>
+    }
+}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#eab01b9130d87396ead4a487affa28a0" class="pull-right">Toggle</a></li><li id="eab01b9130d87396ead4a487affa28a0" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    <span class="hljs-string">"_type"</span>: <span class="hljs-string">"DocumentType"</span>,
+    <span class="hljs-string">"id"</span>: <span class="hljs-string">"54804bac12ebf8f552cd0474"</span>,
+    <span class="hljs-string">"name"</span>: <span class="hljs-string">"sample_document_type"</span>,
+    <span class="hljs-string">"templates"</span>: {
+        <span class="hljs-string">"full"</span>: <span class="hljs-string">"&lt;article class=\"anyfetch-document-full anyfetch-type-sample\"&gt;&lt;h1&gt;{{{ name }}}&lt;/h1&gt;&lt;p&gt;{{{ description }}}&lt;/p&gt;&lt;/article&gt;"</span>,
+        <span class="hljs-string">"snippet"</span>: <span class="hljs-string">"&lt;article class=\"anyfetch-document-full anyfetch-type-sample\"&gt;&lt;h1&gt;{{{ name }}}&lt;/h1&gt;&lt;p&gt;{{{ description }}}&lt;/p&gt;&lt;/article&gt;"</span>,
+        <span class="hljs-string">"title"</span>: <span class="hljs-string">"{{{ name }}}"</span>
+    },
+    <span class="hljs-string">"owner"</span>: <span class="hljs-string">"547c7674c73384fa1615b3b8"</span>,
+    <span class="hljs-string">"description"</span>: <span class="hljs-string">"My sample document-type"</span>,
+    <span class="hljs-string">"projections"</span>: {
+        <span class="hljs-string">"full"</span>: <span class="hljs-string">"{\n  \"name\": \"{{attr \"name\"}}\",\n  \"description\": \"{{attr \"description\"}}\"}"</span>,
+        <span class="hljs-string">"snippet"</span>: <span class="hljs-string">"{\n  \"name\": \"{{attr \"name\"}}\",\n  \"description\": \"{{attr \"description\"}}\"}"</span>,
+        <span class="hljs-string">"title"</span>: <span class="hljs-string">"{\n  \"name\": \"{{attr \"name\"}}\"\n}\n"</span>
+    },
+    <span class="hljs-string">"es_mapping"</span>: {
+        <span class="hljs-string">"properties"</span>: {
+            <span class="hljs-string">"metadata"</span>: {
+                <span class="hljs-string">"properties"</span>: {
+                    <span class="hljs-string">"name"</span>: {
+                        <span class="hljs-string">"boost"</span>: <span class="hljs-number">8</span>,
+                        <span class="hljs-string">"type"</span>: <span class="hljs-string">"string"</span>
+                    },
+                    <span class="hljs-string">"description"</span>: {
+                        <span class="hljs-string">"type"</span>: <span class="hljs-string">"string"</span>
+                    }
+                }
+            }
+        }
+    }
+}
+</code></pre></li></ul></section><h4 id="document-types-document-type">Document-type&nbsp;<a href="#document-types-document-type"><i class="fa fa-link"></i></a></h4><section id="document-types-document-type-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get document-type</span></div><div style="float:left"><a href="#document-types-document-type-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/document_types/{id}</code></div></div><div class="panel-body"><p>Retrieve details about the specified document-type.</p>
+<blockquote>
+<ul>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>read_document_types</code> scope.</li>
+<li><code>404 ResourceNotFound</code>: the document-type does not exist.</li>
+</ul>
+</blockquote>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#87c5166e13b521307e41dc3eb51fb837" class="pull-right">Toggle</a></li><li id="87c5166e13b521307e41dc3eb51fb837" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    <span class="hljs-string">"_type"</span>: <span class="hljs-string">"DocumentType"</span>,
+    <span class="hljs-string">"id"</span>: <span class="hljs-string">"5252ce4ce4cfcd16f55cfa3d"</span>,
+    <span class="hljs-string">"name"</span>: <span class="hljs-string">"image"</span>,
+    <span class="hljs-string">"templates"</span>: {
+        <span class="hljs-string">"title"</span>: <span class="hljs-string">"{{{ title }}}"</span>,
+        <span class="hljs-string">"full"</span>: <span class="hljs-string">"&lt;article class=\"anyfetch-document-full anyfetch-type-image\"&gt;\n  &lt;header class=\"anyfetch-header\"&gt;\n    &lt;hgroup class=\"anyfetch-title-group\"&gt;\n      &lt;h1 class=\"anyfetch-title\"&gt;{{{ title }}}&lt;/h1&gt;\n      {{#author}}\n        &lt;p class=\"anyfetch-title-detail anyfetch-person\"&gt;{{.}}&lt;/p&gt;\n      {{/author}}\n    &lt;/hgroup&gt;\n    &lt;ul class=\"anyfetch-pill-list\"&gt;\n      {{#keywords}}\n        &lt;li class=\"anyfetch-pill anyfetch-label\"&gt;{{.}}&lt;/li&gt;\n      {{/keywords}}\n    &lt;/ul&gt;\n  &lt;/header&gt;\n\n  &lt;main class=\"anyfetch-content\"&gt;\n    &lt;figure class=\"anyfetch-full-image\"&gt;\n      {{#display}}\n        &lt;img src=\"{{.}}\" alt=\"{{{ title }}}\" /&gt;\n      {{/display}}\n      {{#description}}\n        &lt;figcaption class=\"anyfetch-image-caption\"&gt;{{{description}}}&lt;/figcaption&gt;\n      {{/description}}\n    &lt;/figure&gt;\n  &lt;/main&gt;\n\n&lt;/article&gt;\n"</span>,
+        <span class="hljs-string">"snippet"</span>: <span class="hljs-string">"&lt;article class=\"anyfetch-document-snippet anyfetch-type-image\"&gt;\n  &lt;header class=\"anyfetch-header\"&gt;\n    {{#thumb}}\n      &lt;figure class=\"anyfetch-aside-image\"&gt;\n        &lt;img src=\"{{ thumb }}\" alt=\"{{ title }}\" /&gt;\n      &lt;/figure&gt;\n    {{/thumb}}\n    &lt;hgroup class=\"anyfetch-title-group\"&gt;\n      &lt;h1 class=\"anyfetch-title\"&gt;{{{ title }}}&lt;/h1&gt;\n      {{#author}}\n        &lt;p class=\"anyfetch-title-detail anyfetch-person\"&gt;{{.}}&lt;/p&gt;\n      {{/author}}\n      &lt;ul class=\"anyfetch-pill-list anyfetch-participants\"&gt;\n      {{#keywords}}\n        &lt;li class=\"anyfetch-pill anyfetch-name\"&gt;{{.}}&lt;/li&gt;\n      {{/keywords}}\n      &lt;/ul&gt;\n    &lt;/hgroup&gt;\n  &lt;/header&gt;\n&lt;/article&gt;\n"</span>
+    },
+    <span class="hljs-string">"owner"</span>: null,
+    <span class="hljs-string">"description"</span>: <span class="hljs-string">"Display thumbnail and preview data encoded in base64."</span>,
+    <span class="hljs-string">"projections"</span>: {
+        <span class="hljs-string">"title"</span>: <span class="hljs-string">"{ \"title\": {{&gt; title}} }"</span>,
+        <span class="hljs-string">"full"</span>: <span class="hljs-string">"{\n  \"title\": {{&gt; title}},\n  \"display\": \"{{{attr 'display'}}}\",\n  \"author\": \"{{attr 'author'}}\",\n  \"description\": \"{{attr 'description'}}\",\n  \"keywords\": \"{{attr 'keywords'}}\"\n}\n"</span>,
+        <span class="hljs-string">"snippet"</span>: <span class="hljs-string">"{\n  \"title\": {{&gt; title}},\n  \"thumb\": \"{{{attr 'thumb'}}}\"\n}\n"</span>
+    },
+    <span class="hljs-string">"es_mapping"</span>: {
+        <span class="hljs-string">"properties"</span>: {
+            <span class="hljs-string">"metadata"</span>: {
+                <span class="hljs-string">"properties"</span>: {
+                    <span class="hljs-string">"keywords"</span>: {
+                        <span class="hljs-string">"type"</span>: <span class="hljs-string">"string"</span>
+                    },
+                    <span class="hljs-string">"description"</span>: {
+                        <span class="hljs-string">"type"</span>: <span class="hljs-string">"string"</span>
+                    },
+                    <span class="hljs-string">"author"</span>: {
+                        <span class="hljs-string">"type"</span>: <span class="hljs-string">"string"</span>
+                    }
+                }
+            }
+        }
+    }
+}
+</code></pre></li></ul></section><section id="document-types-document-type-patch" class="panel panel-warning"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Update document-type</span></div><div style="float:left"><a href="#document-types-document-type-patch" class="btn btn-xs btn-warning">PATCH</a></div><div style="overflow:hidden"><code>/document_types/{id}</code></div></div><div class="panel-body"><p>Update some information about a document-type. You can only update your own document-types.</p>
+<p>The <code>name</code> and <code>es_mapping</code> properties can’t be updated, you need to <code>DELETE</code> your document-type to change them.</p>
+<blockquote>
+<ul>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>read_document_types</code> scope.</li>
+<li><code>403 NotAuthorized</code>: you aren’t the owner of this document-type</li>
+<li><code>404 ResourceNotFound</code>: the document-type does not exist.</li>
+<li><code>409 InvalidArgument</code>: can’t update <code>name</code> or <code>es_mapping</code></li>
+<li><code>409 InvalidArgument</code>: unknown parameter</li>
+</ul>
+</blockquote>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#41837fadef3643dee3f9efe5da062ac5" class="pull-right">Toggle</a></li><li id="41837fadef3643dee3f9efe5da062ac5" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"My new description"</span>
 </span>}
-</code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="providers">Providers&nbsp;<a href="#providers"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="providers-providers">Providers&nbsp;<a href="#providers-providers"><i class="fa fa-link"></i></a></h4><section id="providers-providers-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">List providers</span></div><div style="float:left"><a href="#providers-providers-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/providers</code></div></div><div class="panel-body"><p>Retrieve all providers available for the current user, with document count, a providing flag, and the date the last document created by this provider was updated.</p>
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#5e12e978c6fdddc06efe5b8ea5cfd93c" class="pull-right">Toggle</a></li><li id="5e12e978c6fdddc06efe5b8ea5cfd93c" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    <span class="hljs-string">"_type"</span>: <span class="hljs-string">"DocumentType"</span>,
+    <span class="hljs-string">"id"</span>: <span class="hljs-string">"54804bac12ebf8f552cd0474"</span>,
+    <span class="hljs-string">"name"</span>: <span class="hljs-string">"sample_document_type"</span>,
+    <span class="hljs-string">"templates"</span>: {
+        <span class="hljs-string">"title"</span>: <span class="hljs-string">"{{{ name }}}"</span>,
+        <span class="hljs-string">"snippet"</span>: <span class="hljs-string">"&lt;article class=\"anyfetch-document-full anyfetch-type-sample\"&gt;&lt;h1&gt;{{{ name }}}&lt;/h1&gt;&lt;p&gt;{{{ description }}}&lt;/p&gt;&lt;/article&gt;"</span>,
+        <span class="hljs-string">"full"</span>: <span class="hljs-string">"&lt;article class=\"anyfetch-document-full anyfetch-type-sample\"&gt;&lt;h1&gt;{{{ name }}}&lt;/h1&gt;&lt;p&gt;{{{ description }}}&lt;/p&gt;&lt;/article&gt;"</span>
+    },
+    <span class="hljs-string">"owner"</span>: <span class="hljs-string">"547c7674c73384fa1615b3b8"</span>,
+    <span class="hljs-string">"description"</span>: <span class="hljs-string">"My new description"</span>,
+    <span class="hljs-string">"projections"</span>: {
+        <span class="hljs-string">"title"</span>: <span class="hljs-string">"{\n  \"name\": \"{{attr \"name\"}}\"\n}\n"</span>,
+        <span class="hljs-string">"snippet"</span>: <span class="hljs-string">"{\n  \"name\": \"{{attr \"name\"}}\",\n  \"description\": \"{{attr \"description\"}}\"}"</span>,
+        <span class="hljs-string">"full"</span>: <span class="hljs-string">"{\n  \"name\": \"{{attr \"name\"}}\",\n  \"description\": \"{{attr \"description\"}}\"}"</span>
+    },
+    <span class="hljs-string">"es_mapping"</span>: {
+        <span class="hljs-string">"properties"</span>: {
+            <span class="hljs-string">"metadata"</span>: {
+                <span class="hljs-string">"properties"</span>: {
+                    <span class="hljs-string">"description"</span>: {
+                        <span class="hljs-string">"type"</span>: <span class="hljs-string">"string"</span>
+                    },
+                    <span class="hljs-string">"name"</span>: {
+                        <span class="hljs-string">"type"</span>: <span class="hljs-string">"string"</span>,
+                        <span class="hljs-string">"boost"</span>: <span class="hljs-number">8</span>
+                    }
+                }
+            }
+        }
+    }
+}
+</code></pre></li></ul></section><section id="document-types-document-type-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Delete document-type</span></div><div style="float:left"><a href="#document-types-document-type-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/document_types/{id}</code></div></div><div class="panel-body"><p>Remove a document-type. You can only delete your own document-types.</p>
+<p>You can’t delete a document-type in use by at least one document (in your company or any other subcompanies).</p>
+<blockquote>
+<ul>
+<li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
+<li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
+<li><code>403 MissingScope</code>: token does not have the <code>read_document_types</code> scope.</li>
+<li><code>403 NotAuthorized</code>: you aren’t the owner of this document-type</li>
+<li><code>403 NotAuthorized</code>: you can’t remove a document-type in use</li>
+<li><code>404 ResourceNotFound</code>: the document-type does not exist.</li>
+</ul>
+</blockquote>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="providers">Providers&nbsp;<a href="#providers"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="providers-providers">Providers&nbsp;<a href="#providers-providers"><i class="fa fa-link"></i></a></h4><section id="providers-providers-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">List providers</span></div><div style="float:left"><a href="#providers-providers-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/providers</code></div></div><div class="panel-body"><p>Retrieve all providers available for the current user, with document count, a providing flag, and the date the last document created by this provider was updated.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
@@ -1672,7 +1774,9 @@ This endpoint is public and can be accessed by anyone with the id.</p>
         "<span class="hljs-attribute">current</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
     </span>}
 ]
-</code></pre></li></ul></section><h4 id="providers-provider">Provider&nbsp;<a href="#providers-provider"><i class="fa fa-link"></i></a></h4><section id="providers-provider-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get Provider</span></div><div style="float:left"><a href="#providers-provider-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/providers/{id}</code></div></div><div class="panel-body"><p>Retrieve basic information about one provider.</p>
+</code></pre></li></ul></section><h4 id="providers-provider">Provider&nbsp;<a href="#providers-provider"><i class="fa fa-link"></i></a></h4><p>This section explains how to interact with providers.
+Providers can be read, resetted, updated and deleted; however they can’t be created dynamically and will always be connected through <code>https://manager.anyfetch.com</code>.</p>
+<section id="providers-provider-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get Provider</span></div><div style="float:left"><a href="#providers-provider-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/providers/{id}</code></div></div><div class="panel-body"><p>Retrieve basic information about one provider.</p>
 <p>Note this endpoint currently returns less information than <code>GET /providers</code>.</p>
 <blockquote>
 <ul>
@@ -1830,13 +1934,13 @@ See <a href="/guides/creating/hydrater.html">how to create a hydrater</a>.</p>
         </span>},
     ]
 </span>}
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#65b3d85676f04f04a44107b27060cbc0" class="pull-right">Toggle</a></li><li id="65b3d85676f04f04a44107b27060cbc0" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
-    <span class="hljs-string">"_type"</span>: <span class="hljs-string">"Hydrater"</span>,
-    <span class="hljs-string">"id"</span>: <span class="hljs-string">"5252ce4ce4cfcd16f55a565c"</span>,
-    <span class="hljs-string">"url"</span>: <span class="hljs-string">"https://markdown.anyfetch.com/hydrate"</span>,
-    <span class="hljs-string">"short_name"</span>: <span class="hljs-string">"markdown"</span>,
-    <span class="hljs-string">"description"</span>: <span class="hljs-string">"AnyFetch Hydrater for markdown files."</span>
-},
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#873efe94f263fe4ed31ed17638849dbc" class="pull-right">Toggle</a></li><li id="873efe94f263fe4ed31ed17638849dbc" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">_type</span>": <span class="hljs-value"><span class="hljs-string">"Hydrater"</span></span>,
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5252ce4ce4cfcd16f55a565c"</span></span>,
+    "<span class="hljs-attribute">url</span>": <span class="hljs-value"><span class="hljs-string">"https://markdown.anyfetch.com/hydrate"</span></span>,
+    "<span class="hljs-attribute">short_name</span>": <span class="hljs-value"><span class="hljs-string">"markdown"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"AnyFetch Hydrater for markdown files."</span>
+</span>}
 </code></pre></li></ul></section><h4 id="hydraters-hydrater">Hydrater&nbsp;<a href="#hydraters-hydrater"><i class="fa fa-link"></i></a></h4><section id="hydraters-hydrater-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get Hydrater</span></div><div style="float:left"><a href="#hydraters-hydrater-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/hydraters/{id}</code></div></div><div class="panel-body"><p>Retrieve information about one hydrater.</p>
 <blockquote>
 <ul>
@@ -1915,4 +2019,4 @@ You cannot delete a hydrater which is owned by one of your subcompanies.</p>
         </span>}
     </span>}
 </span>}
-</code></pre></li></ul></section></div></div></div></div><div class="col-lg-3 col-md-3 col-sm-3 navbar-example"><nav id="nav" class="hidden-sm hidden-xs affix"><ul class="list-group nav"><li><a href="#index" class="list-group-item heading">Index</a><li><a href="#index-api-status" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;API status</a></li></li></ul><ul class="list-group nav"><li><a href="#account" class="list-group-item heading">Account</a><li><a href="#account-index" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Index</a></li><li><a href="#account-token" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Token</a></li><li><a href="#account-token-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Retrieve frontend token</a></li><li><a href="#account-token-delete" style="padding-left: 32px" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Remove token</a></li></li></ul><ul class="list-group nav"><li><a href="#company" class="list-group-item heading">Company</a><li><a href="#company-company" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Company</a></li><li><a href="#company-company-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Retrieve current company</a></li><li><a href="#company-company-patch" style="padding-left: 32px" class="list-group-item"><i class="fa fa-pencil"></i>&nbsp;Update current company</a></li><li><a href="#company-update-company-documents" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Update company documents</a></li><li><a href="#company-reset-company" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Reset company</a></li></li></ul><ul class="list-group nav"><li><a href="#subcompanies" class="list-group-item heading">Subcompanies</a><li><a href="#subcompanies-subcompanies" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Subcompanies</a></li><li><a href="#subcompanies-subcompanies-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Retrieve all subcompanies</a></li><li><a href="#subcompanies-subcompanies-post" style="padding-left: 32px" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Create a new subcompany</a></li><li><a href="#subcompanies-subcompany" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Subcompany</a></li><li><a href="#subcompanies-subcompany-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Retrieve a subcompany</a></li><li><a href="#subcompanies-subcompany-patch" style="padding-left: 32px" class="list-group-item"><i class="fa fa-pencil"></i>&nbsp;Update a subcompany</a></li><li><a href="#subcompanies-subcompany-delete" style="padding-left: 32px" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Delete a subcompany</a></li><li><a href="#subcompanies-reset-a-subcompany" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Reset a subcompany</a></li></li></ul><ul class="list-group nav"><li><a href="#documents" class="list-group-item heading">Documents</a><li><a href="#documents-documents" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Documents</a></li><li><a href="#documents-documents-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Search documents</a></li><li><a href="#documents-documents-post" style="padding-left: 32px" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Create new document</a></li><li><a href="#documents-document" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Document</a></li><li><a href="#documents-document-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Get Document</a></li><li><a href="#documents-document-patch" style="padding-left: 32px" class="list-group-item"><i class="fa fa-pencil"></i>&nbsp;Patch Document</a></li><li><a href="#documents-document-delete" style="padding-left: 32px" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Delete Document</a></li><li><a href="#documents-similar-documents" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Similar documents</a></li><li><a href="#documents-related-documents" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Related documents</a></li><li><a href="#documents-raw-access" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Raw access</a></li><li><a href="#documents-image-access" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Image access</a></li><li><a href="#documents-associated-file" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Associated file</a></li><li><a href="#documents-associated-file-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Get document file</a></li><li><a href="#documents-associated-file-post" style="padding-left: 32px" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Set document's file</a></li></li></ul><ul class="list-group nav"><li><a href="#users" class="list-group-item heading">Users</a><li><a href="#users-current-user" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Current User</a></li><li><a href="#users-current-user-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Get the current user</a></li><li><a href="#users-current-user-patch" style="padding-left: 32px" class="list-group-item"><i class="fa fa-pencil"></i>&nbsp;Update the current user</a></li><li><a href="#users-users-collection" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Users Collection</a></li><li><a href="#users-users-collection-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;List all Users</a></li><li><a href="#users-users-collection-post" style="padding-left: 32px" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Create a User</a></li><li><a href="#users-user" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;User</a></li><li><a href="#users-user-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Retrieve a User</a></li><li><a href="#users-user-patch" style="padding-left: 32px" class="list-group-item"><i class="fa fa-pencil"></i>&nbsp;Update a User</a></li><li><a href="#users-user-delete" style="padding-left: 32px" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Remove a User</a></li></li></ul><ul class="list-group nav"><li><a href="#document-types" class="list-group-item heading">Document Types</a><li><a href="#document-types-document-types" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Document types</a></li><li><a href="#document-types-document-type" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Document-type</a></li></li></ul><ul class="list-group nav"><li><a href="#providers" class="list-group-item heading">Providers</a><li><a href="#providers-providers" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Providers</a></li><li><a href="#providers-provider" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Provider</a></li><li><a href="#providers-provider-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Get Provider</a></li><li><a href="#providers-provider-delete" style="padding-left: 32px" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Delete Provider</a></li><li><a href="#providers-reset-a-provider" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Reset a Provider</a></li></li></ul><ul class="list-group nav"><li><a href="#hydraters" class="list-group-item heading">Hydraters</a><li><a href="#hydraters-hydraters" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Hydraters</a></li><li><a href="#hydraters-hydraters-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;List Hydraters</a></li><li><a href="#hydraters-hydraters-post" style="padding-left: 32px" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Create Hydrater</a></li><li><a href="#hydraters-hydrater" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Hydrater</a></li><li><a href="#hydraters-hydrater-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Get Hydrater</a></li><li><a href="#hydraters-hydrater-delete" style="padding-left: 32px" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Delete Hydrater</a></li></li></ul><ul class="list-group nav"><li><a href="#misc" class="list-group-item heading">Misc</a><li><a href="#misc-batch-calls" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Batch calls</a></li></li></ul><p style="text-align: center"><a href="https://api.anyfetch.com">https://api.anyfetch.com</a></p></nav></div></div></div><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script><script src="/javascripts/bootstrap.min.js"></script><script src="/javascripts/tools.js"></script></body>
+</code></pre></li></ul></section></div></div></div></div><div class="col-lg-3 col-md-3 col-sm-3 navbar-example"><nav id="nav" class="hidden-sm hidden-xs affix"><ul class="list-group nav"><li><a href="#index" class="list-group-item heading">Index</a><li><a href="#index-api-status" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;API status</a></li></li></ul><ul class="list-group nav"><li><a href="#account" class="list-group-item heading">Account</a><li><a href="#account-index" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Index</a></li><li><a href="#account-token" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Token</a></li><li><a href="#account-token-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Retrieve frontend token</a></li><li><a href="#account-token-delete" style="padding-left: 32px" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Remove token</a></li></li></ul><ul class="list-group nav"><li><a href="#company" class="list-group-item heading">Company</a><li><a href="#company-company" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Company</a></li><li><a href="#company-company-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Retrieve current company</a></li><li><a href="#company-company-patch" style="padding-left: 32px" class="list-group-item"><i class="fa fa-pencil"></i>&nbsp;Update current company</a></li><li><a href="#company-update-company-documents" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Update company documents</a></li><li><a href="#company-reset-company" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Reset company</a></li></li></ul><ul class="list-group nav"><li><a href="#subcompanies" class="list-group-item heading">Subcompanies</a><li><a href="#subcompanies-subcompanies" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Subcompanies</a></li><li><a href="#subcompanies-subcompanies-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Retrieve all subcompanies</a></li><li><a href="#subcompanies-subcompanies-post" style="padding-left: 32px" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Create a new subcompany</a></li><li><a href="#subcompanies-subcompany" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Subcompany</a></li><li><a href="#subcompanies-subcompany-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Retrieve a subcompany</a></li><li><a href="#subcompanies-subcompany-patch" style="padding-left: 32px" class="list-group-item"><i class="fa fa-pencil"></i>&nbsp;Update a subcompany</a></li><li><a href="#subcompanies-subcompany-delete" style="padding-left: 32px" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Delete a subcompany</a></li><li><a href="#subcompanies-reset-a-subcompany" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Reset a subcompany</a></li></li></ul><ul class="list-group nav"><li><a href="#documents" class="list-group-item heading">Documents</a><li><a href="#documents-documents" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Documents</a></li><li><a href="#documents-documents-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Search documents</a></li><li><a href="#documents-documents-post" style="padding-left: 32px" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Create new document</a></li><li><a href="#documents-document" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Document</a></li><li><a href="#documents-document-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Get Document</a></li><li><a href="#documents-document-patch" style="padding-left: 32px" class="list-group-item"><i class="fa fa-pencil"></i>&nbsp;Patch Document</a></li><li><a href="#documents-document-delete" style="padding-left: 32px" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Delete Document</a></li><li><a href="#documents-similar-documents" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Similar documents</a></li><li><a href="#documents-related-documents" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Related documents</a></li><li><a href="#documents-raw-access" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Raw access</a></li><li><a href="#documents-image-access" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Image access</a></li><li><a href="#documents-associated-file" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Associated file</a></li><li><a href="#documents-associated-file-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Get document file</a></li><li><a href="#documents-associated-file-post" style="padding-left: 32px" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Set document's file</a></li></li></ul><ul class="list-group nav"><li><a href="#users" class="list-group-item heading">Users</a><li><a href="#users-current-user" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Current User</a></li><li><a href="#users-current-user-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Get the current user</a></li><li><a href="#users-current-user-patch" style="padding-left: 32px" class="list-group-item"><i class="fa fa-pencil"></i>&nbsp;Update the current user</a></li><li><a href="#users-users-collection" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Users Collection</a></li><li><a href="#users-users-collection-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;List all Users</a></li><li><a href="#users-users-collection-post" style="padding-left: 32px" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Create a User</a></li><li><a href="#users-user" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;User</a></li><li><a href="#users-user-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Retrieve a User</a></li><li><a href="#users-user-patch" style="padding-left: 32px" class="list-group-item"><i class="fa fa-pencil"></i>&nbsp;Update a User</a></li><li><a href="#users-user-delete" style="padding-left: 32px" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Remove a User</a></li></li></ul><ul class="list-group nav"><li><a href="#document-types" class="list-group-item heading">document-types</a><li><a href="#document-types-document-types" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;document-types</a></li><li><a href="#document-types-document-types-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;List document-types</a></li><li><a href="#document-types-document-types-post" style="padding-left: 32px" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Create document-type</a></li><li><a href="#document-types-document-type" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Document-type</a></li><li><a href="#document-types-document-type-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Get document-type</a></li><li><a href="#document-types-document-type-patch" style="padding-left: 32px" class="list-group-item"><i class="fa fa-pencil"></i>&nbsp;Update document-type</a></li><li><a href="#document-types-document-type-delete" style="padding-left: 32px" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Delete document-type</a></li></li></ul><ul class="list-group nav"><li><a href="#providers" class="list-group-item heading">Providers</a><li><a href="#providers-providers" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Providers</a></li><li><a href="#providers-provider" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Provider</a></li><li><a href="#providers-provider-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Get Provider</a></li><li><a href="#providers-provider-delete" style="padding-left: 32px" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Delete Provider</a></li><li><a href="#providers-reset-a-provider" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Reset a Provider</a></li></li></ul><ul class="list-group nav"><li><a href="#hydraters" class="list-group-item heading">Hydraters</a><li><a href="#hydraters-hydraters" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Hydraters</a></li><li><a href="#hydraters-hydraters-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;List Hydraters</a></li><li><a href="#hydraters-hydraters-post" style="padding-left: 32px" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;Create Hydrater</a></li><li><a href="#hydraters-hydrater" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Hydrater</a></li><li><a href="#hydraters-hydrater-get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Get Hydrater</a></li><li><a href="#hydraters-hydrater-delete" style="padding-left: 32px" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;Delete Hydrater</a></li></li></ul><ul class="list-group nav"><li><a href="#misc" class="list-group-item heading">Misc</a><li><a href="#misc-batch-calls" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Batch calls</a></li></li></ul><p style="text-align: center"><a href="https://api.anyfetch.com">https://api.anyfetch.com</a></p></nav></div></div></div><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script><script src="/javascripts/bootstrap.min.js"></script><script src="/javascripts/tools.js"></script></body>

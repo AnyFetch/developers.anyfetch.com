@@ -13,8 +13,8 @@ Hydraters working on binary files.
 
 Retrieve basic information about a file (word, pdf, ppt, txt, rtf, png...). Will extract text if available.
 
-* Input document type: `file`
-* Output document type: `document`
+* Input document-type: `file`
+* Output document-type: `document`
 * Output metadata:
     - `text`
 * Output data:
@@ -25,8 +25,8 @@ Retrieve basic information about a file (word, pdf, ppt, txt, rtf, png...). Will
 
 Retrieve textual information from an image by running an OCR algorithm. Best results are obtained with scanned documents.
 
-* Input document type: `file`
-* Output document type: `image`
+* Input document-type: `file`
+* Output document-type: `image`
 * Output metadata:
     - `text`
 
@@ -35,7 +35,7 @@ Retrieve textual information from an image by running an OCR algorithm. Best res
 
 Transform a PDF file to HTML.
 
-* Input document type: `document`
+* Input document-type: `document`
 * Output data:
     - `html`
 
@@ -44,7 +44,7 @@ Transform a PDF file to HTML.
 
 Transform an Office (or OpenOffice) file to HTML.
 
-* Input document type: `document`
+* Input document-type: `document`
 * Output data:
     - `html`
 
@@ -57,8 +57,8 @@ Each attachment is added as a new document and goes through its own hydration ch
 
 The creation date is always set to the time at which the email has been sent.
 
-* Input document type: `document`
-* Output document type: `email`
+* Input document-type: `document`
+* Output document-type: `email`
 * Output metadata:
     - `to`
     - `from`
@@ -75,8 +75,8 @@ The creation date is always set to the time at which the email has been sent.
 
 Generate thumbnails and preview from an image, store them directly in base64.
 
-* Input document type: `file`
-* Output document type: `image`
+* Input document-type: `file`
+* Output document-type: `image`
 * Output data:
    - `display`
    - `thumb`
@@ -86,8 +86,8 @@ Generate thumbnails and preview from an image, store them directly in base64.
 
 Retrieve IPTC data from an image (picture creator, keywords, description...)
 
-* Input document type: `file`
-* Output document type: `image`
+* Input document-type: `file`
+* Output document-type: `image`
 * Output data:
    - `author`
    - `description`
@@ -98,8 +98,8 @@ Retrieve IPTC data from an image (picture creator, keywords, description...)
 
 Transform a Markdown file to HTML.
 
-* Input document type: `file`
-* Output document type: `document`
+* Input document-type: `file`
+* Output document-type: `document`
 * Output metadata:
     - `text`
 * Output data:
@@ -115,7 +115,7 @@ Remove useless files (.log, .lock, etc.)
 
 Remove previous mail conversation from search index, to keep search accurate on new information only.
 
-* Input document type: `email`
+* Input document-type: `email`
 * Output metadata:
     - `text`, with conversations stripped
 * Output data:

@@ -5,7 +5,7 @@ layout: doc
 ---
 
 The end user is not really interested in raw JSON when he search for something.
-To solve this problem, AnyFetch provides "templating": each document type define a mustache HTML template, which can be used to format and display the document.
+To solve this problem, AnyFetch provides "templating": each document-type define a mustache HTML template, which can be used to format and display the document.
 
 
 ## The automatic way
