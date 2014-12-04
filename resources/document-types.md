@@ -171,7 +171,7 @@ Title:
 ## File
 > ID: `5252ce4ce4cfcd16f55cfa3b`
 
-Most basic document type for any kind of binary content. When a provider sends data without any additional information, it will use this document_type.
+Most basic document-type for any kind of binary content. When a provider sends data without any additional information, it will use this document_type.
 
 ### Projections
 Snippet

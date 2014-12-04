@@ -27,4 +27,4 @@ After that, you may want to check [`GET /documents/:id`](/endpoints/#documents-d
 [Templating](/guides/concepts/templating.html) will be very useful to display data.
 However, if you want you can reimplement a templating system to display data the way you want.
 
-At anyfetch, we made [a bower lib](https://github.com/AnyFetch/anyfetch-assets) containing all required assets for a basic application: document types icons, providers, basic CSS... Feel free to reuse it, add your own images, or create a whole new experience.
+At anyfetch, we made [a bower lib](https://github.com/AnyFetch/anyfetch-assets) containing all required assets for a basic application: document-types icons, providers, basic CSS... Feel free to reuse it, add your own images, or create a whole new experience.

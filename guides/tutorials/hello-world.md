@@ -65,7 +65,7 @@ Now that we're set up, we can send our document. This requires two steps: first,
 Before sending the file, we need to give anyFetch basic informations about our documents. We'll send the following params:
 
 * `identifier`: this identifier must be unique by document and across our account, and will be used again if we need to update our document in the future. For now, we'll pick something simple, like `sample-txt`.
-* `document_type`: this value lets us specify what we know about our document. This can be `email`, `contact`... in our case, we'll keep this basic and set it to `file` which is the default for every document containing a file.  The document type will determine which hydraters the document will go through once uploaded. Hydraters can later update this value to something more specific.
+* `document_type`: this value lets us specify what we know about our document. This can be `email`, `contact`... in our case, we'll keep this basic and set it to `file` which is the default for every document containing a file.  The document-type will determine which hydraters the document will go through once uploaded. Hydraters can later update this value to something more specific.
 * `metadata`: a JSON object containing basic information about our document. For now, we'll simply send a `path` (path of the file on our local document tree, this can be useful to provide a search in folder name) and a `title` (formatted document name).
 
 ```sh
@@ -102,7 +102,7 @@ And here is the reply, formatted for convenience:
       "full": "<article class=\"anyfetch-document-full anyfetch-type-file\">\n  <header class=\"anyfetch-header\">\n    <hgroup class=\"anyfetch-title-group\">\n      <h1 class=\"anyfetch-title\">{{{ title }}}</h1>\n      <code class=\"anyfetch-title-detail\">{{ path }}</code>\n    </hgroup>\n  </header>\n</article>\n",
       "snippet": "<article class=\"anyfetch-document-snippet anyfetch-type-file\">\n  <header class=\"anyfetch-header\">\n    <hgroup class=\"anyfetch-title-group\">\n      <h1 class=\"anyfetch-title\">{{{ title }}}</h1>\n      <code class=\"anyfetch-title-detail\">{{ path }}</code>\n    </hgroup>\n  </header>\n</article>\n"
     },
-    "description": "Most basic document type for any kind of binary content. When a provider sends data without any additional information, it will use this document_type."
+    "description": "Most basic document-type for any kind of binary content. When a provider sends data without any additional information, it will use this document_type."
   },
   "actions": {},
   "document_url": "https://api-staging.anyfetch.com/documents/542925d3ca5f27ba66e9ed9a",

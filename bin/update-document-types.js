@@ -30,7 +30,7 @@ fs.readFile(file, {encoding: 'utf-8'}, function(err, contentFile) {
     process.exit(1);
   }
 
-  console.log("Retrieving document type from " + apiUrl + " using token " + bearer);
+  console.log("Retrieving document-type from " + apiUrl + " using token " + bearer);
 
   request(apiUrl)
     .get('/document_types')

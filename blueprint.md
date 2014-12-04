@@ -645,7 +645,7 @@ Return informations aggregated over the result set. The `score` key indicates do
     + before (optional, date, `2014-03-21`) ... Only display documents created before this date.
     + after (optional, date, `2014-01-25`) ... Only display documents created after this date.
     + id (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this id. <small>You can use the param multiple times to allow for multiples `id`, for instance `?id=1&id=2&id=3`</small>.
-    + document_type (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this document type. <small>You can use the param multiple times to allow for multiples `document_type`</small>.
+    + document_type (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this document-type. <small>You can use the param multiple times to allow for multiples `document_type`</small>.
     + provider (optional, array, `5252ce4ce4cfcd16f55cfa3f`) ... Only retrieve documents matching this provider. <small>You can use the param multiple times to allow for multiples `provider`.</small>
     + meta (optional, string, `John`) ... (prepend name with @) Full text search on `meta` key.  Replace `meta` with the name of the meta you wish to search on, for instance `?@name=john`.
     + has_meta (optional, boolean, `1`) ... Only returns document having the `meta` key. Replace `meta` with the name of the meta you wish to search on.
@@ -1654,12 +1654,12 @@ Remove specified user. The user should be in your company, you can't delete a us
 
 
 
-# Group Document Types
+# Group document-types
 
 
-## Document types [/document_types]
+## document-types [/document_types]
 ### List document-types [GET]
-Retrieve all document types available for the current user, with document count and the date the last document with this document type was updated (or null if the document-type is not in use on this account).
+Retrieve all document-types available for the current user, with document count and the date the last document with this document-type was updated (or null if the document-type is not in use on this account).
 
 A list of default document-types can be found on [this page](/resources/document-types.html).
 
@@ -1782,7 +1782,7 @@ A list of default document-types can be found on [this page](/resources/document
 
 
 ### Create document-type [POST]
-Create a new document type. This document-type will be available for your company and all its descendants.
+Create a new document-type. This document-type will be available for your company and all its descendants.
 
 See [how to create a document-type](/guides/creating/document-type.html), or the [document-type tutorial](/guides/tutorials/document-type.html).
 
@@ -1801,7 +1801,7 @@ See [how to create a document-type](/guides/creating/document-type.html), or the
 
             {
                 "name": "sample_document_type",
-                "description": "My sample document type",
+                "description": "My sample document-type",
                 "es_mapping": {
                     "properties": {
                         "metadata": {
@@ -1841,7 +1841,7 @@ See [how to create a document-type](/guides/creating/document-type.html), or the
                     "title": "{{{ name }}}"
                 },
                 "owner": "547c7674c73384fa1615b3b8",
-                "description": "My sample document type",
+                "description": "My sample document-type",
                 "projections": {
                     "full": "{\n  \"name\": \"{{attr \"name\"}}\",\n  \"description\": \"{{attr \"description\"}}\"}",
                     "snippet": "{\n  \"name\": \"{{attr \"name\"}}\",\n  \"description\": \"{{attr \"description\"}}\"}",

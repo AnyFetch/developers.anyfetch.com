@@ -56,7 +56,7 @@ A valid `templates` value looks like that (taking as input the JSON returned by 
 
 ### Elasticsearch mappings
 Sadly, we're still not done.
-As the last step, we also need to specify the Elasticsearch mapping we want to use for our new document type.
+As the last step, we also need to specify the Elasticsearch mapping we want to use for our new document-type.
 
 This mapping indicate the type for each of our fields.
 Note this is about the raw fields, those used *before* projecting.
@@ -128,15 +128,15 @@ Once again, here is a valid sample for an event:
 > * `hash` to automatically merge duplicated documents when using `deduplicator.anyfetch.com`
 > * `text`, to hold any string.
 
-## Updating a document type
-Due to their nature, updating a document type is tricky.
+## Updating a document-type
+Due to their nature, updating a document-type is tricky.
 Of course, you can only update document-types you own.
 
-You can't change the `name` of your document type, or the `es_mapping` -- if you really need to change something here, you'll have to either [contact us](contact@anyfetch.com) or `DELETE` your document-type and start over.
+You can't change the `name` of your document-type, or the `es_mapping` -- if you really need to change something here, you'll have to either [contact us](contact@anyfetch.com) or `DELETE` your document-type and start over.
 
 Aside from that, you can update `projections`, `description` and `templates`.
 
-## Deleting a document type
+## Deleting a document-type
 There's a slight catch here, as you can't delete a document-type in use by you *or* by any of your subcompanies. You really have to be careful when you start rolling your custom document-types to subcompanies...
 
 > This is probably still very abstract to you. You may want to check [the document-type tutorial](/guides/tutorials/document-type.html), creating a new document-type from scratch.
