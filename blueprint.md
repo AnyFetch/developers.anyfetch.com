@@ -1911,11 +1911,77 @@ Retrieve details about the specified document-type.
                 }
             }
 
+### Update document-type [PATCH]
+Update some information about a document-type. You can only update your own document-types.
+
+The `name` and `es_mapping` properties can't be updated, you need to `DELETE` your document-type to change them.
+
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+> * `403 MissingScope`: token does not have the `read_document_types` scope.
+> * `403 NotAuthorized`: you aren't the owner of this document-type
+> * `404 ResourceNotFound`: the document-type does not exist.
+> * `409 InvalidArgument`: can't update `name` or `es_mapping`
+> * `409 InvalidArgument`: unknown parameter
 
 
 
 
++ Request (application/json)
+    + Body
 
+            {
+                "description": "My new description"
+            }
++ Response 200 (application/json)
+    + Body
+
+            {
+                "_type": "DocumentType",
+                "id": "54804bac12ebf8f552cd0474",
+                "name": "sample_document_type",
+                "templates": {
+                    "title": "{{{ name }}}",
+                    "snippet": "<article class=\"anyfetch-document-full anyfetch-type-sample\"><h1>{{{ name }}}</h1><p>{{{ description }}}</p></article>",
+                    "full": "<article class=\"anyfetch-document-full anyfetch-type-sample\"><h1>{{{ name }}}</h1><p>{{{ description }}}</p></article>"
+                },
+                "owner": "547c7674c73384fa1615b3b8",
+                "description": "My new description",
+                "projections": {
+                    "title": "{\n  \"name\": \"{{attr \"name\"}}\"\n}\n",
+                    "snippet": "{\n  \"name\": \"{{attr \"name\"}}\",\n  \"description\": \"{{attr \"description\"}}\"}",
+                    "full": "{\n  \"name\": \"{{attr \"name\"}}\",\n  \"description\": \"{{attr \"description\"}}\"}"
+                },
+                "es_mapping": {
+                    "properties": {
+                        "metadata": {
+                            "properties": {
+                                "description": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "boost": 8
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+### Delete document-type [DELETE]
+Remove a document-type. You can only delete your own document-types.
+
+You can't delete a document-type in use by at least one document (in your company or any other subcompanies).
+
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+> * `403 MissingScope`: token does not have the `read_document_types` scope.
+> * `403 NotAuthorized`: you aren't the owner of this document-type
+> * `403 NotAuthorized`: you can't remove a document-type in use
+> * `404 ResourceNotFound`: the document-type does not exist.
+
++ Response 204
 
 
 
