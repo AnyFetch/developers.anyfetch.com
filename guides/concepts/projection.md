@@ -39,9 +39,17 @@ For documents, the projector is quite simple:
 ```django
 {%raw%}
 {
-  "title": {{> title}},
   "path": "{{attr 'path'}}",
-  "snippet": "{{#trim .}}{{shortAttr 'text'}}{{/trim}}"
+  "snippet": "{{#trim .}}{{shortAttr 'text'}}{{/trim}}",
+  "title": {{#if metadata.title}}
+      "{{attr 'title'}}"
+    {{else}}
+      {{#if metadata.path}}
+        "{{extractFilename metadata.path}}"
+      {{else}}
+        "Unknown title"
+      {{/if}}
+    {{/if~}}
 }
 {%endraw%}
 ```
@@ -51,24 +59,9 @@ Things to note:
 * `attr` will return a highlight if any, or the metadata with this name, or the data for this name (in this order).
 * `#trim` will return a trimmed string (removing whitespace before and after)
 * `shortAttr` will work as `attr`, except its output will be truncated to 200 characters by default
-* `> title` is used to import the `title` template:
-
-```django
-{%raw%}
-{{#if metadata.title}}
-  "{{attr 'title'}}"
-{{else}}
-  {{#if metadata.path}}
-    "{{extractFilename metadata.path}}"
-  {{else}}
-    "Unknown document: no path."
-  {{/if}}
-{{/if~}}
-{%endraw%}
-```
 
 
-When the user searches for the term "many many", we'll then generate a new, smaller object:
+When the user searches for the term "many many", we'll then generate a new, smaller object from the projection (look under the `metadata` key):
 
 ```json
 {
@@ -185,4 +178,4 @@ And another one, to display an event:
 {%endraw%}
 ```
 
-> This guide is still a work in progress.
+You can find more samples on the [document-type resource page](http://developers.anyfetch.com/resources/document-types.html).
