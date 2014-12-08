@@ -30,18 +30,26 @@ The best way to understand projection is by example. Let's say you have a big PD
 
 When the user enter a search query, he'll only want a small snippet of this data. Loading the full document for every match would clutter the network and slow down your app. People would hate it, they'd leave your app, eat and get fat. We don't want that, and we sincerely hope that, as a dev, you don't want that either.
 
-So we need to reduce the amount of data being transferred. For this, we define projections, taking the original `metadata` object hash and generating a new, simplified hash.
+We need to reduce the amount of data being transferred. In order to do so, we define **projections**, taking the original `metadata` object hash and generating a new, simplified hash.
 
-Projectors are written using [handlebars](http://handlebarsjs.com/), and handled internally by the anyFetch API, who will inject the full document into the projector as input and retrieve a new JSON object as result.
+Projectors are written using [handlebars](http://handlebarsjs.com/), and handled by the Open Source [anyfetch-handlebars](https://github.com/AnyFetch/anyfetch-handlebars) repo, who will inject the full document into the projector as input and retrieve a new JSON object as result.
 
-For documents, the projector is quite simple:
+For basic documents, the projector is quite simple:
 
 ```django
 {%raw%}
 {
-  "title": {{> title}},
   "path": "{{attr 'path'}}",
-  "snippet": "{{#trim .}}{{shortAttr 'text'}}{{/trim}}"
+  "snippet": "{{#trim .}}{{shortAttr 'text'}}{{/trim}}",
+  "title": {{#if metadata.title}}
+      "{{attr 'title'}}"
+    {{else}}
+      {{#if metadata.path}}
+        "{{extractFilename metadata.path}}"
+      {{else}}
+        "Unknown title"
+      {{/if}}
+    {{/if~}}
 }
 {%endraw%}
 ```
@@ -51,24 +59,11 @@ Things to note:
 * `attr` will return a highlight if any, or the metadata with this name, or the data for this name (in this order).
 * `#trim` will return a trimmed string (removing whitespace before and after)
 * `shortAttr` will work as `attr`, except its output will be truncated to 200 characters by default
-* `> title` is used to import the `title` template:
+* Visit [anyfetch-handlebars](https://github.com/AnyFetch/anyfetch-handlebars) for more details about custom helpers.
 
-```django
-{%raw%}
-{{#if metadata.title}}
-  "{{attr 'title'}}"
-{{else}}
-  {{#if metadata.path}}
-    "{{extractFilename metadata.path}}"
-  {{else}}
-    "Unknown document: no path."
-  {{/if}}
-{{/if~}}
-{%endraw%}
-```
+> Please remember that you must *always* return a valid JSON. You need to consider every edge-case.
 
-
-When the user searches for the term "many many", we'll then generate a new, smaller object:
+When the user searches for the term "many many", we'll then generate a new, smaller object from the projection (look under the `metadata` key):
 
 ```json
 {
@@ -185,4 +180,7 @@ And another one, to display an event:
 {%endraw%}
 ```
 
-> This guide is still a work in progress.
+You can find more samples on the [document-type resource page](http://developers.anyfetch.com/resources/document-types.html).
+
+## Need custom helpers?
+In some case, you may want to add more handlebars helper to handle your specific use case. In such case, please send a Pull Request to [anyfetch-handlebars](https://github.com/AnyFetch/anyfetch-handlebars). 
