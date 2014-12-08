@@ -141,6 +141,8 @@ This is what we get when we merge everything together:
 {%endraw%}
 ```
 
+> You can test your projection with the [anyfetch-handlebars](https://github.com/AnyFetch/anyfetch-handlebars) library.
+
 ### Templating
 Finally, we need to specify how the data should be displayed.
 Once again, we have to write this three times, once for each kind of projection.
@@ -218,6 +220,8 @@ And when merging all the templates together:
 }
 {%endraw%}
 ```
+
+> You can test your templates with the [anyfetch-assets](https://github.com/AnyFetch/anyfetch-assets) bower package.
 
 ### Wrapping up
 We can now create our document-type (don't get scared, this is just a merge from all our previous JSON):

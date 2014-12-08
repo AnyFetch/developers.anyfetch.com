@@ -35,7 +35,9 @@ A valid `projections` value looks like that (this one returns raw event data pro
 {%endraw%}
 ```
 
-> Remember the `snippet` projection has no access to the `data`, only to `metadata`.
+While building your `snippet` projection, remember it has no access to `data`, only to `metadata`.
+
+> You can test your projection with the [anyfetch-handlebars](https://github.com/AnyFetch/anyfetch-handlebars) library.
 
 ### Templates
 Now, let's move to `templates`. They should indicate, using [mustache](http://mustache.github.io/), how to display the results from the `projections`. More details can be found in this [concept guide about templating](/guides/concepts/templating.html). Once again, this should be 3 templates returning valid HTML data, with mustache markup.
@@ -53,6 +55,8 @@ A valid `templates` value looks like that (taking as input the JSON returned by 
 }
 {%endraw%}
 ```
+
+> You can test your templates with the [anyfetch-assets](https://github.com/AnyFetch/anyfetch-assets) bower package.
 
 ### Elasticsearch mappings
 Sadly, we're still not done.
