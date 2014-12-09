@@ -207,7 +207,6 @@ Warning: if you lower your own `documents_per_update` value, you'll *never* be a
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
-> * `403 MissingScope`: token does not have the `write_companies` scope.
 > * `409 InvalidArgument`: invalid value for `documents_per_update`.
 
 + Request (application/json)
