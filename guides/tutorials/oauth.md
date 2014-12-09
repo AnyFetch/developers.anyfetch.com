@@ -21,7 +21,7 @@ You need to fill-in some values:
 
 * **Application name**: the name of your Application. It will be used when the user is prompted to grant authorization on his account
 * **Description**: A few lines of description
-* **Callback URI**: a URL where the user will be transported back after giving consent. TODO: urn?
+* **Callback URI**: a URL where the user will be transported back after giving consent. You may use the special value `urn:ietf:wg:oauth:2.0:oob` for out-of-browser flow (see specifications for details).
 * **OAuth application**: leave this unchecked if you're making a provider, else keep it on!
 * **Required scopes**: check all the scopes required by your application. The [endpoint list](/endpoints) indicates the required scope for each endpoint, just hover the lock icon.
 
