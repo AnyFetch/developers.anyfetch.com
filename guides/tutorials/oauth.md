@@ -5,7 +5,7 @@ layout: doc
 ---
 
 AnyFetch implements OAuth2 flow.
-OAuth lets you request token on behalf of a user, and use the associated AnyFetch account according to the `scopes` you required (reading documents, writing documents...)
+OAuth lets you request tokens on behalf of a user, and use the associated AnyFetch account according to the `scopes` you required (reading documents, writing documents...)
 
 ## Concepts
 The OAuth flow is not handled from the usual `https://api.anyfetch.com` host, but from `https://manager.anyfetch.com`.
@@ -27,7 +27,7 @@ You need to fill-in some values:
 
 You will be able to edit those values later. For now, click on OK.
 
-You should see you application `app_id` and `app_secret`, keep the last one somewhere safe and private!
+You should see your application `app_id` and `app_secret`, keep the last one somewhere safe and private!
 
 ![App credentials](/images/tutorials/oauth/app_credentials.png)
 
@@ -50,15 +50,15 @@ The user will be prompted to authenticate, and should then see the following gra
 
 When the user clicks "Allow", he will be redirected to your `redirect_uri` with a few querystring parameters:
 
-* **code**: an oauth code, to be traded later, the most important parameter
-* **return_to** the URL where the initial application required to be sent back once the OAuth flow complete. This is mostly used for providers, and can safely be ignored for OAuth applications.
+* **code**: an oauth code, to be traded later, the most important parameter.
+* **return_to** the URL where the initial application required to be sent back once the OAuth flow is complete. This is mostly used for providers, and can safely be ignored for OAuth applications.
 
 ### Exchange code for access_token
 You should send a HTTP POST request to `https://manager.anyfetch.com/oauth/access_token`, with the following parameters:
 
 * **client_id**: your `app_id`, created on the first section
 * **client_secret**: your `app_secret`, created on the first section
-* **code**: thoe `code` sent to your `redirect_uri`. Be careful, the `code` is only valid for a few minutes.
+* **code**: the `code` sent to your `redirect_uri`. Be careful, the `code` is only valid for a few minutes.
 * **grant_type** should be "authorization_code", according to the spec.
 
 With curl:
