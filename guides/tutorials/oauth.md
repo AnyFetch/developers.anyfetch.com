@@ -21,7 +21,7 @@ You need to fill-in some values:
 
 * **Application name**: the name of your Application. It will be used when the user is prompted to grant authorization on his account
 * **Description**: A few lines of description
-* **Callback URI**: a URL where the user will be transported back after giving consent. You may use the special value `urn:ietf:wg:oauth:2.0:oob` for out-of-browser flow (see specifications for details).
+* **Callback URI**: a URL where the user will be transported back after giving consent. You may use the special value `urn:ietf:wg:oauth:2.0:oob` for out-of-browser flow (see [this page](https://developers.google.com/accounts/docs/OAuth2InstalledApp#choosingredirecturi) for details).
 * **OAuth application**: leave this unchecked if you're making a provider, else keep it on!
 * **Required scopes**: check all the scopes required by your application. The [endpoint list](/endpoints) indicates the required scope for each endpoint, just hover the lock icon.
 
@@ -37,7 +37,7 @@ Now that you have a new application, you probably want users.
 ### Grant access
 To authorize a user, you need to redirect him to `https://manager.anyfetch.com/oauth/authorize?client_id={CLIENT_ID}&redirect_uri={ENCODED_REDIRECT_URI}`.
 
-> Redirect URI must match exactly the value you entered earlier.
+> Redirect URI must match the value you entered earlier.
 
 You may add optional parameters:
 
