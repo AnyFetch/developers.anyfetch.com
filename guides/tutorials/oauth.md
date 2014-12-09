@@ -54,7 +54,7 @@ When the user clicks "Allow", he will be redirected to your `redirect_uri` with 
 * **return_to** the URL where the initial application required to be sent back once the OAuth flow complete. This is mostly used for providers, and can safely be ignored for OAuth applications.
 
 ### Exchange code for access_token
-You now need to send a HTTP POST request to `https://manager.anyfetch.com/oauth/access_token`, with the following parameters:
+You should send a HTTP POST request to `https://manager.anyfetch.com/oauth/access_token`, with the following parameters:
 
 * **client_id**: your `app_id`, created on the first section
 * **client_secret**: your `app_secret`, created on the first section
@@ -69,7 +69,7 @@ https://manager.anyfetch.com/oauth/access_token \
 --data "client_id=$CLIENT_ID&client_secret=$CLIENT_SECRET&code=$CODE&grant_type=authorization_code"
 ```
 
-You should now be able to retrieve your user token:
+You should be able to retrieve your user token:
 
 ```json
 {
