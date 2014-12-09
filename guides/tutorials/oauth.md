@@ -37,18 +37,21 @@ Now that you have a new application, you probably want users.
 ### Grant access
 To authorize a user, you need to redirect him to `https://manager.anyfetch.com/oauth/authorize?client_id={CLIENT_ID}&redirect_uri={ENCODED_REDIRECT_URI}`.
 
-> Redirect URI must match exactly the vlaue you entered earlier.
+> Redirect URI must match exactly the value you entered earlier.
+
+You may add optional parameters:
+
+* **replace_existing_token**: when the user is accessing your application for the first time, this parameter is ignored. Else, set this value to `true` to remove the previous token, skip the grant part and redirect automatically with a new code to your `redirect_uri`.
+* **approval_prompt**: when used with `replace_existing_token`, set the value to `true` to re-display the grant. For security reasons, if you updated your application scope, the grant page will always be displayed.
 
 The user will be prompted to authenticate, and should then see the following grant page:
 
 ![Grant page](/images/tutorials/oauth/grant.png)
 
-When the user clicks "Allow", he will be redirected to your `reidrect_uri` with a few querystring parameters:
+When the user clicks "Allow", he will be redirected to your `redirect_uri` with a few querystring parameters:
 
 * **code**: an oauth code, to be traded later, the most important parameter
-* **approval_prompt**: TODO
-* **replace_existing_token**: TODO
-* **return_to** the URL where the initial application required to be sent back once the OAuth flow complete. We strongly recommend you to make a final redirection to this URL once you have acquired the token. TODO
+* **return_to** the URL where the initial application required to be sent back once the OAuth flow complete. This is mostly used for providers, and can safely be ignored for OAuth applications.
 
 ### Exchange code for access_token
 You now need to send a HTTP POST request to `https://manager.anyfetch.com/oauth/access_token`, with the following parameters:
