@@ -223,18 +223,18 @@ Warning: if you lower your own `documents_per_update` value, you'll *never* be a
                 "id": "53e0b2256f18dce71fce0bfe",
                 "name": "matthieu@anyfetch.com",
                 "hydraters": [
-                    "https://plaintext-staging.anyfetch.com/hydrate",
-                    "https://pdf-staging.anyfetch.com/hydrate",
-                    "https://office-staging.anyfetch.com/hydrate",
-                    "https://image-staging.anyfetch.com/hydrate",
-                    "https://ocr-staging.anyfetch.com/hydrate",
-                    "https://iptc-staging.anyfetch.com/hydrate",
-                    "https://markdown-staging.anyfetch.com/hydrate",
-                    "https://eml-staging.anyfetch.com/hydrate",
-                    "https://embedmail-staging.anyfetch.com/hydrate",
-                    "https://ics-staging.anyfetch.com/hydrate",
-                    "https://filecleaner-staging.anyfetch.com/hydrate",
-                    "https://deduplicator-staging.anyfetch.com/hydrate"
+                    "https://plaintext.anyfetch.com/hydrate",
+                    "https://pdf.anyfetch.com/hydrate",
+                    "https://office.anyfetch.com/hydrate",
+                    "https://image.anyfetch.com/hydrate",
+                    "https://ocr.anyfetch.com/hydrate",
+                    "https://iptc.anyfetch.com/hydrate",
+                    "https://markdown.anyfetch.com/hydrate",
+                    "https://eml.anyfetch.com/hydrate",
+                    "https://embedmail.anyfetch.com/hydrate",
+                    "https://ics.anyfetch.com/hydrate",
+                    "https://filecleaner.anyfetch.com/hydrate",
+                    "https://deduplicator.anyfetch.com/hydrate"
                 ],
                 "document_count": 23989,
                 "user_count": 1,
@@ -250,9 +250,9 @@ Warning: if you lower your own `documents_per_update` value, you'll *never* be a
 Ping all providers for the current company, checking for new available documents.
 
 Return the response code from each provider—202 means `Accepted`. Most provider will reply with `429 Too Many Requests` if they're already working on this user's tasks.
-Note that even if each providers responds with an error, this endpoint will still return 200 and the status for each provider.
+Note that even if each provider responds with an error, this endpoint will still return 200 and the status for each user's providers.
 
-See `GET /providers` to map id to real providers.
+See `GET /providers` to map id to real providers (for current user only).
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -262,9 +262,19 @@ See `GET /providers` to map id to real providers.
     + Body
 
             {
-                "53234698c8318cc5d100004f": 202,
-                "5320a682c8318cba94000040": 202,
-                "5320a6abc8318cc5d1000049": 429
+                "53e0b2257976bdce1f250f93": {
+                    "546b4cfc557c5ba64a9eed16": 202,
+                    "546b4ccd4406308e4ae10d23": 202,
+                    "54732b4fe97b6a6a2057e512": 202,
+                    "546b4cfb4406308e4ae10d29": 202,
+                    "546b4ce04406308e4ae10d25": 202,
+                    "546b4cf9557c5ba64a9eed14": 202,
+                    "546b4ce24406308e4ae10d26": 202,
+                    "546b4cfa557c5ba64a9eed15": 202,
+                    "546b4cdf557c5ba64a9eed11": 202,
+                    "546b4cdd4406308e4ae10d24": 202,
+                    "546b4cdc557c5ba64a9eed10": 202
+                }
             }
 
 
@@ -1460,7 +1470,7 @@ Retrieve the currently logged in user.
                 "email": "matthieu@anyfetch.com",
                 "name": "Matthieu Bacconnier",
                 "is_admin": true,
-                "user_url": "https://api-staging.anyfetch.com/users/53e0b2257976bdce1f250f93"
+                "user_url": "https://api.anyfetch.com/users/53e0b2257976bdce1f250f93"
             }
 
 ### Update the current user [PATCH]
@@ -1488,9 +1498,38 @@ Update data from the currently logged in user.
                 "email": "matthieu@anyfetch.com",
                 "name": "Matthieu Bacconnier",
                 "is_admin": true,
-                "user_url": "https://api-staging.anyfetch.com/users/53e0b2257976bdce1f250f93"
+                "user_url": "https://api.anyfetch.com/users/53e0b2257976bdce1f250f93"
             }
 
+## Update current user documents [/user/update]
+### Update current user documents [POST]
+Ping all providers for the current user, checking for new available documents.
+
+Return the response code from each provider—202 means `Accepted`. Most provider will reply with `429 Too Many Requests` if they're already working on this user's tasks.
+Note that even if each providers responds with an error, this endpoint will still return 200 and the status for each provider.
+
+See `GET /providers` to map id to real providers.
+
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+> * `429 Too Many Requests`: this endpoint is throttled at 1 request per second, with a burst of 2 / s.
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "546b4cfc557c5ba64a9eed16": 202,
+                "546b4ccd4406308e4ae10d23": 202,
+                "54732b4fe97b6a6a2057e512": 202,
+                "546b4cfb4406308e4ae10d29": 202,
+                "546b4ce04406308e4ae10d25": 202,
+                "546b4cf9557c5ba64a9eed14": 202,
+                "546b4ce24406308e4ae10d26": 202,
+                "546b4cfa557c5ba64a9eed15": 202,
+                "546b4cdf557c5ba64a9eed11": 429,
+                "546b4cdd4406308e4ae10d24": 202,
+                "546b4cdc557c5ba64a9eed10": 202
+            }
 
 ## Users Collection [/users]
 ### List all Users [GET]
@@ -1640,9 +1679,36 @@ Remove specified user. The user should be in your company, you can't delete a us
 
 + Response 204
 
+## Update user documents [/users/{id}/update]
+### Update user documents [POST]
 
+Ping all providers for the user, checking for new available documents.
 
+Return the response code from each provider—202 means `Accepted`. Most provider will reply with `429 Too Many Requests` if they're already working on this user's tasks.
+Note that even if each providers responds with an error, this endpoint will still return 200 and the status for each provider.
 
+See `GET /providers` to map id to real providers.
+
+> * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
+> * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
+> * `429 Too Many Requests`: this endpoint is throttled at 1 request per second, with a burst of 2 / s.
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "546b4cfc557c5ba64a9eed16": 202,
+                "546b4ccd4406308e4ae10d23": 202,
+                "54732b4fe97b6a6a2057e512": 202,
+                "546b4cfb4406308e4ae10d29": 202,
+                "546b4ce04406308e4ae10d25": 202,
+                "546b4cf9557c5ba64a9eed14": 202,
+                "546b4ce24406308e4ae10d26": 202,
+                "546b4cfa557c5ba64a9eed15": 202,
+                "546b4cdf557c5ba64a9eed11": 429,
+                "546b4cdd4406308e4ae10d24": 202,
+                "546b4cdc557c5ba64a9eed10": 202
+            }
 
 
 

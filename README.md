@@ -31,5 +31,5 @@ You must install async and supertest with `npm install async supertest`
 
 ```sh
 cd bin/
-./update-document-types.js
+./update-document-types.js $TOKEN
 ```
