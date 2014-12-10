@@ -223,18 +223,18 @@ Warning: if you lower your own `documents_per_update` value, you'll *never* be a
                 "id": "53e0b2256f18dce71fce0bfe",
                 "name": "matthieu@anyfetch.com",
                 "hydraters": [
-                    "https://plaintext-staging.anyfetch.com/hydrate",
-                    "https://pdf-staging.anyfetch.com/hydrate",
-                    "https://office-staging.anyfetch.com/hydrate",
-                    "https://image-staging.anyfetch.com/hydrate",
-                    "https://ocr-staging.anyfetch.com/hydrate",
-                    "https://iptc-staging.anyfetch.com/hydrate",
-                    "https://markdown-staging.anyfetch.com/hydrate",
-                    "https://eml-staging.anyfetch.com/hydrate",
-                    "https://embedmail-staging.anyfetch.com/hydrate",
-                    "https://ics-staging.anyfetch.com/hydrate",
-                    "https://filecleaner-staging.anyfetch.com/hydrate",
-                    "https://deduplicator-staging.anyfetch.com/hydrate"
+                    "https://plaintext.anyfetch.com/hydrate",
+                    "https://pdf.anyfetch.com/hydrate",
+                    "https://office.anyfetch.com/hydrate",
+                    "https://image.anyfetch.com/hydrate",
+                    "https://ocr.anyfetch.com/hydrate",
+                    "https://iptc.anyfetch.com/hydrate",
+                    "https://markdown.anyfetch.com/hydrate",
+                    "https://eml.anyfetch.com/hydrate",
+                    "https://embedmail.anyfetch.com/hydrate",
+                    "https://ics.anyfetch.com/hydrate",
+                    "https://filecleaner.anyfetch.com/hydrate",
+                    "https://deduplicator.anyfetch.com/hydrate"
                 ],
                 "document_count": 23989,
                 "user_count": 1,
@@ -1470,7 +1470,7 @@ Retrieve the currently logged in user.
                 "email": "matthieu@anyfetch.com",
                 "name": "Matthieu Bacconnier",
                 "is_admin": true,
-                "user_url": "https://api-staging.anyfetch.com/users/53e0b2257976bdce1f250f93"
+                "user_url": "https://api.anyfetch.com/users/53e0b2257976bdce1f250f93"
             }
 
 ### Update the current user [PATCH]
@@ -1498,7 +1498,7 @@ Update data from the currently logged in user.
                 "email": "matthieu@anyfetch.com",
                 "name": "Matthieu Bacconnier",
                 "is_admin": true,
-                "user_url": "https://api-staging.anyfetch.com/users/53e0b2257976bdce1f250f93"
+                "user_url": "https://api.anyfetch.com/users/53e0b2257976bdce1f250f93"
             }
 
 ## Update current user documents [/user/update]
