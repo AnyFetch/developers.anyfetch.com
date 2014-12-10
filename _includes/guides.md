@@ -7,6 +7,7 @@
 * ["Hello world" tutorial](/guides/tutorials/hello-world.html): send and search for documents using `curl`.
 * [Subcompanies tutorial](/guides/tutorials/subcompanies.html): more advanced tutorial using subcompanies to compartment data.
 * [Document-type tutorial](/guides/tutorials/document-type.html): creating custom document-types 
+* [Hint &amp; tips](/guides/tutorials/tips.html): some help on getting the most out of AnyFetch
 
 #### Concepts
 * [Projections](/guides/concepts/projection.html): minimizing data transfer
