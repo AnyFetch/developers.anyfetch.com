@@ -38,3 +38,6 @@ This also works on sub-objects, see [this readme](https://github.com/AnyFetch/re
 ## Basic authentication
 Whenever possible, avoid using `Basic` authentication. It is way slower than `Bearer`, and can lead to security problem.
 You can create anonymous tokens from [the manager](https://manager.anyfetch.com).
+
+## Manager login
+You can login on the manager with your token: `https://manager.anyfetch.com?bearer=$TOKEN`. Useful for cross-origin logging-in.
