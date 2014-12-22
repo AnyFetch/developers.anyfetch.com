@@ -840,10 +840,10 @@ Common parameters include `data` (data to use for full display), `metadata` (dat
                     "download": "http://example.org/download/file/url"
                 },
                 "data": {
-                    "bar": "this will not be indexed for search"
+                    "html": "<p>this will not be indexed for search</p>"
                 },
                 "metadata": {
-                    "foo": "this will be indexed for search"
+                    "text": "this will be indexed for search"
                 },
                 "related": ["52dff5c53923844f15885428"],
                 "user_access": ["52d96492a7f0a3ac4226f2f7"]

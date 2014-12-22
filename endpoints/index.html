@@ -714,7 +714,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <li><code>409 InvalidArgument</code>: no documents matched by <code>id</code>. Use <code>identifier</code> to create a new document</li>
 </ul>
 </blockquote>
-</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#ab4a85d5bb6e793014b24dcf58368482" class="pull-right">Toggle</a></li><li id="ab4a85d5bb6e793014b24dcf58368482" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>    {
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#f6559e64311458545313c5f173bf5045" class="pull-right">Toggle</a></li><li id="f6559e64311458545313c5f173bf5045" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>    {
         "<span class="hljs-attribute">identifier</span>": <span class="hljs-value"><span class="hljs-string">"http://unique-document-identifier"</span></span>,
         "<span class="hljs-attribute">creation_date</span>": <span class="hljs-value"><span class="hljs-string">"2014-02-05T10:39:36.623Z"</span></span>,
         "<span class="hljs-attribute">modification_date</span>": <span class="hljs-value"><span class="hljs-string">"2014-02-07T12:45:56.254Z"</span></span>,
@@ -723,10 +723,10 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
             "<span class="hljs-attribute">download</span>": <span class="hljs-value"><span class="hljs-string">"http://example.org/download/file/url"</span>
         </span>}</span>,
         "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">bar</span>": <span class="hljs-value"><span class="hljs-string">"this will not be indexed for search"</span>
+            "<span class="hljs-attribute">html</span>": <span class="hljs-value"><span class="hljs-string">"&lt;p&gt;this will not be indexed for search&lt;/p&gt;"</span>
         </span>}</span>,
         "<span class="hljs-attribute">metadata</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">foo</span>": <span class="hljs-value"><span class="hljs-string">"this will be indexed for search"</span>
+            "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"this will be indexed for search"</span>
         </span>}</span>,
         "<span class="hljs-attribute">related</span>": <span class="hljs-value">[<span class="hljs-string">"52dff5c53923844f15885428"</span>]</span>,
         "<span class="hljs-attribute">user_access</span>": <span class="hljs-value">[<span class="hljs-string">"52d96492a7f0a3ac4226f2f7"</span>]
