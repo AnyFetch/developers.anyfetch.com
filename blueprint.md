@@ -201,6 +201,8 @@ Errors and response are exactly the same as calling [`GET /users/:id`](#users-us
             }
 
 ### Update current company [PATCH]
+> This endpoint is only available to admin users.
+
 Allows you to update your current company details: hydrater list, name and `documents_per_update`.
 
 Warning: if you lower your own `documents_per_update` value, you'll *never* be able to restore it to some higher value. Be careful.
@@ -280,7 +282,9 @@ See `GET /providers` to map id to real providers (for current user only).
 
 ## Reset company [/company/reset]
 ### Reset company [DELETE]
-Reset **all** documents, tokens and providers from the account.
+> This endpoint is only available to admin users.
+
+Reset **all** documents, tokens and providers from this company.
 
 Subcompanies and users are not affected.
 
@@ -1847,6 +1851,8 @@ A list of default document-types can be found on [this page](/resources/document
 
 
 ### Create document-type [POST]
+> This endpoint is only available to admin users.
+
 Create a new document-type. This document-type will be available for your company and all its descendants.
 
 See [how to create a document-type](/guides/creating/document-type.html), or the [document-type tutorial](/guides/tutorials/document-type.html).
@@ -1977,6 +1983,8 @@ Retrieve details about the specified document-type.
             }
 
 ### Update document-type [PATCH]
+> This endpoint is only available to admin users.
+
 Update some information about a document-type. You can only update your own document-types.
 
 The `name` and `es_mapping` properties can't be updated, you need to `DELETE` your document-type to change them.
@@ -2035,6 +2043,8 @@ The `name` and `es_mapping` properties can't be updated, you need to `DELETE` yo
             }
 
 ### Delete document-type [DELETE]
+> This endpoint is only available to admin users.
+
 Remove a document-type. You can only delete your own document-types.
 
 You can't delete a document-type in use by at least one document (in your company or any other subcompanies).
@@ -2309,6 +2319,8 @@ List hydraters owned by the user's company and its parent companies. These repre
             ]
 
 ### Create Hydrater [POST]
+> This endpoint is only available to admin users.
+
 Create a new hydrater owned by your company. Your company and subcompanies will be able to use it to hydrate their documents.
 See [how to create a hydrater](/guides/creating/hydrater.html).
 
@@ -2373,6 +2385,8 @@ Retrieve information about one hydrater.
 
 
 ### Delete Hydrater [DELETE]
+> This endpoint is only available to admin users.
+
 Delete a hydrater.
 You must be admin of your company to delete a hydrater.
 You cannot delete a hydrater which is owned by one of your subcompanies.
