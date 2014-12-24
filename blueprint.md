@@ -201,6 +201,8 @@ Errors and response are exactly the same as calling [`GET /users/:id`](#users-us
             }
 
 ### Update current company [PATCH]
+> This endpoint is only available to admin users.
+
 Allows you to update your current company details: hydrater list, name and `documents_per_update`.
 
 Warning: if you lower your own `documents_per_update` value, you'll *never* be able to restore it to some higher value. Be careful.
@@ -280,7 +282,9 @@ See `GET /providers` to map id to real providers (for current user only).
 
 ## Reset company [/company/reset]
 ### Reset company [DELETE]
-Reset **all** documents, tokens and providers from the account.
+> This endpoint is only available to admin users.
+
+Reset **all** documents, tokens and providers from this company.
 
 Subcompanies and users are not affected.
 
@@ -824,6 +828,7 @@ Common parameters include `data` (data to use for full display), `metadata` (dat
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 MissingScope`: token does not have the `write_documents` scope.
 > * `403 Forbidden`: document was not provided with this access token, and can't be updated.
+> * `403 InsecureOperation`: the company `secure` flag is on, and only trusted clients can use this endpoint.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
 > * `409 InvalidArgument`: `id` is not a valid id.
 > * `409 MissingParameter`: neither `id` nor `identifier` was specified
@@ -971,6 +976,7 @@ Hydraters use this endpoint to `PATCH` their changes to the document. They may o
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 MissingScope`: token does not have the `write_documents` scope.
+> * `403 InsecureOperation`: the company `secure` flag is on, and only trusted clients can use this endpoint.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
 > * `409 InvalidArgument`: `id` is not a valid id.
@@ -1423,6 +1429,7 @@ This endpoint should be used when providing, to associate a file with a document
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 MissingScope`: token does not have the `write_documents` scope.
+> * `403 InsecureOperation`: the company `secure` flag is on, and only trusted clients can use this endpoint.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `404 ResourceNotFound`: no file associated with this document
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
@@ -1847,6 +1854,8 @@ A list of default document-types can be found on [this page](/resources/document
 
 
 ### Create document-type [POST]
+> This endpoint is only available to admin users.
+
 Create a new document-type. This document-type will be available for your company and all its descendants.
 
 See [how to create a document-type](/guides/creating/document-type.html), or the [document-type tutorial](/guides/tutorials/document-type.html).
@@ -1855,6 +1864,7 @@ See [how to create a document-type](/guides/creating/document-type.html), or the
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 MissingScope`: token does not have the `write_hydraters` scope.
 > * `403 Forbidden`: you are not an administrator on this account.
+> * `403 InsecureOperation`: the company `secure` flag is on, and only trusted clients can use this endpoint.
 > * `409 MissingParameter`: Missing parameter (name, templates, projections, es_mapping, description)
 > * `409 InvalidArgument`: es_mapping must be a valid JSON object, not a string
 > * `409 InvalidArgument`: you specified an unknown argument
@@ -1977,6 +1987,8 @@ Retrieve details about the specified document-type.
             }
 
 ### Update document-type [PATCH]
+> This endpoint is only available to admin users.
+
 Update some information about a document-type. You can only update your own document-types.
 
 The `name` and `es_mapping` properties can't be updated, you need to `DELETE` your document-type to change them.
@@ -1985,6 +1997,7 @@ The `name` and `es_mapping` properties can't be updated, you need to `DELETE` yo
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 MissingScope`: token does not have the `read_document_types` scope.
 > * `403 NotAuthorized`: you aren't the owner of this document-type
+> * `403 InsecureOperation`: the company `secure` flag is on, and only trusted clients can use this endpoint.
 > * `404 ResourceNotFound`: the document-type does not exist.
 > * `409 InvalidArgument`: can't update `name` or `es_mapping`
 > * `409 InvalidArgument`: unknown parameter
@@ -2035,6 +2048,8 @@ The `name` and `es_mapping` properties can't be updated, you need to `DELETE` yo
             }
 
 ### Delete document-type [DELETE]
+> This endpoint is only available to admin users.
+
 Remove a document-type. You can only delete your own document-types.
 
 You can't delete a document-type in use by at least one document (in your company or any other subcompanies).
@@ -2044,6 +2059,7 @@ You can't delete a document-type in use by at least one document (in your compan
 > * `403 MissingScope`: token does not have the `read_document_types` scope.
 > * `403 NotAuthorized`: you aren't the owner of this document-type
 > * `403 NotAuthorized`: you can't remove a document-type in use
+> * `403 InsecureOperation`: the company `secure` flag is on, and only trusted clients can use this endpoint.
 > * `404 ResourceNotFound`: the document-type does not exist.
 
 + Response 204
@@ -2309,6 +2325,8 @@ List hydraters owned by the user's company and its parent companies. These repre
             ]
 
 ### Create Hydrater [POST]
+> This endpoint is only available to admin users.
+
 Create a new hydrater owned by your company. Your company and subcompanies will be able to use it to hydrate their documents.
 See [how to create a hydrater](/guides/creating/hydrater.html).
 
@@ -2373,6 +2391,8 @@ Retrieve information about one hydrater.
 
 
 ### Delete Hydrater [DELETE]
+> This endpoint is only available to admin users.
+
 Delete a hydrater.
 You must be admin of your company to delete a hydrater.
 You cannot delete a hydrater which is owned by one of your subcompanies.

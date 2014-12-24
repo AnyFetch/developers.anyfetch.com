@@ -187,7 +187,10 @@ Should have a <code>status</code> of “OK”.</p>
     "<span class="hljs-attribute">documents_per_update</span>": <span class="hljs-value"><span class="hljs-number">2500</span></span>,
     "<span class="hljs-attribute">last_update</span>": <span class="hljs-value"><span class="hljs-string">"2014-11-12T15:22:26.044Z"</span>
 </span>}
-</code></pre></li></ul></section><section id="company-company-patch" class="panel panel-warning"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Update current company</span></div><div style="float:left"><a href="#company-company-patch" class="btn btn-xs btn-warning">PATCH</a></div><div style="overflow:hidden"><code>/company</code></div></div><div class="panel-body"><p>Allows you to update your current company details: hydrater list, name and <code>documents_per_update</code>.</p>
+</code></pre></li></ul></section><section id="company-company-patch" class="panel panel-warning"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Update current company</span></div><div style="float:left"><a href="#company-company-patch" class="btn btn-xs btn-warning">PATCH</a></div><div style="overflow:hidden"><code>/company</code></div></div><div class="panel-body"><blockquote>
+<p>This endpoint is only available to admin users.</p>
+</blockquote>
+<p>Allows you to update your current company details: hydrater list, name and <code>documents_per_update</code>.</p>
 <p>Warning: if you lower your own <code>documents_per_update</code> value, you’ll <em>never</em> be able to restore it to some higher value. Be careful.</p>
 <blockquote>
 <ul>
@@ -249,7 +252,10 @@ Note that even if each provider responds with an error, this endpoint will still
         "<span class="hljs-attribute">546b4cdc557c5ba64a9eed10</span>": <span class="hljs-value"><span class="hljs-number">202</span>
     </span>}
 </span>}
-</code></pre></li></ul></section><h4 id="company-reset-company">Reset company&nbsp;<a href="#company-reset-company"><i class="fa fa-link"></i></a></h4><section id="company-reset-company-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Reset company</span></div><div style="float:left"><a href="#company-reset-company-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/company/reset</code></div></div><div class="panel-body"><p>Reset <strong>all</strong> documents, tokens and providers from the account.</p>
+</code></pre></li></ul></section><h4 id="company-reset-company">Reset company&nbsp;<a href="#company-reset-company"><i class="fa fa-link"></i></a></h4><section id="company-reset-company-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Reset company</span></div><div style="float:left"><a href="#company-reset-company-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/company/reset</code></div></div><div class="panel-body"><blockquote>
+<p>This endpoint is only available to admin users.</p>
+</blockquote>
+<p>Reset <strong>all</strong> documents, tokens and providers from this company.</p>
 <p>Subcompanies and users are not affected.</p>
 <blockquote>
 <ul>
@@ -708,6 +714,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>403 MissingScope</code>: token does not have the <code>write_documents</code> scope.</li>
 <li><code>403 Forbidden</code>: document was not provided with this access token, and can’t be updated.</li>
+<li><code>403 InsecureOperation</code>: the company <code>secure</code> flag is on, and only trusted clients can use this endpoint.</li>
 <li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 <li><code>409 MissingParameter</code>: neither <code>id</code> nor <code>identifier</code> was specified</li>
@@ -841,6 +848,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>403 MissingScope</code>: token does not have the <code>write_documents</code> scope.</li>
+<li><code>403 InsecureOperation</code>: the company <code>secure</code> flag is on, and only trusted clients can use this endpoint.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
 <li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
@@ -1250,6 +1258,7 @@ Also include information about hydraters (<code>hydrated_by</code>, <code>hydrat
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>403 MissingScope</code>: token does not have the <code>write_documents</code> scope.</li>
+<li><code>403 InsecureOperation</code>: the company <code>secure</code> flag is on, and only trusted clients can use this endpoint.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
 <li><code>404 ResourceNotFound</code>: no file associated with this document</li>
 <li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
@@ -1587,7 +1596,10 @@ Note that even if each providers responds with an error, this endpoint will stil
         "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2014-07-23T11:32:06.347Z"</span>
     </span>}
 ]
-</code></pre></li></ul></section><section id="document-types-document-types-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create document-type</span></div><div style="float:left"><a href="#document-types-document-types-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/document_types</code></div></div><div class="panel-body"><p>Create a new document-type. This document-type will be available for your company and all its descendants.</p>
+</code></pre></li></ul></section><section id="document-types-document-types-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create document-type</span></div><div style="float:left"><a href="#document-types-document-types-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/document_types</code></div></div><div class="panel-body"><blockquote>
+<p>This endpoint is only available to admin users.</p>
+</blockquote>
+<p>Create a new document-type. This document-type will be available for your company and all its descendants.</p>
 <p>See <a href="/guides/creating/document-type.html">how to create a document-type</a>, or the <a href="/guides/tutorials/document-type.html">document-type tutorial</a>.</p>
 <blockquote>
 <ul>
@@ -1595,6 +1607,7 @@ Note that even if each providers responds with an error, this endpoint will stil
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>403 MissingScope</code>: token does not have the <code>write_hydraters</code> scope.</li>
 <li><code>403 Forbidden</code>: you are not an administrator on this account.</li>
+<li><code>403 InsecureOperation</code>: the company <code>secure</code> flag is on, and only trusted clients can use this endpoint.</li>
 <li><code>409 MissingParameter</code>: Missing parameter (name, templates, projections, es_mapping, description)</li>
 <li><code>409 InvalidArgument</code>: es_mapping must be a valid JSON object, not a string</li>
 <li><code>409 InvalidArgument</code>: you specified an unknown argument</li>
@@ -1705,7 +1718,10 @@ Note that even if each providers responds with an error, this endpoint will stil
         }
     }
 }
-</code></pre></li></ul></section><section id="document-types-document-type-patch" class="panel panel-warning"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Update document-type</span></div><div style="float:left"><a href="#document-types-document-type-patch" class="btn btn-xs btn-warning">PATCH</a></div><div style="overflow:hidden"><code>/document_types/{id}</code></div></div><div class="panel-body"><p>Update some information about a document-type. You can only update your own document-types.</p>
+</code></pre></li></ul></section><section id="document-types-document-type-patch" class="panel panel-warning"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Update document-type</span></div><div style="float:left"><a href="#document-types-document-type-patch" class="btn btn-xs btn-warning">PATCH</a></div><div style="overflow:hidden"><code>/document_types/{id}</code></div></div><div class="panel-body"><blockquote>
+<p>This endpoint is only available to admin users.</p>
+</blockquote>
+<p>Update some information about a document-type. You can only update your own document-types.</p>
 <p>The <code>name</code> and <code>es_mapping</code> properties can’t be updated, you need to <code>DELETE</code> your document-type to change them.</p>
 <blockquote>
 <ul>
@@ -1713,6 +1729,7 @@ Note that even if each providers responds with an error, this endpoint will stil
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>403 MissingScope</code>: token does not have the <code>read_document_types</code> scope.</li>
 <li><code>403 NotAuthorized</code>: you aren’t the owner of this document-type</li>
+<li><code>403 InsecureOperation</code>: the company <code>secure</code> flag is on, and only trusted clients can use this endpoint.</li>
 <li><code>404 ResourceNotFound</code>: the document-type does not exist.</li>
 <li><code>409 InvalidArgument</code>: can’t update <code>name</code> or <code>es_mapping</code></li>
 <li><code>409 InvalidArgument</code>: unknown parameter</li>
@@ -1753,7 +1770,10 @@ Note that even if each providers responds with an error, this endpoint will stil
         }
     }
 }
-</code></pre></li></ul></section><section id="document-types-document-type-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Delete document-type</span></div><div style="float:left"><a href="#document-types-document-type-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/document_types/{id}</code></div></div><div class="panel-body"><p>Remove a document-type. You can only delete your own document-types.</p>
+</code></pre></li></ul></section><section id="document-types-document-type-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Delete document-type</span></div><div style="float:left"><a href="#document-types-document-type-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/document_types/{id}</code></div></div><div class="panel-body"><blockquote>
+<p>This endpoint is only available to admin users.</p>
+</blockquote>
+<p>Remove a document-type. You can only delete your own document-types.</p>
 <p>You can’t delete a document-type in use by at least one document (in your company or any other subcompanies).</p>
 <blockquote>
 <ul>
@@ -1762,6 +1782,7 @@ Note that even if each providers responds with an error, this endpoint will stil
 <li><code>403 MissingScope</code>: token does not have the <code>read_document_types</code> scope.</li>
 <li><code>403 NotAuthorized</code>: you aren’t the owner of this document-type</li>
 <li><code>403 NotAuthorized</code>: you can’t remove a document-type in use</li>
+<li><code>403 InsecureOperation</code>: the company <code>secure</code> flag is on, and only trusted clients can use this endpoint.</li>
 <li><code>404 ResourceNotFound</code>: the document-type does not exist.</li>
 </ul>
 </blockquote>
@@ -1964,7 +1985,10 @@ Also note the behavior for this endpoint differ from <code>DELETE /company/reset
         "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"AnyFetch Hydrater that removes garbage documents."</span>
     </span>}
 ]
-</code></pre></li></ul></section><section id="hydraters-hydraters-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create Hydrater</span></div><div style="float:left"><a href="#hydraters-hydraters-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/hydraters</code></div></div><div class="panel-body"><p>Create a new hydrater owned by your company. Your company and subcompanies will be able to use it to hydrate their documents.
+</code></pre></li></ul></section><section id="hydraters-hydraters-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create Hydrater</span></div><div style="float:left"><a href="#hydraters-hydraters-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/hydraters</code></div></div><div class="panel-body"><blockquote>
+<p>This endpoint is only available to admin users.</p>
+</blockquote>
+<p>Create a new hydrater owned by your company. Your company and subcompanies will be able to use it to hydrate their documents.
 See <a href="/guides/creating/hydrater.html">how to create a hydrater</a>.</p>
 <blockquote>
 <ul>
@@ -2015,7 +2039,10 @@ See <a href="/guides/creating/hydrater.html">how to create a hydrater</a>.</p>
     "<span class="hljs-attribute">short_name</span>": <span class="hljs-value"><span class="hljs-string">"markdown"</span></span>,
     "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"AnyFetch Hydrater for markdown files."</span>
 </span>}
-</code></pre></li></ul></section><section id="hydraters-hydrater-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Delete Hydrater</span></div><div style="float:left"><a href="#hydraters-hydrater-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/hydraters/{id}</code></div></div><div class="panel-body"><p>Delete a hydrater.
+</code></pre></li></ul></section><section id="hydraters-hydrater-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Delete Hydrater</span></div><div style="float:left"><a href="#hydraters-hydrater-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/hydraters/{id}</code></div></div><div class="panel-body"><blockquote>
+<p>This endpoint is only available to admin users.</p>
+</blockquote>
+<p>Delete a hydrater.
 You must be admin of your company to delete a hydrater.
 You cannot delete a hydrater which is owned by one of your subcompanies.</p>
 <p>Deleting a hydrater will remove this hydrater in your company and all your subcompanies. Existing documents will not be affected.</p>
