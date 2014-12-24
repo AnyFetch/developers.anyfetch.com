@@ -714,6 +714,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>403 MissingScope</code>: token does not have the <code>write_documents</code> scope.</li>
 <li><code>403 Forbidden</code>: document was not provided with this access token, and can’t be updated.</li>
+<li><code>403 InsecureOperation</code>: the company <code>secure</code> flag is on, and only trusted clients can use this endpoint.</li>
 <li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
 <li><code>409 MissingParameter</code>: neither <code>id</code> nor <code>identifier</code> was specified</li>
@@ -847,6 +848,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>403 MissingScope</code>: token does not have the <code>write_documents</code> scope.</li>
+<li><code>403 InsecureOperation</code>: the company <code>secure</code> flag is on, and only trusted clients can use this endpoint.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
 <li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
 <li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
@@ -1256,6 +1258,7 @@ Also include information about hydraters (<code>hydrated_by</code>, <code>hydrat
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>403 MissingScope</code>: token does not have the <code>write_documents</code> scope.</li>
+<li><code>403 InsecureOperation</code>: the company <code>secure</code> flag is on, and only trusted clients can use this endpoint.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
 <li><code>404 ResourceNotFound</code>: no file associated with this document</li>
 <li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
@@ -1604,6 +1607,7 @@ Note that even if each providers responds with an error, this endpoint will stil
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>403 MissingScope</code>: token does not have the <code>write_hydraters</code> scope.</li>
 <li><code>403 Forbidden</code>: you are not an administrator on this account.</li>
+<li><code>403 InsecureOperation</code>: the company <code>secure</code> flag is on, and only trusted clients can use this endpoint.</li>
 <li><code>409 MissingParameter</code>: Missing parameter (name, templates, projections, es_mapping, description)</li>
 <li><code>409 InvalidArgument</code>: es_mapping must be a valid JSON object, not a string</li>
 <li><code>409 InvalidArgument</code>: you specified an unknown argument</li>
@@ -1725,6 +1729,7 @@ Note that even if each providers responds with an error, this endpoint will stil
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>403 MissingScope</code>: token does not have the <code>read_document_types</code> scope.</li>
 <li><code>403 NotAuthorized</code>: you aren’t the owner of this document-type</li>
+<li><code>403 InsecureOperation</code>: the company <code>secure</code> flag is on, and only trusted clients can use this endpoint.</li>
 <li><code>404 ResourceNotFound</code>: the document-type does not exist.</li>
 <li><code>409 InvalidArgument</code>: can’t update <code>name</code> or <code>es_mapping</code></li>
 <li><code>409 InvalidArgument</code>: unknown parameter</li>
@@ -1777,6 +1782,7 @@ Note that even if each providers responds with an error, this endpoint will stil
 <li><code>403 MissingScope</code>: token does not have the <code>read_document_types</code> scope.</li>
 <li><code>403 NotAuthorized</code>: you aren’t the owner of this document-type</li>
 <li><code>403 NotAuthorized</code>: you can’t remove a document-type in use</li>
+<li><code>403 InsecureOperation</code>: the company <code>secure</code> flag is on, and only trusted clients can use this endpoint.</li>
 <li><code>404 ResourceNotFound</code>: the document-type does not exist.</li>
 </ul>
 </blockquote>

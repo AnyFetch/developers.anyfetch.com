@@ -828,6 +828,7 @@ Common parameters include `data` (data to use for full display), `metadata` (dat
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 MissingScope`: token does not have the `write_documents` scope.
 > * `403 Forbidden`: document was not provided with this access token, and can't be updated.
+> * `403 InsecureOperation`: the company `secure` flag is on, and only trusted clients can use this endpoint.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
 > * `409 InvalidArgument`: `id` is not a valid id.
 > * `409 MissingParameter`: neither `id` nor `identifier` was specified
@@ -975,6 +976,7 @@ Hydraters use this endpoint to `PATCH` their changes to the document. They may o
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 MissingScope`: token does not have the `write_documents` scope.
+> * `403 InsecureOperation`: the company `secure` flag is on, and only trusted clients can use this endpoint.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
 > * `409 InvalidArgument`: `id` is not a valid id.
@@ -1427,6 +1429,7 @@ This endpoint should be used when providing, to associate a file with a document
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 MissingScope`: token does not have the `write_documents` scope.
+> * `403 InsecureOperation`: the company `secure` flag is on, and only trusted clients can use this endpoint.
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `404 ResourceNotFound`: no file associated with this document
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
@@ -1861,6 +1864,7 @@ See [how to create a document-type](/guides/creating/document-type.html), or the
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 MissingScope`: token does not have the `write_hydraters` scope.
 > * `403 Forbidden`: you are not an administrator on this account.
+> * `403 InsecureOperation`: the company `secure` flag is on, and only trusted clients can use this endpoint.
 > * `409 MissingParameter`: Missing parameter (name, templates, projections, es_mapping, description)
 > * `409 InvalidArgument`: es_mapping must be a valid JSON object, not a string
 > * `409 InvalidArgument`: you specified an unknown argument
@@ -1993,6 +1997,7 @@ The `name` and `es_mapping` properties can't be updated, you need to `DELETE` yo
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 MissingScope`: token does not have the `read_document_types` scope.
 > * `403 NotAuthorized`: you aren't the owner of this document-type
+> * `403 InsecureOperation`: the company `secure` flag is on, and only trusted clients can use this endpoint.
 > * `404 ResourceNotFound`: the document-type does not exist.
 > * `409 InvalidArgument`: can't update `name` or `es_mapping`
 > * `409 InvalidArgument`: unknown parameter
@@ -2054,6 +2059,7 @@ You can't delete a document-type in use by at least one document (in your compan
 > * `403 MissingScope`: token does not have the `read_document_types` scope.
 > * `403 NotAuthorized`: you aren't the owner of this document-type
 > * `403 NotAuthorized`: you can't remove a document-type in use
+> * `403 InsecureOperation`: the company `secure` flag is on, and only trusted clients can use this endpoint.
 > * `404 ResourceNotFound`: the document-type does not exist.
 
 + Response 204
