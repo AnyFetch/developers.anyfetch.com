@@ -1267,7 +1267,7 @@ Also include information about hydraters (<code>hydrated_by</code>, <code>hydrat
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 <li><code>403 MissingScope</code>: token does not have the <code>write_documents</code> scope.</li>
-<li><code>403 InsecureOperation</code>: the company <code>secure</code> flag is on, and only trusted clients can use this endpoint.</li>
+<li><code>403 InsecureOperation</code>: the company <code>secure</code> flag is on, and only trusted clients can use this endpoint. See <a href="/guides/security/secure.html">this page for details</a></li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
 <li><code>404 ResourceNotFound</code>: no file associated with this document</li>
 <li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
