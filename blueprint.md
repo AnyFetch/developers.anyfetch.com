@@ -166,7 +166,7 @@ Retrieve the current company details.
 
 Contains your company name, the list of hydraters used on your account and basic stats (document count, user count...)
 
-Errors and response are exactly the same as calling [`GET /users/:id`](#users-user-get) with your own id.
+Errors and response are exactly the same as calling [`GET /company/:id`](#subcompanies-subcompany-get) with your own id.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -178,6 +178,7 @@ Errors and response are exactly the same as calling [`GET /users/:id`](#users-us
             {
                 "_type": "Company",
                 "id": "53f31b0a6a77dce00d9ca289",
+                "secure": false,
                 "name": "test@anyfetch.com",
                 "hydraters": [
                     "https://embedmail.anyfetch.com/hydrate",
@@ -203,7 +204,7 @@ Errors and response are exactly the same as calling [`GET /users/:id`](#users-us
 ### Update current company [PATCH]
 > This endpoint is only available to admin users.
 
-Allows you to update your current company details: hydrater list, name and `documents_per_update`.
+Lets you update your current company details: hydrater list, name and `documents_per_update`.
 
 Warning: if you lower your own `documents_per_update` value, you'll *never* be able to restore it to some higher value. Be careful.
 
@@ -224,6 +225,7 @@ Warning: if you lower your own `documents_per_update` value, you'll *never* be a
                 "_type": "Company",
                 "id": "53e0b2256f18dce71fce0bfe",
                 "name": "matthieu@anyfetch.com",
+                "secure": false,
                 "hydraters": [
                     "https://plaintext.anyfetch.com/hydrate",
                     "https://pdf.anyfetch.com/hydrate",
@@ -345,6 +347,7 @@ Childs are listed in the `childs` fields as an array of companies.
                     "_type": "Company",
                     "id": "545a2aec36cb20533b63a68f",
                     "name": "subcompany",
+                    "secure": false,
                     "hydraters": [
                         "https://embedmail.anyfetch.com/hydrate",
                         "https://eml.anyfetch.com/hydrate",
@@ -368,6 +371,7 @@ Childs are listed in the `childs` fields as an array of companies.
                             "_type": "Company",
                             "id": "545a2b7936cb20533b63a691",
                             "name": "subsubcompany",
+                            "secure": false,
                             "hydraters": [
                                 "https://embedmail.anyfetch.com/hydrate",
                                 "https://eml.anyfetch.com/hydrate",
@@ -394,6 +398,7 @@ Childs are listed in the `childs` fields as an array of companies.
                     "_type": "Company",
                     "id": "545a365336cb20533b63a693",
                     "name": "other-subcompany",
+                    "secure": false,
                     "hydraters": [
                         "https://embedmail.anyfetch.com/hydrate",
                         "https://eml.anyfetch.com/hydrate",
@@ -450,6 +455,7 @@ Note the "original" (parent) company will only be able to `DELETE` the subcompan
             {
                 "user": "52fb7b90c8318c4dc800006c",
                 "name": "subcompany",
+                "secure": true
             }
 
 + Response 200 (application/json)
@@ -459,6 +465,7 @@ Note the "original" (parent) company will only be able to `DELETE` the subcompan
                 "_type": "Company",
                 "id": "545a2aec36cb20533b63a68f",
                 "name": "subcompany",
+                "secure": true,
                 "hydraters": [
                     "https://embedmail.anyfetch.com/hydrate",
                     "https://eml.anyfetch.com/hydrate",
@@ -501,6 +508,7 @@ Retrieve a specific subcompany from the current company, and its subcompanies re
                 "_type": "Company",
                 "id": "545a2aec36cb20533b63a68f",
                 "name": "subcompany",
+                "secure": false,
                 "hydraters": [
                     "https://embedmail.anyfetch.com/hydrate",
                     "https://eml.anyfetch.com/hydrate",
@@ -566,7 +574,7 @@ Update the specified subcompany.
             {
                 "hydraters": ["https://plaintext.anyfetch.com"]
                 "name": "new_name",
-                "documents_per_update": 240,
+                "documents_per_update": 240
             }
 
 + Response 200
@@ -575,6 +583,7 @@ Update the specified subcompany.
                 "_type": "Company",
                 "id": "546a14aa5ebce54e1258147b",
                 "name": "new_name",
+                "secure": false,
                 "hydraters": ["https://plaintext.anyfetch.com"],
                 "document_count": 0,
                 "user_count": 1,
