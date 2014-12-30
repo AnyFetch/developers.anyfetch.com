@@ -166,7 +166,9 @@ Retrieve the current company details.
 
 Contains your company name, the list of hydraters used on your account and basic stats (document count, user count...)
 
-Errors and response are exactly the same as calling [`GET /users/:id`](#users-user-get) with your own id.
+Errors and response are exactly the same as calling [`GET /company/:id`](#subcompanies-subcompany-get) with your own id.
+
+See [this page for details](/guides/security/secure.html) regarding the secure flag.
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -178,6 +180,7 @@ Errors and response are exactly the same as calling [`GET /users/:id`](#users-us
             {
                 "_type": "Company",
                 "id": "53f31b0a6a77dce00d9ca289",
+                "secure": false,
                 "name": "test@anyfetch.com",
                 "hydraters": [
                     "https://embedmail.anyfetch.com/hydrate",
@@ -203,7 +206,7 @@ Errors and response are exactly the same as calling [`GET /users/:id`](#users-us
 ### Update current company [PATCH]
 > This endpoint is only available to admin users.
 
-Allows you to update your current company details: hydrater list, name and `documents_per_update`.
+Lets you update your current company details: hydrater list, name and `documents_per_update`.
 
 Warning: if you lower your own `documents_per_update` value, you'll *never* be able to restore it to some higher value. Be careful.
 
@@ -224,6 +227,7 @@ Warning: if you lower your own `documents_per_update` value, you'll *never* be a
                 "_type": "Company",
                 "id": "53e0b2256f18dce71fce0bfe",
                 "name": "matthieu@anyfetch.com",
+                "secure": false,
                 "hydraters": [
                     "https://plaintext.anyfetch.com/hydrate",
                     "https://pdf.anyfetch.com/hydrate",
@@ -345,6 +349,7 @@ Childs are listed in the `childs` fields as an array of companies.
                     "_type": "Company",
                     "id": "545a2aec36cb20533b63a68f",
                     "name": "subcompany",
+                    "secure": false,
                     "hydraters": [
                         "https://embedmail.anyfetch.com/hydrate",
                         "https://eml.anyfetch.com/hydrate",
@@ -368,6 +373,7 @@ Childs are listed in the `childs` fields as an array of companies.
                             "_type": "Company",
                             "id": "545a2b7936cb20533b63a691",
                             "name": "subsubcompany",
+                            "secure": false,
                             "hydraters": [
                                 "https://embedmail.anyfetch.com/hydrate",
                                 "https://eml.anyfetch.com/hydrate",
@@ -394,6 +400,7 @@ Childs are listed in the `childs` fields as an array of companies.
                     "_type": "Company",
                     "id": "545a365336cb20533b63a693",
                     "name": "other-subcompany",
+                    "secure": false,
                     "hydraters": [
                         "https://embedmail.anyfetch.com/hydrate",
                         "https://eml.anyfetch.com/hydrate",
@@ -431,6 +438,8 @@ The user passed in `user` will be migrated to the new company, and made admin. T
 
 Note the "original" (parent) company will only be able to `DELETE` the subcompany, and can't do anything more: the new user will effectively be the admin in the subcompany, and the only one able to view and add documents, users...
 
+See [this page for details](/guides/security/secure.html) regarding the secure flag.
+
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 MissingScope`: token does not have the `write_companies` scope.
@@ -450,6 +459,7 @@ Note the "original" (parent) company will only be able to `DELETE` the subcompan
             {
                 "user": "52fb7b90c8318c4dc800006c",
                 "name": "subcompany",
+                "secure": true
             }
 
 + Response 200 (application/json)
@@ -459,6 +469,7 @@ Note the "original" (parent) company will only be able to `DELETE` the subcompan
                 "_type": "Company",
                 "id": "545a2aec36cb20533b63a68f",
                 "name": "subcompany",
+                "secure": true,
                 "hydraters": [
                     "https://embedmail.anyfetch.com/hydrate",
                     "https://eml.anyfetch.com/hydrate",
@@ -501,6 +512,7 @@ Retrieve a specific subcompany from the current company, and its subcompanies re
                 "_type": "Company",
                 "id": "545a2aec36cb20533b63a68f",
                 "name": "subcompany",
+                "secure": false,
                 "hydraters": [
                     "https://embedmail.anyfetch.com/hydrate",
                     "https://eml.anyfetch.com/hydrate",
@@ -566,7 +578,7 @@ Update the specified subcompany.
             {
                 "hydraters": ["https://plaintext.anyfetch.com"]
                 "name": "new_name",
-                "documents_per_update": 240,
+                "documents_per_update": 240
             }
 
 + Response 200
@@ -575,6 +587,7 @@ Update the specified subcompany.
                 "_type": "Company",
                 "id": "546a14aa5ebce54e1258147b",
                 "name": "new_name",
+                "secure": false,
                 "hydraters": ["https://plaintext.anyfetch.com"],
                 "document_count": 0,
                 "user_count": 1,
@@ -828,7 +841,7 @@ Common parameters include `data` (data to use for full display), `metadata` (dat
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 MissingScope`: token does not have the `write_documents` scope.
 > * `403 Forbidden`: document was not provided with this access token, and can't be updated.
-> * `403 InsecureOperation`: the company `secure` flag is on, and only trusted clients can use this endpoint.
+> * `403 InsecureOperation`: the company `secure` flag is on, and only trusted clients can use this endpoint. See [this page for details](/guides/security/secure.html).
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
 > * `409 InvalidArgument`: `id` is not a valid id.
 > * `409 MissingParameter`: neither `id` nor `identifier` was specified
@@ -976,7 +989,7 @@ Hydraters use this endpoint to `PATCH` their changes to the document. They may o
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 MissingScope`: token does not have the `write_documents` scope.
-> * `403 InsecureOperation`: the company `secure` flag is on, and only trusted clients can use this endpoint.
+> * `403 InsecureOperation`: the company `secure` flag is on, and only trusted clients can use this endpoint. See [this page for details](/guides/security/secure.html).
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
 > * `409 InvalidArgument`: `id` is not a valid id.
@@ -1429,7 +1442,7 @@ This endpoint should be used when providing, to associate a file with a document
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 MissingScope`: token does not have the `write_documents` scope.
-> * `403 InsecureOperation`: the company `secure` flag is on, and only trusted clients can use this endpoint.
+> * `403 InsecureOperation`: the company `secure` flag is on, and only trusted clients can use this endpoint. See [this page for details](/guides/security/secure.html).
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `404 ResourceNotFound`: no file associated with this document
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
@@ -1864,7 +1877,7 @@ See [how to create a document-type](/guides/creating/document-type.html), or the
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 MissingScope`: token does not have the `write_hydraters` scope.
 > * `403 Forbidden`: you are not an administrator on this account.
-> * `403 InsecureOperation`: the company `secure` flag is on, and only trusted clients can use this endpoint.
+> * `403 InsecureOperation`: the company `secure` flag is on, and only trusted clients can use this endpoint. See [this page for details](/guides/security/secure.html).
 > * `409 MissingParameter`: Missing parameter (name, templates, projections, es_mapping, description)
 > * `409 InvalidArgument`: es_mapping must be a valid JSON object, not a string
 > * `409 InvalidArgument`: you specified an unknown argument
@@ -1997,7 +2010,7 @@ The `name` and `es_mapping` properties can't be updated, you need to `DELETE` yo
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
 > * `403 MissingScope`: token does not have the `read_document_types` scope.
 > * `403 NotAuthorized`: you aren't the owner of this document-type
-> * `403 InsecureOperation`: the company `secure` flag is on, and only trusted clients can use this endpoint.
+> * `403 InsecureOperation`: the company `secure` flag is on, and only trusted clients can use this endpoint. See [this page for details](/guides/security/secure.html).
 > * `404 ResourceNotFound`: the document-type does not exist.
 > * `409 InvalidArgument`: can't update `name` or `es_mapping`
 > * `409 InvalidArgument`: unknown parameter
@@ -2059,7 +2072,7 @@ You can't delete a document-type in use by at least one document (in your compan
 > * `403 MissingScope`: token does not have the `read_document_types` scope.
 > * `403 NotAuthorized`: you aren't the owner of this document-type
 > * `403 NotAuthorized`: you can't remove a document-type in use
-> * `403 InsecureOperation`: the company `secure` flag is on, and only trusted clients can use this endpoint.
+> * `403 InsecureOperation`: the company `secure` flag is on, and only trusted clients can use this endpoint. See [this page for details](/guides/security/secure.html).
 > * `404 ResourceNotFound`: the document-type does not exist.
 
 + Response 204
