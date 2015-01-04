@@ -1,9 +1,11 @@
+// At top level, for easy hot-swap
+var apiUrl = 'https://api.anyfetch.com';
+
 (function () {
   'use strict';
   /*jslint indent: 2 */
   /*global $: false, window: false, document: false, localStorage: false, async: false, FormData: false */
 
-  var apiUrl = 'https://api.anyfetch.com';
   var userToken = '';
   var working = false;
 
