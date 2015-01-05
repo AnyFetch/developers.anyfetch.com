@@ -112,7 +112,7 @@ var apiUrl = 'https://api.anyfetch.com';
       error: function(response) {
         cb(response.responseJSON);
       },
-      xhr: function(){
+      xhr: function() {
         // get the native xhr object
         var xhr = $.ajaxSettings.xhr();
         xhr.upload.onprogress = function onprogress(progress) {
@@ -132,9 +132,13 @@ var apiUrl = 'https://api.anyfetch.com';
       success: function(response) {
         var hydraters = response.hydrating.length + response.hydrated_by.length;
         setProgress(50 + (response.hydrated_by.length / hydraters) * 45, 'Hydrating... (' + response.hydrated_by.length + '/' + hydraters + ')');
-        $('#status-hydrating').html(response.hydrating.length ? response.hydrating.join('<br>') : 'None');
-        $('#status-hydrated').html(response.hydrated_by.length ? response.hydrated_by.join('<br>') : 'None');
-        $('#status-errored').html(response.hydrater_errored || 'None');
+        $('#status-hydrating').html(response.hydrating.length ? response.hydrating.map(function(hydrater) {
+          return hydrater.url;
+        }).join('<br>') : 'None');
+        $('#status-hydrated').html(response.hydrated_by.length ? response.hydrated_by.map(function(hydrater) {
+          return hydrater.url;
+        }).join('<br>') : 'None');
+        $('#status-errored').html(response.hydrater_errored.url || 'None');
         $('#status-errors').html(response.hydration_error || 'None');
         if(response.hydrating.length) {
           window.setTimeout(function() {
@@ -158,7 +162,9 @@ var apiUrl = 'https://api.anyfetch.com';
     var test = false;
 
     async.until(
-      function() { return test; },
+      function() {
+        return test;
+      },
       function getRawWrapper(cb) {
         getRaw(identifier, function(err, state) {
           test = state;
@@ -330,7 +336,7 @@ var apiUrl = 'https://api.anyfetch.com';
           if(!(err instanceof Error) && err.code && err.message) {
             err = err.code + (err.message !== '' ? (': ' + err.message) : '');
           }
-          else if (err instanceof Error){
+          else if(err instanceof Error) {
             err = err.toString();
           }
           makeAlert('danger', err);
