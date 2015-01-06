@@ -843,9 +843,11 @@ Common parameters include `data` (data to use for full display), `metadata` (dat
 > * `403 Forbidden`: document was not provided with this access token, and can't be updated.
 > * `403 InsecureOperation`: the company `secure` flag is on, and only trusted clients can use this endpoint. See [this page for details](/guides/security/secure.html).
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
+> * `409 InvalidArgument`: the provided access_token in userAccess does not match any user.
+> * `409 InvalidArgument`: the provided document-type is invalid.
 > * `409 InvalidArgument`: `id` is not a valid id.
-> * `409 MissingParameter`: neither `id` nor `identifier` was specified
 > * `409 InvalidArgument`: no documents matched by `id`. Use `identifier` to create a new document
+> * `409 MissingParameter`: neither `id` nor `identifier` was specified
 
 + Request (application/json)
 
