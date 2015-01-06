@@ -27,7 +27,7 @@ Those servers are hosted on Heroku, and no Salesforce data is exported beyond th
 
 ![Approve third party access](/images/products/salesfetch/approve-third-party.png)
 
-On the next screen, the permission used by the package will be displayed. Salesfetch only use `read` access to your objects.
+On the next screen, the permission used by the package will be displayed.
 
 ![API access](/images/products/salesfetch/package-api-access.png)
 
