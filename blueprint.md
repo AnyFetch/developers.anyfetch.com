@@ -995,6 +995,8 @@ Hydraters use this endpoint to `PATCH` their changes to the document. They may o
 > * `404 ResourceNotFound`: document does not exist, or can't be accessed.
 > * `409 TooManyArguments`: specify either `id` or `identifier`, not both.
 > * `409 InvalidArgument`: `id` is not a valid id.
+  * `409 InvalidArgument`: the provided access_token in userAccess does not match any user.
+> * `409 InvalidArgument`: the provided document-type is invalid.
 
 + Parameters
     + id (required, hexadecimal hash, `52dff5c53923844f15885428`) ... Hexadecimal `id` of the Document to perform action with.
