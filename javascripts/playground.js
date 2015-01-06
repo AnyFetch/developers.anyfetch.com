@@ -138,7 +138,7 @@ var apiUrl = 'https://api.anyfetch.com';
         $('#status-hydrated').html(response.hydrated_by.length ? response.hydrated_by.map(function(hydrater) {
           return hydrater.url;
         }).join('<br>') : 'None');
-        $('#status-errored').html(response.hydrater_errored.url || 'None');
+        $('#status-errored').html(response.hydrater_errored ? response.hydrater_errored.url : 'None');
         $('#status-errors').html(response.hydration_error || 'None');
         if(response.hydrating.length) {
           window.setTimeout(function() {
