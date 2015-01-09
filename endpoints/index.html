@@ -88,7 +88,7 @@ h4 {
   padding-bottom: 12px;
   overflow-y: auto;
 }
-@media (max-width: 1199px) {
+@media( max-width: 1199px) {
   #nav {
     min-width: 212px;
   }
@@ -99,16 +99,16 @@ h4 {
 <p><strong>anyFetch API</strong> is designed to help you search massive amounts of documents coming from various sources, in various formats. See <a href="/authentication.html">authentication</a> for authentication details.</p>
 <p>Common error codes are documented on <a href="/getting-started.html">this page</a>.</p>
 </div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="index">Index&nbsp;<a href="#index"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="index-api-status">API status&nbsp;<a href="#index-api-status"><i class="fa fa-link"></i></a></h4><section id="index-api-status-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">anyFetch status</span></div><div style="float:left"><a href="#index-api-status-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/status</code></div></div><div class="panel-body"><p>Get the current global status for the API.
-Should have a <code>status</code> of &quot;OK&quot;.</p>
+Should have a <code>status</code> of “OK”.</p>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#957280a06bc55b8699f318c2550ead43" class="pull-right">Toggle</a></li><li id="957280a06bc55b8699f318c2550ead43" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"ok"</span></span>,
     "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">""</span>
 </span>}
 </code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="account">Account&nbsp;<a href="#account"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="account-index">Index&nbsp;<a href="#account-index"><i class="fa fa-link"></i></a></h4><section id="account-index-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve API links</span></div><div style="float:left"><a href="#account-index-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/</code></div></div><div class="panel-body"><p>Retrieve data about the current account. This endpoint return:</p>
 <ul>
-<li><p><code>user_email</code>: informations regarding currently connected user</p></li>
-<li><p><code>_url</code> to another endpoint of the API (HATEOAS design). Notice the <code>current_user_url</code> key.</p></li>
-<li><p><code>server_time</code>: current server date, if you need to compute deltas with local client.</p></li>
+<li><code>user_email</code>: informations regarding currently connected user. Note this does not require <code>read_users</code> scope.</li>
+<li><code>_url</code> to another endpoint of the API (HATEOAS design). Notice the <code>current_user_url</code> key.</li>
+<li><code>server_time</code>: current server date, if you need to compute deltas with local client.</li>
 </ul>
 <blockquote>
 <ul>
@@ -116,8 +116,10 @@ Should have a <code>status</code> of &quot;OK&quot;.</p>
 <li><code>401 InvalidCredentials</code>: you did not specify a token, or your token is invalid / has been revoked.</li>
 </ul>
 </blockquote>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#86bfe97229a79675929a3a6b28e17833" class="pull-right">Toggle</a></li><li id="86bfe97229a79675929a3a6b28e17833" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#2c6adfa29f5fb03ce9099f7c5fb376a5" class="pull-right">Toggle</a></li><li id="2c6adfa29f5fb03ce9099f7c5fb376a5" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">user_email</span>": <span class="hljs-value"><span class="hljs-string">"test@anyfetch.com"</span></span>,
+    "<span class="hljs-attribute">user_id</span>": <span class="hljs-value"><span class="hljs-string">"53e0b2257976bdce1f250f93"</span></span>,
+    "<span class="hljs-attribute">company_id</span>": <span class="hljs-value"><span class="hljs-string">"53e0b2256f18dce71fce0bfe"</span></span>,
     "<span class="hljs-attribute">documents_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/documents/"</span></span>,
     "<span class="hljs-attribute">document_types_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/document_types/"</span></span>,
     "<span class="hljs-attribute">providers_url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.anyfetch.com/providers/"</span></span>,
@@ -368,8 +370,8 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <p>You may customize hydraters list, or use default list.</p>
 <p>The user passed in <code>user</code> will be migrated to the new company, and made admin. To create a new subcompany, you’ll need :</p>
 <ol>
-<li><p>to create a new user (<code>POST /users</code>) in the current company;</p></li>
-<li><p>then create the new company passing the newly created <code>user</code> id as param.</p></li>
+<li>to create a new user (<code>POST /users</code>) in the current company;</li>
+<li>then create the new company passing the newly created <code>user</code> id as param.</li>
 </ol>
 <p>Note the “original” (parent) company will only be able to <code>DELETE</code> the subcompany, and can’t do anything more: the new user will effectively be the admin in the subcompany, and the only one able to view and add documents, users…</p>
 <p>See <a href="/guides/security/secure.html">this page for details</a> regarding the secure flag.</p>
@@ -715,9 +717,9 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <p>If no identifier is specified, it will be set to the value of the document’s id.</p>
 <p>Common parameters include <code>data</code> (data to use for full display), <code>metadata</code> (data to use for search and snippet display), <code>actions</code> (object of links) and <code>user_access</code> (an array of users authorized to view the document).</p>
 <ul>
-<li><p>Identifiers in <code>related</code> will be converted to their matching <code>id</code></p></li>
-<li><p>Access tokens in <code>user_access</code> will be converted to their matching <code>user</code>.</p></li>
-<li><p>A name in <code>document_type</code> will be converted to its matching <code>id</code>.</p></li>
+<li>Identifiers in <code>related</code> will be converted to their matching <code>id</code></li>
+<li>Access tokens in <code>user_access</code> will be converted to their matching <code>user</code>.</li>
+<li>A name in <code>document_type</code> will be converted to its matching <code>id</code>.</li>
 </ul>
 <blockquote>
 <ul>
@@ -779,8 +781,8 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <section id="documents-document-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get Document</span></div><div style="float:left"><a href="#documents-document-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents/{id}{?search,render_templates}</code></div></div><div class="panel-body"><p>A single document with its details, <a href="/guides/concepts/projection.html">projected according to its <code>document_type</code></a>. For raw data access, use <code>GET /documents/:id/raw</code></p>
 <p>Result contains, amongst other :</p>
 <ul>
-<li><p><code>full</code> projection, in <code>data</code>,</p></li>
-<li><p><code>title</code> projection, in <code>title</code>.</p></li>
+<li><code>full</code> projection, in <code>data</code>,</li>
+<li><code>title</code> projection, in <code>title</code>.</li>
 </ul>
 <blockquote>
 <ul>
@@ -850,11 +852,11 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <p>If the update causes new hydraters to match the document, they’ll be called right away for hydration.</p>
 <p>Hydraters use this endpoint to <code>PATCH</code> their changes to the document. They may overwrite some of your data if you <code>PATCH</code> before them.</p>
 <ul>
-<li><p><code>metadata</code> and <code>data</code> objects will be merged with their respective counterparts (first-level merge only).</p></li>
-<li><p>Identifiers in <code>related</code> will be converted to their matching <code>id</code></p></li>
-<li><p>Access tokens in <code>user_access</code> will be converted to their matching <code>user</code>.</p></li>
-<li><p>A name in <code>document_type</code> will be converted to its matching <code>id</code>.</p></li>
-<li><p>You can’t update the <code>hydrated_by</code> and <code>hydrating</code> properties; they’re managed internally.</p></li>
+<li><code>metadata</code> and <code>data</code> objects will be merged with their respective counterparts (first-level merge only).</li>
+<li>Identifiers in <code>related</code> will be converted to their matching <code>id</code></li>
+<li>Access tokens in <code>user_access</code> will be converted to their matching <code>user</code>.</li>
+<li>A name in <code>document_type</code> will be converted to its matching <code>id</code>.</li>
+<li>You can’t update the <code>hydrated_by</code> and <code>hydrating</code> properties; they’re managed internally.</li>
 </ul>
 <blockquote>
 <ul>
@@ -864,26 +866,22 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <li><code>403 InsecureOperation</code>: the company <code>secure</code> flag is on, and only trusted clients can use this endpoint. See <a href="/guides/security/secure.html">this page for details</a>.</li>
 <li><code>404 ResourceNotFound</code>: document does not exist, or can’t be accessed.</li>
 <li><code>409 TooManyArguments</code>: specify either <code>id</code> or <code>identifier</code>, not both.</li>
-<li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.</li>
-</ul>
-</blockquote>
-<ul>
+<li><code>409 InvalidArgument</code>: <code>id</code> is not a valid id.<ul>
 <li><code>409 InvalidArgument</code>: the provided access_token in user_access does not match any user.</li>
 </ul>
-<blockquote>
-<ul>
+</li>
 <li><code>409 InvalidArgument</code>: the provided document_type is invalid.</li>
 </ul>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>hexadecimal hash</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>52dff5c53923844f15885428</span></span><p>Hexadecimal <code>id</code> of the Document to perform action with.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#735f87fb7992fff1d7a63c6cc5d4e4c2" class="pull-right">Toggle</a></li><li id="735f87fb7992fff1d7a63c6cc5d4e4c2" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>    <span class="hljs-collection">{
-        <span class="hljs-string">"metadata"</span>: <span class="hljs-collection">{
-            from: <span class="hljs-string">"matthieu@anyfetch.com"</span>,
-            to: <span class="hljs-string">"mehdi@anyfetch.com"</span>
-        }</span>,
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#735f87fb7992fff1d7a63c6cc5d4e4c2" class="pull-right">Toggle</a></li><li id="735f87fb7992fff1d7a63c6cc5d4e4c2" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>    {
+        <span class="hljs-string">"metadata"</span>: {
+            <span class="hljs-keyword">from</span>: <span class="hljs-string">"matthieu@anyfetch.com"</span>,
+            <span class="hljs-keyword">to</span>: <span class="hljs-string">"mehdi@anyfetch.com"</span>
+        },
         <span class="hljs-string">"document_type"</span>: <span class="hljs-string">"email"</span>,
-        <span class="hljs-string">"related"</span>: <span class="hljs-collection">[<span class="hljs-string">"https://mail.google.com/mail/165sfd8qsf"</span>]</span>
-    }</span>
+        <span class="hljs-string">"related"</span>: [<span class="hljs-string">"https://mail.google.com/mail/165sfd8qsf"</span>]
+    }
 </code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><section id="documents-document-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Delete Document</span></div><div style="float:left"><a href="#documents-document-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/documents/{id}{?search,render_templates}</code></div></div><div class="panel-body"><p>Remove specified document.</p>
 <blockquote>
 <ul>
@@ -900,9 +898,9 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 </dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="documents-similar-documents">Similar documents&nbsp;<a href="#documents-similar-documents"><i class="fa fa-link"></i></a></h4><section id="documents-similar-documents-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Find similar documents</span></div><div style="float:left"><a href="#documents-similar-documents-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents/{id}/similar</code></div></div><div class="panel-body"><p>Documents similar to <code>id</code>. Still a work in progress.</p>
 <p>Result contains, amongst other :</p>
 <ul>
-<li><p><code>title</code> projection for <code>id</code> document, in <code>title</code>.</p></li>
-<li><p><code>snippet</code> projection for similar documents, in <code>data</code></p></li>
-<li><p><code>keywords</code> used to find similar documents</p></li>
+<li><code>title</code> projection for <code>id</code> document, in <code>title</code>.</li>
+<li><code>snippet</code> projection for similar documents, in <code>data</code></li>
+<li><code>keywords</code> used to find similar documents</li>
 </ul>
 <blockquote>
 <ul>
@@ -1088,8 +1086,8 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 </code></pre></li></ul></section><h4 id="documents-related-documents">Related documents&nbsp;<a href="#documents-related-documents"><i class="fa fa-link"></i></a></h4><section id="documents-related-documents-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Find related documents</span></div><div style="float:left"><a href="#documents-related-documents-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/documents/{id}/related</code></div></div><div class="panel-body"><p>Documents related to <code>id</code>.</p>
 <p>Result contains, amongst other :</p>
 <ul>
-<li><p><code>title</code> projection for <code>id</code> document, in <code>title</code>.</p></li>
-<li><p><code>snippet</code> projection for related documents, in <code>data</code></p></li>
+<li><code>title</code> projection for <code>id</code> document, in <code>title</code>.</li>
+<li><code>snippet</code> projection for related documents, in <code>data</code></li>
 </ul>
 <blockquote>
 <ul>
@@ -1402,10 +1400,10 @@ Note that even if each providers responds with an error, this endpoint will stil
 </span>}
 </code></pre></li></ul></section><h4 id="users-user">User&nbsp;<a href="#users-user"><i class="fa fa-link"></i></a></h4><p>A single User object with all its details. This resource has the following attributes :</p>
 <ul>
-<li><p><code>id</code> id of the user</p></li>
-<li><p><code>name</code> name of the user</p></li>
-<li><p><code>email</code> email address of the user</p></li>
-<li><p><code>is_admin</code> true if the user is admin of this company</p></li>
+<li><code>id</code> id of the user</li>
+<li><code>name</code> name of the user</li>
+<li><code>email</code> email address of the user</li>
+<li><code>is_admin</code> true if the user is admin of this company</li>
 </ul>
 <section id="users-user-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve a User</span></div><div style="float:left"><a href="#users-user-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/users/{id}</code></div></div><div class="panel-body"><p>Retrieve information about specified user.</p>
 <blockquote>

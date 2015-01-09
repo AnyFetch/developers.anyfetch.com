@@ -83,7 +83,7 @@ Should have a `status` of "OK".
 ### Retrieve API links [GET]
 Retrieve data about the current account. This endpoint return:
 
-- `user_email`: informations regarding currently connected user
+- `user_email`: informations regarding currently connected user. Note this does not require `read_users` scope.
 - `_url` to another endpoint of the API (HATEOAS design). Notice the `current_user_url` key.
 - `server_time`: current server date, if you need to compute deltas with local client.
 
@@ -95,6 +95,8 @@ Retrieve data about the current account. This endpoint return:
 
             {
                 "user_email": "test@anyfetch.com",
+                "user_id": "53e0b2257976bdce1f250f93",
+                "company_id": "53e0b2256f18dce71fce0bfe",
                 "documents_url": "https://api.anyfetch.com/documents/",
                 "document_types_url": "https://api.anyfetch.com/document_types/",
                 "providers_url": "https://api.anyfetch.com/providers/",
