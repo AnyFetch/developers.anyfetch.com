@@ -56,6 +56,8 @@ To do so, send to `POST https://manager.anyfetch.com/oauth/access_token` the fol
 }
 ```
 
+> For more details reagarding the OAuth flow on Anyfetch, see [the OAuth 2.0 guide](/guides/tutorials/oauth.html)
+
 ## Lib
 Here at anyFetch, we use node.js for our providers to improve latency and send multiple files at once. You can use the [anyFetch](https://www.npmjs.org/package/anyfetch) library from npm, or [anyFetch Provider](https://www.npmjs.org/package/anyfetch-provider). You'll find additional documentation directly on those packages.
 
