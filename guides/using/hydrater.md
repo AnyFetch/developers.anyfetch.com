@@ -103,3 +103,5 @@ $ curl https://ocr.anyfetch.com/status
 
 ## Sample hydraters
 Anyfetch ships with some default hydraters you may want to check, see the [hydrater resource section](/resources/hydraters.html).
+
+> Why don't you create your own? See [How do I create my own hydrater?](/creating/hydrater.html) for more details.
