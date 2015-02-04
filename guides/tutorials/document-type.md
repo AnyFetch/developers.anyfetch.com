@@ -41,7 +41,7 @@ The list is already quite long, and contains all the default document-type. You 
 
 What we want to do is add our own, to display `product` documents.
 
-We'll have to specify many things: [how we want to display a document](/guides/concepts/templating.html) (`templates`), [which data should be transferred by the API to the enduser](](/guides/concepts/projection.html)) (`projections`) and which data should be user for searching (`es_mapping`).
+We'll have to specify many things: [how we want to display a document](/guides/concepts/templating.html) (`templates`), [which data should be transferred by the API to the enduser](/guides/concepts/projection.html)) (`projections`) and which data should be user for searching (`es_mapping`).
 
 ### ElasticSearch mapping
 This one is pretty straightfoward: we just list the keys we want, and the type of data they're supposed to store.
