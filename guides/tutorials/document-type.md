@@ -37,7 +37,7 @@ curl -XGET \
 https://api.anyfetch.com/document_types
 ```
 
-The list is already quite long, and contains all the default document-type. You can find the same list in a more enjoyable format [here](resources/document-types.html).
+The list is already quite long, and contains all the default document-type. You can find the same list in a more enjoyable format [here](/resources/document-type.html).
 
 What we want to do is add our own, to display `product` documents.
 

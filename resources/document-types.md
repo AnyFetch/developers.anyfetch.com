@@ -10,7 +10,7 @@ If you're not satisfied with the default presentation or you find some data is m
 
 Default document-types (those presented here) have no "owner", meaning only the AnyFetch team is able to update them.
 
-Before reading this page, make sure you understand [projections](/concepts/projection.html) and  [templating](/concepts/templating.html).
+Before reading this page, make sure you understand [projections](/guides/concepts/projection.html) and  [templating](/guides/concepts/templating.html).
 
 {% raw  %}
 ## Contact

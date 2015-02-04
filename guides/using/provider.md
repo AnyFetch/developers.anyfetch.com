@@ -37,7 +37,7 @@ The provider will then asynchronously send documents to anyFetch.
 When an authorization is revoked, the manager will automatically call `DELETE /token` to remove tokens.
 
 ## Creating my own provider
-Anyone can create a new provider on Anyfetch. See [How do I create my own provider?](/creating/provider.html) for more details.
+Anyone can create a new provider on Anyfetch. See [How do I create my own provider?](/guides/creating/provider.html) for more details.
 
 ## Sample providers
 anyFetch ships with some default providers you may want to check:
@@ -51,4 +51,4 @@ anyFetch ships with some default providers you may want to check:
 * `linkedin.anyfetch.com`: connect a Linkedin account. [Source](https://github.com/AnyFetch/linkedin-provider.anyfetch.com)
 * `box.anyfetch.com`: connect a Box account. [Source](https://github.com/AnyFetch/box-provider.anyfetch.com)
 
-> Why don't you create your own? See [How do I create my own provider?](/creating/provider.html) for more details.
+> Why don't you create your own? See [How do I create my own provider?](/guides/creating/provider.html) for more details.
