@@ -713,7 +713,7 @@ Name must only contain alphanumeric characters, <code>@</code>, <code>-</code> ,
 <p>You can’t send a file and a document at the same time, you need to send the document first and then send the file on <code>/documents/:id/file</code>.</p>
 </blockquote>
 <p>Send a new document on AnyFetch.</p>
-<p>The <a href="/resources/document-types.html"><code>document_type</code></a> value is mandatory, every other parameter is optional, however in nearly all cases you’ll specify <a href="/guides/concepts/identifier.html">a unique <code>identifier</code> to retrieve the document later</a>.</p>
+<p>The <a href="/resources/document-type.html"><code>document_type</code></a> value is mandatory, every other parameter is optional, however in nearly all cases you’ll specify <a href="/guides/concepts/identifier.html">a unique <code>identifier</code> to retrieve the document later</a>.</p>
 <p>If no identifier is specified, it will be set to the value of the document’s id.</p>
 <p>Common parameters include <code>data</code> (data to use for full display), <code>metadata</code> (data to use for search and snippet display), <code>actions</code> (object of links) and <code>user_access</code> (an array of users authorized to view the document).</p>
 <ul>
@@ -1499,7 +1499,7 @@ Note that even if each providers responds with an error, this endpoint will stil
     "<span class="hljs-attribute">546b4cdc557c5ba64a9eed10</span>": <span class="hljs-value"><span class="hljs-number">202</span>
 </span>}
 </code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="document-types">Document-Types&nbsp;<a href="#document-types"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="document-types-document-types">Document-Types&nbsp;<a href="#document-types-document-types"><i class="fa fa-link"></i></a></h4><section id="document-types-document-types-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">List document-types</span></div><div style="float:left"><a href="#document-types-document-types-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/document_types</code></div></div><div class="panel-body"><p>Retrieve all document-types available for the current user, with document count and the date the last document with this document-type was updated (or null if the document-type is not in use on this account).</p>
-<p>A list of default document-types can be found on <a href="/resources/document-types.html">this page</a>.</p>
+<p>A list of default document-types can be found on <a href="/resources/document-type.html">this page</a>.</p>
 <blockquote>
 <ul>
 <li><code>401 Unauthorized</code>: you did not specify any credentials, or you are using a non-supported <code>Authorization</code> scheme.</li>

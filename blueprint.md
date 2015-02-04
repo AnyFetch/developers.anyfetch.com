@@ -829,7 +829,7 @@ Return informations aggregated over the result set. The `score` key indicates do
 
 Send a new document on AnyFetch.
 
-The [`document_type`](/resources/document-types.html) value is mandatory, every other parameter is optional, however in nearly all cases you'll specify [a unique `identifier` to retrieve the document later](/guides/concepts/identifier.html).
+The [`document_type`](/resources/document-type.html) value is mandatory, every other parameter is optional, however in nearly all cases you'll specify [a unique `identifier` to retrieve the document later](/guides/concepts/identifier.html).
 
 If no identifier is specified, it will be set to the value of the document's id.
 
@@ -1752,7 +1752,7 @@ See `GET /providers` to map id to real providers.
 ### List document-types [GET]
 Retrieve all document-types available for the current user, with document count and the date the last document with this document-type was updated (or null if the document-type is not in use on this account).
 
-A list of default document-types can be found on [this page](/resources/document-types.html).
+A list of default document-types can be found on [this page](/resources/document-type.html).
 
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.

@@ -180,7 +180,7 @@ And another one, to display an event:
 {%endraw%}
 ```
 
-You can find more samples on the [document-type resource page](http://developers.anyfetch.com/resources/document-types.html).
+You can find more samples on the [document-type resource page](http://developers.anyfetch.com/resources/document-type.html).
 
 ## Need custom helpers?
 In some case, you may want to add more handlebars helper to handle your specific use case. In such case, please send a Pull Request to [anyfetch-handlebars](https://github.com/AnyFetch/anyfetch-handlebars). 
