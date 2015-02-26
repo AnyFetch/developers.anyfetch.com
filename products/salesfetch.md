@@ -71,9 +71,9 @@ You can now fill the Visualforce Markup text area with this code:
 
 ```html
 <apex:page StandardController="Contact" standardStylesheets="false" showheader="false" sidebar="false">
-    <anyfetch:IframeComponent Query="{!Contact.Name}" 
-        SFDCId="{!Contact.Id}" 
-        Display="{!Contact.Name}" 
+    <anyfetch:IframeComponent Query="{!Contact.Name}"
+        SFDCId="{!Contact.Id}"
+        Display="{!Contact.Name}"
         Type="Contact">
     </anyfetch:IframeComponent>
 </apex:page>
@@ -94,7 +94,7 @@ Name the newly created section `Context`, deselect `Edit Page` and select `1-Col
 
 ![Section properties](/images/products/salesfetch/section-properties.png)
 
-On the top of the page drag the **ContextContact** in **Visualforce Pages > ContextContact** and drop it in your **Context Panel**. A small wrench icon should be displayed on the top-right hand corner of the ContextContact panel, click on it to display the following modal panel. You can now adjust the size of the context page. Check that the Width property is set to `100%` and set the Height to at least `400px`. Then click on **Ok**.
+On the top of the page drag the **ContextContact** in **Visualforce Pages > ContextContact** and drop it in your **Context Panel**. A small wrench icon should be displayed on the top-right hand corner of the ContextContact panel, click on it to display the following modal panel. You can now adjust the size of the context page. Check that the Width property is set to `100%` and set the Height to at least `600px`. Then click on **Ok**.
 
 ![Visual force page properties](/images/products/salesfetch/visualforce-page-property.png)
 
@@ -117,9 +117,9 @@ You can now fill the Visualforce Markup text area with this code:
 
 ```html
 <apex:page StandardController="Contact" standardStylesheets="false" showheader="false" sidebar="false">
-    <anyfetch:IframeComponent Query="{!Contact.Name}" 
-        SFDCId="{!Contact.Id}" 
-        Display="{!Contact.Name}" 
+    <anyfetch:IframeComponent Query="{!Contact.Name}"
+        SFDCId="{!Contact.Id}"
+        Display="{!Contact.Name}"
         Type="Contact">
     </anyfetch:IframeComponent>
 </apex:page>
@@ -199,9 +199,9 @@ The idea is the same. However, you need to add `__c` to the name of your control
 
 ```html
 <apex:page StandardController="MyCustomObject__c" standardStylesheets="false" showheader="false" sidebar="false">
-    <anyfetch:IframeComponent Query="{!MyCustomObject__c.Name}" 
-        SFDCId="{!MyCustomObject__c.Id}" 
-        Display="{!MyCustomObject__c.Name}" 
+    <anyfetch:IframeComponent Query="{!MyCustomObject__c.Name}"
+        SFDCId="{!MyCustomObject__c.Id}"
+        Display="{!MyCustomObject__c.Name}"
         Type="MyCustomObject">
     </anyfetch:IframeComponent>
 </apex:page>
