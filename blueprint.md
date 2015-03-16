@@ -2104,7 +2104,14 @@ You can't delete a document-type in use by at least one document (in your compan
 # Group Providers
 ## Providers [/providers]
 ### List providers [GET]
-Retrieve all providers available for the current user, with document count, a providing flag, and the date the last document created by this provider was updated.
+Retrieve all providers available for the current user. Information includes:
+
+* `document_count`, number of documents currently stored for this provider
+* `providing`, a flag set to true when the provider is still working
+* `require_refresh` whether or not the associated OAuth token has expired or been revoked on a third party website, visit [the manager](https://manager.anyfetch.com/providers) for details.
+* `current`, a flag displaying the token currently in use (may be false everywhere when using Basic auth)
+* `is_basic_token` if this is a token with the same access as a pure Basic auth.
+* `client.oauth_app` for OAuth application retrieving informations from AnyFetch (for instance, the Chrome extension, although it's not strictly a provider)
 
 > * `401 Unauthorized`: you did not specify any credentials, or you are using a non-supported `Authorization` scheme.
 > * `401 InvalidCredentials`: you did not specify a token, or your token is invalid / has been revoked.
@@ -2116,59 +2123,125 @@ Retrieve all providers available for the current user, with document count, a pr
             [
                 {
                     "_type": "AccessToken",
-                    "id": "53c91957cfb3211a4fc877c0",
+                    "id": "54900a08ef428203667ad848",
+                    "client": {
+                        "_type": "Client",
+                        "name": "Gmail",
+                        "id": "53047faac8318c2d65000096",
+                        "oauth_app": false
+                    },
+                    "is_basic_token": false,
+                    "account_name": "matthieu.bacconnier@papiel.fr",
+                    "last_used": "2015-03-16T14:28:30.450Z",
+                    "require_refresh": false,
+                    "scopes": [
+                        "read_documents",
+                        "write_documents",
+                        "delete_documents"
+                    ],
+                    "current": false,
+                    "document_count": 5322,
+                    "updated": "2015-03-16T14:26:14.420Z",
+                    "providing": false
+                },
+                {
+                    "_type": "AccessToken",
+                    "id": "548f1206560ecc893f254171",
                     "client": null,
                     "is_basic_token": true,
                     "account_name": "",
-                    "document_count": 2,
-                    "updated": "2014-07-23T12:01:16.036Z",
-                    "providing": true,
-                    "current": true
+                    "last_used": "2015-03-16T14:30:05.124Z",
+                    "require_refresh": false,
+                    "scopes": [
+                        "read_documents",
+                        "write_documents",
+                        "delete_documents",
+                        "read_document_types",
+                        "write_document_types",
+                        "delete_document_types",
+                        "read_users",
+                        "write_users",
+                        "delete_users",
+                        "read_companies",
+                        "write_companies",
+                        "delete_companies",
+                        "read_tokens",
+                        "write_tokens",
+                        "delete_tokens",
+                        "read_hydraters",
+                        "write_hydraters",
+                        "delete_hydraters"
+                    ],
+                    "current": true,
+                    "document_count": 3,
+                    "updated": "2015-02-12T15:17:40.863Z",
+                    "providing": false
                 },
                 {
                     "_type": "AccessToken",
-                    "id": "53ce7198ebb324595ee9b49c",
-                    "client": {
-                        "_type": "Client",
-                        "name": "Google Contacts",
-                        "id": "52bff1eec8318cb228000001"
-                    },
-                    "is_basic_token": false,
-                    "account_name": "matthieu.bacconnier@papiel.fr",
-                    "document_count": 239,
-                    "updated": "2014-07-22T14:14:16.640Z",
-                    "providing": false,
-                    "current": false
-                },
-                {
-                    "_type": "AccessToken",
-                    "id": "53cf88997f247be935ebfd7a",
+                    "id": "54900a0b06f41f1166f8c880",
                     "client": {
                         "_type": "Client",
                         "name": "Google Drive",
-                        "id": "539ef7289f240405465a2e1f"
+                        "id": "539ef7289f240405465a2e1f",
+                        "oauth_app": false
                     },
                     "is_basic_token": false,
                     "account_name": "matthieu.bacconnier@papiel.fr",
-                    "document_count": 192,
-                    "updated": "2014-07-23T11:24:37.644Z",
-                    "providing": false,
-                    "current": false
+                    "last_used": "2015-03-16T14:28:31.283Z",
+                    "require_refresh": false,
+                    "scopes": [
+                        "read_documents",
+                        "write_documents",
+                        "delete_documents"
+                    ],
+                    "current": false,
+                    "document_count": 1897,
+                    "updated": "2015-03-16T14:26:04.948Z",
+                    "providing": false
                 },
                 {
                     "_type": "AccessToken",
-                    "id": "53cf9b4fa60b43c235680d7a",
+                    "id": "54dcb650938104f5503195d1",
                     "client": {
                         "_type": "Client",
-                        "name": "GMail",
-                        "id": "53047faac8318c2d65000096"
+                        "name": "Companion",
+                        "id": "54622abd45aa0bf43ab0f113",
+                        "oauth_app": true
                     },
                     "is_basic_token": false,
-                    "account_name": "matthieu.bacconnier@papiel.fr",
-                    "document_count": 6747,
-                    "updated": "2014-07-23T11:32:06.347Z",
-                    "providing": false,
-                    "current": false
+                    "account_name": "",
+                    "last_used": "2015-03-02T15:30:21.832Z",
+                    "require_refresh": false,
+                    "scopes": [
+                        "read_documents"
+                    ],
+                    "current": false,
+                    "document_count": 0,
+                    "updated": null,
+                    "providing": false
+                },
+                {
+                    "_type": "AccessToken",
+                    "id": "54d0c9b4805eddf869052042",
+                    "client": {
+                        "_type": "Client",
+                        "name": "Chrome Extension",
+                        "id": "5463ba1e70e0ff7e2aa1814c",
+                        "oauth_app": true
+                    },
+                    "is_basic_token": false,
+                    "account_name": "",
+                    "last_used": "2015-02-03T13:30:57.870Z",
+                    "require_refresh": false,
+                    "scopes": [
+                        "read_documents",
+                        "read_tokens"
+                    ],
+                    "current": false,
+                    "document_count": 0,
+                    "updated": null,
+                    "providing": false
                 }
             ]
 
